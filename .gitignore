@@ -1,0 +1,53 @@
+# Dependencies and package-manager caches
+node_modules/
+.pnpm-store/
+
+# SvelteKit, Vite and production output
+.svelte-kit/
+.vite/
+build/
+*.tsbuildinfo
+
+# Tests and coverage
+playwright-report/
+test-results/
+coverage/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local deployment-platform state
+.vercel/
+.netlify/
+
+# Build-time generated game data and audit output
+src/lib/generated/*
+!src/lib/generated/.gitkeep
+static/generated/*
+!static/generated/.gitkeep
+data/audit/*
+!data/audit/.gitkeep
+
+# Build-time generated visual assets and manifest
+src/lib/generated-assets/*
+!src/lib/generated-assets/.gitkeep
+static/generated-assets/*
+!static/generated-assets/.gitkeep
