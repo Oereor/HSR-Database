@@ -1,8 +1,13 @@
 # 星轨档案库
 
-《崩坏：星穹铁道》非官方静态数据资料库，使用 SvelteKit、TypeScript 和 Tailwind CSS 构建。网站从独立的 `TurnBasedGameData` 仓库读取真实配置，并在构建期从独立的 `StarRailRes` 仓库按稳定 ID 同步角色头像、立绘、属性与命途图标。
+《崩坏：星穹铁道》非官方静态数据资料库，使用 SvelteKit、TypeScript 和 Tailwind CSS 构建。
 
-网站仅支持简体中文，游戏文本只读取上游的 `TextMap/TextMapCHS.json`。角色技能按语义类别合并真实变体与忆灵能力；角色和光锥可查看真实晋阶数据计算出的 Lv.1–80 基础属性，光锥叠影保持独立等级控制。上游明确配置的角色加强使用完整的加强前/后 Profile 切换。
+## 基础功能
+
+- 查看角色的各项数据，包括基础属性（生命值，攻击力，防御力，速度），技能组，行迹，以及星魂。
+- 角色等级、行迹等级均可单独配置。
+- 提供简易的光锥、遗器、敌方单位信息。
+- 更多功能正在开发中……
 
 ## 仓库布局
 
@@ -247,6 +252,6 @@ jobs:
 
 ## 数据来源与免责声明
 
-数据来源于 [Oereor/TurnBasedGameData](https://github.com/Oereor/TurnBasedGameData)，角色头像、立绘、属性与命途图标来源于固定版本的 [Oereor/StarRailRes](https://github.com/Oereor/StarRailRes)。StarRailRes 仓库附带 GNU AGPL v3；本项目保留其完整许可证副本与第三方声明。
+数据来源于 [DimbreathBot/TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData)，角色头像、立绘、属性与命途图标来源于固定版本的 [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes)。StarRailRes 仓库附带 GNU AGPL v3；本项目保留其完整许可证副本与第三方声明。
 
 本站为非官方玩家项目，与米哈游或 HoYoverse 不存在官方关联。游戏名称、角色、图片和相关资产的权利归其权利人所有。仓库根目录 MIT 许可证仅适用于本站原创代码，不覆盖第三方数据、图片或游戏知识产权；许可分离说明不构成法律意见。
