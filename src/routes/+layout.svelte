@@ -10,6 +10,7 @@
     ['/light-cones', '光锥', '锥'],
     ['/relics', '遗器', '遗'],
     ['/enemies', '敌人', '敌'],
+    ['/endgame', 'Endgame', '终'],
     ['/search', '全局搜索', '⌕']
   ];
 </script>

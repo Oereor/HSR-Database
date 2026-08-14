@@ -65,6 +65,15 @@
 - phase、召唤、共享生命与 HP 操作只生成保守机制标记；最终整数化、复杂 Boss 伤害需求和运行时刷怪逻辑仍不推测。
 - 当前共生成 108 个 Group、823 个 Encounter、1,858 个 Stage 和 24,374 个 occurrence；核心关联错误为 0，历史 MoC 显式 Elite fallback 为 5,272 条。
 
+## 第五次重构：Endgame UI
+
+- 新增独立 `/endgame` 顶级功能区以及按 mode/group 静态预渲染的 108 个赛期页面；Enemy 百科继续回答模板资料，Endgame 页面只回答具体赛期中的实际敌方实例。
+- server-only adapter 只向页面序列化单个赛期的展示模型，并按 MonsterTemplateID 关联现有百科弱点；完整 mode JSON、Config 与 spawn sequence 不进入客户端 bundle。
+- MoC 固定阵容保留重复数量；PF 每个 wave 只显示唯一 occurrence 类型，去重 identity 包含实际 MonsterID、HP/Elite 上下文和机制，不会折叠同模板的不同变体。
+- HP 从精确 DecimalString 直接四舍五入为带千分位的完整整数，不使用 K/M/B。多阶段固定显示为“单条生命值 × 阶段数”，复杂机制通过原生 disclosure 保守说明，不生成未经验证的总生命值。
+- 弱点复用 canonical 七属性颜色、现有属性图标 resolver 和简中名称。185 个 Endgame 模板均可链接百科，9 个无弱点模板使用明确降级；当前没有完整敌人图标资源，页面使用无网络请求的中性占位。
+- AS 使用 Boss 导向的 occurrence 卡片但不猜测唯一主 Boss；AA 分离骑士、普通王棋和绝境王棋，并始终使用实际 spawn MonsterID 而不是 preview ID。
+
 ## 行迹卡片分组与类型标签
 
 - 生成数据升级为 schema 11。可展示行迹只保留真实单级的 `PointType=1/3/5`，分别规范化为属性加成与额外能力，不再向浏览器暴露无意义的 `Lv.1`。

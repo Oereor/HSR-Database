@@ -59,6 +59,14 @@ schema 12 新增 `src/lib/generated/endgame/{moc,pf,as,aa}.json`，当前基线�
 
 四个真实精确回归值为：MoC 萨姆 `11347628.66250`、PF 杰帕德 `1444452.47100`、AS `14628489.139950`、AA `63467351.45020015200`。AA 样本明确使用实际 MonsterID `501403002`，而不是 preview `5014030`。
 
+Endgame UI 不改变上述 schema 12 数据。静态构建时按 mode/group 读取单个赛期并生成玩家视图：
+
+- MoC fixed formation 中完整 identity 相同的 occurrence 合并并保留数量；不同 MonsterID、缩放或机制不合并。
+- PF/AA spawn sequence 仍在底层完整保存；PF 页面在每个 wave 内按实际 MonsterID、HP/Elite 上下文和机制 identity 保留第一次出现，隐藏重复次数和运行时顺序。当前 PF 16,930 条原始 occurrence 投影为 1,989 个波内唯一类型。
+- occurrence 使用实际 MonsterID 的名称、HP 和机制，并按 MonsterTemplateID 关联百科链接与弱点。当前 Endgame 涉及 185 个模板，全部存在百科详情，其中 9 个缺少弱点列表并在 UI 中明确降级。
+- HP 由 branded 十进制字符串直接四舍五入，不经过 JS `number`；页面显示带千分位的完整整数。多阶段显示 `14,628,489 × 2`，不把乘积标记为总生命值。
+- 弱点标签统一使用 canonical 七属性颜色、生成的属性图标和简中名称；当前没有可覆盖 Endgame 敌人的完整图标资源，因此不创建敌人图片请求。
+
 ## 简中文本与 Hash
 
 网站只读取 `TextMap/TextMapCHS.json`。一次性审计确认 `TextMapMainCHS.json` 的 1,116 个键全部包含在 CHS 中，因此 MainCHS 和其他语言 TextMap 均不是依赖或 fallback。
@@ -173,4 +181,4 @@ A 类主要包括 4,310 个无简中名称的关卡、1,016 个原始空行迹�
 5. 运行 `pnpm lint`、`pnpm check`、`pnpm test`、`pnpm test:e2e`、`pnpm build`。
 6. 确认两个上游 Git 状态与更新前一致。
 
-当前可实现首页、角色、光锥、遗器、敌人、全局搜索及详情。材料和普通物品属于主动移除的产品域，不是待补页面。角色和光锥没有可靠发布版本字段，因此仅遗器提供版本筛选。
+当前已实现首页、角色、光锥、遗器、敌人、全局搜索、详情及四模式 Endgame 赛期页面。材料和普通物品属于主动移除的产品域，不是待补页面。角色和光锥没有可靠发布版本字段，因此仅遗器提供版本筛选。

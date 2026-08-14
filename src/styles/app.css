@@ -1298,6 +1298,455 @@ footer a {
   color: var(--faint);
   font-size: 0.78rem;
 }
+
+/* Endgame */
+.endgame-mode-nav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: var(--space-6) 0 var(--space-8);
+}
+.endgame-mode-nav a {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-control);
+  background: rgb(14 20 34 / 72%);
+  padding: 0.8rem 0.9rem;
+  color: var(--text-secondary);
+  transition:
+    border-color var(--motion),
+    background var(--motion),
+    color var(--motion);
+}
+.endgame-mode-nav a:hover,
+.endgame-mode-nav a[aria-current='page'] {
+  border-color: var(--surface-border-strong);
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+.endgame-mode-nav a[aria-current='page'] {
+  box-shadow: inset 0 2px 0 var(--gold);
+}
+.endgame-mode-nav strong {
+  overflow: hidden;
+  font-size: var(--font-meta-value);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.endgame-mode-nav span {
+  color: var(--gold);
+  font-size: var(--font-internal);
+  letter-spacing: 0.08em;
+}
+.endgame-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+.endgame-mode-card,
+.endgame-period-card {
+  display: flex;
+  min-width: 0;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-card);
+  background: linear-gradient(145deg, rgb(21 29 45 / 88%), rgb(10 15 25 / 76%));
+  transition:
+    border-color var(--motion),
+    background var(--motion);
+}
+.endgame-mode-card {
+  min-height: 230px;
+  flex-direction: column;
+  align-items: start;
+  padding: var(--space-6);
+}
+.endgame-mode-card:hover,
+.endgame-period-card:hover,
+.endgame-period-card--recommended {
+  border-color: var(--surface-border-strong);
+  background: linear-gradient(145deg, rgb(25 35 54 / 94%), rgb(12 18 30 / 84%));
+}
+.endgame-mode-card > span {
+  color: var(--gold);
+  font-size: var(--font-internal);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+.endgame-mode-card h2 {
+  margin: var(--space-6) 0 var(--space-2);
+  font-size: var(--font-card-category);
+}
+.endgame-mode-card p {
+  margin-bottom: auto;
+  color: var(--text-body);
+}
+.endgame-mode-card small {
+  margin-top: var(--space-4);
+  color: var(--text-secondary);
+}
+.endgame-mode-card strong {
+  margin-top: var(--space-3);
+  color: var(--gold-soft);
+  font-size: var(--font-meta-value);
+}
+.endgame-period-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+.endgame-period-card {
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-4);
+}
+.endgame-period-card h2 {
+  margin: var(--space-2) 0 var(--space-1);
+  font-size: var(--font-major-title);
+}
+.endgame-period-card p,
+.endgame-period-card strong {
+  margin: 0;
+  font-size: var(--font-helper);
+}
+.endgame-period-card strong {
+  flex: 0 0 auto;
+  color: var(--gold-soft);
+}
+.endgame-period-card strong span {
+  margin-left: var(--space-2);
+}
+.endgame-period-status,
+.endgame-inline-status {
+  display: inline-flex;
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  padding: 0.24rem 0.48rem;
+  color: var(--text-secondary);
+  font-size: var(--font-internal);
+  font-weight: 700;
+}
+.endgame-period-status--current,
+.endgame-inline-status {
+  border-color: var(--surface-border-strong);
+  color: var(--gold-soft);
+}
+.endgame-period-status--upcoming {
+  color: #9fc4ff;
+}
+.endgame-heading {
+  align-items: center;
+}
+.endgame-heading > div:first-child {
+  min-width: 0;
+}
+.endgame-heading h1 {
+  overflow-wrap: anywhere;
+}
+.endgame-inline-status {
+  margin-left: var(--space-2);
+  vertical-align: middle;
+}
+.endgame-period-select {
+  width: min(420px, 42vw);
+  flex: 0 0 auto;
+}
+.endgame-period-select > span,
+.endgame-navigator-block > span {
+  display: block;
+  margin-bottom: var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--font-meta-key);
+}
+.endgame-period-select select {
+  width: 100%;
+}
+.endgame-navigator-block {
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--surface-border);
+  padding-bottom: var(--space-6);
+}
+.endgame-encounter-nav,
+.aa-encounter-nav nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.endgame-encounter-nav a,
+.aa-encounter-nav a {
+  display: grid;
+  min-width: 3rem;
+  min-height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  padding: 0.55rem 0.75rem;
+  color: var(--text-secondary);
+  font-size: var(--font-meta-value);
+  font-weight: 700;
+}
+.endgame-encounter-nav a:hover,
+.endgame-encounter-nav a[aria-current='page'],
+.aa-encounter-nav a:hover,
+.aa-encounter-nav a[aria-current='page'] {
+  border-color: var(--surface-border-strong);
+  background: var(--surface-2);
+  color: var(--gold-soft);
+}
+.aa-encounter-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--surface-border);
+  padding-bottom: var(--space-6);
+}
+.aa-encounter-nav h2 {
+  margin-bottom: var(--space-3);
+  color: var(--text-secondary);
+  font-size: var(--font-meta-key);
+}
+.endgame-encounter-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.endgame-encounter-heading h2 {
+  margin: 0;
+  font-size: var(--font-section-title);
+}
+.endgame-encounter-heading > span {
+  color: var(--text-secondary);
+  font-size: var(--font-helper);
+}
+.endgame-mode-note {
+  margin-bottom: var(--space-4);
+  border-left: 2px solid var(--gold);
+  background: rgb(215 181 109 / 6%);
+  padding: var(--space-3) var(--space-4);
+  color: var(--text-secondary);
+  font-size: var(--font-helper);
+}
+.endgame-battle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}
+.endgame-battle {
+  min-width: 0;
+  scroll-margin-top: 80px;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-card);
+  background: rgb(10 15 25 / 76%);
+  padding: var(--space-4);
+}
+.endgame-battle > header,
+.endgame-stage__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.endgame-battle > header {
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--surface-border);
+  padding-bottom: var(--space-3);
+}
+.endgame-battle > header h3,
+.endgame-stage__heading h4 {
+  margin: 0;
+}
+.endgame-battle > header h3 {
+  font-size: var(--font-major-title);
+}
+.endgame-battle > header span,
+.endgame-stage__heading span {
+  color: var(--gold-soft);
+  font-size: var(--font-helper);
+  font-variant-numeric: tabular-nums;
+}
+.endgame-stage + .endgame-stage {
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--surface-border);
+  padding-top: var(--space-4);
+}
+.endgame-stage__heading {
+  margin-bottom: var(--space-3);
+}
+.endgame-stage__heading h4,
+.endgame-wave > h4 {
+  color: var(--text-secondary);
+  font-size: var(--font-meta-key);
+}
+.endgame-wave + .endgame-wave {
+  margin-top: var(--space-4);
+}
+.endgame-wave > h4 {
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.04em;
+}
+.endgame-wave__enemies {
+  display: grid;
+  gap: var(--space-2);
+}
+.endgame-enemy {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: var(--space-3);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  padding: var(--space-3);
+}
+.endgame-enemy--boss {
+  grid-template-columns: 3rem minmax(0, 1fr);
+  border-color: rgb(215 181 109 / 24%);
+  padding: var(--space-4);
+}
+.endgame-enemy__placeholder {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid var(--surface-border);
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: serif;
+  font-size: var(--font-helper);
+}
+.endgame-enemy--boss .endgame-enemy__placeholder {
+  width: 3rem;
+  height: 3rem;
+  border-color: var(--surface-border-strong);
+  color: var(--gold);
+}
+.endgame-enemy__body {
+  min-width: 0;
+}
+.endgame-enemy__heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--space-3);
+}
+.endgame-enemy__heading h4 {
+  min-width: 0;
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-meta-value);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.endgame-enemy--boss .endgame-enemy__heading h4 {
+  font-size: var(--font-major-title);
+}
+.endgame-enemy__heading h4 a:hover {
+  color: var(--gold-soft);
+}
+.endgame-enemy__count {
+  margin-left: var(--space-2);
+  color: var(--gold);
+  font-size: var(--font-helper);
+  white-space: nowrap;
+}
+.endgame-hp {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: right;
+  white-space: nowrap;
+}
+.endgame-hp__label {
+  color: var(--text-muted);
+  font-size: var(--font-internal);
+}
+.endgame-hp strong {
+  color: var(--gold-soft);
+  font-size: var(--font-meta-value);
+  font-variant-numeric: tabular-nums;
+}
+.endgame-enemy--boss .endgame-hp strong {
+  font-size: var(--font-major-title);
+}
+.endgame-hp__phase {
+  color: var(--text-primary);
+}
+.hp-mechanics {
+  position: relative;
+}
+.hp-mechanics summary {
+  display: grid;
+  width: 1.55rem;
+  height: 1.55rem;
+  place-items: center;
+  border: 1px solid var(--surface-border);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: var(--font-internal);
+  list-style: none;
+}
+.hp-mechanics summary::-webkit-details-marker {
+  display: none;
+}
+.hp-mechanics[open] > div {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  width: min(360px, calc(100vw - 3rem));
+  border: 1px solid var(--surface-border-strong);
+  border-radius: var(--radius-control);
+  background: var(--surface-2);
+  box-shadow: 0 18px 45px rgb(0 0 0 / 35%);
+  padding: var(--space-3);
+  text-align: left;
+  white-space: normal;
+}
+.hp-mechanics p {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-helper);
+  line-height: 1.6;
+}
+.endgame-weaknesses {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+.endgame-weaknesses__label,
+.endgame-enemy__missing {
+  color: var(--text-muted);
+  font-size: var(--font-internal);
+}
+.endgame-weaknesses .semantic-icon-label {
+  gap: 0.3rem;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font-size: var(--font-helper);
+}
+.endgame-weaknesses .semantic-icon-label img {
+  width: 1rem;
+  height: 1rem;
+}
+.endgame-enemy__missing {
+  margin: var(--space-2) 0 0;
+}
+
 .table-wrap {
   overflow-x: auto;
 }
@@ -1651,6 +2100,23 @@ th {
   .search-results {
     grid-template-columns: repeat(2, 1fr);
   }
+  .endgame-mode-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .endgame-mode-grid,
+  .endgame-period-list,
+  .aa-encounter-nav {
+    grid-template-columns: 1fr;
+  }
+  .endgame-heading {
+    align-items: stretch;
+  }
+  .endgame-period-select {
+    width: 100%;
+  }
+  .endgame-battle-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1689,6 +2155,46 @@ th {
   .enhancement-control {
     width: 100%;
     justify-content: space-between;
+  }
+  .endgame-mode-nav a {
+    padding-inline: 0.65rem;
+  }
+  .endgame-mode-nav a span {
+    display: none;
+  }
+  .endgame-period-card {
+    align-items: start;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .endgame-encounter-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+  .endgame-battle {
+    padding: var(--space-3);
+  }
+  .endgame-enemy,
+  .endgame-enemy--boss {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    padding: var(--space-3);
+  }
+  .endgame-enemy__placeholder,
+  .endgame-enemy--boss .endgame-enemy__placeholder {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  .endgame-enemy__heading {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+  .endgame-hp {
+    justify-content: start;
+    text-align: left;
+  }
+  .hp-mechanics[open] > div {
+    right: auto;
+    left: 0;
   }
 }
 

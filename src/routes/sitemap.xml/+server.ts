@@ -1,13 +1,15 @@
 import { getManifest } from '$lib/server/generated';
+import { getEndgameRoutePaths } from '$lib/server/endgame';
 
 export const prerender = true;
 
 export async function GET() {
   const site = (process.env.PUBLIC_SITE_URL || 'http://localhost:5173').replace(/\/$/, '');
-  const manifest = await getManifest();
+  const [manifest, endgameRoutes] = await Promise.all([getManifest(), getEndgameRoutePaths()]);
   const urls = [
     '/',
     '/search',
+    ...endgameRoutes,
     ...Object.entries(manifest.routes).flatMap(([category, ids]) => [
       `/${category}`,
       ...ids.map((id) => `/${category}/${id}`)

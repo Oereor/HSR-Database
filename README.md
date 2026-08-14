@@ -7,6 +7,7 @@
 - 查看角色的各项数据，包括基础属性（生命值，攻击力，防御力，速度），技能组，行迹，以及星魂。
 - 角色等级、行迹等级均可单独配置。
 - 提供简易的光锥、遗器、敌方单位信息。
+- 提供混沌回忆、虚构叙事、末日幻影和异相仲裁的赛期、关卡、波次、弱点与实际敌方实例资料。
 - 更多功能正在开发中……
 
 ## 仓库布局
@@ -146,7 +147,9 @@ pnpm.cmd dev -- --open
 HPBase × HPModifyRatio × HardLevelGroup.HPRatio × contextual Elite HPRatio
 ```
 
-生成值表示单条生命的配置 MaxHP，不等同于复杂 Boss 的实际通关伤害需求。当前没有 Endgame 页面，现有敌人百科和浏览器代码不会加载这些文件。
+生成值表示单条生命的配置 MaxHP，不等同于复杂 Boss 的实际通关伤害需求。`/endgame` 使用独立的构建期 view-model adapter 按赛期读取这些文件：普通 HP 四舍五入为带千分位的完整整数，多阶段显示为“单条生命值 × 阶段数”，不会声明为总生命值。PF 的底层数据继续保存完整有序 spawn sequence，页面仅按波次展示唯一的实际 occurrence 类型。
+
+Endgame occurrence 通过 `MonsterTemplateID` 关联现有敌人百科的弱点和详情路由，但名称、HP 与机制始终来自关卡中的实际 `MonsterID`。弱点标签复用现有七属性颜色与 64px 属性图标；当前没有完整敌人图标来源，因此敌人行使用中性文字占位，不产生无效图片请求。
 
 **镜流、刃、卡芙卡、银狼、黑天鹅、花火、希儿、藿藿、流萤、瓦尔特**存在角色加强。详情 JSON 同时保存 `base` 与 `enhanced` Profile，各自包含能量、技能、行迹和星魂；页面默认展示加强后的角色信息，且角色详情中暂不提供加强对比功能。
 
@@ -155,8 +158,8 @@ HPBase × HPModifyRatio × HardLevelGroup.HPRatio × contextual Elite HPRatio
 - `scripts/data/`：路径验证、无损 JSON、本地化、同步、审计和验证。
 - `scripts/assets/`：视觉资源路径验证、按需转换、缓存、清理和验证。
 - `src/lib/domain/`：稳定领域模型与分类配置。
-- `src/lib/components/`：导航、目录卡片、筛选和详情展示。
-- `src/routes/`：首页、分类、详情、搜索、sitemap 和 robots。
+- `src/lib/components/`：导航、目录卡片、筛选、详情和 Endgame encounter 展示。
+- `src/routes/`：首页、分类、详情、搜索、Endgame、sitemap 和 robots。
 - `docs/data-audit.md`：数据结构、缺失项、许可与更新审计。
 - `docs/refactor-status.md`：两次重构结果、真实限制和后续候选。
 - `tests/`：使用真实生成记录的 Vitest 与 Playwright 测试。

@@ -6,7 +6,16 @@
     ['characters', '角色', '沿命途前行的开拓者与同伴', data.manifest.counts.characters],
     ['light-cones', '光锥', '记录记忆与力量的装备', data.manifest.counts.lightCones],
     ['relics', '遗器', '套装效果与部件资料', data.manifest.counts.relics],
-    ['enemies', '敌人', '弱点、抗性、技能与出现关卡', data.manifest.counts.enemies]
+    ['enemies', '敌人', '弱点、抗性、技能与出现关卡', data.manifest.counts.enemies],
+    [
+      'endgame',
+      'Endgame',
+      '四种终局模式的实际敌方实例与配置生命值',
+      Object.values(data.manifest.endgame.modes).reduce(
+        (total: number, mode: { encounters: number }) => total + mode.encounters,
+        0
+      )
+    ]
   ];
 </script>
 
@@ -85,7 +94,7 @@
   <div>
     <p>
       网站内容由只读上游仓库 TurnBasedGameData 的 JSON
-      配置经过无损解析、关联验证和轻量化生成。页面不会在运行时读取兄弟目录。
+      配置经过无损解析、关联验证和轻量化生成，包括四种终局模式的实际敌方实例。页面不会在运行时读取兄弟目录。
     </p>
     <p>
       结构化资料来自 TurnBasedGameData；角色头像由 StarRailRes 在构建时按 ID
