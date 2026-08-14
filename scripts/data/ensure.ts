@@ -12,14 +12,30 @@ try {
   // A missing or interrupted generation is handled below.
 }
 
+const endgameFilesPresent = await Promise.all(
+  ['moc', 'pf', 'as', 'aa'].map(async (mode) => {
+    try {
+      await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8');
+      return true;
+    } catch {
+      return false;
+    }
+  })
+);
+
 try {
   const root = assertDataRoot(resolveDataRoot());
   const commit = sourceCommit(root);
-  if (!manifest || manifest.schemaVersion !== 11 || manifest.sourceCommit !== commit)
+  if (
+    !manifest ||
+    manifest.schemaVersion !== 12 ||
+    manifest.sourceCommit !== commit ||
+    endgameFilesPresent.includes(false)
+  )
     await syncData();
   else console.log(`生成数据已是最新版本：${commit.slice(0, 12)}`);
 } catch (error) {
-  if (manifest?.schemaVersion === 11) {
+  if (manifest?.schemaVersion === 12 && !endgameFilesPresent.includes(false)) {
     console.warn(`上游暂不可用，继续使用已有生成数据：${(error as Error).message}`);
   } else {
     throw error;

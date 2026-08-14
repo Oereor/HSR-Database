@@ -45,6 +45,7 @@ import {
 import { characterStatFields, lightConeStatFields, normalizeStatProgression } from './stats.js';
 import { formatGameMarkup, formatGameText } from './text.js';
 import { normalizeGameText } from '../../src/lib/domain/game-text.js';
+import { buildEndgameData } from './endgame.js';
 
 type Raw = Record<string, any>;
 
@@ -1014,6 +1015,10 @@ export async function syncData(): Promise<DataManifest> {
     seed.entry.aliases = unique(seed.entry.aliases);
   }
 
+  console.log('构建 Endgame 敌方实例与精确 HP…');
+  // Normalize and validate every required relation before replacing the last known-good output.
+  const endgame = await buildEndgameData(root, text);
+
   await resetDirectory(generatedRoot);
   await resetDirectory(staticGeneratedRoot);
   await mkdir(auditRoot, { recursive: true });
@@ -1031,9 +1036,11 @@ export async function syncData(): Promise<DataManifest> {
       await writeJson(path.join(generatedRoot, 'details', category, `${detail.id}.json`), detail);
     }
   }
+  for (const [mode, dataset] of Object.entries(endgame.datasets))
+    await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 11,
+    schemaVersion: 12,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),
@@ -1049,7 +1056,8 @@ export async function syncData(): Promise<DataManifest> {
       'light-cones': lightCones.map((item) => item.id),
       relics: relics.map((item) => item.id),
       enemies: enemies.map((item) => item.id)
-    }
+    },
+    endgame: endgame.audit.summary
   };
   await writeJson(path.join(generatedRoot, 'manifest.json'), manifest);
   await writeJson(
@@ -1065,6 +1073,7 @@ export async function syncData(): Promise<DataManifest> {
     skillCombatAudit: {
       unknownEffects: [...unknownSkillEffects].sort()
     },
+    endgameAudit: endgame.audit,
     missingTextAudit: missingText.getSummary(),
     notes: {
       images: '上游仅包含 SpriteOutput 路径，不包含图片二进制文件。',

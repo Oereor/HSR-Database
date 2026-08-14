@@ -36,7 +36,28 @@
 - `ItemConfigEquipment`：光锥名称、简介与故事；
 - `ItemComefrom`：当前仅用于遗器获取来源。
 
-敌人出现关卡继续由 `StageConfig.MonsterList` 经 `MonsterID → MonsterTemplateID` 聚合。
+现有敌人百科的出现关卡继续由 `StageConfig.MonsterList` 经 `MonsterID → MonsterTemplateID` 聚合。Endgame 数据另建 encounter-centric 管线，不改变百科模型。
+
+## Endgame 敌方实例与 HP
+
+schema 12 新增 `src/lib/generated/endgame/{moc,pf,as,aa}.json`，当前基线为：
+
+| 模式 | Group | Encounter | Stage | Occurrence |
+| ---- | ----: | --------: | ----: | ---------: |
+| MoC  |    55 |       603 | 1,453 |      7,077 |
+| PF   |    25 |       100 |   202 |     16,930 |
+| AS   |    20 |        80 |   163 |        183 |
+| AA   |     8 |        40 |    40 |        184 |
+
+- MoC 与 AS 使用 fixed waves；PF 与 AA 经完整 `StageInfiniteGroup → Wave → MonsterGroup` 链生成有序 spawn sequence。
+- AA 保留 `StageConfig` preview MonsterID，但实例、模板和 HP 只由实际 spawn MonsterID 驱动。
+- 最新 MoC/PF/AS 的 Tierce 配置均产生第三个 battle slot；历史 `EventIDList` 中的多个事件保留为同一 slot 内的有序 stages。
+- 单条配置 HP 使用四个原始十进制因子：`HPBase × HPModifyRatio × HardLevelGroup.HPRatio × contextual Elite HPRatio`。构建器使用 BigInt/scale 精确乘法，不采用 JS 浮点或未经验证的整数化规则。
+- 5,272 个历史 MoC occurrence 缺少 Stage EliteGroup，均显式使用 `MonsterConfig.EliteGroup=1`，并标记为 `inferred`；缺少两种来源时生成失败。
+- 当前核心关系错误为 0。机制扫描有 19 个唯一可选警告：1 个角色配置缺失，18 个 companion ability 路径无法读取；这些实例的有效总 HP 保持 `runtime-unclear`。
+- phase count、召唤、共享生命、SetHP 和 LockHP 只作为静态机制信号；不会把阶段当成 wave，也不会推算复杂 Boss 的实际伤害需求。
+
+四个真实精确回归值为：MoC 萨姆 `11347628.66250`、PF 杰帕德 `1444452.47100`、AS `14628489.139950`、AA `63467351.45020015200`。AA 样本明确使用实际 MonsterID `501403002`，而不是 preview `5014030`。
 
 ## 简中文本与 Hash
 
@@ -119,7 +140,7 @@ Base + Add × (level - 1)
 
 ## 缺失文本审计
 
-schema 11 按 `实体 + ID + 字段 + 引用` 去重后的基线：
+schema 12 按 `实体 + ID + 字段 + 引用` 去重后的基线：
 
 | 类别 |  数量 | 说明                                            |
 | ---- | ----: | ----------------------------------------------- |
@@ -134,11 +155,11 @@ A 类主要包括 4,310 个无简中名称的关卡、1,016 个原始空行迹�
 
 ## 生成策略、资源和许可
 
-- schema 11 生成 91 个角色、165 个光锥、60 个遗器套装、613 个敌人详情及 929 条简中搜索记录；其中 10 个角色详情包含双 Profile。
+- schema 12 生成 91 个角色、165 个光锥、60 个遗器套装、613 个敌人详情、四类 Endgame 数据及 929 条简中搜索记录；其中 10 个角色详情包含双 Profile。
 - 生成数据位于 `src/lib/generated/` 和 `static/generated/`，浏览器不加载上游 Config 或完整 TextMap。
 - `TurnBasedGameData` 只有 `SpriteOutput/...` 路径，没有图片文件；`StarRailRes` 当前为 91 个目录角色提供完整的 128×128 PNG 头像与 2048×2048 PNG 立绘，并覆盖七属性和九种实际命途图标。网站只按真实 ID/语义 code 生成所需集合。
 - 视觉 manifest schema 2 分别记录头像、立绘、属性和命途资源。头像保留原始 PNG，立绘生成最大 960px WebP，语义图标生成 64px PNG；所有输出均位于 gitignore 的 generated-assets 目录。
-- 构建期仅复制当前角色目录需要的头像，并生成独立 schema 1 manifest；详情领域模型和 schema 11 不携带视觉路径。
+- 构建期仅复制当前角色目录需要的头像；视觉 manifest 与业务 schema 12 相互独立，详情领域模型不携带视觉路径。
 - 头像缺失只记录诊断并使用中性占位，不请求不存在的图片，也不阻止数据构建。
 - 生成数据采用方案 B，不提交。上游没有明确再分发许可证；网站 MIT 许可证仅覆盖原创代码。公开构建产物前应确认授权。
 - StarRailRes 仓库声明 GNU AGPL v3；网站提供其完整许可证副本和来源/commit 说明。游戏图片相关权利仍归相应权利人。

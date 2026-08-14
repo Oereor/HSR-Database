@@ -9,6 +9,12 @@ import type {
   LightCone,
   SearchEntry
 } from '../../src/lib/domain/types.js';
+import type {
+  EndgameMode,
+  EndgameModeDataset,
+  EndgameStage,
+  EnemyOccurrence
+} from '../../src/lib/domain/endgame.js';
 import { isElementType } from '../../src/lib/domain/elements.js';
 import { getBaseStatsAtLevel } from '../../src/lib/domain/stats.js';
 import { gameTextToPlain } from '../../src/lib/domain/game-text.js';
@@ -17,11 +23,13 @@ import type { TextDiagnosticSummary } from './localization.js';
 import type { DescriptionDiagnosticSummary } from './levelled.js';
 import type { MissingTextAudit } from './missing-text.js';
 import { auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
+import { decimalEquals, multiplyDecimals, parseDecimal } from './decimal.js';
+import type { EndgameAudit } from './endgame.js';
 
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 11)
+if (manifest.schemaVersion !== 12)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -30,6 +38,7 @@ const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'ut
   descriptionDiagnostics: DescriptionDiagnosticSummary;
   missingTextAudit: MissingTextAudit;
   skillCombatAudit: { unknownEffects: string[] };
+  endgameAudit: EndgameAudit;
 };
 const textDiagnostics = audit.textDiagnostics;
 if (!textDiagnostics) throw new Error('生成审计缺少 TextMap 诊断摘要');
@@ -54,6 +63,121 @@ if (missingTextAudit.D.count) {
   throw new Error(
     `检测到 ${missingTextAudit.D.count} 个程序级文本错误；首个样本：${sample?.reason ?? '未知'} (${sample?.entity ?? '未知'}.${sample?.field ?? '未知'})`
   );
+}
+if (!audit.endgameAudit) throw new Error('生成审计缺少 Endgame 诊断摘要');
+if (audit.endgameAudit.coreErrors.count)
+  throw new Error(`Endgame 存在 ${audit.endgameAudit.coreErrors.count} 个核心关联错误`);
+
+const endgameModes: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
+const endgame = Object.fromEntries(
+  await Promise.all(
+    endgameModes.map(async (mode) => [
+      mode,
+      JSON.parse(
+        await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8')
+      ) as EndgameModeDataset
+    ])
+  )
+) as Record<EndgameMode, EndgameModeDataset>;
+
+const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
+  stage.waveModel.kind === 'fixed'
+    ? stage.waveModel.waves.flatMap((wave) => wave.enemies)
+    : stage.waveModel.waves.flatMap((wave) =>
+        wave.monsterGroups.flatMap((group) => group.orderedEnemies)
+      );
+
+for (const mode of endgameModes) {
+  const dataset = endgame[mode];
+  if (dataset.schemaVersion !== 12 || dataset.mode !== mode)
+    throw new Error(`Endgame ${mode} schema 或模式标记错误`);
+  if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
+    throw new Error(`Endgame ${mode} 存在重复 GroupID`);
+  const encounters = dataset.groups.flatMap((group) => group.encounters);
+  const battles = encounters.flatMap((encounter) => encounter.battles);
+  const endgameStages = battles.flatMap((battle) => battle.stages);
+  const occurrences = endgameStages.flatMap(occurrencesOf);
+  const expectedSummary = manifest.endgame.modes[mode];
+  const actualSummary = {
+    groups: dataset.groups.length,
+    encounters: encounters.length,
+    battleSlots: battles.length,
+    stages: endgameStages.length,
+    occurrences: occurrences.length
+  };
+  if (JSON.stringify(actualSummary) !== JSON.stringify(expectedSummary))
+    throw new Error(`Endgame ${mode} manifest 汇总与生成文件不一致`);
+  for (const encounter of encounters) {
+    if (new Set(encounter.battles.map((battle) => battle.slot)).size !== encounter.battles.length)
+      throw new Error(`Endgame ${mode} ${encounter.id} 存在重复 battle slot`);
+  }
+  for (const occurrence of occurrences) {
+    const calculated = multiplyDecimals([
+      occurrence.hp.hpBase,
+      occurrence.hp.instanceRatio,
+      occurrence.hp.levelRatio,
+      occurrence.hp.eliteRatio
+    ]);
+    if (!decimalEquals(calculated, occurrence.hp.configuredMaxHpPerBar))
+      throw new Error(
+        `Endgame ${mode} MonsterID ${occurrence.monsterId} configuredMaxHpPerBar 不一致`
+      );
+    if (occurrence.monsterId <= 0 || occurrence.monsterTemplateId <= 0)
+      throw new Error(`Endgame ${mode} 包含无效敌人 ID`);
+  }
+}
+
+function fixtureOccurrence(
+  mode: EndgameMode,
+  groupId: number,
+  configId: number,
+  stageId: number,
+  monsterId: number
+): { stage: EndgameStage; occurrence: EnemyOccurrence } {
+  const group = endgame[mode].groups.find((item) => item.groupId === groupId);
+  const stage = group?.encounters
+    .filter((item) => item.configId === configId)
+    .flatMap((item) => item.battles)
+    .flatMap((battle) => battle.stages)
+    .find((item) => item.stageId === stageId);
+  const occurrence = stage?.waveModel
+    ? occurrencesOf(stage).find((item) => item.monsterId === monsterId)
+    : undefined;
+  if (!stage || !occurrence)
+    throw new Error(
+      `缺少 Endgame 回归样本：${mode}/${groupId}/${configId}/${stageId}/${monsterId}`
+    );
+  return { stage, occurrence };
+}
+
+const hpFixtures = [
+  ['moc', 1034, 5312, 30124121, 3024020, '11347628.66250'],
+  ['pf', 2025, 20254, 30323041, 100402014, '1444452.47100'],
+  ['as', 3020, 30204, 420484, 401401304, '14628489.139950'],
+  ['aa', 8, 804, 30508022, 501403002, '63467351.45020015200']
+] as const;
+for (const [mode, groupId, configId, stageId, monsterId, expectedHp] of hpFixtures) {
+  const fixture = fixtureOccurrence(mode, groupId, configId, stageId, monsterId);
+  if (!decimalEquals(fixture.occurrence.hp.configuredMaxHpPerBar, parseDecimal(expectedHp)))
+    throw new Error(`Endgame ${mode} HP 回归失败：MonsterID ${monsterId}`);
+}
+
+const aaFixture = fixtureOccurrence('aa', 8, 804, 30508022, 501403002);
+if (!aaFixture.stage.previewMonsterIds.includes(5014030))
+  throw new Error('AA 回归失败：未保留 StageConfig preview MonsterID 5014030');
+if (occurrencesOf(aaFixture.stage).some((item) => item.monsterId === 5014030))
+  throw new Error('AA 回归失败：preview MonsterID 被错误用作实际生成敌人');
+
+for (const [mode, groupId, configId] of [
+  ['moc', 1034, 5312],
+  ['pf', 2025, 20254],
+  ['as', 3020, 30204]
+] as const) {
+  const encounter = endgame[mode].groups
+    .find((group) => group.groupId === groupId)
+    ?.encounters.find((item) => item.configId === configId);
+  if (encounter?.battles.length !== 3)
+    throw new Error(`Endgame ${mode} Tierce 回归失败：${groupId}/${configId}`);
 }
 
 const expected: Record<string, number> = {

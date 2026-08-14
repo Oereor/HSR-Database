@@ -56,6 +56,15 @@
 - 浏览器只使用统一 generated-asset URL helper，不读取 sibling 仓库、StarRailRes index 或业务数据。
 - 未来构建机可单独取得 StarRailRes 并设置 `HSR_ASSET_ROOT` 后运行 `assets:sync`；建议 shallow/partial/sparse checkout，本阶段不绑定任何部署平台且不自动联网 clone。
 
+## 第五次重构：Endgame 数据管线
+
+- 生成数据升级为 schema 12，并在构建期独立生成 MoC、PF、AS、AA 四类 encounter-centric 数据；现有 Enemy 百科模型和 UI 不变。
+- battle slot 支持多个有序 Stage 与 Tierce 第三队；fixed formation 和 spawn sequence 使用判别联合，PF/AA 的重复实际 MonsterID 不去重。
+- occurrence 分别保存 MonsterID、MonsterTemplateID 和关卡上下文，使用四个无损十进制因子精确计算单条配置 MaxHP。
+- AA preview MonsterID 只用于审计，实际 spawn MonsterID 决定变体、模板和 HP。
+- phase、召唤、共享生命与 HP 操作只生成保守机制标记；最终整数化、复杂 Boss 伤害需求和运行时刷怪逻辑仍不推测。
+- 当前共生成 108 个 Group、823 个 Encounter、1,858 个 Stage 和 24,374 个 occurrence；核心关联错误为 0，历史 MoC 显式 Elite fallback 为 5,272 条。
+
 ## 行迹卡片分组与类型标签
 
 - 生成数据升级为 schema 11。可展示行迹只保留真实单级的 `PointType=1/3/5`，分别规范化为属性加成与额外能力，不再向浏览器暴露无意义的 `Lv.1`。

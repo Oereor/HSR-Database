@@ -6,7 +6,10 @@ import { parseTextHash, type TextHash, type TextReference } from '../../src/lib/
 function materialize(value: unknown, key = ''): unknown {
   if (isLosslessNumber(value)) {
     const raw = value.toString();
-    if (key === 'Hash') return raw;
+    // Text hashes and fixed-point wrappers must cross the raw-data boundary without
+    // passing through an IEEE-754 number. Consumers that need a JS number opt in via
+    // hashOf()/numberOf(); exact endgame calculations consume the decimal spelling.
+    if (key === 'Hash' || key === 'Value') return raw;
     const number = Number(raw);
     if (!Number.isSafeInteger(number)) return raw;
     return number;

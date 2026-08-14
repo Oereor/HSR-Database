@@ -224,4 +224,5 @@ export interface DataManifest {
   language: 'CHS';
   counts: Record<'characters' | 'lightCones' | 'relics' | 'enemies', number>;
   routes: Record<'characters' | 'light-cones' | 'relics' | 'enemies', string[]>;
+  endgame: import('./endgame.js').EndgameManifestSummary;
 }

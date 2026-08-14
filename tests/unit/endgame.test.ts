@@ -1,0 +1,193 @@
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+import { describe, expect, it } from 'vitest';
+import type {
+  EndgameMode,
+  EndgameModeDataset,
+  EndgameStage,
+  EnemyOccurrence
+} from '../../src/lib/domain/endgame';
+import { buildUniqueIndex, type EndgameAudit } from '../../scripts/data/endgame';
+import {
+  decimalEquals,
+  decimalOf,
+  multiplyDecimals,
+  parseDecimal
+} from '../../scripts/data/decimal';
+import { auditRoot, generatedRoot } from '../../scripts/data/paths';
+
+const modes: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
+
+async function dataset(mode: EndgameMode): Promise<EndgameModeDataset> {
+  return JSON.parse(
+    await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8')
+  ) as EndgameModeDataset;
+}
+
+function occurrences(stage: EndgameStage): EnemyOccurrence[] {
+  return stage.waveModel.kind === 'fixed'
+    ? stage.waveModel.waves.flatMap((wave) => wave.enemies)
+    : stage.waveModel.waves.flatMap((wave) =>
+        wave.monsterGroups.flatMap((group) => group.orderedEnemies)
+      );
+}
+
+async function fixture(
+  mode: EndgameMode,
+  groupId: number,
+  configId: number,
+  stageId: number,
+  monsterId: number
+): Promise<{ stage: EndgameStage; occurrence: EnemyOccurrence }> {
+  const data = await dataset(mode);
+  const stage = data.groups
+    .find((group) => group.groupId === groupId)
+    ?.encounters.filter((encounter) => encounter.configId === configId)
+    .flatMap((encounter) => encounter.battles)
+    .flatMap((battle) => battle.stages)
+    .find((item) => item.stageId === stageId);
+  const occurrence = stage && occurrences(stage).find((item) => item.monsterId === monsterId);
+  if (!stage || !occurrence) throw new Error('fixture not found');
+  return { stage, occurrence };
+}
+
+describe('Endgame 精确十进制', () => {
+  it('保留源精度和乘积尾随零', () => {
+    expect(
+      multiplyDecimals([
+        parseDecimal('4650'),
+        parseDecimal('1'),
+        parseDecimal('375.4385'),
+        parseDecimal('6.5')
+      ])
+    ).toBe('11347628.66250');
+    expect(decimalEquals(parseDecimal('1.0'), parseDecimal('1.000'))).toBe(true);
+  });
+
+  it('拒绝 number 或缺少 Value 的输入', () => {
+    expect(() => parseDecimal(1)).toThrow(/十进制字符串/);
+    expect(() => decimalOf({ Value: 1 }, 'fixture')).toThrow(/十进制字符串/);
+    expect(() => decimalOf({}, 'fixture')).toThrow(/缺少 Value/);
+  });
+
+  it('使用 BigInt 计算大数而不经过浮点数', () => {
+    expect(multiplyDecimals([parseDecimal('9999999999999999.99'), parseDecimal('8')])).toBe(
+      '79999999999999999.92'
+    );
+  });
+});
+
+describe('Endgame 真实数据管线', () => {
+  it('四个模式使用 schema 12 且 fixed/spawn 模型分离', async () => {
+    const all = await Promise.all(modes.map(dataset));
+    expect(all.every((item) => item.schemaVersion === 12)).toBe(true);
+    expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
+      'fixed'
+    );
+    expect((await fixture('pf', 2025, 20254, 30323041, 100402014)).stage.waveModel.kind).toBe(
+      'spawn-sequence'
+    );
+    expect((await fixture('as', 3020, 30204, 420484, 401401304)).stage.waveModel.kind).toBe(
+      'fixed'
+    );
+    expect((await fixture('aa', 8, 804, 30508022, 501403002)).stage.waveModel.kind).toBe(
+      'spawn-sequence'
+    );
+  });
+
+  it.each([
+    ['moc', 1034, 5312, 30124121, 3024020, ['4650', '1', '375.4385', '6.5'], '11347628.66250'],
+    ['pf', 2025, 20254, 30323041, 100402014, ['1023', '7.5', '188.2636', '1'], '1444452.47100'],
+    ['as', 3020, 30204, 420484, 401401304, ['32550', '1', '236.53471', '1.9'], '14628489.139950'],
+    [
+      'aa',
+      8,
+      804,
+      30508022,
+      501403002,
+      ['3022.5', '1.353846', '1938.7634', '8'],
+      '63467351.45020015200'
+    ]
+  ] as const)(
+    '%s 的已验证 HP 因子和乘积保持精确',
+    async (mode, groupId, configId, stageId, monsterId, factors, expected) => {
+      const { occurrence } = await fixture(mode, groupId, configId, stageId, monsterId);
+      expect([
+        occurrence.hp.hpBase,
+        occurrence.hp.instanceRatio,
+        occurrence.hp.levelRatio,
+        occurrence.hp.eliteRatio
+      ]).toEqual(factors);
+      expect(occurrence.hp.configuredMaxHpPerBar).toBe(expected);
+    }
+  );
+
+  it('AA 使用实际生成 MonsterID，并仅将通用 ID 作为 preview', async () => {
+    const { stage, occurrence } = await fixture('aa', 8, 804, 30508022, 501403002);
+    expect(occurrence.monsterTemplateId).toBe(5014030);
+    expect(stage.previewMonsterIds).toContain(5014030);
+    expect(occurrences(stage).some((item) => item.monsterId === 5014030)).toBe(false);
+  });
+
+  it('PF 保留 spawn 顺序与重复 MonsterID', async () => {
+    const { stage } = await fixture('pf', 2025, 20254, 30323041, 100402014);
+    if (stage.waveModel.kind !== 'spawn-sequence') throw new Error('expected spawn sequence');
+    const group = stage.waveModel.waves
+      .find((wave) => wave.waveId === 303230413)
+      ?.monsterGroups.find((item) => item.monsterGroupId === 303230413);
+    const ids = group?.orderedEnemies.map((item) => item.monsterId) ?? [];
+    expect(ids).toHaveLength(41);
+    expect(ids.slice(0, 5)).toEqual([4012040, 1022010, 100402014, 4012040, 1022010]);
+    expect(ids.filter((id) => id === 4012040).length).toBeGreaterThan(1);
+  });
+
+  it.each([
+    ['moc', 1034, 5312],
+    ['pf', 2025, 20254],
+    ['as', 3020, 30204]
+  ] as const)('%s Tierce 生成三个 battle slot', async (mode, groupId, configId) => {
+    const data = await dataset(mode);
+    const encounter = data.groups
+      .find((group) => group.groupId === groupId)
+      ?.encounters.find((item) => item.configId === configId);
+    expect(encounter?.battles.map((battle) => battle.slot)).toEqual([1, 2, 3]);
+  });
+
+  it('同一 MonsterID 的最终 HP 由关卡上下文决定', async () => {
+    const data = await dataset('moc');
+    const matches = data.groups
+      .flatMap((group) => group.encounters)
+      .flatMap((encounter) => encounter.battles)
+      .flatMap((battle) => battle.stages)
+      .flatMap((stage) => occurrences(stage).map((occurrence) => ({ stage, occurrence })))
+      .filter(({ occurrence }) => occurrence.monsterId === 8012010);
+    const low = matches.find(({ stage }) => stage.stageId === 30001011);
+    const high = matches.find(({ stage }) => stage.stageId === 30001092);
+    expect(low?.occurrence.hp.configuredMaxHpPerBar).toBe('850.8113370');
+    expect(high?.occurrence.hp.configuredMaxHpPerBar).toBe('3941.8408980');
+  });
+
+  it('多阶段和共享生命只作为机制元数据，不伪造总 HP', async () => {
+    const { occurrence } = await fixture('as', 3020, 30204, 420484, 401401304);
+    expect(occurrence.mechanics).toMatchObject({
+      phaseCount: 2,
+      sharedHp: true,
+      restoresHp: true,
+      effectiveTotalHpStatus: 'runtime-unclear'
+    });
+    expect(occurrence.mechanics.effectiveTotalHp).toBeUndefined();
+  });
+
+  it('记录历史 MoC 的显式 MonsterConfig EliteGroup fallback', async () => {
+    const latest = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'utf8')) as {
+      endgameAudit: EndgameAudit;
+    };
+    expect(latest.endgameAudit.inferredMonsterEliteFallbacks).toBe(5272);
+  });
+
+  it('索引层拒绝重复核心主键', () => {
+    expect(() => buildUniqueIndex([{ id: 1 }, { id: 1 }], (row) => row.id, 'fixture')).toThrow(
+      /重复键/
+    );
+  });
+});

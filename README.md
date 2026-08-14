@@ -91,12 +91,12 @@ git -C StarRailRes sparse-checkout set icon/avatar icon/element icon/path image/
 git -C StarRailRes checkout b95e75c7e1273d819d20c530c0b7e13a3ef19fb4
 ```
 
-当前数据管线只需要 `TurnBasedGameData` 中的 `ExcelOutput` 与 `TextMap` 作为数据源即可：
+当前数据管线需要 `TurnBasedGameData` 中的 `ExcelOutput`、`TextMap` 与敌人机制配置所在的 `Config`：
 
 ```bash
 git clone --filter=blob:none --no-checkout https://github.com/Oereor/TurnBasedGameData.git TurnBasedGameData
 git -C TurnBasedGameData sparse-checkout init --cone
-git -C TurnBasedGameData sparse-checkout set ExcelOutput TextMap
+git -C TurnBasedGameData sparse-checkout set ExcelOutput TextMap Config
 git -C TurnBasedGameData checkout 648b08fbdb2e49739ebbf1210c9a189fcfc5e2d7
 ```
 
@@ -122,8 +122,8 @@ pnpm.cmd dev -- --open
 | 命令                   | 用途                                            |
 | ---------------------- | ----------------------------------------------- |
 | `pnpm data:audit`      | 刷新生成数据并输出主键、关系和 A/B/C/D 缺失审计 |
-| `pnpm data:sync`       | 生成简中目录、详情、搜索索引与来源 metadata     |
-| `pnpm data:validate`   | 验证生成数量、重复 ID、详情文件和搜索索引       |
+| `pnpm data:sync`       | 生成简中目录、详情、Endgame 数据与来源 metadata |
+| `pnpm data:validate`   | 验证目录、关系、精确 HP、详情和搜索索引         |
 | `pnpm assets:sync`     | 同步并优化当前页面需要的四类视觉资源            |
 | `pnpm assets:ensure`   | 按 schema、commit 和需求集合检查资源缓存        |
 | `pnpm assets:verify`   | 验证资源映射、manifest、格式、尺寸和生成文件    |
@@ -137,6 +137,16 @@ pnpm.cmd dev -- --open
 | `pnpm build`           | 使用静态适配器生成生产构建                      |
 
 生成数据位于 `src/lib/generated/`、`static/generated/`，视觉文件及资源 manifest 位于 `static/generated-assets/`、`src/lib/generated-assets/`，审计 JSON 位于 `data/audit/`。
+
+### Endgame 构建数据
+
+`data:sync` 会在 `src/lib/generated/endgame/` 分别生成混沌回忆、虚构叙事、末日幻影和异相仲裁数据。它们区分敌人模板与具体关卡中的 MonsterID 实例，并以无损十进制字符串保存：
+
+```text
+HPBase × HPModifyRatio × HardLevelGroup.HPRatio × contextual Elite HPRatio
+```
+
+生成值表示单条生命的配置 MaxHP，不等同于复杂 Boss 的实际通关伤害需求。当前没有 Endgame 页面，现有敌人百科和浏览器代码不会加载这些文件。
 
 **镜流、刃、卡芙卡、银狼、黑天鹅、花火、希儿、藿藿、流萤、瓦尔特**存在角色加强。详情 JSON 同时保存 `base` 与 `enhanced` Profile，各自包含能量、技能、行迹和星魂；页面默认展示加强后的角色信息，且角色详情中暂不提供加强对比功能。
 
@@ -188,6 +198,7 @@ jobs:
           sparse-checkout: |
             ExcelOutput
             TextMap
+            Config
 
       - name: Checkout visual assets
         uses: actions/checkout@v6

@@ -43,6 +43,7 @@ console.log(
     {
       sourceCommit: report.sourceCommit,
       counts: report.counts,
+      endgame: report.endgameAudit,
       missingTextAudit: Object.fromEntries(
         Object.entries(report.missingTextAudit as Record<string, { count: number }>).map(
           ([category, summary]) => [category, summary.count]
