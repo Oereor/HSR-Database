@@ -58,7 +58,7 @@
 
 ## 第五次重构：Endgame 数据管线
 
-- 生成数据升级为 schema 12，并在构建期独立生成 MoC、PF、AS、AA 四类 encounter-centric 数据；现有 Enemy 百科模型和 UI 不变。
+- 生成数据在韧性单位修正阶段升级为 schema 14，并在构建期独立生成 MoC、PF、AS、AA 四类 encounter-centric 数据；现有 Enemy 百科模型保持不变。
 - battle slot 支持多个有序 Stage 与 Tierce 第三队；fixed formation 和 spawn sequence 使用判别联合，PF/AA 的重复实际 MonsterID 不去重。
 - occurrence 分别保存 MonsterID、MonsterTemplateID 和关卡上下文，使用四个无损十进制因子精确计算单条配置 MaxHP。
 - AA preview MonsterID 只用于审计，实际 spawn MonsterID 决定变体、模板和 HP。
@@ -70,9 +70,12 @@
 - 新增独立 `/endgame` 顶级功能区以及按 mode/group 静态预渲染的 108 个赛期页面；Enemy 百科继续回答模板资料，Endgame 页面只回答具体赛期中的实际敌方实例。
 - server-only adapter 只向页面序列化单个赛期的展示模型，并按 MonsterTemplateID 关联现有百科弱点；完整 mode JSON、Config 与 spawn sequence 不进入客户端 bundle。
 - MoC 固定阵容保留重复数量；PF 每个 wave 只显示唯一 occurrence 类型，去重 identity 包含实际 MonsterID、HP/Elite 上下文和机制，不会折叠同模板的不同变体。
-- HP 从精确 DecimalString 直接四舍五入为带千分位的完整整数，不使用 K/M/B。多阶段固定显示为“单条生命值 × 阶段数”，复杂机制通过原生 disclosure 保守说明，不生成未经验证的总生命值。
-- 弱点复用 canonical 七属性颜色、现有属性图标 resolver 和简中名称。185 个 Endgame 模板均可链接百科，9 个无弱点模板使用明确降级；当前没有完整敌人图标资源，页面使用无网络请求的中性占位。
+- HP 从精确 DecimalString 直接四舍五入为带千分位的完整整数，不使用 K/M/B。多阶段固定显示为“单条生命值 × 阶段数”，不生成未经验证的总生命值；生命值与韧性的详细机制 disclosure 已移除以保持卡片排版简洁。
+- 弱点复用 canonical 七属性颜色、现有属性图标 resolver 和简中名称。185 个 Endgame 模板均可链接百科，9 个无弱点模板使用明确降级；敌人立绘存在本地映射时展示，缺失时使用无请求的中性占位。
 - AS 使用 Boss 导向的 occurrence 卡片但不猜测唯一主 Boss；AA 分离骑士、普通王棋和绝境王棋，并始终使用实际 spawn MonsterID 而不是 preview ID。
+- enemy occurrence 进一步保存当前关卡上下文中的精确速度、resolved internal stance 和玩家侧单管韧性：先应用实例 ratio/value、HardLevel 与 Elite ratio，再对完整内部值执行固定 3:1 单位转换；所有乘加与转换均不经过 JS 浮点。
+- 共享敌人卡片改为纵向海报布局，通过 server-only manifest 按 MonsterTemplateID 使用本地 WebP。缺图不发出请求，AS 使用重点密度、MoC/AA 使用标准密度、PF 使用紧凑密度。
+- `StanceCount` 仅作为静态配置管数，不参与单位换算或与 HP 阶段数混用；能力扫描仍保留构建期机制元数据，但不实现战斗解释器。
 
 ## 行迹卡片分组与类型标签
 

@@ -1040,7 +1040,7 @@ export async function syncData(): Promise<DataManifest> {
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 12,
+    schemaVersion: 14,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),

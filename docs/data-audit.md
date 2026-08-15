@@ -38,9 +38,9 @@
 
 现有敌人百科的出现关卡继续由 `StageConfig.MonsterList` 经 `MonsterID → MonsterTemplateID` 聚合。Endgame 数据另建 encounter-centric 管线，不改变百科模型。
 
-## Endgame 敌方实例与 HP
+## Endgame 敌方实例与战斗属性
 
-schema 12 新增 `src/lib/generated/endgame/{moc,pf,as,aa}.json`，当前基线为：
+schema 14 在 `src/lib/generated/endgame/{moc,pf,as,aa}.json` 中生成：
 
 | 模式 | Group | Encounter | Stage | Occurrence |
 | ---- | ----: | --------: | ----: | ---------: |
@@ -53,19 +53,24 @@ schema 12 新增 `src/lib/generated/endgame/{moc,pf,as,aa}.json`，当前基线�
 - AA 保留 `StageConfig` preview MonsterID，但实例、模板和 HP 只由实际 spawn MonsterID 驱动。
 - 最新 MoC/PF/AS 的 Tierce 配置均产生第三个 battle slot；历史 `EventIDList` 中的多个事件保留为同一 slot 内的有序 stages。
 - 单条配置 HP 使用四个原始十进制因子：`HPBase × HPModifyRatio × HardLevelGroup.HPRatio × contextual Elite HPRatio`。构建器使用 BigInt/scale 精确乘法，不采用 JS 浮点或未经验证的整数化规则。
+- 速度使用 `(SpeedBase × SpeedModifyRatio + SpeedModifyValue) × HardLevel.SpeedRatio × Elite.SpeedRatio`。Stance 使用同一乘加链得到 resolved internal stance，再以固定 3:1 比例换算为玩家侧单管韧性；两层单位在领域模型中分别保存，UI 不执行换算。
+- `StanceCount` 仅作为配置韧性管数，不参与 3:1 单位转换，也不从 HP phase count 推断。能力配置中的锁定、重置或管数修改继续保留为构建期机制元数据，但页面不展示详细机制弹窗。
+- 当前 24,374 个 occurrence 中有 24,215 个 resolved internal stance、159 个缺失值、36 个多管实例；玩家韧性范围为 10–800，不能精确按 3:1 转换及非正值均为 0。
+- 当前 185 个 Endgame 模板中有 2 个缺少 SpeedBase、7 个缺少 StanceBase；这些记录生成明确的 `unavailable` 状态并显示“资料未提供”，不补写数值。
 - 5,272 个历史 MoC occurrence 缺少 Stage EliteGroup，均显式使用 `MonsterConfig.EliteGroup=1`，并标记为 `inferred`；缺少两种来源时生成失败。
 - 当前核心关系错误为 0。机制扫描有 19 个唯一可选警告：1 个角色配置缺失，18 个 companion ability 路径无法读取；这些实例的有效总 HP 保持 `runtime-unclear`。
 - phase count、召唤、共享生命、SetHP 和 LockHP 只作为静态机制信号；不会把阶段当成 wave，也不会推算复杂 Boss 的实际伤害需求。
 
 四个真实精确回归值为：MoC 萨姆 `11347628.66250`、PF 杰帕德 `1444452.47100`、AS `14628489.139950`、AA `63467351.45020015200`。AA 样本明确使用实际 MonsterID `501403002`，而不是 preview `5014030`。
 
-Endgame UI 不改变上述 schema 12 数据。静态构建时按 mode/group 读取单个赛期并生成玩家视图：
+Endgame UI 静态构建时按 mode/group 读取单个赛期并生成玩家视图：
 
 - MoC fixed formation 中完整 identity 相同的 occurrence 合并并保留数量；不同 MonsterID、缩放或机制不合并。
 - PF/AA spawn sequence 仍在底层完整保存；PF 页面在每个 wave 内按实际 MonsterID、HP/Elite 上下文和机制 identity 保留第一次出现，隐藏重复次数和运行时顺序。当前 PF 16,930 条原始 occurrence 投影为 1,989 个波内唯一类型。
 - occurrence 使用实际 MonsterID 的名称、HP 和机制，并按 MonsterTemplateID 关联百科链接与弱点。当前 Endgame 涉及 185 个模板，全部存在百科详情，其中 9 个缺少弱点列表并在 UI 中明确降级。
 - HP 由 branded 十进制字符串直接四舍五入，不经过 JS `number`；页面显示带千分位的完整整数。多阶段显示 `14,628,489 × 2`，不把乘积标记为总生命值。
-- 弱点标签统一使用 canonical 七属性颜色、生成的属性图标和简中名称；当前没有可覆盖 Endgame 敌人的完整图标资源，因此不创建敌人图片请求。
+- 速度继续由十进制字符串四舍五入为整数；韧性显示全部缩放后精确换算出的玩家单位，多管韧性使用 `120 × 8` 语法。当前换算结果均为整数，未来若出现精确小数则不擅自取整。
+- 弱点标签统一使用 canonical 七属性颜色、生成的属性图标和简中名称。可选敌人立绘通过 server-only manifest resolver 按 MonsterTemplateID 注入；当前 185 个实际模板中 184 个有本地映射，`8003060` 使用无图片降级，不产生无效请求。
 
 ## 简中文本与 Hash
 
@@ -148,7 +153,7 @@ Base + Add × (level - 1)
 
 ## 缺失文本审计
 
-schema 12 按 `实体 + ID + 字段 + 引用` 去重后的基线：
+schema 14 按 `实体 + ID + 字段 + 引用` 去重后的基线：
 
 | 类别 |  数量 | 说明                                            |
 | ---- | ----: | ----------------------------------------------- |
@@ -163,11 +168,11 @@ A 类主要包括 4,310 个无简中名称的关卡、1,016 个原始空行迹�
 
 ## 生成策略、资源和许可
 
-- schema 12 生成 91 个角色、165 个光锥、60 个遗器套装、613 个敌人详情、四类 Endgame 数据及 929 条简中搜索记录；其中 10 个角色详情包含双 Profile。
+- schema 14 生成 91 个角色、165 个光锥、60 个遗器套装、613 个敌人详情、四类 Endgame 数据及 929 条简中搜索记录；其中 10 个角色详情包含双 Profile。
 - 生成数据位于 `src/lib/generated/` 和 `static/generated/`，浏览器不加载上游 Config 或完整 TextMap。
 - `TurnBasedGameData` 只有 `SpriteOutput/...` 路径，没有图片文件；`StarRailRes` 当前为 91 个目录角色提供完整的 128×128 PNG 头像与 2048×2048 PNG 立绘，并覆盖七属性和九种实际命途图标。网站只按真实 ID/语义 code 生成所需集合。
 - 视觉 manifest schema 2 分别记录头像、立绘、属性和命途资源。头像保留原始 PNG，立绘生成最大 960px WebP，语义图标生成 64px PNG；所有输出均位于 gitignore 的 generated-assets 目录。
-- 构建期仅复制当前角色目录需要的头像；视觉 manifest 与业务 schema 12 相互独立，详情领域模型不携带视觉路径。
+- 构建期仅复制当前角色目录需要的头像；视觉 manifest 与业务 schema 14 相互独立，详情领域模型不携带视觉路径。
 - 头像缺失只记录诊断并使用中性占位，不请求不存在的图片，也不阻止数据构建。
 - 生成数据采用方案 B，不提交。上游没有明确再分发许可证；网站 MIT 许可证仅覆盖原创代码。公开构建产物前应确认授权。
 - StarRailRes 仓库声明 GNU AGPL v3；网站提供其完整许可证副本和来源/commit 说明。游戏图片相关权利仍归相应权利人。

@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { getEnemyPortraitUrl } from '$lib/server/enemy-assets';
 import type { EndgameMode, EndgameModeDataset } from '$lib/domain/endgame';
 import {
   buildGroupView,
@@ -23,7 +24,7 @@ export function getEndgameDataset(mode: EndgameMode): Promise<EndgameModeDataset
   const cached = datasetCache.get(mode);
   if (cached) return cached;
   const pending = readJson<EndgameModeDataset>('endgame', `${mode}.json`).then((dataset) => {
-    if (dataset.schemaVersion !== 12 || dataset.mode !== mode)
+    if (dataset.schemaVersion !== 14 || dataset.mode !== mode)
       throw new Error(`${mode} Endgame 数据 schema 或模式不匹配`);
     return dataset;
   });
@@ -34,18 +35,24 @@ export function getEndgameDataset(mode: EndgameMode): Promise<EndgameModeDataset
 async function getEnemyReference(templateId: number): Promise<EndgameEnemyReference> {
   const cached = enemyCache.get(templateId);
   if (cached) return cached;
-  const pending = readJson<{
-    name?: string;
-    rank?: string;
-    weaknesses?: Array<{ element: string; name: string }>;
-  }>('details', 'enemies', `${templateId}.json`)
-    .then((detail) => ({
-      name: detail.name,
-      rank: detail.rank,
-      weaknesses: detail.weaknesses ?? [],
-      exists: true
-    }))
-    .catch(() => ({ weaknesses: [], exists: false }));
+  const pending = Promise.all([
+    readJson<{
+      name?: string;
+      rank?: string;
+      weaknesses?: Array<{ element: string; name: string }>;
+    }>('details', 'enemies', `${templateId}.json`)
+      .then((detail) => ({
+        name: detail.name,
+        rank: detail.rank,
+        weaknesses: detail.weaknesses ?? [],
+        exists: true
+      }))
+      .catch(() => ({ weaknesses: [], exists: false })),
+    getEnemyPortraitUrl(templateId)
+  ]).then(([reference, portraitUrl]) => ({
+    ...reference,
+    ...(portraitUrl ? { portraitUrl } : {})
+  }));
   enemyCache.set(templateId, pending);
   return pending;
 }

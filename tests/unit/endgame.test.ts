@@ -9,8 +9,10 @@ import type {
 } from '../../src/lib/domain/endgame';
 import { buildUniqueIndex, type EndgameAudit } from '../../scripts/data/endgame';
 import {
+  addDecimals,
   decimalEquals,
   decimalOf,
+  internalStanceToToughness,
   multiplyDecimals,
   parseDecimal
 } from '../../scripts/data/decimal';
@@ -75,12 +77,30 @@ describe('Endgame 精确十进制', () => {
       '79999999999999999.92'
     );
   });
+
+  it('使用 BigInt 对不同精度的十进制执行加法', () => {
+    expect(addDecimals([parseDecimal('120.50'), parseDecimal('-20.5')])).toBe('100.00');
+    expect(() => addDecimals([])).toThrow(/至少需要一个加数/);
+  });
+
+  it.each([
+    ['900', '300'],
+    ['1440', '480'],
+    ['570', '190'],
+    ['810', '270']
+  ])('将 internal stance %s 精确换算为玩家韧性 %s', (internal, expected) => {
+    expect(internalStanceToToughness(parseDecimal(internal))).toBe(expected);
+  });
+
+  it('无法有限表示的三分之一不进行浮点近似', () => {
+    expect(internalStanceToToughness(parseDecimal('10'))).toBeUndefined();
+  });
 });
 
 describe('Endgame 真实数据管线', () => {
-  it('四个模式使用 schema 12 且 fixed/spawn 模型分离', async () => {
+  it('四个模式使用 schema 14 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
-    expect(all.every((item) => item.schemaVersion === 12)).toBe(true);
+    expect(all.every((item) => item.schemaVersion === 14)).toBe(true);
     expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
       'fixed'
     );
@@ -178,11 +198,92 @@ describe('Endgame 真实数据管线', () => {
     expect(occurrence.mechanics.effectiveTotalHp).toBeUndefined();
   });
 
+  it.each([
+    [1, 420404, 406401204, '190.08', '360', '120', 8],
+    [2, 420454, 100401404, '171.60', '300', '100', 1],
+    [2, 420454, 100402604, '165.00', '600', '200', 1],
+    [3, 420464, 403401304, '174.24', '900', '300', 2]
+  ] as const)(
+    '遗忘冽风难度 4 战斗 %s 的速度与韧性来自完整倍率链',
+    async (_slot, stageId, monsterId, speed, internalStance, toughness, barCount) => {
+      const { occurrence } = await fixture('as', 3018, 30184, stageId, monsterId);
+      expect(occurrence.speed).toMatchObject({
+        status: 'resolved',
+        configuredValue: speed
+      });
+      expect(occurrence.toughness).toMatchObject({
+        internalStance: { status: 'resolved', resolvedInternal: internalStance },
+        display: { status: 'resolved', perBar: toughness },
+        barCount,
+        runtimeStatus: 'runtime-unclear'
+      });
+    }
+  );
+
+  it('缺失基础字段只生成明确的 unavailable 状态', async () => {
+    const all = await Promise.all(modes.map(dataset));
+    const allOccurrences = all.flatMap((data) =>
+      data.groups
+        .flatMap((group) => group.encounters)
+        .flatMap((encounter) => encounter.battles)
+        .flatMap((battle) => battle.stages)
+        .flatMap(occurrences)
+    );
+    expect(
+      new Set(
+        allOccurrences
+          .filter((item) => item.speed.status === 'unavailable')
+          .map((item) => item.monsterTemplateId)
+      ).size
+    ).toBe(2);
+    expect(
+      new Set(
+        allOccurrences
+          .filter((item) => item.toughness.internalStance.status === 'unavailable')
+          .map((item) => item.monsterTemplateId)
+      ).size
+    ).toBe(7);
+  });
+
+  it.each([
+    [420474, 302401304, '810', '90', '900', '300'],
+    [420484, 401401304, '1440', '0', '1440', '480'],
+    [420494, 300402104, '390', '180', '570', '190']
+  ] as const)(
+    '兵锋骑士难度 4 的 MonsterID %s 使用玩家侧韧性单位',
+    async (stageId, monsterId, base, add, internal, display) => {
+      const { occurrence } = await fixture('as', 3019, 30194, stageId, monsterId);
+      expect(occurrence.toughness.internalStance).toMatchObject({
+        status: 'resolved',
+        baseInternal: base,
+        instanceRatio: '1',
+        instanceValueInternal: add,
+        hardLevelRatio: '1',
+        eliteRatio: '1',
+        resolvedInternal: internal
+      });
+      expect(occurrence.toughness.display).toEqual({ status: 'resolved', perBar: display });
+    }
+  );
+
   it('记录历史 MoC 的显式 MonsterConfig EliteGroup fallback', async () => {
     const latest = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'utf8')) as {
       endgameAudit: EndgameAudit;
     };
     expect(latest.endgameAudit.inferredMonsterEliteFallbacks).toBe(5272);
+    expect(latest.endgameAudit.stanceConversion).toMatchObject({
+      totalOccurrences: 24374,
+      resolvedInternal: 24215,
+      missingInternal: 159,
+      resolvedDisplay: 24215,
+      nonDivisibleByThree: 0,
+      conversionUnavailable: 0,
+      multiBarOccurrences: 36,
+      nonPositiveDisplay: 0,
+      minDisplayed: '10',
+      maxDisplayed: '800',
+      samples: []
+    });
   });
 
   it('索引层拒绝重复核心主键', () => {

@@ -23,13 +23,19 @@ import type { TextDiagnosticSummary } from './localization.js';
 import type { DescriptionDiagnosticSummary } from './levelled.js';
 import type { MissingTextAudit } from './missing-text.js';
 import { auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
-import { decimalEquals, multiplyDecimals, parseDecimal } from './decimal.js';
+import {
+  addDecimals,
+  decimalEquals,
+  internalStanceToToughness,
+  multiplyDecimals,
+  parseDecimal
+} from './decimal.js';
 import type { EndgameAudit } from './endgame.js';
 
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 12)
+if (manifest.schemaVersion !== 14)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -89,7 +95,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 12 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 14 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -124,6 +130,65 @@ for (const mode of endgameModes) {
       );
     if (occurrence.monsterId <= 0 || occurrence.monsterTemplateId <= 0)
       throw new Error(`Endgame ${mode} 包含无效敌人 ID`);
+    const speed = occurrence.speed;
+    if (speed.status === 'unavailable') {
+      if (speed.reason === 'invalid-reference')
+        throw new Error(`Endgame ${mode} MonsterID ${occurrence.monsterId} speed 引用无法解析`);
+    } else {
+      const calculatedSpeed = multiplyDecimals([
+        addDecimals([multiplyDecimals([speed.base, speed.instanceRatio]), speed.instanceValue]),
+        speed.levelRatio,
+        speed.eliteRatio
+      ]);
+      if (!decimalEquals(calculatedSpeed, speed.configuredValue))
+        throw new Error(
+          `Endgame ${mode} MonsterID ${occurrence.monsterId} speed configuredValue 不一致`
+        );
+    }
+    const internalStance = occurrence.toughness.internalStance;
+    if (internalStance.status === 'unavailable') {
+      if (internalStance.reason === 'invalid-reference')
+        throw new Error(`Endgame ${mode} MonsterID ${occurrence.monsterId} stance 引用无法解析`);
+      if (
+        occurrence.toughness.display.status !== 'unavailable' ||
+        occurrence.toughness.display.reason !== internalStance.reason
+      )
+        throw new Error(
+          `Endgame ${mode} MonsterID ${occurrence.monsterId} 缺失 Stance 的展示降级不一致`
+        );
+    } else {
+      const calculatedInternal = multiplyDecimals([
+        addDecimals([
+          multiplyDecimals([internalStance.baseInternal, internalStance.instanceRatio]),
+          internalStance.instanceValueInternal
+        ]),
+        internalStance.hardLevelRatio,
+        internalStance.eliteRatio
+      ]);
+      if (!decimalEquals(calculatedInternal, internalStance.resolvedInternal))
+        throw new Error(
+          `Endgame ${mode} MonsterID ${occurrence.monsterId} resolved internal stance 不一致`
+        );
+      const converted = internalStanceToToughness(internalStance.resolvedInternal);
+      if (converted === undefined) {
+        if (
+          occurrence.toughness.display.status !== 'unavailable' ||
+          occurrence.toughness.display.reason !== 'non-terminating-unit-conversion'
+        )
+          throw new Error(
+            `Endgame ${mode} MonsterID ${occurrence.monsterId} 非精确韧性换算未正确降级`
+          );
+      } else if (
+        occurrence.toughness.display.status !== 'resolved' ||
+        !decimalEquals(converted, occurrence.toughness.display.perBar)
+      )
+        throw new Error(`Endgame ${mode} MonsterID ${occurrence.monsterId} 玩家韧性值不一致`);
+    }
+    if (
+      occurrence.toughness.barCount !== undefined &&
+      (!Number.isSafeInteger(occurrence.toughness.barCount) || occurrence.toughness.barCount < 1)
+    )
+      throw new Error(`Endgame ${mode} MonsterID ${occurrence.monsterId} StanceCount 无效`);
   }
 }
 
@@ -161,6 +226,50 @@ for (const [mode, groupId, configId, stageId, monsterId, expectedHp] of hpFixtur
   if (!decimalEquals(fixture.occurrence.hp.configuredMaxHpPerBar, parseDecimal(expectedHp)))
     throw new Error(`Endgame ${mode} HP 回归失败：MonsterID ${monsterId}`);
 }
+
+const stanceFixtures = [
+  [302401304, 420474, '900', '300'],
+  [401401304, 420484, '1440', '480'],
+  [300402104, 420494, '570', '190']
+] as const;
+for (const [monsterId, stageId, expectedInternal, expectedDisplay] of stanceFixtures) {
+  const occurrence = fixtureOccurrence('as', 3019, 30194, stageId, monsterId).occurrence;
+  if (
+    occurrence.toughness.internalStance.status !== 'resolved' ||
+    !decimalEquals(
+      occurrence.toughness.internalStance.resolvedInternal,
+      parseDecimal(expectedInternal)
+    ) ||
+    occurrence.toughness.display.status !== 'resolved' ||
+    !decimalEquals(occurrence.toughness.display.perBar, parseDecimal(expectedDisplay))
+  )
+    throw new Error(`Endgame AS 韧性单位回归失败：MonsterID ${monsterId}`);
+}
+
+const stanceAudit = audit.endgameAudit.stanceConversion;
+const totalEndgameOccurrences = endgameModes.reduce(
+  (total, mode) =>
+    total +
+    endgame[mode].groups
+      .flatMap((group) => group.encounters)
+      .flatMap((encounter) => encounter.battles)
+      .flatMap((battle) => battle.stages)
+      .flatMap(occurrencesOf).length,
+  0
+);
+if (
+  !stanceAudit ||
+  stanceAudit.totalOccurrences !== totalEndgameOccurrences ||
+  stanceAudit.resolvedInternal + stanceAudit.missingInternal !== totalEndgameOccurrences ||
+  stanceAudit.resolvedDisplay + stanceAudit.conversionUnavailable !== stanceAudit.resolvedInternal
+)
+  throw new Error('Endgame 韧性单位审计汇总与生成数据不一致');
+if (stanceAudit.nonDivisibleByThree)
+  console.warn(
+    `Endgame 警告：${stanceAudit.nonDivisibleByThree} 个 resolved internal stance 无法得到整数玩家韧性`
+  );
+if (stanceAudit.nonPositiveDisplay)
+  console.warn(`Endgame 警告：${stanceAudit.nonPositiveDisplay} 个玩家韧性值不是正数`);
 
 const aaFixture = fixtureOccurrence('aa', 8, 804, 30508022, 501403002);
 if (!aaFixture.stage.previewMonsterIds.includes(5014030))

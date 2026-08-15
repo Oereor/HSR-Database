@@ -10,8 +10,10 @@ import type {
 import {
   buildGroupView,
   buildPeriodView,
+  formatExactDecimal,
   formatFullHp,
   formatHpWithPhases,
+  formatRoundedDecimal,
   mergeFixedOccurrences,
   occurrenceIdentity,
   uniqueSpawnOccurrences
@@ -42,6 +44,29 @@ function occurrence(overrides: Partial<EnemyOccurrence> = {}): EnemyOccurrence {
       eliteGroupTable: 'elite',
       eliteContextSource: 'stage',
       eliteContextConfidence: 'verified'
+    },
+    speed: {
+      status: 'resolved',
+      base: decimal('100'),
+      instanceRatio: decimal('1'),
+      instanceValue: decimal('0'),
+      levelRatio: decimal('1'),
+      eliteRatio: decimal('1'),
+      configuredValue: decimal('100')
+    },
+    toughness: {
+      internalStance: {
+        status: 'resolved',
+        baseInternal: decimal('60'),
+        instanceRatio: decimal('1'),
+        instanceValueInternal: decimal('0'),
+        hardLevelRatio: decimal('1'),
+        eliteRatio: decimal('1'),
+        resolvedInternal: decimal('60')
+      },
+      display: { status: 'resolved', perBar: decimal('20') },
+      barCount: 1,
+      runtimeStatus: 'static'
     },
     mechanics: {
       summons: [],
@@ -76,6 +101,23 @@ describe('Endgame UI 生命值格式', () => {
 
   it('拒绝非十进制字符串', () => {
     expect(() => formatFullHp('1e6' as DecimalString)).toThrow(/无效/);
+  });
+
+  it.each([
+    ['190.08', '190'],
+    ['171.6', '172'],
+    ['165', '165'],
+    ['174.24', '174']
+  ])('速度 %s 四舍五入为整数 %s', (source, expected) => {
+    expect(formatRoundedDecimal(decimal(source))).toBe(expected);
+  });
+
+  it.each([
+    ['300', '300'],
+    ['480.0', '480'],
+    ['1234.50', '1,234.5']
+  ])('玩家韧性 %s 保留精确值并格式化为 %s', (source, expected) => {
+    expect(formatExactDecimal(decimal(source))).toBe(expected);
   });
 });
 

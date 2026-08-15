@@ -16,6 +16,52 @@ export interface EnemyHpFactors {
   eliteContextConfidence: 'verified' | 'inferred';
 }
 
+export type EnemyStatUnavailableReason = 'missing-base' | 'invalid-reference';
+
+export type ResolvedEnemyStat =
+  | {
+      status: 'resolved';
+      base: DecimalString;
+      instanceRatio: DecimalString;
+      instanceValue: DecimalString;
+      levelRatio: DecimalString;
+      eliteRatio: DecimalString;
+      configuredValue: DecimalString;
+    }
+  | {
+      status: 'unavailable';
+      reason: EnemyStatUnavailableReason;
+    };
+
+export type ResolvedInternalStance =
+  | {
+      status: 'resolved';
+      baseInternal: DecimalString;
+      instanceRatio: DecimalString;
+      instanceValueInternal: DecimalString;
+      hardLevelRatio: DecimalString;
+      eliteRatio: DecimalString;
+      resolvedInternal: DecimalString;
+    }
+  | {
+      status: 'unavailable';
+      reason: EnemyStatUnavailableReason;
+    };
+
+export type EnemyToughnessDisplay =
+  | { status: 'resolved'; perBar: DecimalString }
+  | {
+      status: 'unavailable';
+      reason: EnemyStatUnavailableReason | 'non-terminating-unit-conversion';
+    };
+
+export interface EnemyToughnessStat {
+  internalStance: ResolvedInternalStance;
+  display: EnemyToughnessDisplay;
+  barCount?: number;
+  runtimeStatus: 'static' | 'runtime-unclear';
+}
+
 export interface EnemyMechanics {
   phaseCount?: number;
   summons: number[];
@@ -35,6 +81,8 @@ export interface EnemyOccurrence {
   monsterTemplateId: number;
   name?: string;
   hp: EnemyHpFactors;
+  speed: ResolvedEnemyStat;
+  toughness: EnemyToughnessStat;
   mechanics: EnemyMechanics;
 }
 
@@ -106,7 +154,7 @@ export interface EndgameGroup {
 }
 
 export interface EndgameModeDataset {
-  schemaVersion: 12;
+  schemaVersion: 14;
   mode: EndgameMode;
   groups: EndgameGroup[];
 }

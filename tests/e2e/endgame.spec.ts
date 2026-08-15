@@ -36,7 +36,62 @@ test('AS 多阶段生命值显示完整整数、阶段数和属性图标', async
     /generated-assets\/elements\/.+\.png/
   );
   await expect(weaknesses.first().locator('span')).not.toBeEmpty();
-  await expect(boss.locator('.hp-mechanics summary')).toHaveAccessibleName('查看生命值机制说明');
+  await expect(boss.locator('.hp-mechanics, .toughness-mechanics')).toHaveCount(0);
+});
+
+test('遗忘冽风难度 4 使用本地海报立绘和精确战斗属性', async ({ page }) => {
+  const failedImages: string[] = [];
+  page.on('response', (response) => {
+    if (response.request().resourceType() === 'image' && response.status() >= 400)
+      failedImages.push(response.url());
+  });
+  await page.goto('/endgame/as/3018?encounter=30184');
+  await expect(page.locator('[data-battle-slot]')).toHaveCount(3);
+  const expectations = [
+    ['406401204', '7,259,250 × 2', '120 × 8', '190'],
+    ['100401404', '6,874,290 × 2', '100', '172'],
+    ['100402604', '3,299,659', '200', '165'],
+    ['403401304', '6,775,300 × 2', '300 × 2', '174']
+  ] as const;
+  for (const [monsterId, hp, toughness, speed] of expectations) {
+    const card = page.locator(`[data-monster-id="${monsterId}"]`);
+    await expect(card).toBeVisible();
+    await expect(card.locator('[data-enemy-portrait]')).toHaveAttribute(
+      'src',
+      /generated-enemy-assets\/icons\/Monster_\d+\.webp/
+    );
+    await expect(card.locator('[data-endgame-hp]')).toHaveText(hp);
+    await expect(card.locator('[data-endgame-toughness]')).toHaveText(toughness);
+    await expect(card.locator('[data-endgame-speed]')).toHaveText(speed);
+  }
+  expect(failedImages).toEqual([]);
+  await expect(page.locator('.endgame-enemy__placeholder')).toHaveCount(0);
+});
+
+test('兵锋骑士难度 4 显示玩家侧韧性且不显示机制弹窗', async ({ page }) => {
+  await page.goto('/endgame/as/3019?encounter=30194');
+  for (const [monsterId, toughness] of [
+    ['302401304', '300'],
+    ['401401304', '480'],
+    ['300402104', '190']
+  ] as const) {
+    const card = page.locator(`[data-monster-id="${monsterId}"]`);
+    await expect(card.locator('[data-endgame-toughness]')).toHaveText(toughness);
+  }
+  await expect(page.locator('.hp-mechanics, .toughness-mechanics')).toHaveCount(0);
+  await expect(page.getByLabel('查看生命值机制说明')).toHaveCount(0);
+  await expect(page.getByLabel('查看韧性机制说明')).toHaveCount(0);
+});
+
+test('敌人立绘请求失败时保留完整数据并显示中性降级', async ({ page }) => {
+  await page.goto('/endgame/as/3018?encounter=30184');
+  const card = page.locator('[data-monster-id="406401204"]');
+  const portrait = card.locator('[data-enemy-portrait]');
+  await expect(portrait).toBeVisible();
+  await portrait.evaluate((image) => image.dispatchEvent(new Event('error')));
+  await expect(card.locator('[data-enemy-portrait]')).toHaveCount(0);
+  await expect(card.locator('.endgame-enemy__fallback')).toBeVisible();
+  await expect(card.locator('[data-endgame-hp]')).toHaveText('7,259,250 × 2');
 });
 
 test('AA 王棋普通和绝境使用实际 spawned occurrence', async ({ page }) => {

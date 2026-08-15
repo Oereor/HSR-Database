@@ -1,6 +1,7 @@
 import { access } from 'node:fs/promises';
 import path from 'node:path';
 import type {
+  DecimalString,
   EliteContextSource,
   EliteGroupTable,
   EndgameBattleSlot,
@@ -12,10 +13,21 @@ import type {
   EndgameStage,
   EnemyMechanics,
   EnemyOccurrence,
+  ResolvedInternalStance,
+  ResolvedEnemyStat,
   SpawnWave
 } from '../../src/lib/domain/endgame.js';
 import type { TextResolver, TextSource } from './localization.js';
-import { decimalEquals, decimalOf, multiplyDecimals, parseDecimal } from './decimal.js';
+import {
+  addDecimals,
+  compareDecimals,
+  decimalEquals,
+  decimalOf,
+  internalStanceToToughness,
+  isWholeDecimal,
+  multiplyDecimals,
+  parseDecimal
+} from './decimal.js';
 import { readRaw, readTable } from './raw.js';
 
 type Id = number;
@@ -76,6 +88,10 @@ interface MonsterRow {
   MonsterID: Id;
   MonsterTemplateID: Id;
   HPModifyRatio: unknown;
+  SpeedModifyRatio?: unknown;
+  SpeedModifyValue?: unknown;
+  StanceModifyRatio?: unknown;
+  StanceModifyValue?: unknown;
   EliteGroup?: Id;
   SummonIDList?: Id[];
 }
@@ -84,6 +100,9 @@ interface MonsterTemplateRow {
   MonsterTemplateID: Id;
   MonsterName?: HashRef;
   HPBase: unknown;
+  SpeedBase?: unknown;
+  StanceBase?: unknown;
+  StanceCount?: number;
   JsonConfig?: string;
   AIPath?: string;
 }
@@ -92,11 +111,15 @@ interface HardLevelRow {
   HardLevelGroup: Id;
   Level: number;
   HPRatio: unknown;
+  SpeedRatio: unknown;
+  StanceRatio: unknown;
 }
 
 interface EliteRow {
   EliteGroup: Id;
   HPRatio: unknown;
+  SpeedRatio: unknown;
+  StanceRatio: unknown;
 }
 
 interface InfiniteGroupRow {
@@ -153,6 +176,27 @@ export interface EndgameAudit {
     characterConfigsMissing: number;
     abilityConfigsMissing: number;
   };
+  stanceConversion: {
+    totalOccurrences: number;
+    resolvedInternal: number;
+    missingInternal: number;
+    resolvedDisplay: number;
+    nonDivisibleByThree: number;
+    conversionUnavailable: number;
+    multiBarOccurrences: number;
+    nonPositiveDisplay: number;
+    minDisplayed?: DecimalString;
+    maxDisplayed?: DecimalString;
+    samples: Array<{
+      mode: EndgameMode;
+      monsterId: number;
+      monsterTemplateId: number;
+      name?: string;
+      resolvedInternal?: DecimalString;
+      displayedPerBar?: DecimalString;
+      reason: string;
+    }>;
+  };
   summary: EndgameManifestSummary;
 }
 
@@ -161,7 +205,7 @@ export interface EndgameBuildResult {
   audit: EndgameAudit;
 }
 
-const SCHEMA_VERSION = 12 as const;
+const SCHEMA_VERSION = 14 as const;
 const MODES: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 const MAX_SAMPLES = 20;
 
@@ -315,11 +359,20 @@ interface MechanicsScan {
   restoresHp: boolean;
   locksHp: boolean;
   manipulatesHp: boolean;
+  manipulatesStance: boolean;
   characterConfig?: string;
   abilityConfig?: string;
   abilityReferences: string[];
   complete: boolean;
 }
+
+const STANCE_RUNTIME_OPERATION_TYPES = new Set([
+  'RPG.GameCore.LockStance',
+  'RPG.GameCore.ResetStance',
+  'RPG.GameCore.SetBossHPStanceChangeType',
+  'RPG.GameCore.SetStanceCount',
+  'RPG.GameCore.TriggerStanceCountDown'
+]);
 
 function collectOperationTypes(value: unknown, result: string[]): void {
   if (Array.isArray(value)) {
@@ -380,6 +433,98 @@ export async function buildEndgameData(
     return text.resolveRef(ref, source) || undefined;
   };
 
+  const decimalOr = (value: unknown, fallback: '0' | '1', label: string) => {
+    if (
+      value === undefined ||
+      value === null ||
+      (typeof value === 'object' && !Array.isArray(value) && !('Value' in value))
+    )
+      return parseDecimal(fallback);
+    return decimalOf(value, label);
+  };
+
+  const resolveConfiguredStat = (
+    label: 'Speed' | 'Stance',
+    baseSource: unknown,
+    instanceRatioSource: unknown,
+    instanceValueSource: unknown,
+    levelRatioSource: unknown,
+    eliteRatioSource: unknown,
+    contextData: EndgameDiagnosticSample['context']
+  ): ResolvedEnemyStat => {
+    if (
+      !baseSource ||
+      typeof baseSource !== 'object' ||
+      Array.isArray(baseSource) ||
+      !('Value' in baseSource)
+    ) {
+      diagnostics.warn(
+        `missing-${label.toLowerCase()}-base`,
+        `${label}Base 缺失，无法生成当前实例属性`,
+        contextData
+      );
+      return { status: 'unavailable', reason: 'missing-base' };
+    }
+    let base: DecimalString;
+    try {
+      base = decimalOf(baseSource, `${label}Base`);
+    } catch (error) {
+      diagnostics.warn(
+        `invalid-${label.toLowerCase()}-base`,
+        error instanceof Error ? error.message : `${label}Base 无法解析`,
+        contextData
+      );
+      return { status: 'unavailable', reason: 'invalid-reference' };
+    }
+    const instanceRatio = decimalOr(instanceRatioSource, '1', `${label}ModifyRatio`);
+    const instanceValue = decimalOr(instanceValueSource, '0', `${label}ModifyValue`);
+    const levelRatio = decimalOf(levelRatioSource, `HardLevel.${label}Ratio`);
+    const eliteRatio = decimalOf(eliteRatioSource, `EliteGroup.${label}Ratio`);
+    const configuredValue = multiplyDecimals([
+      addDecimals([multiplyDecimals([base, instanceRatio]), instanceValue]),
+      levelRatio,
+      eliteRatio
+    ]);
+    return {
+      status: 'resolved',
+      base,
+      instanceRatio,
+      instanceValue,
+      levelRatio,
+      eliteRatio,
+      configuredValue
+    };
+  };
+
+  const resolveInternalStance = (
+    baseSource: unknown,
+    instanceRatioSource: unknown,
+    instanceValueSource: unknown,
+    levelRatioSource: unknown,
+    eliteRatioSource: unknown,
+    contextData: EndgameDiagnosticSample['context']
+  ): ResolvedInternalStance => {
+    const resolved = resolveConfiguredStat(
+      'Stance',
+      baseSource,
+      instanceRatioSource,
+      instanceValueSource,
+      levelRatioSource,
+      eliteRatioSource,
+      contextData
+    );
+    if (resolved.status === 'unavailable') return resolved;
+    return {
+      status: 'resolved',
+      baseInternal: resolved.base,
+      instanceRatio: resolved.instanceRatio,
+      instanceValueInternal: resolved.instanceValue,
+      hardLevelRatio: resolved.levelRatio,
+      eliteRatio: resolved.eliteRatio,
+      resolvedInternal: resolved.configuredValue
+    };
+  };
+
   const stages = buildUniqueIndex(tables.stages, (row) => row.StageID, 'StageConfig.StageID');
   const monsters = buildUniqueIndex(
     tables.monsters,
@@ -429,6 +574,7 @@ export async function buildEndgameData(
         restoresHp: false,
         locksHp: false,
         manipulatesHp: false,
+        manipulatesStance: false,
         abilityReferences: [],
         complete: true
       };
@@ -473,6 +619,9 @@ export async function buildEndgameData(
       result.locksHp = operationTypes.some((type) => type.endsWith('LockHP'));
       result.manipulatesHp = operationTypes.some((type) =>
         /\.(?:SetHP|LockHP|DefineHPSharedGroup|ModifyHP|AddHP)$/.test(type)
+      );
+      result.manipulatesStance = operationTypes.some((type) =>
+        STANCE_RUNTIME_OPERATION_TYPES.has(type)
       );
       const setHpNodes: Record<string, unknown>[] = [];
       const collectSetHp = (value: unknown): void => {
@@ -591,6 +740,51 @@ export async function buildEndgameData(
     const eliteRatio = decimalOf(elite.row.HPRatio, `EliteGroup ${resolvedEliteGroupId}.HPRatio`);
     const configuredMaxHpPerBar = multiplyDecimals([hpBase, instanceRatio, levelRatio, eliteRatio]);
     const scan = await scanMechanics(template);
+    const statContext = {
+      ...context(mode, contextData),
+      stageId: stage.StageID,
+      monsterId,
+      monsterTemplateId: template.MonsterTemplateID
+    };
+    const speed = resolveConfiguredStat(
+      'Speed',
+      template.SpeedBase,
+      monster.SpeedModifyRatio,
+      monster.SpeedModifyValue,
+      hard.SpeedRatio,
+      elite.row.SpeedRatio,
+      statContext
+    );
+    const internalStance = resolveInternalStance(
+      template.StanceBase,
+      monster.StanceModifyRatio,
+      monster.StanceModifyValue,
+      hard.StanceRatio,
+      elite.row.StanceRatio,
+      statContext
+    );
+    const displayedToughness =
+      internalStance.status === 'resolved'
+        ? internalStanceToToughness(internalStance.resolvedInternal)
+        : undefined;
+    if (internalStance.status === 'resolved' && displayedToughness === undefined)
+      diagnostics.warn(
+        'non-terminating-stance-conversion',
+        'resolved internal stance 无法精确换算为玩家韧性',
+        { ...statContext, resolvedInternal: internalStance.resolvedInternal }
+      );
+    let barCount: number | undefined;
+    if (template.StanceCount !== undefined) {
+      barCount = integer(
+        template.StanceCount,
+        `MonsterTemplate ${template.MonsterTemplateID}.StanceCount`
+      );
+      if (barCount < 1)
+        diagnostics.fail('invalid-stance-count', 'StanceCount 必须为正整数', {
+          ...statContext,
+          stanceCount: barCount
+        });
+    }
     const summons = (monster.SummonIDList ?? []).map((id) => integer(id, 'SummonIDList'));
     const unclear =
       !scan.complete ||
@@ -633,6 +827,22 @@ export async function buildEndgameData(
         eliteGroupTable: elite.table,
         eliteContextSource: actualContextSource,
         eliteContextConfidence: confidence
+      },
+      speed,
+      toughness: {
+        internalStance,
+        display:
+          displayedToughness !== undefined
+            ? { status: 'resolved', perBar: displayedToughness }
+            : {
+                status: 'unavailable',
+                reason:
+                  internalStance.status === 'unavailable'
+                    ? internalStance.reason
+                    : 'non-terminating-unit-conversion'
+              },
+        ...(barCount ? { barCount } : {}),
+        runtimeStatus: !scan.complete || scan.manipulatesStance ? 'runtime-unclear' : 'static'
       },
       mechanics
     };
@@ -1014,6 +1224,94 @@ export async function buildEndgameData(
     })
   ) as EndgameManifestSummary['modes'];
 
+  const stanceConversion: EndgameAudit['stanceConversion'] = {
+    totalOccurrences: 0,
+    resolvedInternal: 0,
+    missingInternal: 0,
+    resolvedDisplay: 0,
+    nonDivisibleByThree: 0,
+    conversionUnavailable: 0,
+    multiBarOccurrences: 0,
+    nonPositiveDisplay: 0,
+    samples: []
+  };
+  const zero = parseDecimal('0');
+  for (const mode of MODES) {
+    const occurrences = datasets[mode].groups
+      .flatMap((group) => group.encounters)
+      .flatMap((encounter) => encounter.battles)
+      .flatMap((battle) => battle.stages)
+      .flatMap((stage) =>
+        stage.waveModel.kind === 'fixed'
+          ? stage.waveModel.waves.flatMap((wave) => wave.enemies)
+          : stage.waveModel.waves.flatMap((wave) =>
+              wave.monsterGroups.flatMap((group) => group.orderedEnemies)
+            )
+      );
+    for (const occurrence of occurrences) {
+      stanceConversion.totalOccurrences += 1;
+      if ((occurrence.toughness.barCount ?? 1) > 1) stanceConversion.multiBarOccurrences += 1;
+      const internal = occurrence.toughness.internalStance;
+      if (internal.status === 'unavailable') {
+        stanceConversion.missingInternal += 1;
+        continue;
+      }
+      stanceConversion.resolvedInternal += 1;
+      const display = occurrence.toughness.display;
+      if (display.status === 'unavailable') {
+        stanceConversion.nonDivisibleByThree += 1;
+        stanceConversion.conversionUnavailable += 1;
+        if (stanceConversion.samples.length < MAX_SAMPLES)
+          stanceConversion.samples.push({
+            mode,
+            monsterId: occurrence.monsterId,
+            monsterTemplateId: occurrence.monsterTemplateId,
+            ...(occurrence.name ? { name: occurrence.name } : {}),
+            resolvedInternal: internal.resolvedInternal,
+            reason: display.reason
+          });
+        continue;
+      }
+      stanceConversion.resolvedDisplay += 1;
+      if (!isWholeDecimal(display.perBar)) {
+        stanceConversion.nonDivisibleByThree += 1;
+        if (stanceConversion.samples.length < MAX_SAMPLES)
+          stanceConversion.samples.push({
+            mode,
+            monsterId: occurrence.monsterId,
+            monsterTemplateId: occurrence.monsterTemplateId,
+            ...(occurrence.name ? { name: occurrence.name } : {}),
+            resolvedInternal: internal.resolvedInternal,
+            displayedPerBar: display.perBar,
+            reason: 'displayed-toughness-is-not-an-integer'
+          });
+      }
+      if (compareDecimals(display.perBar, zero) <= 0) {
+        stanceConversion.nonPositiveDisplay += 1;
+        if (stanceConversion.samples.length < MAX_SAMPLES)
+          stanceConversion.samples.push({
+            mode,
+            monsterId: occurrence.monsterId,
+            monsterTemplateId: occurrence.monsterTemplateId,
+            ...(occurrence.name ? { name: occurrence.name } : {}),
+            resolvedInternal: internal.resolvedInternal,
+            displayedPerBar: display.perBar,
+            reason: 'displayed-toughness-is-not-positive'
+          });
+      }
+      if (
+        stanceConversion.minDisplayed === undefined ||
+        compareDecimals(display.perBar, stanceConversion.minDisplayed) < 0
+      )
+        stanceConversion.minDisplayed = display.perBar;
+      if (
+        stanceConversion.maxDisplayed === undefined ||
+        compareDecimals(display.perBar, stanceConversion.maxDisplayed) > 0
+      )
+        stanceConversion.maxDisplayed = display.perBar;
+    }
+  }
+
   return {
     datasets,
     audit: {
@@ -1024,6 +1322,7 @@ export async function buildEndgameData(
         characterConfigsMissing: diagnostics.characterConfigsMissing,
         abilityConfigsMissing: diagnostics.abilityConfigsMissing
       },
+      stanceConversion,
       summary: { modes: summary }
     }
   };

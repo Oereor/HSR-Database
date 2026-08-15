@@ -1595,62 +1595,116 @@ footer a {
 }
 .endgame-wave__enemies {
   display: grid;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 .endgame-enemy {
-  display: grid;
+  position: relative;
   min-width: 0;
-  grid-template-columns: 2.5rem minmax(0, 1fr);
-  gap: var(--space-3);
+  min-height: 310px;
+  overflow: hidden;
   border: 1px solid var(--surface-border);
-  border-radius: var(--radius-control);
-  background: var(--surface);
-  padding: var(--space-3);
+  border-radius: var(--radius-card);
+  background:
+    radial-gradient(circle at 50% 14%, rgb(52 68 94 / 32%), transparent 58%), var(--surface);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
 }
 .endgame-enemy--boss {
-  grid-template-columns: 3rem minmax(0, 1fr);
+  min-height: 330px;
   border-color: rgb(215 181 109 / 24%);
-  padding: var(--space-4);
 }
-.endgame-enemy__placeholder {
-  display: grid;
-  width: 2.5rem;
-  height: 2.5rem;
-  place-items: center;
-  border: 1px solid var(--surface-border);
-  border-radius: 50%;
-  background: var(--surface-2);
-  color: var(--text-muted);
-  font-family: serif;
-  font-size: var(--font-helper);
+.endgame-enemy--dense {
+  min-height: 270px;
 }
-.endgame-enemy--boss .endgame-enemy__placeholder {
-  width: 3rem;
-  height: 3rem;
+.endgame-enemy:hover {
   border-color: var(--surface-border-strong);
-  color: var(--gold);
 }
-.endgame-enemy__body {
+.endgame-enemy__artwork,
+.endgame-enemy__shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.endgame-enemy__artwork {
+  height: 190px;
+  overflow: hidden;
+}
+.endgame-enemy--boss .endgame-enemy__artwork {
+  height: 215px;
+}
+.endgame-enemy--dense .endgame-enemy__artwork {
+  height: 150px;
+}
+.endgame-enemy__artwork img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 112%;
+  height: 205px;
+  max-width: none;
+  transform: translateX(-50%);
+  object-fit: contain;
+  object-position: top center;
+  opacity: 0.92;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 66%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 66%, transparent 100%);
+  user-select: none;
+}
+.endgame-enemy--boss .endgame-enemy__artwork img {
+  width: 116%;
+  height: 230px;
+}
+.endgame-enemy--dense .endgame-enemy__artwork img {
+  width: 104%;
+  height: 165px;
+}
+.endgame-enemy__fallback {
+  position: absolute;
+  top: 0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(160 171 190 / 9%);
+  font-family: serif;
+  font-size: 8rem;
+  line-height: 1;
+}
+.endgame-enemy__shade {
+  background: linear-gradient(
+    to bottom,
+    transparent 18%,
+    rgb(10 15 25 / 34%) 42%,
+    rgb(10 15 25 / 94%) 60%,
+    rgb(10 15 25 / 100%) 78%
+  );
+}
+.endgame-enemy__content {
+  position: relative;
+  z-index: 1;
   min-width: 0;
+  margin-top: 8.9rem;
+  padding: 0 var(--space-4) var(--space-4);
 }
-.endgame-enemy__heading {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: start;
-  gap: var(--space-3);
+.endgame-enemy--boss .endgame-enemy__content {
+  margin-top: 9.9rem;
 }
-.endgame-enemy__heading h4 {
-  min-width: 0;
-  margin: 0;
+.endgame-enemy--dense .endgame-enemy__content {
+  margin-top: 6.9rem;
+  padding: 0 var(--space-3) var(--space-3);
+}
+.endgame-enemy__name {
+  min-height: 3.05em;
+  margin: 0 0 var(--space-3);
   color: var(--text-primary);
   font-size: var(--font-meta-value);
-  line-height: 1.45;
+  font-weight: 700;
+  line-height: 1.48;
   overflow-wrap: anywhere;
 }
-.endgame-enemy--boss .endgame-enemy__heading h4 {
+.endgame-enemy--boss .endgame-enemy__name {
   font-size: var(--font-major-title);
 }
-.endgame-enemy__heading h4 a:hover {
+.endgame-enemy__name a:hover {
   color: var(--gold-soft);
 }
 .endgame-enemy__count {
@@ -1659,75 +1713,56 @@ footer a {
   font-size: var(--font-helper);
   white-space: nowrap;
 }
-.endgame-hp {
-  position: relative;
+.endgame-enemy__stats {
   display: grid;
-  grid-template-columns: auto auto auto;
-  align-items: center;
-  gap: var(--space-1);
-  text-align: right;
-  white-space: nowrap;
+  gap: 0.42rem;
+  margin: 0;
 }
-.endgame-hp__label {
+.endgame-enemy__stats > div {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 4.35rem minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-2);
+}
+.endgame-enemy__stats dt {
   color: var(--text-muted);
   font-size: var(--font-internal);
+  line-height: 1.65;
 }
+.endgame-enemy__stats dd {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  margin: 0;
+  color: var(--text-primary);
+  text-align: right;
+}
+.endgame-enemy__stats dd > strong,
 .endgame-hp strong {
-  color: var(--gold-soft);
+  color: var(--text-primary);
   font-size: var(--font-meta-value);
   font-variant-numeric: tabular-nums;
+  line-height: 1.45;
+  white-space: nowrap;
 }
-.endgame-enemy--boss .endgame-hp strong {
-  font-size: var(--font-major-title);
+.endgame-stat__multiplier {
+  color: var(--gold-soft);
 }
-.endgame-hp__phase {
-  color: var(--text-primary);
-}
-.hp-mechanics {
-  position: relative;
-}
-.hp-mechanics summary {
-  display: grid;
-  width: 1.55rem;
-  height: 1.55rem;
-  place-items: center;
-  border: 1px solid var(--surface-border);
-  border-radius: 50%;
-  color: var(--text-secondary);
-  cursor: pointer;
-  font-size: var(--font-internal);
-  list-style: none;
-}
-.hp-mechanics summary::-webkit-details-marker {
-  display: none;
-}
-.hp-mechanics[open] > div {
-  position: absolute;
-  z-index: 5;
-  top: calc(100% + var(--space-2));
-  right: 0;
-  width: min(360px, calc(100vw - 3rem));
-  border: 1px solid var(--surface-border-strong);
-  border-radius: var(--radius-control);
-  background: var(--surface-2);
-  box-shadow: 0 18px 45px rgb(0 0 0 / 35%);
-  padding: var(--space-3);
-  text-align: left;
-  white-space: normal;
-}
-.hp-mechanics p {
-  margin: var(--space-2) 0 0;
-  font-size: var(--font-helper);
-  line-height: 1.6;
+.endgame-hp {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 .endgame-weaknesses {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: var(--space-2);
-  margin-top: var(--space-2);
 }
-.endgame-weaknesses__label,
 .endgame-enemy__missing {
   color: var(--text-muted);
   font-size: var(--font-internal);
@@ -1742,9 +1777,6 @@ footer a {
 .endgame-weaknesses .semantic-icon-label img {
   width: 1rem;
   height: 1rem;
-}
-.endgame-enemy__missing {
-  margin: var(--space-2) 0 0;
 }
 
 .table-wrap {
@@ -2176,25 +2208,29 @@ th {
   }
   .endgame-enemy,
   .endgame-enemy--boss {
-    grid-template-columns: 2.25rem minmax(0, 1fr);
-    padding: var(--space-3);
+    min-height: 300px;
   }
-  .endgame-enemy__placeholder,
-  .endgame-enemy--boss .endgame-enemy__placeholder {
-    width: 2.25rem;
-    height: 2.25rem;
+  .endgame-enemy--dense {
+    min-height: 270px;
   }
-  .endgame-enemy__heading {
-    grid-template-columns: 1fr;
-    gap: var(--space-2);
+  .endgame-enemy__artwork,
+  .endgame-enemy--boss .endgame-enemy__artwork {
+    height: 180px;
   }
-  .endgame-hp {
-    justify-content: start;
-    text-align: left;
+  .endgame-enemy__artwork img,
+  .endgame-enemy--boss .endgame-enemy__artwork img {
+    width: 106%;
+    height: 195px;
   }
-  .hp-mechanics[open] > div {
-    right: auto;
-    left: 0;
+  .endgame-enemy__content,
+  .endgame-enemy--boss .endgame-enemy__content {
+    margin-top: 8.25rem;
+  }
+  .endgame-enemy--dense .endgame-enemy__content {
+    margin-top: 6.9rem;
+  }
+  .endgame-enemy__name {
+    min-height: 0;
   }
 }
 

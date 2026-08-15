@@ -120,22 +120,23 @@ pnpm.cmd dev -- --open
 
 ## 常用命令
 
-| 命令                   | 用途                                            |
-| ---------------------- | ----------------------------------------------- |
-| `pnpm data:audit`      | 刷新生成数据并输出主键、关系和 A/B/C/D 缺失审计 |
-| `pnpm data:sync`       | 生成简中目录、详情、Endgame 数据与来源 metadata |
-| `pnpm data:validate`   | 验证目录、关系、精确 HP、详情和搜索索引         |
-| `pnpm assets:sync`     | 同步并优化当前页面需要的四类视觉资源            |
-| `pnpm assets:ensure`   | 按 schema、commit 和需求集合检查资源缓存        |
-| `pnpm assets:verify`   | 验证资源映射、manifest、格式、尺寸和生成文件    |
-| `pnpm assets:validate` | `assets:verify` 的兼容命令                      |
-| `pnpm assets:clean`    | 仅清理网站仓库内的生成视觉资源                  |
-| `pnpm dev`             | 启动开发服务器，必要时自动同步                  |
-| `pnpm check`           | Svelte 与 TypeScript 检查                       |
-| `pnpm lint`            | Prettier 和 ESLint 检查                         |
-| `pnpm test`            | 运行 Vitest 单元测试                            |
-| `pnpm test:e2e`        | 运行 Playwright 桌面与移动浏览器测试            |
-| `pnpm build`           | 使用静态适配器生成生产构建                      |
+| 命令                       | 用途                                              |
+| -------------------------- | ------------------------------------------------- |
+| `pnpm data:audit`          | 刷新生成数据并输出主键、关系和 A/B/C/D 缺失审计   |
+| `pnpm data:sync`           | 生成简中目录、详情、Endgame 数据与来源 metadata   |
+| `pnpm data:validate`       | 验证目录、关系、精确战斗属性、详情和搜索索引      |
+| `pnpm assets:sync:enemies` | 手动准备 Endgame 本地敌人立绘；不会随构建自动联网 |
+| `pnpm assets:sync`         | 同步并优化当前页面需要的四类视觉资源              |
+| `pnpm assets:ensure`       | 按 schema、commit 和需求集合检查资源缓存          |
+| `pnpm assets:verify`       | 验证资源映射、manifest、格式、尺寸和生成文件      |
+| `pnpm assets:validate`     | `assets:verify` 的兼容命令                        |
+| `pnpm assets:clean`        | 仅清理网站仓库内的生成视觉资源                    |
+| `pnpm dev`                 | 启动开发服务器，必要时自动同步                    |
+| `pnpm check`               | Svelte 与 TypeScript 检查                         |
+| `pnpm lint`                | Prettier 和 ESLint 检查                           |
+| `pnpm test`                | 运行 Vitest 单元测试                              |
+| `pnpm test:e2e`            | 运行 Playwright 桌面与移动浏览器测试              |
+| `pnpm build`               | 使用静态适配器生成生产构建                        |
 
 生成数据位于 `src/lib/generated/`、`static/generated/`，视觉文件及资源 manifest 位于 `static/generated-assets/`、`src/lib/generated-assets/`，审计 JSON 位于 `data/audit/`。
 
@@ -145,11 +146,20 @@ pnpm.cmd dev -- --open
 
 ```text
 HPBase × HPModifyRatio × HardLevelGroup.HPRatio × contextual Elite HPRatio
+
+(SpeedBase × SpeedModifyRatio + SpeedModifyValue)
+× HardLevelGroup.SpeedRatio × contextual Elite SpeedRatio
+
+(StanceBase × StanceModifyRatio + StanceModifyValue)
+× HardLevelGroup.StanceRatio × contextual Elite StanceRatio
+= resolved internal stance
+
+resolved internal stance ÷ 3 = player-facing toughness per bar
 ```
 
-生成值表示单条生命的配置 MaxHP，不等同于复杂 Boss 的实际通关伤害需求。`/endgame` 使用独立的构建期 view-model adapter 按赛期读取这些文件：普通 HP 四舍五入为带千分位的完整整数，多阶段显示为“单条生命值 × 阶段数”，不会声明为总生命值。PF 的底层数据继续保存完整有序 spawn sequence，页面仅按波次展示唯一的实际 occurrence 类型。
+schema 14 同时保存精确 HP、速度、resolved internal stance、玩家侧单管韧性和配置韧性管数。HSR 的内部 Stance 单位与玩家韧性固定为 3:1，转换只在全部关卡倍率应用后执行。`/endgame` 使用独立的构建期 view-model adapter 按赛期读取这些文件；HP 与速度按既有规则显示整数，韧性直接显示精确换算值，HP 使用完整千分位。多阶段生命和多管韧性分别使用“单条配置值 × 数量”，不会声明为运行时总值。PF 的底层数据继续保存完整有序 spawn sequence，页面仅按波次展示唯一的实际 occurrence 类型。
 
-Endgame occurrence 通过 `MonsterTemplateID` 关联现有敌人百科的弱点和详情路由，但名称、HP 与机制始终来自关卡中的实际 `MonsterID`。弱点标签复用现有七属性颜色与 64px 属性图标；当前没有完整敌人图标来源，因此敌人行使用中性文字占位，不产生无效图片请求。
+Endgame occurrence 通过 `MonsterTemplateID` 关联现有敌人百科的弱点、详情路由和可选本地立绘。页面只在构建期读取 `static/generated-enemy-assets/index.json`，不会访问远程图片；缺少 manifest、映射或 WebP 时保留完整数据并使用中性降级。下载生成物位于已忽略的 `static/generated-enemy-assets/`，需要图片的部署者应自行准备合法来源，或显式运行 `pnpm assets:sync:enemies`；该命令不会由 `dev` 或 `build` 自动调用。
 
 **镜流、刃、卡芙卡、银狼、黑天鹅、花火、希儿、藿藿、流萤、瓦尔特**存在角色加强。详情 JSON 同时保存 `base` 与 `enhanced` Profile，各自包含能量、技能、行迹和星魂；页面默认展示加强后的角色信息，且角色详情中暂不提供加强对比功能。
 

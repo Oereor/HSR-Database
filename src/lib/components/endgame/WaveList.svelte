@@ -4,6 +4,7 @@
 
   export let waves: EndgameWaveView[];
   export let boss = false;
+  export let dense = false;
 </script>
 
 <div class="endgame-wave-list">
@@ -12,7 +13,10 @@
       <h4>{wave.label}</h4>
       <div class="endgame-wave__enemies">
         {#each wave.enemies as enemy (enemy.identity)}
-          <EnemyOccurrenceRow occurrence={enemy} emphasis={boss ? 'boss' : 'normal'} />
+          <EnemyOccurrenceRow
+            occurrence={enemy}
+            emphasis={boss ? 'boss' : dense ? 'dense' : 'normal'}
+          />
         {/each}
       </div>
     </section>

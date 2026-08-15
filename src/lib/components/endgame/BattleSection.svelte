@@ -4,6 +4,7 @@
 
   export let battle: EndgameBattleSlotView;
   export let boss = false;
+  export let dense = false;
 </script>
 
 <section class="endgame-battle" id={`battle-${battle.slot}`} data-battle-slot={battle.slot}>
@@ -19,7 +20,7 @@
           <span>Lv.{stage.level}</span>
         </div>
       {/if}
-      <WaveList waves={stage.waves} {boss} />
+      <WaveList waves={stage.waves} {boss} {dense} />
     </div>
   {/each}
 </section>

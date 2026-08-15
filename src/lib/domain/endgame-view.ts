@@ -64,6 +64,7 @@ export interface EndgameEnemyReference {
   name?: string;
   rank?: string;
   weaknesses: EndgameWeaknessView[];
+  portraitUrl?: string;
   exists: boolean;
 }
 
@@ -75,20 +76,21 @@ export interface EnemyOccurrenceView {
   enemyHref?: string;
   rank?: string;
   weaknesses: EndgameWeaknessView[];
+  portraitUrl?: string;
   count?: number;
   hp: {
     exactPerBar: DecimalString;
     roundedPerBar: string;
     phaseCount?: number;
-    complex: boolean;
-    effectiveTotalHpStatus: EnemyMechanics['effectiveTotalHpStatus'];
-    mechanics: {
-      sharedHp: boolean;
-      restoresHp: boolean;
-      locksHp: boolean;
-      manipulatesHp: boolean;
-      hasSummons: boolean;
-    };
+  };
+  speed: {
+    exact?: DecimalString;
+    rounded: string;
+  };
+  toughness: {
+    exactPerBar?: DecimalString;
+    roundedPerBar: string;
+    barCount?: number;
   };
 }
 
@@ -131,13 +133,25 @@ export function isEndgameMode(value: string): value is EndgameMode {
   return ENDGAME_MODES.includes(value as EndgameMode);
 }
 
-export function formatFullHp(value: DecimalString): string {
+export function formatRoundedDecimal(value: DecimalString): string {
   const match = /^(\d+)(?:\.(\d+))?$/.exec(value);
-  if (!match) throw new Error(`无效的生命值十进制字符串：${value}`);
+  if (!match) throw new Error(`无效的正十进制字符串：${value}`);
   let integer = BigInt(match[1]);
   if ((match[2]?.[0] ?? '0') >= '5') integer += 1n;
   return new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 0 }).format(integer);
 }
+
+export function formatExactDecimal(value: DecimalString): string {
+  const match = /^(\d+)(?:\.(\d+))?$/.exec(value);
+  if (!match) throw new Error(`无效的正十进制字符串：${value}`);
+  const integer = new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 0 }).format(
+    BigInt(match[1])
+  );
+  const fraction = (match[2] ?? '').replace(/0+$/, '');
+  return fraction ? `${integer}.${fraction}` : integer;
+}
+
+export const formatFullHp = formatRoundedDecimal;
 
 export function formatHpWithPhases(value: DecimalString, phaseCount?: number): string {
   const hp = formatFullHp(value);
@@ -169,6 +183,8 @@ export function occurrenceIdentity(occurrence: EnemyOccurrence): string {
     occurrence.hp.eliteGroupTable,
     occurrence.hp.eliteContextSource,
     occurrence.hp.eliteContextConfidence,
+    occurrence.speed,
+    occurrence.toughness,
     mechanicsIdentity(occurrence.mechanics)
   ]);
 }
@@ -202,14 +218,6 @@ export function buildOccurrenceView(
   count?: number
 ): EnemyOccurrenceView {
   const mechanics = occurrence.mechanics;
-  const complex = Boolean(
-    (mechanics.phaseCount && mechanics.phaseCount > 1) ||
-    mechanics.sharedHp ||
-    mechanics.restoresHp ||
-    mechanics.locksHp ||
-    mechanics.manipulatesHp ||
-    mechanics.summons.length
-  );
   return {
     identity: occurrenceIdentity(occurrence),
     monsterId: occurrence.monsterId,
@@ -218,21 +226,28 @@ export function buildOccurrenceView(
     ...(reference?.exists ? { enemyHref: `/enemies/${occurrence.monsterTemplateId}` } : {}),
     ...(reference?.rank ? { rank: reference.rank } : {}),
     weaknesses: reference?.weaknesses ?? [],
+    ...(reference?.portraitUrl ? { portraitUrl: reference.portraitUrl } : {}),
     ...(count && count > 1 ? { count } : {}),
     hp: {
       exactPerBar: occurrence.hp.configuredMaxHpPerBar,
       roundedPerBar: formatFullHp(occurrence.hp.configuredMaxHpPerBar),
-      ...(mechanics.phaseCount ? { phaseCount: mechanics.phaseCount } : {}),
-      complex,
-      effectiveTotalHpStatus: mechanics.effectiveTotalHpStatus,
-      mechanics: {
-        sharedHp: mechanics.sharedHp,
-        restoresHp: mechanics.restoresHp,
-        locksHp: mechanics.locksHp,
-        manipulatesHp: mechanics.manipulatesHp,
-        hasSummons: mechanics.summons.length > 0
-      }
-    }
+      ...(mechanics.phaseCount ? { phaseCount: mechanics.phaseCount } : {})
+    },
+    speed:
+      occurrence.speed.status === 'resolved'
+        ? {
+            exact: occurrence.speed.configuredValue,
+            rounded: formatRoundedDecimal(occurrence.speed.configuredValue)
+          }
+        : { rounded: '资料未提供' },
+    toughness:
+      occurrence.toughness.display.status === 'resolved'
+        ? {
+            exactPerBar: occurrence.toughness.display.perBar,
+            roundedPerBar: formatExactDecimal(occurrence.toughness.display.perBar),
+            ...(occurrence.toughness.barCount ? { barCount: occurrence.toughness.barCount } : {})
+          }
+        : { roundedPerBar: '资料未提供' }
   };
 }
 
