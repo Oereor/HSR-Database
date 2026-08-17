@@ -28,16 +28,7 @@
     : [];
 </script>
 
-<article class="enemy-stats-panel">
-  <table class="enemy-stats-table" aria-label={`Lv.${level} 敌人基础属性`}>
-    <tbody>
-      {#each stats as stat (stat[0])}
-        <tr class="enemy-stat-row" data-enemy-stat={stat[0]}>
-          <th scope="row">{stat[1]}</th><td><strong>{stat[2]}</strong></td>
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+<div class="enemy-stats-panel">
   <div class="skill-level-control enemy-level-control">
     <div>
       <label for={controlId}>敌人等级</label><output for={controlId}>Lv.{level}</output>
@@ -55,4 +46,12 @@
       <span>Lv.{progression.minLevel}</span><span>Lv.{progression.maxLevel}</span>
     </div>
   </div>
-</article>
+  <dl class="enemy-stats-list" aria-label={`Lv.${level} 敌人基础属性`}>
+    {#each stats as stat (stat[0])}
+      <div class="enemy-stat-row" data-enemy-stat={stat[0]}>
+        <dt>{stat[1]}</dt>
+        <dd><strong>{stat[2]}</strong></dd>
+      </div>
+    {/each}
+  </dl>
+</div>

@@ -11,10 +11,7 @@
 
 <article class="enemy-skill-card" data-enemy-skill={skill.id}>
   <header class="enemy-skill-card__heading">
-    <div>
-      <h3><GameText text={skill.name} /></h3>
-      {#if skill.kind === 'talent'}<span class="enemy-skill-kind">天赋</span>{/if}
-    </div>
+    <h3><GameText text={skill.name} /></h3>
     <SkillEffectTag effect={skill.tag} />
   </header>
   {#if skill.damageType || showPhases}
@@ -25,6 +22,10 @@
           label={skill.damageType.name}
           color={getElementColor(skill.damageType.element)}
         />{/if}
+      {#if skill.damageType && showPhases}<span
+          class="enemy-skill-meta__separator"
+          aria-hidden="true">·</span
+        >{/if}
       {#if showPhases}<span class="enemy-skill-phases">适用阶段 {skill.phases.join(' / ')}</span
         >{/if}
     </div>
