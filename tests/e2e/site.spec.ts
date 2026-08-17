@@ -524,7 +524,7 @@ test('四类详情页使用收敛后的标题层级与章节留白', async ({ pa
   for (const url of ['/characters/1001', '/light-cones/20000', '/relics/101', '/enemies/1002011']) {
     await page.goto(url);
     const heroSize = await page
-      .locator('.detail-hero h1')
+      .locator(url.startsWith('/enemies/') ? '.enemy-hero h1' : '.detail-hero h1')
       .evaluate((element) => Number.parseFloat(getComputedStyle(element).fontSize));
     const section = page.locator('.detail-section').first();
     const sectionSize = await section
@@ -547,7 +547,7 @@ test('角色与敌人属性文字使用统一颜色', async ({ page }) => {
     'rgb(212, 106, 235)'
   );
   await page.goto('/enemies/1002011');
-  const weaknesses = page.locator('.split-section > div').first();
+  const weaknesses = page.locator('.enemy-weakness-list');
   await expect(weaknesses.getByText('火', { exact: true })).toHaveCSS('color', 'rgb(242, 87, 64)');
   await expect(page.getByRole('heading', { name: '掉落物' })).toHaveCount(0);
 });

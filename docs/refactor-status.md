@@ -58,7 +58,9 @@
 
 ## 第五次重构：Endgame 数据管线
 
-- 生成数据升级为 schema 15，并在构建期独立生成 MoC、PF、AS、AA 四类 encounter-centric 数据；现有 Enemy 百科模型保持不变。schema 15 将 common HP 中间值与模式最终值分层，并为 PF 增加 wave-specific modifier、单精度等级倍率及 Rank 取整语义。
+- 生成数据升级为 schema 16，并在构建期独立生成 MoC、PF、AS、AA 四类 encounter-centric 数据；schema 15 的 common HP、PF wave modifier、单精度等级倍率及 Rank 取整语义保持不变。
+- Enemy Detail v1 已从通用详情布局分离：canonical 配置预生成 Lv.1–100 七项属性，页面按 Hero、基础属性、弱点与抗性、特殊状态抗性、召唤单位、技能的固定顺序展示。原“出现关卡”字段/UI 和 Hero 内部 Rank 已移除。
+- 敌人技能现保留稳定 kind/tag、声明式元素、PhaseList 与 ExtraEffect，召唤关系按 MonsterID 解析到 canonical 模板；构建期专属 audit 诊断所有未知或未解析关系，AI 与技能机制参数不进入浏览器数据。
 - battle slot 支持多个有序 Stage 与 Tierce 第三队；fixed formation 和 spawn sequence 使用判别联合，PF/AA 的重复实际 MonsterID 不去重。
 - occurrence 分别保存 MonsterID、MonsterTemplateID 和关卡上下文，使用四个无损十进制因子精确计算单条配置 MaxHP。
 - AA preview MonsterID 只用于审计，实际 spawn MonsterID 决定变体、模板和 HP。
@@ -91,7 +93,7 @@
 - 当前缺失审计：A 6,557、B 25、C 244、D 0。
   - A：真实空字段或 CHS 缺失，包括 235 条角色技能和 20 条忆灵技能空描述。
   - B：15 条角色技能和 10 条忆灵技能描述含尚未表达语义的 `<icon>`。
-  - C：244 个关卡敌人变体在当前 `MonsterConfig` 中没有目标。
+  - C：当前浏览器消费域为 0；Enemy appearance 关系已退出生成模型。
   - D：当前程序级错误为 0。
 - `TextMapMainCHS.json` 的 1,116 个键全部包含在 CHS 中，不是运行依赖或 fallback。
 - 浏览器只读取轻量生成数据，不加载上游 Config 或完整 TextMap。
@@ -101,7 +103,7 @@
 
 1. 收紧同步器和 `DetailPage.svelte` 中剩余的关键 `any`。
 2. 继续评估是否需要复刻游戏内更精确的 AnchorType 空间坐标；当前实现优先表达真实依赖关系与可访问性。
-3. 调查 244 个未连接的关卡敌人变体以及敌人技能/场景完整度。
+3. 若未来重新引入百科 appearance，再独立调查 StageConfig 中未连接的敌人变体；当前不属于产品消费域。
 4. 为真实 `<icon>` 标记建立可访问文字语义。
 5. 持续检查静态详情数量、构建体积和 CI 时间。
 6. 评估 Skill、Trace、Eidolon、光锥和敌人视觉资源；Phase 4.1 明确不接入这些类别。

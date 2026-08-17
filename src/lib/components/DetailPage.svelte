@@ -9,6 +9,7 @@
   import TraceCardPanel from '$lib/components/TraceCardPanel.svelte';
   import CharacterPortrait from '$lib/components/CharacterPortrait.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
+  import EnemyDetailPage from '$lib/components/enemy/EnemyDetailPage.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { gameTextToPlain } from '$lib/domain/game-text';
   export let detail: any;
@@ -52,56 +53,56 @@
 </svelte:head>
 
 <a class="back-link" href={`/${category}`}>← 返回{singular}列表</a>
-<header
-  class:detail-hero--with-portrait={category === 'characters' && portraitAvailable}
-  class="detail-hero"
->
-  <div class="detail-hero__content">
-    <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
-    <h1><GameText text={detail.name} /></h1>
-    {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
-        <GameText text={detail.fullName} />
-      </p>{/if}
-    <div class="tag-row">
-      {#if detail.rarity}<span class="tone-rarity">{'★'.repeat(detail.rarity)}</span>{/if}
-      {#if detail.pathName}<SemanticIconLabel
-          kind="path"
-          code={detail.path}
-          label={detail.pathName}
-        />{/if}
-      {#if detail.elementName}<SemanticIconLabel
-          kind="element"
-          code={detail.element}
-          label={detail.elementName}
-          color={getElementColor(detail.element)}
-        />{/if}
-      {#if detail.typeName}<span>{detail.typeName}</span>{/if}
-      {#if detail.version}<span>版本 {detail.version}</span>{/if}
-      {#if detail.rank}<span>{detail.rank}</span>{/if}
+{#if category !== 'enemies'}<header
+    class:detail-hero--with-portrait={category === 'characters' && portraitAvailable}
+    class="detail-hero"
+  >
+    <div class="detail-hero__content">
+      <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
+      <h1><GameText text={detail.name} /></h1>
+      {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
+          <GameText text={detail.fullName} />
+        </p>{/if}
+      <div class="tag-row">
+        {#if detail.rarity}<span class="tone-rarity">{'★'.repeat(detail.rarity)}</span>{/if}
+        {#if detail.pathName}<SemanticIconLabel
+            kind="path"
+            code={detail.path}
+            label={detail.pathName}
+          />{/if}
+        {#if detail.elementName}<SemanticIconLabel
+            kind="element"
+            code={detail.element}
+            label={detail.elementName}
+            color={getElementColor(detail.element)}
+          />{/if}
+        {#if detail.typeName}<span>{detail.typeName}</span>{/if}
+        {#if detail.version}<span>版本 {detail.version}</span>{/if}
+        {#if detail.rank}<span>{detail.rank}</span>{/if}
+      </div>
+      {#if hasEnhancedProfile}<div class="enhancement-control">
+          <span>角色加强</span>
+          <button
+            class="enhancement-switch"
+            type="button"
+            role="switch"
+            aria-label="角色加强"
+            aria-checked={enhancedEnabled}
+            on:click={toggleEnhanced}
+          >
+            <span class="enhancement-switch__track" aria-hidden="true"><span></span></span>
+            <strong>{enhancedEnabled ? '加强后' : '加强前'}</strong>
+          </button>
+        </div>{/if}
+      {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p class="muted">
+          上游数据未提供可用简介。
+        </p>{/if}
     </div>
-    {#if hasEnhancedProfile}<div class="enhancement-control">
-        <span>角色加强</span>
-        <button
-          class="enhancement-switch"
-          type="button"
-          role="switch"
-          aria-label="角色加强"
-          aria-checked={enhancedEnabled}
-          on:click={toggleEnhanced}
-        >
-          <span class="enhancement-switch__track" aria-hidden="true"><span></span></span>
-          <strong>{enhancedEnabled ? '加强后' : '加强前'}</strong>
-        </button>
-      </div>{/if}
-    {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p class="muted">
-        上游数据未提供可用简介。
-      </p>{/if}
-  </div>
-  {#if category === 'characters'}<CharacterPortrait
-      characterId={detail.id}
-      onAvailabilityChange={(available) => (portraitAvailable = available)}
-    />{/if}
-</header>
+    {#if category === 'characters'}<CharacterPortrait
+        characterId={detail.id}
+        onAvailabilityChange={(available) => (portraitAvailable = available)}
+      />{/if}
+  </header>{/if}
 
 {#if category === 'characters'}
   <nav class="detail-tabs" aria-label="详情章节">
@@ -205,49 +206,14 @@
       </ul>{:else}<p class="muted">上游数据未提供可解析的获取来源。</p>{/if}
   </section>
 {:else if category === 'enemies'}
-  <section class="detail-section split-section">
-    <div>
-      <h2>弱点</h2>
-      {#if detail.weaknesses.length}<div class="chip-list">
-          {#each detail.weaknesses as weakness}<span style:color={getElementColor(weakness.element)}
-              >{weakness.name}</span
-            >{/each}
-        </div>{:else}<p class="data-placeholder">暂无弱点数据。</p>{/if}
-    </div>
-    <div>
-      <h2>抗性</h2>
-      {#if detail.resistances.length}<div class="chip-list">
-          {#each detail.resistances as resistance}<span
-              style:color={getElementColor(resistance.element)}
-              >{resistance.name} {Math.round(resistance.value * 100)}%</span
-            >{/each}
-        </div>{:else}<p class="data-placeholder">暂无抗性数据。</p>{/if}
-    </div>
-  </section>
-  <section class="detail-section">
-    <h2>技能</h2>
-    {#if detail.skills.length}<div class="stack-list">
-        {#each detail.skills as skill (skill.id)}<article class="info-card">
-            <div class="info-card__heading">
-              <h3><GameText text={skill.name} /></h3>
-              <span>{skill.type}</span>
-            </div>
-            <p><GameText text={skill.levels[0]?.description || '上游未提供本地化描述。'} /></p>
-          </article>{/each}
-      </div>{:else}<p class="data-placeholder">上游未提供可展示的敌人技能。</p>{/if}
-  </section>
-  <section class="detail-section">
-    <h2>出现关卡</h2>
-    {#if detail.stages.length}<div class="stage-list">
-        {#each detail.stages as stage}<span
-            ><GameText text={stage.name} /><small><GameText text={stage.type} /> · {stage.id}</small
-            ></span
-          >{/each}
-      </div>{:else}<p class="muted">关卡表中未找到已发布的引用。</p>{/if}
-  </section>
+  <EnemyDetailPage {detail} />
 {/if}
 
 <aside class="source-note">
   <strong>数据来源</strong>
-  <p>TurnBasedGameData 提供结构化数据；角色目录头像由 StarRailRes 在构建时按 AvatarID 同步。</p>
+  <p>
+    TurnBasedGameData 提供结构化数据；{category === 'enemies'
+      ? '敌人立绘由 StarRailRes 在构建时按 MonsterTemplateID 同步。'
+      : '角色目录头像由 StarRailRes 在构建时按 AvatarID 同步。'}
+  </p>
 </aside>

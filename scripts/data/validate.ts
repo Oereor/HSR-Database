@@ -22,7 +22,13 @@ import { SKILL_EFFECT_LABELS } from './skill-combat.js';
 import type { TextDiagnosticSummary } from './localization.js';
 import type { DescriptionDiagnosticSummary } from './levelled.js';
 import type { MissingTextAudit } from './missing-text.js';
-import { auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
+import { assertDataRoot, auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
+import { readTable } from './raw.js';
+import {
+  enemySkillTagCodes,
+  enemySpecialResistanceLabels,
+  resolveCanonicalEnemyStats
+} from './enemy-detail.js';
 import {
   addDecimals,
   decimalEquals,
@@ -36,7 +42,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 15)
+if (manifest.schemaVersion !== 16)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -45,6 +51,15 @@ const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'ut
   descriptionDiagnostics: DescriptionDiagnosticSummary;
   missingTextAudit: MissingTextAudit;
   skillCombatAudit: { unknownEffects: string[] };
+  enemyAudit: {
+    canonicalJoin: { resolved: number; missing: string[] };
+    weaknessResistanceConflicts: Array<{ enemyId: string; element: string; value: number }>;
+    unknownDebuffResist: unknown[];
+    unresolvedSummons: unknown[];
+    unresolvedSkills: unknown[];
+    unresolvedExtraEffects: unknown[];
+    missingAttributes: Record<string, string[]>;
+  };
   endgameAudit: EndgameAudit;
 };
 const textDiagnostics = audit.textDiagnostics;
@@ -72,6 +87,7 @@ if (missingTextAudit.D.count) {
   );
 }
 if (!audit.endgameAudit) throw new Error('生成审计缺少 Endgame 诊断摘要');
+if (!audit.enemyAudit) throw new Error('生成审计缺少 Enemy 诊断摘要');
 if (audit.endgameAudit.coreErrors.count)
   throw new Error(`Endgame 存在 ${audit.endgameAudit.coreErrors.count} 个核心关联错误`);
 
@@ -96,7 +112,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 15 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 16 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -369,6 +385,110 @@ for (const [category, count] of Object.entries(expected)) {
   for (const item of catalog)
     await access(path.join(generatedRoot, 'details', category, `${item.id}.json`));
 }
+
+const enemyDetails = await Promise.all(
+  manifest.routes.enemies.map(
+    async (id) =>
+      JSON.parse(
+        await readFile(path.join(generatedRoot, 'details', 'enemies', `${id}.json`), 'utf8')
+      ) as Enemy
+  )
+);
+const rawRoot = assertDataRoot();
+const [rawTemplates, rawConfigs, rawHardLevels, rawElites] = await Promise.all([
+  readTable<Record<string, any>>(rawRoot, 'MonsterTemplateConfig'),
+  readTable<Record<string, any>>(rawRoot, 'MonsterConfig'),
+  readTable<Record<string, any>>(rawRoot, 'HardLevelGroup'),
+  readTable<Record<string, any>>(rawRoot, 'EliteGroup')
+]);
+const rawTemplateById = new Map(
+  rawTemplates.map((row) => [String(row.MonsterTemplateID), row] as const)
+);
+const rawConfigByMonsterId = new Map(
+  rawConfigs.map((row) => [String(row.MonsterID), row] as const)
+);
+const rawHardLevelsByGroup = new Map<string, Record<string, any>[]>();
+for (const row of rawHardLevels) {
+  const key = String(row.HardLevelGroup);
+  rawHardLevelsByGroup.set(key, [...(rawHardLevelsByGroup.get(key) ?? []), row]);
+}
+const rawEliteById = new Map(rawElites.map((row) => [String(row.EliteGroup), row] as const));
+let weaknessResistanceConflictCount = 0;
+for (const enemy of enemyDetails) {
+  if ('stages' in enemy) throw new Error(`敌人 ${enemy.id} 仍包含已删除的 stages 字段`);
+  const template = rawTemplateById.get(enemy.id);
+  const config = rawConfigByMonsterId.get(enemy.id);
+  if (!template || !config || String(config.MonsterTemplateID) !== enemy.id)
+    throw new Error(`敌人 ${enemy.id} canonical join 失败`);
+  const hardLevels = rawHardLevelsByGroup.get(String(config.HardLevelGroup)) ?? [];
+  const elite = rawEliteById.get(String(config.EliteGroup));
+  if (!elite) throw new Error(`敌人 ${enemy.id} 缺少 EliteGroup`);
+  const expectedStats = resolveCanonicalEnemyStats(template, config, hardLevels, elite);
+  if (JSON.stringify(enemy.stats) !== JSON.stringify(expectedStats))
+    throw new Error(`敌人 ${enemy.id} 等级属性未通过共享 resolver 重算`);
+  if (
+    enemy.stats.minLevel !== 1 ||
+    enemy.stats.maxLevel !== 100 ||
+    enemy.stats.defaultLevel !== 95 ||
+    enemy.stats.levels.length !== 100
+  )
+    throw new Error(`敌人 ${enemy.id} Lv.1–100 属性范围异常`);
+  if (
+    enemy.resistances.some((resistance) => !isElementType(resistance.element) || !resistance.value)
+  )
+    throw new Error(`敌人 ${enemy.id} 包含零值或未知元素抗性`);
+  weaknessResistanceConflictCount += enemy.resistances.filter((resistance) =>
+    enemy.weaknesses.some((weakness) => weakness.element === resistance.element)
+  ).length;
+  for (const resistance of enemy.specialResistances)
+    if (enemySpecialResistanceLabels[resistance.code] !== resistance.label)
+      throw new Error(`敌人 ${enemy.id} 特殊状态抗性映射异常：${resistance.code}`);
+  if (
+    new Set(enemy.summons.map((summon) => summon.monsterTemplateId)).size !== enemy.summons.length
+  )
+    throw new Error(`敌人 ${enemy.id} 召唤目标未按模板去重`);
+  for (const summon of enemy.summons)
+    if (
+      !rawConfigByMonsterId.has(summon.monsterId) ||
+      !rawTemplateById.has(summon.monsterTemplateId) ||
+      summon.href !== `/enemies/${summon.monsterTemplateId}`
+    )
+      throw new Error(`敌人 ${enemy.id} 召唤引用无效：${summon.monsterId}`);
+  const expectedSkillIds = (config.SkillList ?? []).map(String);
+  if (enemy.skills.map((skill) => skill.id).join(',') !== expectedSkillIds.join(','))
+    throw new Error(`敌人 ${enemy.id} 技能链或顺序异常`);
+  for (const skill of enemy.skills) {
+    if (skill.tag.known && enemySkillTagCodes[skill.tag.label] !== skill.tag.code)
+      throw new Error(`敌人 ${enemy.id} 技能 ${skill.id} tag 映射异常`);
+    if (skill.phases.some((phase) => !Number.isSafeInteger(phase) || phase <= 0))
+      throw new Error(`敌人 ${enemy.id} 技能 ${skill.id} PhaseList 无效`);
+    for (const forbidden of [
+      'SPHitBase',
+      'DelayRatio',
+      'ParamList',
+      'ModifierList',
+      'AttackType',
+      'SkillTriggerKey',
+      'AI'
+    ])
+      if (forbidden in skill)
+        throw new Error(`敌人 ${enemy.id} 技能 ${skill.id} 暴露构建期字段 ${forbidden}`);
+  }
+}
+if (
+  audit.enemyAudit.canonicalJoin.resolved !== enemyDetails.length ||
+  audit.enemyAudit.canonicalJoin.missing.length
+)
+  throw new Error('Enemy canonical join 审计摘要异常');
+if (audit.enemyAudit.weaknessResistanceConflicts.length !== weaknessResistanceConflictCount)
+  throw new Error('Enemy 弱点/抗性冲突审计摘要异常');
+for (const [label, unresolved] of [
+  ['DebuffResist', audit.enemyAudit.unknownDebuffResist],
+  ['summon', audit.enemyAudit.unresolvedSummons],
+  ['skill', audit.enemyAudit.unresolvedSkills],
+  ['ExtraEffect', audit.enemyAudit.unresolvedExtraEffects]
+] as const)
+  if (unresolved.length) console.warn(`Enemy 警告：${unresolved.length} 个 unresolved ${label}`);
 const search = JSON.parse(
   await readFile(path.join(staticGeneratedRoot, 'search.json'), 'utf8')
 ) as SearchEntry[];

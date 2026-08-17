@@ -46,6 +46,7 @@ test('遗忘冽风难度 4 使用本地海报立绘和精确战斗属性', async
       failedImages.push(response.url());
   });
   await page.goto('/endgame/as/3018?encounter=30184');
+  await page.waitForLoadState('networkidle');
   await expect(page.locator('[data-battle-slot]')).toHaveCount(3);
   const expectations = [
     ['406401204', '7,259,250 × 2', '120 × 8', '190'],

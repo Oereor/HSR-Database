@@ -245,7 +245,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(91);
-    expect(manifest.schemaVersion).toBe(15);
+    expect(manifest.schemaVersion).toBe(16);
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     const basicAttack = variantOf(character, '100101');
@@ -314,12 +314,7 @@ describe('真实数据管线', () => {
       field: 'SkillDesc',
       count: 15
     });
-    expect(missing.C.groups).toContainEqual({
-      reason: 'unresolved-relation',
-      entity: 'stage',
-      field: 'MonsterList',
-      count: 244
-    });
+    expect(missing.C.count).toBe(0);
   });
 
   it('光锥叠影保留真实等级并只高亮变化参数', async () => {

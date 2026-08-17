@@ -22,7 +22,6 @@ import type {
 } from '../../src/lib/domain/endgame.js';
 import type { TextResolver, TextSource } from './localization.js';
 import {
-  addDecimals,
   compareDecimals,
   decimalEquals,
   decimalOf,
@@ -31,6 +30,7 @@ import {
   multiplyDecimals,
   parseDecimal
 } from './decimal.js';
+import { resolveEnemyConfiguredStat, resolveEnemyInternalStance } from './enemy-stats.js';
 import { readRaw, readTable } from './raw.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
 
@@ -223,7 +223,7 @@ export interface EndgameBuildResult {
   audit: EndgameAudit;
 }
 
-const SCHEMA_VERSION = 15 as const;
+const SCHEMA_VERSION = 16 as const;
 const MODES: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 const MAX_SAMPLES = 20;
 const PF_ROUNDING_METADATA = {
@@ -462,16 +462,6 @@ export async function buildEndgameData(
     return text.resolveRef(ref, source) || undefined;
   };
 
-  const decimalOr = (value: unknown, fallback: '0' | '1', label: string) => {
-    if (
-      value === undefined ||
-      value === null ||
-      (typeof value === 'object' && !Array.isArray(value) && !('Value' in value))
-    )
-      return parseDecimal(fallback);
-    return decimalOf(value, label);
-  };
-
   const resolveConfiguredStat = (
     label: 'Speed' | 'Stance',
     baseSource: unknown,
@@ -481,22 +471,21 @@ export async function buildEndgameData(
     eliteRatioSource: unknown,
     contextData: EndgameDiagnosticSample['context']
   ): ResolvedEnemyStat => {
-    if (
-      !baseSource ||
-      typeof baseSource !== 'object' ||
-      Array.isArray(baseSource) ||
-      !('Value' in baseSource)
-    ) {
-      diagnostics.warn(
-        `missing-${label.toLowerCase()}-base`,
-        `${label}Base 缺失，无法生成当前实例属性`,
-        contextData
-      );
-      return { status: 'unavailable', reason: 'missing-base' };
-    }
-    let base: DecimalString;
     try {
-      base = decimalOf(baseSource, `${label}Base`);
+      const resolved = resolveEnemyConfiguredStat(label, {
+        base: baseSource,
+        instanceRatio: instanceRatioSource,
+        instanceValue: instanceValueSource,
+        levelRatio: levelRatioSource,
+        eliteRatio: eliteRatioSource
+      });
+      if (resolved.status === 'unavailable')
+        diagnostics.warn(
+          `missing-${label.toLowerCase()}-base`,
+          `${label}Base 缺失，无法生成当前实例属性`,
+          contextData
+        );
+      return resolved;
     } catch (error) {
       diagnostics.warn(
         `invalid-${label.toLowerCase()}-base`,
@@ -505,24 +494,6 @@ export async function buildEndgameData(
       );
       return { status: 'unavailable', reason: 'invalid-reference' };
     }
-    const instanceRatio = decimalOr(instanceRatioSource, '1', `${label}ModifyRatio`);
-    const instanceValue = decimalOr(instanceValueSource, '0', `${label}ModifyValue`);
-    const levelRatio = decimalOf(levelRatioSource, `HardLevel.${label}Ratio`);
-    const eliteRatio = decimalOf(eliteRatioSource, `EliteGroup.${label}Ratio`);
-    const configuredValue = multiplyDecimals([
-      addDecimals([multiplyDecimals([base, instanceRatio]), instanceValue]),
-      levelRatio,
-      eliteRatio
-    ]);
-    return {
-      status: 'resolved',
-      base,
-      instanceRatio,
-      instanceValue,
-      levelRatio,
-      eliteRatio,
-      configuredValue
-    };
   };
 
   const resolveInternalStance = (
@@ -533,25 +504,29 @@ export async function buildEndgameData(
     eliteRatioSource: unknown,
     contextData: EndgameDiagnosticSample['context']
   ): ResolvedInternalStance => {
-    const resolved = resolveConfiguredStat(
-      'Stance',
-      baseSource,
-      instanceRatioSource,
-      instanceValueSource,
-      levelRatioSource,
-      eliteRatioSource,
-      contextData
-    );
-    if (resolved.status === 'unavailable') return resolved;
-    return {
-      status: 'resolved',
-      baseInternal: resolved.base,
-      instanceRatio: resolved.instanceRatio,
-      instanceValueInternal: resolved.instanceValue,
-      hardLevelRatio: resolved.levelRatio,
-      eliteRatio: resolved.eliteRatio,
-      resolvedInternal: resolved.configuredValue
-    };
+    try {
+      const resolved = resolveEnemyInternalStance({
+        base: baseSource,
+        instanceRatio: instanceRatioSource,
+        instanceValue: instanceValueSource,
+        levelRatio: levelRatioSource,
+        eliteRatio: eliteRatioSource
+      });
+      if (resolved.status === 'unavailable')
+        diagnostics.warn(
+          'missing-stance-base',
+          'StanceBase 缺失，无法生成当前实例属性',
+          contextData
+        );
+      return resolved;
+    } catch (error) {
+      diagnostics.warn(
+        'invalid-stance-base',
+        error instanceof Error ? error.message : 'StanceBase 无法解析',
+        contextData
+      );
+      return { status: 'unavailable', reason: 'invalid-reference' };
+    }
   };
 
   const stages = buildUniqueIndex(tables.stages, (row) => row.StageID, 'StageConfig.StageID');

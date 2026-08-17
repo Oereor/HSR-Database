@@ -9,16 +9,17 @@ import type {
   CharacterProfile,
   DataManifest,
   Enemy,
+  EnemyExtraEffect,
+  EnemySkill,
   LightCone,
   RelicSet,
   SearchEntry,
-  Skill,
   SkillVariant,
   TextHash
 } from '../../src/lib/domain/types.js';
 import { parseTextHash } from '../../src/lib/domain/types.js';
 import { rarityFromCode, relicTypeNames } from '../../src/lib/domain/constants.js';
-import { normalizeElementType } from '../../src/lib/domain/elements.js';
+import { isElementType, normalizeElementType } from '../../src/lib/domain/elements.js';
 import { createTextResolver, loadTextMap, type TextSource } from './localization.js';
 import {
   addDescriptionDiagnostics,
@@ -46,6 +47,13 @@ import { characterStatFields, lightConeStatFields, normalizeStatProgression } fr
 import { formatGameMarkup, formatGameText } from './text.js';
 import { normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildEndgameData } from './endgame.js';
+import {
+  normalizeEnemyPhases,
+  normalizeEnemySkillKind,
+  normalizeEnemySkillTag,
+  normalizeSpecialResistances,
+  resolveCanonicalEnemyStats
+} from './enemy-detail.js';
 
 type Raw = Record<string, any>;
 
@@ -174,7 +182,9 @@ export async function syncData(): Promise<DataManifest> {
     'MonsterTemplateConfig',
     'MonsterConfig',
     'MonsterSkillConfig',
-    'StageConfig'
+    'HardLevelGroup',
+    'EliteGroup',
+    'ExtraEffectConfig'
   ] as const;
   const loaded = await Promise.all(tableNames.map((name) => readTable<Raw>(root, name)));
   const tables = Object.fromEntries(
@@ -256,9 +266,12 @@ export async function syncData(): Promise<DataManifest> {
   const relicSkills = grouped(tables.RelicSetSkillConfig, 'SetID');
   const relicParts = grouped(tables.RelicDataInfo, 'SetID');
   const relicSetRows = by(tables.RelicSetConfig, 'SetID');
-  const monsterConfigs = grouped(tables.MonsterConfig, 'MonsterTemplateID');
   const monsterRows = by(tables.MonsterConfig, 'MonsterID');
+  const monsterTemplates = by(tables.MonsterTemplateConfig, 'MonsterTemplateID');
   const monsterSkillRows = by(tables.MonsterSkillConfig, 'SkillID');
+  const hardLevelRows = grouped(tables.HardLevelGroup, 'HardLevelGroup');
+  const eliteRows = by(tables.EliteGroup, 'EliteGroup');
+  const extraEffectRows = by(tables.ExtraEffectConfig, 'ExtraEffectID');
   const enhancedAvatars = by(tables.AvatarConfigEnhanced, 'AvatarID');
 
   if (enhancedAvatars.size !== tables.AvatarConfigEnhanced.length)
@@ -381,21 +394,6 @@ export async function syncData(): Promise<DataManifest> {
         skillId,
         monsterSkillRows.has(String(skillId))
       );
-  for (const stage of tables.StageConfig)
-    for (const monsterId of (stage.MonsterList ?? []).flatMap((wave: Raw) =>
-      Object.values(wave)
-        .map(String)
-        .filter((id) => id && id !== '0')
-    ))
-      missingRelation(
-        'stage',
-        stage.StageID,
-        'MonsterList',
-        'enemy-variant',
-        monsterId,
-        monsterRows.has(String(monsterId))
-      );
-
   const pathName = (id: string): string =>
     tr(pathRows.get(id)?.BaseTypeText, source('path', id, 'BaseTypeText'), id);
   const elementName = (id: string): string =>
@@ -900,43 +898,51 @@ export async function syncData(): Promise<DataManifest> {
     });
   }
 
-  const monsterToTemplate = new Map<string, string>();
-  for (const config of tables.MonsterConfig)
-    monsterToTemplate.set(String(config.MonsterID), String(config.MonsterTemplateID));
-  const stageReferences = new Map<string, Array<{ id: string; name: string; type: string }>>();
-  for (const stage of tables.StageConfig) {
-    if (stage.Release === false) continue;
-    const monsterIds = unique(
-      (stage.MonsterList ?? []).flatMap((wave: Raw) =>
-        Object.values(wave)
-          .map(String)
-          .filter((id) => id !== '0')
-      )
-    );
-    for (const monsterId of monsterIds) {
-      const templateId = monsterToTemplate.get(monsterId);
-      if (!templateId) continue;
-      const reference = {
-        id: String(stage.StageID),
-        name: tr(
-          stage.StageName,
-          source('stage', stage.StageID, 'StageName'),
-          `关卡 ${stage.StageID}`
-        ),
-        type: stage.StageType ?? ''
-      };
-      const current = stageReferences.get(templateId) ?? [];
-      if (!current.some((item) => item.id === reference.id))
-        stageReferences.set(templateId, [...current, reference]);
-    }
-  }
-
   const enemyCatalog: CatalogEntry[] = [];
   const enemies: Enemy[] = [];
+  const enemyAudit = {
+    canonicalJoin: { resolved: 0, missing: [] as string[] },
+    unknownSkillKinds: [] as Array<{ enemyId: string; skillId: string; value: string }>,
+    unknownSkillTags: [] as Array<{ enemyId: string; skillId: string; value: string }>,
+    unknownElements: [] as Array<{ enemyId: string; field: string; value: string }>,
+    weaknessResistanceConflicts: [] as Array<{ enemyId: string; element: string; value: number }>,
+    unknownDebuffResist: [] as Array<{ enemyId: string; key: string }>,
+    unresolvedSummons: [] as Array<{ enemyId: string; monsterId: string }>,
+    unresolvedSkills: [] as Array<{ enemyId: string; skillId: string }>,
+    unresolvedExtraEffects: [] as Array<{
+      enemyId: string;
+      skillId: string;
+      extraEffectId: string;
+    }>,
+    missingAttributes: {
+      speedBase: [] as string[],
+      stanceBase: [] as string[],
+      statusResistanceBase: [] as string[]
+    }
+  };
+
+  const canonicalEnemyName = (templateId: string): string => {
+    const targetTemplate = monsterTemplates.get(templateId);
+    const targetConfig = monsterRows.get(templateId);
+    return tr(
+      targetTemplate?.MonsterName,
+      source('enemy', templateId, 'MonsterTemplateConfig.MonsterName'),
+      tr(
+        targetConfig?.MonsterName,
+        source('enemy', templateId, 'MonsterConfig.MonsterName'),
+        `敌人 ${templateId}`
+      )
+    );
+  };
+
   for (const template of tables.MonsterTemplateConfig) {
     const id = String(template.MonsterTemplateID);
-    const configs = monsterConfigs.get(id) ?? [];
-    const config = configs.find((row) => String(row.MonsterID) === id) ?? configs[0] ?? {};
+    const config = monsterRows.get(id);
+    if (!config || String(config.MonsterTemplateID) !== id) {
+      enemyAudit.canonicalJoin.missing.push(id);
+      throw new Error(`敌人 ${id} 缺少 MonsterID == MonsterTemplateID 的 canonical MonsterConfig`);
+    }
+    enemyAudit.canonicalJoin.resolved += 1;
     const configName = tr(
       config.MonsterName,
       source('enemy', id, 'MonsterConfig.MonsterName'),
@@ -947,34 +953,143 @@ export async function syncData(): Promise<DataManifest> {
       source('enemy', id, 'MonsterTemplateConfig.MonsterName'),
       configName
     );
-    const skills: Skill[] = (config.SkillList ?? [])
-      .map((skillId: number) => monsterSkillRows.get(String(skillId)))
-      .filter(Boolean)
-      .map((skill) => {
-        const normalized = normalizeLevelledDescriptions([
-          {
-            level: 1,
-            params: values(skill.ParamList),
-            template: tr(skill.SkillDesc, source('enemy-skill', skill.SkillID, 'SkillDesc'))
-          }
-        ]);
-        collectDescriptionDiagnostics('enemy-skill', String(skill.SkillID), normalized.diagnostics);
-        return {
-          id: String(skill.SkillID),
+    const skills: EnemySkill[] = [];
+    for (const rawSkillId of config.SkillList ?? []) {
+      const skillId = String(rawSkillId);
+      const skill = monsterSkillRows.get(skillId);
+      if (!skill) {
+        enemyAudit.unresolvedSkills.push({ enemyId: id, skillId });
+        continue;
+      }
+      const kindLabel = tr(skill.SkillTypeDesc, source('enemy-skill', skillId, 'SkillTypeDesc'));
+      const kind = normalizeEnemySkillKind(kindLabel);
+      if (kind === 'unknown')
+        enemyAudit.unknownSkillKinds.push({ enemyId: id, skillId, value: kindLabel });
+      const tagLabel = tr(skill.SkillTag, source('enemy-skill', skillId, 'SkillTag'));
+      const tag = normalizeEnemySkillTag(tagLabel);
+      if (!tag.known) enemyAudit.unknownSkillTags.push({ enemyId: id, skillId, value: tagLabel });
+
+      const formattedDescription = formatGameMarkup(
+        tr(skill.SkillDesc, source('enemy-skill', skillId, 'SkillDesc'), '资料未提供'),
+        values(skill.ParamList)
+      );
+      collectDescriptionDiagnostics('enemy-skill', skillId, formattedDescription.diagnostics);
+      let damageType;
+      if (skill.DamageType !== undefined) {
+        const rawElement = String(skill.DamageType);
+        const element = normalizeElementType(rawElement);
+        if (!isElementType(element))
+          enemyAudit.unknownElements.push({
+            enemyId: id,
+            field: `skill:${skillId}`,
+            value: rawElement
+          });
+        else damageType = { element, name: elementName(rawElement) };
+      }
+
+      const extraEffects: EnemyExtraEffect[] = [];
+      for (const rawExtraEffectId of skill.ExtraEffectIDList ?? []) {
+        const extraEffectId = String(rawExtraEffectId);
+        const extra = extraEffectRows.get(extraEffectId);
+        if (!extra) {
+          enemyAudit.unresolvedExtraEffects.push({ enemyId: id, skillId, extraEffectId });
+          continue;
+        }
+        const formatted = formatGameMarkup(
+          tr(
+            extra.ExtraEffectDesc,
+            source('enemy-extra-effect', extraEffectId, 'ExtraEffectDesc'),
+            '资料未提供'
+          ),
+          values(extra.DescParamList)
+        );
+        collectDescriptionDiagnostics('enemy-extra-effect', extraEffectId, formatted.diagnostics);
+        extraEffects.push({
+          id: extraEffectId,
           name: tr(
-            skill.SkillName,
-            source('enemy-skill', skill.SkillID, 'SkillName'),
-            `技能 ${skill.SkillID}`
+            extra.ExtraEffectName,
+            source('enemy-extra-effect', extraEffectId, 'ExtraEffectName'),
+            `效果 ${extraEffectId}`
           ),
-          type: tr(
-            skill.SkillTypeDesc,
-            source('enemy-skill', skill.SkillID, 'SkillTypeDesc'),
-            skill.AttackType ?? ''
-          ),
-          scalingParamIndexes: normalized.scalingParamIndexes,
-          levels: normalized.levels
-        };
+          description: formatted.text || '资料未提供'
+        });
+      }
+      skills.push({
+        id: skillId,
+        name: tr(skill.SkillName, source('enemy-skill', skillId, 'SkillName'), `技能 ${skillId}`),
+        description: formattedDescription.text || '资料未提供',
+        kind,
+        tag,
+        ...(damageType ? { damageType } : {}),
+        phases: normalizeEnemyPhases(skill.PhaseList),
+        extraEffects
       });
+    }
+
+    const weaknesses = (config.StanceWeakList ?? []).flatMap((rawElement: unknown) => {
+      const sourceElement = String(rawElement);
+      const element = normalizeElementType(sourceElement);
+      if (!isElementType(element)) {
+        enemyAudit.unknownElements.push({
+          enemyId: id,
+          field: 'StanceWeakList',
+          value: sourceElement
+        });
+        return [];
+      }
+      return [{ element, name: elementName(sourceElement) }];
+    });
+    const resistances = (config.DamageTypeResistance ?? []).flatMap((resistance: Raw) => {
+      const sourceElement = String(resistance.DamageType);
+      const element = normalizeElementType(sourceElement);
+      const value = numberOf(resistance.Value);
+      if (!isElementType(element)) {
+        enemyAudit.unknownElements.push({
+          enemyId: id,
+          field: 'DamageTypeResistance',
+          value: sourceElement
+        });
+        return [];
+      }
+      if (value === 0) return [];
+      if (weaknesses.some((weakness) => weakness.element === element))
+        enemyAudit.weaknessResistanceConflicts.push({ enemyId: id, element, value });
+      return [{ element, name: elementName(sourceElement), value }];
+    });
+    const special = normalizeSpecialResistances(config.DebuffResist);
+    for (const key of special.unknownKeys)
+      enemyAudit.unknownDebuffResist.push({ enemyId: id, key });
+
+    const summons = [];
+    const seenSummonTemplates = new Set<string>();
+    for (const rawSummonId of config.SummonIDList ?? []) {
+      const monsterId = String(rawSummonId);
+      const summonConfig = monsterRows.get(monsterId);
+      const monsterTemplateId = String(summonConfig?.MonsterTemplateID ?? '');
+      if (!summonConfig || !monsterTemplates.has(monsterTemplateId)) {
+        enemyAudit.unresolvedSummons.push({ enemyId: id, monsterId });
+        continue;
+      }
+      if (seenSummonTemplates.has(monsterTemplateId)) continue;
+      seenSummonTemplates.add(monsterTemplateId);
+      summons.push({
+        monsterId,
+        monsterTemplateId,
+        name: canonicalEnemyName(monsterTemplateId),
+        href: `/enemies/${monsterTemplateId}`
+      });
+    }
+
+    const hardLevels = hardLevelRows.get(String(config.HardLevelGroup)) ?? [];
+    const elite = eliteRows.get(String(config.EliteGroup));
+    if (!hardLevels.length || !elite)
+      throw new Error(
+        `敌人 ${id} 缺少等级属性配置：HardLevelGroup=${config.HardLevelGroup}, EliteGroup=${config.EliteGroup}`
+      );
+    if (template.SpeedBase === undefined) enemyAudit.missingAttributes.speedBase.push(id);
+    if (template.StanceBase === undefined) enemyAudit.missingAttributes.stanceBase.push(id);
+    if (template.StatusResistanceBase === undefined)
+      enemyAudit.missingAttributes.statusResistanceBase.push(id);
     const catalog: CatalogEntry = {
       id,
       name,
@@ -987,18 +1102,12 @@ export async function syncData(): Promise<DataManifest> {
       ...catalog,
       kind: 'enemy',
       rank: template.Rank,
-      weaknesses: (config.StanceWeakList ?? []).map((element: string) => ({
-        element: normalizeElementType(element) ?? element,
-        name: elementName(element)
-      })),
-      resistances: (config.DamageTypeResistance ?? []).map((resistance: Raw) => ({
-        element:
-          normalizeElementType(String(resistance.DamageType)) ?? String(resistance.DamageType),
-        name: elementName(resistance.DamageType),
-        value: numberOf(resistance.Value)
-      })),
-      skills,
-      stages: stageReferences.get(id) ?? []
+      stats: resolveCanonicalEnemyStats(template, config, hardLevels, elite),
+      weaknesses,
+      resistances,
+      specialResistances: special.values,
+      summons,
+      skills
     });
     searchSeeds.push({
       entry: { id, kind: 'enemy', name, href: `/enemies/${id}`, aliases: [], meta: template.Rank },
@@ -1040,7 +1149,7 @@ export async function syncData(): Promise<DataManifest> {
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 15,
+    schemaVersion: 16,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),
@@ -1073,6 +1182,7 @@ export async function syncData(): Promise<DataManifest> {
     skillCombatAudit: {
       unknownEffects: [...unknownSkillEffects].sort()
     },
+    enemyAudit,
     endgameAudit: endgame.audit,
     missingTextAudit: missingText.getSummary(),
     notes: {

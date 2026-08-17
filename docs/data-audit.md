@@ -36,11 +36,11 @@
 - `ItemConfigEquipment`：光锥名称、简介与故事；
 - `ItemComefrom`：当前仅用于遗器获取来源。
 
-现有敌人百科的出现关卡继续由 `StageConfig.MonsterList` 经 `MonsterID → MonsterTemplateID` 聚合。Endgame 数据另建 encounter-centric 管线，不改变百科模型。
+敌人百科不再生成或展示“出现关卡”；`StageConfig` 仅由 Endgame encounter-centric 管线消费，百科详情与赛期实例保持独立。
 
 ## Endgame 敌方实例与战斗属性
 
-schema 15 在 `src/lib/generated/endgame/{moc,pf,as,aa}.json` 中生成：
+schema 16 在 `src/lib/generated/endgame/{moc,pf,as,aa}.json` 中继续生成 schema 15 已验证的数值结构：
 
 | 模式 | Group | Encounter | Stage | Occurrence |
 | ---- | ----: | --------: | ----: | ---------: |
@@ -155,26 +155,34 @@ Base + Add × (level - 1)
 
 ## 缺失文本审计
 
-schema 15 按 `实体 + ID + 字段 + 引用` 去重后的基线：
+schema 16 按 `实体 + ID + 字段 + 引用` 去重后的基线：
 
-| 类别 |  数量 | 说明                                            |
-| ---- | ----: | ----------------------------------------------- |
-| A    | 6,557 | 源字段为空或有效引用在 CHS 中不存在             |
-| B    |    25 | 当前 Formatter 未表达的 `<icon>` 语义           |
-| C    |   244 | 关卡引用了当前 `MonsterConfig` 不存在的敌人变体 |
-| D    |     0 | 当前程序级错误                                  |
+| 类别 |  数量 | 说明                                                                |
+| ---- | ----: | ------------------------------------------------------------------- |
+| A    | 6,557 | 源字段为空或有效引用在 CHS 中不存在                                 |
+| B    |    25 | 当前 Formatter 未表达的 `<icon>` 语义                               |
+| C    |     0 | 当前浏览器消费域没有未解析关系；百科不再消费 StageConfig appearance |
+| D    |     0 | 当前程序级错误                                                      |
 
-A 类主要包括 4,310 个无简中名称的关卡、1,016 个原始空行迹描述、410/389 个无简中映射的敌人技能描述/名称、235 条角色技能空描述和 20 条忆灵技能空描述。其中 1,010 条属性行迹已由结构化数据恢复，255 条空技能等级所属的 20 个内部 Variant 已由关系规则隐藏；审计仍如实保留原始缺失。B 类包括角色技能 `151022` 的 15 个等级和忆灵技能 `1141502` 的 10 个等级。普通物品已退出消费域，因此此前 274 个空物品名称不再计入运行审计。
+A 类主要包括 1,010 个原始空行迹描述、410/389 个无简中映射的敌人技能描述/名称、235 条角色技能空描述和 20 条忆灵技能空描述。其中 1,010 条属性行迹已由结构化数据恢复，255 条空技能等级所属的 20 个内部 Variant 已由关系规则隐藏；审计仍如实保留原始缺失。B 类包括角色技能 `151022` 的 15 个等级和忆灵技能 `1141502` 的 10 个等级。普通物品与 Enemy appearance 已退出消费域，因此对应的缺失名称或关系不再计入运行审计。
 
 完整分组和最多 20 个样本位于 `data/audit/latest.json` 与 `data/audit/audit.json`。
 
 ## 生成策略、资源和许可
 
-- schema 15 生成 91 个角色、165 个光锥、60 个遗器套装、613 个敌人详情、四类 Endgame 数据及 929 条简中搜索记录；其中 10 个角色详情包含双 Profile。
+- schema 16 生成 91 个角色、165 个光锥、60 个遗器套装、613 个敌人详情、四类 Endgame 数据及 929 条简中搜索记录；其中 10 个角色详情包含双 Profile。
 - 生成数据位于 `src/lib/generated/` 和 `static/generated/`，浏览器不加载上游 Config 或完整 TextMap。
 - `TurnBasedGameData` 只有 `SpriteOutput/...` 路径，没有图片文件；`StarRailRes` 当前为 91 个目录角色提供完整的 128×128 PNG 头像与 2048×2048 PNG 立绘，并覆盖七属性和九种实际命途图标。网站只按真实 ID/语义 code 生成所需集合。
 - 视觉 manifest schema 2 分别记录头像、立绘、属性和命途资源。头像保留原始 PNG，立绘生成最大 960px WebP，语义图标生成 64px PNG；所有输出均位于 gitignore 的 generated-assets 目录。
-- 构建期仅复制当前角色目录需要的头像；视觉 manifest 与业务 schema 15 相互独立，详情领域模型不携带视觉路径。
+- 构建期仅复制当前页面需要的本地视觉资源；视觉 manifest 与业务 schema 16 相互独立，详情领域模型不携带视觉路径，URL 由服务端 adapter 注入。
+
+## Enemy Detail v1
+
+- 613 个敌人模板全部通过 `MonsterID == MonsterTemplateID` 连接 canonical `MonsterConfig`；`HardLevelGroup` 和 `EliteGroup` 由共享无损 resolver 生成 Lv.1–100 七项属性，默认 Lv.95。缺失 `SpeedBase` 或 `StanceBase` 时逐项标记 unavailable，组件不执行公式或韧性单位换算。
+- canonical 技能严格按 `MonsterTemplate → MonsterConfig.SkillList → MonsterSkillConfig` 保序连接。17 个当前 SkillTag、技能/天赋、声明式 DamageType、正整数 PhaseList 与 ExtraEffect 进入浏览器数据；SPHitBase、DelayRatio、ParamList、ModifierList、AttackType、SkillTriggerKey 和 AI 不进入浏览器数据。
+- `DebuffResist` 当前七种 key 映射为控制类、冻结、禁锢、纠缠、灼烧、触电和风化；未知 key 只进入 audit。`SummonIDList` 按 `MonsterID → MonsterTemplateID` 连接并按目标模板首次出现去重。
+- 元素弱点与非零抗性独立保存。当前 13 条弱点/抗性并存关系同时展示并进入 audit，不建立未经证实的覆盖优先级。
+- `enemyAudit` 记录 canonical join、未知技能 kind/tag/元素、弱点抗性并存、未知 DebuffResist、未解析 summon/skill/ExtraEffect 及基础属性缺失摘要。
 - 头像缺失只记录诊断并使用中性占位，不请求不存在的图片，也不阻止数据构建。
 - 生成数据采用方案 B，不提交。上游没有明确再分发许可证；网站 MIT 许可证仅覆盖原创代码。公开构建产物前应确认授权。
 - StarRailRes 仓库声明 GNU AGPL v3；网站提供其完整许可证副本和来源/commit 说明。游戏图片相关权利仍归相应权利人。

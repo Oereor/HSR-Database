@@ -56,15 +56,17 @@ export type KnownSkillEffect =
   | 'MazeAttack';
 
 export interface SkillCombatMeta {
-  effect?: {
-    code: string;
-    label: string;
-    known: boolean;
-  };
+  effect?: SemanticTag;
   specialResource?: string;
   battlePointDelta?: number;
   energyGain?: number;
   toughnessDamage?: number;
+}
+
+export interface SemanticTag {
+  code: string;
+  label: string;
+  known: boolean;
 }
 
 export interface SkillVariant {
@@ -201,10 +203,64 @@ export interface RelicSet extends CatalogEntry {
 export interface Enemy extends CatalogEntry {
   kind: 'enemy';
   rank: string;
+  stats: EnemyStatProgression;
   weaknesses: ElementLabel[];
   resistances: Array<ElementLabel & { value: number }>;
-  skills: Skill[];
-  stages: Array<{ id: string; name: string; type: string }>;
+  specialResistances: EnemySpecialResistance[];
+  summons: EnemySummonReference[];
+  skills: EnemySkill[];
+}
+
+export type EnemyStatValue =
+  | { status: 'resolved'; value: import('./endgame.js').DecimalString }
+  | { status: 'unavailable'; reason: 'missing-base' | 'invalid-reference' };
+
+export interface EnemyLevelStats {
+  level: number;
+  hp: EnemyStatValue;
+  attack: EnemyStatValue;
+  defence: EnemyStatValue;
+  speed: EnemyStatValue;
+  toughness: EnemyStatValue;
+  effectHit: EnemyStatValue;
+  effectResistance: EnemyStatValue;
+}
+
+export interface EnemyStatProgression {
+  minLevel: number;
+  maxLevel: number;
+  defaultLevel: number;
+  levels: EnemyLevelStats[];
+}
+
+export interface EnemySpecialResistance {
+  code: string;
+  label: string;
+  value: import('./endgame.js').DecimalString;
+}
+
+export interface EnemySummonReference {
+  monsterId: string;
+  monsterTemplateId: string;
+  name: string;
+  href: string;
+}
+
+export interface EnemyExtraEffect {
+  id: string;
+  name: string;
+  description: string;
+}
+
+export interface EnemySkill {
+  id: string;
+  name: string;
+  description: string;
+  kind: 'skill' | 'talent' | 'unknown';
+  tag: SemanticTag;
+  damageType?: ElementLabel;
+  phases: number[];
+  extraEffects: EnemyExtraEffect[];
 }
 
 export interface SearchEntry {

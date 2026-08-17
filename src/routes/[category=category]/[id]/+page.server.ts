@@ -1,5 +1,6 @@
 import { CATEGORY_CONFIG, isCategory } from '$lib/domain/constants';
 import { getDetail, getManifest } from '$lib/server/generated';
+import { getEnemyDetail } from '$lib/server/enemies';
 import { error } from '@sveltejs/kit';
 
 export const prerender = true;
@@ -16,7 +17,10 @@ export async function load({ params }) {
     return {
       category: params.category,
       config: CATEGORY_CONFIG[params.category],
-      detail: await getDetail(params.category, params.id)
+      detail:
+        params.category === 'enemies'
+          ? await getEnemyDetail(params.id)
+          : await getDetail(params.category, params.id)
     };
   } catch {
     error(404, '没有找到这条数据');

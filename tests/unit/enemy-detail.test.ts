@@ -1,0 +1,172 @@
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+import { describe, expect, it } from 'vitest';
+import type { Enemy } from '../../src/lib/domain/types';
+import { formatRoundedDecimal } from '../../src/lib/domain/endgame-view';
+import {
+  normalizeEnemyPhases,
+  normalizeEnemySkillKind,
+  normalizeEnemySkillTag,
+  normalizeSpecialResistances,
+  resolveCanonicalEnemyStats
+} from '../../scripts/data/enemy-detail';
+import { generatedRoot, auditRoot } from '../../scripts/data/paths';
+
+const wrapped = (value: string) => ({ Value: value });
+const enemy = async (id: string): Promise<Enemy> =>
+  JSON.parse(
+    await readFile(path.join(generatedRoot, 'details', 'enemies', `${id}.json`), 'utf8')
+  ) as Enemy;
+
+describe('Enemy Detail parser/resolver', () => {
+  it('无损生成七项等级属性并对缺失基础字段降级', () => {
+    const stats = resolveCanonicalEnemyStats(
+      {
+        HPBase: wrapped('10'),
+        AttackBase: wrapped('20'),
+        DefenceBase: wrapped('30'),
+        StanceBase: wrapped('90'),
+        StatusResistanceBase: wrapped('0.2')
+      },
+      {
+        HPModifyRatio: wrapped('2'),
+        AttackModifyRatio: wrapped('1'),
+        DefenceModifyRatio: wrapped('1'),
+        StanceModifyRatio: wrapped('1')
+      },
+      [
+        {
+          Level: 1,
+          HPRatio: wrapped('3'),
+          AttackRatio: wrapped('2'),
+          DefenceRatio: wrapped('1'),
+          SpeedRatio: wrapped('1'),
+          StanceRatio: wrapped('2'),
+          StatusProbability: wrapped('0.36'),
+          StatusResistance: wrapped('0.1')
+        }
+      ],
+      {
+        HPRatio: wrapped('1'),
+        AttackRatio: wrapped('1'),
+        DefenceRatio: wrapped('1'),
+        SpeedRatio: wrapped('1'),
+        StanceRatio: wrapped('1')
+      }
+    );
+    const row = stats.levels[0];
+    expect(row.hp).toEqual({ status: 'resolved', value: '60' });
+    expect(row.attack).toEqual({ status: 'resolved', value: '40' });
+    expect(row.defence).toEqual({ status: 'resolved', value: '30' });
+    expect(row.speed).toEqual({ status: 'unavailable', reason: 'missing-base' });
+    expect(row.toughness).toEqual({ status: 'resolved', value: '60' });
+    expect(row.effectHit).toEqual({ status: 'resolved', value: '0.36' });
+    expect(row.effectResistance).toEqual({ status: 'resolved', value: '0.3' });
+  });
+
+  it('稳定映射 kind/tag/phase 与七种特殊状态抗性，并诊断未知值', () => {
+    expect(normalizeEnemySkillKind('技能')).toBe('skill');
+    expect(normalizeEnemySkillKind('天赋')).toBe('talent');
+    expect(normalizeEnemySkillKind('未来类型')).toBe('unknown');
+    expect(normalizeEnemySkillTag('弹射')).toEqual({ code: 'Bounce', label: '弹射', known: true });
+    expect(normalizeEnemySkillTag('未来标签')).toEqual({
+      code: '未来标签',
+      label: '未来标签',
+      known: false
+    });
+    expect(normalizeEnemyPhases([2, 1, 2, 0, -1, 'bad'])).toEqual([2, 1]);
+    const normalized = normalizeSpecialResistances([
+      { Key: 'STAT_CTRL', Value: wrapped('0.5') },
+      { Key: 'STAT_CTRL_Frozen', Value: wrapped('0.4') },
+      { Key: 'STAT_Confine', Value: wrapped('0.3') },
+      { Key: 'STAT_Entangle', Value: wrapped('0.2') },
+      { Key: 'STAT_DOT_Burn', Value: wrapped('0.1') },
+      { Key: 'STAT_DOT_Electric', Value: wrapped('0.1') },
+      { Key: 'STAT_DOT_Poison', Value: wrapped('0.1') },
+      { Key: 'STAT_FUTURE', Value: wrapped('1') }
+    ]);
+    expect(normalized.values.map((value) => value.label)).toEqual([
+      '控制类',
+      '冻结',
+      '禁锢',
+      '纠缠',
+      '灼烧',
+      '触电',
+      '风化'
+    ]);
+    expect(normalized.unknownKeys).toEqual(['STAT_FUTURE']);
+  });
+});
+
+describe('Enemy Detail 真实数据回归', () => {
+  it('8034010 包含 Lv.95 七项属性、弱点抗性、召唤与多阶段技能', async () => {
+    const aventurine = await enemy('8034010');
+    const row = aventurine.stats.levels.find((candidate) => candidate.level === 95)!;
+    expect(
+      [row.hp, row.attack, row.defence, row.speed, row.toughness].map((value) =>
+        value.status === 'resolved' ? formatRoundedDecimal(value.value) : 'unavailable'
+      )
+    ).toEqual(['657,149', '718', '1,150', '158', '150']);
+    expect(row.effectHit).toEqual({ status: 'resolved', value: '0.36' });
+    expect(row.effectResistance).toEqual({ status: 'resolved', value: '0.4' });
+    expect(aventurine.weaknesses.map((item) => item.element)).toEqual([
+      'Physical',
+      'Ice',
+      'Lightning'
+    ]);
+    expect(aventurine.resistances.map((item) => [item.element, item.value])).toEqual([
+      ['Wind', 0.2],
+      ['Quantum', 0.2],
+      ['Imaginary', 0.4]
+    ]);
+    expect(aventurine.specialResistances).toContainEqual({
+      code: 'STAT_CTRL',
+      label: '控制类',
+      value: '0.5'
+    });
+    expect(aventurine.summons).toEqual([
+      expect.objectContaining({ monsterId: '8032030', monsterTemplateId: '8032030' })
+    ]);
+    expect(aventurine.skills.find((skill) => skill.id === '803401002')).toMatchObject({
+      name: '分散投资',
+      kind: 'skill',
+      tag: { code: 'Bounce', label: '弹射', known: true },
+      damageType: { element: 'Imaginary', name: '虚数' },
+      phases: [1, 2]
+    });
+  });
+
+  it('技能仅发布安全字段，并保持 ExtraEffect 与缺失 DamageType 的边界', async () => {
+    const extra = (await enemy('1004014')).skills.find((skill) => skill.id === '100401411')!;
+    expect(extra.extraEffects).toContainEqual(
+      expect.objectContaining({ id: '70000304', name: '转移' })
+    );
+    const missingDamage = (await enemy('4034013')).skills.find(
+      (skill) => skill.id === '403401302'
+    )!;
+    expect(missingDamage).not.toHaveProperty('damageType');
+    for (const [enemyId, skillId] of [
+      ['3002011', '300201102'],
+      ['1004010', '100401005']
+    ]) {
+      const skill = (await enemy(enemyId)).skills.find((candidate) => candidate.id === skillId)!;
+      expect(skill).not.toHaveProperty('SPHitBase');
+      expect(skill).not.toHaveProperty('ModifierList');
+      expect(skill).not.toHaveProperty('ParamList');
+    }
+  });
+
+  it('删除 appearance 数据并保持当前审计全量可解析', async () => {
+    expect(await enemy('5013090')).toMatchObject({ description: '' });
+    expect(await enemy('8034010')).not.toHaveProperty('stages');
+    const audit = JSON.parse(
+      await readFile(path.join(auditRoot, 'latest.json'), 'utf8')
+    ).enemyAudit;
+    expect(audit.canonicalJoin).toEqual({ resolved: 613, missing: [] });
+    expect(audit.weaknessResistanceConflicts).toHaveLength(13);
+    expect(audit.unknownDebuffResist).toEqual([]);
+    expect(audit.unresolvedSummons).toEqual([]);
+    expect(audit.unresolvedSkills).toEqual([]);
+    expect(audit.unresolvedExtraEffects).toEqual([]);
+  });
+});
