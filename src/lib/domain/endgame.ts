@@ -4,16 +4,85 @@ export type EndgameMode = 'moc' | 'pf' | 'as' | 'aa';
 export type EliteGroupTable = 'elite' | 'infinite-elite';
 export type EliteContextSource = 'stage' | 'spawn-group' | 'monster-fallback';
 
+export type EnemyHpFinalResolution =
+  | {
+      status: 'resolved';
+      maxHpPerBar: DecimalString;
+      source: 'base-encounter' | 'pure-fiction-wave';
+      rounding: 'display-half-up' | 'half-up' | 'truncate';
+    }
+  | {
+      status: 'unresolved';
+      reason:
+        | 'pf-ability-without-params'
+        | 'pf-params-without-ability'
+        | 'unsupported-pf-wave-ability'
+        | 'invalid-pf-wave-param-count'
+        | 'invalid-pf-hp-added-ratio';
+    };
+
 export interface EnemyHpFactors {
   hpBase: DecimalString;
   instanceRatio: DecimalString;
   levelRatio: DecimalString;
   eliteRatio: DecimalString;
-  configuredMaxHpPerBar: DecimalString;
+  baseEncounterMaxHpPerBar: DecimalString;
+  final: EnemyHpFinalResolution;
   eliteGroupId: number;
   eliteGroupTable: EliteGroupTable;
   eliteContextSource: EliteContextSource;
   eliteContextConfidence: 'verified' | 'inferred';
+}
+
+export type PureFictionHpModifier =
+  | {
+      status: 'resolved';
+      source: 'identity';
+      hpAddedRatio: DecimalString;
+      totalRatio: DecimalString;
+    }
+  | {
+      status: 'resolved';
+      source: 'wave-ability';
+      ability: 'FantasticStory_Wave_Ability_0001';
+      hpAddedRatio: DecimalString;
+      totalRatio: DecimalString;
+      paramIndex: 1;
+    }
+  | {
+      status: 'unresolved';
+      reason: Extract<EnemyHpFinalResolution, { status: 'unresolved' }>['reason'];
+      ability?: string;
+    };
+
+export type PureFictionMechanicEvidence =
+  | {
+      status: 'resolved';
+      bindingKey: string;
+      sourceMazeBuffId: number;
+    }
+  | {
+      status: 'unconfirmed';
+      reason:
+        | 'missing-group-extra'
+        | 'missing-binding-key'
+        | 'missing-core-maze-buff'
+        | 'ability-body-missing'
+        | 'mechanic-marker-missing'
+        | 'percentage-expression-unresolved';
+      bindingKey?: string;
+      sourceMazeBuffId?: number;
+    };
+
+export interface PureFictionWaveMechanic {
+  hpModifier: PureFictionHpModifier;
+  rounding: {
+    ordinary: 'half-up';
+    leader: 'truncate';
+    leaderRanks: readonly ['LittleBoss', 'BigBoss'];
+  };
+  hpParentChild: PureFictionMechanicEvidence;
+  killTransfer: PureFictionMechanicEvidence & { percentage?: DecimalString };
 }
 
 export type EnemyStatUnavailableReason = 'missing-base' | 'invalid-reference';
@@ -101,14 +170,18 @@ export interface SpawnMonsterGroup {
   orderedEnemies: EnemyOccurrence[];
 }
 
+export type SpawnWaveParam =
+  DecimalString | { status: 'invalid'; reason: 'missing-decimal-value' | 'invalid-decimal-value' };
+
 export interface SpawnWave {
   waveId: number;
   monsterGroups: SpawnMonsterGroup[];
   maxMonsterCount?: number;
   maxTeammateCount?: number;
   ability?: string;
-  params: DecimalString[];
+  params: SpawnWaveParam[];
   clearPreviousAbility?: boolean;
+  pureFictionMechanic?: PureFictionWaveMechanic;
 }
 
 export interface SpawnSequenceWaveModel {
@@ -154,7 +227,7 @@ export interface EndgameGroup {
 }
 
 export interface EndgameModeDataset {
-  schemaVersion: 14;
+  schemaVersion: 15;
   mode: EndgameMode;
   groups: EndgameGroup[];
 }

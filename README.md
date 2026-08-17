@@ -125,6 +125,7 @@ pnpm.cmd dev -- --open
 | `pnpm data:audit`          | 刷新生成数据并输出主键、关系和 A/B/C/D 缺失审计   |
 | `pnpm data:sync`           | 生成简中目录、详情、Endgame 数据与来源 metadata   |
 | `pnpm data:validate`       | 验证目录、关系、精确战斗属性、详情和搜索索引      |
+| `pnpm debug:pf-hp`         | 重用生产 resolver 输出 PF HP sanity scan 与 trace |
 | `pnpm assets:sync:enemies` | 手动准备 Endgame 本地敌人立绘；不会随构建自动联网 |
 | `pnpm assets:sync`         | 同步并优化当前页面需要的四类视觉资源              |
 | `pnpm assets:ensure`       | 按 schema、commit 和需求集合检查资源缓存          |
@@ -157,7 +158,9 @@ HPBase × HPModifyRatio × HardLevelGroup.HPRatio × contextual Elite HPRatio
 resolved internal stance ÷ 3 = player-facing toughness per bar
 ```
 
-schema 14 同时保存精确 HP、速度、resolved internal stance、玩家侧单管韧性和配置韧性管数。HSR 的内部 Stance 单位与玩家韧性固定为 3:1，转换只在全部关卡倍率应用后执行。`/endgame` 使用独立的构建期 view-model adapter 按赛期读取这些文件；HP 与速度按既有规则显示整数，韧性直接显示精确换算值，HP 使用完整千分位。多阶段生命和多管韧性分别使用“单条配置值 × 数量”，不会声明为运行时总值。PF 的底层数据继续保存完整有序 spawn sequence，页面仅按波次展示唯一的实际 occurrence 类型。
+schema 15 将 HP 拆成 common factors、`baseEncounterMaxHpPerBar` 中间值和模式专属 final resolution，同时保存精确速度、resolved internal stance、玩家侧单管韧性和配置韧性管数。PF final HP 读取已验证的 wave ability `FantasticStory_Wave_Ability_0001`，将 `ParamList[1]` 作为 `HPAddedRatio`，并恢复 HardLevel HP ratio 的 IEEE-754 单精度语义；普通敌人四舍五入，`LittleBoss/BigBoss` 主目标截断。未知或非法 modifier 不回退到 common HP，而是显示“资料未提供”。MoC、AS 与 AA 继续使用原 common resolver，数值语义不变。
+
+`/endgame` 使用独立的构建期 view-model adapter 按赛期读取这些文件；HP 与速度显示整数，韧性直接显示精确换算值，HP 使用完整千分位。多阶段生命和多管韧性分别使用“单条配置值 × 数量”，不会声明为运行时总值。PF 的底层数据继续保存完整有序 spawn sequence，页面仅按波次展示唯一的实际 occurrence 类型。PF wave 另存 HP modifier、HPParentChild 与 kill-transfer 的证据状态；当前 `FantasticStory_BaseAbility_2310` 缺少可验证的 ability body，因此 kill-transfer 百分比保持 unconfirmed，不写入猜测值。
 
 Endgame occurrence 通过 `MonsterTemplateID` 关联现有敌人百科的弱点、详情路由和可选本地立绘。页面只在构建期读取 `static/generated-enemy-assets/index.json`，不会访问远程图片；缺少 manifest、映射或 WebP 时保留完整数据并使用中性降级。下载生成物位于已忽略的 `static/generated-enemy-assets/`，需要图片的部署者应自行准备合法来源，或显式运行 `pnpm assets:sync:enemies`；该命令不会由 `dev` 或 `build` 自动调用。
 

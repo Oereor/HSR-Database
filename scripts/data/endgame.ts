@@ -1,4 +1,4 @@
-import { access } from 'node:fs/promises';
+import { access, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import type {
   DecimalString,
@@ -13,9 +13,12 @@ import type {
   EndgameStage,
   EnemyMechanics,
   EnemyOccurrence,
+  PureFictionMechanicEvidence,
+  PureFictionWaveMechanic,
   ResolvedInternalStance,
   ResolvedEnemyStat,
-  SpawnWave
+  SpawnWave,
+  SpawnWaveParam
 } from '../../src/lib/domain/endgame.js';
 import type { TextResolver, TextSource } from './localization.js';
 import {
@@ -29,6 +32,7 @@ import {
   parseDecimal
 } from './decimal.js';
 import { readRaw, readTable } from './raw.js';
+import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
 
 type Id = number;
 
@@ -41,6 +45,7 @@ interface ChallengeGroupRow {
   GroupName?: HashRef;
   ScheduleDataID?: Id;
   TierceID?: Id;
+  MazeBuffID?: Id;
 }
 
 interface ChallengeConfigRow {
@@ -50,6 +55,18 @@ interface ChallengeConfigRow {
   Floor?: number;
   EventIDList1?: Id[];
   EventIDList2?: Id[];
+  MazeBuffID?: Id;
+}
+
+interface ChallengeStoryGroupExtraRow {
+  GroupID: Id;
+  SubMazeBuffList?: Id[];
+}
+
+interface MazeBuffRow {
+  ID: Id;
+  InBattleBindingKey?: string;
+  ParamList?: unknown[];
 }
 
 interface TierceRow {
@@ -105,6 +122,7 @@ interface MonsterTemplateRow {
   StanceCount?: number;
   JsonConfig?: string;
   AIPath?: string;
+  Rank?: string;
 }
 
 interface HardLevelRow {
@@ -205,9 +223,14 @@ export interface EndgameBuildResult {
   audit: EndgameAudit;
 }
 
-const SCHEMA_VERSION = 14 as const;
+const SCHEMA_VERSION = 15 as const;
 const MODES: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 const MAX_SAMPLES = 20;
+const PF_ROUNDING_METADATA = {
+  ordinary: 'half-up',
+  leader: 'truncate',
+  leaderRanks: ['LittleBoss', 'BigBoss']
+} as const;
 
 function integer(value: unknown, context: string): number {
   const result = Number(value);
@@ -281,6 +304,8 @@ interface Tables {
   infiniteGroups: InfiniteGroupRow[];
   infiniteWaves: InfiniteWaveRow[];
   infiniteMonsterGroups: InfiniteMonsterGroupRow[];
+  storyGroupExtras: ChallengeStoryGroupExtraRow[];
+  mazeBuffs: MazeBuffRow[];
 }
 
 async function loadTables(root: string): Promise<Tables> {
@@ -309,7 +334,9 @@ async function loadTables(root: string): Promise<Tables> {
     'InfiniteEliteGroup',
     'StageInfiniteGroup',
     'StageInfiniteWaveConfig',
-    'StageInfiniteMonsterGroup'
+    'StageInfiniteMonsterGroup',
+    'ChallengeStoryGroupExtra',
+    'MazeBuff'
   ] as const;
   const loaded = await Promise.all(names.map((name) => readTable(root, name)));
   const table = Object.fromEntries(names.map((name, index) => [name, loaded[index]])) as Record<
@@ -349,7 +376,9 @@ async function loadTables(root: string): Promise<Tables> {
     infiniteElites: table.InfiniteEliteGroup,
     infiniteGroups: table.StageInfiniteGroup,
     infiniteWaves: table.StageInfiniteWaveConfig,
-    infiniteMonsterGroups: table.StageInfiniteMonsterGroup
+    infiniteMonsterGroups: table.StageInfiniteMonsterGroup,
+    storyGroupExtras: table.ChallengeStoryGroupExtra,
+    mazeBuffs: table.MazeBuff
   };
 }
 
@@ -563,7 +592,129 @@ export async function buildEndgameData(
     'StageInfiniteMonsterGroup.InfiniteMonsterGroupID'
   );
   const planeEvents = groupBy(tables.planeEvents, (row) => row.EventID);
+  const storyGroupExtras = buildUniqueIndex(
+    tables.storyGroupExtras,
+    (row) => row.GroupID,
+    'ChallengeStoryGroupExtra.GroupID'
+  );
+  // MazeBuff IDs may have multiple level rows; PF mechanic provenance only needs
+  // their stable binding key, so retain every level instead of inventing a winner.
+  const mazeBuffs = groupBy(tables.mazeBuffs, (row) => row.ID);
   const mechanicsByTemplate = new Map<number, Promise<MechanicsScan>>();
+
+  type PfGroupMechanic = Pick<PureFictionWaveMechanic, 'hpParentChild' | 'killTransfer'>;
+  const pfGroupMechanics = new Map<number, Promise<PfGroupMechanic>>();
+  const abilityBodies = new Map<string, Promise<Record<string, unknown> | undefined>>();
+  let battleEventLayouts: Promise<string[]> | undefined;
+
+  const findAbilityBody = (abilityName: string): Promise<Record<string, unknown> | undefined> => {
+    const cached = abilityBodies.get(abilityName);
+    if (cached) return cached;
+    const pending = (async () => {
+      const directory = path.join(root, 'Config', 'ConfigAbility', 'BattleEvent');
+      battleEventLayouts ??= readdir(directory).then((files) =>
+        files.filter((file) => file.endsWith('.layout.json')).sort()
+      );
+      for (const layoutFile of await battleEventLayouts) {
+        const relativeLayout = path.posix.join(
+          'Config/ConfigAbility/BattleEvent',
+          layoutFile.replaceAll('\\', '/')
+        );
+        const layout = await readRaw<Record<string, unknown>>(root, relativeLayout);
+        if (!JSON.stringify(layout).includes(`"UniqueName":"${abilityName}"`)) continue;
+        const relativeBody = relativeLayout.replace('.layout.json', '.json');
+        if (!(await fileExists(path.join(root, relativeBody)))) return undefined;
+        const body = await readRaw<Record<string, unknown>>(root, relativeBody);
+        const definitions = Array.isArray(body.AbilityList) ? body.AbilityList : [];
+        return definitions.some(
+          (entry) =>
+            !!entry &&
+            typeof entry === 'object' &&
+            (entry as Record<string, unknown>).Name === abilityName
+        )
+          ? body
+          : undefined;
+      }
+      return undefined;
+    })();
+    abilityBodies.set(abilityName, pending);
+    return pending;
+  };
+
+  const resolvePfGroupMechanic = (groupId: number): Promise<PfGroupMechanic> => {
+    const cached = pfGroupMechanics.get(groupId);
+    if (cached) return cached;
+    const pending = (async (): Promise<PfGroupMechanic> => {
+      const extra = storyGroupExtras.get(String(groupId));
+      if (!extra) {
+        const evidence: PureFictionMechanicEvidence = {
+          status: 'unconfirmed',
+          reason: 'missing-group-extra'
+        };
+        return { hpParentChild: evidence, killTransfer: evidence };
+      }
+      const bindingKeys = (extra.SubMazeBuffList ?? [])
+        .flatMap((id) => mazeBuffs.get(String(id)) ?? [])
+        .map((row) => row.InBattleBindingKey)
+        .filter((value): value is string => !!value);
+      const prefixes = [
+        ...new Set(
+          bindingKeys
+            .map((value) => /^(FantasticStory_BaseAbility_\d+)/.exec(value)?.[1])
+            .filter((value): value is string => !!value)
+        )
+      ];
+      if (prefixes.length !== 1) {
+        const evidence: PureFictionMechanicEvidence = {
+          status: 'unconfirmed',
+          reason: 'missing-binding-key'
+        };
+        return { hpParentChild: evidence, killTransfer: evidence };
+      }
+      const bindingKey = prefixes[0];
+      const coreBuff = tables.mazeBuffs.find((row) => row.InBattleBindingKey === bindingKey);
+      if (!coreBuff) {
+        const evidence: PureFictionMechanicEvidence = {
+          status: 'unconfirmed',
+          reason: 'missing-core-maze-buff',
+          bindingKey
+        };
+        return { hpParentChild: evidence, killTransfer: evidence };
+      }
+      const source = { bindingKey, sourceMazeBuffId: coreBuff.ID };
+      const body = await findAbilityBody(bindingKey);
+      if (!body) {
+        const evidence: PureFictionMechanicEvidence = {
+          status: 'unconfirmed',
+          reason: 'ability-body-missing',
+          ...source
+        };
+        return { hpParentChild: evidence, killTransfer: evidence };
+      }
+      const serialized = JSON.stringify(body);
+      const hpParentChild: PureFictionMechanicEvidence = serialized.includes(
+        'Modifier_FantasticStory_HPParentChild'
+      )
+        ? { status: 'resolved', ...source }
+        : { status: 'unconfirmed', reason: 'mechanic-marker-missing', ...source };
+      const hasKillTransferMarkers =
+        serialized.includes('OnListenCharacterDie') &&
+        serialized.includes('SetDynamicValueByProperty') &&
+        serialized.includes('MaxHP') &&
+        serialized.includes('DamageByAttackProperty') &&
+        serialized.includes('TrueDamage');
+      const killTransfer: PureFictionMechanicEvidence = {
+        status: 'unconfirmed',
+        reason: hasKillTransferMarkers
+          ? 'percentage-expression-unresolved'
+          : 'mechanic-marker-missing',
+        ...source
+      };
+      return { hpParentChild, killTransfer };
+    })();
+    pfGroupMechanics.set(groupId, pending);
+    return pending;
+  };
 
   const scanMechanics = (template: MonsterTemplateRow): Promise<MechanicsScan> => {
     const cached = mechanicsByTemplate.get(template.MonsterTemplateID);
@@ -680,7 +831,8 @@ export async function buildEndgameData(
     contextualEliteGroupId: number | undefined,
     contextSource: Exclude<EliteContextSource, 'monster-fallback'>,
     contextData: Record<string, string | number | undefined>,
-    hasExternalMechanics: boolean
+    hasExternalMechanics: boolean,
+    pfHpModifier?: PureFictionWaveMechanic['hpModifier']
   ): Promise<EnemyOccurrence> => {
     const monster =
       monsters.get(String(monsterId)) ??
@@ -738,7 +890,29 @@ export async function buildEndgameData(
       `HardLevel ${stage.HardLevelGroup}:${stage.Level}.HPRatio`
     );
     const eliteRatio = decimalOf(elite.row.HPRatio, `EliteGroup ${resolvedEliteGroupId}.HPRatio`);
-    const configuredMaxHpPerBar = multiplyDecimals([hpBase, instanceRatio, levelRatio, eliteRatio]);
+    const baseEncounterMaxHpPerBar = multiplyDecimals([
+      hpBase,
+      instanceRatio,
+      levelRatio,
+      eliteRatio
+    ]);
+    const finalHp =
+      mode === 'pf' && pfHpModifier
+        ? resolvePureFictionFinalHp({
+            hpBase,
+            instanceRatio,
+            levelRatio,
+            eliteRatio,
+            baseEncounterMaxHpPerBar,
+            rank: template.Rank,
+            modifier: pfHpModifier
+          }).final
+        : {
+            status: 'resolved' as const,
+            maxHpPerBar: baseEncounterMaxHpPerBar,
+            source: 'base-encounter' as const,
+            rounding: 'display-half-up' as const
+          };
     const scan = await scanMechanics(template);
     const statContext = {
       ...context(mode, contextData),
@@ -805,8 +979,11 @@ export async function buildEndgameData(
       ...(scan.characterConfig ? { characterConfig: scan.characterConfig } : {}),
       ...(scan.abilityConfig ? { abilityConfig: scan.abilityConfig } : {}),
       abilityReferences: scan.abilityReferences,
-      ...(unclear ? {} : { effectiveTotalHp: configuredMaxHpPerBar }),
-      effectiveTotalHpStatus: unclear ? 'runtime-unclear' : 'static'
+      ...(unclear || finalHp.status === 'unresolved'
+        ? {}
+        : { effectiveTotalHp: finalHp.maxHpPerBar }),
+      effectiveTotalHpStatus:
+        unclear || finalHp.status === 'unresolved' ? 'runtime-unclear' : 'static'
     };
     return {
       monsterId,
@@ -822,7 +999,8 @@ export async function buildEndgameData(
         instanceRatio,
         levelRatio,
         eliteRatio,
-        configuredMaxHpPerBar,
+        baseEncounterMaxHpPerBar,
+        final: finalHp,
         eliteGroupId: resolvedEliteGroupId,
         eliteGroupTable: elite.table,
         eliteContextSource: actualContextSource,
@@ -974,6 +1152,54 @@ export async function buildEndgameData(
           waveGroupId,
           waveId
         });
+      const params: SpawnWaveParam[] = (wave.ParamList ?? []).map((value, index) => {
+        try {
+          return decimalOf(value, `InfiniteWave ${waveId}.ParamList[${index}]`);
+        } catch (error) {
+          return {
+            status: 'invalid',
+            reason:
+              error instanceof Error && error.message.includes('缺少 Value')
+                ? 'missing-decimal-value'
+                : 'invalid-decimal-value'
+          };
+        }
+      });
+      const pfHpModifier =
+        mode === 'pf' ? resolvePureFictionHpModifier(wave.Ability, params) : undefined;
+      if (pfHpModifier?.status === 'unresolved')
+        diagnostics.warn('unresolved-pf-wave-hp', 'PF 波次 HP modifier 无法可靠解析', {
+          ...context(mode, contextData),
+          eventId,
+          stageId: stage.StageID,
+          waveId,
+          ability: wave.Ability,
+          reason: pfHpModifier.reason
+        });
+      let pureFictionMechanic: PureFictionWaveMechanic | undefined;
+      if (mode === 'pf') {
+        const groupId = integer(contextData.groupId, 'PF context.groupId');
+        const groupMechanic = await resolvePfGroupMechanic(groupId);
+        pureFictionMechanic = {
+          hpModifier: pfHpModifier!,
+          rounding: PF_ROUNDING_METADATA,
+          ...groupMechanic
+        };
+        for (const [mechanic, evidence] of [
+          ['hp-parent-child', groupMechanic.hpParentChild],
+          ['kill-transfer', groupMechanic.killTransfer]
+        ] as const)
+          if (evidence.status === 'unconfirmed' && evidence.reason === 'ability-body-missing')
+            diagnostics.warn(
+              `unconfirmed-pf-${mechanic}`,
+              `PF ${mechanic} 的当前 ability body 缺失，保留为 unconfirmed`,
+              {
+                groupId,
+                bindingKey: evidence.bindingKey,
+                sourceMazeBuffId: evidence.sourceMazeBuffId
+              }
+            );
+      }
       const monsterGroups = [];
       for (const monsterGroupId of wave.MonsterGroupIDList ?? []) {
         const monsterGroup =
@@ -999,7 +1225,8 @@ export async function buildEndgameData(
                 monsterGroupId,
                 position: position + 1
               },
-              abilities.length > 0 || !!wave.Ability
+              abilities.length > 0 || !!wave.Ability,
+              pfHpModifier
             )
           )
         );
@@ -1015,12 +1242,11 @@ export async function buildEndgameData(
           ? {}
           : { maxTeammateCount: integer(wave.MaxTeammateCount, 'MaxTeammateCount') }),
         ...(wave.Ability ? { ability: wave.Ability } : {}),
-        params: (wave.ParamList ?? []).map((value, index) =>
-          decimalOf(value, `InfiniteWave ${waveId}.ParamList[${index}]`)
-        ),
+        params,
         ...(wave.ClearPreviousAbility === undefined
           ? {}
-          : { clearPreviousAbility: wave.ClearPreviousAbility })
+          : { clearPreviousAbility: wave.ClearPreviousAbility }),
+        ...(pureFictionMechanic ? { pureFictionMechanic } : {})
       });
     }
     return {

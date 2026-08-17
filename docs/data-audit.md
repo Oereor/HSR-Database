@@ -40,7 +40,7 @@
 
 ## Endgame 敌方实例与战斗属性
 
-schema 14 在 `src/lib/generated/endgame/{moc,pf,as,aa}.json` 中生成：
+schema 15 在 `src/lib/generated/endgame/{moc,pf,as,aa}.json` 中生成：
 
 | 模式 | Group | Encounter | Stage | Occurrence |
 | ---- | ----: | --------: | ----: | ---------: |
@@ -52,7 +52,9 @@ schema 14 在 `src/lib/generated/endgame/{moc,pf,as,aa}.json` 中生成：
 - MoC 与 AS 使用 fixed waves；PF 与 AA 经完整 `StageInfiniteGroup → Wave → MonsterGroup` 链生成有序 spawn sequence。
 - AA 保留 `StageConfig` preview MonsterID，但实例、模板和 HP 只由实际 spawn MonsterID 驱动。
 - 最新 MoC/PF/AS 的 Tierce 配置均产生第三个 battle slot；历史 `EventIDList` 中的多个事件保留为同一 slot 内的有序 stages。
-- 单条配置 HP 使用四个原始十进制因子：`HPBase × HPModifyRatio × HardLevelGroup.HPRatio × contextual Elite HPRatio`。构建器使用 BigInt/scale 精确乘法，不采用 JS 浮点或未经验证的整数化规则。
+- common HP 使用四个原始十进制因子：`HPBase × HPModifyRatio × HardLevelGroup.HPRatio × contextual Elite HPRatio`，并将无损乘积保存为 `baseEncounterMaxHpPerBar`。MoC、AS、AA 的 final HP 继续等于该值。
+- PF 在 common 层之后解析每个 wave 的 ability。仅 `FantasticStory_Wave_Ability_0001` 受支持：`ParamList[1]` 是 `HPAddedRatio`，总倍率为 `1 + HPAddedRatio`；无 ability 且空参数是 identity。PF final 计算仅将 HardLevel HP ratio 恢复为 IEEE-754 单精度，其他字段继续使用无损十进制；普通敌人 half-up，`LittleBoss/BigBoss` 截断。未知、缺参或非法 modifier 生成明确 unresolved，不使用 common HP 冒充最终值。
+- PF wave 的 `HPParentChild`、kill-transfer 与 MaxHP 分开建模。当前 `FantasticStory_BaseAbility_2310` 只有 layout 声明而缺少 ability body，因此 kill-transfer 比例保持 unconfirmed，并记录 MazeBuff 与 binding key 证据，不写入 `0.03/0.05` 等推测值。
 - 速度使用 `(SpeedBase × SpeedModifyRatio + SpeedModifyValue) × HardLevel.SpeedRatio × Elite.SpeedRatio`。Stance 使用同一乘加链得到 resolved internal stance，再以固定 3:1 比例换算为玩家侧单管韧性；两层单位在领域模型中分别保存，UI 不执行换算。
 - `StanceCount` 仅作为配置韧性管数，不参与 3:1 单位转换，也不从 HP phase count 推断。能力配置中的锁定、重置或管数修改继续保留为构建期机制元数据，但页面不展示详细机制弹窗。
 - 当前 24,374 个 occurrence 中有 24,215 个 resolved internal stance、159 个缺失值、36 个多管实例；玩家韧性范围为 10–800，不能精确按 3:1 转换及非正值均为 0。
@@ -61,7 +63,7 @@ schema 14 在 `src/lib/generated/endgame/{moc,pf,as,aa}.json` 中生成：
 - 当前核心关系错误为 0。机制扫描有 19 个唯一可选警告：1 个角色配置缺失，18 个 companion ability 路径无法读取；这些实例的有效总 HP 保持 `runtime-unclear`。
 - phase count、召唤、共享生命、SetHP 和 LockHP 只作为静态机制信号；不会把阶段当成 wave，也不会推算复杂 Boss 的实际伤害需求。
 
-四个真实精确回归值为：MoC 萨姆 `11347628.66250`、PF 杰帕德 `1444452.47100`、AS `14628489.139950`、AA `63467351.45020015200`。AA 样本明确使用实际 MonsterID `501403002`，而不是 preview `5014030`。
+四个 common 层真实精确回归值为：MoC 萨姆 `11347628.66250`、PF 杰帕德 `1444452.47100`、AS `14628489.139950`、AA `63467351.45020015200`。PF final 回归值另覆盖全自动魔仙棒 `218856`、治安忠犬 `196971`、狸猫记者 `525255`、杰帕德 `57778097`、合金机铠•帕姆王 `52000287`、丰饶玄鹿 `72222634`。AA 样本明确使用实际 MonsterID `501403002`，而不是 preview `5014030`。
 
 Endgame UI 静态构建时按 mode/group 读取单个赛期并生成玩家视图：
 
@@ -153,7 +155,7 @@ Base + Add × (level - 1)
 
 ## 缺失文本审计
 
-schema 14 按 `实体 + ID + 字段 + 引用` 去重后的基线：
+schema 15 按 `实体 + ID + 字段 + 引用` 去重后的基线：
 
 | 类别 |  数量 | 说明                                            |
 | ---- | ----: | ----------------------------------------------- |
@@ -168,11 +170,11 @@ A 类主要包括 4,310 个无简中名称的关卡、1,016 个原始空行迹�
 
 ## 生成策略、资源和许可
 
-- schema 14 生成 91 个角色、165 个光锥、60 个遗器套装、613 个敌人详情、四类 Endgame 数据及 929 条简中搜索记录；其中 10 个角色详情包含双 Profile。
+- schema 15 生成 91 个角色、165 个光锥、60 个遗器套装、613 个敌人详情、四类 Endgame 数据及 929 条简中搜索记录；其中 10 个角色详情包含双 Profile。
 - 生成数据位于 `src/lib/generated/` 和 `static/generated/`，浏览器不加载上游 Config 或完整 TextMap。
 - `TurnBasedGameData` 只有 `SpriteOutput/...` 路径，没有图片文件；`StarRailRes` 当前为 91 个目录角色提供完整的 128×128 PNG 头像与 2048×2048 PNG 立绘，并覆盖七属性和九种实际命途图标。网站只按真实 ID/语义 code 生成所需集合。
 - 视觉 manifest schema 2 分别记录头像、立绘、属性和命途资源。头像保留原始 PNG，立绘生成最大 960px WebP，语义图标生成 64px PNG；所有输出均位于 gitignore 的 generated-assets 目录。
-- 构建期仅复制当前角色目录需要的头像；视觉 manifest 与业务 schema 14 相互独立，详情领域模型不携带视觉路径。
+- 构建期仅复制当前角色目录需要的头像；视觉 manifest 与业务 schema 15 相互独立，详情领域模型不携带视觉路径。
 - 头像缺失只记录诊断并使用中性占位，不请求不存在的图片，也不阻止数据构建。
 - 生成数据采用方案 B，不提交。上游没有明确再分发许可证；网站 MIT 许可证仅覆盖原创代码。公开构建产物前应确认授权。
 - StarRailRes 仓库声明 GNU AGPL v3；网站提供其完整许可证副本和来源/commit 说明。游戏图片相关权利仍归相应权利人。

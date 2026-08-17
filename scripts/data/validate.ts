@@ -31,11 +31,12 @@ import {
   parseDecimal
 } from './decimal.js';
 import type { EndgameAudit } from './endgame.js';
+import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
 
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 14)
+if (manifest.schemaVersion !== 15)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -95,7 +96,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 14 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 15 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -124,9 +125,9 @@ for (const mode of endgameModes) {
       occurrence.hp.levelRatio,
       occurrence.hp.eliteRatio
     ]);
-    if (!decimalEquals(calculated, occurrence.hp.configuredMaxHpPerBar))
+    if (!decimalEquals(calculated, occurrence.hp.baseEncounterMaxHpPerBar))
       throw new Error(
-        `Endgame ${mode} MonsterID ${occurrence.monsterId} configuredMaxHpPerBar 不一致`
+        `Endgame ${mode} MonsterID ${occurrence.monsterId} baseEncounterMaxHpPerBar 不一致`
       );
     if (occurrence.monsterId <= 0 || occurrence.monsterTemplateId <= 0)
       throw new Error(`Endgame ${mode} 包含无效敌人 ID`);
@@ -190,6 +191,54 @@ for (const mode of endgameModes) {
     )
       throw new Error(`Endgame ${mode} MonsterID ${occurrence.monsterId} StanceCount 无效`);
   }
+  if (mode === 'pf') {
+    for (const stage of endgameStages) {
+      if (stage.waveModel.kind !== 'spawn-sequence')
+        throw new Error(`PF Stage ${stage.stageId} 必须使用 spawn-sequence`);
+      for (const wave of stage.waveModel.waves) {
+        const mechanic = wave.pureFictionMechanic;
+        if (!mechanic) throw new Error(`PF Wave ${wave.waveId} 缺少 pureFictionMechanic`);
+        const expectedModifier = resolvePureFictionHpModifier(wave.ability, wave.params);
+        if (JSON.stringify(expectedModifier) !== JSON.stringify(mechanic.hpModifier))
+          throw new Error(`PF Wave ${wave.waveId} HP modifier 与 Ability/ParamList 不一致`);
+        if (
+          mechanic.rounding.ordinary !== 'half-up' ||
+          mechanic.rounding.leader !== 'truncate' ||
+          mechanic.rounding.leaderRanks.join(',') !== 'LittleBoss,BigBoss'
+        )
+          throw new Error(`PF Wave ${wave.waveId} rounding role 元数据不一致`);
+        for (const occurrence of wave.monsterGroups.flatMap((group) => group.orderedEnemies)) {
+          const actual = occurrence.hp.final;
+          const expected = resolvePureFictionFinalHp({
+            hpBase: occurrence.hp.hpBase,
+            instanceRatio: occurrence.hp.instanceRatio,
+            levelRatio: occurrence.hp.levelRatio,
+            eliteRatio: occurrence.hp.eliteRatio,
+            baseEncounterMaxHpPerBar: occurrence.hp.baseEncounterMaxHpPerBar,
+            rank:
+              actual.status === 'resolved' && actual.rounding === 'truncate'
+                ? 'LittleBoss'
+                : 'Minion',
+            modifier: mechanic.hpModifier
+          }).final;
+          if (JSON.stringify(expected) !== JSON.stringify(actual))
+            throw new Error(
+              `PF Wave ${wave.waveId} MonsterID ${occurrence.monsterId} final HP 不一致`
+            );
+        }
+      }
+    }
+  } else {
+    for (const occurrence of occurrences) {
+      const final = occurrence.hp.final;
+      if (
+        final.status !== 'resolved' ||
+        final.source !== 'base-encounter' ||
+        !decimalEquals(final.maxHpPerBar, occurrence.hp.baseEncounterMaxHpPerBar)
+      )
+        throw new Error(`Endgame ${mode} MonsterID ${occurrence.monsterId} final HP 发生模式泄漏`);
+    }
+  }
 }
 
 function fixtureOccurrence(
@@ -223,8 +272,22 @@ const hpFixtures = [
 ] as const;
 for (const [mode, groupId, configId, stageId, monsterId, expectedHp] of hpFixtures) {
   const fixture = fixtureOccurrence(mode, groupId, configId, stageId, monsterId);
-  if (!decimalEquals(fixture.occurrence.hp.configuredMaxHpPerBar, parseDecimal(expectedHp)))
-    throw new Error(`Endgame ${mode} HP 回归失败：MonsterID ${monsterId}`);
+  if (!decimalEquals(fixture.occurrence.hp.baseEncounterMaxHpPerBar, parseDecimal(expectedHp)))
+    throw new Error(`Endgame ${mode} base HP 回归失败：MonsterID ${monsterId}`);
+}
+
+const pfFinalHpFixtures = [
+  [30323041, 5012010, '218856'],
+  [30323041, 5012020, '196971'],
+  [30323041, 501211002, '525255'],
+  [30323041, 100402014, '57778097'],
+  [30323042, 5014023, '52000287'],
+  [30323043, 202401406, '72222634']
+] as const;
+for (const [stageId, monsterId, expectedHp] of pfFinalHpFixtures) {
+  const final = fixtureOccurrence('pf', 2025, 20254, stageId, monsterId).occurrence.hp.final;
+  if (final.status !== 'resolved' || !decimalEquals(final.maxHpPerBar, parseDecimal(expectedHp)))
+    throw new Error(`PF final HP 回归失败：Stage ${stageId} MonsterID ${monsterId}`);
 }
 
 const stanceFixtures = [

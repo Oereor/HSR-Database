@@ -17,6 +17,11 @@ import {
   parseDecimal
 } from '../../scripts/data/decimal';
 import { auditRoot, generatedRoot } from '../../scripts/data/paths';
+import {
+  PURE_FICTION_WAVE_HP_ABILITY,
+  resolvePureFictionFinalHp,
+  resolvePureFictionHpModifier
+} from '../../scripts/data/pure-fiction-hp';
 
 const modes: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 
@@ -97,10 +102,71 @@ describe('Endgame 精确十进制', () => {
   });
 });
 
+describe('PF HP resolver', () => {
+  const hpInput = {
+    hpBase: parseDecimal('10'),
+    instanceRatio: parseDecimal('1'),
+    levelRatio: parseDecimal('1'),
+    eliteRatio: parseDecimal('1'),
+    baseEncounterMaxHpPerBar: parseDecimal('10')
+  };
+
+  it('普通怪在 .5 临界值四舍五入，leader 截断', () => {
+    const modifier = resolvePureFictionHpModifier(PURE_FICTION_WAVE_HP_ABILITY, [
+      parseDecimal('0'),
+      parseDecimal('0.05')
+    ]);
+    expect(resolvePureFictionFinalHp({ ...hpInput, rank: 'Minion', modifier }).final).toMatchObject(
+      {
+        status: 'resolved',
+        maxHpPerBar: '11',
+        rounding: 'half-up'
+      }
+    );
+    expect(
+      resolvePureFictionFinalHp({ ...hpInput, rank: 'LittleBoss', modifier }).final
+    ).toMatchObject({ status: 'resolved', maxHpPerBar: '10', rounding: 'truncate' });
+  });
+
+  it('无 ability/空参数按 identity 走 PF 精度和取整', () => {
+    const modifier = resolvePureFictionHpModifier(undefined, []);
+    expect(resolvePureFictionFinalHp({ ...hpInput, rank: 'Minion', modifier }).final).toEqual({
+      status: 'resolved',
+      maxHpPerBar: '10',
+      source: 'pure-fiction-wave',
+      rounding: 'half-up'
+    });
+  });
+
+  it.each([
+    [undefined, [parseDecimal('1')], 'pf-params-without-ability'],
+    ['Unknown_Ability', [parseDecimal('0'), parseDecimal('4')], 'unsupported-pf-wave-ability'],
+    [PURE_FICTION_WAVE_HP_ABILITY, [], 'pf-ability-without-params'],
+    [PURE_FICTION_WAVE_HP_ABILITY, [parseDecimal('0')], 'invalid-pf-wave-param-count'],
+    [
+      PURE_FICTION_WAVE_HP_ABILITY,
+      [parseDecimal('0'), '-2' as ReturnType<typeof parseDecimal>],
+      'invalid-pf-hp-added-ratio'
+    ],
+    [
+      PURE_FICTION_WAVE_HP_ABILITY,
+      [parseDecimal('0'), 'NaN' as ReturnType<typeof parseDecimal>],
+      'invalid-pf-hp-added-ratio'
+    ]
+  ] as const)('非法或未知 wave modifier 返回 unresolved：%s', (ability, params, reason) => {
+    const modifier = resolvePureFictionHpModifier(ability, params);
+    expect(modifier).toMatchObject({ status: 'unresolved', reason });
+    expect(resolvePureFictionFinalHp({ ...hpInput, rank: 'Minion', modifier }).final).toEqual({
+      status: 'unresolved',
+      reason
+    });
+  });
+});
+
 describe('Endgame 真实数据管线', () => {
-  it('四个模式使用 schema 14 且 fixed/spawn 模型分离', async () => {
+  it('四个模式使用 schema 15 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
-    expect(all.every((item) => item.schemaVersion === 14)).toBe(true);
+    expect(all.every((item) => item.schemaVersion === 15)).toBe(true);
     expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
       'fixed'
     );
@@ -138,7 +204,7 @@ describe('Endgame 真实数据管线', () => {
         occurrence.hp.levelRatio,
         occurrence.hp.eliteRatio
       ]).toEqual(factors);
-      expect(occurrence.hp.configuredMaxHpPerBar).toBe(expected);
+      expect(occurrence.hp.baseEncounterMaxHpPerBar).toBe(expected);
     }
   );
 
@@ -183,8 +249,64 @@ describe('Endgame 真实数据管线', () => {
       .filter(({ occurrence }) => occurrence.monsterId === 8012010);
     const low = matches.find(({ stage }) => stage.stageId === 30001011);
     const high = matches.find(({ stage }) => stage.stageId === 30001092);
-    expect(low?.occurrence.hp.configuredMaxHpPerBar).toBe('850.8113370');
-    expect(high?.occurrence.hp.configuredMaxHpPerBar).toBe('3941.8408980');
+    expect(low?.occurrence.hp.baseEncounterMaxHpPerBar).toBe('850.8113370');
+    expect(high?.occurrence.hp.baseEncounterMaxHpPerBar).toBe('3941.8408980');
+  });
+
+  it.each([
+    [30323041, 5012010, '218856'],
+    [30323041, 5012020, '196971'],
+    [30323041, 501211002, '525255'],
+    [30323041, 100402014, '57778097'],
+    [30323042, 5014023, '52000287'],
+    [30323043, 202401406, '72222634']
+  ] as const)('PF Stage %s MonsterID %s 的最终 HP 为 %s', async (stageId, monsterId, expected) => {
+    const final = (await fixture('pf', 2025, 20254, stageId, monsterId)).occurrence.hp.final;
+    expect(final).toMatchObject({ status: 'resolved', maxHpPerBar: expected });
+  });
+
+  it('PF wave modifier 对同一波的非基准敌人同样生效，并保留具体实例 ID', async () => {
+    const { stage } = await fixture('pf', 2025, 20254, 30323041, 100402014);
+    if (stage.waveModel.kind !== 'spawn-sequence') throw new Error('expected spawn sequence');
+    const wave = stage.waveModel.waves.find((item) => item.waveId === 303230413)!;
+    expect(wave.pureFictionMechanic?.hpModifier).toEqual({
+      status: 'resolved',
+      source: 'wave-ability',
+      ability: PURE_FICTION_WAVE_HP_ABILITY,
+      hpAddedRatio: '39',
+      totalRatio: '40',
+      paramIndex: 1
+    });
+    expect(wave.pureFictionMechanic?.rounding).toEqual({
+      ordinary: 'half-up',
+      leader: 'truncate',
+      leaderRanks: ['LittleBoss', 'BigBoss']
+    });
+    const enemies = wave.monsterGroups.flatMap((group) => group.orderedEnemies);
+    expect(enemies.some((enemy) => enemy.monsterId === 100402014)).toBe(true);
+    expect(enemies.every((enemy) => enemy.hp.final.status === 'resolved')).toBe(true);
+  });
+
+  it('PF 不同波次分别解析 multiplier，且 MaxHP 不依赖 kill-transfer 证明状态', async () => {
+    const { stage } = await fixture('pf', 2025, 20254, 30323041, 5012010);
+    if (stage.waveModel.kind !== 'spawn-sequence') throw new Error('expected spawn sequence');
+    expect(
+      stage.waveModel.waves.map((wave) => {
+        const modifier = wave.pureFictionMechanic?.hpModifier;
+        return modifier?.status === 'resolved' ? modifier.totalRatio : undefined;
+      })
+    ).toEqual(['5', '10', '40']);
+    for (const wave of stage.waveModel.waves) {
+      expect(wave.pureFictionMechanic?.killTransfer).toMatchObject({
+        status: 'unconfirmed',
+        reason: 'ability-body-missing'
+      });
+      expect(
+        wave.monsterGroups
+          .flatMap((group) => group.orderedEnemies)
+          .every((enemy) => enemy.hp.final.status === 'resolved')
+      ).toBe(true);
+    }
   });
 
   it('多阶段和共享生命只作为机制元数据，不伪造总 HP', async () => {

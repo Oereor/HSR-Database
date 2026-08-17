@@ -9,6 +9,7 @@ import type {
 } from '../../src/lib/domain/endgame';
 import {
   buildGroupView,
+  buildOccurrenceView,
   buildPeriodView,
   formatExactDecimal,
   formatFullHp,
@@ -39,7 +40,13 @@ function occurrence(overrides: Partial<EnemyOccurrence> = {}): EnemyOccurrence {
       instanceRatio: decimal('1'),
       levelRatio: decimal('1'),
       eliteRatio: decimal('1'),
-      configuredMaxHpPerBar: decimal('100'),
+      baseEncounterMaxHpPerBar: decimal('100'),
+      final: {
+        status: 'resolved',
+        maxHpPerBar: decimal('100'),
+        source: 'base-encounter',
+        rounding: 'display-half-up'
+      },
       eliteGroupId: 1,
       eliteGroupTable: 'elite',
       eliteContextSource: 'stage',
@@ -125,7 +132,17 @@ describe('Endgame occurrence 投影', () => {
   it('固定阵容只合并完整 identity 相同的实例', () => {
     const first = occurrence();
     const scaled = occurrence({
-      hp: { ...first.hp, instanceRatio: decimal('2'), configuredMaxHpPerBar: decimal('200') }
+      hp: {
+        ...first.hp,
+        instanceRatio: decimal('2'),
+        baseEncounterMaxHpPerBar: decimal('200'),
+        final: {
+          status: 'resolved',
+          maxHpPerBar: decimal('200'),
+          source: 'base-encounter',
+          rounding: 'display-half-up'
+        }
+      }
     });
     expect(mergeFixedOccurrences([first, first, scaled])).toEqual([
       { occurrence: first, count: 2 },
@@ -138,6 +155,16 @@ describe('Endgame occurrence 投影', () => {
     const first = occurrence({ monsterId: 4032024, monsterTemplateId: 4032024 });
     const variant = occurrence({ monsterId: 403202401, monsterTemplateId: 4032024 });
     expect(uniqueSpawnOccurrences([first, first, variant])).toEqual([first, variant]);
+  });
+
+  it('未解析的 PF 最终 HP 使用资料未提供约定', () => {
+    const unresolved = occurrence({
+      hp: {
+        ...occurrence().hp,
+        final: { status: 'unresolved', reason: 'unsupported-pf-wave-ability' }
+      }
+    });
+    expect(buildOccurrenceView(unresolved).hp).toEqual({ roundedPerBar: '资料未提供' });
   });
 
   it('真实 PF 波次只保留唯一类型且不产生数量字段', async () => {

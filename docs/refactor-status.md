@@ -58,7 +58,7 @@
 
 ## 第五次重构：Endgame 数据管线
 
-- 生成数据在韧性单位修正阶段升级为 schema 14，并在构建期独立生成 MoC、PF、AS、AA 四类 encounter-centric 数据；现有 Enemy 百科模型保持不变。
+- 生成数据升级为 schema 15，并在构建期独立生成 MoC、PF、AS、AA 四类 encounter-centric 数据；现有 Enemy 百科模型保持不变。schema 15 将 common HP 中间值与模式最终值分层，并为 PF 增加 wave-specific modifier、单精度等级倍率及 Rank 取整语义。
 - battle slot 支持多个有序 Stage 与 Tierce 第三队；fixed formation 和 spawn sequence 使用判别联合，PF/AA 的重复实际 MonsterID 不去重。
 - occurrence 分别保存 MonsterID、MonsterTemplateID 和关卡上下文，使用四个无损十进制因子精确计算单条配置 MaxHP。
 - AA preview MonsterID 只用于审计，实际 spawn MonsterID 决定变体、模板和 HP。

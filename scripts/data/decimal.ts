@@ -43,6 +43,16 @@ function renderParts(value: DecimalParts): DecimalString {
   return `${negative ? '-' : ''}${digits}` as DecimalString;
 }
 
+function integerPart(value: DecimalString): { whole: bigint; remainder: bigint; unit: bigint } {
+  const parsed = parts(value);
+  const unit = 10n ** BigInt(parsed.scale);
+  return {
+    whole: parsed.coefficient / unit,
+    remainder: parsed.coefficient % unit,
+    unit
+  };
+}
+
 export function addDecimals(values: readonly DecimalString[]): DecimalString {
   if (!values.length) throw new Error('十进制加法至少需要一个加数');
   const parsed = values.map(parts);
@@ -108,4 +118,21 @@ export function decimalEquals(left: DecimalString, right: DecimalString): boolea
     a.coefficient * 10n ** BigInt(scale - a.scale) ===
     b.coefficient * 10n ** BigInt(scale - b.scale)
   );
+}
+
+/** Truncate a non-negative decimal to the integer used by PF leader HP pools. */
+export function truncateDecimalToInteger(value: DecimalString): DecimalString {
+  const parsed = integerPart(value);
+  if (parsed.whole < 0n || parsed.remainder < 0n)
+    throw new Error(`只支持截断非负十进制，实际为 ${value}`);
+  return parseDecimal(parsed.whole.toString());
+}
+
+/** Round a non-negative decimal half-up to the integer used by ordinary PF enemies. */
+export function roundDecimalToInteger(value: DecimalString): DecimalString {
+  const parsed = integerPart(value);
+  if (parsed.whole < 0n || parsed.remainder < 0n)
+    throw new Error(`只支持舍入非负十进制，实际为 ${value}`);
+  const rounded = parsed.whole + (parsed.remainder * 2n >= parsed.unit ? 1n : 0n);
+  return parseDecimal(rounded.toString());
 }

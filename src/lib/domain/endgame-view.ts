@@ -79,7 +79,7 @@ export interface EnemyOccurrenceView {
   portraitUrl?: string;
   count?: number;
   hp: {
-    exactPerBar: DecimalString;
+    exactPerBar?: DecimalString;
     roundedPerBar: string;
     phaseCount?: number;
   };
@@ -178,7 +178,11 @@ export function occurrenceIdentity(occurrence: EnemyOccurrence): string {
     occurrence.hp.instanceRatio,
     occurrence.hp.levelRatio,
     occurrence.hp.eliteRatio,
-    occurrence.hp.configuredMaxHpPerBar,
+    occurrence.hp.baseEncounterMaxHpPerBar,
+    occurrence.hp.final.status,
+    occurrence.hp.final.status === 'resolved'
+      ? occurrence.hp.final.maxHpPerBar
+      : occurrence.hp.final.reason,
     occurrence.hp.eliteGroupId,
     occurrence.hp.eliteGroupTable,
     occurrence.hp.eliteContextSource,
@@ -228,11 +232,14 @@ export function buildOccurrenceView(
     weaknesses: reference?.weaknesses ?? [],
     ...(reference?.portraitUrl ? { portraitUrl: reference.portraitUrl } : {}),
     ...(count && count > 1 ? { count } : {}),
-    hp: {
-      exactPerBar: occurrence.hp.configuredMaxHpPerBar,
-      roundedPerBar: formatFullHp(occurrence.hp.configuredMaxHpPerBar),
-      ...(mechanics.phaseCount ? { phaseCount: mechanics.phaseCount } : {})
-    },
+    hp:
+      occurrence.hp.final.status === 'resolved'
+        ? {
+            exactPerBar: occurrence.hp.final.maxHpPerBar,
+            roundedPerBar: formatFullHp(occurrence.hp.final.maxHpPerBar),
+            ...(mechanics.phaseCount ? { phaseCount: mechanics.phaseCount } : {})
+          }
+        : { roundedPerBar: '资料未提供' },
     speed:
       occurrence.speed.status === 'resolved'
         ? {

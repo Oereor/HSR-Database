@@ -14,6 +14,7 @@
     "data:sync": "tsx scripts/data/sync.ts",
     "data:validate": "tsx scripts/data/validate.ts",
     "data:ensure": "tsx scripts/data/ensure.ts",
+    "debug:pf-hp": "tsx scripts/data/debug-pf-hp.ts",
     "predev": "pnpm data:ensure && pnpm assets:ensure",
     "dev": "vite dev",
     "prebuild": "pnpm data:ensure && pnpm assets:ensure",
