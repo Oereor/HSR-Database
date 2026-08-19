@@ -7,6 +7,7 @@
   import SkillCardPanel from '$lib/components/SkillCardPanel.svelte';
   import SuperimpositionPanel from '$lib/components/SuperimpositionPanel.svelte';
   import TraceCardPanel from '$lib/components/TraceCardPanel.svelte';
+  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
   import CharacterPortrait from '$lib/components/CharacterPortrait.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import EnemyDetailPage from '$lib/components/enemy/EnemyDetailPage.svelte';
@@ -152,6 +153,7 @@
               <div>
                 <h3><GameText text={rank.name} /></h3>
                 <p><GameText text={rank.description || '上游未提供本地化描述。'} /></p>
+                <SkillExtraEffects effects={rank.extraEffects ?? []} />
               </div>
             </article>{/each}
         </div>{:else}<p class="data-placeholder">上游未提供可展示的星魂记录。</p>{/if}

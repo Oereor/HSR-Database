@@ -1002,6 +1002,9 @@ footer a {
 .game-text__unbreak {
   white-space: nowrap;
 }
+.description-token--unbreak {
+  white-space: nowrap;
+}
 .levelled-description .scaling-value {
   color: var(--skill-scaling-value-color);
   font-weight: 650;

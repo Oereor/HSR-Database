@@ -69,7 +69,7 @@
 
 ## 第七次重构第二阶段：Enemy Phase Tabs 与 Variant 调查
 
-- 业务数据升级为 schema 18；敌方保留唯一有序技能列表，并新增由 `MonsterSkillConfig.PhaseList` 规范化的 `skillPhases`。阶段编号不重排，空 PhaseList 技能属于所有已知阶段，过滤后空阶段仍保留。
+- 业务数据升级为 schema 19；敌方保留唯一有序技能列表，并新增由 `MonsterSkillConfig.PhaseList` 规范化的 `skillPhases`。阶段编号不重排，空 PhaseList 技能属于所有已知阶段，过滤后空阶段仍保留。角色技能、行迹与星魂描述保留下划线语义，行迹与星魂复用共享 ExtraEffect 模型。
 - 多阶段敌方详情使用可访问 tabs 展示各阶段技能；单阶段保持直接列表，技能卡不再重复显示“适用阶段”。
 - Enemy Family / Variant 仅完成全库调查和报告，未实现聚合、代表选择、URL、搜索、overview 或 Endgame identity 变化。
 

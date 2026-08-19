@@ -1,5 +1,6 @@
 <script lang="ts">
   import SkillProgressionPanel from '$lib/components/SkillProgressionPanel.svelte';
+  import DescriptionText from '$lib/components/DescriptionText.svelte';
   import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
   import GameText from '$lib/components/GameText.svelte';
   import SkillCombatMeta from '$lib/components/SkillCombatMeta.svelte';
@@ -37,9 +38,7 @@
           </div>
           <SkillCombatMeta meta={variant.combatMeta} />
           {#if fixedLevel(variant)?.descriptionTokens.length}<p class="levelled-description">
-              {#each fixedLevel(variant).descriptionTokens as token}<span
-                  class:scaling-value={token.type === 'scaling-value'}>{token.value}</span
-                >{/each}
+              <DescriptionText tokens={fixedLevel(variant).descriptionTokens} />
             </p>{:else}<p class="data-placeholder">上游原始数据未提供该技能描述。</p>{/if}
           <SkillExtraEffects effects={variant.combatMeta.extraEffects ?? []} />
         </section>

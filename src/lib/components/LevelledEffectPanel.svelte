@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { LevelledDescription } from '$lib/domain/types';
+  import DescriptionText from '$lib/components/DescriptionText.svelte';
 
   export let levels: LevelledDescription[];
   export let controlId: string;
@@ -21,9 +22,7 @@
 {#if selected}
   {#if selected.descriptionTokens.length}
     <p class="levelled-description">
-      {#each selected.descriptionTokens as token}<span
-          class:scaling-value={token.type === 'scaling-value'}>{token.value}</span
-        >{/each}
+      <DescriptionText tokens={selected.descriptionTokens} />
     </p>
   {:else}
     <p class="data-placeholder">{emptyDescription}</p>

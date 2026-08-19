@@ -13,8 +13,14 @@ export interface TextReference {
   Hash: TextHash;
 }
 
-export type DescriptionToken =
-  { type: 'text'; value: string } | { type: 'scaling-value'; value: string };
+export interface DescriptionToken {
+  type: 'text' | 'scaling-value';
+  value: string;
+  color?: string;
+  italic?: boolean;
+  underline?: boolean;
+  unbreak?: boolean;
+}
 
 export interface LevelledDescription {
   level: number;
@@ -128,6 +134,7 @@ export interface Trace {
   prerequisiteIds: string[];
   promotionLimit?: number;
   anchorOrder: number;
+  extraEffects?: SkillExtraEffect[];
 }
 
 export interface StatGrowth {
@@ -163,6 +170,7 @@ export interface Eidolon {
   rank: number;
   name: string;
   description: string;
+  extraEffects?: SkillExtraEffect[];
 }
 
 export interface CharacterProfile {

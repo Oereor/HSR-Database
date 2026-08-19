@@ -1,5 +1,6 @@
 <script lang="ts">
   import GameText from '$lib/components/GameText.svelte';
+  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
   import { groupTracesForDisplay } from '$lib/domain/trace-groups';
   import type { Trace } from '$lib/domain/types';
 
@@ -29,6 +30,7 @@
           <p class="trace-card__description">
             <GameText text={group.ability.description || '上游未提供本地化描述。'} />
           </p>
+          <SkillExtraEffects effects={group.ability.extraEffects ?? []} />
         </article>
 
         {#each group.stats as stat (stat.id)}
@@ -45,6 +47,7 @@
             <p class="trace-card__description">
               <GameText text={stat.description || '上游未提供本地化描述。'} />
             </p>
+            <SkillExtraEffects effects={stat.extraEffects ?? []} />
           </article>
         {/each}
       </section>
@@ -73,6 +76,7 @@
           <p class="trace-card__description">
             <GameText text={ability.description || '上游未提供本地化描述。'} />
           </p>
+          <SkillExtraEffects effects={ability.extraEffects ?? []} />
         </article>
       {/each}
       <div class="trace-independent-grid">
@@ -90,6 +94,7 @@
             <p class="trace-card__description">
               <GameText text={stat.description || '上游未提供本地化描述。'} />
             </p>
+            <SkillExtraEffects effects={stat.extraEffects ?? []} />
           </article>
         {/each}
       </div>

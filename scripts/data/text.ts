@@ -1,5 +1,5 @@
 import type { DescriptionToken } from '../../src/lib/domain/types.js';
-import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
+import { normalizeGameText, parseGameTextWithScaling } from '../../src/lib/domain/game-text.js';
 
 export type DescriptionDiagnosticCode = 'invalid-param' | 'missing-param';
 
@@ -36,17 +36,6 @@ function formatParameter(value: number, format: string | undefined, percent: boo
   return stableDecimal(normalized);
 }
 
-function appendToken(tokens: DescriptionToken[], token: DescriptionToken): void {
-  if (!token.value) return;
-  const previous = tokens.at(-1);
-  if (token.type === 'text' && previous?.type === 'text') previous.value += token.value;
-  else tokens.push(token);
-}
-
-function cleanTemplate(template: string): string {
-  return gameTextToPlain(template).replace(/[ \t]+\n/g, '\n');
-}
-
 function trimTokens(tokens: DescriptionToken[]): DescriptionToken[] {
   const result = tokens.filter((token) => token.value).map((token) => ({ ...token }));
   if (!result.length) return result;
@@ -55,44 +44,63 @@ function trimTokens(tokens: DescriptionToken[]): DescriptionToken[] {
   return result.filter((token) => token.value);
 }
 
-function formatTemplate(
+function interpolateTemplate(
   source: string,
   params: readonly number[] = [],
   scalingParamIndexes: ReadonlySet<number> = new Set()
-): FormattedDescription {
-  const tokens: DescriptionToken[] = [];
+): { text: string; diagnostics: DescriptionDiagnostic[] } {
   const diagnostics: DescriptionDiagnostic[] = [];
+  let result = '';
   let cursor = 0;
 
   for (const match of source.matchAll(placeholderPattern)) {
     const placeholder = match[0];
     const start = match.index;
-    appendToken(tokens, { type: 'text', value: source.slice(cursor, start) });
+    result += source.slice(cursor, start);
 
     const parameterIndex = Number(match[1]) - 1;
     const value = params[parameterIndex];
     if (value === undefined) {
       diagnostics.push({ code: 'missing-param', parameterIndex, placeholder });
-      appendToken(tokens, { type: 'text', value: placeholder });
+      result += placeholder;
     } else if (!Number.isFinite(value)) {
       diagnostics.push({ code: 'invalid-param', parameterIndex, placeholder });
-      appendToken(tokens, { type: 'text', value: placeholder });
+      result += placeholder;
     } else {
       const rendered = `${formatParameter(value, match[2], Boolean(match[3]))}${match[3]}`;
-      appendToken(tokens, {
-        type: scalingParamIndexes.has(parameterIndex) ? 'scaling-value' : 'text',
-        value: rendered
-      });
+      result += scalingParamIndexes.has(parameterIndex)
+        ? `<scaling-value>${rendered}</scaling-value>`
+        : rendered;
     }
     cursor = start + placeholder.length;
   }
-  appendToken(tokens, { type: 'text', value: source.slice(cursor) });
+  result += source.slice(cursor);
+  return { text: result, diagnostics };
+}
 
-  const descriptionTokens = trimTokens(tokens);
+function formatTemplate(
+  source: string,
+  params: readonly number[] = [],
+  scalingParamIndexes: ReadonlySet<number> = new Set()
+): FormattedDescription {
+  const interpolated = interpolateTemplate(source, params, scalingParamIndexes);
+  const descriptionTokens = trimTokens(
+    parseGameTextWithScaling(interpolated.text).map((token) => ({
+      type: token.scaling ? 'scaling-value' : 'text',
+      value: token.value,
+      ...(token.color ? { color: token.color } : {}),
+      ...(token.italic ? { italic: true } : {}),
+      ...(token.underline ? { underline: true } : {}),
+      ...(token.unbreak ? { unbreak: true } : {})
+    }))
+  );
   return {
-    description: descriptionTokens.map((token) => token.value).join(''),
+    description: descriptionTokens
+      .map((token) => token.value)
+      .join('')
+      .replace(/[ \t]+\n/g, '\n'),
     descriptionTokens,
-    diagnostics
+    diagnostics: interpolated.diagnostics
   };
 }
 
@@ -101,7 +109,7 @@ export function formatDescription(
   params: readonly number[] = [],
   scalingParamIndexes: ReadonlySet<number> = new Set()
 ): FormattedDescription {
-  return formatTemplate(cleanTemplate(template), params, scalingParamIndexes);
+  return formatTemplate(normalizeGameText(template), params, scalingParamIndexes);
 }
 
 /** Interpolates verified game parameters while preserving markup for the safe GameText renderer. */
@@ -109,11 +117,8 @@ export function formatGameMarkup(
   template = '',
   params: readonly number[] = []
 ): FormattedGameMarkup {
-  const formatted = formatTemplate(normalizeGameText(template), params);
-  return {
-    text: formatted.description,
-    diagnostics: formatted.diagnostics
-  };
+  const formatted = interpolateTemplate(normalizeGameText(template), params);
+  return { text: formatted.text, diagnostics: formatted.diagnostics };
 }
 
 export function formatGameText(template = '', params: number[] = []): string {

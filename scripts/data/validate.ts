@@ -42,7 +42,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 18)
+if (manifest.schemaVersion !== 19)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -112,7 +112,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 18 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 19 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -636,6 +636,14 @@ const validateCharacterProfile = (
     if (trace.sourcePointType === 5) observedTypeFiveIds.add(trace.id);
     if (!Number.isInteger(trace.anchorOrder) || trace.anchorOrder <= 0)
       throw new Error(`角色 ${character.id} ${mode} profile 的行迹 ${trace.id} 锚点顺序异常`);
+    for (const effect of trace.extraEffects ?? []) {
+      if (
+        !effect.id ||
+        !gameTextToPlain(effect.name).trim() ||
+        !gameTextToPlain(effect.description).trim()
+      )
+        throw new Error(`角色 ${character.id} ${mode} profile 的行迹 ${trace.id} ExtraEffect 无效`);
+    }
     for (const prerequisiteId of trace.prerequisiteIds) {
       if (prerequisiteId === trace.id)
         throw new Error(`角色 ${character.id} ${mode} profile 的行迹 ${trace.id} 自引用`);
@@ -648,6 +656,18 @@ const validateCharacterProfile = (
       // Audit direction follows the source row's PrePoint reference: node -> prerequisite.
       const direction = `${trace.type}->${prerequisite.type}`;
       traceDependencyDirections.set(direction, (traceDependencyDirections.get(direction) ?? 0) + 1);
+    }
+  }
+  for (const eidolon of profile.eidolons) {
+    for (const effect of eidolon.extraEffects ?? []) {
+      if (
+        !effect.id ||
+        !gameTextToPlain(effect.name).trim() ||
+        !gameTextToPlain(effect.description).trim()
+      )
+        throw new Error(
+          `角色 ${character.id} ${mode} profile 的星魂 ${eidolon.id} ExtraEffect 无效`
+        );
     }
   }
   const visited = new Set<string>();
@@ -873,20 +893,20 @@ if (!skillDescription(jingliuBase, '121202', 10)?.includes('200%攻击力'))
 if (!skillDescription(jingliuEnhanced, '1121202', 10)?.includes('150%生命上限'))
   throw new Error('加强 profile 验证失败：镜流加强后战技数据异常');
 if (
-  jingliuBase?.traces
-    .find((trace) => trace.name === '死境')
-    ?.description.includes('终结技伤害提高20%')
+  gameTextToPlain(
+    jingliuBase?.traces.find((trace) => trace.name === '死境')?.description ?? ''
+  ).includes('终结技伤害提高20%')
 )
   throw new Error('加强 profile 验证失败：镜流加强前混入加强行迹');
 if (
-  !jingliuEnhanced?.traces
-    .find((trace) => trace.name === '死境')
-    ?.description.includes('终结技伤害提高20%')
+  !gameTextToPlain(
+    jingliuEnhanced?.traces.find((trace) => trace.name === '死境')?.description ?? ''
+  ).includes('终结技伤害提高20%')
 )
   throw new Error('加强 profile 验证失败：镜流加强后行迹数据异常');
-if (!jingliuBase?.eidolons[0]?.description.includes('暴击伤害提高24%'))
+if (!gameTextToPlain(jingliuBase?.eidolons[0]?.description ?? '').includes('暴击伤害提高24%'))
   throw new Error('加强 profile 验证失败：镜流加强前星魂数据异常');
-if (!jingliuEnhanced?.eidolons[0]?.description.includes('暴击伤害提高36%'))
+if (!gameTextToPlain(jingliuEnhanced?.eidolons[0]?.description ?? '').includes('暴击伤害提高36%'))
   throw new Error('加强 profile 验证失败：镜流加强后星魂数据异常');
 
 const marchBasicMeta = skillVariant(baseProfile(march), '100101')?.combatMeta;

@@ -284,8 +284,8 @@ export async function syncData(): Promise<DataManifest> {
 
   const resolveExtraEffects = (
     rawIds: unknown[],
-    entity: string,
-    skillId: string,
+    ownerEntity: string,
+    ownerId: string,
     onUnresolved?: (extraEffectId: string) => void
   ): SkillExtraEffect[] =>
     unique(rawIds.map(String)).flatMap((extraEffectId) => {
@@ -296,7 +296,7 @@ export async function syncData(): Promise<DataManifest> {
           missingText.record(
             'C',
             'unresolved-relation',
-            source(`${entity}-skill`, skillId, 'ExtraEffectIDList'),
+            source(ownerEntity, ownerId, 'ExtraEffectIDList'),
             `extra-effect:${extraEffectId}`
           );
         return [];
@@ -304,14 +304,18 @@ export async function syncData(): Promise<DataManifest> {
       const formatted = formatGameMarkup(
         tr(
           extra.ExtraEffectDesc,
-          source(`${entity}-extra-effect`, extraEffectId, 'ExtraEffectDesc')
+          source(`${ownerEntity}-extra-effect`, extraEffectId, 'ExtraEffectDesc')
         ),
         values(extra.DescParamList)
       );
-      collectDescriptionDiagnostics(`${entity}-extra-effect`, extraEffectId, formatted.diagnostics);
+      collectDescriptionDiagnostics(
+        `${ownerEntity}-extra-effect`,
+        extraEffectId,
+        formatted.diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
+      );
       const name = tr(
         extra.ExtraEffectName,
-        source(`${entity}-extra-effect`, extraEffectId, 'ExtraEffectName')
+        source(`${ownerEntity}-extra-effect`, extraEffectId, 'ExtraEffectName')
       );
       if (!gameTextToPlain(name).trim() || !gameTextToPlain(formatted.text).trim()) return [];
       return [
@@ -565,7 +569,11 @@ export async function syncData(): Promise<DataManifest> {
         spBase: numberOf(level.SPBase),
         stanceDamageDisplay: numberOf(level.StanceDamageDisplay),
         showStanceList: level.ShowStanceList,
-        extraEffects: resolveExtraEffects(extraEffectIdsOf(level), skillSource, String(skillId))
+        extraEffects: resolveExtraEffects(
+          extraEffectIdsOf(level),
+          `${skillSource}-skill`,
+          String(skillId)
+        )
       });
       if (combatMeta.effect && !combatMeta.effect.known)
         unknownSkillEffects.add(combatMeta.effect.code);
@@ -728,9 +736,19 @@ export async function syncData(): Promise<DataManifest> {
         const anchorMatch = /^Point(\d+)$/.exec(String(representative.AnchorType ?? ''));
         if (!anchorMatch) throw new Error(`行迹 ${pointId} 缺少有效 AnchorType`);
         const params = values(representative.ParamList);
-        const localizedDescription = formatGameText(
+        const localizedDescription = formatGameMarkup(
           trSymbolic(representative.PointDesc, source('character-trace', pointId, 'PointDesc')),
           params
+        );
+        collectDescriptionDiagnostics(
+          'character-trace',
+          pointId,
+          localizedDescription.diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
+        );
+        const extraEffects = resolveExtraEffects(
+          extraEffectIdsOf(representative),
+          'character-trace',
+          pointId
         );
         return {
           id: pointId,
@@ -739,32 +757,40 @@ export async function syncData(): Promise<DataManifest> {
             source('character-trace', pointId, 'PointName'),
             `行迹 ${pointId}`
           ),
-          description: localizedDescription || traceStatDescription(representative, pointId),
+          description: localizedDescription.text || traceStatDescription(representative, pointId),
           type,
           sourcePointType,
           prerequisiteIds: (representative.PrePoint ?? []).map((id: number) => String(id)),
           ...(representative.AvatarPromotionLimit !== undefined
             ? { promotionLimit: Number(representative.AvatarPromotionLimit) }
             : {}),
-          anchorOrder: Number(anchorMatch[1])
+          anchorOrder: Number(anchorMatch[1]),
+          ...(extraEffects.length ? { extraEffects } : {})
         };
       });
     const eidolons = (config.RankIDList ?? [])
       .map((rankId: number) => avatarRanks.get(String(rankId)))
       .filter(Boolean)
-      .map((rank) => ({
-        id: String(rank.RankID),
-        rank: Number(rank.Rank),
-        name: trSymbolic(
-          rank.Name,
-          source('character-eidolon', rank.RankID, 'Name'),
-          `星魂 ${rank.Rank}`
-        ),
-        description: formatGameText(
-          trSymbolic(rank.Desc, source('character-eidolon', rank.RankID, 'Desc')),
+      .map((rank) => {
+        const id = String(rank.RankID);
+        const description = formatGameMarkup(
+          trSymbolic(rank.Desc, source('character-eidolon', id, 'Desc')),
           values(rank.Param)
-        )
-      }));
+        );
+        collectDescriptionDiagnostics(
+          'character-eidolon',
+          id,
+          description.diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
+        );
+        const extraEffects = resolveExtraEffects(extraEffectIdsOf(rank), 'character-eidolon', id);
+        return {
+          id,
+          rank: Number(rank.Rank),
+          name: trSymbolic(rank.Name, source('character-eidolon', id, 'Name'), `星魂 ${rank.Rank}`),
+          description: description.text,
+          ...(extraEffects.length ? { extraEffects } : {})
+        };
+      });
 
     return {
       energy: energyFor(config),
@@ -1030,7 +1056,11 @@ export async function syncData(): Promise<DataManifest> {
         tr(skill.SkillDesc, source('enemy-skill', skillId, 'SkillDesc')),
         values(skill.ParamList)
       );
-      collectDescriptionDiagnostics('enemy-skill', skillId, formattedDescription.diagnostics);
+      collectDescriptionDiagnostics(
+        'enemy-skill',
+        skillId,
+        formattedDescription.diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
+      );
       const visible = Boolean(gameTextToPlain(formattedDescription.text).trim());
       phaseInputs.push({ id: skillId, phases, visible });
       if (!visible) continue;
@@ -1048,8 +1078,8 @@ export async function syncData(): Promise<DataManifest> {
       }
 
       const extraEffects = resolveExtraEffects(
-        Array.isArray(skill.ExtraEffectIDList) ? skill.ExtraEffectIDList : [],
-        'enemy',
+        extraEffectIdsOf(skill),
+        'enemy-skill',
         skillId,
         (extraEffectId) =>
           enemyAudit.unresolvedExtraEffects.push({ enemyId: id, skillId, extraEffectId })
@@ -1191,7 +1221,7 @@ export async function syncData(): Promise<DataManifest> {
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 18,
+    schemaVersion: 19,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),

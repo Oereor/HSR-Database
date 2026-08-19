@@ -149,6 +149,24 @@ describe('真实数据管线', () => {
       { value: '引文', italic: true },
       { value: 'LV.999', unbreak: true }
     ]);
+    expect(parseGameText('普通<u>下划线</u>文本')).toEqual([
+      { value: '普通' },
+      { value: '下划线', underline: true },
+      { value: '文本' }
+    ]);
+    expect(parseGameText('A<u>B</u>C<u>D</u>')).toEqual([
+      { value: 'A' },
+      { value: 'B', underline: true },
+      { value: 'C' },
+      { value: 'D', underline: true }
+    ]);
+    expect(
+      parseGameText('<color=#f29e38ff><i><unbreak>15%</unbreak></i></color><u>基础概率</u>')
+    ).toEqual([
+      { value: '15%', color: '#f29e38ff', italic: true, unbreak: true },
+      { value: '基础概率', underline: true }
+    ]);
+    expect(gameTextToPlain('<u>弱点击破</u>')).toBe('弱点击破');
     expect(gameTextToPlain('<script>alert(1)</script><unknown>可读文本</unknown>')).toBe(
       'alert(1)可读文本'
     );
@@ -173,6 +191,28 @@ describe('真实数据管线', () => {
       { type: 'scaling-value', value: '12%' },
       { type: 'text', value: '，持续3回合。' }
     ]);
+  });
+
+  it('分级描述在参数插值后保留安全富文本语义', () => {
+    expect(
+      formatDescription(
+        '<color=#f29e38ff><unbreak>#1[i]%</unbreak></color><u>基础概率</u>',
+        [0.5],
+        new Set([0])
+      )
+    ).toEqual({
+      description: '50%基础概率',
+      descriptionTokens: [
+        {
+          type: 'scaling-value',
+          value: '50%',
+          color: '#f29e38ff',
+          unbreak: true
+        },
+        { type: 'text', value: '基础概率', underline: true }
+      ],
+      diagnostics: []
+    });
   });
 
   it('稳定格式化浮点数并对缺失参数降级', () => {
@@ -285,7 +325,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(91);
-    expect(manifest.schemaVersion).toBe(18);
+    expect(manifest.schemaVersion).toBe(19);
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     const basicAttack = variantOf(character, '100101');
@@ -304,6 +344,14 @@ describe('真实数据管线', () => {
       prerequisiteIds: ['1001201'],
       anchorOrder: 6
     });
+    expect(purity?.description).toContain('<u>负面效果</u>');
+    expect(purity?.extraEffects).toEqual([
+      expect.objectContaining({ id: '10000010', name: '负面效果' })
+    ]);
+    expect(baseProfile(character).traces.find((trace) => trace.id === '1001103')).toMatchObject({
+      description: expect.stringContaining('<u>基础概率</u>'),
+      extraEffects: [expect.objectContaining({ id: '30000001' })]
+    });
     expect(purity).not.toHaveProperty('levels');
     expect(baseProfile(character).traces.find((trace) => trace.id === '1001201')).toMatchObject({
       type: 'stat',
@@ -318,6 +366,13 @@ describe('真实数据管线', () => {
       '防御力提高5.0%'
     );
     expect(baseProfile(character).eidolons[0].name).toBe('记忆中的你');
+    expect(baseProfile(character).eidolons[0]).not.toHaveProperty('extraEffects');
+    expect(
+      baseProfile(character).eidolons.find((eidolon) => eidolon.id === '100104')
+    ).toMatchObject({
+      description: expect.stringContaining('<u>反击</u>'),
+      extraEffects: [expect.objectContaining({ id: '10000003', name: '反击' })]
+    });
     expect(lightCone.name).toBe('锋镝');
     expect(lightCone.superimposition.levels).toHaveLength(5);
   });
@@ -553,6 +608,25 @@ describe('真实数据管线', () => {
     expect(
       variantOf(sushang, '120602')?.combatMeta.extraEffects?.map((effect) => effect.id)
     ).toEqual(['10000005', '10000006']);
+  });
+
+  it('行迹与星魂 ExtraEffect 绑定对应实体并保留多效果顺序', async () => {
+    const character = JSON.parse(
+      await readFile(path.join(generatedRoot, 'details', 'characters', '1005.json'), 'utf8')
+    ) as Character;
+    expect(
+      baseProfile(character)
+        .traces.find((trace) => trace.id === '1005103')
+        ?.extraEffects?.map((effect) => effect.id)
+    ).toEqual(['10000004', '30000001']);
+    expect(
+      baseProfile(character)
+        .eidolons.find((eidolon) => eidolon.id === '100501')
+        ?.extraEffects?.map((effect) => effect.id)
+    ).toEqual(['10000004', '30000001']);
+    expect(
+      baseProfile(character).eidolons.find((eidolon) => eidolon.id === '100501')?.description
+    ).toContain('<u>追加攻击</u>');
   });
 
   it('通过 PointType 4 关系生成忆灵技并清除错误行迹重复', async () => {

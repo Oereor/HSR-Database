@@ -305,6 +305,31 @@ test('角色 ExtraEffect 使用共享 disclosure 并保持多形态归属', asyn
   await expect(details.locator('[data-extra-effect="30000002"]')).toContainText('固定概率');
 });
 
+test('角色技能、行迹与星魂保留下划线并共享 ExtraEffect disclosure', async ({ page }) => {
+  await page.goto('/characters/1001');
+
+  const skill = page.locator('[data-skill-id="100104"]');
+  await expect(skill.locator('u')).toContainText('反击');
+
+  const trace = page.locator('[data-trace-id="1001101"]');
+  await expect(trace.locator('u')).toHaveText('负面效果');
+  const traceEffects = trace.locator('[data-skill-extra-effects]');
+  await expect(traceEffects).not.toHaveAttribute('open', '');
+  await traceEffects.locator('summary').click();
+  await expect(traceEffects.locator('[data-extra-effect="10000010"]')).toContainText('负面效果');
+
+  const eidolon = page.locator('[data-eidolon-id="100104"]');
+  await expect(eidolon.locator('u')).toHaveCount(2);
+  const eidolonEffects = eidolon.locator('[data-skill-extra-effects]');
+  await eidolonEffects.locator('summary').click();
+  await expect(eidolonEffects.locator('[data-extra-effect="10000003"]')).toContainText('反击');
+
+  await expect(page.locator('[data-trace-id="1001102"] [data-skill-extra-effects]')).toHaveCount(0);
+  await expect(page.locator('[data-eidolon-id="100101"] [data-skill-extra-effects]')).toHaveCount(
+    0
+  );
+});
+
 test('忆灵技和忆灵天赋进入统一技能管线且不重复为行迹', async ({ page }) => {
   await page.goto('/characters/1402');
   await expect(page.locator('[data-skill-category="memosprite-skill"]')).toBeVisible();

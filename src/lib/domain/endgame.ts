@@ -227,7 +227,7 @@ export interface EndgameGroup {
 }
 
 export interface EndgameModeDataset {
-  schemaVersion: 18;
+  schemaVersion: 19;
   mode: EndgameMode;
   groups: EndgameGroup[];
 }
