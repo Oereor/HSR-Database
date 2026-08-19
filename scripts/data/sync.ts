@@ -9,11 +9,11 @@ import type {
   CharacterProfile,
   DataManifest,
   Enemy,
-  EnemyExtraEffect,
   EnemySkill,
   LightCone,
   RelicSet,
   SearchEntry,
+  SkillExtraEffect,
   SkillVariant,
   TextHash
 } from '../../src/lib/domain/types.js';
@@ -45,7 +45,7 @@ import {
 } from './skills.js';
 import { characterStatFields, lightConeStatFields, normalizeStatProgression } from './stats.js';
 import { formatGameMarkup, formatGameText } from './text.js';
-import { normalizeGameText } from '../../src/lib/domain/game-text.js';
+import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildEndgameData } from './endgame.js';
 import {
   normalizeEnemyPhases,
@@ -272,6 +272,55 @@ export async function syncData(): Promise<DataManifest> {
   const hardLevelRows = grouped(tables.HardLevelGroup, 'HardLevelGroup');
   const eliteRows = by(tables.EliteGroup, 'EliteGroup');
   const extraEffectRows = by(tables.ExtraEffectConfig, 'ExtraEffectID');
+
+  const extraEffectIdsOf = (row: Raw): string[] =>
+    unique(
+      [
+        ...(Array.isArray(row.ExtraEffectIDList) ? row.ExtraEffectIDList : []),
+        ...(Array.isArray(row.SimpleExtraEffectIDList) ? row.SimpleExtraEffectIDList : [])
+      ].map(String)
+    );
+
+  const resolveExtraEffects = (
+    rawIds: unknown[],
+    entity: string,
+    skillId: string,
+    onUnresolved?: (extraEffectId: string) => void
+  ): SkillExtraEffect[] =>
+    unique(rawIds.map(String)).flatMap((extraEffectId) => {
+      const extra = extraEffectRows.get(extraEffectId);
+      if (!extra) {
+        onUnresolved?.(extraEffectId);
+        if (!onUnresolved)
+          missingText.record(
+            'C',
+            'unresolved-relation',
+            source(`${entity}-skill`, skillId, 'ExtraEffectIDList'),
+            `extra-effect:${extraEffectId}`
+          );
+        return [];
+      }
+      const formatted = formatGameMarkup(
+        tr(
+          extra.ExtraEffectDesc,
+          source(`${entity}-extra-effect`, extraEffectId, 'ExtraEffectDesc')
+        ),
+        values(extra.DescParamList)
+      );
+      collectDescriptionDiagnostics(`${entity}-extra-effect`, extraEffectId, formatted.diagnostics);
+      const name = tr(
+        extra.ExtraEffectName,
+        source(`${entity}-extra-effect`, extraEffectId, 'ExtraEffectName')
+      );
+      if (!gameTextToPlain(name).trim() || !gameTextToPlain(formatted.text).trim()) return [];
+      return [
+        {
+          id: extraEffectId,
+          name,
+          description: formatted.text
+        }
+      ];
+    });
   const enhancedAvatars = by(tables.AvatarConfigEnhanced, 'AvatarID');
 
   if (enhancedAvatars.size !== tables.AvatarConfigEnhanced.length)
@@ -513,7 +562,9 @@ export async function syncData(): Promise<DataManifest> {
         bpNeed: numberOf(level.BPNeed),
         bpAdd: numberOf(level.BPAdd),
         spBase: numberOf(level.SPBase),
-        stanceDamageDisplay: numberOf(level.StanceDamageDisplay)
+        stanceDamageDisplay: numberOf(level.StanceDamageDisplay),
+        showStanceList: level.ShowStanceList,
+        extraEffects: resolveExtraEffects(extraEffectIdsOf(level), skillSource, String(skillId))
       });
       if (combatMeta.effect && !combatMeta.effect.known)
         unknownSkillEffects.add(combatMeta.effect.code);
@@ -970,10 +1021,11 @@ export async function syncData(): Promise<DataManifest> {
       if (!tag.known) enemyAudit.unknownSkillTags.push({ enemyId: id, skillId, value: tagLabel });
 
       const formattedDescription = formatGameMarkup(
-        tr(skill.SkillDesc, source('enemy-skill', skillId, 'SkillDesc'), '资料未提供'),
+        tr(skill.SkillDesc, source('enemy-skill', skillId, 'SkillDesc')),
         values(skill.ParamList)
       );
       collectDescriptionDiagnostics('enemy-skill', skillId, formattedDescription.diagnostics);
+      if (!gameTextToPlain(formattedDescription.text).trim()) continue;
       let damageType;
       if (skill.DamageType !== undefined) {
         const rawElement = String(skill.DamageType);
@@ -987,37 +1039,17 @@ export async function syncData(): Promise<DataManifest> {
         else damageType = { element, name: elementName(rawElement) };
       }
 
-      const extraEffects: EnemyExtraEffect[] = [];
-      for (const rawExtraEffectId of skill.ExtraEffectIDList ?? []) {
-        const extraEffectId = String(rawExtraEffectId);
-        const extra = extraEffectRows.get(extraEffectId);
-        if (!extra) {
-          enemyAudit.unresolvedExtraEffects.push({ enemyId: id, skillId, extraEffectId });
-          continue;
-        }
-        const formatted = formatGameMarkup(
-          tr(
-            extra.ExtraEffectDesc,
-            source('enemy-extra-effect', extraEffectId, 'ExtraEffectDesc'),
-            '资料未提供'
-          ),
-          values(extra.DescParamList)
-        );
-        collectDescriptionDiagnostics('enemy-extra-effect', extraEffectId, formatted.diagnostics);
-        extraEffects.push({
-          id: extraEffectId,
-          name: tr(
-            extra.ExtraEffectName,
-            source('enemy-extra-effect', extraEffectId, 'ExtraEffectName'),
-            `效果 ${extraEffectId}`
-          ),
-          description: formatted.text || '资料未提供'
-        });
-      }
+      const extraEffects = resolveExtraEffects(
+        Array.isArray(skill.ExtraEffectIDList) ? skill.ExtraEffectIDList : [],
+        'enemy',
+        skillId,
+        (extraEffectId) =>
+          enemyAudit.unresolvedExtraEffects.push({ enemyId: id, skillId, extraEffectId })
+      );
       skills.push({
         id: skillId,
         name: tr(skill.SkillName, source('enemy-skill', skillId, 'SkillName'), `技能 ${skillId}`),
-        description: formattedDescription.text || '资料未提供',
+        description: formattedDescription.text,
         kind,
         tag,
         ...(damageType ? { damageType } : {}),
@@ -1149,7 +1181,7 @@ export async function syncData(): Promise<DataManifest> {
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 16,
+    schemaVersion: 17,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),

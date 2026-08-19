@@ -1,5 +1,6 @@
 <script lang="ts">
   import GameText from '$lib/components/GameText.svelte';
+  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import SkillEffectTag from '$lib/components/SkillEffectTag.svelte';
   import { getElementColor } from '$lib/domain/elements';
@@ -30,18 +31,6 @@
         >{/if}
     </div>
   {/if}
-  <p class:muted={!skill.description}><GameText text={skill.description || '资料未提供'} /></p>
-  {#if skill.extraEffects.length}
-    <details class="enemy-extra-effects">
-      <summary>效果说明</summary>
-      <div class="enemy-extra-effects__body">
-        {#each skill.extraEffects as effect (effect.id)}
-          <section data-extra-effect={effect.id}>
-            <h4><GameText text={effect.name} /></h4>
-            <p><GameText text={effect.description || '资料未提供'} /></p>
-          </section>
-        {/each}
-      </div>
-    </details>
-  {/if}
+  <p class:muted={!skill.description}><GameText text={skill.description} /></p>
+  <SkillExtraEffects effects={skill.extraEffects} />
 </article>

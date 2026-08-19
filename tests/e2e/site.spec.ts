@@ -229,7 +229,9 @@ test('每个 Skill Variant 独立展示技能类型与战斗元数据', async ({
   await expect(basic.locator('[data-skill-effect="SingleAttack"]')).toHaveText('单攻');
   await expect(basic.locator('[data-combat-meta="battle-point"]')).toContainText(/战技点\s*\+1/);
   await expect(basic.locator('[data-combat-meta="energy-gain"]')).toContainText(/能量恢复\s*20/);
-  await expect(basic.locator('[data-combat-meta="toughness-damage"]')).toContainText(/削韧值\s*10/);
+  await expect(basic.locator('[data-combat-meta="toughness-damage"]')).toContainText(
+    /削韧值\s*单攻：10/
+  );
   const skill = page.locator('[data-skill-id="100102"]');
   await expect(skill.locator('[data-skill-effect="Defence"]')).toHaveText('防御');
   await expect(skill.locator('[data-combat-meta="battle-point"]')).toContainText(/战技点\s*-1/);
@@ -246,7 +248,11 @@ test('每个 Skill Variant 独立展示技能类型与战斗元数据', async ({
     const variant = page.locator(`[data-skill-id="${id}"]`);
     await expect(variant.locator('[data-combat-meta="battle-point"]')).toContainText(bp);
     await expect(variant.locator('[data-combat-meta="energy-gain"]')).toContainText(energy);
-    await expect(variant.locator('[data-combat-meta="toughness-damage"]')).toContainText(toughness);
+    await expect(variant.locator('[data-combat-meta="toughness-damage"]')).toContainText(
+      toughness === '10' || toughness === '20' || toughness === '30' || toughness === '40'
+        ? new RegExp(`(?:单攻|扩散)：${toughness}`)
+        : toughness
+    );
   }
   await expect(page.locator('[data-skill-category="basic"] input[type="range"]')).toHaveCount(1);
 });
@@ -277,12 +283,26 @@ test('特殊资源可与战技点同时显示且忆灵元数据不回归', async
   await expect(page.locator('[data-skill-id="1140712"]')).toHaveCount(0);
 
   await page.goto('/characters/1401');
-  await expect(
-    page.locator('[data-skill-id="140102"] [data-combat-meta="toughness-damage"]')
-  ).toContainText('15');
-  await expect(
-    page.locator('[data-skill-id="140109"] [data-combat-meta="toughness-damage"]')
-  ).toContainText('20');
+  const normalHertaSkill = page.locator('[data-skill-id="140102"]');
+  await expect(normalHertaSkill.locator('[data-stance-display="single"]')).toHaveText('单攻：15');
+  await expect(normalHertaSkill.locator('[data-stance-display="blast"]')).toHaveText('扩散：10');
+  const enhancedHertaSkill = page.locator('[data-skill-id="140109"]');
+  await expect(enhancedHertaSkill.locator('[data-stance-display="single"]')).toHaveText('单攻：20');
+  await expect(enhancedHertaSkill.locator('[data-stance-display="blast"]')).toHaveText('扩散：10');
+  await expect(enhancedHertaSkill.locator('[data-stance-display="aoe"]')).toHaveCount(0);
+});
+
+test('角色 ExtraEffect 使用共享 disclosure 并保持多形态归属', async ({ page }) => {
+  await page.goto('/characters/1224');
+  const normal = page.locator('[data-skill-id="122401"]');
+  const enhanced = page.locator('[data-skill-id="122408"]');
+  await expect(normal.locator('[data-skill-extra-effects]')).toHaveCount(0);
+  const details = enhanced.locator('[data-skill-extra-effects]');
+  await expect(details).not.toHaveAttribute('open', '');
+  await details.locator('summary').focus();
+  await page.keyboard.press('Enter');
+  await expect(details).toHaveAttribute('open', '');
+  await expect(details.locator('[data-extra-effect="30000002"]')).toContainText('固定概率');
 });
 
 test('忆灵技和忆灵天赋进入统一技能管线且不重复为行迹', async ({ page }) => {

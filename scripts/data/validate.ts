@@ -42,7 +42,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 16)
+if (manifest.schemaVersion !== 17)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -112,7 +112,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 16 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 17 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -454,10 +454,17 @@ for (const enemy of enemyDetails) {
       summon.href !== `/enemies/${summon.monsterTemplateId}`
     )
       throw new Error(`敌人 ${enemy.id} 召唤引用无效：${summon.monsterId}`);
-  const expectedSkillIds = (config.SkillList ?? []).map(String);
-  if (enemy.skills.map((skill) => skill.id).join(',') !== expectedSkillIds.join(','))
+  const rawSkillIds = (config.SkillList ?? []).map(String);
+  const generatedSkillIds = enemy.skills.map((skill) => skill.id);
+  let generatedIndex = 0;
+  for (const rawSkillId of rawSkillIds) {
+    if (rawSkillId === generatedSkillIds[generatedIndex]) generatedIndex += 1;
+  }
+  if (generatedIndex !== generatedSkillIds.length)
     throw new Error(`敌人 ${enemy.id} 技能链或顺序异常`);
   for (const skill of enemy.skills) {
+    if (!skill.description.trim() || skill.description === '资料未提供')
+      throw new Error(`敌人 ${enemy.id} 技能 ${skill.id} 缺少公开描述`);
     if (skill.tag.known && enemySkillTagCodes[skill.tag.label] !== skill.tag.code)
       throw new Error(`敌人 ${enemy.id} 技能 ${skill.id} tag 映射异常`);
     if (skill.phases.some((phase) => !Number.isSafeInteger(phase) || phase <= 0))
@@ -559,6 +566,21 @@ const validateCharacterProfile = (
       ] as const)
         if (value !== undefined && (!Number.isFinite(value) || value <= 0))
           throw new Error(`角色 ${character.id} 技能 ${variant.id} 的 ${field} 无效`);
+      if (meta.stanceDisplay) {
+        const stanceTypes = new Set(['single', 'aoe', 'blast']);
+        if (
+          !meta.stanceDisplay.length ||
+          new Set(meta.stanceDisplay.map((item) => item.type)).size !== meta.stanceDisplay.length ||
+          meta.stanceDisplay.some(
+            (item) => !stanceTypes.has(item.type) || !Number.isFinite(item.value) || item.value <= 0
+          )
+        )
+          throw new Error(`角色 ${character.id} 技能 ${variant.id} 的 ShowStanceList 展示值无效`);
+      }
+      for (const effect of meta.extraEffects ?? []) {
+        if (!effect.id || !effect.name.trim() || !effect.description.trim())
+          throw new Error(`角色 ${character.id} 技能 ${variant.id} 的 ExtraEffect 无效`);
+      }
       for (const level of variant.levels) {
         if (!level.description) emptySkillDescriptions += 1;
         if (level.description !== level.descriptionTokens.map((token) => token.value).join(''))
@@ -845,7 +867,9 @@ if (
   marchBasicMeta?.effect?.label !== '单攻' ||
   marchBasicMeta.battlePointDelta !== 1 ||
   marchBasicMeta.energyGain !== 20 ||
-  marchBasicMeta.toughnessDamage !== 10
+  JSON.stringify(marchBasicMeta.stanceDisplay) !==
+    JSON.stringify([{ type: 'single', value: 10 }]) ||
+  marchBasicMeta.toughnessDamage !== undefined
 )
   throw new Error('技能战斗元数据验证失败：三月七普攻');
 const marchSkillMeta = skillVariant(baseProfile(march), '100102')?.combatMeta;
@@ -858,17 +882,38 @@ if (
   throw new Error('技能战斗元数据验证失败：三月七战技');
 
 const imbibitorExpected = new Map([
-  ['121301', [1, 20, 10]],
-  ['121308', [-1, 30, 20]],
-  ['121310', [-2, 35, 30]],
-  ['121312', [-3, 40, 40]]
+  ['121301', [1, 20, [{ type: 'single', value: 10 }]]],
+  ['121308', [-1, 30, [{ type: 'single', value: 20 }]]],
+  [
+    '121310',
+    [
+      -2,
+      35,
+      [
+        { type: 'single', value: 30 },
+        { type: 'blast', value: 10 }
+      ]
+    ]
+  ],
+  [
+    '121312',
+    [
+      -3,
+      40,
+      [
+        { type: 'single', value: 40 },
+        { type: 'blast', value: 20 }
+      ]
+    ]
+  ]
 ]);
-for (const [id, [battlePointDelta, energyGain, toughnessDamage]] of imbibitorExpected) {
+for (const [id, [battlePointDelta, energyGain, stanceDisplay]] of imbibitorExpected) {
   const meta = skillVariant(baseProfile(imbibitorLunae), id)?.combatMeta;
   if (
     meta?.battlePointDelta !== battlePointDelta ||
     meta.energyGain !== energyGain ||
-    meta.toughnessDamage !== toughnessDamage
+    JSON.stringify(meta.stanceDisplay) !== JSON.stringify(stanceDisplay) ||
+    meta.toughnessDamage !== undefined
   )
     throw new Error(`技能战斗元数据验证失败：丹恒·饮月 ${id}`);
 }
@@ -891,16 +936,38 @@ if (
   gameTextToPlain(castoriceSkillMeta?.specialResource).trim() !== '30%我方全体当前生命值' ||
   castoriceSkillMeta?.battlePointDelta !== undefined ||
   castoriceSkillMeta.energyGain !== undefined ||
-  castoriceSkillMeta.toughnessDamage !== 20
+  JSON.stringify(castoriceSkillMeta.stanceDisplay) !==
+    JSON.stringify([
+      { type: 'single', value: 20 },
+      { type: 'blast', value: 10 }
+    ])
 )
   throw new Error('技能战斗元数据验证失败：遐蝶战技');
 const castoriceMemospriteMeta = skillVariant(baseProfile(castorice), '1140702')?.combatMeta;
 if (
   castoriceMemospriteMeta?.effect?.label !== '群攻' ||
   gameTextToPlain(castoriceMemospriteMeta.specialResource).trim() !== '25%生命值' ||
-  castoriceMemospriteMeta.toughnessDamage !== 10
+  JSON.stringify(castoriceMemospriteMeta.stanceDisplay) !==
+    JSON.stringify([{ type: 'aoe', value: 10 }])
 )
   throw new Error('技能战斗元数据验证失败：遐蝶忆灵技');
+
+const theHertaEnhancedSkillMeta = skillVariant(baseProfile(theHerta), '140109')?.combatMeta;
+if (
+  JSON.stringify(theHertaEnhancedSkillMeta?.stanceDisplay) !==
+    JSON.stringify([
+      { type: 'single', value: 20 },
+      { type: 'blast', value: 10 }
+    ]) ||
+  theHertaEnhancedSkillMeta?.toughnessDamage !== undefined
+)
+  throw new Error('技能战斗元数据验证失败：大黑塔强化战技');
+
+const huntMarch = characters.find((character) => character.id === '1224');
+if (skillVariant(baseProfile(huntMarch), '122401')?.combatMeta.extraEffects !== undefined)
+  throw new Error('技能 ExtraEffect 归属失败：三月七·巡猎普通普攻');
+if (skillVariant(baseProfile(huntMarch), '122408')?.combatMeta.extraEffects?.[0]?.id !== '30000002')
+  throw new Error('技能 ExtraEffect 归属失败：三月七·巡猎强化普攻');
 
 if (emptySkillDescriptions)
   console.warn(`数据警告：${emptySkillDescriptions} 条技能等级的原始描述为空，已保留明确降级。`);

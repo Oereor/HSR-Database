@@ -141,6 +141,7 @@ describe('Enemy Detail 真实数据回归', () => {
     expect(extra.extraEffects).toContainEqual(
       expect.objectContaining({ id: '70000304', name: '转移' })
     );
+    expect((await enemy('1004014')).skills.some((skill) => skill.id === '100401414')).toBe(false);
     const missingDamage = (await enemy('4034013')).skills.find(
       (skill) => skill.id === '403401302'
     )!;
@@ -150,6 +151,7 @@ describe('Enemy Detail 真实数据回归', () => {
       ['1004010', '100401005']
     ]) {
       const skill = (await enemy(enemyId)).skills.find((candidate) => candidate.id === skillId)!;
+      expect(skill.description).not.toBe('资料未提供');
       expect(skill).not.toHaveProperty('SPHitBase');
       expect(skill).not.toHaveProperty('ModifierList');
       expect(skill).not.toHaveProperty('ParamList');

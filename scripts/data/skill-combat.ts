@@ -1,5 +1,10 @@
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
-import type { KnownSkillEffect, SkillCombatMeta } from '../../src/lib/domain/types.js';
+import type {
+  KnownSkillEffect,
+  SkillCombatMeta,
+  SkillExtraEffect,
+  SkillStanceDisplay
+} from '../../src/lib/domain/types.js';
 
 export const SKILL_EFFECT_LABELS: Record<KnownSkillEffect, string> = {
   SingleAttack: '单攻',
@@ -22,10 +27,29 @@ export interface SkillCombatInput {
   bpAdd?: number;
   spBase?: number;
   stanceDamageDisplay?: number;
+  showStanceList?: unknown;
+  extraEffects?: SkillExtraEffect[];
 }
 
 const positive = (value: number | undefined): value is number =>
   typeof value === 'number' && Number.isFinite(value) && value > 0;
+
+const stanceTypes: SkillStanceDisplay['type'][] = ['single', 'aoe', 'blast'];
+
+const numericValue = (value: unknown): number => {
+  if (value && typeof value === 'object' && 'Value' in value)
+    return Number((value as { Value: unknown }).Value);
+  return Number(value);
+};
+
+export function normalizeStanceDisplay(value: unknown): SkillStanceDisplay[] | undefined {
+  if (!Array.isArray(value)) return undefined;
+  const display = value.slice(0, stanceTypes.length).flatMap((entry, index) => {
+    const raw = numericValue(entry);
+    return Number.isFinite(raw) && raw > 0 ? [{ type: stanceTypes[index], value: raw / 3 }] : [];
+  });
+  return display.length ? display : undefined;
+}
 
 export function normalizeSkillCombatMeta(input: SkillCombatInput): SkillCombatMeta {
   if (positive(input.bpNeed) && positive(input.bpAdd)) {
@@ -36,6 +60,7 @@ export function normalizeSkillCombatMeta(input: SkillCombatInput): SkillCombatMe
   const knownEffect = effectCode in SKILL_EFFECT_LABELS;
   const normalizedResource = normalizeGameText(input.specialResource ?? '').trim();
   const hasSpecialResource = gameTextToPlain(normalizedResource).trim().length > 0;
+  const stanceDisplay = normalizeStanceDisplay(input.showStanceList);
 
   return {
     ...(effectCode
@@ -54,6 +79,10 @@ export function normalizeSkillCombatMeta(input: SkillCombatInput): SkillCombatMe
         ? { battlePointDelta: input.bpAdd }
         : {}),
     ...(positive(input.spBase) ? { energyGain: input.spBase } : {}),
-    ...(positive(input.stanceDamageDisplay) ? { toughnessDamage: input.stanceDamageDisplay } : {})
+    ...(stanceDisplay ? { stanceDisplay } : {}),
+    ...(!stanceDisplay && positive(input.stanceDamageDisplay)
+      ? { toughnessDamage: input.stanceDamageDisplay }
+      : {}),
+    ...(input.extraEffects?.length ? { extraEffects: input.extraEffects } : {})
   };
 }

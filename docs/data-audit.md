@@ -40,7 +40,7 @@
 
 ## Endgame 敌方实例与战斗属性
 
-schema 16 在 `src/lib/generated/endgame/{moc,pf,as,aa}.json` 中继续生成 schema 15 已验证的数值结构：
+schema 17 在 `src/lib/generated/endgame/{moc,pf,as,aa}.json` 中继续生成已验证的数值结构：
 
 | 模式 | Group | Encounter | Stage | Occurrence |
 | ---- | ----: | --------: | ----: | ---------: |

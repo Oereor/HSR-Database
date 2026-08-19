@@ -22,7 +22,11 @@ import {
 } from '../../scripts/data/paths';
 import type { MissingTextAudit } from '../../scripts/data/missing-text';
 import { hashOf, readTable } from '../../scripts/data/raw';
-import { SKILL_EFFECT_LABELS, normalizeSkillCombatMeta } from '../../scripts/data/skill-combat';
+import {
+  SKILL_EFFECT_LABELS,
+  normalizeSkillCombatMeta,
+  normalizeStanceDisplay
+} from '../../scripts/data/skill-combat';
 import { formatDescription, formatGameMarkup, formatGameText } from '../../scripts/data/text';
 
 const baseProfile = (character: Character): CharacterProfile => character.profiles.base;
@@ -197,6 +201,42 @@ describe('真实数据管线', () => {
     expect(() => normalizeSkillCombatMeta({ bpNeed: 1, bpAdd: 1 })).toThrow(/BPNeed/);
   });
 
+  it('优先将 ShowStanceList 转换为语义削韧并保留单值降级', () => {
+    expect(normalizeStanceDisplay([{ Value: 60 }, { Value: 0 }, { Value: 30 }])).toEqual([
+      { type: 'single', value: 20 },
+      { type: 'blast', value: 10 }
+    ]);
+    expect(normalizeStanceDisplay([{ Value: 10 }, { Value: 0 }, { Value: 0 }])).toEqual([
+      { type: 'single', value: 10 / 3 }
+    ]);
+    expect(
+      normalizeSkillCombatMeta({
+        showStanceList: [{ Value: 60 }, { Value: 0 }, { Value: 30 }],
+        stanceDamageDisplay: 20
+      })
+    ).toEqual({
+      stanceDisplay: [
+        { type: 'single', value: 20 },
+        { type: 'blast', value: 10 }
+      ]
+    });
+    expect(
+      normalizeSkillCombatMeta({
+        showStanceList: [{ Value: 0 }, { Value: 0 }, { Value: 0 }],
+        stanceDamageDisplay: 20
+      })
+    ).toEqual({ toughnessDamage: 20 });
+    expect(
+      normalizeSkillCombatMeta({
+        showStanceList: [{ Value: Number.NaN }, { Value: 'invalid' }, {}],
+        stanceDamageDisplay: 20
+      })
+    ).toEqual({ toughnessDamage: 20 });
+    expect(normalizeSkillCombatMeta({ stanceDamageDisplay: 20 })).toEqual({
+      toughnessDamage: 20
+    });
+  });
+
   it('保留 SkillNeed 安全 markup 并插值真实参数', () => {
     const formatted = formatGameMarkup(
       '<color=#f29e38ff><unbreak>#1[i]%</unbreak></color>生命值',
@@ -245,7 +285,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(91);
-    expect(manifest.schemaVersion).toBe(16);
+    expect(manifest.schemaVersion).toBe(17);
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     const basicAttack = variantOf(character, '100101');
@@ -434,7 +474,7 @@ describe('真实数据管线', () => {
       effect: { code: 'SingleAttack', label: '单攻', known: true },
       battlePointDelta: 1,
       energyGain: 20,
-      toughnessDamage: 10
+      stanceDisplay: [{ type: 'single', value: 10 }]
     });
     expect(variantOf(march, '100102')?.combatMeta).toEqual({
       effect: { code: 'Defence', label: '防御', known: true },
@@ -447,10 +487,24 @@ describe('真实数据管线', () => {
         (id) => variantOf(imbibitorLunae, id)?.combatMeta
       )
     ).toMatchObject([
-      { battlePointDelta: 1, energyGain: 20, toughnessDamage: 10 },
-      { battlePointDelta: -1, energyGain: 30, toughnessDamage: 20 },
-      { battlePointDelta: -2, energyGain: 35, toughnessDamage: 30 },
-      { battlePointDelta: -3, energyGain: 40, toughnessDamage: 40 }
+      { battlePointDelta: 1, energyGain: 20, stanceDisplay: [{ type: 'single', value: 10 }] },
+      { battlePointDelta: -1, energyGain: 30, stanceDisplay: [{ type: 'single', value: 20 }] },
+      {
+        battlePointDelta: -2,
+        energyGain: 35,
+        stanceDisplay: [
+          { type: 'single', value: 30 },
+          { type: 'blast', value: 10 }
+        ]
+      },
+      {
+        battlePointDelta: -3,
+        energyGain: 40,
+        stanceDisplay: [
+          { type: 'single', value: 40 },
+          { type: 'blast', value: 20 }
+        ]
+      }
     ]);
 
     expect(variantOf(firefly, '131002')?.combatMeta).toMatchObject({
@@ -463,15 +517,42 @@ describe('真实数据管线', () => {
     });
     expect(variantOf(castorice, '140702')?.combatMeta).toMatchObject({
       specialResource: '<unbreak>30%</unbreak>我方全体当前生命值',
-      toughnessDamage: 20
+      stanceDisplay: [
+        { type: 'single', value: 20 },
+        { type: 'blast', value: 10 }
+      ]
     });
     expect(variantOf(castorice, '140702')?.combatMeta).not.toHaveProperty('battlePointDelta');
     expect(variantOf(castorice, '1140702')?.combatMeta).toMatchObject({
       effect: { code: 'AoEAttack', label: '群攻', known: true },
-      toughnessDamage: 10
+      stanceDisplay: [{ type: 'aoe', value: 10 }]
     });
-    expect(variantOf(theHerta, '140102')?.combatMeta.toughnessDamage).toBe(15);
-    expect(variantOf(theHerta, '140109')?.combatMeta.toughnessDamage).toBe(20);
+    expect(variantOf(theHerta, '140102')?.combatMeta.stanceDisplay).toEqual([
+      { type: 'single', value: 15 },
+      { type: 'blast', value: 10 }
+    ]);
+    expect(variantOf(theHerta, '140109')?.combatMeta.stanceDisplay).toEqual([
+      { type: 'single', value: 20 },
+      { type: 'blast', value: 10 }
+    ]);
+    expect(variantOf(theHerta, '140109')?.combatMeta).not.toHaveProperty('toughnessDamage');
+  });
+
+  it('角色 ExtraEffect 按技能变体归属，并对完整/简略列表保序去重', async () => {
+    const readCharacter = async (id: string) =>
+      JSON.parse(
+        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+      ) as Character;
+    const huntMarch = await readCharacter('1224');
+    const sushang = await readCharacter('1206');
+
+    expect(variantOf(huntMarch, '122401')?.combatMeta.extraEffects).toBeUndefined();
+    expect(variantOf(huntMarch, '122408')?.combatMeta.extraEffects).toEqual([
+      expect.objectContaining({ id: '30000002', name: '固定概率' })
+    ]);
+    expect(
+      variantOf(sushang, '120602')?.combatMeta.extraEffects?.map((effect) => effect.id)
+    ).toEqual(['10000005', '10000006']);
   });
 
   it('通过 PointType 4 关系生成忆灵技并清除错误行迹重复', async () => {

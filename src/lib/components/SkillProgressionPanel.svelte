@@ -2,6 +2,7 @@
   import type { SkillProgression, SkillVariant } from '$lib/domain/types';
   import GameText from '$lib/components/GameText.svelte';
   import SkillCombatMeta from '$lib/components/SkillCombatMeta.svelte';
+  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
   import SkillEffectTag from '$lib/components/SkillEffectTag.svelte';
   import { gameTextToPlain } from '$lib/domain/game-text';
 
@@ -60,6 +61,7 @@
                 class:scaling-value={token.type === 'scaling-value'}>{token.value}</span
               >{/each}
           </p>{:else}<p class="data-placeholder">上游原始数据未提供该技能描述。</p>{/if}
+        <SkillExtraEffects effects={variant.combatMeta.extraEffects ?? []} />
       </section>
     {/each}
   </div>

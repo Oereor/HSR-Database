@@ -55,12 +55,27 @@ export type KnownSkillEffect =
   | 'Summon'
   | 'MazeAttack';
 
+export type SkillStanceDisplayType = 'single' | 'aoe' | 'blast';
+
+export interface SkillStanceDisplay {
+  type: SkillStanceDisplayType;
+  value: number;
+}
+
+export interface SkillExtraEffect {
+  id: string;
+  name: string;
+  description: string;
+}
+
 export interface SkillCombatMeta {
   effect?: SemanticTag;
   specialResource?: string;
   battlePointDelta?: number;
   energyGain?: number;
+  stanceDisplay?: SkillStanceDisplay[];
   toughnessDamage?: number;
+  extraEffects?: SkillExtraEffect[];
 }
 
 export interface SemanticTag {
@@ -246,11 +261,7 @@ export interface EnemySummonReference {
   href: string;
 }
 
-export interface EnemyExtraEffect {
-  id: string;
-  name: string;
-  description: string;
-}
+export type EnemyExtraEffect = SkillExtraEffect;
 
 export interface EnemySkill {
   id: string;

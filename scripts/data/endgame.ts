@@ -223,7 +223,7 @@ export interface EndgameBuildResult {
   audit: EndgameAudit;
 }
 
-const SCHEMA_VERSION = 16 as const;
+const SCHEMA_VERSION = 17 as const;
 const MODES: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 const MAX_SAMPLES = 20;
 const PF_ROUNDING_METADATA = {

@@ -2182,6 +2182,17 @@ th {
   font-size: var(--font-meta-key);
   line-height: 1.65;
 }
+.skill-variant .enemy-extra-effects {
+  margin-top: 0.8rem;
+}
+.stance-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+}
+.stance-display span {
+  white-space: nowrap;
+}
 .source-note {
   margin-top: 2.5rem;
   border-left: 2px solid var(--gold);

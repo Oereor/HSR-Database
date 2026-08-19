@@ -68,6 +68,7 @@ test('Enemy Detail 展示语义弱点、非零抗性、状态抗性、召唤和�
 test('Enemy ExtraEffect 使用原生可访问 disclosure，缺失 DamageType 不推断', async ({ page }) => {
   await page.goto('/enemies/1004014');
   const skill = page.locator('[data-enemy-skill="100401411"]');
+  await expect(page.locator('[data-enemy-skill="100401414"]')).toHaveCount(0);
   await expect(skill.getByText('天赋', { exact: true })).toHaveCount(1);
   const details = skill.locator('details');
   await expect(details).not.toHaveAttribute('open', '');
