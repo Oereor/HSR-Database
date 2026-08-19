@@ -67,6 +67,12 @@
 - phase、召唤、共享生命与 HP 操作只生成保守机制标记；最终整数化、复杂 Boss 伤害需求和运行时刷怪逻辑仍不推测。
 - 当前共生成 108 个 Group、823 个 Encounter、1,858 个 Stage 和 24,374 个 occurrence；核心关联错误为 0，历史 MoC 显式 Elite fallback 为 5,272 条。
 
+## 第七次重构第二阶段：Enemy Phase Tabs 与 Variant 调查
+
+- 业务数据升级为 schema 18；敌方保留唯一有序技能列表，并新增由 `MonsterSkillConfig.PhaseList` 规范化的 `skillPhases`。阶段编号不重排，空 PhaseList 技能属于所有已知阶段，过滤后空阶段仍保留。
+- 多阶段敌方详情使用可访问 tabs 展示各阶段技能；单阶段保持直接列表，技能卡不再重复显示“适用阶段”。
+- Enemy Family / Variant 仅完成全库调查和报告，未实现聚合、代表选择、URL、搜索、overview 或 Endgame identity 变化。
+
 ## 第五次重构：Endgame UI
 
 - 新增独立 `/endgame` 顶级功能区以及按 mode/group 静态预渲染的 108 个赛期页面；Enemy 百科继续回答模板资料，Endgame 页面只回答具体赛期中的实际敌方实例。

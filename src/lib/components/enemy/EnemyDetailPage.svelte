@@ -8,6 +8,33 @@
 
   export let detail: EnemyDetailView;
   let failedPortrait = false;
+  let activePhaseIndex = detail.skillPhases[0]?.index;
+
+  $: if (!detail.skillPhases.some((phase) => phase.index === activePhaseIndex))
+    activePhaseIndex = detail.skillPhases[0]?.index;
+
+  function selectPhase(index: number, target?: HTMLElement): void {
+    activePhaseIndex = index;
+    target?.focus();
+  }
+
+  function handlePhaseKeydown(event: KeyboardEvent, currentIndex: number): void {
+    const phaseIndexes = detail.skillPhases.map((phase) => phase.index);
+    const currentPosition = phaseIndexes.indexOf(currentIndex);
+    let nextPosition: number;
+    if (event.key === 'ArrowRight') nextPosition = (currentPosition + 1) % phaseIndexes.length;
+    else if (event.key === 'ArrowLeft')
+      nextPosition = (currentPosition - 1 + phaseIndexes.length) % phaseIndexes.length;
+    else if (event.key === 'Home') nextPosition = 0;
+    else if (event.key === 'End') nextPosition = phaseIndexes.length - 1;
+    else return;
+    event.preventDefault();
+    const nextIndex = phaseIndexes[nextPosition];
+    selectPhase(
+      nextIndex,
+      document.getElementById(`enemy-phase-tab-${detail.id}-${nextIndex}`) ?? undefined
+    );
+  }
 
   const specialResistanceDisplayLabels: Record<string, string> = {
     STAT_CTRL: '控制抵抗',
@@ -145,7 +172,41 @@
     <h2>技能</h2>
     <span>{detail.skills.length} 项</span>
   </div>
-  {#if detail.skills.length}<div class="enemy-skill-list">
+  {#if detail.skillPhases.length > 1}
+    <div class="enemy-phase-tabs" role="tablist" aria-label="敌人技能阶段">
+      {#each detail.skillPhases as phase (phase.index)}
+        <button
+          id={`enemy-phase-tab-${detail.id}-${phase.index}`}
+          class="enemy-phase-tab"
+          class:enemy-phase-tab--active={phase.index === activePhaseIndex}
+          type="button"
+          role="tab"
+          aria-selected={phase.index === activePhaseIndex}
+          aria-controls={`enemy-phase-panel-${detail.id}-${phase.index}`}
+          tabindex={phase.index === activePhaseIndex ? 0 : -1}
+          on:click={(event) => selectPhase(phase.index, event.currentTarget)}
+          on:keydown={(event) => handlePhaseKeydown(event, phase.index)}>阶段 {phase.index}</button
+        >
+      {/each}
+    </div>
+    {#each detail.skillPhases as phase (phase.index)}
+      {#if phase.index === activePhaseIndex}
+        <div
+          id={`enemy-phase-panel-${detail.id}-${phase.index}`}
+          class="enemy-skill-list"
+          role="tabpanel"
+          aria-labelledby={`enemy-phase-tab-${detail.id}-${phase.index}`}
+          tabindex="0"
+        >
+          {#if phase.skills.length}
+            {#each phase.skills as skill (skill.id)}<EnemySkillCard {skill} />{/each}
+          {:else}<p class="data-placeholder">该阶段没有可展示的技能。</p>{/if}
+        </div>
+      {/if}
+    {/each}
+  {:else if detail.skills.length}
+    <div class="enemy-skill-list">
       {#each detail.skills as skill (skill.id)}<EnemySkillCard {skill} />{/each}
-    </div>{:else}<p class="data-placeholder">上游未提供可展示的敌人技能。</p>{/if}
+    </div>
+  {:else}<p class="data-placeholder">上游未提供可展示的敌人技能。</p>{/if}
 </section>

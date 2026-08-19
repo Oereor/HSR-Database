@@ -224,6 +224,7 @@ export interface Enemy extends CatalogEntry {
   specialResistances: EnemySpecialResistance[];
   summons: EnemySummonReference[];
   skills: EnemySkill[];
+  skillPhases: EnemySkillPhase[];
 }
 
 export type EnemyStatValue =
@@ -262,6 +263,11 @@ export interface EnemySummonReference {
 }
 
 export type EnemyExtraEffect = SkillExtraEffect;
+
+export interface EnemySkillPhase {
+  index: number;
+  skillIds: string[];
+}
 
 export interface EnemySkill {
   id: string;

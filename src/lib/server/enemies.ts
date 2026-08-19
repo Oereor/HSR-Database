@@ -6,6 +6,15 @@ import { getDetail } from '$lib/server/generated';
 export async function getEnemyDetail(id: string): Promise<EnemyDetailView> {
   const detail = (await getDetail('enemies', id)) as unknown as Enemy;
   if (detail.kind !== 'enemy') throw new Error(`Enemy ${id} 数据类型不匹配`);
+  const skillsById = new Map(detail.skills.map((skill) => [skill.id, skill]));
+  const skillPhases = detail.skillPhases.map((phase) => ({
+    index: phase.index,
+    skills: phase.skillIds.map((skillId) => {
+      const skill = skillsById.get(skillId);
+      if (!skill) throw new Error(`Enemy ${id} 阶段 ${phase.index} 引用了未知技能 ${skillId}`);
+      return skill;
+    })
+  }));
   const [portraitUrl, summons] = await Promise.all([
     getEnemyPortraitUrl(Number(detail.id)),
     Promise.all(
@@ -15,5 +24,5 @@ export async function getEnemyDetail(id: string): Promise<EnemyDetailView> {
       })
     )
   ]);
-  return { ...detail, ...(portraitUrl ? { portraitUrl } : {}), summons };
+  return { ...detail, ...(portraitUrl ? { portraitUrl } : {}), summons, skillPhases };
 }

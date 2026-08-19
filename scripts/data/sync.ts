@@ -48,6 +48,7 @@ import { formatGameMarkup, formatGameText } from './text.js';
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildEndgameData } from './endgame.js';
 import {
+  buildEnemySkillPhases,
   normalizeEnemyPhases,
   normalizeEnemySkillKind,
   normalizeEnemySkillTag,
@@ -1005,6 +1006,8 @@ export async function syncData(): Promise<DataManifest> {
       configName
     );
     const skills: EnemySkill[] = [];
+    const phaseInputs: Array<{ id: string; phases: number[]; visible: boolean }> = [];
+    const seenSkillIds = new Set<string>();
     for (const rawSkillId of config.SkillList ?? []) {
       const skillId = String(rawSkillId);
       const skill = monsterSkillRows.get(skillId);
@@ -1012,6 +1015,9 @@ export async function syncData(): Promise<DataManifest> {
         enemyAudit.unresolvedSkills.push({ enemyId: id, skillId });
         continue;
       }
+      if (seenSkillIds.has(skillId)) continue;
+      seenSkillIds.add(skillId);
+      const phases = normalizeEnemyPhases(skill.PhaseList);
       const kindLabel = tr(skill.SkillTypeDesc, source('enemy-skill', skillId, 'SkillTypeDesc'));
       const kind = normalizeEnemySkillKind(kindLabel);
       if (kind === 'unknown')
@@ -1025,7 +1031,9 @@ export async function syncData(): Promise<DataManifest> {
         values(skill.ParamList)
       );
       collectDescriptionDiagnostics('enemy-skill', skillId, formattedDescription.diagnostics);
-      if (!gameTextToPlain(formattedDescription.text).trim()) continue;
+      const visible = Boolean(gameTextToPlain(formattedDescription.text).trim());
+      phaseInputs.push({ id: skillId, phases, visible });
+      if (!visible) continue;
       let damageType;
       if (skill.DamageType !== undefined) {
         const rawElement = String(skill.DamageType);
@@ -1053,10 +1061,11 @@ export async function syncData(): Promise<DataManifest> {
         kind,
         tag,
         ...(damageType ? { damageType } : {}),
-        phases: normalizeEnemyPhases(skill.PhaseList),
+        phases,
         extraEffects
       });
     }
+    const skillPhases = buildEnemySkillPhases(phaseInputs);
 
     const weaknesses = (config.StanceWeakList ?? []).flatMap((rawElement: unknown) => {
       const sourceElement = String(rawElement);
@@ -1139,7 +1148,8 @@ export async function syncData(): Promise<DataManifest> {
       resistances,
       specialResistances: special.values,
       summons,
-      skills
+      skills,
+      skillPhases
     });
     searchSeeds.push({
       entry: { id, kind: 'enemy', name, href: `/enemies/${id}`, aliases: [], meta: template.Rank },
@@ -1181,7 +1191,7 @@ export async function syncData(): Promise<DataManifest> {
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 17,
+    schemaVersion: 18,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),

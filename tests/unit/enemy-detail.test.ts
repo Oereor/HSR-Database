@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 import type { Enemy } from '../../src/lib/domain/types';
 import { formatRoundedDecimal } from '../../src/lib/domain/endgame-view';
 import {
+  buildEnemySkillPhases,
   normalizeEnemyPhases,
   normalizeEnemySkillKind,
   normalizeEnemySkillTag,
@@ -74,7 +75,7 @@ describe('Enemy Detail parser/resolver', () => {
       label: '未来标签',
       known: false
     });
-    expect(normalizeEnemyPhases([2, 1, 2, 0, -1, 'bad'])).toEqual([2, 1]);
+    expect(normalizeEnemyPhases([2, 1, 2, 0, -1, 'bad'])).toEqual([1, 2]);
     const normalized = normalizeSpecialResistances([
       { Key: 'STAT_CTRL', Value: wrapped('0.5') },
       { Key: 'STAT_CTRL_Frozen', Value: wrapped('0.4') },
@@ -95,6 +96,32 @@ describe('Enemy Detail parser/resolver', () => {
       '风化'
     ]);
     expect(normalized.unknownKeys).toEqual(['STAT_FUTURE']);
+  });
+
+  it('规范化真实阶段、共享技能、过滤后空阶段与原始技能顺序', () => {
+    expect(
+      buildEnemySkillPhases([
+        { id: 'shared', phases: [], visible: true },
+        { id: 'later', phases: [3, 2, 3, 0], visible: true },
+        { id: 'filtered', phases: [2], visible: false },
+        { id: 'last', phases: [3], visible: true }
+      ])
+    ).toEqual([
+      { index: 2, skillIds: ['shared', 'later'] },
+      { index: 3, skillIds: ['shared', 'later', 'last'] }
+    ]);
+    expect(
+      buildEnemySkillPhases([
+        { id: 'only-filtered', phases: [1], visible: false },
+        { id: 'visible-later', phases: [2], visible: true }
+      ])
+    ).toEqual([
+      { index: 1, skillIds: [] },
+      { index: 2, skillIds: ['visible-later'] }
+    ]);
+    expect(buildEnemySkillPhases([{ id: 'single', phases: [], visible: true }])).toEqual([
+      { index: 1, skillIds: ['single'] }
+    ]);
   });
 });
 
@@ -134,6 +161,32 @@ describe('Enemy Detail 真实数据回归', () => {
       damageType: { element: 'Imaginary', name: '虚数' },
       phases: [1, 2]
     });
+    expect(aventurine.skillPhases).toHaveLength(2);
+    expect(aventurine.skillPhases.every((phase) => phase.skillIds.includes('803401002'))).toBe(
+      true
+    );
+  });
+
+  it('按原始 PhaseList 生成单阶段、两阶段、三阶段与特殊 2/3 阶段', async () => {
+    expect((await enemy('3002011')).skillPhases.map((phase) => phase.index)).toEqual([1]);
+
+    const twoPhase = await enemy('1005010');
+    expect(twoPhase.skillPhases.map((phase) => phase.index)).toEqual([1, 2]);
+    expect(twoPhase.skillPhases[0].skillIds).toContain('100501001');
+    expect(twoPhase.skillPhases[0].skillIds).not.toContain('100501005');
+    expect(twoPhase.skillPhases[1].skillIds).toContain('100501005');
+    expect(twoPhase.skillPhases.every((phase) => phase.skillIds.includes('100501003'))).toBe(true);
+
+    const threePhase = await enemy('1004011');
+    expect(threePhase.skillPhases.map((phase) => phase.index)).toEqual([1, 2, 3]);
+    expect(threePhase.skillPhases.every((phase) => phase.skillIds.includes('100401101'))).toBe(
+      true
+    );
+    expect(
+      threePhase.skillPhases.slice(1).every((phase) => phase.skillIds.includes('100401103'))
+    ).toBe(true);
+
+    expect((await enemy('4014022')).skillPhases.map((phase) => phase.index)).toEqual([2, 3]);
   });
 
   it('技能仅发布安全字段，并保持 ExtraEffect 与缺失 DamageType 的边界', async () => {

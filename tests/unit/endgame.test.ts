@@ -164,9 +164,9 @@ describe('PF HP resolver', () => {
 });
 
 describe('Endgame 真实数据管线', () => {
-  it('四个模式使用 schema 17 且 fixed/spawn 模型分离', async () => {
+  it('四个模式使用 schema 18 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
-    expect(all.every((item) => item.schemaVersion === 17)).toBe(true);
+    expect(all.every((item) => item.schemaVersion === 18)).toBe(true);
     expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
       'fixed'
     );

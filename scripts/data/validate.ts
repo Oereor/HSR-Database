@@ -42,7 +42,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 17)
+if (manifest.schemaVersion !== 18)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -112,7 +112,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 17 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 18 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -481,6 +481,33 @@ for (const enemy of enemyDetails) {
       if (forbidden in skill)
         throw new Error(`敌人 ${enemy.id} 技能 ${skill.id} 暴露构建期字段 ${forbidden}`);
   }
+  const phaseIndexes = enemy.skillPhases.map((phase) => phase.index);
+  if (
+    !phaseIndexes.length ||
+    new Set(phaseIndexes).size !== phaseIndexes.length ||
+    phaseIndexes.some((phase) => !Number.isSafeInteger(phase) || phase <= 0) ||
+    phaseIndexes.some((phase, index) => index > 0 && phase <= phaseIndexes[index - 1])
+  )
+    throw new Error(`敌人 ${enemy.id} 阶段索引无效或未升序`);
+  const publicSkillIds = new Set(generatedSkillIds);
+  const phaseSkillIds = new Set<string>();
+  for (const phase of enemy.skillPhases) {
+    if (new Set(phase.skillIds).size !== phase.skillIds.length)
+      throw new Error(`敌人 ${enemy.id} 阶段 ${phase.index} 包含重复技能`);
+    let previousRawIndex = -1;
+    for (const skillId of phase.skillIds) {
+      if (!publicSkillIds.has(skillId))
+        throw new Error(`敌人 ${enemy.id} 阶段 ${phase.index} 引用了非公开技能 ${skillId}`);
+      const rawIndex = rawSkillIds.indexOf(skillId);
+      if (rawIndex <= previousRawIndex)
+        throw new Error(`敌人 ${enemy.id} 阶段 ${phase.index} 技能顺序异常`);
+      previousRawIndex = rawIndex;
+      phaseSkillIds.add(skillId);
+    }
+  }
+  for (const skillId of generatedSkillIds)
+    if (!phaseSkillIds.has(skillId))
+      throw new Error(`敌人 ${enemy.id} 公开技能 ${skillId} 未归入任何阶段`);
 }
 if (
   audit.enemyAudit.canonicalJoin.resolved !== enemyDetails.length ||

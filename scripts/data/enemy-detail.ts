@@ -1,6 +1,7 @@
 import type {
   ElementLabel,
   EnemyLevelStats,
+  EnemySkillPhase,
   EnemySpecialResistance,
   EnemyStatProgression,
   EnemyStatValue,
@@ -60,7 +61,36 @@ export function normalizeEnemyPhases(value: unknown): number[] {
   if (!Array.isArray(value)) return [];
   return [
     ...new Set(value.map(Number).filter((phase) => Number.isSafeInteger(phase) && phase > 0))
-  ];
+  ].sort((left, right) => left - right);
+}
+
+export interface EnemySkillPhaseInput {
+  id: string;
+  phases: number[];
+  visible: boolean;
+}
+
+export function buildEnemySkillPhases(skills: EnemySkillPhaseInput[]): EnemySkillPhase[] {
+  const normalizedSkills = skills.map((skill) => ({
+    ...skill,
+    phases: normalizeEnemyPhases(skill.phases)
+  }));
+  const explicitPhases = [...new Set(normalizedSkills.flatMap((skill) => skill.phases))].sort(
+    (left, right) => left - right
+  );
+  const phaseIndexes = explicitPhases.length ? explicitPhases : [1];
+
+  return phaseIndexes.map((index) => {
+    const skillIds: string[] = [];
+    const seen = new Set<string>();
+    for (const skill of normalizedSkills) {
+      if (!skill.visible || seen.has(skill.id)) continue;
+      if (skill.phases.length && !skill.phases.includes(index)) continue;
+      seen.add(skill.id);
+      skillIds.push(skill.id);
+    }
+    return { index, skillIds };
+  });
 }
 
 export function normalizeSpecialResistances(value: unknown): {

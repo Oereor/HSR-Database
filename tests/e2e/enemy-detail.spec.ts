@@ -56,7 +56,8 @@ test('Enemy Detail 展示语义弱点、非零抗性、状态抗性、召唤和�
   await expect(skill).toContainText('分散投资');
   await expect(skill.locator('[data-skill-effect="Bounce"]')).toHaveText('弹射');
   await expect(skill.locator('[data-icon-kind="element"]')).toContainText('虚数');
-  await expect(skill).toContainText('适用阶段 1 / 2');
+  await expect(page.getByRole('tab', { name: '阶段 1' })).toHaveAttribute('aria-selected', 'true');
+  await expect(skill).not.toContainText('适用阶段');
   await expect(skill.locator('.enemy-skill-meta [data-icon-kind="element"]')).toHaveCSS(
     'border-top-width',
     '0px'
@@ -67,6 +68,7 @@ test('Enemy Detail 展示语义弱点、非零抗性、状态抗性、召唤和�
 
 test('Enemy ExtraEffect 使用原生可访问 disclosure，缺失 DamageType 不推断', async ({ page }) => {
   await page.goto('/enemies/1004014');
+  await page.getByRole('tab', { name: '阶段 2' }).click();
   const skill = page.locator('[data-enemy-skill="100401411"]');
   await expect(page.locator('[data-enemy-skill="100401414"]')).toHaveCount(0);
   await expect(skill.getByText('天赋', { exact: true })).toHaveCount(1);
@@ -81,6 +83,50 @@ test('Enemy ExtraEffect 使用原生可访问 disclosure，缺失 DamageType 不
   await expect(
     page.locator('[data-enemy-skill="403401302"] [data-icon-kind="element"]')
   ).toHaveCount(0);
+});
+
+test('Enemy Phase Tabs 保留真实阶段、共享技能与可访问键盘交互', async ({ page }) => {
+  await page.goto('/enemies/3002011');
+  await expect(page.getByRole('tablist')).toHaveCount(0);
+  await expect(page.locator('[data-enemy-skill="300201102"]')).toBeVisible();
+
+  await page.goto('/enemies/1005010');
+  const tabs = page.getByRole('tablist', { name: '敌人技能阶段' });
+  await expect(tabs.getByRole('tab')).toHaveCount(2);
+  const phase1 = tabs.getByRole('tab', { name: '阶段 1' });
+  const phase2 = tabs.getByRole('tab', { name: '阶段 2' });
+  await expect(phase1).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[data-enemy-skill="100501001"]')).toBeVisible();
+  await expect(page.locator('[data-enemy-skill="100501005"]')).toHaveCount(0);
+  await expect(page.locator('[data-enemy-skill="100501003"]')).toBeVisible();
+
+  await phase1.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(phase2).toBeFocused();
+  await expect(phase2).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[data-enemy-skill="100501001"]')).toHaveCount(0);
+  await expect(page.locator('[data-enemy-skill="100501005"]')).toBeVisible();
+  await expect(page.locator('[data-enemy-skill="100501003"]')).toBeVisible();
+  await expect(page.getByRole('tabpanel')).toHaveAttribute(
+    'aria-labelledby',
+    'enemy-phase-tab-1005010-2'
+  );
+
+  await page.keyboard.press('Home');
+  await expect(phase1).toBeFocused();
+  await page.keyboard.press('End');
+  await expect(phase2).toBeFocused();
+  await page.keyboard.press('ArrowRight');
+  await expect(phase1).toBeFocused();
+
+  await page.goto('/enemies/1004011');
+  await expect(page.getByRole('tab')).toHaveCount(3);
+  await page.getByRole('tab', { name: '阶段 3' }).click();
+  await expect(page.locator('[data-enemy-skill="100401101"]')).toBeVisible();
+  await expect(page.locator('[data-enemy-skill="100401103"]')).toBeVisible();
+
+  await page.goto('/enemies/4014022');
+  expect(await page.getByRole('tab').allTextContents()).toEqual(['阶段 2', '阶段 3']);
 });
 
 test('Enemy 技能保持单列开放布局，并建立清晰的标题与描述层级', async ({ page }) => {
@@ -170,11 +216,12 @@ test('Enemy Detail 各代表视口无横向溢出，移动端收起 Hero 立绘'
     { width: 390, height: 844 }
   ]) {
     await page.setViewportSize(viewport);
-    await page.goto('/enemies/8034010');
+    await page.goto('/enemies/1005010');
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth
     );
     expect(overflow).toBeLessThanOrEqual(1);
+    await expect(page.getByRole('tablist')).toBeVisible();
     const resistanceColumns = await page
       .locator('.enemy-resistance-surface')
       .evaluate((surface) => getComputedStyle(surface).gridTemplateColumns.split(' ').length);
