@@ -159,7 +159,7 @@ for (const template of templates) {
     if (skillRows.some((skill) => !Array.isArray(skill.PhaseList) || !skill.PhaseList.length))
       unrestrictedSkillEnemies += 1;
     const publicSkillIds = new Set(
-      generatedEnemies.get(templateIdOf(template))?.skills.map((skill) => skill.id)
+      generatedEnemies.get(templateIdOf(template))?.defaultMonster.skills.map((skill) => skill.id)
     );
     if (
       skillRows.some(

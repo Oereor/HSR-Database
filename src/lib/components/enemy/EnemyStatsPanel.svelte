@@ -3,9 +3,8 @@
   import { formatRoundedDecimal } from '$lib/domain/endgame-view';
 
   export let progression: EnemyStatProgression;
-  export let controlId: string;
+  export let level: number;
 
-  let level = progression.defaultLevel;
   $: row = progression.levels.find((candidate) => candidate.level === Number(level));
 
   const integer = (value: EnemyStatValue): string =>
@@ -29,24 +28,7 @@
 </script>
 
 <div class="enemy-stats-panel">
-  <div class="skill-level-control enemy-level-control">
-    <div>
-      <label for={controlId}>敌人等级</label><output for={controlId}>Lv.{level}</output>
-    </div>
-    <input
-      id={controlId}
-      type="range"
-      min={progression.minLevel}
-      max={progression.maxLevel}
-      step="1"
-      bind:value={level}
-      aria-valuetext={`等级 ${level}`}
-    />
-    <div class="skill-level-range" aria-hidden="true">
-      <span>Lv.{progression.minLevel}</span><span>Lv.{progression.maxLevel}</span>
-    </div>
-  </div>
-  <dl class="enemy-stats-list" aria-label={`Lv.${level} 敌人基础属性`}>
+  <dl class="enemy-stats-list" aria-label={`Lv.${level} 敌人实际属性`}>
     {#each stats as stat (stat[0])}
       <div class="enemy-stat-row" data-enemy-stat={stat[0]}>
         <dt>{stat[1]}</dt>

@@ -208,7 +208,7 @@
       </ul>{:else}<p class="muted">上游数据未提供可解析的获取来源。</p>{/if}
   </section>
 {:else if category === 'enemies'}
-  <EnemyDetailPage {detail} />
+  {#key detail.id}<EnemyDetailPage {detail} />{/key}
 {/if}
 
 <aside class="source-note">

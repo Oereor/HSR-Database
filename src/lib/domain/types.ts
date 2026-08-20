@@ -233,20 +233,8 @@ export interface Enemy extends CatalogEntry {
   /** Canonical MonsterID used by the current detail page compatibility view. */
   defaultMonsterId: string;
   defaultMonster: Monster;
-  /** @deprecated presentation compatibility projection; use defaultMonster. */
-  stats: EnemyStatProgression;
-  /** @deprecated presentation compatibility projection; use defaultMonster. */
+  /** @deprecated Endgame compatibility projection; use defaultMonster elsewhere. */
   weaknesses: ElementLabel[];
-  /** @deprecated presentation compatibility projection; use defaultMonster. */
-  resistances: Array<ElementLabel & { value: number }>;
-  /** @deprecated presentation compatibility projection; use defaultMonster. */
-  specialResistances: EnemySpecialResistance[];
-  /** @deprecated presentation compatibility projection; use defaultMonster. */
-  summons: EnemySummonReference[];
-  /** @deprecated presentation compatibility projection; use defaultMonster. */
-  skills: EnemySkill[];
-  /** @deprecated presentation compatibility projection; use defaultMonster. */
-  skillPhases: EnemySkillPhase[];
 }
 
 export interface EnemyTemplateBaseStats {

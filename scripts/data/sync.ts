@@ -1236,14 +1236,8 @@ export async function syncData(): Promise<DataManifest> {
       monsters: [canonicalMonster],
       defaultMonsterId: id,
       defaultMonster: canonicalMonster,
-      // Kept until the next UI migration; these are a projection of defaultMonster.
-      stats: canonicalMonster.stats,
-      weaknesses: canonicalMonster.weaknesses,
-      resistances: canonicalMonster.resistances,
-      specialResistances: canonicalMonster.specialResistances,
-      summons: canonicalMonster.summons,
-      skills: canonicalMonster.skills,
-      skillPhases: canonicalMonster.skillPhases
+      // Kept only for the Endgame reference view until that consumer is migrated.
+      weaknesses: canonicalMonster.weaknesses
     });
     searchSeeds.push({
       entry: { id, kind: 'enemy', name, href: `/enemies/${id}`, aliases: [], meta: template.Rank },
@@ -1251,8 +1245,7 @@ export async function syncData(): Promise<DataManifest> {
     });
   }
 
-  // Build the explicit Template -> Monster relation. The legacy top-level fields above
-  // remain the canonical/default Monster projection for the existing detail UI.
+  // Build the explicit Template -> Monster relation.
   for (const enemy of enemies) {
     const templateId = enemy.id;
     const template = monsterTemplates.get(templateId);
@@ -1266,7 +1259,7 @@ export async function syncData(): Promise<DataManifest> {
       const elite = eliteRows.get(String(config.EliteGroup));
       const stats = elite
         ? resolveCanonicalEnemyStats(template, config, levels, elite)
-        : { ...enemy.stats };
+        : { ...enemy.defaultMonster.stats };
       const weaknesses = (config.StanceWeakList ?? []).flatMap((rawElement: unknown) => {
         const sourceElement = String(rawElement);
         const element = normalizeElementType(sourceElement);

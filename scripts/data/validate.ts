@@ -420,101 +420,18 @@ for (const enemy of enemyDetails) {
   const config = rawConfigByMonsterId.get(enemy.id);
   if (!template || !config || String(config.MonsterTemplateID) !== enemy.id)
     throw new Error(`敌人 ${enemy.id} canonical join 失败`);
-  const hardLevels = rawHardLevelsByGroup.get(String(config.HardLevelGroup)) ?? [];
-  const elite = rawEliteById.get(String(config.EliteGroup));
-  if (!elite) throw new Error(`敌人 ${enemy.id} 缺少 EliteGroup`);
-  const expectedStats = resolveCanonicalEnemyStats(template, config, hardLevels, elite);
-  if (JSON.stringify(enemy.stats) !== JSON.stringify(expectedStats))
-    throw new Error(`敌人 ${enemy.id} 等级属性未通过共享 resolver 重算`);
-  if (
-    enemy.stats.minLevel !== 1 ||
-    enemy.stats.maxLevel !== 100 ||
-    enemy.stats.defaultLevel !== 95 ||
-    enemy.stats.levels.length !== 100
-  )
-    throw new Error(`敌人 ${enemy.id} Lv.1–100 属性范围异常`);
-  if (
-    enemy.resistances.some((resistance) => !isElementType(resistance.element) || !resistance.value)
-  )
-    throw new Error(`敌人 ${enemy.id} 包含零值或未知元素抗性`);
-  weaknessResistanceConflictCount += enemy.resistances.filter((resistance) =>
-    enemy.weaknesses.some((weakness) => weakness.element === resistance.element)
-  ).length;
-  for (const resistance of enemy.specialResistances)
-    if (enemySpecialResistanceLabels[resistance.code] !== resistance.label)
-      throw new Error(`敌人 ${enemy.id} 特殊状态抗性映射异常：${resistance.code}`);
-  if (
-    new Set(enemy.summons.map((summon) => summon.monsterTemplateId)).size !== enemy.summons.length
-  )
-    throw new Error(`敌人 ${enemy.id} 召唤目标未按模板去重`);
-  for (const summon of enemy.summons)
-    if (
-      !rawConfigByMonsterId.has(summon.monsterId) ||
-      !rawTemplateById.has(summon.monsterTemplateId) ||
-      summon.href !== `/enemies/${summon.monsterTemplateId}`
-    )
-      throw new Error(`敌人 ${enemy.id} 召唤引用无效：${summon.monsterId}`);
-  const rawSkillIds = (config.SkillList ?? []).map(String);
-  const generatedSkillIds = enemy.skills.map((skill) => skill.id);
-  let generatedIndex = 0;
-  for (const rawSkillId of rawSkillIds) {
-    if (rawSkillId === generatedSkillIds[generatedIndex]) generatedIndex += 1;
-  }
-  if (generatedIndex !== generatedSkillIds.length)
-    throw new Error(`敌人 ${enemy.id} 技能链或顺序异常`);
-  for (const skill of enemy.skills) {
-    if (!skill.description.trim() || skill.description === '资料未提供')
-      throw new Error(`敌人 ${enemy.id} 技能 ${skill.id} 缺少公开描述`);
-    if (skill.tag.known && enemySkillTagCodes[skill.tag.label] !== skill.tag.code)
-      throw new Error(`敌人 ${enemy.id} 技能 ${skill.id} tag 映射异常`);
-    if (skill.phases.some((phase) => !Number.isSafeInteger(phase) || phase <= 0))
-      throw new Error(`敌人 ${enemy.id} 技能 ${skill.id} PhaseList 无效`);
-    for (const forbidden of [
-      'SPHitBase',
-      'DelayRatio',
-      'ParamList',
-      'ModifierList',
-      'AttackType',
-      'SkillTriggerKey',
-      'AI'
-    ])
-      if (forbidden in skill)
-        throw new Error(`敌人 ${enemy.id} 技能 ${skill.id} 暴露构建期字段 ${forbidden}`);
-  }
-  const phaseIndexes = enemy.skillPhases.map((phase) => phase.index);
-  if (
-    !phaseIndexes.length ||
-    new Set(phaseIndexes).size !== phaseIndexes.length ||
-    phaseIndexes.some((phase) => !Number.isSafeInteger(phase) || phase <= 0) ||
-    phaseIndexes.some((phase, index) => index > 0 && phase <= phaseIndexes[index - 1])
-  )
-    throw new Error(`敌人 ${enemy.id} 阶段索引无效或未升序`);
-  const publicSkillIds = new Set(generatedSkillIds);
-  const phaseSkillIds = new Set<string>();
-  for (const phase of enemy.skillPhases) {
-    if (new Set(phase.skillIds).size !== phase.skillIds.length)
-      throw new Error(`敌人 ${enemy.id} 阶段 ${phase.index} 包含重复技能`);
-    let previousRawIndex = -1;
-    for (const skillId of phase.skillIds) {
-      if (!publicSkillIds.has(skillId))
-        throw new Error(`敌人 ${enemy.id} 阶段 ${phase.index} 引用了非公开技能 ${skillId}`);
-      const rawIndex = rawSkillIds.indexOf(skillId);
-      if (rawIndex <= previousRawIndex)
-        throw new Error(`敌人 ${enemy.id} 阶段 ${phase.index} 技能顺序异常`);
-      previousRawIndex = rawIndex;
-      phaseSkillIds.add(skillId);
-    }
-  }
-  for (const skillId of generatedSkillIds)
-    if (!phaseSkillIds.has(skillId))
-      throw new Error(`敌人 ${enemy.id} 公开技能 ${skillId} 未归入任何阶段`);
-
   if (enemy.defaultMonsterId !== enemy.id)
     throw new Error(`敌人 ${enemy.id} 默认 MonsterID 必须是 canonical ID`);
   if (enemy.defaultMonster.monsterId !== enemy.defaultMonsterId)
     throw new Error(`敌人 ${enemy.id} defaultMonster 与 defaultMonsterId 不一致`);
-  if (!enemy.monsters.some((monster) => monster.monsterId === enemy.defaultMonsterId))
-    throw new Error(`敌人 ${enemy.id} 缺少 default MonsterConfig`);
+  const defaultMonster = enemy.monsters.find(
+    (monster) => monster.monsterId === enemy.defaultMonsterId
+  );
+  if (!defaultMonster) throw new Error(`敌人 ${enemy.id} 缺少 default MonsterConfig`);
+  if (JSON.stringify(defaultMonster) !== JSON.stringify(enemy.defaultMonster))
+    throw new Error(`敌人 ${enemy.id} defaultMonster 未引用 canonical Monster 数据`);
+  if (JSON.stringify(enemy.weaknesses) !== JSON.stringify(defaultMonster.weaknesses))
+    throw new Error(`敌人 ${enemy.id} Endgame 弱点兼容投影与 defaultMonster 不一致`);
   for (const monster of enemy.monsters) {
     if (monster.monsterTemplateId !== enemy.id)
       throw new Error(`敌人 ${enemy.id} 的 Monster ${monster.monsterId} template reference 错误`);
@@ -533,6 +450,98 @@ for (const enemy of enemyDetails) {
     );
     if (JSON.stringify(monster.stats) !== JSON.stringify(expectedMonsterStats))
       throw new Error(`Monster ${monster.monsterId} 等级属性未通过共享 resolver 重算`);
+    if (
+      monster.stats.minLevel !== 1 ||
+      monster.stats.maxLevel !== 100 ||
+      monster.stats.defaultLevel !== 95 ||
+      monster.stats.levels.length !== 100
+    )
+      throw new Error(`Monster ${monster.monsterId} Lv.1–100 属性范围异常`);
+    if (
+      monster.resistances.some(
+        (resistance) => !isElementType(resistance.element) || !resistance.value
+      )
+    )
+      throw new Error(`Monster ${monster.monsterId} 包含零值或未知元素抗性`);
+    if (monster.monsterId === enemy.defaultMonsterId) {
+      weaknessResistanceConflictCount += monster.resistances.filter((resistance) =>
+        monster.weaknesses.some((weakness) => weakness.element === resistance.element)
+      ).length;
+      if (
+        new Set(monster.summons.map((summon) => summon.monsterTemplateId)).size !==
+        monster.summons.length
+      )
+        throw new Error(`敌人 ${enemy.id} canonical 召唤目标未按模板去重`);
+    }
+    for (const resistance of monster.specialResistances)
+      if (enemySpecialResistanceLabels[resistance.code] !== resistance.label)
+        throw new Error(`Monster ${monster.monsterId} 特殊状态抗性映射异常：${resistance.code}`);
+    for (const summon of monster.summons)
+      if (
+        !rawConfigByMonsterId.has(summon.monsterId) ||
+        !rawTemplateById.has(summon.monsterTemplateId) ||
+        summon.href !== `/enemies/${summon.monsterTemplateId}`
+      )
+        throw new Error(`Monster ${monster.monsterId} 召唤引用无效：${summon.monsterId}`);
+
+    const rawSkillIds = (rawMonster.SkillList ?? []).map(String);
+    const generatedSkillIds = monster.skills.map((skill) => skill.id);
+    let generatedIndex = 0;
+    for (const rawSkillId of rawSkillIds)
+      if (rawSkillId === generatedSkillIds[generatedIndex]) generatedIndex += 1;
+    if (generatedIndex !== generatedSkillIds.length)
+      throw new Error(`Monster ${monster.monsterId} 技能链或顺序异常`);
+    for (const skill of monster.skills) {
+      if (!skill.description.trim() || skill.description === '资料未提供')
+        throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} 缺少公开描述`);
+      if (skill.tag.known && enemySkillTagCodes[skill.tag.label] !== skill.tag.code)
+        throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} tag 映射异常`);
+      if (skill.phases.some((phase) => !Number.isSafeInteger(phase) || phase <= 0))
+        throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} PhaseList 无效`);
+      for (const forbidden of [
+        'SPHitBase',
+        'DelayRatio',
+        'ParamList',
+        'ModifierList',
+        'AttackType',
+        'SkillTriggerKey',
+        'AI'
+      ])
+        if (forbidden in skill)
+          throw new Error(
+            `Monster ${monster.monsterId} 技能 ${skill.id} 暴露构建期字段 ${forbidden}`
+          );
+    }
+    const phaseIndexes = monster.skillPhases.map((phase) => phase.index);
+    if (
+      !phaseIndexes.length ||
+      new Set(phaseIndexes).size !== phaseIndexes.length ||
+      phaseIndexes.some((phase) => !Number.isSafeInteger(phase) || phase <= 0) ||
+      phaseIndexes.some((phase, index) => index > 0 && phase <= phaseIndexes[index - 1])
+    )
+      throw new Error(`Monster ${monster.monsterId} 阶段索引无效或未升序`);
+    const publicSkillIds = new Set(generatedSkillIds);
+    const phaseSkillIds = new Set<string>();
+    for (const phase of monster.skillPhases) {
+      if (new Set(phase.skillIds).size !== phase.skillIds.length)
+        throw new Error(`Monster ${monster.monsterId} 阶段 ${phase.index} 包含重复技能`);
+      let previousRawIndex = -1;
+      for (const skillId of phase.skillIds) {
+        if (!publicSkillIds.has(skillId))
+          throw new Error(
+            `Monster ${monster.monsterId} 阶段 ${phase.index} 引用了非公开技能 ${skillId}`
+          );
+        const rawIndex = rawSkillIds.indexOf(skillId);
+        if (rawIndex <= previousRawIndex)
+          throw new Error(`Monster ${monster.monsterId} 阶段 ${phase.index} 技能顺序异常`);
+        previousRawIndex = rawIndex;
+        phaseSkillIds.add(skillId);
+      }
+    }
+    for (const skillId of generatedSkillIds)
+      if (!phaseSkillIds.has(skillId))
+        throw new Error(`Monster ${monster.monsterId} 公开技能 ${skillId} 未归入任何阶段`);
+
     for (const [field, rawField] of [
       ['hp', 'HP'],
       ['attack', 'Attack'],
@@ -849,9 +858,10 @@ for (const enemy of enemies) {
   for (const weakness of enemy.weaknesses)
     if (!isElementType(weakness.element))
       throw new Error(`敌人 ${enemy.id} 使用未知弱点属性：${weakness.element}`);
-  for (const resistance of enemy.resistances)
-    if (!isElementType(resistance.element))
-      throw new Error(`敌人 ${enemy.id} 使用未知抗性属性：${resistance.element}`);
+  for (const monster of enemy.monsters)
+    for (const resistance of monster.resistances)
+      if (!isElementType(resistance.element))
+        throw new Error(`Monster ${monster.monsterId} 使用未知抗性属性：${resistance.element}`);
 }
 
 const march = characters.find((character) => character.id === '1001');
