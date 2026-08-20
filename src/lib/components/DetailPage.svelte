@@ -215,7 +215,9 @@
   <strong>数据来源</strong>
   <p>
     TurnBasedGameData 提供结构化数据；{category === 'enemies'
-      ? '敌人立绘由 StarRailRes 在构建时按 MonsterTemplateID 同步。'
-      : '角色目录头像由 StarRailRes 在构建时按 AvatarID 同步。'}
+      ? '敌人立绘由现有静态资源管线按 MonsterTemplateID 同步到网站本地。'
+      : category === 'characters'
+        ? '角色预览图与详情立绘由 StarRailRes 在构建时按 AvatarID 同步。'
+        : '相关视觉资源在构建时同步到网站本地。'}
   </p>
 </aside>

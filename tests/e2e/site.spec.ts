@@ -5,39 +5,55 @@ test('首页和精简后的核心分类可浏览', async ({ page }) => {
   await expect(page.getByRole('heading', { name: /查清每一条数据/ })).toBeVisible();
   await expect(page.getByRole('link', { name: '物品' })).toHaveCount(0);
   await page.goto('/characters');
+  await page.waitForLoadState('networkidle');
   await expect(page.getByRole('heading', { name: '角色' })).toBeVisible();
-  await expect(page.locator('.entity-card').first()).toBeVisible();
+  await expect(page.locator('.entity-overview-card').first()).toBeVisible();
   await page.goto('/items');
   await expect(page.getByRole('heading', { name: '这条星轨暂不存在' })).toBeVisible();
 });
 
-test('角色目录按 ID 加载头像并保留安全缺图降级', async ({ page }) => {
+test('角色目录按 ID 加载 preview 并保留安全缺图降级', async ({ page }) => {
   const failedImages: string[] = [];
   page.on('response', (response) => {
     if (response.request().resourceType() === 'image' && response.status() >= 400)
       failedImages.push(response.url());
   });
   await page.goto('/characters');
-  const firstCard = page.locator('.entity-card').first();
-  const avatar = firstCard.locator('[data-character-avatar]');
-  await expect(avatar).toHaveAttribute('data-missing', 'false');
-  await expect(avatar.locator('img')).toHaveAttribute(
+  const firstCard = page.locator('.entity-overview-card').first();
+  await expect(firstCard).toHaveAttribute('data-image-missing', 'false');
+  await expect(firstCard.locator('.entity-overview-card__artwork img')).toHaveAttribute(
     'src',
-    /generated-assets\/characters\/avatar\/\d+\.png/
+    /generated-assets\/characters\/preview\/\d+\.png/
   );
-  await expect(avatar.locator('img')).toHaveAttribute('loading', 'lazy');
+  await expect(firstCard.locator('.entity-overview-card__artwork img')).toHaveAttribute(
+    'loading',
+    'lazy'
+  );
   await expect(firstCard.locator('.entity-kind')).toHaveCount(0);
-  await expect(firstCard.locator('.entity-card__id')).toBeVisible();
+  await expect(firstCard.locator('.entity-overview-card__subtitle')).toHaveCount(0);
+  await expect(firstCard.locator('.entity-overview-card__fade')).toHaveCount(0);
+  await expect(firstCard).not.toContainText('CHARACTER /');
+  await expect(firstCard.locator('.entity-overview-card__overlay .rarity-stars')).toBeVisible();
+  await expect(firstCard.locator('.entity-overview-card__title')).not.toBeEmpty();
+  await expect(firstCard.locator('.entity-overview-card__metadata')).toBeVisible();
+  await expect(firstCard.locator('.entity-overview-card__artwork img')).toHaveCSS(
+    'object-fit',
+    'contain'
+  );
+  await expect(firstCard.locator('.entity-overview-card__artwork img')).toHaveCSS(
+    'object-position',
+    '50% 100%'
+  );
   expect(failedImages).toEqual([]);
 
-  await page
-    .locator('img')
-    .first()
+  await firstCard
+    .locator('.entity-overview-card__artwork img')
     .evaluate((image: HTMLImageElement) => {
       image.dispatchEvent(new Event('error'));
     });
-  await expect(avatar).toHaveAttribute('data-missing', 'true');
-  await expect(avatar.locator('img')).toHaveCount(0);
+  await expect(firstCard).toHaveAttribute('data-image-missing', 'true');
+  await expect(firstCard.locator('.entity-overview-card__artwork img')).toHaveCount(0);
+  await expect(firstCard.locator('.entity-overview-card__fallback')).toBeVisible();
 });
 
 test('角色目录与详情接入属性、命途图标和优化立绘', async ({ page, isMobile }) => {
@@ -48,7 +64,7 @@ test('角色目录与详情接入属性、命途图标和优化立绘', async ({
     }
   });
   await page.goto('/characters');
-  const firstCard = page.locator('.entity-card').first();
+  const firstCard = page.locator('.entity-overview-card').first();
   await expect(firstCard.locator('[data-icon-kind="path"] img')).toHaveAttribute(
     'src',
     /generated-assets\/paths\/.+\.png/
@@ -59,6 +75,21 @@ test('角色目录与详情接入属性、命途图标和优化立绘', async ({
   );
   await expect(firstCard.locator('[data-icon-kind="path"] > span')).not.toBeEmpty();
   await expect(firstCard.locator('[data-icon-kind="element"] > span')).not.toBeEmpty();
+  await expect(firstCard.locator('[data-icon-kind="path"]')).toHaveAttribute(
+    'data-label-size',
+    'large'
+  );
+  await expect(firstCard.locator('[data-icon-kind="element"]')).toHaveAttribute(
+    'data-label-size',
+    'large'
+  );
+  await expect(firstCard.locator('.rarity-stars')).toHaveCSS('color', 'rgb(255, 215, 0)');
+
+  await page.goto('/characters?rarity=4');
+  await expect(page.locator('.entity-overview-card').first().locator('.rarity-stars')).toHaveCSS(
+    'color',
+    'rgb(199, 125, 255)'
+  );
 
   await page.goto('/characters/1402');
   const portrait = page.locator('[data-character-portrait="1402"]');
@@ -71,6 +102,151 @@ test('角色目录与详情接入属性、命途图标和优化立绘', async ({
   await expect(page.locator('.tag-row [data-icon-kind="path"]')).toContainText('记忆');
   await expect(page.locator('.tag-row [data-icon-kind="element"]')).toContainText('雷');
   expect(failedImages).toEqual([]);
+});
+
+test('敌人目录使用本地立绘、三类 Rank 和 default Monster 弱点', async ({ page }) => {
+  await page.goto('/enemies?sort=id');
+  const card = page.locator('a[href="/enemies/1002015"]');
+  await expect(card).toBeVisible();
+  await expect(card.locator('.entity-overview-card__artwork img')).toHaveAttribute(
+    'src',
+    /^\/generated-enemy-assets\/icons\/Monster_\d+\.webp$/
+  );
+  await expect(card.locator('.entity-overview-card__overlay')).toHaveText('普通敌人');
+  await expect(
+    card.locator('.entity-overview-card__metadata [data-icon-kind="element"]')
+  ).toHaveCount(2);
+  await expect(card).not.toContainText('ENEMY /');
+  await expect(card).not.toContainText('MinionLv2');
+
+  await page.goto('/enemies?type=MinionLv2&sort=id');
+  await expect(page.locator('select[name="type"]')).toHaveValue('normal');
+  await expect(page.locator('.entity-overview-card').first()).toContainText('普通敌人');
+  await expect(page.locator('select[name="type"] option')).toHaveText([
+    '全部',
+    '普通敌人',
+    '精英敌人',
+    '首领敌人'
+  ]);
+});
+
+test('Enemy Overview 将 2/3/4 个弱点收拢为单行 Group 并在极窄容器隐藏文字', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/enemies');
+
+  const threeWeaknesses = page.locator('a[href="/enemies/4034011"]');
+  const fourWeaknesses = page.locator('a[href="/enemies/4034018"]');
+  for (const [card, count] of [
+    [threeWeaknesses, 3],
+    [fourWeaknesses, 4]
+  ] as const) {
+    const metadata = card.locator('.entity-overview-card__metadata');
+    const group = metadata.locator(':scope > .enemy-weakness-group');
+    const items = group.locator('.semantic-icon-label');
+    await expect(group).toHaveCount(1);
+    await expect(items).toHaveCount(count);
+    await expect(group).toHaveCSS('border-top-width', '1px');
+    await expect(items.first()).toHaveCSS('border-top-width', '0px');
+    const boxes = await Promise.all(
+      [...Array(count).keys()].map((index) => items.nth(index).boundingBox())
+    );
+    expect(boxes.every((box) => box !== null && Math.abs(box.y - boxes[0]!.y) < 1)).toBe(true);
+    for (const label of await items.locator(':scope > span').all()) {
+      await expect(label).toHaveCSS('position', 'static');
+    }
+  }
+
+  const threeHeight = await threeWeaknesses.evaluate((card) => card.getBoundingClientRect().height);
+  const fourHeight = await fourWeaknesses.evaluate((card) => card.getBoundingClientRect().height);
+  expect(threeHeight).toBeCloseTo(fourHeight, 0);
+
+  await page.goto('/enemies?sort=id');
+  const twoWeaknesses = page.locator('a[href="/enemies/1002015"]');
+  const twoGroup = twoWeaknesses.locator('.enemy-weakness-group');
+  await expect(twoGroup.locator('.semantic-icon-label')).toHaveCount(2);
+  const twoGroupBox = await twoGroup.boundingBox();
+  const twoMetadataBox = await twoWeaknesses
+    .locator('.entity-overview-card__metadata')
+    .boundingBox();
+  expect(twoGroupBox).not.toBeNull();
+  expect(twoMetadataBox).not.toBeNull();
+  expect(twoGroupBox!.width).toBeLessThan(twoMetadataBox!.width);
+
+  await page.setViewportSize({ width: 240, height: 720 });
+  await page.goto('/enemies');
+  const narrowGroup = page.locator('a[href="/enemies/4034018"] .enemy-weakness-group').first();
+  await expect(narrowGroup).toHaveAttribute('aria-label', '弱点：物理、冰、雷、量子');
+  await expect(narrowGroup.locator('img')).toHaveCount(4);
+  for (const label of await narrowGroup.locator('.semantic-icon-label > span').all()) {
+    await expect(label).toHaveCSS('position', 'absolute');
+    await expect(label).toHaveCSS('clip-path', 'inset(50%)');
+  }
+  expect(
+    await narrowGroup.evaluate((group) => group.scrollWidth - group.clientWidth)
+  ).toBeLessThanOrEqual(1);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    )
+  ).toBeLessThanOrEqual(1);
+});
+
+test('敌人缺图 Template 使用共享 fallback 且不发起远程请求', async ({ page }) => {
+  const requestedUrls: string[] = [];
+  page.on('request', (request) => requestedUrls.push(request.url()));
+  await page.goto('/enemies?sort=id&page=2');
+  const card = page.locator('a[href="/enemies/2002020"]');
+  await expect(card).toBeVisible();
+  await expect(card).toHaveAttribute('data-image-missing', 'true');
+  await expect(card.locator('.entity-overview-card__artwork img')).toHaveCount(0);
+  await expect(card.locator('.entity-overview-card__fallback')).toBeVisible();
+  expect(requestedUrls.some((url) => url.includes('nanoka'))).toBe(false);
+});
+
+test('Character 与 Enemy Overview 使用纵向自适应 Grid 且不溢出', async ({ page }) => {
+  for (const path of ['/characters', '/enemies?sort=id']) {
+    for (const viewport of [
+      { width: 1600, height: 1000, columns: [4, 5] },
+      { width: 1280, height: 800, columns: [3] },
+      { width: 768, height: 900, columns: [2] },
+      { width: 390, height: 844, columns: [1] },
+      { width: 320, height: 720, columns: [1] }
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto(path);
+      const cards = page.locator('.entity-overview-card');
+      const boxes = (
+        await Promise.all([...Array(6).keys()].map((index) => cards.nth(index).boundingBox()))
+      ).filter((box): box is NonNullable<typeof box> => box !== null);
+      expect(boxes.length).toBe(6);
+      const firstRow = boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1);
+      expect(viewport.columns).toContain(firstRow.length);
+      expect(Math.max(...firstRow.map((box) => box.height))).toBeLessThanOrEqual(466);
+      expect(Math.min(...firstRow.map((box) => box.height))).toBeGreaterThanOrEqual(407);
+      expect(Math.max(...firstRow.map((box) => box.height))).toBeCloseTo(
+        Math.min(...firstRow.map((box) => box.height)),
+        0
+      );
+
+      const firstCard = cards.first();
+      const artwork = await firstCard.locator('.entity-overview-card__artwork').boundingBox();
+      const content = await firstCard.locator('.entity-overview-card__content').boundingBox();
+      const overlay = await firstCard.locator('.entity-overview-card__overlay').boundingBox();
+      expect(artwork).not.toBeNull();
+      expect(content).not.toBeNull();
+      expect(overlay).not.toBeNull();
+      expect(artwork!.y + artwork!.height).toBeLessThanOrEqual(content!.y + 1);
+      expect(overlay!.y).toBeGreaterThanOrEqual(artwork!.y);
+      expect(overlay!.x + overlay!.width).toBeLessThanOrEqual(artwork!.x + artwork!.width);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+        )
+      ).toBeLessThanOrEqual(1);
+      await firstCard.focus();
+      await expect(firstCard).toBeFocused();
+    }
+  }
 });
 
 test('详情立绘失败时移除视觉层且不保留破图布局', async ({ page }) => {
@@ -134,11 +310,14 @@ test('技能在桌面保持双列等高并在窄屏切换单列', async ({ page 
 
 test('筛选状态写入 URL、分页响应客户端导航并进入详情', async ({ page, isMobile }) => {
   await page.goto('/characters');
-  const firstPageFirstId = await page.locator('.entity-card').first().getAttribute('href');
+  const firstPageFirstId = await page.locator('.entity-overview-card').first().getAttribute('href');
   await page.getByRole('link', { name: '下一页' }).click();
   await expect(page).toHaveURL(/page=2/);
   await expect(page.locator('.pagination').getByText('第 2 / 3 页')).toBeVisible();
-  await expect(page.locator('.entity-card').first()).not.toHaveAttribute('href', firstPageFirstId!);
+  await expect(page.locator('.entity-overview-card').first()).not.toHaveAttribute(
+    'href',
+    firstPageFirstId!
+  );
   await page.getByRole('link', { name: '上一页' }).click();
   await expect(page.locator('.pagination').getByText('第 1 / 3 页')).toBeVisible();
 
@@ -156,8 +335,9 @@ test('筛选状态写入 URL、分页响应客户端导航并进入详情', asyn
 
 test('目录搜索只在提交时应用草稿并重置分页', async ({ page, isMobile }) => {
   await page.goto('/characters?page=2');
+  await page.waitForLoadState('networkidle');
   if (isMobile) await page.getByRole('button', { name: '筛选与排序' }).click();
-  const firstResult = page.locator('.entity-card').first();
+  const firstResult = page.locator('.entity-overview-card').first();
   const originalHref = await firstResult.getAttribute('href');
   const input = page.getByPlaceholder('搜索角色', { exact: true });
   await input.fill('三月七');
@@ -166,7 +346,12 @@ test('目录搜索只在提交时应用草稿并重置分页', async ({ page, is
   await page.getByRole('button', { name: '搜索', exact: true }).click();
   await expect(page).toHaveURL(/q=%E4%B8%89%E6%9C%88%E4%B8%83/);
   await expect(page).not.toHaveURL(/page=/);
-  await expect(page.locator('.entity-card')).toHaveCount(2);
+  await expect(page.locator('.entity-overview-card')).toHaveCount(2);
+  const searchedCard = page.locator('a[href="/characters/1001"]');
+  await expect(searchedCard.locator('.entity-overview-card__artwork img')).toHaveAttribute(
+    'src',
+    '/generated-assets/characters/preview/1001.png'
+  );
 });
 
 test('全局搜索只包含保留的简中领域', async ({ page }) => {

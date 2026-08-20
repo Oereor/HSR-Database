@@ -56,6 +56,14 @@
 - 浏览器只使用统一 generated-asset URL helper，不读取 sibling 仓库、StarRailRes index 或业务数据。
 - 未来构建机可单独取得 StarRailRes 并设置 `HSR_ASSET_ROOT` 后运行 `assets:sync`；建议 shallow/partial/sparse checkout，本阶段不绑定任何部署平台且不自动联网 clone。
 
+## Refactor 08 Phase 03：Character / Enemy Overview
+
+- 新增 domain-agnostic `EntityOverviewCard`，Character 与 Enemy wrapper 分别解释稀有度/命途/属性和 Rank/默认 Monster 弱点；Light Cone 与 Relic 暂时继续使用 legacy card。
+- 视觉 manifest 升级为 schema 3。Character Overview 按 `index_new/cn/characters.json.preview` selective sync 91 张原始 PNG 到 `characters/preview`；Character Detail 的 WebP portrait 保持不变，旧 avatar 输出和 resolver 已移除。
+- Enemy Overview 复用现有 generated-enemy-assets 本地 manifest/cache，服务端一次性注入 TemplateID 对应 URL；缺图使用共享 fallback，浏览器不包含 nanoka 远程 URL。
+- Character/Enemy 卡片统一为约 184px 横向 artwork、主题 token 渐隐与双列/双列/单列响应式布局；不显示简介。Enemy raw Rank 仍保留，Overview 映射为普通、精英、首领三类并兼容旧筛选参数。
+- 后续 Light Cone 可复用 `index_new/cn/light_cones.json.preview` 与 `image/light_cone_preview`，Relic Set 可复用 `index_new/cn/relic_sets.json.icon` 与 `icon/relic`；两者只需扩展现有 manifest/sync 并新增领域 wrapper，不需要修改共享 presentation primitive。
+
 ## 第五次重构：Endgame 数据管线
 
 - 生成数据升级为 schema 16，并在构建期独立生成 MoC、PF、AS、AA 四类 encounter-centric 数据；schema 15 的 common HP、PF wave modifier、单精度等级倍率及 Rank 取整语义保持不变。

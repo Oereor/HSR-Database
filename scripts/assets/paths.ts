@@ -7,13 +7,14 @@ export const assetManifestRoot = path.join(siteRoot, 'src', 'lib', 'generated-as
 export const assetManifestPath = path.join(assetManifestRoot, 'manifest.json');
 export const generatedAssetRoot = path.join(siteRoot, 'static', 'generated-assets');
 export const generatedCharacterRoot = path.join(generatedAssetRoot, 'characters');
-export const generatedAvatarRoot = path.join(generatedCharacterRoot, 'avatar');
+export const generatedPreviewRoot = path.join(generatedCharacterRoot, 'preview');
 export const generatedPortraitRoot = path.join(generatedCharacterRoot, 'portrait');
 export const generatedElementRoot = path.join(generatedAssetRoot, 'elements');
 export const generatedPathRoot = path.join(generatedAssetRoot, 'paths');
 
 const requiredDirectories = [
-  ['icon', 'avatar'],
+  ['index_new', 'cn', 'characters.json'],
+  ['image', 'character_preview'],
   ['image', 'character_portrait'],
   ['icon', 'element'],
   ['icon', 'path']
@@ -53,7 +54,7 @@ export function assertAssetOutputPaths(): void {
   for (const output of [
     assetManifestRoot,
     generatedAssetRoot,
-    generatedAvatarRoot,
+    generatedPreviewRoot,
     generatedPortraitRoot,
     generatedElementRoot,
     generatedPathRoot

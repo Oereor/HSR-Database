@@ -199,6 +199,11 @@ export interface CatalogEntry {
   typeName?: string;
 }
 
+export interface EnemyCatalogEntry extends CatalogEntry {
+  type: string;
+  weaknesses: ElementLabel[];
+}
+
 export interface Character extends CatalogEntry {
   kind: 'character';
   fullName?: string;

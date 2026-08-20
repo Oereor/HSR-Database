@@ -4,7 +4,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 import { afterEach, describe, expect, it } from 'vitest';
 import {
-  resolveCharacterAvatarAsset,
+  resolveCharacterPreviewAsset,
   resolveCharacterPortraitAsset,
   resolveElementIconAsset,
   resolvePathIconAsset
@@ -16,9 +16,11 @@ import {
   assertAssetCleanTarget,
   manifestCoversRequirements,
   PATH_SOURCE_NAMES,
+  readCharacterPreviewSources,
   readAssetManifest,
   readAssetRequirements,
   VISUAL_ASSET_SCHEMA_VERSION,
+  resolveIndexedAssetPath,
   writePortraitAsset,
   writeSemanticIconAsset
 } from '../../scripts/assets/shared';
@@ -28,7 +30,7 @@ sharp.cache(false);
 const temporaryDirectories: string[] = [];
 const available = (values: string[]): AssetAvailability => ({ available: values, missing: [] });
 const manifest = (options?: {
-  avatars?: string[];
+  previews?: string[];
   portraits?: string[];
   elements?: string[];
   paths?: string[];
@@ -36,7 +38,7 @@ const manifest = (options?: {
   schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
   generatedAt: '2026-01-01T00:00:00.000Z',
   characters: {
-    avatars: available(options?.avatars ?? []),
+    previews: available(options?.previews ?? []),
     portraits: available(options?.portraits ?? [])
   },
   elements: available(options?.elements ?? []),
@@ -59,18 +61,20 @@ describe('视觉资源管线', () => {
     expect(resolveAssetRoot('../StarRailRes')).toBe(path.resolve(process.cwd(), '../StarRailRes'));
   });
 
-  it('只接受具有 Git 标记和四类源目录的资源仓库', async () => {
+  it('只接受具有 Git 标记、角色 index 和四类源目录的资源仓库', async () => {
     const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-assets-'));
     temporaryDirectories.push(root);
     await mkdir(path.join(root, '.git'));
     for (const relative of [
-      'icon/avatar',
+      'image/character_preview',
       'image/character_portrait',
       'icon/element',
       'icon/path'
     ]) {
       await mkdir(path.join(root, relative), { recursive: true });
     }
+    await mkdir(path.join(root, 'index_new', 'cn'), { recursive: true });
+    await writeFile(path.join(root, 'index_new', 'cn', 'characters.json'), '{}');
     expect(assertAssetRoot(root)).toBe(root);
     await rm(path.join(root, 'image'), { recursive: true });
     expect(() => assertAssetRoot(root)).toThrow(/character_portrait/);
@@ -84,13 +88,13 @@ describe('视觉资源管线', () => {
 
   it('按稳定 ID 和语义 code 解析 URL，缺图不产生请求路径', () => {
     const source = manifest({
-      avatars: ['1001'],
+      previews: ['1001'],
       portraits: ['1001'],
       elements: ['Lightning'],
       paths: ['Memory']
     });
-    expect(resolveCharacterAvatarAsset('1001', source)).toBe(
-      '/generated-assets/characters/avatar/1001.png'
+    expect(resolveCharacterPreviewAsset('1001', source)).toBe(
+      '/generated-assets/characters/preview/1001.png'
     );
     expect(resolveCharacterPortraitAsset('1001', source)).toBe(
       '/generated-assets/characters/portrait/1001.webp'
@@ -99,7 +103,7 @@ describe('视觉资源管线', () => {
       '/generated-assets/elements/Lightning.png'
     );
     expect(resolvePathIconAsset('Memory', source)).toBe('/generated-assets/paths/Memory.png');
-    expect(resolveCharacterAvatarAsset('1002', source)).toBeUndefined();
+    expect(resolveCharacterPreviewAsset('1002', source)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('../1001', source)).toBeUndefined();
   });
 
@@ -128,7 +132,7 @@ describe('视觉资源管线', () => {
 
   it('manifest 必须覆盖角色、属性与命途的完整需求集合', () => {
     const source = manifest({
-      avatars: ['1001'],
+      previews: ['1001'],
       portraits: ['1001'],
       elements: ['Fire'],
       paths: ['Warrior']
@@ -193,17 +197,49 @@ describe('视觉资源管线', () => {
     const empty = manifest();
     await writeFile(file, JSON.stringify(empty));
     const parsed = JSON.parse(await readFile(file, 'utf8')) as VisualAssetManifest;
-    expect(resolveCharacterAvatarAsset('1001', parsed)).toBeUndefined();
+    expect(resolveCharacterPreviewAsset('1001', parsed)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('1001', parsed)).toBeUndefined();
   });
 
-  it('生成目录仅包含需求驱动的四类输出', async () => {
+  it('角色 preview index 只解析网站需要的 91 个 ID 并拒绝越界路径', async () => {
+    const root = assertAssetRoot(resolveAssetRoot());
+    const requirements = await readAssetRequirements();
+    const sources = await readCharacterPreviewSources(root, requirements.characterIds);
+    const index = JSON.parse(
+      await readFile(path.join(root, 'index_new', 'cn', 'characters.json'), 'utf8')
+    ) as Record<string, { preview?: string }>;
+    expect(sources.size).toBe(91);
+    expect(Object.values(index).filter((entry) => entry.preview).length).toBeGreaterThan(91);
+    expect([...sources.keys()].sort()).toEqual(requirements.characterIds);
+    expect(() => resolveIndexedAssetPath(root, '../outside.png')).toThrow(/越界/);
+    expect(() =>
+      resolveIndexedAssetPath(root, 'image/character_preview/../../outside.png')
+    ).toThrow(/越界/);
+    const sampleId = requirements.characterIds[0];
+    expect(
+      await readFile(
+        path.join(
+          process.cwd(),
+          'static',
+          'generated-assets',
+          'characters',
+          'preview',
+          `${sampleId}.png`
+        )
+      )
+    ).toEqual(await readFile(sources.get(sampleId)!));
+  });
+
+  it('生成目录仅包含需求驱动的 preview，旧 avatar 输出不存在', async () => {
     const generated = await readAssetManifest();
     const files = await readdir(
-      path.join(process.cwd(), 'static', 'generated-assets', 'characters', 'avatar')
+      path.join(process.cwd(), 'static', 'generated-assets', 'characters', 'preview')
     );
     expect(files.filter((file) => file.endsWith('.png'))).toHaveLength(
-      generated!.characters.avatars.available.length
+      generated!.characters.previews.available.length
     );
+    await expect(
+      readdir(path.join(process.cwd(), 'static', 'generated-assets', 'characters', 'avatar'))
+    ).rejects.toMatchObject({ code: 'ENOENT' });
   });
 });

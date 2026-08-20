@@ -8,4 +8,5 @@
   category={data.category}
   title={data.config.label}
   description={`浏览、搜索和筛选${data.config.label}的真实游戏配置数据。`}
+  enemyPortraits={data.enemyPortraits}
 />

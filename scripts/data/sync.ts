@@ -992,7 +992,7 @@ export async function syncData(): Promise<DataManifest> {
     });
   }
 
-  const enemyCatalog: CatalogEntry[] = [];
+  const enemyCatalog: import('../../src/lib/domain/types.js').EnemyCatalogEntry[] = [];
   const enemies: Enemy[] = [];
   const enemyAudit = {
     canonicalJoin: { resolved: 0, missing: [] as string[] },
@@ -1177,12 +1177,13 @@ export async function syncData(): Promise<DataManifest> {
     if (template.StanceBase === undefined) enemyAudit.missingAttributes.stanceBase.push(id);
     if (template.StatusResistanceBase === undefined)
       enemyAudit.missingAttributes.statusResistanceBase.push(id);
-    const catalog: CatalogEntry = {
+    const catalog: import('../../src/lib/domain/types.js').EnemyCatalogEntry = {
       id,
       name,
       description: tr(config.MonsterIntroduction, source('enemy', id, 'MonsterIntroduction')),
       type: template.Rank,
-      typeName: template.Rank
+      typeName: template.Rank,
+      weaknesses
     };
     const canonicalMonster = {
       monsterId: id,

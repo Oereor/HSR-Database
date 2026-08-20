@@ -49,7 +49,7 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
   const sizes = await assetSizeSummary();
   console.log(`视觉资源同步完成（StarRailRes ${sourceCommit.slice(0, 12)}）：`);
   console.log(
-    `  角色头像 ${manifest.characters.avatars.available.length}，缺失 ${manifest.characters.avatars.missing.length}，${mb(sizes.avatars)}`
+    `  角色预览图 ${manifest.characters.previews.available.length}，缺失 ${manifest.characters.previews.missing.length}，${mb(sizes.previews)}`
   );
   console.log(
     `  角色立绘 ${manifest.characters.portraits.available.length}，缺失 ${manifest.characters.portraits.missing.length}，${mb(sizes.portraits)}`

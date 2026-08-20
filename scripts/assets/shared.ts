@@ -9,13 +9,13 @@ import {
   assetManifestRoot,
   assertAssetOutputPaths,
   generatedAssetRoot,
-  generatedAvatarRoot,
+  generatedPreviewRoot,
   generatedElementRoot,
   generatedPathRoot,
   generatedPortraitRoot
 } from './paths.js';
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 2 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 3 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -46,7 +46,7 @@ export interface AssetRequirements {
 }
 
 export interface AssetSizeSummary {
-  avatars: number;
+  previews: number;
   portraits: number;
   elements: number;
   paths: number;
@@ -99,7 +99,7 @@ export function emptyAssetManifest(requirements: AssetRequirements): VisualAsset
     schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
     generatedAt: new Date().toISOString(),
     characters: {
-      avatars: unavailable(requirements.characterIds),
+      previews: unavailable(requirements.characterIds),
       portraits: unavailable(requirements.characterIds)
     },
     elements: unavailable(requirements.elements),
@@ -130,7 +130,7 @@ async function resetOutputDirectories(): Promise<void> {
   assertAssetOutputPaths();
   await rm(generatedAssetRoot, { recursive: true, force: true });
   await Promise.all(
-    [generatedAvatarRoot, generatedPortraitRoot, generatedElementRoot, generatedPathRoot].map(
+    [generatedPreviewRoot, generatedPortraitRoot, generatedElementRoot, generatedPathRoot].map(
       (directory) => mkdir(directory, { recursive: true })
     )
   );
@@ -138,7 +138,7 @@ async function resetOutputDirectories(): Promise<void> {
 
 async function processRequested(
   requested: string[],
-  sourcePath: (value: string) => string,
+  sourcePath: (value: string) => string | undefined,
   outputPath: (value: string) => string,
   transform: (source: string, output: string) => Promise<void>
 ): Promise<AssetAvailability> {
@@ -147,6 +147,7 @@ async function processRequested(
   for (const value of requested) {
     const source = sourcePath(value);
     try {
+      if (!source) throw new Error(`缺少资源来源：${value}`);
       await stat(source);
       await transform(source, outputPath(value));
       available.push(value);
@@ -155,6 +156,47 @@ async function processRequested(
     }
   }
   return { available, missing };
+}
+
+interface CharacterResourceIndexEntry {
+  preview?: unknown;
+}
+
+export function resolveIndexedAssetPath(sourceRoot: string, relativePath: unknown): string {
+  if (typeof relativePath !== 'string' || !relativePath.trim())
+    throw new Error('StarRailRes index 缺少有效资源路径');
+  const normalized = relativePath.replaceAll('\\', '/');
+  if (path.posix.isAbsolute(normalized) || normalized.split('/').includes('..'))
+    throw new Error(`StarRailRes index 包含越界资源路径：${relativePath}`);
+  const resolvedRoot = path.resolve(sourceRoot);
+  const resolved = path.resolve(resolvedRoot, ...normalized.split('/'));
+  if (resolved !== resolvedRoot && !resolved.startsWith(`${resolvedRoot}${path.sep}`))
+    throw new Error(`StarRailRes index 包含越界资源路径：${relativePath}`);
+  return resolved;
+}
+
+export async function readCharacterPreviewSources(
+  sourceRoot: string,
+  characterIds: string[]
+): Promise<ReadonlyMap<string, string>> {
+  const indexPath = path.join(sourceRoot, 'index_new', 'cn', 'characters.json');
+  const index = JSON.parse(await readFile(indexPath, 'utf8')) as Record<
+    string,
+    CharacterResourceIndexEntry
+  >;
+  if (!index || typeof index !== 'object' || Array.isArray(index))
+    throw new Error(`StarRailRes 角色 index 格式异常：${indexPath}`);
+  const sources = new Map<string, string>();
+  for (const id of characterIds) {
+    const preview = index[id]?.preview;
+    if (preview === undefined) continue;
+    const source = resolveIndexedAssetPath(sourceRoot, preview);
+    const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
+    if (!/^image\/character_preview\/[^/]+\.png$/i.test(relative))
+      throw new Error(`角色 ${id} 的 preview 路径不属于 character_preview：${relative}`);
+    sources.set(id, source);
+  }
+  return sources;
 }
 
 export async function writePortraitAsset(source: string, output: string): Promise<void> {
@@ -173,10 +215,11 @@ export async function generateVisualAssets(
   requirements: AssetRequirements
 ): Promise<Omit<VisualAssetManifest, 'schemaVersion' | 'sourceCommit' | 'generatedAt'>> {
   await resetOutputDirectories();
-  const avatars = await processRequested(
+  const previewSources = await readCharacterPreviewSources(sourceRoot, requirements.characterIds);
+  const previews = await processRequested(
     requirements.characterIds,
-    (id) => path.join(sourceRoot, 'icon', 'avatar', `${id}.png`),
-    (id) => path.join(generatedAvatarRoot, `${id}.png`),
+    (id) => previewSources.get(id),
+    (id) => path.join(generatedPreviewRoot, `${id}.png`),
     async (source, output) => copyFile(source, output)
   );
   const portraits = await processRequested(
@@ -197,7 +240,7 @@ export async function generateVisualAssets(
     (code) => path.join(generatedPathRoot, `${code}.png`),
     writeSemanticIconAsset
   );
-  return { characters: { avatars, portraits }, elements, paths };
+  return { characters: { previews, portraits }, elements, paths };
 }
 
 const collectionCovers = (collection: AssetAvailability, required: string[]): boolean => {
@@ -216,7 +259,7 @@ export function manifestCoversRequirements(
 ): boolean {
   return (
     manifest.schemaVersion === VISUAL_ASSET_SCHEMA_VERSION &&
-    collectionCovers(manifest.characters.avatars, requirements.characterIds) &&
+    collectionCovers(manifest.characters.previews, requirements.characterIds) &&
     collectionCovers(manifest.characters.portraits, requirements.characterIds) &&
     collectionCovers(manifest.elements, requirements.elements) &&
     collectionCovers(manifest.paths, requirements.paths)
@@ -229,13 +272,13 @@ export function manifestCoversCharacters(
 ): boolean {
   return (
     manifest.schemaVersion === VISUAL_ASSET_SCHEMA_VERSION &&
-    collectionCovers(manifest.characters.avatars, characterIds) &&
+    collectionCovers(manifest.characters.previews, characterIds) &&
     collectionCovers(manifest.characters.portraits, characterIds)
   );
 }
 
 const expectedFiles = (manifest: VisualAssetManifest): Array<[string, string[]]> => [
-  [generatedAvatarRoot, manifest.characters.avatars.available.map((id) => `${id}.png`)],
+  [generatedPreviewRoot, manifest.characters.previews.available.map((id) => `${id}.png`)],
   [generatedPortraitRoot, manifest.characters.portraits.available.map((id) => `${id}.webp`)],
   [generatedElementRoot, manifest.elements.available.map((code) => `${code}.png`)],
   [generatedPathRoot, manifest.paths.available.map((code) => `${code}.png`)]
@@ -266,11 +309,11 @@ async function directorySize(directory: string): Promise<number> {
 }
 
 export async function assetSizeSummary(): Promise<AssetSizeSummary> {
-  const [avatars, portraits, elements, paths] = await Promise.all([
-    directorySize(generatedAvatarRoot),
+  const [previews, portraits, elements, paths] = await Promise.all([
+    directorySize(generatedPreviewRoot),
     directorySize(generatedPortraitRoot),
     directorySize(generatedElementRoot),
     directorySize(generatedPathRoot)
   ]);
-  return { avatars, portraits, elements, paths, total: avatars + portraits + elements + paths };
+  return { previews, portraits, elements, paths, total: previews + portraits + elements + paths };
 }

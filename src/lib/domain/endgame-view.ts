@@ -68,6 +68,33 @@ export interface EndgameEnemyReference {
   exists: boolean;
 }
 
+export interface EndgameEnemyDetailSource {
+  name?: string;
+  rank?: string;
+  monsters: Array<{
+    monsterId: string;
+    weaknesses?: EndgameWeaknessView[];
+  }>;
+}
+
+export function endgameEnemyReferenceKey(monsterId: number, monsterTemplateId: number): string {
+  return `${monsterTemplateId}:${monsterId}`;
+}
+
+export function resolveEndgameEnemyReference(
+  detail: EndgameEnemyDetailSource,
+  monsterId: number
+): EndgameEnemyReference {
+  const monster = detail.monsters.find((candidate) => candidate.monsterId === String(monsterId));
+  if (!monster) throw new Error(`敌方百科缺少 Endgame 引用的具体 MonsterID：${monsterId}`);
+  return {
+    name: detail.name,
+    rank: detail.rank,
+    weaknesses: monster.weaknesses ?? [],
+    exists: true
+  };
+}
+
 export interface EnemyOccurrenceView {
   identity: string;
   monsterId: number;
@@ -353,7 +380,7 @@ export function buildModeView(mode: EndgameMode, groups: EndgameGroup[]): Endgam
 export function buildGroupView(
   group: EndgameGroup,
   periods: EndgamePeriodView[],
-  enemyReferences: ReadonlyMap<number, EndgameEnemyReference>
+  enemyReferences: ReadonlyMap<string, EndgameEnemyReference>
 ): EndgameGroupView {
   const encounters = group.encounters.map((encounter) => ({
     id: encounter.id,
@@ -385,14 +412,20 @@ export function buildGroupView(
 
 function buildWaveViews(
   stage: EndgameStage,
-  enemyReferences: ReadonlyMap<number, EndgameEnemyReference>
+  enemyReferences: ReadonlyMap<string, EndgameEnemyReference>
 ): EndgameWaveView[] {
   if (stage.waveModel.kind === 'fixed')
     return stage.waveModel.waves.map((wave, waveIndex) => ({
       key: `fixed-${wave.wave}`,
       label: `波次 ${waveIndex + 1}`,
       enemies: mergeFixedOccurrences(wave.enemies).map(({ occurrence, count }) =>
-        buildOccurrenceView(occurrence, enemyReferences.get(occurrence.monsterTemplateId), count)
+        buildOccurrenceView(
+          occurrence,
+          enemyReferences.get(
+            endgameEnemyReferenceKey(occurrence.monsterId, occurrence.monsterTemplateId)
+          ),
+          count
+        )
       )
     }));
   return stage.waveModel.waves.map((wave, waveIndex) => {
@@ -401,7 +434,12 @@ function buildWaveViews(
       key: `spawn-${wave.waveId}`,
       label: `波次 ${waveIndex + 1}`,
       enemies: uniqueSpawnOccurrences(occurrences).map((occurrence) =>
-        buildOccurrenceView(occurrence, enemyReferences.get(occurrence.monsterTemplateId))
+        buildOccurrenceView(
+          occurrence,
+          enemyReferences.get(
+            endgameEnemyReferenceKey(occurrence.monsterId, occurrence.monsterTemplateId)
+          )
+        )
       )
     };
   });

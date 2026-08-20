@@ -90,6 +90,10 @@ function getPortraitMap(): Promise<ReadonlyMap<number, string>> {
   return portraitMapPromise;
 }
 
+export function getEnemyPortraitMap(): Promise<ReadonlyMap<number, string>> {
+  return getPortraitMap();
+}
+
 export async function getEnemyPortraitUrl(templateId: number): Promise<string | undefined> {
   return (await getPortraitMap()).get(templateId);
 }

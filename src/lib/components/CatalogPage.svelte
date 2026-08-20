@@ -3,14 +3,23 @@
   import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
   import { tick } from 'svelte';
-  import EntityCard from './EntityCard.svelte';
-  import type { CatalogEntry } from '$lib/domain/types';
+  import CharacterOverviewCard from './CharacterOverviewCard.svelte';
+  import EnemyOverviewCard from './EnemyOverviewCard.svelte';
+  import LegacyEntityCard from './LegacyEntityCard.svelte';
+  import type { CatalogEntry, EnemyCatalogEntry } from '$lib/domain/types';
+  import {
+    ENEMY_RANK_CATEGORIES,
+    getEnemyRankCategory,
+    isEnemyCatalogEntry,
+    normalizeEnemyRankFilter
+  } from '$lib/domain/enemy-overview';
   import { gameTextToPlain } from '$lib/domain/game-text';
 
   export let entries: CatalogEntry[];
   export let category: string;
   export let title: string;
   export let description: string;
+  export let enemyPortraits: Record<string, string> = {};
 
   let form: HTMLFormElement;
   let filterTrigger: HTMLButtonElement;
@@ -19,13 +28,6 @@
   let synchronizedQuery: string | undefined;
   $: params = browser ? new URLSearchParams($page.url.searchParams) : new URLSearchParams();
   const pageSize = category === 'enemies' ? 48 : 36;
-  const cardKind: Record<string, string> = {
-    characters: 'character',
-    'light-cones': 'light-cone',
-    relics: 'relic',
-    enemies: 'enemy'
-  };
-
   $: appliedQuery = params.get('q') ?? '';
   $: synchronizeDraft(appliedQuery);
 
@@ -39,7 +41,10 @@
   $: path = params.get('path') ?? '';
   $: element = params.get('element') ?? '';
   $: version = params.get('version') ?? '';
-  $: type = params.get('type') ?? '';
+  $: type =
+    category === 'enemies'
+      ? normalizeEnemyRankFilter(params.get('type') ?? '')
+      : (params.get('type') ?? '');
   $: sort = params.get('sort') ?? 'rarity';
   $: requestedPage = Number(params.get('page') ?? 1);
   $: filtered = entries
@@ -54,7 +59,11 @@
     .filter((entry) => !path || entry.path === path)
     .filter((entry) => !element || entry.element === element)
     .filter((entry) => !version || entry.version === version)
-    .filter((entry) => !type || entry.type === type)
+    .filter(
+      (entry) =>
+        !type ||
+        (category === 'enemies' ? getEnemyRankCategory(entry.type) === type : entry.type === type)
+    )
     .sort((a, b) => {
       if (sort === 'name') return a.name.localeCompare(b.name, 'zh-CN');
       if (sort === 'id') return Number(a.id) - Number(b.id);
@@ -73,6 +82,18 @@
           .map((entry) => [String(entry[key]), String(entry[labelKey ?? key])])
       ).entries()
     ].sort((a, b) => a[1].localeCompare(b[1], 'zh-CN'));
+
+  $: typeOptions =
+    category === 'enemies'
+      ? ENEMY_RANK_CATEGORIES.filter((option) =>
+          entries.some((entry) => getEnemyRankCategory(entry.type) === option.code)
+        ).map((option) => [option.code, option.label] as const)
+      : values('type', 'typeName');
+
+  function enemyEntry(entry: CatalogEntry): EnemyCatalogEntry {
+    if (!isEnemyCatalogEntry(entry)) throw new Error(`敌人目录 ${entry.id} 缺少弱点投影`);
+    return entry;
+  }
 
   async function submitQuery() {
     const nextParams = new URLSearchParams(params);
@@ -210,11 +231,11 @@
       ></label
     >
   {/if}
-  {#if values('type', 'typeName').length}
+  {#if typeOptions.length}
     <label
       ><span>类别</span><select name="type" value={type} on:change={() => form.requestSubmit()}
-        ><option value="">全部</option>{#each values('type', 'typeName') as option}<option
-            value={option[0]}>{option[1]}</option
+        ><option value="">全部</option>{#each typeOptions as option}<option value={option[0]}
+            >{option[1]}</option
           >{/each}</select
       ></label
     >
@@ -230,12 +251,27 @@
 </form>
 
 {#if visible.length}
-  <div class="entity-grid">
-    {#each visible as entry}<EntityCard
-        {entry}
-        href={`/${category}/${entry.id}`}
-        kind={cardKind[category]}
-      />{/each}
+  <div
+    class="entity-grid"
+    class:entity-grid--overview={category === 'characters' || category === 'enemies'}
+  >
+    {#each visible as entry (entry.id)}
+      {#if category === 'characters'}
+        <CharacterOverviewCard {entry} href={`/characters/${entry.id}`} />
+      {:else if category === 'enemies'}
+        <EnemyOverviewCard
+          entry={enemyEntry(entry)}
+          href={`/enemies/${entry.id}`}
+          imageUrl={enemyPortraits[entry.id]}
+        />
+      {:else}
+        <LegacyEntityCard
+          {entry}
+          href={`/${category}/${entry.id}`}
+          kind={category === 'light-cones' ? 'light-cone' : 'relic'}
+        />
+      {/if}
+    {/each}
   </div>
   {#if pages > 1}
     <nav class="pagination" aria-label="分页">

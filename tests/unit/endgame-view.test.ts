@@ -11,12 +11,15 @@ import {
   buildGroupView,
   buildOccurrenceView,
   buildPeriodView,
+  endgameEnemyReferenceKey,
   formatExactDecimal,
   formatFullHp,
   formatHpWithPhases,
   formatRoundedDecimal,
   mergeFixedOccurrences,
   occurrenceIdentity,
+  resolveEndgameEnemyReference,
+  type EndgameEnemyDetailSource,
   uniqueSpawnOccurrences
 } from '../../src/lib/domain/endgame-view';
 import { ELEMENT_COLORS, getElementColor } from '../../src/lib/domain/elements';
@@ -129,6 +132,38 @@ describe('Endgame UI 生命值格式', () => {
 });
 
 describe('Endgame occurrence 投影', () => {
+  it('按具体 MonsterID 解析弱点，且同模板实例使用独立引用键', () => {
+    const detail: EndgameEnemyDetailSource = {
+      name: '测试模板',
+      rank: 'Minion',
+      monsters: [
+        { monsterId: '10', weaknesses: [{ element: 'Physical', name: '物理' }] },
+        { monsterId: '101', weaknesses: [{ element: 'Quantum', name: '量子' }] }
+      ]
+    };
+    expect(resolveEndgameEnemyReference(detail, 101).weaknesses).toEqual([
+      { element: 'Quantum', name: '量子' }
+    ]);
+    expect(endgameEnemyReferenceKey(10, 10)).not.toBe(endgameEnemyReferenceKey(101, 10));
+  });
+
+  it('canonical MonsterID 仍按其自身记录正常解析', () => {
+    const detail: EndgameEnemyDetailSource = {
+      monsters: [{ monsterId: '10', weaknesses: [{ element: 'Fire', name: '火' }] }]
+    };
+    expect(resolveEndgameEnemyReference(detail, 10)).toMatchObject({
+      weaknesses: [{ element: 'Fire', name: '火' }],
+      exists: true
+    });
+  });
+
+  it('具体 MonsterID 无效时显式失败，不回退到 canonical Monster', () => {
+    const detail: EndgameEnemyDetailSource = {
+      monsters: [{ monsterId: '10', weaknesses: [{ element: 'Fire', name: '火' }] }]
+    };
+    expect(() => resolveEndgameEnemyReference(detail, 101)).toThrow(/MonsterID：101/);
+  });
+
   it('固定阵容只合并完整 identity 相同的实例', () => {
     const first = occurrence();
     const scaled = occurrence({
@@ -192,8 +227,39 @@ describe('Endgame occurrence 投影', () => {
     expect(ids).not.toContain(5014030);
   });
 
-  it('所有实际模板均存在百科文件，弱点缺失仍可安全读取', async () => {
-    const templateIds = new Set<number>();
+  it('真实 PF 非 canonical 个体展示自身弱点与既有具体属性', async () => {
+    const pf = await dataset('pf');
+    const group = pf.groups.find((candidate) => candidate.groupId === 2001)!;
+    const detail = JSON.parse(
+      await readFile(path.join(generatedRoot, 'details', 'enemies', '8002050.json'), 'utf8')
+    ) as EndgameEnemyDetailSource;
+    const canonical = resolveEndgameEnemyReference(detail, 8002050);
+    const concrete = resolveEndgameEnemyReference(detail, 800205005);
+    expect(canonical.weaknesses.map(({ element }) => element)).toEqual([
+      'Physical',
+      'Quantum',
+      'Imaginary'
+    ]);
+    expect(concrete.weaknesses.map(({ element }) => element)).toEqual(['Lightning', 'Imaginary']);
+
+    const view = buildGroupView(
+      group,
+      [buildPeriodView(group)],
+      new Map([[endgameEnemyReferenceKey(800205005, 8002050), concrete]])
+    );
+    const enemy = view.encounters
+      .flatMap((encounter) => encounter.battles)
+      .flatMap((battle) => battle.stages)
+      .flatMap((stage) => stage.waves)
+      .flatMap((wave) => wave.enemies)
+      .find((candidate) => candidate.monsterId === 800205005)!;
+    expect(enemy.weaknesses.map(({ element }) => element)).toEqual(['Lightning', 'Imaginary']);
+    expect(enemy.speed.exact).toBe('120');
+    expect(enemy.toughness.exactPerBar).toBe('30');
+  });
+
+  it('所有 Endgame 具体 MonsterID 均存在对应百科个体记录', async () => {
+    const references = new Map<string, { monsterId: number; monsterTemplateId: number }>();
     for (const mode of ['moc', 'pf', 'as', 'aa'] as EndgameMode[]) {
       const data = await dataset(mode);
       for (const group of data.groups)
@@ -206,16 +272,29 @@ describe('Endgame occurrence 投影', () => {
                   : stage.waveModel.waves.flatMap((wave) =>
                       wave.monsterGroups.flatMap((monsterGroup) => monsterGroup.orderedEnemies)
                     );
-              for (const enemy of occurrences) templateIds.add(enemy.monsterTemplateId);
+              for (const enemy of occurrences)
+                references.set(
+                  endgameEnemyReferenceKey(enemy.monsterId, enemy.monsterTemplateId),
+                  enemy
+                );
             }
     }
-    expect(templateIds.size).toBe(185);
-    for (const id of templateIds) {
-      const detail = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'enemies', `${id}.json`), 'utf8')
-      ) as { weaknesses?: unknown[] };
-      expect(detail.weaknesses ?? []).toBeInstanceOf(Array);
+    expect(references.size).toBeGreaterThan(185);
+    const details = new Map<number, EndgameEnemyDetailSource>();
+    for (const { monsterId, monsterTemplateId } of references.values()) {
+      let detail = details.get(monsterTemplateId);
+      if (!detail) {
+        detail = JSON.parse(
+          await readFile(
+            path.join(generatedRoot, 'details', 'enemies', `${monsterTemplateId}.json`),
+            'utf8'
+          )
+        ) as EndgameEnemyDetailSource;
+        details.set(monsterTemplateId, detail);
+      }
+      expect(resolveEndgameEnemyReference(detail, monsterId).weaknesses).toBeInstanceOf(Array);
     }
+    expect(details.size).toBe(185);
   });
 });
 

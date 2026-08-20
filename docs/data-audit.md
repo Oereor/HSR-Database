@@ -172,15 +172,15 @@ A 类主要包括 1,010 个原始空行迹描述、410/389 个无简中映射的
 
 - schema 19 生成 91 个角色、165 个光锥、60 个遗器套装、613 个敌人详情、四类 Endgame 数据及 929 条简中搜索记录；其中 10 个角色详情包含双 Profile。
 - 生成数据位于 `src/lib/generated/` 和 `static/generated/`，浏览器不加载上游 Config 或完整 TextMap。
-- `TurnBasedGameData` 只有 `SpriteOutput/...` 路径，没有图片文件；`StarRailRes` 当前为 91 个目录角色提供完整的 128×128 PNG 头像与 2048×2048 PNG 立绘，并覆盖七属性和九种实际命途图标。网站只按真实 ID/语义 code 生成所需集合。
-- 视觉 manifest schema 2 分别记录头像、立绘、属性和命途资源。头像保留原始 PNG，立绘生成最大 960px WebP，语义图标生成 64px PNG；所有输出均位于 gitignore 的 generated-assets 目录。
+- `TurnBasedGameData` 只有 `SpriteOutput/...` 路径，没有图片文件；`StarRailRes` 当前通过中文角色 index 为 91 个目录角色提供 preview，并提供 2048×2048 PNG 立绘、七属性和九种实际命途图标。网站只按真实 ID/语义 code 生成所需集合。
+- 视觉 manifest schema 3 分别记录 preview、立绘、属性和命途资源。91 张 preview 保留原始 PNG（约 24.24 MiB），立绘生成最大 960px WebP，语义图标生成 64px PNG；所有输出均位于 gitignore 的 generated-assets 目录，旧 avatar 输出不再生成。
 - 构建期仅复制当前页面需要的本地视觉资源；视觉 manifest 与业务 schema 19 相互独立，详情领域模型不携带视觉路径，URL 由服务端 adapter 注入。
 
 ## Enemy Detail v1
 
 - 613 个敌人模板全部通过 `MonsterID == MonsterTemplateID` 连接 canonical `MonsterConfig`；`HardLevelGroup` 和 `EliteGroup` 由共享无损 resolver 生成 Lv.1–100 七项属性，默认 Lv.95。缺失 `SpeedBase` 或 `StanceBase` 时逐项标记 unavailable，组件不执行公式或韧性单位换算。
 - canonical 技能严格按 `MonsterTemplate → MonsterConfig.SkillList → MonsterSkillConfig` 保序连接。17 个当前 SkillTag、技能/天赋、声明式 DamageType、正整数 PhaseList 与 ExtraEffect 进入浏览器数据；schema 19 另从过滤前关系生成升序 `skillPhases`，空 PhaseList 技能复制到每个已知阶段，过滤后空阶段仍保留。SPHitBase、DelayRatio、ParamList、ModifierList、AttackType、SkillTriggerKey 和 AI 不进入浏览器数据。
-- `DebuffResist` 当前七种 key 映射为控制类、冻结、禁锢、纠缠、灼烧、触电和风化；未知 key 只进入 audit。`SummonIDList` 按 `MonsterID → MonsterTemplateID` 连接并按目标模板首次出现去重。
+- `DebuffResist` 当前七种 key 统一映射为控制抵抗、冻结抵抗、禁锢抵抗、纠缠抵抗、灼烧抵抗、触电抵抗和风化抵抗；未知 key 只进入 audit。`SummonIDList` 按 `MonsterID → MonsterTemplateID` 连接并按目标模板首次出现去重。
 - 元素弱点与非零抗性独立保存。当前 13 条弱点/抗性并存关系同时展示并进入 audit，不建立未经证实的覆盖优先级。
 - `enemyAudit` 记录 canonical join、未知技能 kind/tag/元素、弱点抗性并存、未知 DebuffResist、未解析 summon/skill/ExtraEffect 及基础属性缺失摘要。
 - 头像缺失只记录诊断并使用中性占位，不请求不存在的图片，也不阻止数据构建。

@@ -6,7 +6,10 @@ import {
   buildGroupView,
   buildModeView,
   buildPeriodView,
+  endgameEnemyReferenceKey,
   ENDGAME_MODES,
+  resolveEndgameEnemyReference,
+  type EndgameEnemyDetailSource,
   type EndgameEnemyReference,
   type EndgameGroupView,
   type EndgameModeView
@@ -14,7 +17,7 @@ import {
 
 const generatedRoot = path.resolve('src', 'lib', 'generated');
 const datasetCache = new Map<EndgameMode, Promise<EndgameModeDataset>>();
-const enemyCache = new Map<number, Promise<EndgameEnemyReference>>();
+const enemyCache = new Map<string, Promise<EndgameEnemyReference>>();
 
 async function readJson<T>(...segments: string[]): Promise<T> {
   return JSON.parse(await readFile(path.join(generatedRoot, ...segments), 'utf8')) as T;
@@ -32,28 +35,32 @@ export function getEndgameDataset(mode: EndgameMode): Promise<EndgameModeDataset
   return pending;
 }
 
-async function getEnemyReference(templateId: number): Promise<EndgameEnemyReference> {
-  const cached = enemyCache.get(templateId);
+function isFileNotFound(error: unknown): boolean {
+  return (
+    error instanceof Error && 'code' in error && (error as NodeJS.ErrnoException).code === 'ENOENT'
+  );
+}
+
+async function getEnemyReference(
+  monsterId: number,
+  templateId: number
+): Promise<EndgameEnemyReference> {
+  const key = endgameEnemyReferenceKey(monsterId, templateId);
+  const cached = enemyCache.get(key);
   if (cached) return cached;
   const pending = Promise.all([
-    readJson<{
-      name?: string;
-      rank?: string;
-      weaknesses?: Array<{ element: string; name: string }>;
-    }>('details', 'enemies', `${templateId}.json`)
-      .then((detail) => ({
-        name: detail.name,
-        rank: detail.rank,
-        weaknesses: detail.weaknesses ?? [],
-        exists: true
-      }))
-      .catch(() => ({ weaknesses: [], exists: false })),
+    readJson<EndgameEnemyDetailSource>('details', 'enemies', `${templateId}.json`)
+      .then((detail) => resolveEndgameEnemyReference(detail, monsterId))
+      .catch((error: unknown) => {
+        if (isFileNotFound(error)) return { weaknesses: [], exists: false };
+        throw error;
+      }),
     getEnemyPortraitUrl(templateId)
   ]).then(([reference, portraitUrl]) => ({
     ...reference,
     ...(portraitUrl ? { portraitUrl } : {})
   }));
-  enemyCache.set(templateId, pending);
+  enemyCache.set(key, pending);
   return pending;
 }
 
@@ -74,7 +81,7 @@ export async function getEndgameGroup(
   const dataset = await getEndgameDataset(mode);
   const group = dataset.groups.find((candidate) => candidate.groupId === groupId);
   if (!group) return undefined;
-  const templateIds = new Set<number>();
+  const referencedEnemies = new Map<string, { monsterId: number; templateId: number }>();
   for (const encounter of group.encounters)
     for (const battle of encounter.battles)
       for (const stage of battle.stages) {
@@ -84,12 +91,18 @@ export async function getEndgameGroup(
             : stage.waveModel.waves.flatMap((wave) =>
                 wave.monsterGroups.flatMap((monsterGroup) => monsterGroup.orderedEnemies)
               );
-        for (const occurrence of occurrences) templateIds.add(occurrence.monsterTemplateId);
+        for (const occurrence of occurrences) {
+          const key = endgameEnemyReferenceKey(occurrence.monsterId, occurrence.monsterTemplateId);
+          referencedEnemies.set(key, {
+            monsterId: occurrence.monsterId,
+            templateId: occurrence.monsterTemplateId
+          });
+        }
       }
-  const references = new Map<number, EndgameEnemyReference>();
+  const references = new Map<string, EndgameEnemyReference>();
   await Promise.all(
-    [...templateIds].map(async (templateId) =>
-      references.set(templateId, await getEnemyReference(templateId))
+    [...referencedEnemies.entries()].map(async ([key, { monsterId, templateId }]) =>
+      references.set(key, await getEnemyReference(monsterId, templateId))
     )
   );
   return buildGroupView(

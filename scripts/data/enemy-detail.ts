@@ -34,13 +34,13 @@ const SKILL_TAG_CODES: Record<string, string> = {
 };
 
 const SPECIAL_RESISTANCE_LABELS: Record<string, string> = {
-  STAT_CTRL: '控制类',
-  STAT_CTRL_Frozen: '冻结',
-  STAT_Confine: '禁锢',
-  STAT_Entangle: '纠缠',
-  STAT_DOT_Burn: '灼烧',
-  STAT_DOT_Electric: '触电',
-  STAT_DOT_Poison: '风化'
+  STAT_CTRL: '控制抵抗',
+  STAT_CTRL_Frozen: '冻结抵抗',
+  STAT_Confine: '禁锢抵抗',
+  STAT_Entangle: '纠缠抵抗',
+  STAT_DOT_Burn: '灼烧抵抗',
+  STAT_DOT_Electric: '触电抵抗',
+  STAT_DOT_Poison: '风化抵抗'
 };
 
 export const enemySkillTagCodes = SKILL_TAG_CODES;

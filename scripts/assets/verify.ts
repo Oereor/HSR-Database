@@ -2,7 +2,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 import {
   assertAssetRoot,
-  generatedAvatarRoot,
+  generatedPreviewRoot,
   generatedElementRoot,
   generatedPathRoot,
   generatedPortraitRoot,
@@ -38,10 +38,10 @@ export async function verifyAssets(): Promise<void> {
   for (const code of requirements.paths) {
     if (!PATH_SOURCE_NAMES[code]) throw new Error(`缺少命途图标映射：${code}`);
   }
-  for (const id of manifest.characters.avatars.available) {
-    const metadata = await sharp(path.join(generatedAvatarRoot, `${id}.png`)).metadata();
-    if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128) {
-      throw new Error(`生成头像格式或尺寸异常：${id}`);
+  for (const id of manifest.characters.previews.available) {
+    const metadata = await sharp(path.join(generatedPreviewRoot, `${id}.png`)).metadata();
+    if (metadata.format !== 'png' || !metadata.width || !metadata.height) {
+      throw new Error(`生成角色预览图格式或尺寸异常：${id}`);
     }
   }
   for (const id of manifest.characters.portraits.available) {
@@ -67,7 +67,7 @@ export async function verifyAssets(): Promise<void> {
       throw new Error(`命途图标尺寸异常：${code}`);
   }
   console.log(
-    `视觉资源验证通过：${manifest.characters.avatars.available.length} 头像、${manifest.characters.portraits.available.length} 立绘、${manifest.elements.available.length} 属性图标、${manifest.paths.available.length} 命途图标。`
+    `视觉资源验证通过：${manifest.characters.previews.available.length} 角色预览图、${manifest.characters.portraits.available.length} 立绘、${manifest.elements.available.length} 属性图标、${manifest.paths.available.length} 命途图标。`
   );
 }
 

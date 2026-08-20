@@ -191,7 +191,7 @@ describe('Enemy Detail 真实数据回归', () => {
     ]);
     expect(monster.specialResistances).toContainEqual({
       code: 'STAT_CTRL',
-      label: '控制类',
+      label: '控制抵抗',
       value: '0.5'
     });
     expect(monster.summons).toEqual([

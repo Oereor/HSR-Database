@@ -23,6 +23,18 @@ test('PF 只显示波内唯一敌人类型', async ({ page }) => {
   await expect(firstBattle.locator('.endgame-enemy__count')).toHaveCount(0);
 });
 
+test('PF 非 canonical Monster 展示具体实例弱点', async ({ page }) => {
+  await page.goto('/endgame/pf/2001?encounter=20011');
+  const enemy = page.locator('[data-monster-id="800205005"]').first();
+  await expect(enemy).toBeVisible();
+  await expect(enemy.locator('.endgame-weaknesses [data-icon-kind="element"] span')).toHaveText([
+    '雷',
+    '虚数'
+  ]);
+  await expect(enemy.locator('[data-endgame-speed]')).toHaveText('120');
+  await expect(enemy.locator('[data-endgame-toughness]')).toHaveText('30');
+});
+
 test('AS 多阶段生命值显示完整整数、阶段数和属性图标', async ({ page }) => {
   await page.goto('/endgame/as/3019?encounter=30194#battle-2');
   const boss = page.locator('[data-monster-id="401401304"]');

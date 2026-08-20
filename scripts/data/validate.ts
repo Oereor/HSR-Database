@@ -854,7 +854,14 @@ const enemies = await Promise.all(
       ) as Enemy
   )
 );
+const enemyCatalog = JSON.parse(
+  await readFile(path.join(generatedRoot, 'catalogs', 'enemies.json'), 'utf8')
+) as import('../../src/lib/domain/types.js').EnemyCatalogEntry[];
 for (const enemy of enemies) {
+  const catalogEntry = enemyCatalog.find((entry) => entry.id === enemy.id);
+  if (!catalogEntry) throw new Error(`敌人 ${enemy.id} 缺少目录记录`);
+  if (JSON.stringify(catalogEntry.weaknesses) !== JSON.stringify(enemy.defaultMonster.weaknesses))
+    throw new Error(`敌人 ${enemy.id} 的 Overview 弱点与 defaultMonster 不一致`);
   for (const weakness of enemy.weaknesses)
     if (!isElementType(weakness.element))
       throw new Error(`敌人 ${enemy.id} 使用未知弱点属性：${weakness.element}`);

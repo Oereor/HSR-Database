@@ -3,7 +3,7 @@ import type { AssetAvailability, VisualAssetManifest } from '$lib/domain/visual-
 
 const manifest = manifestJson as VisualAssetManifest;
 const sets = {
-  avatar: new Set(manifest.characters.avatars.available),
+  preview: new Set(manifest.characters.previews.available),
   portrait: new Set(manifest.characters.portraits.available),
   element: new Set(manifest.elements.available),
   path: new Set(manifest.paths.available)
@@ -23,16 +23,16 @@ function resolveAsset(
     : undefined;
 }
 
-export function resolveCharacterAvatarAsset(
+export function resolveCharacterPreviewAsset(
   characterId: string,
   source: VisualAssetManifest = manifest
 ): string | undefined {
   return resolveAsset(
     characterId,
-    source.characters.avatars,
-    'characters/avatar',
+    source.characters.previews,
+    'characters/preview',
     'png',
-    source === manifest ? sets.avatar : undefined
+    source === manifest ? sets.preview : undefined
   );
 }
 
@@ -75,14 +75,11 @@ export function resolvePathIconAsset(
   );
 }
 
-export const getCharacterAvatarUrl = (id: string): string | undefined =>
-  resolveCharacterAvatarAsset(id);
+export const getCharacterPreviewUrl = (id: string): string | undefined =>
+  resolveCharacterPreviewAsset(id);
 export const getCharacterPortraitUrl = (id: string): string | undefined =>
   resolveCharacterPortraitAsset(id);
 export const getElementIconUrl = (element: string | undefined): string | undefined =>
   resolveElementIconAsset(element);
 export const getPathIconUrl = (path: string | undefined): string | undefined =>
   resolvePathIconAsset(path);
-
-// Compatibility alias retained for callers from Phase 4.
-export const getCharacterAvatarAsset = getCharacterAvatarUrl;

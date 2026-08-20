@@ -66,8 +66,22 @@ describe('重构 invariants', () => {
     const sources = await Promise.all(files.map((file) => readFile(file, 'utf8')));
     const combined = sources.join('\n');
     expect(combined).not.toMatch(/\.\.\/StarRailRes|icon\/avatar/);
-    expect(combined).toContain("'characters/avatar'");
+    expect(combined).toContain("'characters/preview'");
     expect(combined).toContain("'characters/portrait'");
+  });
+
+  it('共享 Overview card 不包含 Character 或 Enemy 领域语义', async () => {
+    const source = await readFile(
+      path.join(root, 'src', 'lib', 'components', 'EntityOverviewCard.svelte'),
+      'utf8'
+    );
+    expect(source).not.toMatch(
+      /CatalogEntry|Character|Enemy|rarity|pathName|elementName|weakness|rank/i
+    );
+    expect(source).toContain('<slot name="overlay" />');
+    expect(source).toContain('<slot name="title" />');
+    expect(source).toContain('<slot name="metadata" />');
+    expect(source).not.toMatch(/subtitle|__fade|slot name="tags"/);
   });
 
   it('游戏文本始终通过安全 token 渲染而不使用 raw HTML', async () => {

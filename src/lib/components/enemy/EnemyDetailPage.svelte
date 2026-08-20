@@ -31,19 +31,6 @@
   const percent = (value: number | string): string =>
     `${new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 2 }).format(Number(value) * 100)}%`;
 
-  const specialResistanceDisplayLabels: Record<string, string> = {
-    STAT_CTRL: '控制抵抗',
-    STAT_CTRL_Frozen: '冻结抵抗',
-    STAT_Confine: '禁锢抵抗',
-    STAT_Entangle: '纠缠抵抗',
-    STAT_DOT_Burn: '灼烧抵抗',
-    STAT_DOT_Electric: '触电抵抗',
-    STAT_DOT_Poison: '风化抵抗'
-  };
-
-  const specialResistanceLabel = (code: string, fallback: string): string =>
-    specialResistanceDisplayLabels[code] ?? `${fallback}抵抗`;
-
   function selectMonster(monsterId: string, target?: HTMLElement): void {
     selectedMonsterId = monsterId;
     target?.focus();
@@ -229,9 +216,7 @@
               class="enemy-special-resistance-item"
               data-special-resistance={resistance.code}
             >
-              <span>{specialResistanceLabel(resistance.code, resistance.label)}</span><strong
-                >{percent(resistance.value)}</strong
-              >
+              <span>{resistance.label}</span><strong>{percent(resistance.value)}</strong>
             </div>{/each}
         </div>
       </section>{/if}

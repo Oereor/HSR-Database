@@ -428,7 +428,7 @@ describe('真实数据管线', () => {
       arrows.superimposition.levels[0].descriptionTokens.filter(
         (token) => token.type === 'scaling-value'
       )
-    ).toEqual([{ type: 'scaling-value', value: '12%' }]);
+    ).toEqual([{ type: 'scaling-value', value: '12%', color: '#f29e38ff', unbreak: true }]);
     expect(arrows.superimposition.levels.at(-1)?.description).toContain('24%');
     expect(amber.superimposition.scalingParamIndexes).toEqual([0, 2]);
     expect(resolution.superimposition.scalingParamIndexes).toEqual([0, 1]);
@@ -785,11 +785,13 @@ describe('真实数据管线', () => {
     ).toContain('150%生命上限');
     expect(
       baseProfile(jingliu).traces.find((trace) => trace.name === '死境')?.description
-    ).not.toContain('终结技伤害提高20%');
+    ).not.toContain('终结技伤害提高<unbreak>20%</unbreak>');
     expect(enhanced.traces.find((trace) => trace.name === '死境')?.description).toContain(
-      '终结技伤害提高20%'
+      '终结技伤害提高<unbreak>20%</unbreak>'
     );
-    expect(baseProfile(jingliu).eidolons[0].description).toContain('暴击伤害提高24%');
-    expect(enhanced.eidolons[0].description).toContain('暴击伤害提高36%');
+    expect(baseProfile(jingliu).eidolons[0].description).toContain(
+      '暴击伤害提高<unbreak>24%</unbreak>'
+    );
+    expect(enhanced.eidolons[0].description).toContain('暴击伤害提高<unbreak>36%</unbreak>');
   });
 });

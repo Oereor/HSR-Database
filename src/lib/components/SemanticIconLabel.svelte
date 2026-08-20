@@ -5,6 +5,7 @@
   export let code: string | undefined;
   export let label: string;
   export let color: string | undefined = undefined;
+  export let size: 'default' | 'large' = 'default';
 
   let failedSource: string | undefined;
   $: source = kind === 'element' ? getElementIconUrl(code) : getPathIconUrl(code);
@@ -16,6 +17,7 @@
   style:color
   data-icon-kind={kind}
   data-icon-missing={!visibleSource}
+  data-label-size={size}
 >
   {#if visibleSource}<img
       src={visibleSource}
