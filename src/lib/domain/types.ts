@@ -226,6 +226,66 @@ export interface RelicSet extends CatalogEntry {
 export interface Enemy extends CatalogEntry {
   kind: 'enemy';
   rank: string;
+  /** Template-owned identity and base configuration. */
+  template: MonsterTemplate;
+  /** All concrete MonsterConfig records for this template. */
+  monsters: Monster[];
+  /** Canonical MonsterID used by the current detail page compatibility view. */
+  defaultMonsterId: string;
+  defaultMonster: Monster;
+  /** @deprecated presentation compatibility projection; use defaultMonster. */
+  stats: EnemyStatProgression;
+  /** @deprecated presentation compatibility projection; use defaultMonster. */
+  weaknesses: ElementLabel[];
+  /** @deprecated presentation compatibility projection; use defaultMonster. */
+  resistances: Array<ElementLabel & { value: number }>;
+  /** @deprecated presentation compatibility projection; use defaultMonster. */
+  specialResistances: EnemySpecialResistance[];
+  /** @deprecated presentation compatibility projection; use defaultMonster. */
+  summons: EnemySummonReference[];
+  /** @deprecated presentation compatibility projection; use defaultMonster. */
+  skills: EnemySkill[];
+  /** @deprecated presentation compatibility projection; use defaultMonster. */
+  skillPhases: EnemySkillPhase[];
+}
+
+export interface EnemyTemplateBaseStats {
+  hp: import('./endgame.js').DecimalString;
+  attack: import('./endgame.js').DecimalString;
+  defence: import('./endgame.js').DecimalString;
+  speed?: import('./endgame.js').DecimalString;
+  stance?: import('./endgame.js').DecimalString;
+  effectResistance?: import('./endgame.js').DecimalString;
+}
+
+/** Data owned by MonsterTemplateConfig, independent of a concrete battle record. */
+export interface MonsterTemplate {
+  monsterTemplateId: string;
+  name: string;
+  rank: string;
+  baseStats: EnemyTemplateBaseStats;
+}
+
+export interface EnemyMonsterStatModifier {
+  ratio: import('./endgame.js').DecimalString;
+  value?: import('./endgame.js').DecimalString;
+}
+
+export interface EnemyMonsterStatModifiers {
+  hp: EnemyMonsterStatModifier;
+  attack: EnemyMonsterStatModifier;
+  defence: EnemyMonsterStatModifier;
+  speed: EnemyMonsterStatModifier;
+  stance: EnemyMonsterStatModifier;
+}
+
+/** Data owned by one MonsterConfig, including its behavior and instance modifiers. */
+export interface Monster {
+  monsterId: string;
+  monsterTemplateId: string;
+  hardLevelGroup: string;
+  eliteGroup?: string;
+  modifiers: EnemyMonsterStatModifiers;
   stats: EnemyStatProgression;
   weaknesses: ElementLabel[];
   resistances: Array<ElementLabel & { value: number }>;

@@ -508,6 +508,44 @@ for (const enemy of enemyDetails) {
   for (const skillId of generatedSkillIds)
     if (!phaseSkillIds.has(skillId))
       throw new Error(`敌人 ${enemy.id} 公开技能 ${skillId} 未归入任何阶段`);
+
+  if (enemy.defaultMonsterId !== enemy.id)
+    throw new Error(`敌人 ${enemy.id} 默认 MonsterID 必须是 canonical ID`);
+  if (enemy.defaultMonster.monsterId !== enemy.defaultMonsterId)
+    throw new Error(`敌人 ${enemy.id} defaultMonster 与 defaultMonsterId 不一致`);
+  if (!enemy.monsters.some((monster) => monster.monsterId === enemy.defaultMonsterId))
+    throw new Error(`敌人 ${enemy.id} 缺少 default MonsterConfig`);
+  for (const monster of enemy.monsters) {
+    if (monster.monsterTemplateId !== enemy.id)
+      throw new Error(`敌人 ${enemy.id} 的 Monster ${monster.monsterId} template reference 错误`);
+    const rawMonster = rawConfigByMonsterId.get(monster.monsterId);
+    if (!rawMonster || String(rawMonster.MonsterTemplateID) !== enemy.id)
+      throw new Error(`敌人 ${enemy.id} 的 Monster ${monster.monsterId} raw reference 无效`);
+    const rawHardLevelsForMonster =
+      rawHardLevelsByGroup.get(String(rawMonster.HardLevelGroup)) ?? [];
+    const rawEliteForMonster = rawEliteById.get(String(rawMonster.EliteGroup));
+    if (!rawEliteForMonster) throw new Error(`Monster ${monster.monsterId} 缺少 EliteGroup`);
+    const expectedMonsterStats = resolveCanonicalEnemyStats(
+      template,
+      rawMonster,
+      rawHardLevelsForMonster,
+      rawEliteForMonster
+    );
+    if (JSON.stringify(monster.stats) !== JSON.stringify(expectedMonsterStats))
+      throw new Error(`Monster ${monster.monsterId} 等级属性未通过共享 resolver 重算`);
+    for (const [field, rawField] of [
+      ['hp', 'HP'],
+      ['attack', 'Attack'],
+      ['defence', 'Defence'],
+      ['speed', 'Speed'],
+      ['stance', 'Stance']
+    ] as const) {
+      const ratio = monster.modifiers[field].ratio;
+      const rawRatio = rawMonster[`${rawField}ModifyRatio`];
+      if (rawRatio !== undefined && ratio !== String(rawRatio.Value))
+        throw new Error(`Monster ${monster.monsterId} ${rawField} modifier provenance 不一致`);
+    }
+  }
 }
 if (
   audit.enemyAudit.canonicalJoin.resolved !== enemyDetails.length ||

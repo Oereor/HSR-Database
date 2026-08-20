@@ -36,6 +36,7 @@ import {
   staticGeneratedRoot
 } from './paths.js';
 import { hashOf, numberOf, readTable } from './raw.js';
+import { decimalOf } from './decimal.js';
 import { normalizeSkillCombatMeta } from './skill-combat.js';
 import {
   buildSkillCards,
@@ -53,6 +54,7 @@ import {
   normalizeEnemySkillKind,
   normalizeEnemySkillTag,
   normalizeSpecialResistances,
+  normalizedElementLabel,
   resolveCanonicalEnemyStats
 } from './enemy-detail.js';
 
@@ -71,6 +73,20 @@ const grouped = <T extends Raw>(rows: T[], key: string): Map<string, T[]> => {
 };
 
 const values = (items: any[] | undefined): number[] => (items ?? []).map(numberOf);
+
+function modifierOf(config: Raw, field: string) {
+  const ratio = config[`${field}ModifyRatio`];
+  const value = config[`${field}ModifyValue`];
+  return {
+    ratio: decimalOf(
+      ratio ?? { Value: '1' },
+      `MonsterConfig.${config.MonsterID}.${field}ModifyRatio`
+    ),
+    ...(value !== undefined && value !== null
+      ? { value: decimalOf(value, `MonsterConfig.${config.MonsterID}.${field}ModifyValue`) }
+      : {})
+  };
+}
 
 // Product display override confirmed against AvatarServantConfig and AvatarServantSkillConfig.
 // 1140712 is a hidden implementation duplicate of the public memosprite talent 1140706.
@@ -1168,11 +1184,18 @@ export async function syncData(): Promise<DataManifest> {
       type: template.Rank,
       typeName: template.Rank
     };
-    enemyCatalog.push(catalog);
-    enemies.push({
-      ...catalog,
-      kind: 'enemy',
-      rank: template.Rank,
+    const canonicalMonster = {
+      monsterId: id,
+      monsterTemplateId: id,
+      hardLevelGroup: String(config.HardLevelGroup),
+      eliteGroup: String(config.EliteGroup),
+      modifiers: {
+        hp: modifierOf(config, 'HP'),
+        attack: modifierOf(config, 'Attack'),
+        defence: modifierOf(config, 'Defence'),
+        speed: modifierOf(config, 'Speed'),
+        stance: modifierOf(config, 'Stance')
+      },
       stats: resolveCanonicalEnemyStats(template, config, hardLevels, elite),
       weaknesses,
       resistances,
@@ -1180,10 +1203,150 @@ export async function syncData(): Promise<DataManifest> {
       summons,
       skills,
       skillPhases
+    };
+    enemyCatalog.push(catalog);
+    enemies.push({
+      ...catalog,
+      kind: 'enemy',
+      rank: template.Rank,
+      template: {
+        monsterTemplateId: id,
+        name,
+        rank: template.Rank,
+        baseStats: {
+          hp: decimalOf(template.HPBase, `MonsterTemplate.${id}.HPBase`),
+          attack: decimalOf(template.AttackBase, `MonsterTemplate.${id}.AttackBase`),
+          defence: decimalOf(template.DefenceBase, `MonsterTemplate.${id}.DefenceBase`),
+          ...(template.SpeedBase !== undefined
+            ? { speed: decimalOf(template.SpeedBase, `MonsterTemplate.${id}.SpeedBase`) }
+            : {}),
+          ...(template.StanceBase !== undefined
+            ? { stance: decimalOf(template.StanceBase, `MonsterTemplate.${id}.StanceBase`) }
+            : {}),
+          ...(template.StatusResistanceBase !== undefined
+            ? {
+                effectResistance: decimalOf(
+                  template.StatusResistanceBase,
+                  `MonsterTemplate.${id}.StatusResistanceBase`
+                )
+              }
+            : {})
+        }
+      },
+      monsters: [canonicalMonster],
+      defaultMonsterId: id,
+      defaultMonster: canonicalMonster,
+      // Kept until the next UI migration; these are a projection of defaultMonster.
+      stats: canonicalMonster.stats,
+      weaknesses: canonicalMonster.weaknesses,
+      resistances: canonicalMonster.resistances,
+      specialResistances: canonicalMonster.specialResistances,
+      summons: canonicalMonster.summons,
+      skills: canonicalMonster.skills,
+      skillPhases: canonicalMonster.skillPhases
     });
     searchSeeds.push({
       entry: { id, kind: 'enemy', name, href: `/enemies/${id}`, aliases: [], meta: template.Rank },
       hashes: [hashOf(template.MonsterName)].filter(defined)
+    });
+  }
+
+  // Build the explicit Template -> Monster relation. The legacy top-level fields above
+  // remain the canonical/default Monster projection for the existing detail UI.
+  for (const enemy of enemies) {
+    const templateId = enemy.id;
+    const template = monsterTemplates.get(templateId);
+    if (!template) continue;
+    const configs = tables.MonsterConfig.filter(
+      (row) => String(row.MonsterTemplateID) === templateId
+    );
+    enemy.monsters = configs.map((config) => {
+      if (String(config.MonsterID) === templateId) return enemy.defaultMonster;
+      const levels = hardLevelRows.get(String(config.HardLevelGroup)) ?? [];
+      const elite = eliteRows.get(String(config.EliteGroup));
+      const stats = elite
+        ? resolveCanonicalEnemyStats(template, config, levels, elite)
+        : { ...enemy.stats };
+      const weaknesses = (config.StanceWeakList ?? []).flatMap((rawElement: unknown) => {
+        const sourceElement = String(rawElement);
+        const element = normalizeElementType(sourceElement);
+        return isElementType(element) ? [{ element, name: elementName(sourceElement) }] : [];
+      });
+      const resistances = (config.DamageTypeResistance ?? []).flatMap((resistance: Raw) => {
+        const sourceElement = String(resistance.DamageType);
+        const element = normalizeElementType(sourceElement);
+        const value = numberOf(resistance.Value);
+        return isElementType(element) && value !== 0
+          ? [{ element, name: elementName(sourceElement), value }]
+          : [];
+      });
+      const specialResistances = normalizeSpecialResistances(config.DebuffResist).values;
+      const variantSkills: EnemySkill[] = [];
+      const variantPhaseInputs: Array<{ id: string; phases: number[]; visible: boolean }> = [];
+      for (const rawSkillId of config.SkillList ?? []) {
+        const skillId = String(rawSkillId);
+        const skill = monsterSkillRows.get(skillId);
+        if (!skill) continue;
+        const phases = normalizeEnemyPhases(skill.PhaseList);
+        const kindLabel = tr(skill.SkillTypeDesc, source('enemy-skill', skillId, 'SkillTypeDesc'));
+        const tagLabel = tr(skill.SkillTag, source('enemy-skill', skillId, 'SkillTag'));
+        const formattedDescription = formatGameMarkup(
+          tr(skill.SkillDesc, source('enemy-skill', skillId, 'SkillDesc')),
+          values(skill.ParamList)
+        );
+        const visible = Boolean(gameTextToPlain(formattedDescription.text).trim());
+        variantPhaseInputs.push({ id: skillId, phases, visible });
+        if (!visible) continue;
+        const damageType =
+          skill.DamageType === undefined
+            ? undefined
+            : normalizedElementLabel(skill.DamageType, normalizeElementType, elementName);
+        variantSkills.push({
+          id: skillId,
+          name: tr(skill.SkillName, source('enemy-skill', skillId, 'SkillName'), `技能 ${skillId}`),
+          description: formattedDescription.text,
+          kind: normalizeEnemySkillKind(kindLabel),
+          tag: normalizeEnemySkillTag(tagLabel),
+          ...(damageType ? { damageType } : {}),
+          phases,
+          extraEffects: resolveExtraEffects(extraEffectIdsOf(skill), 'enemy-skill', skillId)
+        });
+      }
+      const variantSummons = (config.SummonIDList ?? []).flatMap((rawSummonId: unknown) => {
+        const monsterId = String(rawSummonId);
+        const summonConfig = monsterRows.get(monsterId);
+        const summonTemplateId = String(summonConfig?.MonsterTemplateID ?? '');
+        return summonConfig && monsterTemplates.has(summonTemplateId)
+          ? [
+              {
+                monsterId,
+                monsterTemplateId: summonTemplateId,
+                name: canonicalEnemyName(summonTemplateId),
+                href: `/enemies/${summonTemplateId}`
+              }
+            ]
+          : [];
+      });
+      return {
+        monsterId: String(config.MonsterID),
+        monsterTemplateId: templateId,
+        hardLevelGroup: String(config.HardLevelGroup ?? ''),
+        ...(config.EliteGroup !== undefined ? { eliteGroup: String(config.EliteGroup) } : {}),
+        modifiers: {
+          hp: modifierOf(config, 'HP'),
+          attack: modifierOf(config, 'Attack'),
+          defence: modifierOf(config, 'Defence'),
+          speed: modifierOf(config, 'Speed'),
+          stance: modifierOf(config, 'Stance')
+        },
+        stats,
+        weaknesses,
+        resistances,
+        specialResistances,
+        summons: variantSummons,
+        skills: variantSkills,
+        skillPhases: buildEnemySkillPhases(variantPhaseInputs)
+      };
     });
   }
 

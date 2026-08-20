@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { Enemy } from '../../src/lib/domain/types';
@@ -126,6 +126,47 @@ describe('Enemy Detail parser/resolver', () => {
 });
 
 describe('Enemy Detail 真实数据回归', () => {
+  it('显式表达 Template → Monster 关系，并保留 concrete ownership', async () => {
+    const detail = await enemy('1002015');
+    expect(detail.template.monsterTemplateId).toBe('1002015');
+    expect(detail.defaultMonsterId).toBe('1002015');
+    expect(detail.monsters).toHaveLength(11);
+    expect(detail.monsters.filter((monster) => monster.monsterId === '1002015')).toHaveLength(1);
+    expect(detail.monsters.every((monster) => monster.monsterTemplateId === '1002015')).toBe(true);
+
+    const canonical = detail.monsters.find((monster) => monster.monsterId === '1002015')!;
+    const quantumVariant = detail.monsters.find((monster) => monster.monsterId === '100201506')!;
+    expect(canonical.weaknesses.map((item) => item.element)).toEqual(['Fire', 'Lightning']);
+    expect(quantumVariant.weaknesses.map((item) => item.element)).toEqual(['Fire', 'Quantum']);
+    expect(quantumVariant.stats.levels[94].hp).not.toEqual(canonical.stats.levels[94].hp);
+    expect(canonical.modifiers.hp.ratio).toBe('1');
+    expect(quantumVariant.modifiers.hp.ratio).toBe('4');
+    expect(quantumVariant.modifiers.attack.ratio).toBe('0.33333302');
+    expect(quantumVariant.skills).toHaveLength(2);
+    expect(detail.weaknesses).toEqual(canonical.weaknesses);
+    expect(detail.skills).toEqual(canonical.skills);
+  });
+
+  it('所有生成 Template 均以显式关系连接 concrete Monster，ID 编码仅作 validation', async () => {
+    const files = (await readdir(path.join(generatedRoot, 'details', 'enemies'))).filter((file) =>
+      file.endsWith('.json')
+    );
+    for (const file of files) {
+      const detail = JSON.parse(
+        await readFile(path.join(generatedRoot, 'details', 'enemies', file), 'utf8')
+      ) as Enemy;
+      expect(detail.template.monsterTemplateId).toBe(detail.id);
+      expect(detail.monsters.length).toBeGreaterThan(0);
+      expect(detail.monsters.every((monster) => monster.monsterTemplateId === detail.id)).toBe(
+        true
+      );
+      expect(detail.monsters.some((monster) => monster.monsterId === detail.id)).toBe(true);
+      expect(detail.monsters.every((monster) => [7, 9].includes(monster.monsterId.length))).toBe(
+        true
+      );
+    }
+  });
+
   it('8034010 包含 Lv.95 七项属性、弱点抗性、召唤与多阶段技能', async () => {
     const aventurine = await enemy('8034010');
     const row = aventurine.stats.levels.find((candidate) => candidate.level === 95)!;
