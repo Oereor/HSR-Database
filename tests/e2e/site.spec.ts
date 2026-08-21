@@ -104,6 +104,59 @@ test('角色目录与详情接入属性、命途图标和优化立绘', async ({
   expect(failedImages).toEqual([]);
 });
 
+test('四名 LD 角色进入 Character Overview、Search、Detail 与本地资源链', async ({ page }) => {
+  for (const [id, name, pathName, elementName] of [
+    ['1014', 'Saber', '毁灭', '风'],
+    ['1015', 'Archer', '巡猎', '量子'],
+    ['1508', '远坂凛', '智识', '量子'],
+    ['1509', '吉尔伽美什', '毁灭', '雷']
+  ] as const) {
+    await page.goto(`/characters?q=${encodeURIComponent(name)}`);
+    const card = page.locator(`a[href="/characters/${id}"]`);
+    await expect(card).toBeVisible();
+    await expect(card.locator('.rarity-stars')).toHaveText('★★★★★');
+    await expect(card.locator('.entity-overview-card__metadata')).toContainText(pathName);
+    await expect(card.locator('.entity-overview-card__metadata')).toContainText(elementName);
+    await expect(card.locator('.entity-overview-card__artwork img')).toHaveAttribute(
+      'src',
+      `/generated-assets/characters/preview/${id}.png`
+    );
+
+    await page.goto(`/search?q=${encodeURIComponent(name)}`);
+    await expect(page.locator(`a[href="/characters/${id}"]`)).toBeVisible();
+
+    await page.goto(`/characters/${id}`);
+    await expect(page.getByRole('heading', { level: 1, name })).toBeVisible();
+    await expect(page.locator(`[data-character-portrait="${id}"] img`)).toHaveAttribute(
+      'src',
+      `/generated-assets/characters/portrait/${id}.webp`
+    );
+    await expect(page.locator('#skills .skill-card')).toHaveCount(5);
+    await expect(page.locator('#traces')).toContainText('13 条记录');
+    await expect(page.locator('#eidolons .rank-card')).toHaveCount(6);
+  }
+});
+
+test('Global Buff 作为正常 Talent Variant 展示且不泄漏配置术语', async ({ page }) => {
+  for (const [id, originalId, globalId, originalName, globalName, description] of [
+    ['1407', '140704', '140704:global-buff:1', '掌心淌过的荒芜', '月茧之庇', '月茧'],
+    ['1506', '150604', '150604:global-buff:1', '有我在，把把都是顺风局', '999安全卫士', '防火墙']
+  ] as const) {
+    await page.goto(`/characters/${id}`);
+    const talentCard = page.locator('[data-skill-category="talent"]');
+    await expect(talentCard).toHaveCount(1);
+    await expect(talentCard.locator('.skill-variant')).toHaveCount(2);
+    await expect(talentCard.locator(`[data-skill-id="${originalId}"]`)).toContainText(originalName);
+    const globalVariant = talentCard.locator(`[data-skill-id="${globalId}"]`);
+    await expect(globalVariant).toContainText(globalName);
+    await expect(globalVariant).toContainText(description);
+    await expect(globalVariant).toContainText('Lv.1');
+    await expect(page.locator('[data-skill-category="global-buff"]')).toHaveCount(0);
+    await expect(page.locator('body')).not.toContainText('仓库技');
+    await expect(page.locator('body')).not.toContainText('Global Buff');
+  }
+});
+
 test('敌人目录使用本地立绘、三类 Rank 和 default Monster 弱点', async ({ page }) => {
   await page.goto('/enemies?sort=id');
   const card = page.locator('a[href="/enemies/1002015"]');
@@ -400,7 +453,9 @@ test('技能卡按语义类别合并变体并使用真实默认等级', async ({
 
   const skillCard = page.locator('[data-skill-category="skill"]');
   await expect(skillCard.locator('output')).toHaveText('Lv.10');
-  await expect(skillCard.locator('[data-skill-id="121309"]')).toContainText('Lv.1');
+  await expect(skillCard.locator('.skill-variant')).toHaveCount(1);
+  await expect(skillCard.locator('[data-skill-id="121302"]')).toBeVisible();
+  await expect(skillCard.locator('[data-skill-id="121309"]')).toHaveCount(0);
 
   await page.goto('/characters/1401');
   const hertaSkill = page.locator('[data-skill-category="skill"]');
@@ -618,7 +673,7 @@ test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ 
   await expect(page.getByRole('switch', { name: '角色加强' })).toHaveCount(0);
 });
 
-test('内部空描述技能按结构关系隐藏且公开技能保持可用', async ({ page }) => {
+test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用', async ({ page }) => {
   await page.goto('/characters/1407');
   const memospriteSkill = page.locator('[data-skill-category="memosprite-skill"]');
   await expect(memospriteSkill.locator('[data-skill-id="1140702"]')).toBeVisible();
@@ -634,6 +689,23 @@ test('内部空描述技能按结构关系隐藏且公开技能保持可用', as
   await page.goto('/characters/1507');
   await expect(page.locator('[data-skill-id="150709"]')).toHaveCount(0);
   await expect(page.getByText('上游原始数据未提供该技能描述。')).toHaveCount(0);
+
+  await page.goto('/characters/1509');
+  await expect(page.locator('[data-skill-category="basic"] .skill-variant')).toHaveCount(1);
+  await expect(page.locator('[data-skill-id="150901"]')).toContainText('漫不经心');
+  const gilgameshSkill = page.locator('[data-skill-category="skill"]');
+  await expect(gilgameshSkill.locator('.skill-variant')).toHaveCount(1);
+  await expect(gilgameshSkill.locator('[data-skill-id="150902"]')).toContainText('王之财宝');
+  await expect(page.locator('[data-skill-id="150909"]')).toHaveCount(0);
+  await expect(page.getByText('上游原始数据未提供该技能描述。')).toHaveCount(0);
+
+  await page.goto('/characters/1415');
+  const cyreneMemospriteSkill = page.locator('[data-skill-category="memosprite-skill"]');
+  await expect(cyreneMemospriteSkill.locator('.skill-variant')).toHaveCount(2);
+  await expect(cyreneMemospriteSkill.locator('[data-skill-id="1141501"]')).toBeVisible();
+  await expect(cyreneMemospriteSkill.locator('[data-skill-id="1141502"]')).toBeVisible();
+  for (let skillId = 1141513; skillId <= 1141526; skillId += 1)
+    await expect(page.locator(`[data-skill-id="${skillId}"]`)).toHaveCount(0);
 });
 
 test('属性行迹、普通换行与光锥颜色 markup 正确渲染', async ({ page }) => {

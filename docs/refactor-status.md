@@ -59,7 +59,7 @@
 ## Refactor 08 Phase 03：Character / Enemy Overview
 
 - 新增 domain-agnostic `EntityOverviewCard`，Character 与 Enemy wrapper 分别解释稀有度/命途/属性和 Rank/默认 Monster 弱点；Light Cone 与 Relic 暂时继续使用 legacy card。
-- 视觉 manifest 升级为 schema 3。Character Overview 按 `index_new/cn/characters.json.preview` selective sync 91 张原始 PNG 到 `characters/preview`；Character Detail 的 WebP portrait 保持不变，旧 avatar 输出和 resolver 已移除。
+- 视觉 manifest 升级为 schema 3。Character Overview 按 `index_new/cn/characters.json.preview` 进行 catalog 驱动的 selective sync；Phase 05 后覆盖 95 张原始 PNG，Character Detail 的 WebP portrait 保持不变，旧 avatar 输出和 resolver 已移除。
 - Enemy Overview 复用现有 generated-enemy-assets 本地 manifest/cache，服务端一次性注入 TemplateID 对应 URL；缺图使用共享 fallback，浏览器不包含 nanoka 远程 URL。
 - Character/Enemy 卡片统一为约 184px 横向 artwork、主题 token 渐隐与双列/双列/单列响应式布局；不显示简介。Enemy raw Rank 仍保留，Overview 映射为普通、精英、首领三类并兼容旧筛选参数。
 - 后续 Light Cone 可复用 `index_new/cn/light_cones.json.preview` 与 `image/light_cone_preview`，Relic Set 可复用 `index_new/cn/relic_sets.json.icon` 与 `icon/relic`；两者只需扩展现有 manifest/sync 并新增领域 wrapper，不需要修改共享 presentation primitive。
@@ -81,6 +81,18 @@
 - 多阶段敌方详情使用可访问 tabs 展示各阶段技能；单阶段保持直接列表，技能卡不再重复显示“适用阶段”。
 - Enemy Family / Variant 仅完成全库调查和报告，未实现聚合、代表选择、URL、搜索、overview 或 Endgame identity 变化。
 
+## Refactor 08 Phase 05：Character Data Completeness
+
+- 业务 manifest 升级为 schema 20。六组 Character regular/LD companion config 通过显式 identity 合并，新增 Saber、Archer、远坂凛和吉尔伽美什；LD 不形成独立 domain 或资源管线。
+- `AvatarGlobalBuffConfig` 通过 `AvatarID + SkillID` 唯一关联 Talent，并复用现有多 Variant Skill Card。遐蝶“月茧之庇”和银狼LV.999“999安全卫士”作为静态普通形态展示，不暴露“仓库技”或配置来源。
+- `AvatarEquipRecommend(+LD)` 已完成 schema 审计：95 个唯一角色、每项 2–3 个有序 EquipmentID，无额外 priority/group/condition；推荐光锥 relation 与 UI 留待 Light Cone domain 后续阶段。
+
+## Refactor 08 Phase 06：Skill Visibility Pipeline Simplification
+
+- Character 与 Memosprite 的玩家侧技能在 normalize 前直接尊重各自配置中的 `HideInUI`；Global Buff 按自身 schema 保持原有接入，不继承不存在的 visibility 字段。
+- 删除基于空描述、progression、SkillTag 和 SkillIcon 的内部技能推断，以及遐蝶 `1140712` 的专用 override。`buildSkillCards` 只负责稳定聚合、排序与 progression，UI 继续消费清理后的 domain model。
+- 当前 42 个被 Profile 引用的隐藏 SkillID 均由配置排除；吉尔伽美什 `150909`、昔涟 14 个内部忆灵形态及其余旧漏判不再进入详情页，同时公开空描述形态的 renderer fallback 保持可用。
+
 ## 第五次重构：Endgame UI
 
 - 新增独立 `/endgame` 顶级功能区以及按 mode/group 静态预渲染的 108 个赛期页面；Enemy 百科继续回答模板资料，Endgame 页面只回答具体赛期中的实际敌方实例。
@@ -96,16 +108,16 @@
 ## 行迹卡片分组与类型标签
 
 - 生成数据升级为 schema 11。可展示行迹只保留真实单级的 `PointType=1/3/5`，分别规范化为属性加成与额外能力，不再向浏览器暴露无意义的 `Lv.1`。
-- `PrePoint` 的 860 条有效关系生成同 Profile 有向森林，`AnchorType` 用于稳定排序；验证器拒绝断链、自引用、循环和未经审计的 Type 5。
+- `PrePoint` 的 893 条有效关系生成同 Profile 有向森林，`AnchorType` 用于稳定排序；验证器拒绝断链、自引用、循环和未经审计的 Type 5。
 - 角色详情使用三列卡片列表：额外能力以较大卡片直接展示晋阶条件和完整描述，属性加成以同宽紧凑卡片列于所属能力下方，独立属性进入底部三列区域；移动端按能力分组单列堆叠。
-- 归属只沿属性节点自己的 `PrePoint` 链正向追溯，不反向解释能力对属性的依赖。101 套 Profile 当前为 785 个能力所属属性节点和 225 个独立节点。男女记忆开拓者各有 `2/2/3` 个属性归入前三项能力、3 个独立属性；“未完的尾声”作为 `PointType=5` 第四项能力通栏展示。
+- 归属只沿属性节点自己的 `PrePoint` 链正向追溯，不反向解释能力对属性的依赖。105 套 Profile 当前为 818 个能力所属属性节点和 232 个独立节点。男女记忆开拓者各有 `2/2/3` 个属性归入前三项能力、3 个独立属性；“未完的尾声”作为 `PointType=5` 第四项能力通栏展示。
 
 ## 数据源与审计状态
 
 - 上游：`648b08fbdb2e49739ebbf1210c9a189fcfc5e2d7`，版本标记 `OSPRODWin4.4.0_D15909703_A15802547_L15874300`。
-- 实体：91 角色、165 光锥、60 遗器套装、613 敌人模板；简中搜索索引 929 条。
-- 当前缺失审计：A 6,557、B 25、C 244、D 0。
-  - A：真实空字段或 CHS 缺失，包括 235 条角色技能和 20 条忆灵技能空描述。
+- 实体：95 角色、165 光锥、60 遗器套装、613 敌人模板；简中搜索索引 933 条。
+- 当前缺失审计：A 1,652、B 25、C 0、D 0。
+  - A：真实空字段或 CHS 缺失；`HideInUI` 技能在 player-facing normalize 前过滤，不再作为可见技能缺失描述计入。
   - B：15 条角色技能和 10 条忆灵技能描述含尚未表达语义的 `<icon>`。
   - C：当前浏览器消费域为 0；Enemy appearance 关系已退出生成模型。
   - D：当前程序级错误为 0。

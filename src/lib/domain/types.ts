@@ -95,7 +95,7 @@ export interface SkillVariant {
   name: string;
   type?: string;
   order: number;
-  source: 'avatar' | 'memosprite';
+  source: 'avatar' | 'memosprite' | 'avatar-global-buff';
   progressionId: string | null;
   scalingParamIndexes: number[];
   levels: LevelledDescription[];

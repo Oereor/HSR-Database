@@ -1,8 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
-  import { tick } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import CharacterOverviewCard from './CharacterOverviewCard.svelte';
   import EnemyOverviewCard from './EnemyOverviewCard.svelte';
   import LegacyEntityCard from './LegacyEntityCard.svelte';
@@ -14,6 +13,7 @@
     normalizeEnemyRankFilter
   } from '$lib/domain/enemy-overview';
   import { gameTextToPlain } from '$lib/domain/game-text';
+  import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
 
   export let entries: CatalogEntry[];
   export let category: string;
@@ -26,7 +26,11 @@
   let filtersOpen = false;
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
-  $: params = browser ? new URLSearchParams($page.url.searchParams) : new URLSearchParams();
+  let clientReady = false;
+  onMount(() => {
+    clientReady = true;
+  });
+  $: params = clientReady ? new URLSearchParams($page.url.searchParams) : new URLSearchParams();
   const pageSize = category === 'enemies' ? 48 : 36;
   $: appliedQuery = params.get('q') ?? '';
   $: synchronizeDraft(appliedQuery);
@@ -251,28 +255,34 @@
 </form>
 
 {#if visible.length}
-  <div
-    class="entity-grid"
-    class:entity-grid--overview={category === 'characters' || category === 'enemies'}
-  >
-    {#each visible as entry (entry.id)}
-      {#if category === 'characters'}
-        <CharacterOverviewCard {entry} href={`/characters/${entry.id}`} />
-      {:else if category === 'enemies'}
-        <EnemyOverviewCard
-          entry={enemyEntry(entry)}
-          href={`/enemies/${entry.id}`}
-          imageUrl={enemyPortraits[entry.id]}
-        />
-      {:else}
-        <LegacyEntityCard
-          {entry}
-          href={`/${category}/${entry.id}`}
-          kind={category === 'light-cones' ? 'light-cone' : 'relic'}
-        />
-      {/if}
-    {/each}
-  </div>
+  {#key `${category}:${visible.map((entry) => entry.id).join(',')}`}
+    <div
+      class="entity-grid"
+      class:entity-grid--overview={category === 'characters' || category === 'enemies'}
+    >
+      {#each visible as entry (entry.id)}
+        {#if category === 'characters'}
+          <CharacterOverviewCard
+            {entry}
+            href={`/characters/${entry.id}`}
+            imageUrl={getCharacterPreviewUrl(entry.id)}
+          />
+        {:else if category === 'enemies'}
+          <EnemyOverviewCard
+            entry={enemyEntry(entry)}
+            href={`/enemies/${entry.id}`}
+            imageUrl={enemyPortraits[entry.id]}
+          />
+        {:else}
+          <LegacyEntityCard
+            {entry}
+            href={`/${category}/${entry.id}`}
+            kind={category === 'light-cones' ? 'light-cone' : 'relic'}
+          />
+        {/if}
+      {/each}
+    </div>
+  {/key}
   {#if pages > 1}
     <nav class="pagination" aria-label="分页">
       {#if currentPage > 1}<a href={pageUrl(currentPage - 1)}>上一页</a>{/if}

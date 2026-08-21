@@ -3,13 +3,26 @@ import type {
   SkillCategory,
   SkillCombatMeta,
   SkillProgression,
-  SkillVariant,
-  TextHash
+  SkillVariant
 } from '../../src/lib/domain/types.js';
 
 export interface StructuredSkillFields {
   AttackType?: unknown;
   SkillTriggerKey?: unknown;
+}
+
+export interface SkillVisibilityFields {
+  HideInUI?: boolean;
+}
+
+export function isPlayerFacingSkillConfig(
+  rows: SkillVisibilityFields[],
+  identity: string
+): boolean {
+  const visibilityStates = new Set(rows.map((row) => row.HideInUI === true));
+  if (visibilityStates.size > 1)
+    throw new Error(`技能 ${identity} 的 HideInUI 在等级记录之间不一致`);
+  return !visibilityStates.has(true);
 }
 
 const categoryOrder: SkillCategory[] = [
@@ -67,8 +80,6 @@ export function classifyMemospriteSkill(
 
 export interface SkillVariantInput extends Omit<SkillVariant, 'combatMeta'> {
   category: SkillCategory;
-  skillTag?: TextHash;
-  skillIcon?: string;
   combatMetaLevels: Array<{ level: number; combatMeta: SkillCombatMeta }>;
 }
 
@@ -78,10 +89,7 @@ export function buildSkillCards(inputs: SkillVariantInput[]): SkillCard[] {
     groups.set(input.category, [...(groups.get(input.category) ?? []), input]);
 
   return categoryOrder.flatMap((category, order) => {
-    const candidates = [...(groups.get(category) ?? [])].sort((a, b) => a.order - b.order);
-    const variants = candidates.filter(
-      (candidate) => !isInternalImplementationVariant(candidate, candidates)
-    );
+    const variants = [...(groups.get(category) ?? [])].sort((a, b) => a.order - b.order);
     if (!variants.length) return [];
     const progressionIds = [
       ...new Set(
@@ -113,28 +121,6 @@ export function buildSkillCards(inputs: SkillVariantInput[]): SkillCard[] {
       }
     ];
   });
-}
-
-function isInternalImplementationVariant(
-  candidate: SkillVariantInput,
-  variants: SkillVariantInput[]
-): boolean {
-  if (hasDescription(candidate)) return false;
-  return variants.some((publicVariant) => {
-    if (publicVariant.id === candidate.id || !hasDescription(publicVariant)) return false;
-    const sharesProgression =
-      candidate.progressionId !== null && candidate.progressionId === publicVariant.progressionId;
-    const sharesPresentationIdentity =
-      !!candidate.skillTag &&
-      candidate.skillTag === publicVariant.skillTag &&
-      !!candidate.skillIcon &&
-      candidate.skillIcon === publicVariant.skillIcon;
-    return sharesProgression || sharesPresentationIdentity;
-  });
-}
-
-function hasDescription(variant: SkillVariantInput): boolean {
-  return variant.levels.some((level) => level.description.trim().length > 0);
 }
 
 function toSkillVariant(input: SkillVariantInput): SkillVariant {

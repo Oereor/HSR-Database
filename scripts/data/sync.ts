@@ -35,17 +35,19 @@ import {
   sourceCommit,
   staticGeneratedRoot
 } from './paths.js';
-import { hashOf, numberOf, readTable } from './raw.js';
+import { hashOf, mergeConfigSources, numberOf, readTable } from './raw.js';
 import { decimalOf } from './decimal.js';
 import { normalizeSkillCombatMeta } from './skill-combat.js';
 import {
   buildSkillCards,
   classifyAvatarSkill,
   classifyMemospriteSkill,
+  isPlayerFacingSkillConfig,
   type SkillVariantInput
 } from './skills.js';
 import { characterStatFields, lightConeStatFields, normalizeStatProgression } from './stats.js';
 import { formatGameMarkup, formatGameText } from './text.js';
+import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildEndgameData } from './endgame.js';
 import {
@@ -87,10 +89,6 @@ function modifierOf(config: Raw, field: string) {
       : {})
   };
 }
-
-// Product display override confirmed against AvatarServantConfig and AvatarServantSkillConfig.
-// 1140712 is a hidden implementation duplicate of the public memosprite talent 1140706.
-const memospriteDisplayOverrides = new Map([['1140712', '1140706']]);
 
 async function resetDirectory(directory: string): Promise<void> {
   assertInsideSite(directory);
@@ -182,6 +180,7 @@ export async function syncData(): Promise<DataManifest> {
     'AvatarBaseType',
     'DamageType',
     'AvatarSkillConfig',
+    'AvatarGlobalBuffConfig',
     'AvatarServantConfig',
     'AvatarServantSkillConfig',
     'AvatarSkillTreeConfig',
@@ -204,9 +203,24 @@ export async function syncData(): Promise<DataManifest> {
     'ExtraEffectConfig'
   ] as const;
   const loaded = await Promise.all(tableNames.map((name) => readTable<Raw>(root, name)));
-  const tables = Object.fromEntries(
+  const regularTables = Object.fromEntries(
     tableNames.map((name, index) => [name, loaded[index]])
   ) as Record<(typeof tableNames)[number], Raw[]>;
+  const ldTableNames = characterLdSourceNames;
+  const ldLoaded = await Promise.all(ldTableNames.map((name) => readTable<Raw>(root, name)));
+  const ldTables = Object.fromEntries(
+    ldTableNames.map((name, index) => [name, ldLoaded[index]])
+  ) as Record<(typeof ldTableNames)[number], Raw[]>;
+  const tables = { ...regularTables };
+  for (const spec of characterLdSourceSpecs)
+    tables[spec.tableName] = mergeConfigSources(
+      spec.tableName,
+      [
+        { name: `${spec.tableName}.json`, rows: regularTables[spec.tableName] },
+        { name: `${spec.additionalName}.json`, rows: ldTables[spec.additionalName] }
+      ],
+      spec.identityOf
+    );
 
   const specialEnergyAvatarIds = new Set(
     tables.AvatarUltraSkillConfig.filter((row) => row.UltraSkillType === 'SpecialSP').map((row) =>
@@ -273,6 +287,7 @@ export async function syncData(): Promise<DataManifest> {
   const damageRows = by(tables.DamageType, 'ID');
   const itemSources = grouped(tables.ItemComefrom, 'ID');
   const avatarSkills = grouped(tables.AvatarSkillConfig, 'SkillID');
+  const avatarGlobalBuffs = grouped(tables.AvatarGlobalBuffConfig, 'AvatarID');
   const servantSkills = grouped(tables.AvatarServantSkillConfig, 'SkillID');
   const avatarTraces = grouped(tables.AvatarSkillTreeConfig, 'AvatarID');
   const avatarRanks = by(tables.AvatarRankConfig, 'RankID');
@@ -398,6 +413,34 @@ export async function syncData(): Promise<DataManifest> {
       !avatarRanks.has(String(declaration.RankID))
     )
       throw new Error(`无效的加强星魂声明：${declaration.AvatarID}:${declaration.RankID}`);
+  }
+
+  type CharacterProfileMode = 'base' | 'enhanced';
+  const globalBuffProfileKey = (avatarId: string, mode: CharacterProfileMode): string =>
+    `${avatarId}:${mode}`;
+  const globalBuffRowsByProfile = new Map<string, Raw[]>();
+  for (const [avatarId, globalBuffRows] of avatarGlobalBuffs) {
+    const avatar = tables.AvatarConfig.find((row) => String(row.AvatarID) === avatarId);
+    if (!avatar) throw new Error(`AvatarGlobalBuffConfig 引用了未知角色：${avatarId}`);
+    const profileConfigs: Array<{ mode: CharacterProfileMode; config: Raw }> = [
+      { mode: 'base', config: avatar }
+    ];
+    const enhanced = enhancedAvatars.get(avatarId);
+    if (enhanced) profileConfigs.push({ mode: 'enhanced', config: enhanced });
+    for (const globalBuff of globalBuffRows) {
+      const skillId = String(globalBuff.SkillID);
+      const skillCategory = classifyAvatarSkill(avatarSkills.get(skillId)?.[0] ?? {});
+      const matches = profileConfigs.filter(
+        ({ config }) =>
+          (config.SkillList ?? []).map(String).includes(skillId) && skillCategory === 'talent'
+      );
+      if (matches.length !== 1)
+        throw new Error(
+          `角色 ${avatarId} 的 AvatarGlobalBuffConfig.SkillID=${skillId} 应唯一关联一个 Talent，实际 ${matches.length} 个`
+        );
+      const key = globalBuffProfileKey(avatarId, matches[0].mode);
+      globalBuffRowsByProfile.set(key, [...(globalBuffRowsByProfile.get(key) ?? []), globalBuff]);
+    }
   }
 
   const missingRelation = (
@@ -614,8 +657,45 @@ export async function syncData(): Promise<DataManifest> {
       levels: normalized.levels,
       attackType: first.AttackType,
       combatMetaLevels,
-      skillTag: hashOf(first.SkillTag),
-      skillIcon: typeof first.SkillIcon === 'string' ? first.SkillIcon : undefined,
+      category
+    };
+  };
+
+  const normalizeGlobalBuffVariant = (
+    row: Raw,
+    occurrence: number,
+    order: number,
+    category: SkillVariantInput['category']
+  ): SkillVariantInput => {
+    const skillId = String(row.SkillID);
+    const variantId = `${skillId}:global-buff:${occurrence}`;
+    const normalized = normalizeLevelledDescriptions([
+      {
+        level: 1,
+        params: values(row.ParamList),
+        template: tr(row.Desc, source('avatar-global-buff', variantId, 'Desc'))
+      }
+    ]);
+    collectDescriptionDiagnostics('avatar-global-buff', variantId, normalized.diagnostics);
+    const extraEffects = resolveExtraEffects(
+      extraEffectIdsOf(row),
+      'avatar-global-buff',
+      variantId
+    );
+    return {
+      id: variantId,
+      name: tr(row.Name, source('avatar-global-buff', variantId, 'Name'), `技能 ${skillId}`),
+      order,
+      source: 'avatar-global-buff',
+      progressionId: null,
+      scalingParamIndexes: normalized.scalingParamIndexes,
+      levels: normalized.levels,
+      combatMetaLevels: [
+        {
+          level: 1,
+          combatMeta: normalizeSkillCombatMeta({ extraEffects })
+        }
+      ],
       category
     };
   };
@@ -623,13 +703,18 @@ export async function syncData(): Promise<DataManifest> {
   const buildCharacterProfile = (
     config: Raw,
     traceRows: Raw[],
-    avatarBaseType: string
+    avatarBaseType: string,
+    globalBuffRows: Raw[]
   ): CharacterProfile => {
     const avatarId = String(config.AvatarID);
     const progressionBySkill = progressionIdsFor(traceRows);
     const skillVariants: SkillVariantInput[] = [];
+    const globalBuffsBySkill = grouped(globalBuffRows, 'SkillID');
     for (const [order, skillId] of (config.SkillList ?? []).entries()) {
       const rows = avatarSkills.get(String(skillId)) ?? [];
+      const matchingGlobalBuffs = globalBuffsBySkill.get(String(skillId)) ?? [];
+      const includeAvatarSkill = isPlayerFacingSkillConfig(rows, `AvatarSkillConfig.${skillId}`);
+      if (!includeAvatarSkill && !matchingGlobalBuffs.length) continue;
       const first = rows[0] ?? {};
       const category = classifyAvatarSkill(first);
       if (!category) {
@@ -642,16 +727,26 @@ export async function syncData(): Promise<DataManifest> {
           );
         continue;
       }
-      skillVariants.push(
-        normalizeSkillVariant(
-          skillId,
-          rows,
-          order,
-          'avatar',
-          progressionBySkill.get(String(skillId)),
-          category
-        )
-      );
+      if (includeAvatarSkill)
+        skillVariants.push(
+          normalizeSkillVariant(
+            skillId,
+            rows,
+            order,
+            'avatar',
+            progressionBySkill.get(String(skillId)),
+            category
+          )
+        );
+      for (const [index, globalBuff] of matchingGlobalBuffs.entries())
+        skillVariants.push(
+          normalizeGlobalBuffVariant(
+            globalBuff,
+            index + 1,
+            order + (index + 1) / (matchingGlobalBuffs.length + 1),
+            category
+          )
+        );
     }
 
     const servantPointIds = new Set<string>();
@@ -675,30 +770,8 @@ export async function syncData(): Promise<DataManifest> {
     for (const servant of matchedServants) {
       for (const [order, skillId] of (servant.SkillIDList ?? []).entries()) {
         const rows = servantSkills.get(String(skillId)) ?? [];
+        if (!isPlayerFacingSkillConfig(rows, `AvatarServantSkillConfig.${skillId}`)) continue;
         const category = classifyMemospriteSkill(rows[0] ?? {});
-        const publicTalentId = memospriteDisplayOverrides.get(String(skillId));
-        if (publicTalentId) {
-          const duplicate = rows[0] ?? {};
-          const publicTalent = servantSkills.get(publicTalentId)?.[0] ?? {};
-          const duplicateTag = hashOf(duplicate.SkillTag);
-          const publicTalentTag = hashOf(publicTalent.SkillTag);
-          const validOverride =
-            category === 'memosprite-skill' &&
-            duplicate.HideInUI === true &&
-            classifyMemospriteSkill(publicTalent) === 'memosprite-talent' &&
-            !!duplicateTag &&
-            duplicateTag === publicTalentTag &&
-            !!duplicate.SkillIcon &&
-            duplicate.SkillIcon === publicTalent.SkillIcon;
-          if (!validOverride)
-            missingText.record(
-              'D',
-              'invalid-memosprite-display-override',
-              source('memosprite-skill', skillId, 'DisplayOverride'),
-              publicTalentId
-            );
-          else continue;
-        }
         if (!category) {
           missingText.record(
             'D',
@@ -838,7 +911,8 @@ export async function syncData(): Promise<DataManifest> {
       base: buildCharacterProfile(
         avatar,
         traceRows.filter((row) => Number(row.EnhancedID ?? 0) === 0),
-        avatar.AvatarBaseType
+        avatar.AvatarBaseType,
+        globalBuffRowsByProfile.get(globalBuffProfileKey(id, 'base')) ?? []
       )
     };
     const enhancedConfig = enhancedAvatars.get(id);
@@ -848,7 +922,8 @@ export async function syncData(): Promise<DataManifest> {
         traceRows.filter(
           (row) => Number(row.EnhancedID ?? 0) === Number(enhancedConfig.EnhancedID)
         ),
-        avatar.AvatarBaseType
+        avatar.AvatarBaseType,
+        globalBuffRowsByProfile.get(globalBuffProfileKey(id, 'enhanced')) ?? []
       );
     const catalog: CatalogEntry = {
       id,
@@ -1378,7 +1453,7 @@ export async function syncData(): Promise<DataManifest> {
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 19,
+    schemaVersion: 20,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),
@@ -1405,7 +1480,10 @@ export async function syncData(): Promise<DataManifest> {
   await writeJson(path.join(staticGeneratedRoot, 'meta.json'), manifest);
   await writeJson(path.join(auditRoot, 'latest.json'), {
     ...manifest,
-    upstreamTables: Object.fromEntries(tableNames.map((name) => [name, tables[name].length])),
+    upstreamTables: Object.fromEntries([
+      ...tableNames.map((name) => [name, regularTables[name].length] as const),
+      ...ldTableNames.map((name) => [name, ldTables[name].length] as const)
+    ]),
     textDiagnostics: text.getDiagnostics(),
     descriptionDiagnostics,
     skillCombatAudit: {

@@ -9,6 +9,13 @@ export const auditRoot = path.join(siteRoot, 'data', 'audit');
 
 const requiredFiles = [
   'ExcelOutput/AvatarConfig.json',
+  'ExcelOutput/AvatarConfigLD.json',
+  'ExcelOutput/ItemConfigAvatarLD.json',
+  'ExcelOutput/AvatarSkillConfigLD.json',
+  'ExcelOutput/AvatarSkillTreeConfigLD.json',
+  'ExcelOutput/AvatarRankConfigLD.json',
+  'ExcelOutput/AvatarPromotionConfigLD.json',
+  'ExcelOutput/AvatarGlobalBuffConfig.json',
   'ExcelOutput/EquipmentConfig.json',
   'ExcelOutput/RelicSetConfig.json',
   'ExcelOutput/ItemConfig.json',

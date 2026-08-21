@@ -1,5 +1,6 @@
 <script lang="ts">
   import CharacterOverviewCard from '$lib/components/CharacterOverviewCard.svelte';
+  import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
   export let data;
 
   const categories: Array<[string, string, string, number]> = [
@@ -81,6 +82,7 @@
     {#each data.featured as entry}<CharacterOverviewCard
         {entry}
         href={`/characters/${entry.id}`}
+        imageUrl={getCharacterPreviewUrl(entry.id)}
       />{/each}
   </div>
 </section>

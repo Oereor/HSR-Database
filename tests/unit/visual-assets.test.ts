@@ -179,14 +179,20 @@ describe('视觉资源管线', () => {
     expect(iconMeta).toMatchObject({ format: 'png', width: 64, height: 64, hasAlpha: true });
   });
 
-  it('当前 manifest 覆盖 91 个角色、7 属性和 9 命途且无需名称映射', async () => {
+  it('当前 manifest 覆盖 95 个角色、7 属性和 9 命途且无需名称映射', async () => {
     const requirements = await readAssetRequirements();
     const generated = await readAssetManifest();
-    expect(requirements.characterIds).toHaveLength(91);
+    expect(requirements.characterIds).toHaveLength(95);
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
+    for (const id of ['1014', '1015', '1508', '1509'])
+      expect(requirements.characterIds).toContain(id);
     expect(generated).toBeDefined();
     expect(manifestCoversRequirements(generated!, requirements)).toBe(true);
+    for (const id of ['1014', '1015', '1508', '1509']) {
+      expect(generated!.characters.previews.available).toContain(id);
+      expect(generated!.characters.portraits.available).toContain(id);
+    }
     expect(generated).not.toHaveProperty('characterNames');
   });
 
@@ -201,15 +207,15 @@ describe('视觉资源管线', () => {
     expect(resolveCharacterPortraitAsset('1001', parsed)).toBeUndefined();
   });
 
-  it('角色 preview index 只解析网站需要的 91 个 ID 并拒绝越界路径', async () => {
+  it('角色 preview index 只解析网站需要的 95 个 ID 并拒绝越界路径', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readCharacterPreviewSources(root, requirements.characterIds);
     const index = JSON.parse(
       await readFile(path.join(root, 'index_new', 'cn', 'characters.json'), 'utf8')
     ) as Record<string, { preview?: string }>;
-    expect(sources.size).toBe(91);
-    expect(Object.values(index).filter((entry) => entry.preview).length).toBeGreaterThan(91);
+    expect(sources.size).toBe(95);
+    expect(Object.values(index).filter((entry) => entry.preview)).toHaveLength(95);
     expect([...sources.keys()].sort()).toEqual(requirements.characterIds);
     expect(() => resolveIndexedAssetPath(root, '../outside.png')).toThrow(/越界/);
     expect(() =>

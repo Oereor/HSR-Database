@@ -10,23 +10,23 @@
 
 ## 核心表与关系
 
-| 实体     | 主表                                 |     数量 | 主键/关系                                       |
-| -------- | ------------------------------------ | -------: | ----------------------------------------------- |
-| 角色     | `AvatarConfig.json`                  |       91 | `AvatarID`、`SkillList`、`RankIDList`           |
-| 多命途   | `MultiplePathAvatarConfig.json`      |       12 | `AvatarID`、`BaseAvatarID`                      |
-| 角色技能 | `AvatarSkillConfig.json`             |    6,804 | `SkillID + Level`                               |
-| 行迹     | `AvatarSkillTreeConfig.json`         |    5,196 | `AvatarID`、`PointID + Level`、`LevelUpSkillID` |
-| 星魂     | `AvatarRankConfig.json`              |      606 | `RankID`                                        |
-| 角色加强 | `AvatarConfigEnhanced.json`          |       10 | `AvatarID`、`EnhancedID`、完整技能/星魂列表     |
-| 加强变更 | `AvatarEnhancedSkill/SkillTree/Rank` | 32/25/20 | 构建期关联验证                                  |
-| 忆灵     | `AvatarServantConfig.json`           |        6 | `ServantID`、`SkillIDList`                      |
-| 忆灵技能 | `AvatarServantSkillConfig.json`      |      440 | `SkillID + Level`                               |
-| 光锥     | `EquipmentConfig.json`               |      165 | `EquipmentID`、`SkillID`                        |
-| 光锥叠影 | `EquipmentSkillConfig.json`          |      825 | `SkillID + Level`                               |
-| 遗器套装 | `RelicSetConfig.json`                |       60 | `SetID`                                         |
-| 遗器记录 | `RelicConfig.json`                   |      742 | `ID`、`SetID`                                   |
-| 敌人模板 | `MonsterTemplateConfig.json`         |      613 | `MonsterTemplateID`                             |
-| 敌人变体 | `MonsterConfig.json`                 |    2,591 | `MonsterID`、`MonsterTemplateID`                |
+| 实体     | 主表                                        |        数量 | 主键/关系                                       |
+| -------- | ------------------------------------------- | ----------: | ----------------------------------------------- |
+| 角色     | `AvatarConfig.json` + `AvatarConfigLD.json` |      91 + 4 | `AvatarID`、`SkillList`、`RankIDList`           |
+| 多命途   | `MultiplePathAvatarConfig.json`             |          12 | `AvatarID`、`BaseAvatarID`                      |
+| 角色技能 | `AvatarSkillConfig.json` + `LD`             | 6,804 + 293 | `SkillID + Level`                               |
+| 行迹     | `AvatarSkillTreeConfig.json` + `LD`         | 5,196 + 200 | `AvatarID`、`PointID + Level`、`LevelUpSkillID` |
+| 星魂     | `AvatarRankConfig.json` + `LD`              |    606 + 24 | `RankID`                                        |
+| 角色加强 | `AvatarConfigEnhanced.json`                 |          10 | `AvatarID`、`EnhancedID`、完整技能/星魂列表     |
+| 加强变更 | `AvatarEnhancedSkill/SkillTree/Rank`        |    32/25/20 | 构建期关联验证                                  |
+| 忆灵     | `AvatarServantConfig.json`                  |           6 | `ServantID`、`SkillIDList`                      |
+| 忆灵技能 | `AvatarServantSkillConfig.json`             |         440 | `SkillID + Level`                               |
+| 光锥     | `EquipmentConfig.json`                      |         165 | `EquipmentID`、`SkillID`                        |
+| 光锥叠影 | `EquipmentSkillConfig.json`                 |         825 | `SkillID + Level`                               |
+| 遗器套装 | `RelicSetConfig.json`                       |          60 | `SetID`                                         |
+| 遗器记录 | `RelicConfig.json`                          |         742 | `ID`、`SetID`                                   |
+| 敌人模板 | `MonsterTemplateConfig.json`                |         613 | `MonsterTemplateID`                             |
+| 敌人变体 | `MonsterConfig.json`                        |       2,591 | `MonsterID`、`MonsterTemplateID`                |
 
 第二次重构后网站不再消费普通 `ItemConfig`、`PromotionCostList`、行迹 `MaterialList` 或 `MonsterDrop`。材料、普通物品、养成成本和敌人掉落不进入领域模型、路由、搜索或生成数据。
 
@@ -35,6 +35,14 @@
 - `ItemConfigAvatar`：角色简介；
 - `ItemConfigEquipment`：光锥名称、简介与故事；
 - `ItemComefrom`：当前仅用于遗器获取来源。
+
+## Character 数据完整性
+
+- Character pipeline 显式合并 `AvatarConfig`、`ItemConfigAvatar`、`AvatarSkillConfig`、`AvatarSkillTreeConfig`、`AvatarRankConfig`、`AvatarPromotionConfig` 的 regular/LD 来源；不扫描任意后缀。regular 顺序优先，等价 identity 去重，冲突内容直接阻断生成。
+- LD 来源新增 Saber（1014）、Archer（1015）、远坂凛（1508）和吉尔伽美什（1509）；四者继续使用同一 Character domain、搜索、详情和 catalog 驱动的 selective asset sync。
+- `AvatarGlobalBuffConfig.json` 当前 2 条记录，分别通过 `AvatarID + SkillID` 唯一关联遐蝶的 140704 与银狼LV.999 的 150604。玩家可见的 `Name`、`Desc`、`ParamList` 和 ExtraEffect 被规范化为同一 Talent Card 的静态 Variant；配置来源只保留为数据诊断，不产生“仓库技”UI。
+- `AvatarEquipRecommend.json` 为 91 条、`AvatarEquipRecommendLD.json` 为 4 条，共覆盖 95 个唯一 Avatar。schema 仅包含 `AvatarID` 和保持顺序的 `EquipmentList`，每个角色有 2–3 个有效 EquipmentID；没有独立 priority、group、condition 或 path/variant 字段。未来 Light Cone relation 应按 ID 连接并保留数组顺序，本阶段不生成或展示推荐光锥。
+- Skill visibility 由各来源实际提供的 `HideInUI` 决定：`AvatarSkillConfig(+LD)` 有 357 条、29 个隐藏 SkillID，其中 25 个被 Character Profile 引用；`AvatarServantSkillConfig` 有 170 条、17 个被引用的隐藏 SkillID。旧的空描述/progression/presentation identity heuristic 只覆盖 20 个，另有 1 个遐蝶硬编码 override，并漏掉 21 个已明确隐藏的引用；当前 player-facing builder 在 normalize 前过滤全部 42 个引用，raw 配置仍完整保留。
 
 敌人百科不再生成或展示“出现关卡”；`StageConfig` 仅由 Endgame encounter-centric 管线消费，百科详情与赛期实例保持独立。
 
@@ -159,27 +167,27 @@ schema 16 按 `实体 + ID + 字段 + 引用` 去重后的基线：
 
 | 类别 |  数量 | 说明                                                                |
 | ---- | ----: | ------------------------------------------------------------------- |
-| A    | 6,557 | 源字段为空或有效引用在 CHS 中不存在                                 |
+| A    | 1,652 | 源字段为空或有效引用在 CHS 中不存在                                 |
 | B    |    25 | 当前 Formatter 未表达的 `<icon>` 语义                               |
 | C    |     0 | 当前浏览器消费域没有未解析关系；百科不再消费 StageConfig appearance |
 | D    |     0 | 当前程序级错误                                                      |
 
-A 类主要包括 1,010 个原始空行迹描述、410/389 个无简中映射的敌人技能描述/名称、235 条角色技能空描述和 20 条忆灵技能空描述。其中 1,010 条属性行迹已由结构化数据恢复，255 条空技能等级所属的 20 个内部 Variant 已由关系规则隐藏；审计仍如实保留原始缺失。B 类包括角色技能 `151022` 的 15 个等级和忆灵技能 `1141502` 的 10 个等级。普通物品与 Enemy appearance 已退出消费域，因此对应的缺失名称或关系不再计入运行审计。
+A 类包括 1,050 个原始空属性行迹描述、190 个角色名称/search alias 缺失、410 个敌人技能描述和 2 个其他 Enemy 文本缺失；属性行迹已由结构化数据恢复。`HideInUI` 技能在玩家侧 normalize 前过滤，因此其空描述不再被误报为可见内容缺失，原始记录仍由 visibility 审计覆盖。B 类包括角色技能 `151022` 的 15 个等级和忆灵技能 `1141502` 的 10 个等级。普通物品与 Enemy appearance 已退出消费域，因此对应的缺失名称或关系不再计入运行审计。
 
 完整分组和最多 20 个样本位于 `data/audit/latest.json` 与 `data/audit/audit.json`。
 
 ## 生成策略、资源和许可
 
-- schema 19 生成 91 个角色、165 个光锥、60 个遗器套装、613 个敌人详情、四类 Endgame 数据及 929 条简中搜索记录；其中 10 个角色详情包含双 Profile。
+- schema 20 生成 95 个角色、165 个光锥、60 个遗器套装、613 个敌人详情、四类 Endgame 数据及 933 条简中搜索记录；其中 10 个角色详情包含双 Profile。Endgame dataset 自身继续使用 schema 19。
 - 生成数据位于 `src/lib/generated/` 和 `static/generated/`，浏览器不加载上游 Config 或完整 TextMap。
-- `TurnBasedGameData` 只有 `SpriteOutput/...` 路径，没有图片文件；`StarRailRes` 当前通过中文角色 index 为 91 个目录角色提供 preview，并提供 2048×2048 PNG 立绘、七属性和九种实际命途图标。网站只按真实 ID/语义 code 生成所需集合。
-- 视觉 manifest schema 3 分别记录 preview、立绘、属性和命途资源。91 张 preview 保留原始 PNG（约 24.24 MiB），立绘生成最大 960px WebP，语义图标生成 64px PNG；所有输出均位于 gitignore 的 generated-assets 目录，旧 avatar 输出不再生成。
-- 构建期仅复制当前页面需要的本地视觉资源；视觉 manifest 与业务 schema 19 相互独立，详情领域模型不携带视觉路径，URL 由服务端 adapter 注入。
+- `TurnBasedGameData` 只有 `SpriteOutput/...` 路径，没有图片文件；`StarRailRes` 当前通过中文角色 index 为 95 个目录角色提供 preview，并提供 2048×2048 PNG 立绘、七属性和九种实际命途图标。网站只按真实 ID/语义 code 生成所需集合。
+- 视觉 manifest schema 3 分别记录 preview、立绘、属性和命途资源。95 张 preview 保留原始 PNG（约 25.21 MiB），95 张立绘生成最大 960px WebP（约 20.51 MiB），语义图标生成 64px PNG；所有输出均位于 gitignore 的 generated-assets 目录，旧 avatar 输出不再生成。
+- 构建期仅复制当前页面需要的本地视觉资源；视觉 manifest 与业务 schema 20 相互独立，详情领域模型不携带视觉路径，URL 由服务端 adapter 注入。
 
 ## Enemy Detail v1
 
 - 613 个敌人模板全部通过 `MonsterID == MonsterTemplateID` 连接 canonical `MonsterConfig`；`HardLevelGroup` 和 `EliteGroup` 由共享无损 resolver 生成 Lv.1–100 七项属性，默认 Lv.95。缺失 `SpeedBase` 或 `StanceBase` 时逐项标记 unavailable，组件不执行公式或韧性单位换算。
-- canonical 技能严格按 `MonsterTemplate → MonsterConfig.SkillList → MonsterSkillConfig` 保序连接。17 个当前 SkillTag、技能/天赋、声明式 DamageType、正整数 PhaseList 与 ExtraEffect 进入浏览器数据；schema 19 另从过滤前关系生成升序 `skillPhases`，空 PhaseList 技能复制到每个已知阶段，过滤后空阶段仍保留。SPHitBase、DelayRatio、ParamList、ModifierList、AttackType、SkillTriggerKey 和 AI 不进入浏览器数据。
+- canonical 技能严格按 `MonsterTemplate → MonsterConfig.SkillList → MonsterSkillConfig` 保序连接。17 个当前 SkillTag、技能/天赋、声明式 DamageType、正整数 PhaseList 与 ExtraEffect 进入浏览器数据；schema 20 另从过滤前关系生成升序 `skillPhases`，空 PhaseList 技能复制到每个已知阶段，过滤后空阶段仍保留。SPHitBase、DelayRatio、ParamList、ModifierList、AttackType、SkillTriggerKey 和 AI 不进入浏览器数据。
 - `DebuffResist` 当前七种 key 统一映射为控制抵抗、冻结抵抗、禁锢抵抗、纠缠抵抗、灼烧抵抗、触电抵抗和风化抵抗；未知 key 只进入 audit。`SummonIDList` 按 `MonsterID → MonsterTemplateID` 连接并按目标模板首次出现去重。
 - 元素弱点与非零抗性独立保存。当前 13 条弱点/抗性并存关系同时展示并进入 audit，不建立未经证实的覆盖优先级。
 - `enemyAudit` 记录 canonical join、未知技能 kind/tag/元素、弱点抗性并存、未知 DebuffResist、未解析 summon/skill/ExtraEffect 及基础属性缺失摘要。

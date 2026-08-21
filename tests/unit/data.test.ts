@@ -21,12 +21,21 @@ import {
   resolveDataRoot
 } from '../../scripts/data/paths';
 import type { MissingTextAudit } from '../../scripts/data/missing-text';
-import { hashOf, readTable } from '../../scripts/data/raw';
+import { hashOf, mergeConfigSources, readTable } from '../../scripts/data/raw';
+import {
+  characterLdSourceNames,
+  characterLdSourceSpecs
+} from '../../scripts/data/character-sources';
 import {
   SKILL_EFFECT_LABELS,
   normalizeSkillCombatMeta,
   normalizeStanceDisplay
 } from '../../scripts/data/skill-combat';
+import {
+  buildSkillCards,
+  isPlayerFacingSkillConfig,
+  type SkillVariantInput
+} from '../../scripts/data/skills';
 import { formatDescription, formatGameMarkup, formatGameText } from '../../scripts/data/text';
 
 const baseProfile = (character: Character): CharacterProfile => character.profiles.base;
@@ -38,6 +47,84 @@ const variantOf = (
   profile.skillCards.flatMap((card) => card.variants).find((variant) => variant.id === id);
 
 describe('真实数据管线', () => {
+  it('只使用 HideInUI 判定玩家侧技能可见性并保留可见空描述形态', () => {
+    expect(isPlayerFacingSkillConfig([{}, { HideInUI: false }], 'visible')).toBe(true);
+    expect(isPlayerFacingSkillConfig([{ HideInUI: true }, { HideInUI: true }], 'hidden')).toBe(
+      false
+    );
+    expect(() =>
+      isPlayerFacingSkillConfig([{ HideInUI: true }, { HideInUI: false }], 'mixed')
+    ).toThrow(/mixed.*HideInUI.*不一致/);
+
+    const visibleWithoutDescription: SkillVariantInput = {
+      id: 'visible-without-description',
+      name: '公开空描述技能',
+      order: 0,
+      source: 'avatar',
+      progressionId: 'synthetic-progression',
+      scalingParamIndexes: [],
+      levels: [{ level: 1, params: [], description: '', descriptionTokens: [] }],
+      combatMetaLevels: [{ level: 1, combatMeta: {} }],
+      category: 'skill'
+    };
+    expect(
+      buildSkillCards([visibleWithoutDescription])[0].variants.map((variant) => variant.id)
+    ).toEqual(['visible-without-description']);
+  });
+
+  it('按显式 identity 稳定合并配置来源并拒绝冲突', async () => {
+    const equivalent = { id: 'same', nested: { value: '1' } };
+    expect(
+      mergeConfigSources(
+        'SyntheticConfig',
+        [
+          { name: 'regular.json', rows: [equivalent] },
+          {
+            name: 'additional.json',
+            rows: [{ nested: { value: '1' }, id: 'same' }, { id: 'additional' }]
+          }
+        ],
+        (row) => row.id
+      ).map((row) => row.id)
+    ).toEqual(['same', 'additional']);
+    expect(() =>
+      mergeConfigSources(
+        'SyntheticConfig',
+        [
+          { name: 'regular.json', rows: [{ id: 'same', value: 1 }] },
+          { name: 'additional.json', rows: [{ id: 'same', value: 2 }] }
+        ],
+        (row) => row.id
+      )
+    ).toThrow(/SyntheticConfig record same.*regular\.json.*additional\.json/);
+
+    const identityExamples: Record<string, [Record<string, unknown>, string]> = {
+      AvatarConfig: [{ AvatarID: 1014 }, '1014'],
+      ItemConfigAvatar: [{ ID: 1014 }, '1014'],
+      AvatarSkillConfig: [{ SkillID: 101401, Level: 10 }, '101401:10'],
+      AvatarSkillTreeConfig: [{ PointID: 1014001, EnhancedID: 0, Level: 6 }, '1014001:0:6'],
+      AvatarRankConfig: [{ RankID: 101401 }, '101401'],
+      AvatarPromotionConfig: [{ AvatarID: 1014, MaxLevel: 80 }, '1014:80']
+    };
+    for (const spec of characterLdSourceSpecs) {
+      const [row, expectedIdentity] = identityExamples[spec.tableName];
+      expect(spec.identityOf(row)).toBe(expectedIdentity);
+      const regular = await readTable<any>(assertDataRoot(), spec.tableName);
+      const additional = await readTable<any>(assertDataRoot(), spec.additionalName);
+      expect(
+        mergeConfigSources(
+          spec.tableName,
+          [
+            { name: `${spec.tableName}.json`, rows: regular },
+            { name: `${spec.additionalName}.json`, rows: additional }
+          ],
+          spec.identityOf
+        )
+      ).toHaveLength(regular.length + additional.length);
+    }
+    expect(characterLdSourceNames).toHaveLength(6);
+  });
+
   it('解析并验证默认上游路径', () => {
     expect(resolveDataRoot()).toMatch(/TurnBasedGameData$/);
     expect(assertDataRoot()).toBe(resolveDataRoot());
@@ -324,8 +411,8 @@ describe('真实数据管线', () => {
     const lightCone = JSON.parse(
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
-    expect(manifest.counts.characters).toBe(91);
-    expect(manifest.schemaVersion).toBe(19);
+    expect(manifest.counts.characters).toBe(95);
+    expect(manifest.schemaVersion).toBe(20);
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     const basicAttack = variantOf(character, '100101');
@@ -390,18 +477,86 @@ describe('真实数据管线', () => {
     }
   });
 
+  it('将四名 LD 角色完整纳入同一 Character domain 与搜索索引', async () => {
+    const search = JSON.parse(
+      await readFile(path.join(process.cwd(), 'static', 'generated', 'search.json'), 'utf8')
+    ) as Array<{ id: string; kind: string; name: string }>;
+    for (const [id, name, pathName, elementName] of [
+      ['1014', 'Saber', '毁灭', '风'],
+      ['1015', 'Archer', '巡猎', '量子'],
+      ['1508', '远坂凛', '智识', '量子'],
+      ['1509', '吉尔伽美什', '毁灭', '雷']
+    ] as const) {
+      const character = JSON.parse(
+        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+      ) as Character;
+      expect(character).toMatchObject({ id, name, rarity: 5, pathName, elementName });
+      expect(character.baseStats).toMatchObject({ minLevel: 1, maxLevel: 80, defaultLevel: 80 });
+      expect(baseProfile(character).skillCards).toHaveLength(5);
+      expect(baseProfile(character).traces).toHaveLength(13);
+      expect(baseProfile(character).eidolons).toHaveLength(6);
+      expect(search).toContainEqual(expect.objectContaining({ id, kind: 'character', name }));
+    }
+  });
+
+  it('将 Global Buff 作为同一 Talent Card 的静态普通形态', async () => {
+    for (const [id, expected] of [
+      [
+        '1407',
+        {
+          ids: ['140704', '140704:global-buff:1'],
+          name: '月茧之庇',
+          description: '月茧',
+          extraEffectId: '10000007'
+        }
+      ],
+      [
+        '1506',
+        {
+          ids: ['150604', '150604:global-buff:1'],
+          name: '999安全卫士',
+          description: '防火墙',
+          extraEffectId: '10000011'
+        }
+      ]
+    ] as const) {
+      const character = JSON.parse(
+        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+      ) as Character;
+      const talentCards = baseProfile(character).skillCards.filter(
+        (card) => card.category === 'talent'
+      );
+      expect(talentCards).toHaveLength(1);
+      expect(talentCards[0].variants.map((variant) => variant.id)).toEqual(expected.ids);
+      const globalBuff = talentCards[0].variants[1];
+      expect(globalBuff).toMatchObject({
+        source: 'avatar-global-buff',
+        progressionId: null
+      });
+      expect(gameTextToPlain(globalBuff.name)).toBe(expected.name);
+      expect(gameTextToPlain(globalBuff.levels[0].description)).toContain(expected.description);
+      expect(globalBuff.combatMeta.extraEffects?.[0]?.id).toBe(expected.extraEffectId);
+    }
+  });
+
   it('将真实缺失文本稳定分类且程序错误为零', async () => {
     const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'utf8')) as {
       missingTextAudit: MissingTextAudit;
     };
     const missing = audit.missingTextAudit;
     expect(missing.D.count).toBe(0);
+    expect(missing.A.count).toBe(1652);
     expect(missing.A.groups).toContainEqual({
       reason: 'missing-source-field',
-      entity: 'avatar-skill',
-      field: 'SkillDesc',
-      count: 235
+      entity: 'character-trace',
+      field: 'PointDesc',
+      count: 1050
     });
+    expect(
+      missing.A.groups.some(
+        (group) => group.entity === 'avatar-skill' || group.entity === 'memosprite-skill'
+      )
+    ).toBe(false);
     expect(missing.A.groups.some((group) => group.entity === 'item')).toBe(false);
     expect(missing.B.groups).toContainEqual({
       reason: 'unsupported-icon-markup',
@@ -457,7 +612,7 @@ describe('真实数据管线', () => {
     expect(baseProfile(character).skillCards[0].variants[0]).not.toHaveProperty('iconPath');
   });
 
-  it('保留代表性角色的真实技能等级边界并隐藏已确认的内部空描述技能', async () => {
+  it('保留代表性角色的真实技能等级边界并按 HideInUI 隐藏内部技能', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
         await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
@@ -474,9 +629,7 @@ describe('真实数据管线', () => {
         .map((token) => token.value)
     ).toEqual(['15.2%', '50', '72%']);
     expect(variantOf(blade, '150709')).toBeUndefined();
-    const cancel = variantOf(imbibitorLunae, '121309');
-    expect(cancel?.levels.map((level) => level.level)).toEqual([1]);
-    expect(cancel?.levels[0].description).toBe('取消强化。');
+    expect(variantOf(imbibitorLunae, '121309')).toBeUndefined();
   });
 
   it('按真实多命途关系生成统一角色显示名', async () => {
@@ -644,7 +797,7 @@ describe('真实数据管线', () => {
     ).toBe(false);
   });
 
-  it('按结构关系过滤内部技能而不破坏公开技能卡', async () => {
+  it('按来源配置过滤隐藏技能而不破坏公开技能卡', async () => {
     const readCharacter = async (id: string) =>
       JSON.parse(
         await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
@@ -652,6 +805,11 @@ describe('真实数据管线', () => {
     const castorice = await readCharacter('1407');
     const acheron = await readCharacter('1308');
     const sparkle = await readCharacter('1501');
+    const gilgamesh = await readCharacter('1509');
+    const archer = await readCharacter('1015');
+    const departingHimeko = await readCharacter('1510');
+    const remembranceTrailblazer = await readCharacter('8007');
+    const cyrene = await readCharacter('1415');
     const castoriceSkill = baseProfile(castorice).skillCards.find(
       (card) => card.category === 'memosprite-skill'
     )!;
@@ -664,6 +822,32 @@ describe('真实数据管线', () => {
         ?.variants.map((variant) => variant.id)
     ).toEqual(['130803']);
     expect(variantOf(sparkle, '150110')).toBeUndefined();
+    expect(
+      baseProfile(gilgamesh)
+        .skillCards.find((card) => card.category === 'basic')
+        ?.variants.map((variant) => variant.id)
+    ).toEqual(['150901']);
+    expect(
+      baseProfile(gilgamesh)
+        .skillCards.find((card) => card.category === 'skill')
+        ?.variants.map((variant) => variant.id)
+    ).toEqual(['150902']);
+    expect(variantOf(archer, '101509')).toBeUndefined();
+    expect(
+      baseProfile(departingHimeko)
+        .skillCards.find((card) => card.category === 'assist')
+        ?.variants.map((variant) => variant.id)
+    ).toEqual(['151022']);
+    expect(
+      baseProfile(remembranceTrailblazer)
+        .skillCards.find((card) => card.category === 'basic')
+        ?.variants.map((variant) => variant.id)
+    ).toEqual(['800701']);
+    expect(
+      baseProfile(cyrene)
+        .skillCards.find((card) => card.category === 'memosprite-skill')
+        ?.variants.map((variant) => variant.id)
+    ).toEqual(['1141501', '1141502']);
     const castoriceTalent = baseProfile(castorice).skillCards.find(
       (card) => card.category === 'memosprite-talent'
     )!;

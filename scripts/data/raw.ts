@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { isDeepStrictEqual } from 'node:util';
 import { isLosslessNumber, parse } from 'lossless-json';
 import { parseTextHash, type TextHash, type TextReference } from '../../src/lib/domain/types.js';
 
@@ -33,6 +34,37 @@ export async function readTable<T = Record<string, unknown>>(
   name: string
 ): Promise<T[]> {
   return readRaw<T[]>(root, `ExcelOutput/${name}.json`);
+}
+
+export interface ConfigSource<T> {
+  name: string;
+  rows: T[];
+}
+
+export function mergeConfigSources<T>(
+  tableName: string,
+  sources: ConfigSource<T>[],
+  identityOf: (row: T) => string
+): T[] {
+  const merged: T[] = [];
+  const seen = new Map<string, { source: string; row: T }>();
+  for (const source of sources) {
+    for (const row of source.rows) {
+      const identity = identityOf(row);
+      if (!identity) throw new Error(`${tableName} 的 ${source.name} 包含空 record identity`);
+      const existing = seen.get(identity);
+      if (!existing) {
+        seen.set(identity, { source: source.name, row });
+        merged.push(row);
+        continue;
+      }
+      if (isDeepStrictEqual(existing.row, row)) continue;
+      throw new Error(
+        `${tableName} record ${identity} 在 ${existing.source} 与 ${source.name} 之间存在冲突`
+      );
+    }
+  }
+  return merged;
 }
 
 export const hashOf = (value: unknown): TextHash | undefined => {

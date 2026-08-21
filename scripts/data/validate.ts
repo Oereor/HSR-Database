@@ -19,6 +19,7 @@ import { isElementType } from '../../src/lib/domain/elements.js';
 import { getBaseStatsAtLevel } from '../../src/lib/domain/stats.js';
 import { gameTextToPlain } from '../../src/lib/domain/game-text.js';
 import { SKILL_EFFECT_LABELS } from './skill-combat.js';
+import { isPlayerFacingSkillConfig } from './skills.js';
 import type { TextDiagnosticSummary } from './localization.js';
 import type { DescriptionDiagnosticSummary } from './levelled.js';
 import type { MissingTextAudit } from './missing-text.js';
@@ -42,11 +43,12 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 19)
+if (manifest.schemaVersion !== 20)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
 const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'utf8')) as {
+  upstreamTables: Record<string, number>;
   textDiagnostics: TextDiagnosticSummary;
   descriptionDiagnostics: DescriptionDiagnosticSummary;
   missingTextAudit: MissingTextAudit;
@@ -62,6 +64,17 @@ const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'ut
   };
   endgameAudit: EndgameAudit;
 };
+for (const [sourceName, expectedRows] of [
+  ['AvatarConfigLD', 4],
+  ['ItemConfigAvatarLD', 4],
+  ['AvatarSkillConfigLD', 293],
+  ['AvatarSkillTreeConfigLD', 200],
+  ['AvatarRankConfigLD', 24],
+  ['AvatarPromotionConfigLD', 28],
+  ['AvatarGlobalBuffConfig', 2]
+] as const)
+  if (audit.upstreamTables?.[sourceName] !== expectedRows)
+    throw new Error(`${sourceName} 上游来源计数异常：${audit.upstreamTables?.[sourceName]}`);
 const textDiagnostics = audit.textDiagnostics;
 if (!textDiagnostics) throw new Error('生成审计缺少 TextMap 诊断摘要');
 if (textDiagnostics['invalid-reference'].count) {
@@ -578,6 +591,7 @@ if (search.length !== Object.values(expected).reduce((sum, value) => sum + value
 }
 
 let emptySkillDescriptions = 0;
+let skillVariantCount = 0;
 let statTraceCount = 0;
 let abilityTraceCount = 0;
 const observedTypeFiveIds = new Set<string>();
@@ -590,6 +604,44 @@ const characters = await Promise.all(
         await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character
   )
+);
+const [rawAvatarSkills, rawAvatarSkillsLd, rawServantSkills] = await Promise.all([
+  readTable<Record<string, any>>(rawRoot, 'AvatarSkillConfig'),
+  readTable<Record<string, any>>(rawRoot, 'AvatarSkillConfigLD'),
+  readTable<Record<string, any>>(rawRoot, 'AvatarServantSkillConfig')
+]);
+const collectHiddenSkillIds = (
+  label: string,
+  rows: Record<string, any>[],
+  expectedHiddenRows: number,
+  expectedHiddenIds: number
+): Set<string> => {
+  const groupedRows = new Map<string, Record<string, any>[]>();
+  for (const row of rows) {
+    const id = String(row.SkillID);
+    groupedRows.set(id, [...(groupedRows.get(id) ?? []), row]);
+  }
+  const hiddenRows = rows.filter((row) => row.HideInUI === true);
+  const hiddenIds = new Set<string>();
+  for (const [id, skillRows] of groupedRows)
+    if (!isPlayerFacingSkillConfig(skillRows, `${label}.${id}`)) hiddenIds.add(id);
+  if (hiddenRows.length !== expectedHiddenRows || hiddenIds.size !== expectedHiddenIds)
+    throw new Error(
+      `${label} HideInUI 审计异常：${hiddenRows.length} rows/${hiddenIds.size} SkillID`
+    );
+  return hiddenIds;
+};
+const hiddenAvatarSkillIds = collectHiddenSkillIds(
+  'AvatarSkillConfig',
+  [...rawAvatarSkills, ...rawAvatarSkillsLd],
+  357,
+  29
+);
+const hiddenServantSkillIds = collectHiddenSkillIds(
+  'AvatarServantSkillConfig',
+  rawServantSkills,
+  170,
+  17
 );
 const validateCharacterProfile = (
   character: Character,
@@ -606,6 +658,8 @@ const validateCharacterProfile = (
     throw new Error(`角色 ${character.id} ${mode} profile 存在重复语义技能卡`);
   for (const card of profile.skillCards) {
     const variantIds = new Set(card.variants.map((variant) => variant.id));
+    if (variantIds.size !== card.variants.length)
+      throw new Error(`角色 ${character.id} 的 ${card.category} 存在重复 Skill Variant ID`);
     for (const progression of card.progressions) {
       if (!progression.availableLevels.length)
         throw new Error(`角色 ${character.id} 的 ${card.category} progression 没有共同等级`);
@@ -615,6 +669,11 @@ const validateCharacterProfile = (
         throw new Error(`角色 ${character.id} 的 ${card.category} progression 引用了未知变体`);
     }
     for (const variant of card.variants) {
+      skillVariantCount += 1;
+      if (variant.source === 'avatar' && hiddenAvatarSkillIds.has(variant.id))
+        throw new Error(`角色 ${character.id} 仍包含 HideInUI Avatar Skill ${variant.id}`);
+      if (variant.source === 'memosprite' && hiddenServantSkillIds.has(variant.id))
+        throw new Error(`角色 ${character.id} 仍包含 HideInUI Memosprite Skill ${variant.id}`);
       const meta = variant.combatMeta;
       if (!meta) throw new Error(`角色 ${character.id} 技能 ${variant.id} 缺少战斗元数据`);
       if (meta.effect?.known) {
@@ -759,12 +818,14 @@ for (const character of characters) {
     throw new Error(`角色 ${character.id} 的 Lv.80 属性无效`);
 }
 
-if (statTraceCount !== 1010 || abilityTraceCount !== 305)
+if (skillVariantCount !== 617)
+  throw new Error(`Character Skill Variant 总数异常：${skillVariantCount}`);
+if (statTraceCount !== 1050 || abilityTraceCount !== 317)
   throw new Error(`行迹类型数量异常：属性 ${statTraceCount}，额外能力 ${abilityTraceCount}`);
 if (
-  traceDependencyCount !== 860 ||
-  traceDependencyDirections.get('stat->stat') !== 485 ||
-  traceDependencyDirections.get('stat->ability') !== 361 ||
+  traceDependencyCount !== 893 ||
+  traceDependencyDirections.get('stat->stat') !== 505 ||
+  traceDependencyDirections.get('stat->ability') !== 374 ||
   traceDependencyDirections.get('ability->stat') !== 14 ||
   traceDependencyDirections.size !== 3
 )
@@ -891,12 +952,56 @@ if (baseProfile(march)?.eidolons[0]?.name !== '记忆中的你')
   throw new Error('符号文本键验证失败：未恢复三月七第一星魂');
 const trailblazer = characters.find((character) => character.id === '8005');
 if (trailblazer?.name !== '开拓者·同谐') throw new Error('多命途名称验证失败：开拓者·同谐');
+for (const [id, name, pathName, elementName] of [
+  ['1014', 'Saber', '毁灭', '风'],
+  ['1015', 'Archer', '巡猎', '量子'],
+  ['1508', '远坂凛', '智识', '量子'],
+  ['1509', '吉尔伽美什', '毁灭', '雷']
+] as const) {
+  const character = characters.find((item) => item.id === id);
+  if (
+    character?.name !== name ||
+    character.rarity !== 5 ||
+    character.pathName !== pathName ||
+    character.elementName !== elementName ||
+    baseProfile(character)?.traces.length !== 13 ||
+    baseProfile(character)?.eidolons.length !== 6 ||
+    !baseProfile(character)?.skillCards.length
+  )
+    throw new Error(`LD 角色 ${id} 的 Character domain 不完整`);
+  if (!search.some((entry) => entry.kind === 'character' && entry.id === id && entry.name === name))
+    throw new Error(`LD 角色 ${id} 未进入搜索索引`);
+}
+const skillIdsFor = (character: Character | undefined, category: string): string[] =>
+  baseProfile(character)
+    ?.skillCards.find((card) => card.category === category)
+    ?.variants.map((variant) => variant.id) ?? [];
+const gilgamesh = characters.find((character) => character.id === '1509');
+if (
+  skillIdsFor(gilgamesh, 'basic').join(',') !== '150901' ||
+  skillIdsFor(gilgamesh, 'skill').join(',') !== '150902'
+)
+  throw new Error('HideInUI 验证失败：吉尔伽美什玩家侧普攻或战技异常');
+const archer = characters.find((character) => character.id === '1015');
+if (skillIdsFor(archer, 'skill').includes('101509'))
+  throw new Error('HideInUI 验证失败：Archer 内部结束技能仍在展示');
 const imbibitorLunae = characters.find((character) => character.id === '1213');
 if (
   baseProfile(imbibitorLunae)?.skillCards.find((card) => card.category === 'basic')?.variants
     .length !== 4
 )
   throw new Error('技能卡验证失败：丹恒·饮月普攻变体未正确合并');
+if (skillIdsFor(imbibitorLunae, 'skill').join(',') !== '121302')
+  throw new Error('HideInUI 验证失败：丹恒·饮月取消技能仍在展示');
+const departingHimeko = characters.find((character) => character.id === '1510');
+if (skillIdsFor(departingHimeko, 'assist').join(',') !== '151022')
+  throw new Error('HideInUI 验证失败：姬子·启行内部助战技能仍在展示');
+const remembranceTrailblazer = characters.find((character) => character.id === '8007');
+if (skillIdsFor(remembranceTrailblazer, 'basic').join(',') !== '800701')
+  throw new Error('HideInUI 验证失败：记忆开拓者内部普攻仍在展示');
+const cyrene = characters.find((character) => character.id === '1415');
+if (skillIdsFor(cyrene, 'memosprite-skill').join(',') !== '1141501,1141502')
+  throw new Error('HideInUI 验证失败：昔涟忆灵技能集合异常');
 const theHerta = characters.find((character) => character.id === '1401');
 if (
   baseProfile(theHerta)?.skillCards.find((card) => card.category === 'skill')?.variants.length !== 2
@@ -925,6 +1030,50 @@ const castoriceMemospriteTalent = baseProfile(castorice)?.skillCards.find(
 );
 if (!castoriceMemospriteTalent?.variants.some((variant) => variant.id === '1140706'))
   throw new Error('忆灵分类验证失败：遐蝶“灼掠幽墟的晦翼”未保留在忆灵天赋');
+const castoriceTalent = baseProfile(castorice)?.skillCards.find(
+  (card) => card.category === 'talent'
+);
+const castoriceGlobalBuff = castoriceTalent?.variants.find(
+  (variant) => variant.id === '140704:global-buff:1'
+);
+if (
+  castoriceTalent?.variants.map((variant) => variant.id).join(',') !==
+    '140704,140704:global-buff:1' ||
+  castoriceGlobalBuff?.source !== 'avatar-global-buff' ||
+  castoriceGlobalBuff.name !== '月茧之庇' ||
+  castoriceGlobalBuff.progressionId !== null ||
+  !gameTextToPlain(castoriceGlobalBuff.levels[0]?.description).includes('月茧') ||
+  castoriceGlobalBuff.combatMeta.extraEffects?.[0]?.id !== '10000007'
+)
+  throw new Error('AvatarGlobalBuff 验证失败：遐蝶 Talent Variant 异常');
+const silverWolf999 = characters.find((character) => character.id === '1506');
+const silverWolfTalent = baseProfile(silverWolf999)?.skillCards.find(
+  (card) => card.category === 'talent'
+);
+const silverWolfGlobalBuff = silverWolfTalent?.variants.find(
+  (variant) => variant.id === '150604:global-buff:1'
+);
+if (
+  silverWolfTalent?.variants.map((variant) => variant.id).join(',') !==
+    '150604,150604:global-buff:1' ||
+  silverWolfGlobalBuff?.source !== 'avatar-global-buff' ||
+  gameTextToPlain(silverWolfGlobalBuff.name) !== '999安全卫士' ||
+  silverWolfGlobalBuff.progressionId !== null ||
+  !gameTextToPlain(silverWolfGlobalBuff.levels[0]?.description).includes('防火墙') ||
+  silverWolfGlobalBuff.combatMeta.extraEffects?.[0]?.id !== '10000011'
+)
+  throw new Error('AvatarGlobalBuff 验证失败：银狼LV.999 Talent Variant 异常');
+const globalBuffVariants = characters.flatMap((character) =>
+  Object.values(character.profiles).flatMap((profile) =>
+    profile
+      ? profile.skillCards.flatMap((card) =>
+          card.variants.filter((variant) => variant.source === 'avatar-global-buff')
+        )
+      : []
+  )
+);
+if (globalBuffVariants.length !== 2)
+  throw new Error(`AvatarGlobalBuff Variant 数量异常：${globalBuffVariants.length}`);
 if (
   baseProfile(castorice)?.traces.find((trace) => trace.id === '1407202')?.description !==
   '量子属性伤害提高3.2%'
