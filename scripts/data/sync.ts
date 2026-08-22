@@ -7,6 +7,7 @@ import type {
   Character,
   CharacterEnergy,
   CharacterProfile,
+  CharacterSpecialEffectEntry,
   DataManifest,
   Enemy,
   EnemySkill,
@@ -39,12 +40,24 @@ import { hashOf, mergeConfigSources, numberOf, readTable } from './raw.js';
 import { decimalOf } from './decimal.js';
 import { normalizeSkillCombatMeta } from './skill-combat.js';
 import {
+  buildSkillVariant,
   buildSkillCards,
   classifyAvatarSkill,
   classifyMemospriteSkill,
   isPlayerFacingSkillConfig,
   type SkillVariantInput
 } from './skills.js';
+import {
+  normalizeSpecialEffectLinks,
+  recordSpecialEffectDiagnostic,
+  resolveSpecialEffectSkillLinks
+} from './special-effects.js';
+import {
+  createAvatarSpecialSkillTreeAudit,
+  indexAvatarSpecialSkillRelations,
+  normalizeAvatarSpecialSkillRelations,
+  resolveAvatarSpecialSkillRelations
+} from './avatar-special-skills.js';
 import { characterStatFields, lightConeStatFields, normalizeStatProgression } from './stats.js';
 import { formatGameMarkup, formatGameText } from './text.js';
 import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
@@ -180,9 +193,12 @@ export async function syncData(): Promise<DataManifest> {
     'AvatarBaseType',
     'DamageType',
     'AvatarSkillConfig',
+    'AvatarSkillLink',
+    'AvatarSpecialSkillTree',
     'AvatarGlobalBuffConfig',
     'AvatarServantConfig',
     'AvatarServantSkillConfig',
+    'AvatarServantSkillLink',
     'AvatarSkillTreeConfig',
     'AvatarRankConfig',
     'AvatarPromotionConfig',
@@ -286,9 +302,12 @@ export async function syncData(): Promise<DataManifest> {
   const pathRows = by(tables.AvatarBaseType, 'ID');
   const damageRows = by(tables.DamageType, 'ID');
   const itemSources = grouped(tables.ItemComefrom, 'ID');
-  const avatarSkills = grouped(tables.AvatarSkillConfig, 'SkillID');
+  // These are complete raw indexes. HideInUI is a standard-presentation rule and must
+  // never be applied while building either lookup.
+  const avatarSkillById = grouped(tables.AvatarSkillConfig, 'SkillID');
+  const avatarConfigsById = by(tables.AvatarConfig, 'AvatarID');
   const avatarGlobalBuffs = grouped(tables.AvatarGlobalBuffConfig, 'AvatarID');
-  const servantSkills = grouped(tables.AvatarServantSkillConfig, 'SkillID');
+  const servantSkillById = grouped(tables.AvatarServantSkillConfig, 'SkillID');
   const avatarTraces = grouped(tables.AvatarSkillTreeConfig, 'AvatarID');
   const avatarRanks = by(tables.AvatarRankConfig, 'RankID');
   const avatarPromotions = grouped(tables.AvatarPromotionConfig, 'AvatarID');
@@ -304,6 +323,40 @@ export async function syncData(): Promise<DataManifest> {
   const hardLevelRows = grouped(tables.HardLevelGroup, 'HardLevelGroup');
   const eliteRows = by(tables.EliteGroup, 'EliteGroup');
   const extraEffectRows = by(tables.ExtraEffectConfig, 'ExtraEffectID');
+  const avatarSpecialSkillTreeAudit = createAvatarSpecialSkillTreeAudit();
+  const avatarSpecialSkillRelations = resolveAvatarSpecialSkillRelations(
+    normalizeAvatarSpecialSkillRelations(
+      tables.AvatarSpecialSkillTree,
+      avatarSpecialSkillTreeAudit
+    ),
+    {
+      avatarConfigsById,
+      avatarSkillIds: new Set(avatarSkillById.keys()),
+      traceRowsByAvatarId: avatarTraces
+    },
+    avatarSpecialSkillTreeAudit
+  );
+  const avatarSpecialSkillRelationsByAvatar = indexAvatarSpecialSkillRelations(
+    avatarSpecialSkillRelations
+  );
+  const specialEffectLinks = normalizeSpecialEffectLinks(
+    tables.AvatarSkillLink,
+    tables.AvatarServantSkillLink
+  );
+  const resolvedAvatarSpecialEffectLinks = resolveSpecialEffectSkillLinks(
+    specialEffectLinks.avatar,
+    'AvatarSkillLink',
+    new Set(avatarSkillById.keys()),
+    specialEffectLinks.audit
+  );
+  const resolvedServantSpecialEffectLinks = resolveSpecialEffectSkillLinks(
+    specialEffectLinks.servant,
+    'AvatarServantSkillLink',
+    new Set(servantSkillById.keys()),
+    specialEffectLinks.audit
+  );
+  const ownedAvatarSpecialEffectLinks = new Set<string>();
+  const ownedServantSpecialEffectLinks = new Set<string>();
 
   const extraEffectIdsOf = (row: Raw): string[] =>
     unique(
@@ -379,7 +432,7 @@ export async function syncData(): Promise<DataManifest> {
     if (!tables.AvatarConfig.some((avatar) => String(avatar.AvatarID) === avatarId))
       throw new Error(`加强配置引用了未知角色：${avatarId}`);
     for (const skillId of config.SkillList ?? [])
-      if (!avatarSkills.has(String(skillId)))
+      if (!avatarSkillById.has(String(skillId)))
         throw new Error(`角色 ${avatarId} 的加强技能不存在：${skillId}`);
     for (const rankId of config.RankIDList ?? [])
       if (!avatarRanks.has(String(rankId)))
@@ -397,7 +450,7 @@ export async function syncData(): Promise<DataManifest> {
     if (
       !config ||
       !(config.SkillList ?? []).map(String).includes(String(declaration.SkillID)) ||
-      !avatarSkills.has(String(declaration.SkillID)) ||
+      !avatarSkillById.has(String(declaration.SkillID)) ||
       !enhancedTraceExists(declaration.AvatarID, declaration.SkillTreeID)
     )
       throw new Error(`无效的加强技能声明：${declaration.AvatarID}:${declaration.SkillID}`);
@@ -429,7 +482,7 @@ export async function syncData(): Promise<DataManifest> {
     if (enhanced) profileConfigs.push({ mode: 'enhanced', config: enhanced });
     for (const globalBuff of globalBuffRows) {
       const skillId = String(globalBuff.SkillID);
-      const skillCategory = classifyAvatarSkill(avatarSkills.get(skillId)?.[0] ?? {});
+      const skillCategory = classifyAvatarSkill(avatarSkillById.get(skillId)?.[0] ?? {});
       const matches = profileConfigs.filter(
         ({ config }) =>
           (config.SkillList ?? []).map(String).includes(skillId) && skillCategory === 'talent'
@@ -467,7 +520,7 @@ export async function syncData(): Promise<DataManifest> {
         'SkillList',
         'character-skill',
         skillId,
-        avatarSkills.has(String(skillId))
+        avatarSkillById.has(String(skillId))
       );
     for (const rankId of avatar.RankIDList ?? [])
       missingRelation(
@@ -709,11 +762,50 @@ export async function syncData(): Promise<DataManifest> {
     const avatarId = String(config.AvatarID);
     const progressionBySkill = progressionIdsFor(traceRows);
     const skillVariants: SkillVariantInput[] = [];
+    const specialEffects: CharacterSpecialEffectEntry[] = [];
+    const profileAvatarSkillIds = new Set((config.SkillList ?? []).map(String));
+    const explicitlyShownSkillIds = new Set(
+      (avatarSpecialSkillRelationsByAvatar.get(avatarId) ?? []).map(
+        (relation) => relation.showSkillId
+      )
+    );
+    for (const link of resolvedAvatarSpecialEffectLinks) {
+      if (!profileAvatarSkillIds.has(link.skillId)) continue;
+      ownedAvatarSpecialEffectLinks.add(link.skillId);
+      const rows = avatarSkillById.get(link.skillId) ?? [];
+      const category = classifyAvatarSkill(rows[0] ?? {});
+      if (!category) {
+        recordSpecialEffectDiagnostic(specialEffectLinks.audit, {
+          code: 'malformed-relation',
+          source: 'AvatarSkillLink',
+          identity: link.skillId,
+          detail: '显式引用的 Avatar Skill 无法分类，已跳过'
+        });
+        continue;
+      }
+      specialEffects.push({
+        kind: 'avatar-skill-link',
+        skill: buildSkillVariant(
+          normalizeSkillVariant(
+            link.skillId,
+            rows,
+            link.sourceOrder,
+            'avatar',
+            progressionBySkill.get(link.skillId),
+            category
+          )
+        ),
+        linkedAvatarIds: link.linkedAvatarIds,
+        simplifiedLinkedAvatarIds: link.simplifiedLinkedAvatarIds
+      });
+    }
     const globalBuffsBySkill = grouped(globalBuffRows, 'SkillID');
     for (const [order, skillId] of (config.SkillList ?? []).entries()) {
-      const rows = avatarSkills.get(String(skillId)) ?? [];
+      const rows = avatarSkillById.get(String(skillId)) ?? [];
       const matchingGlobalBuffs = globalBuffsBySkill.get(String(skillId)) ?? [];
-      const includeAvatarSkill = isPlayerFacingSkillConfig(rows, `AvatarSkillConfig.${skillId}`);
+      const includeByDefault = isPlayerFacingSkillConfig(rows, `AvatarSkillConfig.${skillId}`);
+      const includeBySpecialSkillTree = explicitlyShownSkillIds.has(String(skillId));
+      const includeAvatarSkill = includeByDefault || includeBySpecialSkillTree;
       if (!includeAvatarSkill && !matchingGlobalBuffs.length) continue;
       const first = rows[0] ?? {};
       const category = classifyAvatarSkill(first);
@@ -766,10 +858,46 @@ export async function syncData(): Promise<DataManifest> {
         source('character', avatarId, 'AvatarSkillTreeConfig.PointType4'),
         [...typeFourSkillIds].join(',')
       );
+    const profileServantSkillIds = new Set(
+      matchedServants.flatMap((servant) => (servant.SkillIDList ?? []).map(String))
+    );
+    for (const link of resolvedServantSpecialEffectLinks) {
+      if (!profileServantSkillIds.has(link.skillId)) continue;
+      const relationIdentity = `${link.skillId}:${link.linkedAvatarId}`;
+      ownedServantSpecialEffectLinks.add(relationIdentity);
+      const rows = servantSkillById.get(link.skillId) ?? [];
+      const category = classifyMemospriteSkill(rows[0] ?? {});
+      if (!category) {
+        recordSpecialEffectDiagnostic(specialEffectLinks.audit, {
+          code: 'malformed-relation',
+          source: 'AvatarServantSkillLink',
+          identity: relationIdentity,
+          detail: '显式引用的 Servant Skill 无法分类，已跳过'
+        });
+        continue;
+      }
+      specialEffects.push({
+        kind: 'servant-skill-link',
+        skill: buildSkillVariant(
+          normalizeSkillVariant(
+            link.skillId,
+            rows,
+            link.order,
+            'memosprite',
+            progressionBySkill.get(link.skillId),
+            category
+          )
+        ),
+        order: link.order,
+        linkedAvatarId: link.linkedAvatarId,
+        tarotFigurePath: link.tarotFigurePath,
+        tarotIconPath: link.tarotIconPath
+      });
+    }
     let servantOrder = Number.MAX_SAFE_INTEGER / 2;
     for (const servant of matchedServants) {
       for (const [order, skillId] of (servant.SkillIDList ?? []).entries()) {
-        const rows = servantSkills.get(String(skillId)) ?? [];
+        const rows = servantSkillById.get(String(skillId)) ?? [];
         if (!isPlayerFacingSkillConfig(rows, `AvatarServantSkillConfig.${skillId}`)) continue;
         const category = classifyMemospriteSkill(rows[0] ?? {});
         if (!category) {
@@ -884,6 +1012,7 @@ export async function syncData(): Promise<DataManifest> {
     return {
       energy: energyFor(config),
       skillCards,
+      specialEffects,
       traces,
       eidolons
     };
@@ -959,6 +1088,25 @@ export async function syncData(): Promise<DataManifest> {
       },
       hashes: unique([hashOf(avatar.AvatarName), hashOf(avatar.AvatarFullName)].filter(defined))
     });
+  }
+
+  for (const link of resolvedAvatarSpecialEffectLinks)
+    if (!ownedAvatarSpecialEffectLinks.has(link.skillId))
+      recordSpecialEffectDiagnostic(specialEffectLinks.audit, {
+        code: 'unowned-relation',
+        source: 'AvatarSkillLink',
+        identity: link.skillId,
+        detail: '没有 Character profile 的 SkillList 引用该 SkillID'
+      });
+  for (const link of resolvedServantSpecialEffectLinks) {
+    const identity = `${link.skillId}:${link.linkedAvatarId}`;
+    if (!ownedServantSpecialEffectLinks.has(identity))
+      recordSpecialEffectDiagnostic(specialEffectLinks.audit, {
+        code: 'unowned-relation',
+        source: 'AvatarServantSkillLink',
+        identity,
+        detail: '没有 Character profile 的 Servant relation 引用该 SkillID'
+      });
   }
 
   const lightConeCatalog: CatalogEntry[] = [];
@@ -1453,7 +1601,7 @@ export async function syncData(): Promise<DataManifest> {
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 20,
+    schemaVersion: 22,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),
@@ -1489,6 +1637,8 @@ export async function syncData(): Promise<DataManifest> {
     skillCombatAudit: {
       unknownEffects: [...unknownSkillEffects].sort()
     },
+    avatarSpecialSkillTreeAudit,
+    specialEffectAudit: specialEffectLinks.audit,
     enemyAudit,
     endgameAudit: endgame.audit,
     missingTextAudit: missingText.getSummary(),
@@ -1499,6 +1649,14 @@ export async function syncData(): Promise<DataManifest> {
   });
   if (unknownSkillEffects.size)
     console.warn(`数据警告：未知 SkillEffect：${[...unknownSkillEffects].sort().join(', ')}`);
+  if (specialEffectLinks.audit.diagnostics.length)
+    console.warn(
+      `数据警告：Character Special Effect relation 存在 ${specialEffectLinks.audit.diagnostics.length} 条诊断，详见 data/audit/latest.json。`
+    );
+  if (avatarSpecialSkillTreeAudit.diagnostics.length)
+    console.warn(
+      `数据警告：AvatarSpecialSkillTree relation 存在 ${avatarSpecialSkillTreeAudit.diagnostics.length} 条诊断，详见 data/audit/latest.json。`
+    );
   console.log(`同步完成：${JSON.stringify(manifest.counts)}`);
   return manifest;
 }

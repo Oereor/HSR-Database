@@ -23,6 +23,14 @@ import { isPlayerFacingSkillConfig } from './skills.js';
 import type { TextDiagnosticSummary } from './localization.js';
 import type { DescriptionDiagnosticSummary } from './levelled.js';
 import type { MissingTextAudit } from './missing-text.js';
+import type { SpecialEffectAudit } from './special-effects.js';
+import {
+  createAvatarSpecialSkillTreeAudit,
+  indexAvatarSpecialSkillRelations,
+  normalizeAvatarSpecialSkillRelations,
+  resolveAvatarSpecialSkillRelations,
+  type AvatarSpecialSkillTreeAudit
+} from './avatar-special-skills.js';
 import { assertDataRoot, auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readTable } from './raw.js';
 import {
@@ -43,7 +51,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 20)
+if (manifest.schemaVersion !== 22)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -53,6 +61,8 @@ const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'ut
   descriptionDiagnostics: DescriptionDiagnosticSummary;
   missingTextAudit: MissingTextAudit;
   skillCombatAudit: { unknownEffects: string[] };
+  avatarSpecialSkillTreeAudit: AvatarSpecialSkillTreeAudit;
+  specialEffectAudit: SpecialEffectAudit;
   enemyAudit: {
     canonicalJoin: { resolved: number; missing: string[] };
     weaknessResistanceConflicts: Array<{ enemyId: string; element: string; value: number }>;
@@ -68,10 +78,13 @@ for (const [sourceName, expectedRows] of [
   ['AvatarConfigLD', 4],
   ['ItemConfigAvatarLD', 4],
   ['AvatarSkillConfigLD', 293],
+  ['AvatarSkillLink', 2],
+  ['AvatarSpecialSkillTree', 2],
   ['AvatarSkillTreeConfigLD', 200],
   ['AvatarRankConfigLD', 24],
   ['AvatarPromotionConfigLD', 28],
-  ['AvatarGlobalBuffConfig', 2]
+  ['AvatarGlobalBuffConfig', 2],
+  ['AvatarServantSkillLink', 14]
 ] as const)
   if (audit.upstreamTables?.[sourceName] !== expectedRows)
     throw new Error(`${sourceName} 上游来源计数异常：${audit.upstreamTables?.[sourceName]}`);
@@ -99,6 +112,8 @@ if (missingTextAudit.D.count) {
     `检测到 ${missingTextAudit.D.count} 个程序级文本错误；首个样本：${sample?.reason ?? '未知'} (${sample?.entity ?? '未知'}.${sample?.field ?? '未知'})`
   );
 }
+if (!audit.avatarSpecialSkillTreeAudit) throw new Error('生成审计缺少 AvatarSpecialSkillTree 诊断');
+if (!audit.specialEffectAudit) throw new Error('生成审计缺少 Character Special Effect 诊断');
 if (!audit.endgameAudit) throw new Error('生成审计缺少 Endgame 诊断摘要');
 if (!audit.enemyAudit) throw new Error('生成审计缺少 Enemy 诊断摘要');
 if (audit.endgameAudit.coreErrors.count)
@@ -605,11 +620,49 @@ const characters = await Promise.all(
       ) as Character
   )
 );
-const [rawAvatarSkills, rawAvatarSkillsLd, rawServantSkills] = await Promise.all([
+const [
+  rawAvatarSkills,
+  rawAvatarSkillsLd,
+  rawServantSkills,
+  rawAvatarConfigs,
+  rawAvatarTraces,
+  rawAvatarSpecialSkillRelations
+] = await Promise.all([
   readTable<Record<string, any>>(rawRoot, 'AvatarSkillConfig'),
   readTable<Record<string, any>>(rawRoot, 'AvatarSkillConfigLD'),
-  readTable<Record<string, any>>(rawRoot, 'AvatarServantSkillConfig')
+  readTable<Record<string, any>>(rawRoot, 'AvatarServantSkillConfig'),
+  readTable<Record<string, any>>(rawRoot, 'AvatarConfig'),
+  readTable<Record<string, any>>(rawRoot, 'AvatarSkillTreeConfig'),
+  readTable<Record<string, any>>(rawRoot, 'AvatarSpecialSkillTree')
 ]);
+const avatarSpecialSkillValidationAudit = createAvatarSpecialSkillTreeAudit();
+const traceRowsByAvatarId = new Map<string, Record<string, any>[]>();
+for (const row of rawAvatarTraces) {
+  const avatarId = String(row.AvatarID);
+  traceRowsByAvatarId.set(avatarId, [...(traceRowsByAvatarId.get(avatarId) ?? []), row]);
+}
+const resolvedAvatarSpecialSkillRelations = resolveAvatarSpecialSkillRelations(
+  normalizeAvatarSpecialSkillRelations(
+    rawAvatarSpecialSkillRelations,
+    avatarSpecialSkillValidationAudit
+  ),
+  {
+    avatarConfigsById: new Map(rawAvatarConfigs.map((row) => [String(row.AvatarID), row])),
+    avatarSkillIds: new Set(
+      [...rawAvatarSkills, ...rawAvatarSkillsLd].map((row) => String(row.SkillID))
+    ),
+    traceRowsByAvatarId
+  },
+  avatarSpecialSkillValidationAudit
+);
+const explicitlyShownSkillsByAvatar = new Map(
+  [...indexAvatarSpecialSkillRelations(resolvedAvatarSpecialSkillRelations)].map(
+    ([avatarId, relations]) => [
+      avatarId,
+      new Set(relations.map((relation) => relation.showSkillId))
+    ]
+  )
+);
 const collectHiddenSkillIds = (
   label: string,
   rows: Record<string, any>[],
@@ -670,7 +723,11 @@ const validateCharacterProfile = (
     }
     for (const variant of card.variants) {
       skillVariantCount += 1;
-      if (variant.source === 'avatar' && hiddenAvatarSkillIds.has(variant.id))
+      if (
+        variant.source === 'avatar' &&
+        hiddenAvatarSkillIds.has(variant.id) &&
+        !explicitlyShownSkillsByAvatar.get(character.id)?.has(variant.id)
+      )
         throw new Error(`角色 ${character.id} 仍包含 HideInUI Avatar Skill ${variant.id}`);
       if (variant.source === 'memosprite' && hiddenServantSkillIds.has(variant.id))
         throw new Error(`角色 ${character.id} 仍包含 HideInUI Memosprite Skill ${variant.id}`);
@@ -722,6 +779,59 @@ const validateCharacterProfile = (
           );
       }
     }
+  }
+  const specialEffectIdentities = new Set<string>();
+  let previousServantOrder = Number.NEGATIVE_INFINITY;
+  for (const entry of profile.specialEffects) {
+    const skill = entry.skill;
+    const identity =
+      entry.kind === 'avatar-skill-link'
+        ? `${entry.kind}:${skill.id}`
+        : `${entry.kind}:${skill.id}:${entry.linkedAvatarId}`;
+    if (specialEffectIdentities.has(identity))
+      throw new Error(`角色 ${character.id} ${mode} profile 存在重复 Special Effect ${identity}`);
+    specialEffectIdentities.add(identity);
+    if (!skill.id || !gameTextToPlain(skill.name).trim() || !skill.levels.length)
+      throw new Error(`角色 ${character.id} ${mode} profile 的 Special Effect skill 无效`);
+    if (!skill.combatMeta)
+      throw new Error(`角色 ${character.id} Special Effect skill ${skill.id} 缺少战斗元数据`);
+    if (entry.kind === 'avatar-skill-link') {
+      if (skill.source !== 'avatar')
+        throw new Error(`角色 ${character.id} Avatar Special Effect ${skill.id} 来源异常`);
+      for (const [field, ids] of [
+        ['linkedAvatarIds', entry.linkedAvatarIds],
+        ['simplifiedLinkedAvatarIds', entry.simplifiedLinkedAvatarIds]
+      ] as const)
+        if (ids.some((id) => !/^\d+$/.test(id)) || new Set(ids).size !== ids.length)
+          throw new Error(
+            `角色 ${character.id} Avatar Special Effect ${skill.id} 的 ${field} 无效`
+          );
+    } else {
+      if (skill.source !== 'memosprite')
+        throw new Error(`角色 ${character.id} Servant Special Effect ${skill.id} 来源异常`);
+      if (
+        !Number.isInteger(entry.order) ||
+        entry.order <= 0 ||
+        entry.order < previousServantOrder ||
+        !/^\d+$/.test(entry.linkedAvatarId) ||
+        !entry.tarotFigurePath.trim() ||
+        !entry.tarotIconPath.trim()
+      )
+        throw new Error(`角色 ${character.id} Servant Special Effect ${skill.id} relation 无效`);
+      previousServantOrder = entry.order;
+    }
+    for (const effect of skill.combatMeta.extraEffects ?? [])
+      if (
+        !effect.id ||
+        !gameTextToPlain(effect.name).trim() ||
+        !gameTextToPlain(effect.description).trim()
+      )
+        throw new Error(`角色 ${character.id} Special Effect skill ${skill.id} ExtraEffect 无效`);
+    for (const level of skill.levels)
+      if (level.description !== level.descriptionTokens.map((token) => token.value).join(''))
+        throw new Error(
+          `角色 ${character.id} Special Effect skill ${skill.id} Lv.${level.level} 语义文本不一致`
+        );
   }
   const tracesById = new Map(profile.traces.map((trace) => [trace.id, trace]));
   if (tracesById.size !== profile.traces.length)
@@ -794,6 +904,11 @@ const validateCharacterProfile = (
 const profileIds = (profile: CharacterProfile): Set<string> =>
   new Set([
     ...profile.skillCards.flatMap((card) => card.variants.map((variant) => variant.id)),
+    ...profile.specialEffects.map((entry) =>
+      entry.kind === 'avatar-skill-link'
+        ? `special:${entry.kind}:${entry.skill.id}`
+        : `special:${entry.kind}:${entry.skill.id}:${entry.linkedAvatarId}`
+    ),
     ...profile.traces.map((trace) => trace.id),
     ...profile.eidolons.map((eidolon) => eidolon.id)
   ]);
@@ -818,7 +933,7 @@ for (const character of characters) {
     throw new Error(`角色 ${character.id} 的 Lv.80 属性无效`);
 }
 
-if (skillVariantCount !== 617)
+if (skillVariantCount !== 619)
   throw new Error(`Character Skill Variant 总数异常：${skillVariantCount}`);
 if (statTraceCount !== 1050 || abilityTraceCount !== 317)
   throw new Error(`行迹类型数量异常：属性 ${statTraceCount}，额外能力 ${abilityTraceCount}`);
@@ -976,12 +1091,18 @@ const skillIdsFor = (character: Character | undefined, category: string): string
   baseProfile(character)
     ?.skillCards.find((card) => card.category === category)
     ?.variants.map((variant) => variant.id) ?? [];
+const variantFor = (character: Character | undefined, skillId: string) =>
+  baseProfile(character)
+    ?.skillCards.flatMap((card) => card.variants)
+    .find((variant) => variant.id === skillId);
 const gilgamesh = characters.find((character) => character.id === '1509');
 if (
   skillIdsFor(gilgamesh, 'basic').join(',') !== '150901' ||
   skillIdsFor(gilgamesh, 'skill').join(',') !== '150902'
 )
   throw new Error('HideInUI 验证失败：吉尔伽美什玩家侧普攻或战技异常');
+if (!hiddenAvatarSkillIds.has('150909') || baseProfile(gilgamesh)?.specialEffects.length)
+  throw new Error('Special Effect 验证失败：吉尔伽美什 150909 的完整索引或显式关系异常');
 const archer = characters.find((character) => character.id === '1015');
 if (skillIdsFor(archer, 'skill').includes('101509'))
   throw new Error('HideInUI 验证失败：Archer 内部结束技能仍在展示');
@@ -996,12 +1117,87 @@ if (skillIdsFor(imbibitorLunae, 'skill').join(',') !== '121302')
 const departingHimeko = characters.find((character) => character.id === '1510');
 if (skillIdsFor(departingHimeko, 'assist').join(',') !== '151022')
   throw new Error('HideInUI 验证失败：姬子·启行内部助战技能仍在展示');
-const remembranceTrailblazer = characters.find((character) => character.id === '8007');
-if (skillIdsFor(remembranceTrailblazer, 'basic').join(',') !== '800701')
-  throw new Error('HideInUI 验证失败：记忆开拓者内部普攻仍在展示');
+const himekoSpecialEffects = baseProfile(departingHimeko)?.specialEffects ?? [];
+if (
+  himekoSpecialEffects.length !== 2 ||
+  himekoSpecialEffects.some((entry) => entry.kind !== 'avatar-skill-link') ||
+  himekoSpecialEffects.map((entry) => entry.skill.id).join(',') !== '151025,151026'
+)
+  throw new Error('Special Effect 验证失败：姬子·启行未解析到两个 Avatar Skill link');
+const himekoJudgement = himekoSpecialEffects[0];
+const himekoAnnihilation = himekoSpecialEffects[1];
+if (
+  himekoJudgement?.kind !== 'avatar-skill-link' ||
+  himekoJudgement.linkedAvatarIds.join(',') !== '8001,1002,1213,1414,1313' ||
+  himekoJudgement.simplifiedLinkedAvatarIds.join(',') !== '8001,1002,1313' ||
+  himekoAnnihilation?.kind !== 'avatar-skill-link' ||
+  himekoAnnihilation.linkedAvatarIds.join(',') !== '1001,1413,1004,1003' ||
+  himekoAnnihilation.simplifiedLinkedAvatarIds.join(',') !== '1001,1004,1003'
+)
+  throw new Error('Special Effect 验证失败：姬子·启行 target avatar metadata 异常');
+for (const [avatarId, basicSkillId, shownSkillId, hiddenSkillId, progressionId] of [
+  ['8007', '800701', '800708', '800709', '8007001'],
+  ['8008', '800801', '800808', '800809', '8008001']
+] as const) {
+  const remembranceTrailblazer = characters.find((character) => character.id === avatarId);
+  const basicCard = baseProfile(remembranceTrailblazer)?.skillCards.find(
+    (card) => card.category === 'basic'
+  );
+  if (
+    basicCard?.variants.map((variant) => variant.id).join(',') !== `${basicSkillId},${shownSkillId}`
+  )
+    throw new Error(
+      `AvatarSpecialSkillTree 验证失败：记忆开拓者 ${avatarId} 的普通/强化普攻集合异常`
+    );
+  if (
+    basicCard.progressions.length !== 1 ||
+    basicCard.progressions[0]?.id !== progressionId ||
+    basicCard.progressions[0]?.variantIds.join(',') !== `${basicSkillId},${shownSkillId}`
+  )
+    throw new Error(
+      `AvatarSpecialSkillTree 验证失败：记忆开拓者 ${avatarId} 的普攻 progression 异常`
+    );
+  const shownSkill = variantFor(remembranceTrailblazer, shownSkillId);
+  if (
+    !shownSkill ||
+    gameTextToPlain(shownSkill.name) !== '明天，一同写下！' ||
+    shownSkill.attackType !== 'Normal' ||
+    shownSkill.levels.length !== 10 ||
+    shownSkill.combatMeta.effect?.code !== 'AoEAttack' ||
+    shownSkill.combatMeta.extraEffects?.map((effect) => effect.id).join(',') !== '10000011,10000019'
+  )
+    throw new Error(
+      `AvatarSpecialSkillTree 验证失败：记忆开拓者 ${avatarId} 的强化普攻展示数据不完整`
+    );
+  if (variantFor(remembranceTrailblazer, hiddenSkillId))
+    throw new Error(
+      `AvatarSpecialSkillTree 验证失败：未被 ShowSkill 引用的 ${hiddenSkillId} 被错误展示`
+    );
+}
+const acheron = characters.find((character) => character.id === '1308');
+for (const hiddenSkillId of ['130814', '130815', '130816', '130817'])
+  if (variantFor(acheron, hiddenSkillId))
+    throw new Error(`HideInUI 验证失败：黄泉内部终结技阶段 ${hiddenSkillId} 被错误展示`);
 const cyrene = characters.find((character) => character.id === '1415');
 if (skillIdsFor(cyrene, 'memosprite-skill').join(',') !== '1141501,1141502')
   throw new Error('HideInUI 验证失败：昔涟忆灵技能集合异常');
+const cyreneSpecialEffects = baseProfile(cyrene)?.specialEffects ?? [];
+if (
+  cyreneSpecialEffects.length !== 14 ||
+  cyreneSpecialEffects.some((entry) => entry.kind !== 'servant-skill-link') ||
+  cyreneSpecialEffects.map((entry) => entry.skill.id).join(',') !==
+    '1141526,1141521,1141518,1141514,1141516,1141517,1141520,1141515,1141523,1141524,1141519,1141522,1141525,1141513'
+)
+  throw new Error('Special Effect 验证失败：昔涟 14 条 relation 的数量或顺序异常');
+for (const [index, entry] of cyreneSpecialEffects.entries()) {
+  if (
+    entry.kind !== 'servant-skill-link' ||
+    entry.order !== index + 1 ||
+    !entry.tarotFigurePath.includes('UI/Avatar/Special/Special_1415/CardFigure/') ||
+    !entry.tarotIconPath.includes('UI/Avatar/Special/Special_1415/Card/')
+  )
+    throw new Error(`Special Effect 验证失败：昔涟第 ${index + 1} 条 Tarot metadata 异常`);
+}
 const theHerta = characters.find((character) => character.id === '1401');
 if (
   baseProfile(theHerta)?.skillCards.find((card) => card.category === 'skill')?.variants.length !== 2
@@ -1239,6 +1435,14 @@ for (const category of ['A', 'B', 'C'] as const)
     console.warn(
       `缺失文本审计 ${category} 类：${missingTextAudit[category].count} 条唯一记录，详见 data/audit/latest.json。`
     );
+if (audit.specialEffectAudit.diagnostics.length)
+  console.warn(
+    `Character Special Effect relation 警告：${audit.specialEffectAudit.diagnostics.length} 条诊断，详见 data/audit/latest.json。`
+  );
+if (audit.avatarSpecialSkillTreeAudit.diagnostics.length)
+  console.warn(
+    `AvatarSpecialSkillTree relation 警告：${audit.avatarSpecialSkillTreeAudit.diagnostics.length} 条诊断，详见 data/audit/latest.json。`
+  );
 console.log(
   `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，${search.length} 条简中搜索记录。`
 );

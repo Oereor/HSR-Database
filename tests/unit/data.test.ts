@@ -12,6 +12,10 @@ import { ELEMENT_COLORS, getElementColor } from '../../src/lib/domain/elements';
 import { formatBaseStat, getBaseStatsAtLevel } from '../../src/lib/domain/stats';
 import { gameTextToPlain, parseGameText } from '../../src/lib/domain/game-text';
 import type { SkillVariant } from '../../src/lib/domain/types';
+import {
+  resolveSpecialEffectLinkedAvatarPresentation,
+  segmentSpecialEffectTriggers
+} from '../../src/lib/domain/special-effects-presentation';
 import { createTextResolver, loadTextMap } from '../../scripts/data/localization';
 import { normalizeLevelledDescriptions } from '../../scripts/data/levelled';
 import {
@@ -36,6 +40,16 @@ import {
   isPlayerFacingSkillConfig,
   type SkillVariantInput
 } from '../../scripts/data/skills';
+import {
+  normalizeSpecialEffectLinks,
+  resolveSpecialEffectSkillLinks
+} from '../../scripts/data/special-effects';
+import {
+  createAvatarSpecialSkillTreeAudit,
+  indexAvatarSpecialSkillRelations,
+  normalizeAvatarSpecialSkillRelations,
+  resolveAvatarSpecialSkillRelations
+} from '../../scripts/data/avatar-special-skills';
 import { formatDescription, formatGameMarkup, formatGameText } from '../../scripts/data/text';
 
 const baseProfile = (character: Character): CharacterProfile => character.profiles.base;
@@ -70,6 +84,153 @@ describe('真实数据管线', () => {
     expect(
       buildSkillCards([visibleWithoutDescription])[0].variants.map((variant) => variant.id)
     ).toEqual(['visible-without-description']);
+  });
+
+  it('显式 Special Effect relation 保序归一化并报告异常配置', () => {
+    const normalized = normalizeSpecialEffectLinks(
+      [
+        {
+          SkillID: 100,
+          LinkToAvatarIDList: [1, 1],
+          LinkToAvatarIDSimplifiedList: [2]
+        },
+        { SkillID: 100, LinkToAvatarIDList: [1], LinkToAvatarIDSimplifiedList: [2] },
+        { SkillID: 101, LinkToAvatarIDList: [3], LinkToAvatarIDSimplifiedList: [4] },
+        { SkillID: 101, LinkToAvatarIDList: [5], LinkToAvatarIDSimplifiedList: [4] },
+        { SkillID: 'invalid', LinkToAvatarIDList: [], LinkToAvatarIDSimplifiedList: [] }
+      ],
+      [
+        {
+          SkillID: 202,
+          LinkToAvatarID: 12,
+          Order: 1,
+          TarotFigurePath: 'figure-202.png',
+          TarotIconPath: 'icon-202.png'
+        },
+        {
+          SkillID: 200,
+          LinkToAvatarID: 10,
+          Order: 2,
+          TarotFigurePath: 'figure-200.png',
+          TarotIconPath: 'icon-200.png'
+        },
+        {
+          SkillID: 201,
+          LinkToAvatarID: 11,
+          Order: 1,
+          TarotFigurePath: 'figure-201.png',
+          TarotIconPath: 'icon-201.png'
+        },
+        { SkillID: 203, LinkToAvatarID: 13, Order: 0, TarotFigurePath: '', TarotIconPath: '' }
+      ]
+    );
+
+    expect(normalized.avatar).toEqual([
+      expect.objectContaining({
+        skillId: '100',
+        linkedAvatarIds: ['1'],
+        simplifiedLinkedAvatarIds: ['2']
+      })
+    ]);
+    expect(normalized.servant.map((link) => link.skillId)).toEqual(['202', '201', '200']);
+    expect(normalized.audit.diagnostics.map((diagnostic) => diagnostic.code)).toEqual(
+      expect.arrayContaining([
+        'duplicate-target-id',
+        'duplicate-relation',
+        'conflicting-relation',
+        'malformed-relation',
+        'duplicate-order'
+      ])
+    );
+
+    const resolved = resolveSpecialEffectSkillLinks(
+      normalized.servant,
+      'AvatarServantSkillLink',
+      new Set(['201']),
+      normalized.audit
+    );
+    expect(resolved.map((link) => link.skillId)).toEqual(['201']);
+    expect(
+      normalized.audit.diagnostics.filter((diagnostic) => diagnostic.code === 'unresolved-skill')
+    ).toHaveLength(2);
+  });
+
+  it('AvatarSpecialSkillTree 仅通过有效 ShowSkill relation 纳入标准技能候选', () => {
+    const audit = createAvatarSpecialSkillTreeAudit();
+    const normalized = normalizeAvatarSpecialSkillRelations(
+      [
+        { AvatarID: 1, AnchorType: 'Point21', ShowSkill: 100 },
+        { AvatarID: 1, AnchorType: 'Point21', ShowSkill: 100 },
+        { AvatarID: 2, AnchorType: 'Point21', ShowSkill: 101 },
+        { AvatarID: 2, AnchorType: 'Point21', ShowSkill: 102 },
+        { AvatarID: 3, AnchorType: 'Point21', ShowSkill: 103 },
+        { AvatarID: 4, AnchorType: 'Point21', ShowSkill: 104 },
+        { AvatarID: 5, AnchorType: 'Point21', ShowSkill: 105 },
+        { AvatarID: 6, AnchorType: 'Point21', ShowSkill: 106 },
+        { AvatarID: 7, AnchorType: 'Point21', ShowSkill: 107 },
+        { AvatarID: 8, AnchorType: 'Point21', ShowSkill: 108 },
+        { AvatarID: 8, AnchorType: 'Point22', ShowSkill: 108 },
+        { AvatarID: 'invalid', AnchorType: '', ShowSkill: 0 }
+      ],
+      audit
+    );
+    expect(normalized.map((relation) => relation.showSkillId)).toEqual([
+      '100',
+      '103',
+      '104',
+      '105',
+      '106',
+      '107',
+      '108'
+    ]);
+
+    const resolved = resolveAvatarSpecialSkillRelations(
+      normalized,
+      {
+        avatarConfigsById: new Map([
+          ['1', { SkillList: [100] }],
+          ['3', { SkillList: [103] }],
+          ['5', { SkillList: [105] }],
+          ['6', { SkillList: [999] }],
+          ['7', { SkillList: [107] }],
+          ['8', { SkillList: [108] }]
+        ]),
+        avatarSkillIds: new Set(['100', '103', '106', '107', '108']),
+        traceRowsByAvatarId: new Map([
+          ['1', [{ PointID: 11, AnchorType: 'Point21' }]],
+          ['3', [{ PointID: 31, AnchorType: 'Point20' }]],
+          ['5', [{ PointID: 51, AnchorType: 'Point21' }]],
+          ['6', [{ PointID: 61, AnchorType: 'Point21' }]],
+          [
+            '7',
+            [
+              { PointID: 71, AnchorType: 'Point21' },
+              { PointID: 72, AnchorType: 'Point21' }
+            ]
+          ],
+          ['8', [{ PointID: 81, AnchorType: 'Point21' }]]
+        ])
+      },
+      audit
+    );
+    expect(resolved.map((relation) => relation.showSkillId)).toEqual(['100', '108']);
+    expect(indexAvatarSpecialSkillRelations(resolved).get('8')?.[0]).toMatchObject({
+      avatarId: '8',
+      anchorType: 'Point21',
+      showSkillId: '108'
+    });
+    expect(audit.diagnostics.map((diagnostic) => diagnostic.code)).toEqual(
+      expect.arrayContaining([
+        'malformed-relation',
+        'duplicate-relation',
+        'conflicting-relation',
+        'unknown-avatar',
+        'unresolved-show-skill',
+        'unowned-show-skill',
+        'missing-anchor',
+        'ambiguous-anchor'
+      ])
+    );
   });
 
   it('按显式 identity 稳定合并配置来源并拒绝冲突', async () => {
@@ -254,6 +415,55 @@ describe('真实数据管线', () => {
       { value: '基础概率', underline: true }
     ]);
     expect(gameTextToPlain('<u>弱点击破</u>')).toBe('弱点击破');
+    const specialEffectTokens = parseGameText(
+      '<color=#f9b0f0><u><unbreak><icon SpriteName=AvatarCyrene id=0 width=1 height=1>特</unbreak>殊效果</u></color>'
+    );
+    expect(specialEffectTokens).toEqual([
+      {
+        value: '',
+        icon: { spriteName: 'AvatarCyrene', id: 0, width: 1, height: 1 },
+        color: '#f9b0f0',
+        underline: true,
+        unbreak: true
+      },
+      { value: '特', color: '#f9b0f0', underline: true, unbreak: true },
+      { value: '殊效果', color: '#f9b0f0', underline: true }
+    ]);
+    expect(
+      segmentSpecialEffectTriggers(
+        specialEffectTokens.map((token) => ({
+          type: token.icon ? 'icon' : 'text',
+          value: token.value,
+          ...(token.icon ? { icon: token.icon } : {}),
+          ...(token.color ? { color: token.color } : {}),
+          ...(token.underline ? { underline: true } : {}),
+          ...(token.unbreak ? { unbreak: true } : {})
+        })),
+        true
+      )
+    ).toHaveLength(1);
+    expect(
+      segmentSpecialEffectTriggers(
+        specialEffectTokens.map((token) => ({
+          type: token.icon ? 'icon' : 'text',
+          value: token.value,
+          ...(token.icon ? { icon: token.icon } : {}),
+          ...(token.color ? { color: token.color } : {}),
+          ...(token.underline ? { underline: true } : {}),
+          ...(token.unbreak ? { unbreak: true } : {})
+        })),
+        false
+      )[0]?.kind
+    ).toBe('text');
+    expect(
+      segmentSpecialEffectTriggers(
+        [{ type: 'text', value: '特殊效果', color: '#f9b0f0', underline: true }],
+        true
+      )[0]?.kind
+    ).toBe('text');
+    expect(parseGameText('<u><icon SpriteName=../unsafe id=no>特殊效果</u>')).toEqual([
+      { value: '特殊效果', underline: true }
+    ]);
     expect(gameTextToPlain('<script>alert(1)</script><unknown>可读文本</unknown>')).toBe(
       'alert(1)可读文本'
     );
@@ -412,7 +622,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(95);
-    expect(manifest.schemaVersion).toBe(20);
+    expect(manifest.schemaVersion).toBe(22);
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     const basicAttack = variantOf(character, '100101');
@@ -809,6 +1019,7 @@ describe('真实数据管线', () => {
     const archer = await readCharacter('1015');
     const departingHimeko = await readCharacter('1510');
     const remembranceTrailblazer = await readCharacter('8007');
+    const remembranceTrailblazerFemale = await readCharacter('8008');
     const cyrene = await readCharacter('1415');
     const castoriceSkill = baseProfile(castorice).skillCards.find(
       (card) => card.category === 'memosprite-skill'
@@ -842,7 +1053,38 @@ describe('真实数据管线', () => {
       baseProfile(remembranceTrailblazer)
         .skillCards.find((card) => card.category === 'basic')
         ?.variants.map((variant) => variant.id)
-    ).toEqual(['800701']);
+    ).toEqual(['800701', '800708']);
+    expect(
+      baseProfile(remembranceTrailblazerFemale)
+        .skillCards.find((card) => card.category === 'basic')
+        ?.variants.map((variant) => variant.id)
+    ).toEqual(['800801', '800808']);
+    for (const [character, progressionId, shownSkillId, hiddenSkillId] of [
+      [remembranceTrailblazer, '8007001', '800708', '800709'],
+      [remembranceTrailblazerFemale, '8008001', '800808', '800809']
+    ] as const) {
+      const basicCard = baseProfile(character).skillCards.find(
+        (card) => card.category === 'basic'
+      )!;
+      expect(basicCard.progressions).toEqual([
+        expect.objectContaining({
+          id: progressionId,
+          variantIds: basicCard.variants.map((variant) => variant.id)
+        })
+      ]);
+      expect(variantOf(character, shownSkillId)).toMatchObject({
+        attackType: 'Normal',
+        combatMeta: {
+          effect: expect.objectContaining({ code: 'AoEAttack', label: '群攻' }),
+          extraEffects: [
+            expect.objectContaining({ id: '10000011' }),
+            expect.objectContaining({ id: '10000019' })
+          ]
+        }
+      });
+      expect(variantOf(character, shownSkillId)?.levels).toHaveLength(10);
+      expect(variantOf(character, hiddenSkillId)).toBeUndefined();
+    }
     expect(
       baseProfile(cyrene)
         .skillCards.find((card) => card.category === 'memosprite-skill')
@@ -861,6 +1103,138 @@ describe('真实数据管线', () => {
     expect(baseProfile(castorice).traces.find((trace) => trace.id === '1407204')?.description).toBe(
       '暴击伤害提高5.3%'
     );
+  });
+
+  it('通过完整技能索引解析隐藏 Special Effect，同时保持标准技能列表隔离', async () => {
+    const readCharacter = async (id: string) =>
+      JSON.parse(
+        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+      ) as Character;
+    const [gilgamesh, cyrene, departingHimeko] = await Promise.all(
+      ['1509', '1415', '1510'].map(readCharacter)
+    );
+
+    expect(variantOf(gilgamesh, '150909')).toBeUndefined();
+    expect(baseProfile(gilgamesh).specialEffects).toEqual([]);
+
+    expect(
+      baseProfile(cyrene)
+        .skillCards.find((card) => card.category === 'memosprite-skill')
+        ?.variants.map((variant) => variant.id)
+    ).toEqual(['1141501', '1141502']);
+    const cyreneEffects = baseProfile(cyrene).specialEffects;
+    expect(cyreneEffects).toHaveLength(14);
+    expect(cyreneEffects.map((entry) => entry.skill.id)).toEqual([
+      '1141526',
+      '1141521',
+      '1141518',
+      '1141514',
+      '1141516',
+      '1141517',
+      '1141520',
+      '1141515',
+      '1141523',
+      '1141524',
+      '1141519',
+      '1141522',
+      '1141525',
+      '1141513'
+    ]);
+    expect(cyreneEffects[0]).toMatchObject({
+      kind: 'servant-skill-link',
+      order: 1,
+      linkedAvatarId: '1415',
+      tarotFigurePath: 'SpriteOutput/UI/Avatar/Special/Special_1415/CardFigure/CardFigure_1415.png',
+      tarotIconPath: 'SpriteOutput/UI/Avatar/Special/Special_1415/Card/Card_1415.png',
+      skill: { id: '1141526', source: 'memosprite' }
+    });
+    expect(cyreneEffects[0].skill.levels).toHaveLength(10);
+
+    expect(
+      baseProfile(departingHimeko)
+        .skillCards.find((card) => card.category === 'assist')
+        ?.variants.map((variant) => variant.id)
+    ).toEqual(['151022']);
+    const himekoEffects = baseProfile(departingHimeko).specialEffects;
+    expect(himekoEffects.map((entry) => entry.skill.id)).toEqual(['151025', '151026']);
+    expect(himekoEffects[0]).toMatchObject({
+      kind: 'avatar-skill-link',
+      linkedAvatarIds: ['8001', '1002', '1213', '1414', '1313'],
+      simplifiedLinkedAvatarIds: ['8001', '1002', '1313'],
+      skill: { id: '151025', source: 'avatar' }
+    });
+    expect(himekoEffects[1]).toMatchObject({
+      kind: 'avatar-skill-link',
+      linkedAvatarIds: ['1001', '1413', '1004', '1003'],
+      simplifiedLinkedAvatarIds: ['1001', '1004', '1003'],
+      skill: { id: '151026', source: 'avatar' }
+    });
+    expect(himekoEffects[0].skill.levels).toHaveLength(15);
+    expect(himekoEffects[0].skill.combatMeta.extraEffects?.map((effect) => effect.id)).toEqual([
+      '10000032'
+    ]);
+    const cyreneTriggerTokens = variantOf(cyrene, '1141502')?.levels.find(
+      (level) => level.level === 6
+    )?.descriptionTokens;
+    expect(cyreneTriggerTokens?.find((token) => token.type === 'icon')).toMatchObject({
+      icon: { spriteName: 'AvatarCyrene', id: 0 },
+      color: '#f9b0f0',
+      underline: true
+    });
+    const himekoTriggerTokens = variantOf(departingHimeko, '151022')?.levels.find(
+      (level) => level.level === 10
+    )?.descriptionTokens;
+    expect(himekoTriggerTokens?.filter((token) => token.type === 'icon')).toHaveLength(2);
+
+    const latestAudit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'utf8')) as {
+      avatarSpecialSkillTreeAudit: { diagnostics: unknown[] };
+      specialEffectAudit: { diagnostics: unknown[] };
+    };
+    expect(latestAudit.avatarSpecialSkillTreeAudit.diagnostics).toEqual([]);
+    expect(latestAudit.specialEffectAudit.diagnostics).toEqual([]);
+  });
+
+  it('Special Effect relation presentation override 只改变指定弹窗上下文', () => {
+    expect(
+      resolveSpecialEffectLinkedAvatarPresentation({
+        ownerCharacterId: '1415',
+        entryKind: 'servant-skill-link',
+        sourceAvatarId: '8007',
+        sourceTarget: { id: '8007', name: '开拓者·记忆' }
+      })
+    ).toEqual({
+      sourceAvatarId: '8007',
+      displayAvatarId: '8008',
+      displayName: '开拓者·记忆'
+    });
+    expect(
+      resolveSpecialEffectLinkedAvatarPresentation({
+        ownerCharacterId: '1510',
+        entryKind: 'avatar-skill-link',
+        sourceAvatarId: '8001',
+        sourceTarget: { id: '8001', name: '开拓者·毁灭' }
+      })
+    ).toEqual({ sourceAvatarId: '8001', displayAvatarId: '8002', displayName: '开拓者' });
+    expect(
+      resolveSpecialEffectLinkedAvatarPresentation({
+        ownerCharacterId: '1510',
+        entryKind: 'avatar-skill-link',
+        sourceAvatarId: '1001',
+        sourceTarget: { id: '1001', name: '三月七·存护' }
+      })
+    ).toEqual({ sourceAvatarId: '1001', displayAvatarId: '1001', displayName: '三月七' });
+    expect(
+      resolveSpecialEffectLinkedAvatarPresentation({
+        ownerCharacterId: '1000',
+        entryKind: 'avatar-skill-link',
+        sourceAvatarId: '8001',
+        sourceTarget: { id: '8001', name: '开拓者·毁灭' }
+      })
+    ).toEqual({
+      sourceAvatarId: '8001',
+      displayAvatarId: '8001',
+      displayName: '开拓者·毁灭'
+    });
   });
 
   it('使用真实晋阶数据计算 1–80 级基础属性与突破边界', async () => {

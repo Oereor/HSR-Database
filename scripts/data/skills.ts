@@ -117,13 +117,13 @@ export function buildSkillCards(inputs: SkillVariantInput[]): SkillCard[] {
         displayLabel: categoryLabels[category],
         order,
         progressions,
-        variants: variants.map(toSkillVariant)
+        variants: variants.map(buildSkillVariant)
       }
     ];
   });
 }
 
-function toSkillVariant(input: SkillVariantInput): SkillVariant {
+export function buildSkillVariant(input: SkillVariantInput): SkillVariant {
   const metadataSignatures = new Set(
     input.combatMetaLevels.map((entry) => JSON.stringify(entry.combatMeta))
   );

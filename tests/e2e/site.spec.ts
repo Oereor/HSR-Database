@@ -674,6 +674,32 @@ test('角色加强开关只渲染当前 Profile 并保持 URL 状态', async ({ 
 });
 
 test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用', async ({ page }) => {
+  await page.goto('/characters/8007');
+  const remembranceBasic = page.locator('[data-skill-category="basic"]');
+  await expect(remembranceBasic.locator('.skill-variant')).toHaveCount(2);
+  await expect(remembranceBasic.locator('[data-skill-id="800701"]')).toContainText('包在我身上');
+  await expect(remembranceBasic.locator('[data-skill-id="800708"]')).toContainText(
+    '明天，一同写下'
+  );
+  await expect(remembranceBasic.locator('[data-skill-id="800701"]')).toContainText('100%');
+  await expect(remembranceBasic.locator('[data-skill-id="800708"]')).toContainText('120%');
+  await expect(remembranceBasic.getByRole('slider', { name: '普攻等级' })).toHaveCount(1);
+  await remembranceBasic.getByRole('slider', { name: '普攻等级' }).fill('7');
+  await expect(remembranceBasic.locator('output')).toHaveText('Lv.8');
+  await expect(remembranceBasic.locator('[data-skill-id="800701"]')).toContainText('120%');
+  await expect(remembranceBasic.locator('[data-skill-id="800708"]')).toContainText('144%');
+  await expect(page.locator('[data-skill-id="800709"]')).toHaveCount(0);
+
+  await page.goto('/characters/8008');
+  const remembranceBasicFemale = page.locator('[data-skill-category="basic"]');
+  await expect(remembranceBasicFemale.locator('.skill-variant')).toHaveCount(2);
+  await expect(remembranceBasicFemale.locator('[data-skill-id="800801"]')).toBeVisible();
+  await expect(remembranceBasicFemale.locator('[data-skill-id="800808"]')).toContainText(
+    '明天，一同写下'
+  );
+  await expect(remembranceBasicFemale.getByRole('slider', { name: '普攻等级' })).toHaveCount(1);
+  await expect(page.locator('[data-skill-id="800809"]')).toHaveCount(0);
+
   await page.goto('/characters/1407');
   const memospriteSkill = page.locator('[data-skill-category="memosprite-skill"]');
   await expect(memospriteSkill.locator('[data-skill-id="1140702"]')).toBeVisible();
@@ -699,6 +725,11 @@ test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用',
   await expect(page.locator('[data-skill-id="150909"]')).toHaveCount(0);
   await expect(page.getByText('上游原始数据未提供该技能描述。')).toHaveCount(0);
 
+  await page.goto('/characters/1510');
+  await expect(page.locator('[data-skill-id="151022"]')).toBeVisible();
+  await expect(page.locator('[data-skill-id="151025"]')).toHaveCount(0);
+  await expect(page.locator('[data-skill-id="151026"]')).toHaveCount(0);
+
   await page.goto('/characters/1415');
   const cyreneMemospriteSkill = page.locator('[data-skill-category="memosprite-skill"]');
   await expect(cyreneMemospriteSkill.locator('.skill-variant')).toHaveCount(2);
@@ -706,6 +737,117 @@ test('HideInUI 技能在玩家侧管线统一隐藏且公开技能保持可用',
   await expect(cyreneMemospriteSkill.locator('[data-skill-id="1141502"]')).toBeVisible();
   for (let skillId = 1141513; skillId <= 1141526; skillId += 1)
     await expect(page.locator(`[data-skill-id="${skillId}"]`)).toHaveCount(0);
+});
+
+test('Character Special Effect trigger 打开共享 modal 并保持 relation 与焦点', async ({
+  page,
+  isMobile
+}) => {
+  await page.goto('/characters/1415');
+  const initialBodyOverflow = await page.evaluate(() => document.body.style.overflow);
+  const cyreneSourceLevel = page
+    .locator('[data-skill-category="memosprite-skill"]')
+    .getByRole('slider', { name: '忆灵技等级' });
+  await expect(cyreneSourceLevel).toHaveValue('5');
+  const trigger = page.getByRole('button', { name: '查看特殊效果' }).first();
+  await expect(trigger).toBeVisible();
+  await expect(trigger.locator('[data-game-icon="AvatarCyrene"]')).toBeVisible();
+  await expect(trigger.locator('u')).toHaveText(['特', '殊效果']);
+  await trigger.focus();
+  await trigger.press('Enter');
+
+  const dialog = page.getByRole('dialog', { name: '特殊效果' });
+  await expect(dialog).toBeVisible();
+  await expect(dialog.locator('[data-special-effect-kind="servant-skill-link"]')).toHaveCount(14);
+  await expect(dialog.locator('[data-special-effect-order]').first()).toHaveAttribute(
+    'data-special-effect-order',
+    '1'
+  );
+  await expect(dialog.locator('[data-special-effect-order]').last()).toHaveAttribute(
+    'data-special-effect-order',
+    '14'
+  );
+  await expect(dialog.locator('[data-skill-id="1141526"]')).toBeVisible();
+  await expect(dialog.locator('[data-skill-id="1141513"]')).toBeVisible();
+  await expect(dialog.locator('[data-linked-avatar-id="1415"]')).toContainText('昔涟');
+  await expect(dialog.getByRole('slider')).toHaveCount(0);
+  await expect(dialog.locator('.special-effect-dialog__level')).toHaveText('Lv.6');
+  await expect(dialog.locator('[data-skill-id="1141526"]')).toContainText('60%');
+  await expect(dialog.getByText(/^第 \d+ 项$/)).toHaveCount(0);
+  const cyreneTrailblazer = dialog.locator('[data-linked-avatar-id="8007"]');
+  await expect(cyreneTrailblazer).toHaveAttribute('data-display-avatar-id', '8008');
+  await expect(cyreneTrailblazer.locator('img')).toHaveAttribute(
+    'src',
+    /generated-assets\/characters\/preview\/8008\.png/
+  );
+  await expect(cyreneTrailblazer.locator('strong')).toHaveText('开拓者·记忆');
+  expect(
+    await dialog
+      .locator('.special-effect-dialog__content')
+      .evaluate((element) => element.scrollHeight > element.clientHeight)
+  ).toBe(true);
+  expect(await page.evaluate(() => document.body.style.overflow)).toBe('hidden');
+
+  await dialog.getByRole('button', { name: '关闭特殊效果' }).click();
+  await expect(dialog).toBeHidden();
+  await expect(trigger).toBeFocused();
+  await expect
+    .poll(() => page.evaluate(() => document.body.style.overflow))
+    .toBe(initialBodyOverflow);
+
+  await cyreneSourceLevel.fill('7');
+  await expect(cyreneSourceLevel).toHaveValue('7');
+  await trigger.click();
+  await expect(dialog.locator('.special-effect-dialog__level')).toHaveText('Lv.8');
+  await expect(dialog.locator('[data-skill-id="1141526"]')).toContainText('72%');
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await expect(trigger).toBeFocused();
+
+  if (!isMobile) {
+    await trigger.click();
+    await expect(dialog).toBeVisible();
+    await page.mouse.click(2, 2);
+    await expect(dialog).toBeHidden();
+    await expect(trigger).toBeFocused();
+  }
+
+  await page.goto('/characters/1510');
+  const himekoSourceLevel = page.locator(
+    '[data-skill-category="assist"] .skill-level-control input[type="range"]'
+  );
+  await expect(himekoSourceLevel).toHaveValue('9');
+  const himekoTrigger = page.getByRole('button', { name: '查看特殊效果' }).first();
+  await expect(page.getByRole('button', { name: '查看特殊效果' })).toHaveCount(2);
+  await himekoTrigger.click();
+  const himekoDialog = page.getByRole('dialog', { name: '特殊效果' });
+  await expect(himekoDialog.locator('[data-special-effect-kind="avatar-skill-link"]')).toHaveCount(
+    2
+  );
+  await expect(himekoDialog.locator('[data-skill-id="151025"]')).toBeVisible();
+  await expect(himekoDialog.locator('[data-skill-id="151026"]')).toBeVisible();
+  await expect(himekoDialog.getByRole('slider')).toHaveCount(0);
+  await expect(himekoDialog.locator('.special-effect-dialog__level')).toHaveText('Lv.10');
+  const himekoTrailblazer = himekoDialog.locator('[data-linked-avatar-id="8001"]');
+  await expect(himekoTrailblazer).toHaveAttribute('data-display-avatar-id', '8002');
+  await expect(himekoTrailblazer.locator('img')).toHaveAttribute(
+    'src',
+    /generated-assets\/characters\/preview\/8002\.png/
+  );
+  await expect(himekoTrailblazer.locator('strong')).toHaveText('开拓者');
+  await expect(himekoDialog.locator('[data-linked-avatar-id="1001"] strong')).toHaveText('三月七');
+  await expect(himekoDialog.locator('[data-linked-avatar-id="1003"]')).toContainText('姬子');
+  await expect(himekoDialog).not.toContainText('简化模式');
+  await himekoDialog.getByRole('button', { name: '关闭特殊效果' }).click();
+
+  await page.goto('/characters/8007');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('开拓者·记忆');
+  await page.goto('/characters/1001');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('三月七·存护');
+
+  await page.goto('/characters/1509');
+  await expect(page.getByRole('button', { name: '查看特殊效果' })).toHaveCount(0);
+  await expect(page.locator('[data-skill-id="150909"]')).toHaveCount(0);
 });
 
 test('属性行迹、普通换行与光锥颜色 markup 正确渲染', async ({ page }) => {

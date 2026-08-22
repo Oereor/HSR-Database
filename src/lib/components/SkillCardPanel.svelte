@@ -1,13 +1,13 @@
 <script lang="ts">
   import SkillProgressionPanel from '$lib/components/SkillProgressionPanel.svelte';
-  import DescriptionText from '$lib/components/DescriptionText.svelte';
-  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
-  import GameText from '$lib/components/GameText.svelte';
-  import SkillCombatMeta from '$lib/components/SkillCombatMeta.svelte';
-  import SkillEffectTag from '$lib/components/SkillEffectTag.svelte';
+  import SkillVariantView from '$lib/components/SkillVariantView.svelte';
   import type { SkillCard, SkillVariant } from '$lib/domain/types';
 
   export let card: SkillCard;
+  export let specialEffectsAvailable = false;
+  export let specialEffectIconUrl: string | undefined = undefined;
+  export let onOpenSpecialEffects:
+    ((trigger: HTMLButtonElement, level: number) => void) | undefined = undefined;
 
   $: fixedVariants = card.variants.filter((variant) => !variant.progressionId);
   const fixedLevel = (variant: SkillVariant) => variant.levels[0];
@@ -24,24 +24,21 @@
       variants={card.variants.filter((variant) => progression.variantIds.includes(variant.id))}
       categoryLabel={card.displayLabel}
       showGroupLabel={card.progressions.length > 1}
+      {specialEffectsAvailable}
+      {specialEffectIconUrl}
+      {onOpenSpecialEffects}
     />
   {/each}
   {#if fixedVariants.length}<div class="skill-variant-list fixed-variant-list">
       {#each fixedVariants as variant (variant.id)}
-        <section class="skill-variant" data-skill-id={variant.id}>
-          <div class="skill-variant__heading">
-            <h4><GameText text={variant.name} /></h4>
-            <div class="skill-variant__heading-meta">
-              <SkillEffectTag effect={variant.combatMeta.effect} />
-              <span>Lv.{fixedLevel(variant)?.level ?? 1}</span>
-            </div>
-          </div>
-          <SkillCombatMeta meta={variant.combatMeta} />
-          {#if fixedLevel(variant)?.descriptionTokens.length}<p class="levelled-description">
-              <DescriptionText tokens={fixedLevel(variant).descriptionTokens} />
-            </p>{:else}<p class="data-placeholder">上游原始数据未提供该技能描述。</p>{/if}
-          <SkillExtraEffects effects={variant.combatMeta.extraEffects ?? []} />
-        </section>
+        <SkillVariantView
+          {variant}
+          selectedLevel={fixedLevel(variant)?.level ?? 1}
+          showLevel
+          {specialEffectsAvailable}
+          {specialEffectIconUrl}
+          {onOpenSpecialEffects}
+        />
       {/each}
     </div>{/if}
 </article>

@@ -3,4 +3,9 @@
   export let data;
 </script>
 
-<DetailPage detail={data.detail} category={data.category} singular={data.config.singular} />
+<DetailPage
+  detail={data.detail}
+  category={data.category}
+  singular={data.config.singular}
+  specialEffectTargets={data.specialEffectTargets}
+/>

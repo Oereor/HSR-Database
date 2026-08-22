@@ -1,25 +1,28 @@
 <script lang="ts">
   import type { DescriptionToken } from '$lib/domain/types';
+  import InlineGameTextToken from '$lib/components/InlineGameTextToken.svelte';
+  import { segmentSpecialEffectTriggers } from '$lib/domain/special-effects-presentation';
 
   export let tokens: DescriptionToken[] = [];
+  export let specialEffectsAvailable = false;
+  export let specialEffectIconUrl: string | undefined = undefined;
+  export let onOpenSpecialEffects: ((trigger: HTMLButtonElement) => void) | undefined = undefined;
+
+  $: segments = segmentSpecialEffectTriggers(
+    tokens,
+    specialEffectsAvailable && !!onOpenSpecialEffects
+  );
 </script>
 
-{#each tokens as token}
-  {#if token.underline && token.italic}<u
-      class:description-token--unbreak={token.unbreak}
-      class:scaling-value={token.type === 'scaling-value'}
-      style:color={token.color}><em>{token.value}</em></u
-    >{:else if token.underline}<u
-      class:description-token--unbreak={token.unbreak}
-      class:scaling-value={token.type === 'scaling-value'}
-      style:color={token.color}>{token.value}</u
-    >{:else if token.italic}<em
-      class:description-token--unbreak={token.unbreak}
-      class:scaling-value={token.type === 'scaling-value'}
-      style:color={token.color}>{token.value}</em
-    >{:else}<span
-      class:description-token--unbreak={token.unbreak}
-      class:scaling-value={token.type === 'scaling-value'}
-      style:color={token.color}>{token.value}</span
-    >{/if}
+{#each segments as segment}
+  {#if segment.kind === 'special-effect-trigger'}<button
+      type="button"
+      class="special-effect-trigger"
+      aria-label="查看特殊效果"
+      on:click={(event) => onOpenSpecialEffects?.(event.currentTarget)}
+      >{#each segment.tokens as token}<InlineGameTextToken
+          {token}
+          iconUrl={specialEffectIconUrl}
+        />{/each}</button
+    >{:else}{#each segment.tokens as token}<InlineGameTextToken {token} />{/each}{/if}
 {/each}

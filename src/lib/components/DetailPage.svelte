@@ -1,10 +1,12 @@
 <script lang="ts">
   import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
+  import { tick } from 'svelte';
   import { page } from '$app/stores';
   import BaseStatsPanel from '$lib/components/BaseStatsPanel.svelte';
   import GameText from '$lib/components/GameText.svelte';
   import SkillCardPanel from '$lib/components/SkillCardPanel.svelte';
+  import SpecialEffectDialog from '$lib/components/SpecialEffectDialog.svelte';
   import SuperimpositionPanel from '$lib/components/SuperimpositionPanel.svelte';
   import TraceCardPanel from '$lib/components/TraceCardPanel.svelte';
   import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
@@ -13,10 +15,16 @@
   import EnemyDetailPage from '$lib/components/enemy/EnemyDetailPage.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { gameTextToPlain } from '$lib/domain/game-text';
+  import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
+  import type { CatalogEntry } from '$lib/domain/types';
   export let detail: any;
   export let category: string;
   export let singular: string;
+  export let specialEffectTargets: CatalogEntry[] = [];
   let portraitAvailable = false;
+  let specialEffectsOpen = false;
+  let specialEffectTrigger: HTMLButtonElement | undefined;
+  let specialEffectLevel = 1;
 
   $: plainName = gameTextToPlain(detail.name);
   $: metaDescription = gameTextToPlain(
@@ -34,8 +42,30 @@
         ? detail.profiles.enhanced
         : detail.profiles.base
       : undefined;
+  $: specialEffects = activeProfile?.specialEffects ?? [];
+  $: specialEffectsAvailable = specialEffects.length > 0;
+  $: specialEffectIconUrl =
+    category === 'characters' ? getCharacterPreviewUrl(detail.id) : undefined;
+  $: if (specialEffectsOpen && !specialEffectsAvailable) specialEffectsOpen = false;
+
+  function openSpecialEffects(trigger: HTMLButtonElement, level: number) {
+    specialEffectTrigger = trigger;
+    specialEffectLevel = level;
+    specialEffectsOpen = true;
+  }
+
+  function requestSpecialEffectsClose() {
+    specialEffectsOpen = false;
+  }
+
+  async function handleSpecialEffectsClosed() {
+    await tick();
+    if (specialEffectTrigger?.isConnected) specialEffectTrigger.focus();
+    specialEffectTrigger = undefined;
+  }
 
   async function toggleEnhanced() {
+    if (specialEffectsOpen) specialEffectsOpen = false;
     const params = new URLSearchParams($page.url.searchParams);
     if (enhancedEnabled) params.set('enhanced', '0');
     else params.delete('enhanced');
@@ -128,7 +158,12 @@
         <span>{activeProfile.skillCards.length} 类</span>
       </div>
       {#if activeProfile.skillCards.length}<div class="stack-list skill-card-grid">
-          {#each activeProfile.skillCards as card (card.category)}<SkillCardPanel {card} />{/each}
+          {#each activeProfile.skillCards as card (card.category)}<SkillCardPanel
+              {card}
+              {specialEffectsAvailable}
+              {specialEffectIconUrl}
+              onOpenSpecialEffects={openSpecialEffects}
+            />{/each}
         </div>{:else}<p class="data-placeholder">上游未提供可展示的技能记录。</p>{/if}
     </section>
     <section id="traces" class="detail-section">
@@ -159,6 +194,15 @@
         </div>{:else}<p class="data-placeholder">上游未提供可展示的星魂记录。</p>{/if}
     </section>
   {/key}
+  {#if specialEffectsAvailable}<SpecialEffectDialog
+      open={specialEffectsOpen}
+      entries={specialEffects}
+      targets={specialEffectTargets}
+      ownerCharacterId={detail.id}
+      selectedLevel={specialEffectLevel}
+      onRequestClose={requestSpecialEffectsClose}
+      onClosed={handleSpecialEffectsClosed}
+    />{/if}
 {:else if category === 'light-cones'}
   <section class="detail-section">
     <h2>基础属性</h2>

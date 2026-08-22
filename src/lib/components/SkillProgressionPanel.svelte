@@ -1,16 +1,16 @@
 <script lang="ts">
   import type { SkillProgression, SkillVariant } from '$lib/domain/types';
-  import DescriptionText from '$lib/components/DescriptionText.svelte';
-  import GameText from '$lib/components/GameText.svelte';
-  import SkillCombatMeta from '$lib/components/SkillCombatMeta.svelte';
-  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
-  import SkillEffectTag from '$lib/components/SkillEffectTag.svelte';
+  import SkillVariantView from '$lib/components/SkillVariantView.svelte';
   import { gameTextToPlain } from '$lib/domain/game-text';
 
   export let progression: SkillProgression;
   export let variants: SkillVariant[];
   export let categoryLabel: string;
   export let showGroupLabel = false;
+  export let specialEffectsAvailable = false;
+  export let specialEffectIconUrl: string | undefined = undefined;
+  export let onOpenSpecialEffects:
+    ((trigger: HTMLButtonElement, level: number) => void) | undefined = undefined;
 
   let selectedIndex = Math.max(
     0,
@@ -49,19 +49,15 @@
   {/if}
   <div class="skill-variant-list">
     {#each variants as variant (variant.id)}
-      {@const selected =
-        variant.levels.find((level) => level.level === selectedLevel) ?? variant.levels[0]}
-      <section class="skill-variant" data-skill-id={variant.id}>
-        <div class="skill-variant__heading">
-          <h4><GameText text={variant.name} /></h4>
-          <SkillEffectTag effect={variant.combatMeta.effect} />
-        </div>
-        <SkillCombatMeta meta={variant.combatMeta} />
-        {#if selected?.descriptionTokens.length}<p class="levelled-description">
-            <DescriptionText tokens={selected.descriptionTokens} />
-          </p>{:else}<p class="data-placeholder">上游原始数据未提供该技能描述。</p>{/if}
-        <SkillExtraEffects effects={variant.combatMeta.extraEffects ?? []} />
-      </section>
+      <SkillVariantView
+        {variant}
+        {selectedLevel}
+        {specialEffectsAvailable}
+        {specialEffectIconUrl}
+        {onOpenSpecialEffects}
+      >
+        <svelte:fragment slot="prefix"><slot name="variant-prefix" {variant} /></svelte:fragment>
+      </SkillVariantView>
     {/each}
   </div>
 </div>

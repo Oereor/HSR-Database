@@ -37,11 +37,15 @@ function formatParameter(value: number, format: string | undefined, percent: boo
 }
 
 function trimTokens(tokens: DescriptionToken[]): DescriptionToken[] {
-  const result = tokens.filter((token) => token.value).map((token) => ({ ...token }));
+  const result = tokens
+    .filter((token) => token.type === 'icon' || token.value)
+    .map((token) => ({ ...token }));
   if (!result.length) return result;
-  result[0].value = result[0].value.trimStart();
-  result[result.length - 1].value = result[result.length - 1].value.trimEnd();
-  return result.filter((token) => token.value);
+  const firstText = result.find((token) => token.type !== 'icon');
+  const lastText = result.findLast((token) => token.type !== 'icon');
+  if (firstText) firstText.value = firstText.value.trimStart();
+  if (lastText) lastText.value = lastText.value.trimEnd();
+  return result.filter((token) => token.type === 'icon' || token.value);
 }
 
 function interpolateTemplate(
@@ -86,8 +90,9 @@ function formatTemplate(
   const interpolated = interpolateTemplate(source, params, scalingParamIndexes);
   const descriptionTokens = trimTokens(
     parseGameTextWithScaling(interpolated.text).map((token) => ({
-      type: token.scaling ? 'scaling-value' : 'text',
+      type: token.icon ? 'icon' : token.scaling ? 'scaling-value' : 'text',
       value: token.value,
+      ...(token.icon ? { icon: token.icon } : {}),
       ...(token.color ? { color: token.color } : {}),
       ...(token.italic ? { italic: true } : {}),
       ...(token.underline ? { underline: true } : {}),

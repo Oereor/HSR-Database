@@ -13,9 +13,17 @@ export interface TextReference {
   Hash: TextHash;
 }
 
+export interface InlineGameTextIcon {
+  spriteName: string;
+  id: number;
+  width?: number;
+  height?: number;
+}
+
 export interface DescriptionToken {
-  type: 'text' | 'scaling-value';
+  type: 'text' | 'scaling-value' | 'icon';
   value: string;
+  icon?: InlineGameTextIcon;
   color?: string;
   italic?: boolean;
   underline?: boolean;
@@ -103,6 +111,25 @@ export interface SkillVariant {
   combatMeta: SkillCombatMeta;
 }
 
+export interface AvatarSkillSpecialEffectEntry {
+  kind: 'avatar-skill-link';
+  skill: SkillVariant;
+  linkedAvatarIds: string[];
+  simplifiedLinkedAvatarIds: string[];
+}
+
+export interface ServantSkillSpecialEffectEntry {
+  kind: 'servant-skill-link';
+  skill: SkillVariant;
+  order: number;
+  linkedAvatarId: string;
+  tarotFigurePath: string;
+  tarotIconPath: string;
+}
+
+export type CharacterSpecialEffectEntry =
+  AvatarSkillSpecialEffectEntry | ServantSkillSpecialEffectEntry;
+
 export interface SkillProgression {
   id: string;
   availableLevels: number[];
@@ -176,6 +203,7 @@ export interface Eidolon {
 export interface CharacterProfile {
   energy: CharacterEnergy;
   skillCards: SkillCard[];
+  specialEffects: CharacterSpecialEffectEntry[];
   traces: Trace[];
   eidolons: Eidolon[];
 }
