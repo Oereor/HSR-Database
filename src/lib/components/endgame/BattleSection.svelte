@@ -12,6 +12,7 @@
     <h3>战斗 {battle.slot}</h3>
     {#if battle.stages.length === 1}<span>Lv.{battle.stages[0].level}</span>{/if}
   </header>
+  <slot />
   {#each battle.stages as stage (stage.key)}
     <div class="endgame-stage">
       {#if battle.stages.length > 1}

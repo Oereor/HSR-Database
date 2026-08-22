@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import type {
@@ -10,8 +11,8 @@ import type {
   SearchEntry
 } from '../../src/lib/domain/types.js';
 import type {
+  EndgameDatasetByMode,
   EndgameMode,
-  EndgameModeDataset,
   EndgameStage,
   EnemyOccurrence
 } from '../../src/lib/domain/endgame.js';
@@ -51,7 +52,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 22)
+if (manifest.schemaVersion !== 23)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -124,12 +125,10 @@ const endgame = Object.fromEntries(
   await Promise.all(
     endgameModes.map(async (mode) => [
       mode,
-      JSON.parse(
-        await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8')
-      ) as EndgameModeDataset
+      JSON.parse(await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8'))
     ])
   )
-) as Record<EndgameMode, EndgameModeDataset>;
+) as EndgameDatasetByMode;
 
 const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
   stage.waveModel.kind === 'fixed'
@@ -140,7 +139,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 19 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 20 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -283,6 +282,119 @@ for (const mode of endgameModes) {
         throw new Error(`Endgame ${mode} MonsterID ${occurrence.monsterId} final HP 发生模式泄漏`);
     }
   }
+}
+
+const expectedMazeBuffAudit = {
+  distinctReferenced: 318,
+  resolved: 318,
+  displayReady: 311,
+  missingLocalization: 7,
+  missingIconPath: 0,
+  missingDescriptionParams: 0,
+  unusedParams: 77
+};
+if (JSON.stringify(audit.endgameAudit.mazeBuffs) !== JSON.stringify(expectedMazeBuffAudit))
+  throw new Error('Endgame MazeBuff 解析审计与当前权威配置不一致');
+
+const mocTurbulence = endgame.moc.groups
+  .find((group) => group.groupId === 1034)
+  ?.encounters.find((encounter) => encounter.configId === 5312)?.memoryTurbulence;
+const mocTurbulenceText = gameTextToPlain(mocTurbulence?.buff.description);
+if (
+  mocTurbulence?.buff.id !== 3030147 ||
+  mocTurbulence.buff.name !== '记忆紊流' ||
+  !mocTurbulenceText.includes('80%') ||
+  !mocTurbulenceText.includes('1回合') ||
+  mocTurbulence.groupReference?.mazeBuffId !== 3030147
+)
+  throw new Error('MoC 1034/5312 记忆紊流 relation 或展示文本异常');
+
+const pfModifierGroup = endgame.pf.groups.find((group) => group.groupId === 2025);
+const pfEncounterBase = pfModifierGroup?.encounters.find(
+  (encounter) => encounter.configId === 20254
+)?.baseMechanic;
+if (
+  pfModifierGroup?.groupBaseMechanic?.mazeBuffId !== 3031220 ||
+  pfModifierGroup.groupBaseMechanic.display !== undefined ||
+  pfEncounterBase?.mazeBuffId !== 3031230 ||
+  pfEncounterBase.display !== undefined ||
+  pfModifierGroup.battleWillMechanics.map(({ buff }) => buff.id).join(',') !==
+    '3031232,3031233,3031234' ||
+  pfModifierGroup.cacophony?.options.map(({ buff }) => buff.id).join(',') !==
+    '3031363,3031364,3031365'
+)
+  throw new Error('PF 2025 base、战意机制或荒腔走板 relation 异常');
+if (
+  pfModifierGroup.battleWillMechanics.some(({ buff }) =>
+    pfModifierGroup.cacophony?.options.some((option) => option.buff.id === buff.id)
+  )
+)
+  throw new Error('PF fixed mechanics 与 selectable options 被错误混合');
+
+const asModifierGroup = endgame.as.groups.find((group) => group.groupId === 3020);
+const asAftertaste = asModifierGroup?.encounters.find(
+  (encounter) => encounter.configId === 30204
+)?.aftertaste;
+if (
+  asAftertaste?.buff.id !== 3110006 ||
+  asAftertaste.buff.name !== '末法余烬' ||
+  asAftertaste.stageBindings.length !== 3 ||
+  asAftertaste.stageBindings.some((binding) => binding.mazeBuffId !== 3110006) ||
+  JSON.stringify(
+    asModifierGroup?.axiomSets.map((set) => [set.slot, set.options.map(({ buff }) => buff.id)])
+  ) !==
+    JSON.stringify([
+      [1, [3111077, 3111078, 3111058]],
+      [2, [3111083, 3111065, 3111079]],
+      [3, [3111082, 3111081, 3111085]]
+    ])
+)
+  throw new Error('AS 3020/30204 末法余烬、stage binding 或终焉公理 relation 异常');
+
+const aaModifierGroup = endgame.aa.groups.find((group) => group.groupId === 8);
+const aaNormal = aaModifierGroup?.encounters.find((encounter) => encounter.id === '804:normal');
+const aaHard = aaModifierGroup?.encounters.find((encounter) => encounter.id === '804:hard');
+if (
+  aaNormal?.traits.map(({ buff }) => buff.id).join(',') !== '3033069,3033051' ||
+  aaHard?.traits.map(({ buff }) => buff.id).join(',') !== '3033070,3033052' ||
+  aaNormal.judgmentQuadrantKey !== 'aa:804:BuffList' ||
+  aaHard.judgmentQuadrantKey !== aaNormal.judgmentQuadrantKey ||
+  aaModifierGroup?.judgmentQuadrant?.options.map(({ buff }) => buff.id).join(',') !==
+    '3033066,3033068,3033067'
+)
+  throw new Error('AA 8/804 normal/hard traits 或裁决象限 relation 异常');
+
+const legacyEndgameDigests: Record<EndgameMode, string> = {
+  moc: '4086e5f63a700dd56e5ede0cc64a305fdd749a97749bf2810c77290422b99730',
+  pf: 'ea10b04587824c99343c5e0930085cf28f1929ab288db95e95c793eb16c8652c',
+  as: '0dd5da2df84f345abd7c117620fa71045c9aa410030991af241ca62136cd23fc',
+  aa: '739820959ac5f3bbfbb2be4cf1469068701a3dfac47b8a8e296efb370b8b5022'
+};
+const modifierGroupFields: Record<EndgameMode, string[]> = {
+  moc: [],
+  pf: ['groupBaseMechanic', 'battleWillMechanics', 'cacophony'],
+  as: ['axiomSets'],
+  aa: ['judgmentQuadrant']
+};
+const modifierEncounterFields: Record<EndgameMode, string[]> = {
+  moc: ['memoryTurbulence'],
+  pf: ['baseMechanic'],
+  as: ['aftertaste'],
+  aa: ['traits', 'judgmentQuadrantKey']
+};
+for (const mode of endgameModes) {
+  const projection = structuredClone(endgame[mode].groups);
+  for (const group of projection) {
+    const groupRecord = group as unknown as Record<string, unknown>;
+    for (const field of modifierGroupFields[mode]) delete groupRecord[field];
+    for (const encounter of group.encounters) {
+      const encounterRecord = encounter as unknown as Record<string, unknown>;
+      for (const field of modifierEncounterFields[mode]) delete encounterRecord[field];
+    }
+  }
+  const digest = createHash('sha256').update(JSON.stringify(projection)).digest('hex');
+  if (digest !== legacyEndgameDigests[mode])
+    throw new Error(`Endgame ${mode} 既有 hierarchy/敌方数据 projection 发生变化`);
 }
 
 function fixtureOccurrence(

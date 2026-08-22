@@ -18,6 +18,7 @@ export interface FormattedDescription {
 export interface FormattedGameMarkup {
   text: string;
   diagnostics: DescriptionDiagnostic[];
+  usedParameterIndexes: number[];
 }
 
 const placeholderPattern = /#(\d+)(?:\[(i|f\d*)\])?(%?)/g;
@@ -52,8 +53,9 @@ function interpolateTemplate(
   source: string,
   params: readonly number[] = [],
   scalingParamIndexes: ReadonlySet<number> = new Set()
-): { text: string; diagnostics: DescriptionDiagnostic[] } {
+): { text: string; diagnostics: DescriptionDiagnostic[]; usedParameterIndexes: number[] } {
   const diagnostics: DescriptionDiagnostic[] = [];
+  const usedParameterIndexes = new Set<number>();
   let result = '';
   let cursor = 0;
 
@@ -63,6 +65,7 @@ function interpolateTemplate(
     result += source.slice(cursor, start);
 
     const parameterIndex = Number(match[1]) - 1;
+    if (parameterIndex >= 0) usedParameterIndexes.add(parameterIndex);
     const value = params[parameterIndex];
     if (value === undefined) {
       diagnostics.push({ code: 'missing-param', parameterIndex, placeholder });
@@ -79,7 +82,11 @@ function interpolateTemplate(
     cursor = start + placeholder.length;
   }
   result += source.slice(cursor);
-  return { text: result, diagnostics };
+  return {
+    text: result,
+    diagnostics,
+    usedParameterIndexes: [...usedParameterIndexes].sort((a, b) => a - b)
+  };
 }
 
 function formatTemplate(
@@ -123,7 +130,11 @@ export function formatGameMarkup(
   params: readonly number[] = []
 ): FormattedGameMarkup {
   const formatted = interpolateTemplate(normalizeGameText(template), params);
-  return { text: formatted.text, diagnostics: formatted.diagnostics };
+  return {
+    text: formatted.text,
+    diagnostics: formatted.diagnostics,
+    usedParameterIndexes: formatted.usedParameterIndexes
+  };
 }
 
 export function formatGameText(template = '', params: number[] = []): string {

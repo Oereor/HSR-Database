@@ -12,17 +12,14 @@
   <meta name="description" content={`浏览${data.mode.label}的当前、未来与历史赛期。`} />
 </svelte:head>
 
-<header class="page-heading">
-  <div>
-    <a class="back-link" href="/endgame">← Endgame</a>
-    <p class="kicker">{data.mode.mode.toUpperCase()} PERIODS</p>
-    <h1>{data.mode.label}</h1>
+<header class="endgame-page-header">
+  <a class="back-link endgame-breadcrumb" href="/endgame">← Endgame</a>
+  <EndgameModeNav activeMode={data.mode.mode} />
+  <div class="endgame-mode-summary">
     <p>{data.mode.description}</p>
+    <span class="count-badge">{data.mode.periods.length} 个赛期</span>
   </div>
-  <span class="count-badge">{data.mode.periods.length} 个赛期</span>
 </header>
-
-<EndgameModeNav activeMode={data.mode.mode} />
 
 <section class="endgame-period-list" aria-label="赛期列表">
   {#each data.mode.periods as period}

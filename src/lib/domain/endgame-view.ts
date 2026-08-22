@@ -6,7 +6,8 @@ import type {
   EndgameMode,
   EndgameStage,
   EnemyMechanics,
-  EnemyOccurrence
+  EnemyOccurrence,
+  ResolvedMazeBuff
 } from './endgame';
 
 export const ENDGAME_MODES = ['moc', 'pf', 'as', 'aa'] as const satisfies readonly EndgameMode[];
@@ -139,22 +140,108 @@ export interface EndgameBattleSlotView {
   stages: EndgameStageView[];
 }
 
-export interface EndgameEncounterView {
+export interface EndgameMechanicView {
+  id: number;
+  name: string;
+  description: string;
+}
+
+export interface EndgameOrderedMechanicView extends EndgameMechanicView {
+  order: number;
+}
+
+interface EndgameEncounterViewBase<
+  TMode extends EndgameMode,
+  TBattle extends EndgameBattleSlotView
+> {
+  mode: TMode;
   id: string;
   label: string;
   ordinal?: number;
   variant: EndgameEncounterVariant;
-  battles: EndgameBattleSlotView[];
+  battles: TBattle[];
 }
 
-export interface EndgameGroupView {
-  mode: EndgameMode;
+export interface MocEncounterView extends EndgameEncounterViewBase<'moc', EndgameBattleSlotView> {
+  memoryTurbulence?: EndgameMechanicView;
+}
+
+export interface PureFictionEncounterView extends EndgameEncounterViewBase<
+  'pf',
+  EndgameBattleSlotView
+> {
+  baseMechanic?: EndgameMechanicView;
+}
+
+export interface ApocalypticShadowAxiomSetView {
+  key: string;
+  options: EndgameOrderedMechanicView[];
+}
+
+export interface ApocalypticShadowBattleSlotView extends EndgameBattleSlotView {
+  axiomSet?: ApocalypticShadowAxiomSetView;
+}
+
+export interface ApocalypticShadowEncounterView extends EndgameEncounterViewBase<
+  'as',
+  ApocalypticShadowBattleSlotView
+> {
+  aftertaste?: EndgameMechanicView;
+}
+
+export interface AnomalyArbitrationEncounterView extends EndgameEncounterViewBase<
+  'aa',
+  EndgameBattleSlotView
+> {
+  traits: EndgameMechanicView[];
+  judgmentQuadrantKey?: string;
+}
+
+export type EndgameEncounterView =
+  | MocEncounterView
+  | PureFictionEncounterView
+  | ApocalypticShadowEncounterView
+  | AnomalyArbitrationEncounterView;
+
+export interface PureFictionCacophonyView {
+  key: string;
+  options: EndgameOrderedMechanicView[];
+}
+
+export interface AnomalyArbitrationJudgmentQuadrantView {
+  key: string;
+  options: EndgameOrderedMechanicView[];
+}
+
+interface EndgameGroupViewBase<TMode extends EndgameMode, TEncounter extends EndgameEncounterView> {
+  mode: TMode;
   modeLabel: string;
   period: EndgamePeriodView;
   periods: EndgamePeriodView[];
   defaultEncounterId?: string;
-  encounters: EndgameEncounterView[];
+  encounters: TEncounter[];
 }
+
+export interface MocGroupView extends EndgameGroupViewBase<'moc', MocEncounterView> {
+  memoryTurbulence?: EndgameMechanicView;
+}
+
+export interface PureFictionGroupView extends EndgameGroupViewBase<'pf', PureFictionEncounterView> {
+  fixedMechanics: EndgameMechanicView[];
+  cacophony?: PureFictionCacophonyView;
+}
+
+export type ApocalypticShadowGroupView = EndgameGroupViewBase<'as', ApocalypticShadowEncounterView>;
+
+export interface AnomalyArbitrationGroupView extends EndgameGroupViewBase<
+  'aa',
+  AnomalyArbitrationEncounterView
+> {
+  judgmentQuadrant?: AnomalyArbitrationJudgmentQuadrantView;
+}
+
+export type EndgameGroupView =
+  MocGroupView | PureFictionGroupView | ApocalypticShadowGroupView | AnomalyArbitrationGroupView;
 
 export function isEndgameMode(value: string): value is EndgameMode {
   return ENDGAME_MODES.includes(value as EndgameMode);
@@ -377,36 +464,191 @@ export function buildModeView(mode: EndgameMode, groups: EndgameGroup[]): Endgam
   };
 }
 
+function buildMechanicView(buff: ResolvedMazeBuff | undefined): EndgameMechanicView | undefined {
+  if (!buff?.name?.trim() || !buff.description?.trim()) return undefined;
+  return {
+    id: buff.id,
+    name: buff.name,
+    description: buff.description
+  };
+}
+
+function mechanicIdentity(mechanic: EndgameMechanicView): string {
+  return JSON.stringify([mechanic.id, mechanic.name, mechanic.description]);
+}
+
+function allMechanicsMatch(
+  mechanics: Array<EndgameMechanicView | undefined>
+): EndgameMechanicView | undefined {
+  if (!mechanics.length || mechanics.some((mechanic) => !mechanic)) return undefined;
+  const first = mechanics[0]!;
+  const identity = mechanicIdentity(first);
+  return mechanics.every((mechanic) => mechanicIdentity(mechanic!) === identity)
+    ? first
+    : undefined;
+}
+
+function uniqueMechanics(mechanics: Array<EndgameMechanicView | undefined>): EndgameMechanicView[] {
+  const seen = new Set<string>();
+  const unique: EndgameMechanicView[] = [];
+  for (const mechanic of mechanics) {
+    if (!mechanic) continue;
+    const identity = mechanicIdentity(mechanic);
+    if (seen.has(identity)) continue;
+    seen.add(identity);
+    unique.push(mechanic);
+  }
+  return unique;
+}
+
+function buildBattleSlotView(
+  battle: EndgameEncounter['battles'][number],
+  enemyReferences: ReadonlyMap<string, EndgameEnemyReference>
+): EndgameBattleSlotView {
+  return {
+    slot: battle.slot,
+    stages: battle.stages.map((stage, stageIndex) => ({
+      key: `${stage.stageId}-${stageIndex}`,
+      index: stageIndex + 1,
+      level: stage.level,
+      waves: buildWaveViews(stage, enemyReferences)
+    }))
+  };
+}
+
+function buildEncounterViewBase<TMode extends EndgameMode>(
+  mode: TMode,
+  encounter: EndgameEncounter,
+  enemyReferences: ReadonlyMap<string, EndgameEnemyReference>
+): EndgameEncounterViewBase<TMode, EndgameBattleSlotView> {
+  return {
+    mode,
+    id: encounter.id,
+    label: encounterLabel(mode, encounter),
+    ...(encounter.ordinal ? { ordinal: encounter.ordinal } : {}),
+    variant: encounter.variant,
+    battles: encounter.battles.map((battle) => buildBattleSlotView(battle, enemyReferences))
+  };
+}
+
+function buildGroupViewBase<TMode extends EndgameMode>(
+  mode: TMode,
+  group: EndgameGroup,
+  periods: EndgamePeriodView[]
+) {
+  return {
+    mode,
+    modeLabel: ENDGAME_MODE_META[mode].label,
+    period: buildPeriodView(group),
+    periods,
+    defaultEncounterId: defaultEncounterId(mode, group.encounters)
+  };
+}
+
 export function buildGroupView(
   group: EndgameGroup,
   periods: EndgamePeriodView[],
   enemyReferences: ReadonlyMap<string, EndgameEnemyReference>
 ): EndgameGroupView {
-  const encounters = group.encounters.map((encounter) => ({
-    id: encounter.id,
-    label: encounterLabel(group.mode, encounter),
-    ...(encounter.ordinal ? { ordinal: encounter.ordinal } : {}),
-    variant: encounter.variant,
-    battles: encounter.battles.map((battle) => ({
-      slot: battle.slot,
-      stages: battle.stages.map((stage, stageIndex) => {
-        const waves = buildWaveViews(stage, enemyReferences);
+  if (group.mode === 'moc') {
+    const encounterMechanics = group.encounters.map((encounter) =>
+      buildMechanicView(encounter.memoryTurbulence?.buff)
+    );
+    const memoryTurbulence = allMechanicsMatch(encounterMechanics);
+    return {
+      ...buildGroupViewBase(group.mode, group, periods),
+      ...(memoryTurbulence ? { memoryTurbulence } : {}),
+      encounters: group.encounters.map((encounter, index) => ({
+        ...buildEncounterViewBase(group.mode, encounter, enemyReferences),
+        ...(!memoryTurbulence && encounterMechanics[index]
+          ? { memoryTurbulence: encounterMechanics[index] }
+          : {})
+      }))
+    };
+  }
+
+  if (group.mode === 'pf') {
+    const groupBase = buildMechanicView(group.groupBaseMechanic?.display);
+    const encounterBases = group.encounters.map((encounter) =>
+      buildMechanicView(encounter.baseMechanic?.display)
+    );
+    const summarizedEncounterBase = allMechanicsMatch(encounterBases);
+    const fixedMechanics = uniqueMechanics([
+      groupBase,
+      summarizedEncounterBase,
+      ...group.battleWillMechanics.map((mechanic) => buildMechanicView(mechanic.buff))
+    ]);
+    const fixedIdentities = new Set(fixedMechanics.map(mechanicIdentity));
+    const cacophonyOptions = (group.cacophony?.options ?? []).flatMap((option) => {
+      const mechanic = buildMechanicView(option.buff);
+      return mechanic ? [{ ...mechanic, order: option.order }] : [];
+    });
+    return {
+      ...buildGroupViewBase(group.mode, group, periods),
+      fixedMechanics,
+      ...(group.cacophony && cacophonyOptions.length
+        ? { cacophony: { key: group.cacophony.key, options: cacophonyOptions } }
+        : {}),
+      encounters: group.encounters.map((encounter, index) => {
+        const baseMechanic = encounterBases[index];
         return {
-          key: `${stage.stageId}-${stageIndex}`,
-          index: stageIndex + 1,
-          level: stage.level,
-          waves
+          ...buildEncounterViewBase(group.mode, encounter, enemyReferences),
+          ...(baseMechanic && !fixedIdentities.has(mechanicIdentity(baseMechanic))
+            ? { baseMechanic }
+            : {})
         };
       })
-    }))
-  }));
+    };
+  }
+
+  if (group.mode === 'as') {
+    const axiomSets = new Map<number, ApocalypticShadowAxiomSetView>();
+    for (const set of group.axiomSets) {
+      const options = set.options.flatMap((option) => {
+        const mechanic = buildMechanicView(option.buff);
+        return mechanic ? [{ ...mechanic, order: option.order }] : [];
+      });
+      if (options.length) axiomSets.set(set.slot, { key: set.key, options });
+    }
+    return {
+      ...buildGroupViewBase(group.mode, group, periods),
+      encounters: group.encounters.map((encounter) => ({
+        ...buildEncounterViewBase(group.mode, encounter, enemyReferences),
+        ...(buildMechanicView(encounter.aftertaste?.buff)
+          ? { aftertaste: buildMechanicView(encounter.aftertaste?.buff) }
+          : {}),
+        battles: encounter.battles.map((battle) => ({
+          ...buildBattleSlotView(battle, enemyReferences),
+          ...(axiomSets.has(battle.slot) ? { axiomSet: axiomSets.get(battle.slot) } : {})
+        }))
+      }))
+    };
+  }
+
+  const quadrantOptions = (group.judgmentQuadrant?.options ?? []).flatMap((option) => {
+    const mechanic = buildMechanicView(option.buff);
+    return mechanic ? [{ ...mechanic, order: option.order }] : [];
+  });
   return {
-    mode: group.mode,
-    modeLabel: ENDGAME_MODE_META[group.mode].label,
-    period: buildPeriodView(group),
-    periods,
-    defaultEncounterId: defaultEncounterId(group.mode, group.encounters),
-    encounters
+    ...buildGroupViewBase(group.mode, group, periods),
+    ...(group.judgmentQuadrant && quadrantOptions.length
+      ? {
+          judgmentQuadrant: {
+            key: group.judgmentQuadrant.key,
+            options: quadrantOptions
+          }
+        }
+      : {}),
+    encounters: group.encounters.map((encounter) => ({
+      ...buildEncounterViewBase(group.mode, encounter, enemyReferences),
+      traits: encounter.traits.flatMap((trait) => {
+        const mechanic = buildMechanicView(trait.buff);
+        return mechanic ? [mechanic] : [];
+      }),
+      ...(encounter.judgmentQuadrantKey
+        ? { judgmentQuadrantKey: encounter.judgmentQuadrantKey }
+        : {})
+    }))
   };
 }
 

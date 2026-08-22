@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { getEnemyPortraitUrl } from '$lib/server/enemy-assets';
-import type { EndgameMode, EndgameModeDataset } from '$lib/domain/endgame';
+import type { EndgameDatasetByMode, EndgameMode, EndgameModeDataset } from '$lib/domain/endgame';
 import {
   buildGroupView,
   buildModeView,
@@ -23,16 +23,18 @@ async function readJson<T>(...segments: string[]): Promise<T> {
   return JSON.parse(await readFile(path.join(generatedRoot, ...segments), 'utf8')) as T;
 }
 
-export function getEndgameDataset(mode: EndgameMode): Promise<EndgameModeDataset> {
+export function getEndgameDataset<TMode extends EndgameMode>(
+  mode: TMode
+): Promise<EndgameDatasetByMode[TMode]> {
   const cached = datasetCache.get(mode);
-  if (cached) return cached;
+  if (cached) return cached as Promise<EndgameDatasetByMode[TMode]>;
   const pending = readJson<EndgameModeDataset>('endgame', `${mode}.json`).then((dataset) => {
-    if (dataset.schemaVersion !== 19 || dataset.mode !== mode)
+    if (dataset.schemaVersion !== 20 || dataset.mode !== mode)
       throw new Error(`${mode} Endgame 数据 schema 或模式不匹配`);
     return dataset;
   });
   datasetCache.set(mode, pending);
-  return pending;
+  return pending as Promise<EndgameDatasetByMode[TMode]>;
 }
 
 function isFileNotFound(error: unknown): boolean {

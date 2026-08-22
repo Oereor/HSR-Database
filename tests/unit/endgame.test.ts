@@ -1,13 +1,17 @@
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type {
+  EndgameDatasetByMode,
   EndgameMode,
-  EndgameModeDataset,
   EndgameStage,
   EnemyOccurrence
 } from '../../src/lib/domain/endgame';
 import { buildUniqueIndex, type EndgameAudit } from '../../scripts/data/endgame';
+import { createMazeBuffResolver, type MazeBuffRow } from '../../scripts/data/maze-buffs';
+import type { TextResolver } from '../../scripts/data/localization';
+import { gameTextToPlain } from '../../src/lib/domain/game-text';
 import {
   addDecimals,
   decimalEquals,
@@ -25,10 +29,12 @@ import {
 
 const modes: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 
-async function dataset(mode: EndgameMode): Promise<EndgameModeDataset> {
+async function dataset<TMode extends EndgameMode>(
+  mode: TMode
+): Promise<EndgameDatasetByMode[TMode]> {
   return JSON.parse(
     await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8')
-  ) as EndgameModeDataset;
+  ) as EndgameDatasetByMode[TMode];
 }
 
 function occurrences(stage: EndgameStage): EnemyOccurrence[] {
@@ -102,6 +108,121 @@ describe('Endgame 精确十进制', () => {
   });
 });
 
+describe('MazeBuff 共享配置解析', () => {
+  const fakeText = (values: Record<string, string>): TextResolver =>
+    ({
+      resolveHash: (hash: string) => values[hash] ?? '',
+      resolveRef: (ref: unknown) => {
+        const hash =
+          ref && typeof ref === 'object' && 'Hash' in ref
+            ? String((ref as { Hash: unknown }).Hash)
+            : '';
+        return values[hash] ?? '';
+      },
+      resolveSymbolic: () => '',
+      getDiagnostics: () => ({
+        'invalid-reference': { count: 0, samples: [] },
+        'unresolved-hash': { count: 0, samples: [] },
+        'unresolved-symbolic-key': { count: 0, samples: [] }
+      })
+    }) as TextResolver;
+
+  const issueSink = (warnings: string[]) => ({
+    fail(code: string, message: string): never {
+      throw new Error(`${code}: ${message}`);
+    },
+    warn(code: string): void {
+      warnings.push(code);
+    }
+  });
+
+  it('保留无损参数、markup、hash 与未使用参数审计', () => {
+    const warnings: string[] = [];
+    const rows: MazeBuffRow[] = [
+      {
+        ID: 1,
+        Lv: 1,
+        BuffName: { Hash: '11' },
+        BuffDesc: { Hash: '12' },
+        ParamList: [{ Value: '0.8' }, { Value: '1' }, { Value: '7' }],
+        BuffIcon: 'SpriteOutput/BuffIcon/Test.png',
+        InBattleBindingKey: 'Fixture_Binding'
+      }
+    ];
+    const resolver = createMazeBuffResolver(
+      rows,
+      fakeText({
+        '11': '记忆紊流',
+        '12': '<color=#f29e38ff>伤害提高#1[i]%</color>，持续#2[i]回合。'
+      }),
+      issueSink(warnings)
+    );
+    expect(resolver.resolve(1, { requireDisplay: true, context: { mode: 'moc' } })).toEqual({
+      id: 1,
+      name: '记忆紊流',
+      nameHash: '11',
+      description: '<color=#f29e38ff>伤害提高80%</color>，持续1回合。',
+      descriptionHash: '12',
+      params: ['0.8', '1', '7'],
+      upstreamIconPath: 'SpriteOutput/BuffIcon/Test.png',
+      bindingKey: 'Fixture_Binding'
+    });
+    expect(warnings).toEqual(['unused-maze-buff-param']);
+    expect(resolver.getAudit()).toMatchObject({
+      distinctReferenced: 1,
+      resolved: 1,
+      displayReady: 1,
+      missingLocalization: 0,
+      missingIconPath: 0,
+      missingDescriptionParams: 0,
+      unusedParams: 1
+    });
+  });
+
+  it('拒绝 unresolved、重复 Lv=1、缺参和 display-required 缺文本', () => {
+    const missing = createMazeBuffResolver(
+      [{ ID: 1, Lv: 1, BuffName: { Hash: '11' }, BuffDesc: { Hash: '12' } }],
+      fakeText({}),
+      issueSink([])
+    );
+    expect(() => missing.resolve(999, { requireDisplay: true, context: { mode: 'moc' } })).toThrow(
+      /unresolved-maze-buff/
+    );
+    expect(() => missing.resolve(1, { requireDisplay: true, context: { mode: 'moc' } })).toThrow(
+      /maze-buff-not-display-ready/
+    );
+
+    const duplicate = createMazeBuffResolver(
+      [
+        { ID: 2, Lv: 1 },
+        { ID: 2, Lv: 1 }
+      ],
+      fakeText({}),
+      issueSink([])
+    );
+    expect(() => duplicate.resolve(2, { requireDisplay: false, context: { mode: 'pf' } })).toThrow(
+      /ambiguous-maze-buff-level/
+    );
+
+    const missingParam = createMazeBuffResolver(
+      [
+        {
+          ID: 3,
+          Lv: 1,
+          BuffName: { Hash: '31' },
+          BuffDesc: { Hash: '32' },
+          ParamList: [{ Value: '1' }]
+        }
+      ],
+      fakeText({ '31': '测试', '32': '#2[i]%' }),
+      issueSink([])
+    );
+    expect(() =>
+      missingParam.resolve(3, { requireDisplay: true, context: { mode: 'aa' } })
+    ).toThrow(/invalid-maze-buff-placeholder/);
+  });
+});
+
 describe('PF HP resolver', () => {
   const hpInput = {
     hpBase: parseDecimal('10'),
@@ -164,9 +285,9 @@ describe('PF HP resolver', () => {
 });
 
 describe('Endgame 真实数据管线', () => {
-  it('四个模式使用 schema 19 且 fixed/spawn 模型分离', async () => {
+  it('四个模式使用 schema 20 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
-    expect(all.every((item) => item.schemaVersion === 19)).toBe(true);
+    expect(all.every((item) => item.schemaVersion === 20)).toBe(true);
     expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
       'fixed'
     );
@@ -179,6 +300,110 @@ describe('Endgame 真实数据管线', () => {
     expect((await fixture('aa', 8, 804, 30508022, 501403002)).stage.waveModel.kind).toBe(
       'spawn-sequence'
     );
+  });
+
+  it('四模式分别输出玩家机制且不共享 gameplay modifier 模型', async () => {
+    const moc = await dataset('moc');
+    const turbulence = moc.groups
+      .find((group) => group.groupId === 1034)
+      ?.encounters.find((encounter) => encounter.configId === 5312)?.memoryTurbulence;
+    expect(turbulence).toMatchObject({
+      buff: { id: 3030147, name: '记忆紊流', params: ['0.8', '1'] },
+      provenance: { table: 'ChallengeMazeConfig', ownerId: 5312, field: 'MazeBuffID' },
+      groupReference: { mazeBuffId: 3030147 }
+    });
+    expect(gameTextToPlain(turbulence?.buff.description)).toContain('80%');
+    expect(gameTextToPlain(turbulence?.buff.description)).toContain('1回合');
+
+    const pf = await dataset('pf');
+    const pfGroup = pf.groups.find((group) => group.groupId === 2025)!;
+    expect(pfGroup.groupBaseMechanic).toMatchObject({ mazeBuffId: 3031220 });
+    expect(pfGroup.groupBaseMechanic?.display).toBeUndefined();
+    expect(
+      pfGroup.encounters.find((encounter) => encounter.configId === 20254)?.baseMechanic
+    ).toMatchObject({ mazeBuffId: 3031230 });
+    expect(pfGroup.battleWillMechanics.map(({ buff }) => [buff.id, buff.name])).toEqual([
+      [3031232, '追加攻击'],
+      [3031233, '战熄潮平'],
+      [3031234, '战意汹涌']
+    ]);
+    expect(
+      pfGroup.cacophony?.options.map(({ order, buff }) => [order, buff.id, buff.name])
+    ).toEqual([
+      [1, 3031363, '暴言'],
+      [2, 3031364, '高论'],
+      [3, 3031365, '快嘴']
+    ]);
+
+    const shadow = await dataset('as');
+    const shadowGroup = shadow.groups.find((group) => group.groupId === 3020)!;
+    const aftertaste = shadowGroup.encounters.find(
+      (encounter) => encounter.configId === 30204
+    )?.aftertaste;
+    expect(aftertaste?.buff).toMatchObject({ id: 3110006, name: '末法余烬' });
+    expect(aftertaste?.stageBindings.map(({ slot, mazeBuffId }) => [slot, mazeBuffId])).toEqual([
+      [1, 3110006],
+      [2, 3110006],
+      [3, 3110006]
+    ]);
+    expect(
+      shadowGroup.axiomSets.map((set) => [set.slot, set.options.map(({ buff }) => buff.id)])
+    ).toEqual([
+      [1, [3111077, 3111078, 3111058]],
+      [2, [3111083, 3111065, 3111079]],
+      [3, [3111082, 3111081, 3111085]]
+    ]);
+
+    const arbitration = await dataset('aa');
+    const arbitrationGroup = arbitration.groups.find((group) => group.groupId === 8)!;
+    const normal = arbitrationGroup.encounters.find((encounter) => encounter.id === '804:normal')!;
+    const hard = arbitrationGroup.encounters.find((encounter) => encounter.id === '804:hard')!;
+    expect(normal.traits.map(({ buff }) => buff.id)).toEqual([3033069, 3033051]);
+    expect(hard.traits.map(({ buff }) => buff.id)).toEqual([3033070, 3033052]);
+    expect(normal.judgmentQuadrantKey).toBe('aa:804:BuffList');
+    expect(hard.judgmentQuadrantKey).toBe(normal.judgmentQuadrantKey);
+    expect(
+      arbitrationGroup.judgmentQuadrant?.options.map(({ order, buff }) => [order, buff.id])
+    ).toEqual([
+      [1, 3033066],
+      [2, 3033068],
+      [3, 3033067]
+    ]);
+  });
+
+  it('新增字段之外的完整 Endgame hierarchy 与敌方数据摘要保持不变', async () => {
+    const expected = {
+      moc: '4086e5f63a700dd56e5ede0cc64a305fdd749a97749bf2810c77290422b99730',
+      pf: 'ea10b04587824c99343c5e0930085cf28f1929ab288db95e95c793eb16c8652c',
+      as: '0dd5da2df84f345abd7c117620fa71045c9aa410030991af241ca62136cd23fc',
+      aa: '739820959ac5f3bbfbb2be4cf1469068701a3dfac47b8a8e296efb370b8b5022'
+    } as const;
+    const groupFields: Record<EndgameMode, string[]> = {
+      moc: [],
+      pf: ['groupBaseMechanic', 'battleWillMechanics', 'cacophony'],
+      as: ['axiomSets'],
+      aa: ['judgmentQuadrant']
+    };
+    const encounterFields: Record<EndgameMode, string[]> = {
+      moc: ['memoryTurbulence'],
+      pf: ['baseMechanic'],
+      as: ['aftertaste'],
+      aa: ['traits', 'judgmentQuadrantKey']
+    };
+    for (const mode of modes) {
+      const data = await dataset(mode);
+      for (const group of data.groups) {
+        const groupRecord = group as unknown as Record<string, unknown>;
+        for (const field of groupFields[mode]) delete groupRecord[field];
+        for (const encounter of group.encounters) {
+          const encounterRecord = encounter as unknown as Record<string, unknown>;
+          for (const field of encounterFields[mode]) delete encounterRecord[field];
+        }
+      }
+      expect(createHash('sha256').update(JSON.stringify(data.groups)).digest('hex')).toBe(
+        expected[mode]
+      );
+    }
   });
 
   it.each([
@@ -405,6 +630,37 @@ describe('Endgame 真实数据管线', () => {
       minDisplayed: '10',
       maxDisplayed: '800',
       samples: []
+    });
+    expect(latest.endgameAudit.mazeBuffs).toEqual({
+      distinctReferenced: 318,
+      resolved: 318,
+      displayReady: 311,
+      missingLocalization: 7,
+      missingIconPath: 0,
+      missingDescriptionParams: 0,
+      unusedParams: 77
+    });
+    expect(latest.endgameAudit.modifierRelations).toEqual({
+      moc: { memoryTurbulence: 603, groupMismatches: 0 },
+      pf: {
+        groupBaseMechanics: 25,
+        encounterBaseMechanics: 100,
+        battleWillMechanics: 45,
+        cacophonyGroups: 25,
+        cacophonyOptions: 75
+      },
+      as: {
+        aftertastes: 80,
+        axiomSets: 43,
+        axiomOptions: 129,
+        stageBindingMismatches: 0
+      },
+      aa: {
+        traits: 69,
+        judgmentQuadrants: 8,
+        quadrantOptions: 24,
+        battleEventReferences: 40
+      }
     });
   });
 

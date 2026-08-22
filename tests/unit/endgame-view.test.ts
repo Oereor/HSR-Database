@@ -305,3 +305,84 @@ describe('Endgame 弱点视觉语义', () => {
     expect(getElementColor('Thunder')).toBe(ELEMENT_COLORS.Lightning);
   });
 });
+
+describe('Endgame mechanics 视图投影', () => {
+  it('MoC 仅汇总所有 encounter 完全一致的记忆紊流', async () => {
+    const moc = await dataset('moc');
+    const current = moc.groups.find((group) => group.groupId === 1034)!;
+    const currentView = buildGroupView(current, [buildPeriodView(current)], new Map());
+    if (currentView.mode !== 'moc') throw new Error('MoC view mode 不匹配');
+    expect(currentView.memoryTurbulence).toMatchObject({
+      id: 3030147,
+      name: '记忆紊流'
+    });
+    expect(currentView.encounters.every((encounter) => !encounter.memoryTurbulence)).toBe(true);
+
+    const legacy = moc.groups.find((group) => group.groupId === 900)!;
+    const legacyView = buildGroupView(legacy, [buildPeriodView(legacy)], new Map());
+    if (legacyView.mode !== 'moc') throw new Error('MoC view mode 不匹配');
+    expect(legacyView.memoryTurbulence).toBeUndefined();
+    expect(
+      legacyView.encounters.slice(0, 2).map((encounter) => encounter.memoryTurbulence?.id)
+    ).toEqual([3030036, 3030032]);
+  });
+
+  it('PF 分离 display-ready 战意机制与荒腔走板', async () => {
+    const pf = await dataset('pf');
+    const current = pf.groups.find((group) => group.groupId === 2025)!;
+    const currentView = buildGroupView(current, [buildPeriodView(current)], new Map());
+    if (currentView.mode !== 'pf') throw new Error('PF view mode 不匹配');
+    expect(currentView.fixedMechanics.map((mechanic) => mechanic.id)).toEqual([
+      3031232, 3031233, 3031234
+    ]);
+    expect(currentView.cacophony?.options.map((option) => option.id)).toEqual([
+      3031363, 3031364, 3031365
+    ]);
+    expect(currentView.encounters.every((encounter) => !encounter.baseMechanic)).toBe(true);
+
+    const legacy = pf.groups.find((group) => group.groupId === 2001)!;
+    const legacyView = buildGroupView(legacy, [buildPeriodView(legacy)], new Map());
+    if (legacyView.mode !== 'pf') throw new Error('PF view mode 不匹配');
+    expect(legacyView.fixedMechanics.map((mechanic) => mechanic.id)).toEqual([3031001]);
+    expect(legacyView.encounters.every((encounter) => !encounter.baseMechanic)).toBe(true);
+  });
+
+  it('AS 把终焉公理投影到真实存在的 battle slot', async () => {
+    const shadow = await dataset('as');
+    const current = shadow.groups.find((group) => group.groupId === 3020)!;
+    const currentView = buildGroupView(current, [buildPeriodView(current)], new Map());
+    if (currentView.mode !== 'as') throw new Error('AS view mode 不匹配');
+    const encounter = currentView.encounters.find((candidate) => candidate.id === '30204')!;
+    expect(encounter.aftertaste?.id).toBe(3110006);
+    expect(encounter.battles.map((battle) => battle.axiomSet?.options.length)).toEqual([3, 3, 3]);
+    expect(encounter.battles.map((battle) => battle.axiomSet?.key)).toEqual([
+      'as:3020:BuffList1',
+      'as:3020:BuffList2',
+      'as:3020:BuffList3'
+    ]);
+
+    const twoSlots = shadow.groups.find((group) => group.groupId === 3001)!;
+    const twoSlotView = buildGroupView(twoSlots, [buildPeriodView(twoSlots)], new Map());
+    if (twoSlotView.mode !== 'as') throw new Error('AS view mode 不匹配');
+    expect(twoSlotView.encounters.at(-1)?.battles.map((battle) => battle.slot)).toEqual([1, 2]);
+    expect(twoSlotView.encounters.at(-1)?.battles.every((battle) => !!battle.axiomSet)).toBe(true);
+  });
+
+  it('AA 保持 normal/hard traits 独立并共享 boss-owned 裁决象限', async () => {
+    const arbitration = await dataset('aa');
+    const group = arbitration.groups.find((candidate) => candidate.groupId === 8)!;
+    const view = buildGroupView(group, [buildPeriodView(group)], new Map());
+    if (view.mode !== 'aa') throw new Error('AA view mode 不匹配');
+    expect(view.judgmentQuadrant?.options.map((option) => option.id)).toEqual([
+      3033066, 3033068, 3033067
+    ]);
+    const normal = view.encounters.find((encounter) => encounter.id === '804:normal')!;
+    const hard = view.encounters.find((encounter) => encounter.id === '804:hard')!;
+    const preliminary = view.encounters.find((encounter) => encounter.id === '801:preliminary')!;
+    expect(normal.traits.map((trait) => trait.id)).toEqual([3033069, 3033051]);
+    expect(hard.traits.map((trait) => trait.id)).toEqual([3033070, 3033052]);
+    expect(normal.judgmentQuadrantKey).toBe(view.judgmentQuadrant?.key);
+    expect(hard.judgmentQuadrantKey).toBe(view.judgmentQuadrant?.key);
+    expect(preliminary.judgmentQuadrantKey).toBeUndefined();
+  });
+});

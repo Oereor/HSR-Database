@@ -581,7 +581,8 @@ describe('真实数据管线', () => {
     );
     expect(formatted).toEqual({
       text: '<color=#f29e38ff><unbreak>25%</unbreak></color>生命值',
-      diagnostics: []
+      diagnostics: [],
+      usedParameterIndexes: [0]
     });
     expect(parseGameText(formatted.text)[0]).toMatchObject({
       value: '25%',
@@ -622,7 +623,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(95);
-    expect(manifest.schemaVersion).toBe(22);
+    expect(manifest.schemaVersion).toBe(23);
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     const basicAttack = variantOf(character, '100101');
@@ -755,7 +756,7 @@ describe('真实数据管线', () => {
     };
     const missing = audit.missingTextAudit;
     expect(missing.D.count).toBe(0);
-    expect(missing.A.count).toBe(1652);
+    expect(missing.A.count).toBe(1666);
     expect(missing.A.groups).toContainEqual({
       reason: 'missing-source-field',
       entity: 'character-trace',

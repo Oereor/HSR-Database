@@ -4,6 +4,37 @@ export type EndgameMode = 'moc' | 'pf' | 'as' | 'aa';
 export type EliteGroupTable = 'elite' | 'infinite-elite';
 export type EliteContextSource = 'stage' | 'spawn-group' | 'monster-fallback';
 
+/** Low-level parsed MazeBuff data. Gameplay ownership stays in each mode model below. */
+export interface ResolvedMazeBuff {
+  id: number;
+  name?: string;
+  nameHash?: string;
+  description?: string;
+  descriptionHash?: string;
+  params: DecimalString[];
+  upstreamIconPath?: string;
+  bindingKey?: string;
+}
+
+/** Thin config provenance for audit/debugging; it intentionally carries no gameplay meaning. */
+export interface EndgameConfigProvenance {
+  table:
+    | 'ChallengeGroupConfig'
+    | 'ChallengeMazeConfig'
+    | 'ChallengeStoryGroupConfig'
+    | 'ChallengeStoryMazeConfig'
+    | 'ChallengeStoryGroupExtra'
+    | 'ChallengeBossGroupConfig'
+    | 'ChallengeBossMazeConfig'
+    | 'ChallengeBossGroupExtra'
+    | 'ChallengePeakConfig'
+    | 'ChallengePeakBossConfig'
+    | 'StageConfig';
+  ownerId: number;
+  field: string;
+  arrayIndex?: number;
+}
+
 export type EnemyHpFinalResolution =
   | {
       status: 'resolved';
@@ -218,19 +249,156 @@ export interface EndgameEncounter {
   battles: EndgameBattleSlot[];
 }
 
-export interface EndgameGroup {
-  mode: EndgameMode;
+export interface MocMemoryTurbulence {
+  buff: ResolvedMazeBuff;
+  provenance: EndgameConfigProvenance;
+  groupReference?: {
+    mazeBuffId: number;
+    provenance: EndgameConfigProvenance;
+  };
+}
+
+export interface MocEncounter extends EndgameEncounter {
+  memoryTurbulence?: MocMemoryTurbulence;
+}
+
+export interface PureFictionBaseMechanic {
+  mazeBuffId: number;
+  display?: ResolvedMazeBuff;
+  provenance: EndgameConfigProvenance;
+}
+
+export interface PureFictionBattleWillMechanic {
+  buff: ResolvedMazeBuff;
+  provenance: EndgameConfigProvenance;
+}
+
+export interface PureFictionCacophonyOption {
+  order: number;
+  buff: ResolvedMazeBuff;
+  provenance: EndgameConfigProvenance;
+}
+
+export interface PureFictionCacophony {
+  key: string;
+  selectCount: 1;
+  options: PureFictionCacophonyOption[];
+  provenance: EndgameConfigProvenance;
+}
+
+export interface PureFictionEncounter extends EndgameEncounter {
+  baseMechanic?: PureFictionBaseMechanic;
+}
+
+export interface ApocalypticShadowStageBinding {
+  slot: number;
+  eventId: number;
+  stageId: number;
+  mazeBuffId: number;
+  provenance: EndgameConfigProvenance;
+}
+
+export interface ApocalypticShadowAftertaste {
+  buff: ResolvedMazeBuff;
+  provenance: EndgameConfigProvenance;
+  groupReference?: {
+    mazeBuffId: number;
+    provenance: EndgameConfigProvenance;
+  };
+  stageBindings: ApocalypticShadowStageBinding[];
+}
+
+export interface ApocalypticShadowAxiomOption {
+  order: number;
+  buff: ResolvedMazeBuff;
+  provenance: EndgameConfigProvenance;
+}
+
+export interface ApocalypticShadowAxiomSet {
+  key: string;
+  slot: number;
+  selectCount: 1;
+  options: ApocalypticShadowAxiomOption[];
+  provenance: EndgameConfigProvenance;
+}
+
+export interface ApocalypticShadowEncounter extends EndgameEncounter {
+  aftertaste?: ApocalypticShadowAftertaste;
+}
+
+export interface AnomalyArbitrationTrait {
+  buff: ResolvedMazeBuff;
+  provenance: EndgameConfigProvenance;
+}
+
+export interface AnomalyArbitrationQuadrantOption {
+  order: number;
+  buff: ResolvedMazeBuff;
+  provenance: EndgameConfigProvenance;
+}
+
+export interface AnomalyArbitrationJudgmentQuadrant {
+  key: string;
+  bossConfigId: number;
+  selectCount: 1;
+  options: AnomalyArbitrationQuadrantOption[];
+  provenance: EndgameConfigProvenance;
+}
+
+export interface AnomalyArbitrationEncounter extends EndgameEncounter {
+  traits: AnomalyArbitrationTrait[];
+  judgmentQuadrantKey?: string;
+}
+
+interface EndgameGroupBase<TMode extends EndgameMode, TEncounter extends EndgameEncounter> {
+  mode: TMode;
   groupId: number;
   name?: string;
   schedule?: { begin: string; end: string };
-  encounters: EndgameEncounter[];
+  encounters: TEncounter[];
 }
 
-export interface EndgameModeDataset {
-  schemaVersion: 19;
-  mode: EndgameMode;
-  groups: EndgameGroup[];
+export type MocGroup = EndgameGroupBase<'moc', MocEncounter>;
+
+export interface PureFictionGroup extends EndgameGroupBase<'pf', PureFictionEncounter> {
+  groupBaseMechanic?: PureFictionBaseMechanic;
+  battleWillMechanics: PureFictionBattleWillMechanic[];
+  cacophony?: PureFictionCacophony;
 }
+
+export interface ApocalypticShadowGroup extends EndgameGroupBase<'as', ApocalypticShadowEncounter> {
+  axiomSets: ApocalypticShadowAxiomSet[];
+}
+
+export interface AnomalyArbitrationGroup extends EndgameGroupBase<
+  'aa',
+  AnomalyArbitrationEncounter
+> {
+  judgmentQuadrant?: AnomalyArbitrationJudgmentQuadrant;
+}
+
+export type EndgameGroup =
+  MocGroup | PureFictionGroup | ApocalypticShadowGroup | AnomalyArbitrationGroup;
+
+interface EndgameModeDatasetBase<TMode extends EndgameMode, TGroup extends EndgameGroup> {
+  schemaVersion: 20;
+  mode: TMode;
+  groups: TGroup[];
+}
+
+export type MocModeDataset = EndgameModeDatasetBase<'moc', MocGroup>;
+export type PureFictionModeDataset = EndgameModeDatasetBase<'pf', PureFictionGroup>;
+export type ApocalypticShadowModeDataset = EndgameModeDatasetBase<'as', ApocalypticShadowGroup>;
+export type AnomalyArbitrationModeDataset = EndgameModeDatasetBase<'aa', AnomalyArbitrationGroup>;
+
+export interface EndgameDatasetByMode {
+  moc: MocModeDataset;
+  pf: PureFictionModeDataset;
+  as: ApocalypticShadowModeDataset;
+  aa: AnomalyArbitrationModeDataset;
+}
+
+export type EndgameModeDataset = EndgameDatasetByMode[EndgameMode];
 
 export interface EndgameModeSummary {
   groups: number;

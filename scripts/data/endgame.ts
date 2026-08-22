@@ -1,18 +1,33 @@
 import { access, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import type {
+  AnomalyArbitrationEncounter,
+  AnomalyArbitrationGroup,
+  AnomalyArbitrationJudgmentQuadrant,
+  AnomalyArbitrationTrait,
+  ApocalypticShadowAftertaste,
+  ApocalypticShadowAxiomSet,
+  ApocalypticShadowEncounter,
+  ApocalypticShadowGroup,
   DecimalString,
   EliteContextSource,
   EliteGroupTable,
   EndgameBattleSlot,
-  EndgameEncounter,
-  EndgameGroup,
+  EndgameConfigProvenance,
+  EndgameDatasetByMode,
   EndgameManifestSummary,
   EndgameMode,
-  EndgameModeDataset,
   EndgameStage,
   EnemyMechanics,
   EnemyOccurrence,
+  MocEncounter,
+  MocGroup,
+  MocMemoryTurbulence,
+  PureFictionBaseMechanic,
+  PureFictionBattleWillMechanic,
+  PureFictionCacophony,
+  PureFictionEncounter,
+  PureFictionGroup,
   PureFictionMechanicEvidence,
   PureFictionWaveMechanic,
   ResolvedInternalStance,
@@ -33,6 +48,11 @@ import {
 import { resolveEnemyConfiguredStat, resolveEnemyInternalStance } from './enemy-stats.js';
 import { readRaw, readTable } from './raw.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
+import {
+  createMazeBuffResolver,
+  type MazeBuffResolutionAudit,
+  type MazeBuffRow
+} from './maze-buffs.js';
 
 type Id = number;
 
@@ -61,12 +81,14 @@ interface ChallengeConfigRow {
 interface ChallengeStoryGroupExtraRow {
   GroupID: Id;
   SubMazeBuffList?: Id[];
+  BuffList?: Id[];
 }
 
-interface MazeBuffRow {
-  ID: Id;
-  InBattleBindingKey?: string;
-  ParamList?: unknown[];
+interface ChallengeBossGroupExtraRow {
+  GroupID: Id;
+  BuffList1?: Id[];
+  BuffList2?: Id[];
+  BuffList3?: Id[];
 }
 
 interface TierceRow {
@@ -172,12 +194,19 @@ interface PeakConfigRow {
   ID: Id;
   Title?: HashRef;
   EventIDList?: Id[];
+  TagList?: Id[];
 }
 
 interface PeakBossRow {
   ID: Id;
   HardTitle?: HashRef;
   HardEventIDList?: Id[];
+  HardTagList?: Id[];
+  BuffList?: Id[];
+}
+
+interface BattleEventRow {
+  BattleEventID: Id;
 }
 
 export interface EndgameDiagnosticSample {
@@ -215,15 +244,38 @@ export interface EndgameAudit {
       reason: string;
     }>;
   };
+  mazeBuffs: MazeBuffResolutionAudit;
+  modifierRelations: {
+    moc: { memoryTurbulence: number; groupMismatches: number };
+    pf: {
+      groupBaseMechanics: number;
+      encounterBaseMechanics: number;
+      battleWillMechanics: number;
+      cacophonyGroups: number;
+      cacophonyOptions: number;
+    };
+    as: {
+      aftertastes: number;
+      axiomSets: number;
+      axiomOptions: number;
+      stageBindingMismatches: number;
+    };
+    aa: {
+      traits: number;
+      judgmentQuadrants: number;
+      quadrantOptions: number;
+      battleEventReferences: number;
+    };
+  };
   summary: EndgameManifestSummary;
 }
 
 export interface EndgameBuildResult {
-  datasets: Record<EndgameMode, EndgameModeDataset>;
+  datasets: EndgameDatasetByMode;
   audit: EndgameAudit;
 }
 
-const SCHEMA_VERSION = 19 as const;
+const SCHEMA_VERSION = 20 as const;
 const MODES: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 const MAX_SAMPLES = 20;
 const PF_ROUNDING_METADATA = {
@@ -305,7 +357,9 @@ interface Tables {
   infiniteWaves: InfiniteWaveRow[];
   infiniteMonsterGroups: InfiniteMonsterGroupRow[];
   storyGroupExtras: ChallengeStoryGroupExtraRow[];
+  bossGroupExtras: ChallengeBossGroupExtraRow[];
   mazeBuffs: MazeBuffRow[];
+  battleEvents: BattleEventRow[];
 }
 
 async function loadTables(root: string): Promise<Tables> {
@@ -336,7 +390,9 @@ async function loadTables(root: string): Promise<Tables> {
     'StageInfiniteWaveConfig',
     'StageInfiniteMonsterGroup',
     'ChallengeStoryGroupExtra',
-    'MazeBuff'
+    'ChallengeBossGroupExtra',
+    'MazeBuff',
+    'BattleEventConfig'
   ] as const;
   const loaded = await Promise.all(names.map((name) => readTable(root, name)));
   const table = Object.fromEntries(names.map((name, index) => [name, loaded[index]])) as Record<
@@ -378,7 +434,9 @@ async function loadTables(root: string): Promise<Tables> {
     infiniteWaves: table.StageInfiniteWaveConfig,
     infiniteMonsterGroups: table.StageInfiniteMonsterGroup,
     storyGroupExtras: table.ChallengeStoryGroupExtra,
-    mazeBuffs: table.MazeBuff
+    bossGroupExtras: table.ChallengeBossGroupExtra,
+    mazeBuffs: table.MazeBuff,
+    battleEvents: table.BattleEventConfig
   };
 }
 
@@ -572,9 +630,87 @@ export async function buildEndgameData(
     (row) => row.GroupID,
     'ChallengeStoryGroupExtra.GroupID'
   );
+  const bossGroupExtras = buildUniqueIndex(
+    tables.bossGroupExtras,
+    (row) => row.GroupID,
+    'ChallengeBossGroupExtra.GroupID'
+  );
+  const battleEvents = buildUniqueIndex(
+    tables.battleEvents,
+    (row) => row.BattleEventID,
+    'BattleEventConfig.BattleEventID'
+  );
   // MazeBuff IDs may have multiple level rows; PF mechanic provenance only needs
   // their stable binding key, so retain every level instead of inventing a winner.
   const mazeBuffs = groupBy(tables.mazeBuffs, (row) => row.ID);
+  const modifierRelations: EndgameAudit['modifierRelations'] = {
+    moc: { memoryTurbulence: 0, groupMismatches: 0 },
+    pf: {
+      groupBaseMechanics: 0,
+      encounterBaseMechanics: 0,
+      battleWillMechanics: 0,
+      cacophonyGroups: 0,
+      cacophonyOptions: 0
+    },
+    as: { aftertastes: 0, axiomSets: 0, axiomOptions: 0, stageBindingMismatches: 0 },
+    aa: { traits: 0, judgmentQuadrants: 0, quadrantOptions: 0, battleEventReferences: 0 }
+  };
+  const mazeBuffResolver = createMazeBuffResolver(tables.mazeBuffs, text, {
+    fail: (code, message, diagnosticContext) => diagnostics.fail(code, message, diagnosticContext),
+    warn: (code, message, diagnosticContext) => diagnostics.warn(code, message, diagnosticContext)
+  });
+  const provenance = (
+    table: EndgameConfigProvenance['table'],
+    ownerId: number,
+    field: string,
+    arrayIndex?: number
+  ): EndgameConfigProvenance => ({
+    table,
+    ownerId,
+    field,
+    ...(arrayIndex === undefined ? {} : { arrayIndex })
+  });
+  const stableOptionIds = (
+    ids: readonly number[],
+    mode: EndgameMode,
+    groupId: number,
+    table: EndgameConfigProvenance['table'],
+    ownerId: number,
+    field: string
+  ): Array<{ id: number; sourceIndex: number }> => {
+    const seen = new Set<number>();
+    const result: Array<{ id: number; sourceIndex: number }> = [];
+    ids.forEach((id, sourceIndex) => {
+      if (seen.has(id)) {
+        diagnostics.warn(
+          'duplicate-selectable-maze-buff',
+          'selectable options 包含重复 MazeBuff ID',
+          {
+            mode,
+            groupId,
+            table,
+            ownerId,
+            field,
+            arrayIndex: sourceIndex,
+            mazeBuffId: id
+          }
+        );
+        return;
+      }
+      seen.add(id);
+      result.push({ id, sourceIndex });
+    });
+    if (result.length !== 3)
+      diagnostics.warn('unexpected-selectable-option-count', '当前 selectable option 数量不是 3', {
+        mode,
+        groupId,
+        table,
+        ownerId,
+        field,
+        optionCount: result.length
+      });
+    return result;
+  };
   const mechanicsByTemplate = new Map<number, Promise<MechanicsScan>>();
 
   type PfGroupMechanic = Pick<PureFictionWaveMechanic, 'hpParentChild' | 'killTransfer'>;
@@ -1256,68 +1392,475 @@ export async function buildEndgameData(
         }))
     );
 
-  const datasets = {} as Record<EndgameMode, EndgameModeDataset>;
-  for (const mode of ['moc', 'pf', 'as'] as const) {
-    const schedules = buildUniqueIndex(tables.schedules[mode], (row) => row.ID, `${mode} schedule`);
-    const configsByGroup = groupBy(tables.configs[mode], (row) => row.GroupID);
-    const tierces = buildUniqueIndex(
-      tables.tierces[mode],
-      (row) => row.PHFMCACHFIJ,
-      `${mode} tierce`
+  const scheduleFor = (
+    mode: 'moc' | 'pf' | 'as',
+    group: ChallengeGroupRow,
+    schedules: Map<string, ScheduleRow>
+  ): ScheduleRow | undefined => {
+    const schedule = group.ScheduleDataID ? schedules.get(String(group.ScheduleDataID)) : undefined;
+    if (group.ScheduleDataID && !schedule)
+      diagnostics.fail('missing-schedule', 'Group.ScheduleDataID 无法解析', {
+        mode,
+        groupId: group.GroupID,
+        scheduleId: group.ScheduleDataID
+      });
+    return schedule;
+  };
+  const tierceFor = (
+    mode: 'moc' | 'pf' | 'as',
+    group: ChallengeGroupRow,
+    tierces: Map<string, TierceRow>,
+    configRows: ChallengeConfigRow[]
+  ): TierceRow | undefined => {
+    const tierce = group.TierceID ? tierces.get(String(group.TierceID)) : undefined;
+    if (group.TierceID && !tierce)
+      diagnostics.fail('missing-tierce', 'Group.TierceID 无法解析', {
+        mode,
+        groupId: group.GroupID,
+        tierceId: group.TierceID
+      });
+    if (tierce && !configRows.some((row) => row.ID === tierce.DLCKKJFMJOB))
+      diagnostics.fail('invalid-tierce-parent', 'Tierce 父配置不属于当前 Group', {
+        mode,
+        groupId: group.GroupID,
+        tierceId: group.TierceID,
+        parentConfigId: tierce.DLCKKJFMJOB
+      });
+    return tierce;
+  };
+  const sortedConfigsByGroup = (mode: 'moc' | 'pf' | 'as') =>
+    groupBy(tables.configs[mode], (row) => row.GroupID);
+  const sortedConfigs = (
+    configsByGroup: Map<string, ChallengeConfigRow[]>,
+    groupId: number
+  ): ChallengeConfigRow[] =>
+    [...(configsByGroup.get(String(groupId)) ?? [])].sort(
+      (a, b) => (a.Floor ?? a.ID) - (b.Floor ?? b.ID)
     );
-    const groups: EndgameGroup[] = [];
-    for (const group of [...tables.groups[mode]].sort((a, b) => a.GroupID - b.GroupID)) {
-      const tierce = group.TierceID ? tierces.get(String(group.TierceID)) : undefined;
-      if (group.TierceID && !tierce)
-        diagnostics.fail('missing-tierce', 'Group.TierceID 无法解析', {
-          mode,
-          groupId: group.GroupID,
-          tierceId: group.TierceID
-        });
-      const configRows = [...(configsByGroup.get(String(group.GroupID)) ?? [])].sort(
-        (a, b) => (a.Floor ?? a.ID) - (b.Floor ?? b.ID)
-      );
-      if (tierce && !configRows.some((row) => row.ID === tierce.DLCKKJFMJOB))
-        diagnostics.fail('invalid-tierce-parent', 'Tierce 父配置不属于当前 Group', {
-          mode,
-          groupId: group.GroupID,
-          tierceId: group.TierceID,
-          parentConfigId: tierce.DLCKKJFMJOB
-        });
-      const encounters: EndgameEncounter[] = [];
+  const eventListsFor = (config: ChallengeConfigRow, tierce?: TierceRow): number[][] => {
+    const eventLists = [config.EventIDList1 ?? [], config.EventIDList2 ?? []];
+    if (tierce?.DLCKKJFMJOB === config.ID) eventLists.push(tierce.HFIAAGAKFMD ?? []);
+    return eventLists;
+  };
+
+  const datasets = {} as EndgameDatasetByMode;
+
+  {
+    const mode = 'moc' as const;
+    const schedules = buildUniqueIndex(tables.schedules.moc, (row) => row.ID, 'moc schedule');
+    const configsByGroup = sortedConfigsByGroup(mode);
+    const tierces = buildUniqueIndex(tables.tierces.moc, (row) => row.PHFMCACHFIJ, 'moc tierce');
+    const groups: MocGroup[] = [];
+    for (const group of [...tables.groups.moc].sort((a, b) => a.GroupID - b.GroupID)) {
+      const configRows = sortedConfigs(configsByGroup, group.GroupID);
+      const tierce = tierceFor(mode, group, tierces, configRows);
+      const encounters: MocEncounter[] = [];
       for (const config of configRows) {
-        const eventLists = [config.EventIDList1 ?? [], config.EventIDList2 ?? []];
-        if (tierce?.DLCKKJFMJOB === config.ID) eventLists.push(tierce.HFIAAGAKFMD ?? []);
+        const encounterMazeBuffId =
+          config.MazeBuffID ??
+          diagnostics.fail('missing-moc-memory-turbulence', 'MoC encounter 缺少 MazeBuffID', {
+            mode,
+            groupId: group.GroupID,
+            configId: config.ID
+          });
+        if (group.MazeBuffID && group.MazeBuffID !== encounterMazeBuffId) {
+          modifierRelations.moc.groupMismatches += 1;
+          diagnostics.warn(
+            'moc-group-encounter-maze-buff-mismatch',
+            'MoC group 与 encounter MazeBuffID 不一致',
+            {
+              mode,
+              groupId: group.GroupID,
+              configId: config.ID,
+              groupMazeBuffId: group.MazeBuffID,
+              encounterMazeBuffId
+            }
+          );
+        }
+        const memoryTurbulence: MocMemoryTurbulence = {
+          buff: mazeBuffResolver.resolve(encounterMazeBuffId, {
+            requireDisplay: true,
+            context: {
+              mode,
+              groupId: group.GroupID,
+              configId: config.ID,
+              table: 'ChallengeMazeConfig',
+              field: 'MazeBuffID'
+            }
+          }),
+          provenance: provenance('ChallengeMazeConfig', config.ID, 'MazeBuffID'),
+          ...(group.MazeBuffID
+            ? {
+                groupReference: {
+                  mazeBuffId: group.MazeBuffID,
+                  provenance: provenance('ChallengeGroupConfig', group.GroupID, 'MazeBuffID')
+                }
+              }
+            : {})
+        };
+        modifierRelations.moc.memoryTurbulence += 1;
         encounters.push({
           id: String(config.ID),
           configId: config.ID,
-          name: localized(config.Name, `${mode}-encounter`, config.ID, 'Name'),
+          name: localized(config.Name, 'moc-encounter', config.ID, 'Name'),
           ...(config.Floor === undefined ? {} : { ordinal: config.Floor }),
           variant: 'floor',
-          battles: await buildSlots(mode, eventLists, {
+          battles: await buildSlots(mode, eventListsFor(config, tierce), {
             groupId: group.GroupID,
             configId: config.ID
-          })
+          }),
+          memoryTurbulence
         });
       }
-      const schedule = group.ScheduleDataID
-        ? schedules.get(String(group.ScheduleDataID))
-        : undefined;
-      if (group.ScheduleDataID && !schedule)
-        diagnostics.fail('missing-schedule', 'Group.ScheduleDataID 无法解析', {
-          mode,
-          groupId: group.GroupID,
-          scheduleId: group.ScheduleDataID
-        });
+      const schedule = scheduleFor(mode, group, schedules);
       groups.push({
         mode,
         groupId: group.GroupID,
-        name: localized(group.GroupName, `${mode}-group`, group.GroupID, 'GroupName'),
+        name: localized(group.GroupName, 'moc-group', group.GroupID, 'GroupName'),
         ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
         encounters
       });
     }
-    datasets[mode] = { schemaVersion: SCHEMA_VERSION, mode, groups };
+    datasets.moc = { schemaVersion: SCHEMA_VERSION, mode, groups };
+  }
+
+  {
+    const mode = 'pf' as const;
+    const schedules = buildUniqueIndex(tables.schedules.pf, (row) => row.ID, 'pf schedule');
+    const configsByGroup = sortedConfigsByGroup(mode);
+    const tierces = buildUniqueIndex(tables.tierces.pf, (row) => row.PHFMCACHFIJ, 'pf tierce');
+    const groups: PureFictionGroup[] = [];
+    for (const group of [...tables.groups.pf].sort((a, b) => a.GroupID - b.GroupID)) {
+      const configRows = sortedConfigs(configsByGroup, group.GroupID);
+      const tierce = tierceFor(mode, group, tierces, configRows);
+      const extra =
+        storyGroupExtras.get(String(group.GroupID)) ??
+        diagnostics.fail('missing-pf-group-extra', 'PF group 缺少 ChallengeStoryGroupExtra', {
+          mode,
+          groupId: group.GroupID
+        });
+      const groupBaseMechanic = group.MazeBuffID
+        ? (() => {
+            const buff = mazeBuffResolver.resolve(group.MazeBuffID!, {
+              requireDisplay: false,
+              context: {
+                mode,
+                groupId: group.GroupID,
+                table: 'ChallengeStoryGroupConfig',
+                field: 'MazeBuffID'
+              }
+            });
+            modifierRelations.pf.groupBaseMechanics += 1;
+            return {
+              mazeBuffId: group.MazeBuffID!,
+              ...(buff.name && buff.description ? { display: buff } : {}),
+              provenance: provenance('ChallengeStoryGroupConfig', group.GroupID, 'MazeBuffID')
+            } satisfies PureFictionBaseMechanic;
+          })()
+        : undefined;
+      const battleWillMechanics: PureFictionBattleWillMechanic[] = (
+        extra.SubMazeBuffList ?? []
+      ).map((id, arrayIndex) => ({
+        buff: mazeBuffResolver.resolve(id, {
+          requireDisplay: true,
+          context: {
+            mode,
+            groupId: group.GroupID,
+            table: 'ChallengeStoryGroupExtra',
+            field: 'SubMazeBuffList',
+            arrayIndex
+          }
+        }),
+        provenance: provenance(
+          'ChallengeStoryGroupExtra',
+          group.GroupID,
+          'SubMazeBuffList',
+          arrayIndex
+        )
+      }));
+      modifierRelations.pf.battleWillMechanics += battleWillMechanics.length;
+      const optionIds = stableOptionIds(
+        extra.BuffList ?? [],
+        mode,
+        group.GroupID,
+        'ChallengeStoryGroupExtra',
+        group.GroupID,
+        'BuffList'
+      );
+      if (!optionIds.length)
+        diagnostics.fail('missing-pf-cacophony', 'PF group 缺少荒腔走板 options', {
+          mode,
+          groupId: group.GroupID
+        });
+      const cacophony: PureFictionCacophony = {
+        key: `pf:${group.GroupID}:BuffList`,
+        selectCount: 1,
+        options: optionIds.map(({ id, sourceIndex }, order) => ({
+          order: order + 1,
+          buff: mazeBuffResolver.resolve(id, {
+            requireDisplay: true,
+            context: {
+              mode,
+              groupId: group.GroupID,
+              table: 'ChallengeStoryGroupExtra',
+              field: 'BuffList',
+              arrayIndex: sourceIndex
+            }
+          }),
+          provenance: provenance('ChallengeStoryGroupExtra', group.GroupID, 'BuffList', sourceIndex)
+        })),
+        provenance: provenance('ChallengeStoryGroupExtra', group.GroupID, 'BuffList')
+      };
+      modifierRelations.pf.cacophonyGroups += 1;
+      modifierRelations.pf.cacophonyOptions += cacophony.options.length;
+      const encounters: PureFictionEncounter[] = [];
+      for (const config of configRows) {
+        const baseMechanic = config.MazeBuffID
+          ? (() => {
+              const buff = mazeBuffResolver.resolve(config.MazeBuffID!, {
+                requireDisplay: false,
+                context: {
+                  mode,
+                  groupId: group.GroupID,
+                  configId: config.ID,
+                  table: 'ChallengeStoryMazeConfig',
+                  field: 'MazeBuffID'
+                }
+              });
+              modifierRelations.pf.encounterBaseMechanics += 1;
+              return {
+                mazeBuffId: config.MazeBuffID!,
+                ...(buff.name && buff.description ? { display: buff } : {}),
+                provenance: provenance('ChallengeStoryMazeConfig', config.ID, 'MazeBuffID')
+              } satisfies PureFictionBaseMechanic;
+            })()
+          : undefined;
+        encounters.push({
+          id: String(config.ID),
+          configId: config.ID,
+          name: localized(config.Name, 'pf-encounter', config.ID, 'Name'),
+          ...(config.Floor === undefined ? {} : { ordinal: config.Floor }),
+          variant: 'floor',
+          battles: await buildSlots(mode, eventListsFor(config, tierce), {
+            groupId: group.GroupID,
+            configId: config.ID
+          }),
+          ...(baseMechanic ? { baseMechanic } : {})
+        });
+      }
+      const schedule = scheduleFor(mode, group, schedules);
+      groups.push({
+        mode,
+        groupId: group.GroupID,
+        name: localized(group.GroupName, 'pf-group', group.GroupID, 'GroupName'),
+        ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
+        encounters,
+        ...(groupBaseMechanic ? { groupBaseMechanic } : {}),
+        battleWillMechanics,
+        cacophony
+      });
+    }
+    datasets.pf = { schemaVersion: SCHEMA_VERSION, mode, groups };
+  }
+
+  {
+    const mode = 'as' as const;
+    const schedules = buildUniqueIndex(tables.schedules.as, (row) => row.ID, 'as schedule');
+    const configsByGroup = sortedConfigsByGroup(mode);
+    const tierces = buildUniqueIndex(tables.tierces.as, (row) => row.PHFMCACHFIJ, 'as tierce');
+    const groups: ApocalypticShadowGroup[] = [];
+    for (const group of [...tables.groups.as].sort((a, b) => a.GroupID - b.GroupID)) {
+      const configRows = sortedConfigs(configsByGroup, group.GroupID);
+      const tierce = tierceFor(mode, group, tierces, configRows);
+      const extra =
+        bossGroupExtras.get(String(group.GroupID)) ??
+        diagnostics.fail('missing-as-group-extra', 'AS group 缺少 ChallengeBossGroupExtra', {
+          mode,
+          groupId: group.GroupID
+        });
+      const axiomSets: ApocalypticShadowAxiomSet[] = [];
+      for (const slot of [1, 2, 3] as const) {
+        const ids = extra[`BuffList${slot}`];
+        const isExpected = slot < 3 || !!tierce;
+        if (!isExpected) {
+          if (ids?.length)
+            diagnostics.warn('orphan-as-tierce-axioms', '没有 Tierce 的 AS group 包含 BuffList3', {
+              mode,
+              groupId: group.GroupID,
+              optionCount: ids.length
+            });
+          continue;
+        }
+        const optionIds = stableOptionIds(
+          ids ?? [],
+          mode,
+          group.GroupID,
+          'ChallengeBossGroupExtra',
+          group.GroupID,
+          `BuffList${slot}`
+        );
+        if (!optionIds.length)
+          diagnostics.fail('missing-as-axiom-options', 'AS boss slot 缺少终焉公理 options', {
+            mode,
+            groupId: group.GroupID,
+            slot
+          });
+        axiomSets.push({
+          key: `as:${group.GroupID}:BuffList${slot}`,
+          slot,
+          selectCount: 1,
+          options: optionIds.map(({ id, sourceIndex }, order) => ({
+            order: order + 1,
+            buff: mazeBuffResolver.resolve(id, {
+              requireDisplay: true,
+              context: {
+                mode,
+                groupId: group.GroupID,
+                table: 'ChallengeBossGroupExtra',
+                field: `BuffList${slot}`,
+                arrayIndex: sourceIndex
+              }
+            }),
+            provenance: provenance(
+              'ChallengeBossGroupExtra',
+              group.GroupID,
+              `BuffList${slot}`,
+              sourceIndex
+            )
+          })),
+          provenance: provenance('ChallengeBossGroupExtra', group.GroupID, `BuffList${slot}`)
+        });
+      }
+      modifierRelations.as.axiomSets += axiomSets.length;
+      modifierRelations.as.axiomOptions += axiomSets.reduce(
+        (total, set) => total + set.options.length,
+        0
+      );
+      const encounters: ApocalypticShadowEncounter[] = [];
+      for (const config of configRows) {
+        const encounterMazeBuffId =
+          config.MazeBuffID ??
+          diagnostics.fail('missing-as-aftertaste', 'AS encounter 缺少 MazeBuffID', {
+            mode,
+            groupId: group.GroupID,
+            configId: config.ID
+          });
+        if (group.MazeBuffID && group.MazeBuffID !== encounterMazeBuffId)
+          diagnostics.warn(
+            'as-group-encounter-maze-buff-mismatch',
+            'AS group MazeBuff 不覆盖 encounter actual value',
+            {
+              mode,
+              groupId: group.GroupID,
+              configId: config.ID,
+              groupMazeBuffId: group.MazeBuffID,
+              encounterMazeBuffId
+            }
+          );
+        const battles = await buildSlots(mode, eventListsFor(config, tierce), {
+          groupId: group.GroupID,
+          configId: config.ID
+        });
+        const stageBindings = battles.flatMap((battle) =>
+          battle.stages.flatMap((builtStage) => {
+            const rawStage = stages.get(String(builtStage.stageId))!;
+            const bindings = (rawStage.StageConfigData ?? [])
+              .map((entry, arrayIndex) => ({ entry, arrayIndex }))
+              .filter(({ entry }) => entry.BFLIFKBEOPJ === '_BindingMazeBuff');
+            if (!bindings.length) {
+              modifierRelations.as.stageBindingMismatches += 1;
+              diagnostics.warn(
+                'missing-as-stage-maze-buff-binding',
+                'AS stage 缺少 _BindingMazeBuff',
+                {
+                  mode,
+                  groupId: group.GroupID,
+                  configId: config.ID,
+                  stageId: builtStage.stageId,
+                  slot: battle.slot
+                }
+              );
+            }
+            return bindings.map(({ entry, arrayIndex }) => {
+              const mazeBuffId = integer(
+                entry.MNDFOPKBHKP,
+                `StageConfig ${builtStage.stageId}._BindingMazeBuff`
+              );
+              if (mazeBuffId !== encounterMazeBuffId) {
+                modifierRelations.as.stageBindingMismatches += 1;
+                diagnostics.warn(
+                  'as-stage-maze-buff-mismatch',
+                  'AS stage binding 与 encounter MazeBuffID 不一致',
+                  {
+                    mode,
+                    groupId: group.GroupID,
+                    configId: config.ID,
+                    stageId: builtStage.stageId,
+                    slot: battle.slot,
+                    stageMazeBuffId: mazeBuffId,
+                    encounterMazeBuffId
+                  }
+                );
+              }
+              return {
+                slot: battle.slot,
+                eventId: builtStage.eventId,
+                stageId: builtStage.stageId,
+                mazeBuffId,
+                provenance: provenance(
+                  'StageConfig',
+                  builtStage.stageId,
+                  'StageConfigData._BindingMazeBuff',
+                  arrayIndex
+                )
+              };
+            });
+          })
+        );
+        const aftertaste: ApocalypticShadowAftertaste = {
+          buff: mazeBuffResolver.resolve(encounterMazeBuffId, {
+            requireDisplay: true,
+            context: {
+              mode,
+              groupId: group.GroupID,
+              configId: config.ID,
+              table: 'ChallengeBossMazeConfig',
+              field: 'MazeBuffID'
+            }
+          }),
+          provenance: provenance('ChallengeBossMazeConfig', config.ID, 'MazeBuffID'),
+          ...(group.MazeBuffID
+            ? {
+                groupReference: {
+                  mazeBuffId: group.MazeBuffID,
+                  provenance: provenance('ChallengeBossGroupConfig', group.GroupID, 'MazeBuffID')
+                }
+              }
+            : {}),
+          stageBindings
+        };
+        modifierRelations.as.aftertastes += 1;
+        encounters.push({
+          id: String(config.ID),
+          configId: config.ID,
+          name: localized(config.Name, 'as-encounter', config.ID, 'Name'),
+          ...(config.Floor === undefined ? {} : { ordinal: config.Floor }),
+          variant: 'floor',
+          battles,
+          aftertaste
+        });
+      }
+      const schedule = scheduleFor(mode, group, schedules);
+      groups.push({
+        mode,
+        groupId: group.GroupID,
+        name: localized(group.GroupName, 'as-group', group.GroupID, 'GroupName'),
+        ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
+        encounters,
+        axiomSets
+      });
+    }
+    datasets.as = { schemaVersion: SCHEMA_VERSION, mode, groups };
   }
 
   const peakConfigs = buildUniqueIndex(
@@ -1330,9 +1873,57 @@ export async function buildEndgameData(
     (row) => row.ID,
     'ChallengePeakBossConfig.ID'
   );
-  const aaGroups: EndgameGroup[] = [];
+  const aaGroups: AnomalyArbitrationGroup[] = [];
+  const resolveAaTraits = (
+    ids: readonly number[],
+    groupId: number,
+    ownerId: number,
+    table: 'ChallengePeakConfig' | 'ChallengePeakBossConfig',
+    field: 'TagList' | 'HardTagList'
+  ): AnomalyArbitrationTrait[] =>
+    ids.map((id, arrayIndex) => ({
+      buff: mazeBuffResolver.resolve(id, {
+        requireDisplay: true,
+        context: { mode: 'aa', groupId, configId: ownerId, table, field, arrayIndex }
+      }),
+      provenance: provenance(table, ownerId, field, arrayIndex)
+    }));
+  const auditAaBattleEvents = (
+    battles: EndgameBattleSlot[],
+    groupId: number,
+    configId: number,
+    variant: string
+  ): void => {
+    for (const builtStage of battles.flatMap((battle) => battle.stages)) {
+      const rawStage = stages.get(String(builtStage.stageId))!;
+      const references = (rawStage.StageConfigData ?? [])
+        .map((entry, arrayIndex) => ({ entry, arrayIndex }))
+        .filter(({ entry }) => entry.BFLIFKBEOPJ === '_CreateBattleEvent');
+      for (const { entry, arrayIndex } of references) {
+        const battleEventId = integer(
+          entry.MNDFOPKBHKP,
+          `StageConfig ${builtStage.stageId}._CreateBattleEvent`
+        );
+        modifierRelations.aa.battleEventReferences += 1;
+        if (!battleEvents.has(String(battleEventId)))
+          diagnostics.fail(
+            'unresolved-aa-battle-event',
+            'AA stage 引用的 BattleEventConfig 不存在',
+            {
+              mode: 'aa',
+              groupId,
+              configId,
+              variant,
+              stageId: builtStage.stageId,
+              battleEventId,
+              arrayIndex
+            }
+          );
+      }
+    }
+  };
   for (const group of [...tables.peakGroups].sort((a, b) => a.ID - b.ID)) {
-    const encounters: EndgameEncounter[] = [];
+    const encounters: AnomalyArbitrationEncounter[] = [];
     for (const [index, configId] of (group.PreLevelIDList ?? []).entries()) {
       const config =
         peakConfigs.get(String(configId)) ??
@@ -1341,17 +1932,28 @@ export async function buildEndgameData(
           groupId: group.ID,
           configId
         });
+      const battles = await buildSlots('aa', [config.EventIDList ?? []], {
+        groupId: group.ID,
+        configId,
+        variant: 'preliminary'
+      });
+      auditAaBattleEvents(battles, group.ID, configId, 'preliminary');
+      const traits = resolveAaTraits(
+        config.TagList ?? [],
+        group.ID,
+        configId,
+        'ChallengePeakConfig',
+        'TagList'
+      );
+      modifierRelations.aa.traits += traits.length;
       encounters.push({
         id: `${configId}:preliminary`,
         configId,
         name: localized(config.Title, 'aa-encounter', configId, 'Title'),
         ordinal: index + 1,
         variant: 'preliminary',
-        battles: await buildSlots('aa', [config.EventIDList ?? []], {
-          groupId: group.ID,
-          configId,
-          variant: 'preliminary'
-        })
+        battles,
+        traits
       });
     }
     const bossConfig =
@@ -1361,17 +1963,6 @@ export async function buildEndgameData(
         groupId: group.ID,
         configId: group.BossLevelID
       });
-    encounters.push({
-      id: `${group.BossLevelID}:normal`,
-      configId: group.BossLevelID,
-      name: localized(bossConfig.Title, 'aa-encounter', group.BossLevelID, 'Title'),
-      variant: 'boss-normal',
-      battles: await buildSlots('aa', [bossConfig.EventIDList ?? []], {
-        groupId: group.ID,
-        configId: group.BossLevelID,
-        variant: 'boss-normal'
-      })
-    });
     const hard =
       peakBosses.get(String(group.BossLevelID)) ??
       diagnostics.fail('missing-peak-hard-boss', '找不到 AA boss hard 配置', {
@@ -1379,22 +1970,100 @@ export async function buildEndgameData(
         groupId: group.ID,
         configId: group.BossLevelID
       });
+    const quadrantOptionIds = stableOptionIds(
+      hard.BuffList ?? [],
+      'aa',
+      group.ID,
+      'ChallengePeakBossConfig',
+      group.BossLevelID,
+      'BuffList'
+    );
+    if (!quadrantOptionIds.length)
+      diagnostics.fail('missing-aa-judgment-quadrant', 'AA boss config 缺少裁决象限 options', {
+        mode: 'aa',
+        groupId: group.ID,
+        configId: group.BossLevelID
+      });
+    const judgmentQuadrant: AnomalyArbitrationJudgmentQuadrant = {
+      key: `aa:${group.BossLevelID}:BuffList`,
+      bossConfigId: group.BossLevelID,
+      selectCount: 1,
+      options: quadrantOptionIds.map(({ id, sourceIndex }, order) => ({
+        order: order + 1,
+        buff: mazeBuffResolver.resolve(id, {
+          requireDisplay: true,
+          context: {
+            mode: 'aa',
+            groupId: group.ID,
+            configId: group.BossLevelID,
+            table: 'ChallengePeakBossConfig',
+            field: 'BuffList',
+            arrayIndex: sourceIndex
+          }
+        }),
+        provenance: provenance(
+          'ChallengePeakBossConfig',
+          group.BossLevelID,
+          'BuffList',
+          sourceIndex
+        )
+      })),
+      provenance: provenance('ChallengePeakBossConfig', group.BossLevelID, 'BuffList')
+    };
+    modifierRelations.aa.judgmentQuadrants += 1;
+    modifierRelations.aa.quadrantOptions += judgmentQuadrant.options.length;
+    const normalBattles = await buildSlots('aa', [bossConfig.EventIDList ?? []], {
+      groupId: group.ID,
+      configId: group.BossLevelID,
+      variant: 'boss-normal'
+    });
+    auditAaBattleEvents(normalBattles, group.ID, group.BossLevelID, 'boss-normal');
+    const normalTraits = resolveAaTraits(
+      bossConfig.TagList ?? [],
+      group.ID,
+      group.BossLevelID,
+      'ChallengePeakConfig',
+      'TagList'
+    );
+    modifierRelations.aa.traits += normalTraits.length;
+    encounters.push({
+      id: `${group.BossLevelID}:normal`,
+      configId: group.BossLevelID,
+      name: localized(bossConfig.Title, 'aa-encounter', group.BossLevelID, 'Title'),
+      variant: 'boss-normal',
+      battles: normalBattles,
+      traits: normalTraits,
+      judgmentQuadrantKey: judgmentQuadrant.key
+    });
+    const hardBattles = await buildSlots('aa', [hard.HardEventIDList ?? []], {
+      groupId: group.ID,
+      configId: group.BossLevelID,
+      variant: 'boss-hard'
+    });
+    auditAaBattleEvents(hardBattles, group.ID, group.BossLevelID, 'boss-hard');
+    const hardTraits = resolveAaTraits(
+      hard.HardTagList ?? [],
+      group.ID,
+      group.BossLevelID,
+      'ChallengePeakBossConfig',
+      'HardTagList'
+    );
+    modifierRelations.aa.traits += hardTraits.length;
     encounters.push({
       id: `${group.BossLevelID}:hard`,
       configId: group.BossLevelID,
       name: localized(hard.HardTitle, 'aa-encounter', group.BossLevelID, 'HardTitle'),
       variant: 'boss-hard',
-      battles: await buildSlots('aa', [hard.HardEventIDList ?? []], {
-        groupId: group.ID,
-        configId: group.BossLevelID,
-        variant: 'boss-hard'
-      })
+      battles: hardBattles,
+      traits: hardTraits,
+      judgmentQuadrantKey: judgmentQuadrant.key
     });
     aaGroups.push({
       mode: 'aa',
       groupId: group.ID,
       name: localized(group.Title, 'aa-group', group.ID, 'Title'),
-      encounters
+      encounters,
+      judgmentQuadrant
     });
   }
   datasets.aa = { schemaVersion: SCHEMA_VERSION, mode: 'aa', groups: aaGroups };
@@ -1524,6 +2193,8 @@ export async function buildEndgameData(
         abilityConfigsMissing: diagnostics.abilityConfigsMissing
       },
       stanceConversion,
+      mazeBuffs: mazeBuffResolver.getAudit(),
+      modifierRelations,
       summary: { modes: summary }
     }
   };
