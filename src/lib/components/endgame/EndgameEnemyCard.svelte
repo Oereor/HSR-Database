@@ -14,7 +14,6 @@
 </script>
 
 <article
-  class:endgame-enemy--boss={variant === 'boss'}
   class:endgame-enemy--compact={variant === 'compact'}
   class:endgame-enemy--with-art={occurrence.portraitUrl && !portraitFailed}
   class="endgame-enemy"
@@ -90,6 +89,7 @@
                   code={weakness.element}
                   label={weakness.name}
                   color={getElementColor(weakness.element)}
+                  showLabel={false}
                 />
               {/each}
             </div>

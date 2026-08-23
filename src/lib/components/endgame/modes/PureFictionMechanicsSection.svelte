@@ -1,6 +1,6 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
   import type { EndgameMechanicView, PureFictionCacophonyView } from '$lib/domain/endgame-view';
+  import MechanicEntry from '../mechanics/MechanicEntry.svelte';
   import MechanicSurface from '../mechanics/MechanicSurface.svelte';
   import SelectableOptionCard from '../mechanics/SelectableOptionCard.svelte';
 
@@ -9,15 +9,14 @@
 </script>
 
 {#if fixedMechanics.length}
-  <section class="endgame-mechanics-section" data-endgame-mechanics="battle-will">
-    <div class="section-heading"><h2>战意机制</h2></div>
-    <MechanicSurface>
+  <section
+    class="endgame-mechanics-section endgame-mechanics-section--fixed"
+    data-endgame-mechanics="battle-will"
+  >
+    <MechanicSurface title="战意机制" headingLevel={2} accent>
       <div class="endgame-mechanic-entry-list">
         {#each fixedMechanics as mechanic (mechanic.id)}
-          <article class="endgame-mechanic-entry">
-            <h3><GameText text={mechanic.name} /></h3>
-            <p><GameText text={mechanic.description} /></p>
-          </article>
+          <MechanicEntry {mechanic} />
         {/each}
       </div>
     </MechanicSurface>
@@ -25,12 +24,15 @@
 {/if}
 
 {#if cacophony?.options.length}
-  <section class="endgame-mechanics-section" data-endgame-mechanics="cacophony">
+  <section
+    class="endgame-mechanics-section endgame-mechanics-section--selectable"
+    data-endgame-mechanics="cacophony"
+  >
     <div class="section-heading">
       <h2>荒腔走板</h2>
       <span class="endgame-mechanics-label">三选一 · 每队</span>
     </div>
-    <div class="endgame-option-grid">
+    <div class="endgame-option-grid endgame-option-grid--comparison endgame-option-grid--pf">
       {#each cacophony.options as option (option.order)}
         <SelectableOptionCard {option} />
       {/each}

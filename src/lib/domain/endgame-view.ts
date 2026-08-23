@@ -9,6 +9,7 @@ import type {
   EnemyOccurrence,
   ResolvedMazeBuff
 } from './endgame';
+import type { ExtraEffect } from './types';
 
 export const ENDGAME_MODES = ['moc', 'pf', 'as', 'aa'] as const satisfies readonly EndgameMode[];
 
@@ -178,8 +179,14 @@ export interface ApocalypticShadowAxiomSetView {
   options: EndgameOrderedMechanicView[];
 }
 
+export interface ApocalypticShadowSlotGuideView {
+  key: string;
+  traits: Array<EndgameOrderedMechanicView & { linkedEffects: ExtraEffect[] }>;
+}
+
 export interface ApocalypticShadowBattleSlotView extends EndgameBattleSlotView {
   axiomSet?: ApocalypticShadowAxiomSetView;
+  bossGuide?: ApocalypticShadowSlotGuideView;
 }
 
 export interface ApocalypticShadowEncounterView extends EndgameEncounterViewBase<
@@ -617,10 +624,24 @@ export function buildGroupView(
         ...(buildMechanicView(encounter.aftertaste?.buff)
           ? { aftertaste: buildMechanicView(encounter.aftertaste?.buff) }
           : {}),
-        battles: encounter.battles.map((battle) => ({
-          ...buildBattleSlotView(battle, enemyReferences),
-          ...(axiomSets.has(battle.slot) ? { axiomSet: axiomSets.get(battle.slot) } : {})
-        }))
+        battles: encounter.battles.map((battle) => {
+          const battleView = buildBattleSlotView(battle, enemyReferences);
+          const guide = encounter.bossGuides.find((candidate) => candidate.slot === battle.slot);
+          const traits = (guide?.traits ?? [])
+            .filter((trait) => trait.name.trim() && trait.description.trim())
+            .map((trait) => ({
+              id: trait.tagId,
+              order: trait.order,
+              name: trait.name,
+              description: trait.description,
+              linkedEffects: trait.linkedEffects
+            }));
+          return {
+            ...battleView,
+            ...(axiomSets.has(battle.slot) ? { axiomSet: axiomSets.get(battle.slot) } : {}),
+            ...(guide && traits.length ? { bossGuide: { key: guide.key, traits } } : {})
+          };
+        })
       }))
     };
   }

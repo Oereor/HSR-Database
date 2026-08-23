@@ -6,6 +6,7 @@
   export let label: string;
   export let color: string | undefined = undefined;
   export let size: 'default' | 'large' = 'default';
+  export let showLabel = true;
 
   let failedSource: string | undefined;
   $: source = kind === 'element' ? getElementIconUrl(code) : getPathIconUrl(code);
@@ -18,6 +19,8 @@
   data-icon-kind={kind}
   data-icon-missing={!visibleSource}
   data-label-size={size}
+  role={showLabel ? undefined : 'img'}
+  aria-label={showLabel ? undefined : label}
 >
   {#if visibleSource}<img
       src={visibleSource}
@@ -29,5 +32,5 @@
       decoding="async"
       on:error={() => (failedSource = visibleSource)}
     />{/if}
-  <span>{label}</span>
+  {#if showLabel}<span>{label}</span>{/if}
 </span>

@@ -4,10 +4,11 @@
   import EndgameLocalNav from '$lib/components/endgame/EndgameLocalNav.svelte';
   import EndgameModeNav from '$lib/components/endgame/EndgameModeNav.svelte';
   import EndgameSeasonHeader from '$lib/components/endgame/EndgameSeasonHeader.svelte';
+  import AsBossMechanics from '$lib/components/endgame/as/AsBossMechanics.svelte';
   import AnomalyArbitrationMechanicsSection from '$lib/components/endgame/modes/AnomalyArbitrationMechanicsSection.svelte';
-  import ApocalypticShadowAxiomSection from '$lib/components/endgame/modes/ApocalypticShadowAxiomSection.svelte';
   import ApocalypticShadowMechanicsSection from '$lib/components/endgame/modes/ApocalypticShadowMechanicsSection.svelte';
   import BattleSection from '$lib/components/endgame/BattleSection.svelte';
+  import EndgameEnemyGrid from '$lib/components/endgame/EndgameEnemyGrid.svelte';
   import MocMechanicsSection from '$lib/components/endgame/modes/MocMechanicsSection.svelte';
   import PureFictionMechanicsSection from '$lib/components/endgame/modes/PureFictionMechanicsSection.svelte';
   import {
@@ -37,8 +38,7 @@
     data.group.encounters.find((encounter) => encounter.id === requestedEncounter) ??
     data.group.encounters.find((encounter) => encounter.id === data.group.defaultEncounterId) ??
     data.group.encounters[0];
-  $: enemyVariant =
-    data.group.mode === 'as' ? 'boss' : data.group.mode === 'pf' ? 'compact' : 'standard';
+  $: enemyVariant = data.group.mode === 'pf' ? 'compact' : 'standard';
   $: localNavigation = selectedEncounter
     ? buildLocalNavigation(data.group, selectedEncounter.id)
     : undefined;
@@ -110,15 +110,50 @@
         </p>
       {/if}
 
-      <div class="endgame-battle-grid">
-        {#each selectedEncounter.battles as battle (battle.slot)}
-          <BattleSection {battle} {enemyVariant}>
-            {#if 'axiomSet' in battle && battle.axiomSet}
-              <ApocalypticShadowAxiomSection axiomSet={battle.axiomSet} />
-            {/if}
-          </BattleSection>
-        {/each}
-      </div>
+      {#if selectedEncounter.mode === 'as'}
+        <div class="as-battle-list">
+          {#each selectedEncounter.battles as battle (battle.slot)}
+            <section
+              class="as-battle-section"
+              id={`battle-${battle.slot}`}
+              data-as-battle-slot={battle.slot}
+              data-battle-slot={battle.slot}
+            >
+              <header class="as-battle-section__heading"><h3>战斗 {battle.slot}</h3></header>
+              <div class="as-battle-section__layout">
+                <section class="as-battle-enemies" data-as-battle-enemies>
+                  <h4>敌方单位</h4>
+                  <div class="as-battle-enemies__groups">
+                    {#each battle.stages as stage (stage.key)}
+                      {#each stage.waves as wave (wave.key)}
+                        <div class="as-battle-enemies__group">
+                          {#if battle.stages.length > 1 || stage.waves.length > 1}
+                            <p>阶段 {stage.index} · {wave.label}</p>
+                          {/if}
+                          <EndgameEnemyGrid
+                            enemies={wave.enemies}
+                            level={stage.level}
+                            variant="standard"
+                          />
+                        </div>
+                      {/each}
+                    {/each}
+                  </div>
+                </section>
+                {#if battle.axiomSet || battle.bossGuide}
+                  <AsBossMechanics axiomSet={battle.axiomSet} bossGuide={battle.bossGuide} />
+                {/if}
+              </div>
+            </section>
+          {/each}
+        </div>
+      {:else}
+        <div class="endgame-battle-grid">
+          {#each selectedEncounter.battles as battle (battle.slot)}
+            <BattleSection {battle} {enemyVariant} />
+          {/each}
+        </div>
+      {/if}
 
       <p class="source-note">
         生命值、速度和韧性均来自当前关卡实际 MonsterID

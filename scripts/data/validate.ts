@@ -52,7 +52,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 23)
+if (manifest.schemaVersion !== 25)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -85,7 +85,10 @@ for (const [sourceName, expectedRows] of [
   ['AvatarRankConfigLD', 24],
   ['AvatarPromotionConfigLD', 28],
   ['AvatarGlobalBuffConfig', 2],
-  ['AvatarServantSkillLink', 14]
+  ['AvatarServantSkillLink', 14],
+  ['ChallengeBossMazeExtra', 80],
+  ['MonsterGuideConfig', 80],
+  ['MonsterGuideTag', 64]
 ] as const)
   if (audit.upstreamTables?.[sourceName] !== expectedRows)
     throw new Error(`${sourceName} 上游来源计数异常：${audit.upstreamTables?.[sourceName]}`);
@@ -139,7 +142,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 20 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 22 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -296,6 +299,29 @@ const expectedMazeBuffAudit = {
 if (JSON.stringify(audit.endgameAudit.mazeBuffs) !== JSON.stringify(expectedMazeBuffAudit))
   throw new Error('Endgame MazeBuff 解析审计与当前权威配置不一致');
 
+const expectedAsBossGuideAudit = {
+  slotRelations: 163,
+  applicableTraitRelations: 452,
+  displayReadyTraits: 446,
+  omittedTraitRelations: 6,
+  guideStageMonsterMismatches: 8,
+  missingMazeExtras: 0,
+  missingSlotBindings: 0,
+  missingGuides: 0,
+  missingTags: 0,
+  missingLocalization: 0,
+  arrayLengthMismatches: 0,
+  difficultyMismatches: 0,
+  duplicateTags: 0,
+  linkedEffectRelations: 192,
+  displayReadyLinkedEffects: 192,
+  omittedLinkedEffects: 0,
+  distinctMalformedTags: 1,
+  distinctUnusedParamTags: 21
+};
+if (JSON.stringify(audit.endgameAudit.asBossGuides) !== JSON.stringify(expectedAsBossGuideAudit))
+  throw new Error('AS 首领特性解析审计与当前权威配置不一致');
+
 const mocTurbulence = endgame.moc.groups
   .find((group) => group.groupId === 1034)
   ?.encounters.find((encounter) => encounter.configId === 5312)?.memoryTurbulence;
@@ -335,6 +361,9 @@ const asModifierGroup = endgame.as.groups.find((group) => group.groupId === 3020
 const asAftertaste = asModifierGroup?.encounters.find(
   (encounter) => encounter.configId === 30204
 )?.aftertaste;
+const asBossGuides = asModifierGroup?.encounters.find(
+  (encounter) => encounter.configId === 30204
+)?.bossGuides;
 if (
   asAftertaste?.buff.id !== 3110006 ||
   asAftertaste.buff.name !== '末法余烬' ||
@@ -350,6 +379,24 @@ if (
     ])
 )
   throw new Error('AS 3020/30204 末法余烬、stage binding 或终焉公理 relation 异常');
+const asSlotOneGuide = asBossGuides?.find((guide) => guide.slot === 1);
+const asSlotTwoGuide = asBossGuides?.find((guide) => guide.slot === 2);
+if (
+  asBossGuides?.length !== 3 ||
+  asSlotOneGuide?.guideMonsterId !== 302401304 ||
+  asSlotOneGuide.traits.map((trait) => trait.tagId).join(',') !== '100201,100202,100203,100204' ||
+  asSlotOneGuide.traits.map((trait) => trait.name).join(',') !==
+    '坚防守备,攻守易型,绝境逆转,众星拱卫' ||
+  !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('60%') ||
+  !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('125%') ||
+  asSlotOneGuide.traits[0]?.linkedEffects.length !== 0 ||
+  asSlotOneGuide.traits[1]?.linkedEffects.map((effect) => effect.id).join(',') !== '70000303' ||
+  asSlotTwoGuide?.traits
+    .find((trait) => trait.tagId === 101402)
+    ?.linkedEffects.map((effect) => effect.id)
+    .join(',') !== '240140133,240140134'
+)
+  throw new Error('AS 3020/30204 关卡效果 relation、参数插值或 EffectID 解析异常');
 
 const aaModifierGroup = endgame.aa.groups.find((group) => group.groupId === 8);
 const aaNormal = aaModifierGroup?.encounters.find((encounter) => encounter.id === '804:normal');
@@ -379,7 +426,7 @@ const modifierGroupFields: Record<EndgameMode, string[]> = {
 const modifierEncounterFields: Record<EndgameMode, string[]> = {
   moc: ['memoryTurbulence'],
   pf: ['baseMechanic'],
-  as: ['aftertaste'],
+  as: ['aftertaste', 'bossGuides'],
   aa: ['traits', 'judgmentQuadrantKey']
 };
 for (const mode of endgameModes) {

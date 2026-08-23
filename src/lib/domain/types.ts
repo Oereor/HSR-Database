@@ -76,11 +76,13 @@ export interface SkillStanceDisplay {
   value: number;
 }
 
-export interface SkillExtraEffect {
+export interface ExtraEffect {
   id: string;
   name: string;
   description: string;
 }
+
+export type SkillExtraEffect = ExtraEffect;
 
 export interface SkillCombatMeta {
   effect?: SemanticTag;

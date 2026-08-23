@@ -1,3 +1,5 @@
+import type { ExtraEffect } from './types';
+
 export type DecimalString = string & { readonly __decimalString: unique symbol };
 
 export type EndgameMode = 'moc' | 'pf' | 'as' | 'aa';
@@ -27,6 +29,8 @@ export interface EndgameConfigProvenance {
     | 'ChallengeBossGroupConfig'
     | 'ChallengeBossMazeConfig'
     | 'ChallengeBossGroupExtra'
+    | 'ChallengeBossMazeExtra'
+    | 'MonsterGuideConfig'
     | 'ChallengePeakConfig'
     | 'ChallengePeakBossConfig'
     | 'StageConfig';
@@ -322,8 +326,31 @@ export interface ApocalypticShadowAxiomSet {
   provenance: EndgameConfigProvenance;
 }
 
+export interface ApocalypticShadowBossTrait {
+  tagId: number;
+  order: number;
+  requiredDifficulty: number;
+  name: string;
+  nameHash?: string;
+  description: string;
+  descriptionHash?: string;
+  params: DecimalString[];
+  linkedEffects: ExtraEffect[];
+  provenance: EndgameConfigProvenance;
+}
+
+export interface ApocalypticShadowSlotGuide {
+  key: string;
+  slot: number;
+  guideMonsterId: number;
+  difficulty: number;
+  traits: ApocalypticShadowBossTrait[];
+  provenance: EndgameConfigProvenance;
+}
+
 export interface ApocalypticShadowEncounter extends EndgameEncounter {
   aftertaste?: ApocalypticShadowAftertaste;
+  bossGuides: ApocalypticShadowSlotGuide[];
 }
 
 export interface AnomalyArbitrationTrait {
@@ -381,7 +408,7 @@ export type EndgameGroup =
   MocGroup | PureFictionGroup | ApocalypticShadowGroup | AnomalyArbitrationGroup;
 
 interface EndgameModeDatasetBase<TMode extends EndgameMode, TGroup extends EndgameGroup> {
-  schemaVersion: 20;
+  schemaVersion: 22;
   mode: TMode;
   groups: TGroup[];
 }

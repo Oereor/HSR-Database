@@ -99,7 +99,9 @@ test('MoC 相同记忆紊流只展示一次并保留 GameText 格式', async ({ 
   await page.goto('/endgame/moc/1034?encounter=5312');
   const turbulence = page.locator('[data-endgame-mechanics="memory-turbulence"]');
   await expect(turbulence).toHaveCount(1);
-  await expect(turbulence.getByRole('heading', { name: '记忆紊流' })).toBeVisible();
+  const surface = turbulence.locator('.endgame-mechanic-surface');
+  await expect(surface.getByRole('heading', { name: '记忆紊流', level: 2 })).toBeVisible();
+  await expect(turbulence.locator(':scope > .section-heading')).toHaveCount(0);
   const percentage = turbulence.locator('[data-game-color="#f29e38ff"]').filter({ hasText: '80%' });
   await expect(percentage).toHaveCount(1);
   await expect(percentage).toHaveClass(/description-token--unbreak/);
@@ -110,8 +112,16 @@ test('MoC 相同记忆紊流只展示一次并保留 GameText 格式', async ({ 
 test('PF 战意机制与荒腔走板保持 fixed/selectable 分离', async ({ page }) => {
   await page.goto('/endgame/pf/2025?encounter=20254');
   const battleWill = page.locator('[data-endgame-mechanics="battle-will"]');
-  await expect(battleWill.locator('.endgame-mechanic-surface')).toHaveCount(1);
+  const fixedSurface = battleWill.locator('.endgame-mechanic-surface');
+  await expect(fixedSurface).toHaveCount(1);
+  await expect(fixedSurface.getByRole('heading', { name: '战意机制', level: 2 })).toBeVisible();
   await expect(battleWill.locator('.endgame-mechanic-entry')).toHaveCount(3);
+  await expect(battleWill.locator('.endgame-mechanic-entry h3')).toHaveText([
+    '追加攻击',
+    '战熄潮平',
+    '战意汹涌'
+  ]);
+  await expect(battleWill.locator('.endgame-mechanic-entry.endgame-option-card')).toHaveCount(0);
   await expect(battleWill.getByRole('heading', { name: '追加攻击' })).toBeVisible();
   await expect(battleWill.getByRole('heading', { name: '战熄潮平' })).toBeVisible();
   await expect(battleWill.getByRole('heading', { name: '战意汹涌' })).toBeVisible();
@@ -124,24 +134,184 @@ test('PF 战意机制与荒腔走板保持 fixed/selectable 分离', async ({ pa
   await expect(cacophony.getByRole('heading', { name: '快嘴' })).toBeVisible();
   await expect(cacophony.locator('button, input, [role="button"], [tabindex]')).toHaveCount(0);
   await expect(cacophony.locator('img')).toHaveCount(0);
+  expect(
+    await cacophony
+      .locator('.endgame-option-card')
+      .first()
+      .evaluate((element) => getComputedStyle(element).cursor)
+  ).not.toBe('pointer');
 });
 
-test('AS 终焉公理分别绑定对应 battle slot', async ({ page }) => {
+test('PF fixed 与 selectable mechanics 按真实内容宽度降级为 3/2/1 列', async ({ page }) => {
+  await page.goto('/endgame/pf/2025?encounter=20254');
+  const fixedEntries = page.locator(
+    '[data-endgame-mechanics="battle-will"] .endgame-mechanic-entry-list'
+  );
+  const options = page.locator('[data-endgame-mechanics="cacophony"] .endgame-option-grid');
+  for (const [width, expectedColumns] of [
+    [1440, 3],
+    [1200, 2],
+    [390, 1]
+  ] as const) {
+    await page.setViewportSize({ width, height: 1000 });
+    expect(await gridColumnCount(fixedEntries)).toBe(expectedColumns);
+    expect(await gridColumnCount(options)).toBe(expectedColumns);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+  }
+});
+
+test('AS 三个战斗 slot 分别使用统一敌方卡并保留终焉公理与关卡效果', async ({ page }) => {
   await page.goto('/endgame/as/3020?encounter=30204');
   await expect(page.locator('[data-endgame-mechanics="aftertaste"]')).toContainText('末法余烬');
   await expect(page.locator('[data-endgame-mechanics="axiom"]')).toHaveCount(3);
+  await expect(page.locator('[data-endgame-mechanics="boss-traits"]')).toHaveCount(3);
+  await expect(page.getByRole('heading', { name: '关卡效果', exact: true })).toHaveCount(3);
   for (const slot of ['1', '2', '3']) {
-    const battle = page.locator(`[data-battle-slot="${slot}"]`);
+    const battle = page.locator(`[data-as-battle-slot="${slot}"]`);
+    await expect(battle.getByRole('heading', { name: `战斗 ${slot}`, exact: true })).toBeVisible();
+    await expect(battle.locator('[data-endgame-enemy-card]')).toHaveCount(1);
+    await expect(battle.locator('[data-endgame-enemy-card]')).toHaveAttribute(
+      'data-enemy-card-variant',
+      'standard'
+    );
     await expect(battle.locator('[data-endgame-mechanics="axiom"]')).toHaveCount(1);
-    await expect(battle.locator('.endgame-option-card')).toHaveCount(3);
+    await expect(battle.locator('[data-as-axiom-options] .endgame-mechanic-entry')).toHaveCount(3);
+    await expect(battle.locator('[data-as-boss-traits] .endgame-mechanic-entry')).toHaveCount(4);
   }
+  const slotOne = page.locator('[data-as-battle-slot="1"]');
+  await expect(slotOne.getByRole('heading', { name: '坚防守备', exact: true })).toBeVisible();
+  await expect(slotOne.getByRole('heading', { name: '攻守易型', exact: true })).toBeVisible();
+  await expect(slotOne.getByRole('heading', { name: '绝境逆转', exact: true })).toBeVisible();
+  await expect(slotOne.getByRole('heading', { name: '众星拱卫', exact: true })).toBeVisible();
+  await expect(slotOne.locator('[data-as-boss-traits]')).toContainText('60%');
+  await expect(slotOne.locator('[data-as-boss-traits]')).toContainText('125%');
+  await expect(
+    slotOne
+      .locator('[data-as-boss-traits] .endgame-mechanic-entry')
+      .first()
+      .locator('[data-stage-effect-explanations]')
+  ).toHaveCount(0);
+  const slotTwoExplanations = page.locator(
+    '[data-as-battle-slot="2"] [data-stage-effect-explanations]'
+  );
+  await expect(slotTwoExplanations).toHaveCount(1);
+  expect(
+    await slotTwoExplanations
+      .locator('[data-extra-effect]')
+      .evaluateAll((items) => items.map((item) => item.getAttribute('data-extra-effect')))
+  ).toEqual(['240140133', '240140134']);
+  await slotTwoExplanations.locator('summary').click();
+  await expect(slotTwoExplanations).toContainText('战甲');
+  await expect(slotTwoExplanations).toContainText('百炼战甲');
+  expect(await slotTwoExplanations.textContent()).not.toContain('240140133');
   await expect(page.locator('[data-endgame-mechanics] img')).toHaveCount(0);
+  await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(3);
+  await expect(page.locator('[data-as-boss-profile], .as-enemy-profile-card')).toHaveCount(0);
+  await expect(page.locator('.endgame-battle')).toHaveCount(0);
+  await expect(page.locator('[data-endgame-mechanics="axiom"] .endgame-option-card')).toHaveCount(
+    0
+  );
+  await expect(
+    page.locator('[data-endgame-mechanics="aftertaste"] .endgame-mechanic-surface--accent')
+  ).toHaveCount(0);
+});
+
+test('AS 多敌人 slot 使用同级统一卡并保留完整战斗数据', async ({ page }) => {
+  await page.goto('/endgame/as/3001?encounter=30014');
+  const slot = page.locator('[data-as-battle-slot="1"]');
+  const enemies = slot.locator('[data-endgame-enemy-card]');
+  await expect(enemies).toHaveCount(2);
+  expect(
+    await enemies.evaluateAll((cards) =>
+      cards.every((card) => card.getAttribute('data-enemy-card-variant') === 'standard')
+    )
+  ).toBe(true);
+  await expect(enemies.locator('.endgame-enemy__name')).toHaveText(['无望冽风的幻灭者', '杰帕德']);
+  for (const monsterId of ['100401404', '100402604']) {
+    const enemy = slot.locator(`[data-monster-id="${monsterId}"]`);
+    await expect(enemy).toContainText('Lv.90');
+    await expect(enemy.locator('[data-endgame-hp]')).toBeVisible();
+    await expect(enemy.locator('[data-endgame-speed]')).toBeVisible();
+    await expect(enemy.locator('[data-endgame-toughness]')).toBeVisible();
+    await expect(enemy.locator('.endgame-weaknesses')).toBeVisible();
+  }
+  await expect(slot.getByText('主首领', { exact: true })).toHaveCount(0);
+  await expect(slot.getByText('随行敌人', { exact: true })).toHaveCount(0);
+  await expect(slot.locator('[data-as-boss-profile], .as-enemy-profile-card')).toHaveCount(0);
+  await expect(slot.locator('[data-endgame-mechanics="axiom"]')).toHaveCount(1);
+  await expect(slot.locator('[data-endgame-mechanics="boss-traits"]')).toHaveCount(1);
+});
+
+test('AS mismatch 继续使用实际 Stage 首领，并保留 slot-owned traits', async ({ page }) => {
+  await page.goto('/endgame/as/3011?encounter=30114');
+  const slot = page.locator('[data-as-battle-slot="2"]');
+  await expect(slot.locator('[data-monster-id="203501204"]')).toBeVisible();
+  await expect(slot.locator('[data-as-boss-traits] .endgame-mechanic-entry')).toHaveCount(4);
+  await expect(slot).not.toContainText('蛊言妄念的蚀心兽');
+  expect(await page.content()).not.toContain('203302204');
+});
+
+test('AS malformed 首领特性被省略且不产生空文案', async ({ page }) => {
+  await page.goto('/endgame/as/3003?encounter=30034');
+  const slot = page.locator('[data-as-battle-slot="2"]');
+  await expect(slot.locator('[data-as-boss-traits] .endgame-mechanic-entry')).toHaveCount(3);
+  await expect(slot).not.toContainText('枯木逢春');
+  expect(
+    await slot
+      .locator('[data-as-boss-traits] .endgame-mechanic-entry__title')
+      .evaluateAll((headings) => headings.every((heading) => !!heading.textContent?.trim()))
+  ).toBe(true);
+});
+
+test('AS 敌方网格与 mechanics 保持既有双栏比例并响应式堆叠', async ({ page }) => {
+  await page.goto('/endgame/as/3001?encounter=30014');
+  const layout = page.locator('[data-as-battle-slot="1"] .as-battle-section__layout');
+  const enemies = page.locator('[data-as-battle-slot="1"] [data-as-battle-enemies]');
+  const mechanics = page.locator('[data-as-battle-slot="1"] [data-as-boss-mechanics]');
+
+  for (const width of [1440, 1200]) {
+    await page.setViewportSize({ width, height: 1000 });
+    expect(await gridColumnCount(layout)).toBe(2);
+    const enemiesBox = await enemies.boundingBox();
+    const mechanicsBox = await mechanics.boundingBox();
+    expect(enemiesBox).not.toBeNull();
+    expect(mechanicsBox).not.toBeNull();
+    expect(enemiesBox!.x).toBeLessThan(mechanicsBox!.x);
+    expect(enemiesBox!.width).toBeLessThan(mechanicsBox!.width);
+  }
+
+  for (const width of [900, 390, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await gridColumnCount(layout)).toBe(1);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+  }
+
+  await page.setViewportSize({ width: 390, height: 900 });
+  expect(await gridColumnCount(enemies.locator('[data-enemy-grid]'))).toBe(1);
+  await page.setViewportSize({ width: 320, height: 900 });
+  expect(await gridColumnCount(enemies.locator('[data-enemy-grid]'))).toBe(1);
 });
 
 test('AA normal/hard 切换 traits 并复用一份裁决象限', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/endgame/aa/8?encounter=804%3Anormal');
+  const composition = page.locator('[data-aa-mechanics-composition]');
   const quadrant = page.locator('[data-endgame-mechanics="judgment-quadrant"]');
   const traits = page.locator('[data-endgame-mechanics="chess-traits"]');
+  await expect(composition).toHaveClass(/endgame-aa-mechanics-composition--paired/);
+  expect(
+    await composition
+      .locator(':scope > section')
+      .evaluateAll((sections) =>
+        sections.map((section) => section.getAttribute('data-endgame-mechanics'))
+      )
+  ).toEqual(['chess-traits', 'judgment-quadrant']);
   await expect(quadrant).toHaveCount(1);
   await expect(quadrant.locator('.endgame-option-card')).toHaveCount(3);
   await expect(traits.getByRole('heading', { name: '激怒', exact: true })).toBeVisible();
@@ -159,7 +329,48 @@ test('AA normal/hard 切换 traits 并复用一份裁决象限', async ({ page }
   await selectLocalNode(page, '骑士（一）');
   await expect(page).toHaveURL(/encounter=801%3Apreliminary/);
   await expect(page.locator('[data-endgame-mechanics="judgment-quadrant"]')).toHaveCount(0);
+  await expect(page.locator('[data-aa-mechanics-composition] > section')).toHaveCount(1);
   await expect(page.getByRole('heading', { name: '挑衅', exact: true })).toBeVisible();
+});
+
+test('AA paired mechanics 在宽桌面并排，并在桌面、平板与手机按 traits-first 堆叠', async ({
+  page
+}) => {
+  await page.goto('/endgame/aa/8?encounter=804%3Anormal');
+  const composition = page.locator('[data-aa-mechanics-composition]');
+  const quadrant = composition.locator('[data-endgame-mechanics="judgment-quadrant"]');
+  const traits = composition.locator('[data-endgame-mechanics="chess-traits"]');
+
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  expect(await gridColumnCount(composition)).toBe(2);
+  expect(await gridColumnCount(quadrant.locator('.endgame-option-grid'))).toBe(1);
+  expect(await gridColumnCount(traits.locator('.endgame-trait-grid'))).toBe(1);
+  const quadrantBox = await quadrant.boundingBox();
+  const traitsBox = await traits.boundingBox();
+  expect(quadrantBox).not.toBeNull();
+  expect(traitsBox).not.toBeNull();
+  expect(quadrantBox!.x).toBeLessThan(traitsBox!.x);
+  expect(quadrantBox!.width).toBeGreaterThan(traitsBox!.width);
+
+  for (const [width, optionColumns] of [
+    [1200, 2],
+    [900, 1],
+    [390, 1]
+  ] as const) {
+    await page.setViewportSize({ width, height: 1000 });
+    expect(await gridColumnCount(composition)).toBe(1);
+    expect(await gridColumnCount(quadrant.locator('.endgame-option-grid'))).toBe(optionColumns);
+    const traitBox = await traits.boundingBox();
+    const quadrantStackBox = await quadrant.boundingBox();
+    expect(traitBox).not.toBeNull();
+    expect(quadrantStackBox).not.toBeNull();
+    expect(traitBox!.y).toBeLessThan(quadrantStackBox!.y);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+  }
+  await expect(page.getByRole('heading', { name: '战斗规则' })).toHaveCount(0);
 });
 
 test('PF 只显示波内唯一敌人类型', async ({ page }) => {
@@ -211,7 +422,7 @@ test('敌方实体卡采用 portrait-first 信息层级并保留全部战斗字�
   await expect(page.locator('.endgame-enemy__count').first()).toHaveText(/^×[2-9]\d*$/);
 });
 
-test('四模式映射到明确的敌方卡 variant 并保持 mechanics ownership', async ({ page }) => {
+test('PF 保留 compact variant，AS 与其它模式复用 standard 敌方卡', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
 
   await page.goto('/endgame/pf/2025?encounter=20254');
@@ -226,16 +437,15 @@ test('四模式映射到明确的敌方卡 variant 并保持 mechanics ownership
 
   await page.goto('/endgame/as/3020?encounter=30204');
   await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(3);
-  await expect(page.locator('[data-endgame-enemy-card]').first()).toHaveAttribute(
-    'data-enemy-card-variant',
-    'boss'
-  );
-  const firstAsBattle = page.locator('[data-battle-slot="1"]');
-  const axiomBox = await firstAsBattle.locator('[data-endgame-mechanics="axiom"]').boundingBox();
-  const waveBox = await firstAsBattle.locator('.endgame-wave-list').boundingBox();
-  expect(axiomBox).not.toBeNull();
-  expect(waveBox).not.toBeNull();
-  expect(axiomBox!.y + axiomBox!.height).toBeLessThanOrEqual(waveBox!.y);
+  expect(
+    await page
+      .locator('[data-endgame-enemy-card]')
+      .evaluateAll((cards) =>
+        cards.every((card) => card.getAttribute('data-enemy-card-variant') === 'standard')
+      )
+  ).toBe(true);
+  await expect(page.locator('[data-as-boss-profile], .as-enemy-profile-card')).toHaveCount(0);
+  await expect(page.locator('.endgame-wave-list')).toHaveCount(0);
 
   await page.goto('/endgame/aa/8?encounter=804%3Ahard');
   await expect(page.locator('[data-endgame-enemy-card]').first()).toHaveAttribute(
@@ -287,12 +497,42 @@ test('PF 非 canonical Monster 展示具体实例弱点', async ({ page }) => {
   await page.goto('/endgame/pf/2001?encounter=20011');
   const enemy = page.locator('[data-monster-id="800205005"]').first();
   await expect(enemy).toBeVisible();
-  await expect(enemy.locator('.endgame-weaknesses [data-icon-kind="element"] span')).toHaveText([
-    '雷',
-    '虚数'
+  const weaknesses = enemy.locator('.endgame-weaknesses [data-icon-kind="element"]');
+  await expect(weaknesses).toHaveCount(2);
+  expect(
+    await weaknesses.evaluateAll((items) =>
+      items.map((item) => [item.getAttribute('role'), item.getAttribute('aria-label')])
+    )
+  ).toEqual([
+    ['img', '雷'],
+    ['img', '虚数']
   ]);
+  await expect(weaknesses.locator(':scope > span')).toHaveCount(0);
   await expect(enemy.locator('[data-endgame-speed]')).toHaveText('120');
   await expect(enemy.locator('[data-endgame-toughness]')).toHaveText('30');
+});
+
+test('四种 Endgame 模式的统一敌方卡只显示可访问的弱点图标', async ({ page }) => {
+  for (const url of [
+    '/endgame/moc/1034?encounter=5312',
+    '/endgame/pf/2025?encounter=20254',
+    '/endgame/as/3020?encounter=30204',
+    '/endgame/aa/8?encounter=804%3Ahard'
+  ]) {
+    await page.goto(url);
+    const weaknesses = page.locator(
+      '[data-endgame-enemy-card] .endgame-weaknesses [data-icon-kind="element"]'
+    );
+    expect(await weaknesses.count()).toBeGreaterThan(0);
+    await expect(weaknesses.locator(':scope > span')).toHaveCount(0);
+    expect(
+      await weaknesses.evaluateAll((items) =>
+        items.every(
+          (item) => item.getAttribute('role') === 'img' && !!item.getAttribute('aria-label')
+        )
+      )
+    ).toBe(true);
+  }
 });
 
 test('AS 多阶段生命值显示完整整数、阶段数和属性图标', async ({ page }) => {
@@ -307,7 +547,17 @@ test('AS 多阶段生命值显示完整整数、阶段数和属性图标', async
     'src',
     /generated-assets\/elements\/.+\.png/
   );
-  await expect(weaknesses.first().locator('span')).not.toBeEmpty();
+  await expect(weaknesses.locator(':scope > span')).toHaveCount(0);
+  expect(
+    await weaknesses.evaluateAll((items) =>
+      items.map((item) => [item.getAttribute('role'), item.getAttribute('aria-label')])
+    )
+  ).toEqual([
+    ['img', '火'],
+    ['img', '冰'],
+    ['img', '雷'],
+    ['img', '量子']
+  ]);
   await expect(boss.locator('.hp-mechanics, .toughness-mechanics')).toHaveCount(0);
 });
 

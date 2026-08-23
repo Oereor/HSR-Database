@@ -1,5 +1,4 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
   import type { EndgameMechanicView } from '$lib/domain/endgame-view';
   import MechanicSurface from '../mechanics/MechanicSurface.svelte';
 
@@ -7,6 +6,10 @@
 </script>
 
 <section class="endgame-mechanics-section" data-endgame-mechanics="memory-turbulence">
-  <div class="section-heading"><h2><GameText text={mechanic.name} /></h2></div>
-  <MechanicSurface description={mechanic.description} />
+  <MechanicSurface
+    title={mechanic.name}
+    description={mechanic.description}
+    headingLevel={2}
+    accent
+  />
 </section>

@@ -389,7 +389,7 @@ describe('Endgame mechanics 视图投影', () => {
     expect(legacyView.encounters.every((encounter) => !encounter.baseMechanic)).toBe(true);
   });
 
-  it('AS 把终焉公理投影到真实存在的 battle slot', async () => {
+  it('AS 把实际敌人、终焉公理和首领特性分别投影到真实 battle slot', async () => {
     const shadow = await dataset('as');
     const current = shadow.groups.find((group) => group.groupId === 3020)!;
     const currentView = buildGroupView(current, [buildPeriodView(current)], new Map());
@@ -402,12 +402,53 @@ describe('Endgame mechanics 视图投影', () => {
       'as:3020:BuffList2',
       'as:3020:BuffList3'
     ]);
+    expect(encounter.battles.map((battle) => battle.bossGuide?.traits.length)).toEqual([4, 4, 4]);
+    expect(encounter.battles[0]?.bossGuide?.traits.map(({ name }) => name)).toEqual([
+      '坚防守备',
+      '攻守易型',
+      '绝境逆转',
+      '众星拱卫'
+    ]);
+    expect(
+      encounter.battles[1]?.bossGuide?.traits
+        .find((trait) => trait.id === 101402)
+        ?.linkedEffects.map((effect) => effect.id)
+    ).toEqual(['240140133', '240140134']);
+    expect(
+      encounter.battles.map((battle) => battle.stages[0]?.waves[0]?.enemies[0]?.monsterId)
+    ).toEqual([302401304, 401401304, 300402104]);
+    expect(encounter.battles.every((battle) => !('bossProfile' in battle))).toBe(true);
 
     const twoSlots = shadow.groups.find((group) => group.groupId === 3001)!;
     const twoSlotView = buildGroupView(twoSlots, [buildPeriodView(twoSlots)], new Map());
     if (twoSlotView.mode !== 'as') throw new Error('AS view mode 不匹配');
     expect(twoSlotView.encounters.at(-1)?.battles.map((battle) => battle.slot)).toEqual([1, 2]);
     expect(twoSlotView.encounters.at(-1)?.battles.every((battle) => !!battle.axiomSet)).toBe(true);
+    const companionEnemies = twoSlotView.encounters
+      .find((candidate) => candidate.id === '30014')
+      ?.battles.find((battle) => battle.slot === 1)?.stages[0]?.waves[0]?.enemies;
+    expect(companionEnemies?.map(({ monsterId }) => monsterId)).toEqual([100401404, 100402604]);
+    expect(companionEnemies?.map(({ name }) => name)).toEqual(['无望冽风的幻灭者', '杰帕德']);
+    expect(companionEnemies?.[1]?.hp.roundedPerBar).toBeTruthy();
+
+    const mismatch = shadow.groups.find((group) => group.groupId === 3011)!;
+    const mismatchView = buildGroupView(mismatch, [buildPeriodView(mismatch)], new Map());
+    if (mismatchView.mode !== 'as') throw new Error('AS view mode 不匹配');
+    const mismatchSlot = mismatchView.encounters
+      .find((candidate) => candidate.id === '30114')
+      ?.battles.find((battle) => battle.slot === 2);
+    expect(mismatchSlot?.stages[0]?.waves[0]?.enemies[0]?.monsterId).toBe(203501204);
+    expect('bossProfile' in (mismatchSlot ?? {})).toBe(false);
+    expect(mismatchSlot?.bossGuide?.traits).toHaveLength(4);
+    expect(JSON.stringify(mismatchSlot)).not.toContain('203302204');
+
+    const malformed = shadow.groups.find((group) => group.groupId === 3003)!;
+    const malformedView = buildGroupView(malformed, [buildPeriodView(malformed)], new Map());
+    if (malformedView.mode !== 'as') throw new Error('AS view mode 不匹配');
+    const malformedTraits = malformedView.encounters
+      .find((candidate) => candidate.id === '30034')
+      ?.battles.find((battle) => battle.slot === 2)?.bossGuide?.traits;
+    expect(malformedTraits?.map(({ id }) => id)).toEqual([100601, 100602, 100604]);
   });
 
   it('AA 保持 normal/hard traits 独立并共享 boss-owned 裁决象限', async () => {
@@ -426,5 +467,7 @@ describe('Endgame mechanics 视图投影', () => {
     expect(normal.judgmentQuadrantKey).toBe(view.judgmentQuadrant?.key);
     expect(hard.judgmentQuadrantKey).toBe(view.judgmentQuadrant?.key);
     expect(preliminary.judgmentQuadrantKey).toBeUndefined();
+    expect('battleRule' in normal).toBe(false);
+    expect('battleRule' in hard).toBe(false);
   });
 });

@@ -4,12 +4,14 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type {
   EndgameDatasetByMode,
+  EndgameBattleSlot,
   EndgameMode,
   EndgameStage,
   EnemyOccurrence
 } from '../../src/lib/domain/endgame';
 import { buildUniqueIndex, type EndgameAudit } from '../../scripts/data/endgame';
 import { createMazeBuffResolver, type MazeBuffRow } from '../../scripts/data/maze-buffs';
+import { createAsBossGuideResolver } from '../../scripts/data/as-boss-guides';
 import type { TextResolver } from '../../scripts/data/localization';
 import { gameTextToPlain } from '../../src/lib/domain/game-text';
 import {
@@ -223,6 +225,216 @@ describe('MazeBuff 共享配置解析', () => {
   });
 });
 
+describe('AS 首领特性配置解析', () => {
+  const fakeText = (values: Record<string, string>): TextResolver =>
+    ({
+      resolveHash: (hash: string) => values[hash] ?? '',
+      resolveRef: (ref: unknown) => {
+        const hash =
+          ref && typeof ref === 'object' && 'Hash' in ref
+            ? String((ref as { Hash: unknown }).Hash)
+            : '';
+        return values[hash] ?? '';
+      },
+      resolveSymbolic: () => '',
+      getDiagnostics: () => ({
+        'invalid-reference': { count: 0, samples: [] },
+        'unresolved-hash': { count: 0, samples: [] },
+        'unresolved-symbolic-key': { count: 0, samples: [] }
+      })
+    }) as TextResolver;
+
+  const battle = {
+    slot: 1,
+    stages: [
+      {
+        waveModel: { kind: 'fixed', waves: [{ wave: 1, enemies: [{ monsterId: 10 }] }] }
+      }
+    ]
+  } as unknown as EndgameBattleSlot;
+
+  it('按 difficulty、源顺序和显式 slot binding 解析并保留 markup', () => {
+    const warnings: string[] = [];
+    const resolver = createAsBossGuideResolver(
+      {
+        mazeExtras: [{ ID: 100, MonsterID1: 10 }],
+        guides: [{ MonsterID: 10, Difficulty: 3, TagList: [1, 2, 3], DifficultyList: [1, 3, 4] }],
+        tags: [
+          {
+            TagID: 1,
+            TagName: { Hash: '11' },
+            TagBriefDescription: { Hash: '12' },
+            ParameterList: ['0.6', '9'],
+            EffectID: [101]
+          },
+          {
+            TagID: 2,
+            TagName: { Hash: '21' },
+            TagBriefDescription: { Hash: '22' },
+            EffectID: [102, 103]
+          },
+          { TagID: 3, TagName: { Hash: '31' }, TagBriefDescription: { Hash: '32' } }
+        ],
+        extraEffects: [
+          {
+            ExtraEffectID: 101,
+            ExtraEffectName: { Hash: '1011' },
+            ExtraEffectDesc: { Hash: '1012' }
+          },
+          {
+            ExtraEffectID: 102,
+            ExtraEffectName: { Hash: '1021' },
+            ExtraEffectDesc: { Hash: '1022' }
+          },
+          {
+            ExtraEffectID: 103,
+            ExtraEffectName: { Hash: '1031' },
+            ExtraEffectDesc: { Hash: '1032' }
+          }
+        ]
+      },
+      fakeText({
+        '11': '特性一',
+        '12': '<color=#fff>#1%</color>',
+        '21': '特性二',
+        '22': '描述二',
+        '1011': '效果一',
+        '1012': '效果描述一',
+        '1021': '效果二',
+        '1022': '效果描述二',
+        '1031': '效果三',
+        '1032': '<color=#fff>效果描述三</color>'
+      }),
+      { warn: (code) => warnings.push(code) }
+    );
+    const guides = resolver.resolveEncounter({
+      groupId: 1,
+      configId: 100,
+      difficulty: 3,
+      battles: [battle]
+    });
+    expect(guides).toHaveLength(1);
+    expect(guides[0]?.traits.map(({ tagId }) => tagId)).toEqual([1, 2]);
+    expect(guides[0]?.traits[0]).toMatchObject({
+      order: 1,
+      requiredDifficulty: 1,
+      description: '<color=#fff>60%</color>',
+      params: ['0.6', '9'],
+      provenance: { table: 'MonsterGuideConfig', ownerId: 10, arrayIndex: 0 }
+    });
+    expect(warnings).toContain('unused-as-boss-trait-param');
+    expect(
+      guides[0]?.traits.map((trait) => trait.linkedEffects.map((effect) => effect.id))
+    ).toEqual([['101'], ['102', '103']]);
+    expect(guides[0]?.traits[1]?.linkedEffects[1]?.description).toBe(
+      '<color=#fff>效果描述三</color>'
+    );
+  });
+
+  it('对缺关系、重复 Tag、缺本地化和缺参安全省略，并拒绝重复核心主键', () => {
+    expect(() =>
+      createAsBossGuideResolver(
+        {
+          mazeExtras: [
+            { ID: 100, MonsterID1: 10 },
+            { ID: 100, MonsterID1: 10 }
+          ],
+          guides: [],
+          tags: [],
+          extraEffects: []
+        },
+        fakeText({}),
+        { warn: () => undefined }
+      )
+    ).toThrow(/重复主键/);
+
+    const warnings: string[] = [];
+    const resolver = createAsBossGuideResolver(
+      {
+        mazeExtras: [{ ID: 100, MonsterID1: 10 }],
+        guides: [
+          {
+            MonsterID: 10,
+            Difficulty: 4,
+            TagList: [3, 3, 1, 2],
+            DifficultyList: [5, 1, 1, 1]
+          }
+        ],
+        tags: [
+          { TagID: 1, TagName: { Hash: '11' }, TagBriefDescription: { Hash: '12' } },
+          {
+            TagID: 2,
+            TagName: { Hash: '21' },
+            TagBriefDescription: { Hash: '22' },
+            ParameterList: ['1']
+          },
+          { TagID: 3, TagName: { Hash: '31' }, TagBriefDescription: { Hash: '32' } }
+        ],
+        extraEffects: []
+      },
+      fakeText({
+        '11': '',
+        '12': '缺名称',
+        '21': '缺参',
+        '22': '#2%',
+        '31': '不应采用后出现的重复项',
+        '32': '描述'
+      }),
+      { warn: (code) => warnings.push(code) }
+    );
+    expect(
+      resolver.resolveEncounter({ groupId: 1, configId: 100, difficulty: 4, battles: [battle] })[0]
+        ?.traits
+    ).toEqual([]);
+    expect(warnings).toEqual(
+      expect.arrayContaining([
+        'missing-as-boss-trait-localization',
+        'duplicate-as-boss-trait',
+        'invalid-as-boss-trait-placeholder'
+      ])
+    );
+    expect(
+      resolver.resolveEncounter({ groupId: 1, configId: 999, difficulty: 4, battles: [battle] })
+    ).toEqual([]);
+    expect(warnings).toContain('missing-as-boss-maze-extra');
+  });
+
+  it('未解析 EffectID 只记录诊断，不向关卡效果泄露原始 ID', () => {
+    const warnings: string[] = [];
+    const resolver = createAsBossGuideResolver(
+      {
+        mazeExtras: [{ ID: 100, MonsterID1: 10 }],
+        guides: [{ MonsterID: 10, Difficulty: 4, TagList: [1], DifficultyList: [1] }],
+        tags: [
+          {
+            TagID: 1,
+            TagName: { Hash: '11' },
+            TagBriefDescription: { Hash: '12' },
+            EffectID: [999]
+          }
+        ],
+        extraEffects: []
+      },
+      fakeText({ '11': '关卡效果', '12': '原始描述' }),
+      { warn: (code) => warnings.push(code) }
+    );
+    const trait = resolver.resolveEncounter({
+      groupId: 1,
+      configId: 100,
+      difficulty: 4,
+      battles: [battle]
+    })[0]?.traits[0];
+    expect(trait?.linkedEffects).toEqual([]);
+    expect(JSON.stringify(trait)).not.toContain('999');
+    expect(warnings).toContain('unresolved-as-stage-effect-extra-effect');
+    expect(resolver.getAudit()).toMatchObject({
+      linkedEffectRelations: 1,
+      displayReadyLinkedEffects: 0,
+      omittedLinkedEffects: 1
+    });
+  });
+});
+
 describe('PF HP resolver', () => {
   const hpInput = {
     hpBase: parseDecimal('10'),
@@ -285,9 +497,9 @@ describe('PF HP resolver', () => {
 });
 
 describe('Endgame 真实数据管线', () => {
-  it('四个模式使用 schema 20 且 fixed/spawn 模型分离', async () => {
+  it('四个模式使用 schema 21 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
-    expect(all.every((item) => item.schemaVersion === 20)).toBe(true);
+    expect(all.every((item) => item.schemaVersion === 22)).toBe(true);
     expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
       'fixed'
     );
@@ -346,6 +558,74 @@ describe('Endgame 真实数据管线', () => {
       [2, 3110006],
       [3, 3110006]
     ]);
+
+    const shadowEncounter = shadowGroup.encounters.find(
+      (encounter) => encounter.configId === 30204
+    )!;
+    expect(shadowEncounter.bossGuides).toHaveLength(3);
+    expect(shadowEncounter.bossGuides[0]).toMatchObject({
+      key: 'as:30204:MonsterID1',
+      slot: 1,
+      guideMonsterId: 302401304,
+      difficulty: 4,
+      provenance: {
+        table: 'ChallengeBossMazeExtra',
+        ownerId: 30204,
+        field: 'MonsterID1'
+      }
+    });
+    expect(shadowEncounter.bossGuides[0]?.traits.map(({ tagId, name }) => [tagId, name])).toEqual([
+      [100201, '坚防守备'],
+      [100202, '攻守易型'],
+      [100203, '绝境逆转'],
+      [100204, '众星拱卫']
+    ]);
+    expect(gameTextToPlain(shadowEncounter.bossGuides[0]?.traits[0]?.description)).toContain('60%');
+    expect(gameTextToPlain(shadowEncounter.bossGuides[0]?.traits[0]?.description)).toContain(
+      '125%'
+    );
+    expect(
+      shadowEncounter.bossGuides[0]?.traits.map((trait) =>
+        trait.linkedEffects.map((effect) => effect.id)
+      )
+    ).toEqual([[], ['70000303'], [], []]);
+    expect(
+      shadowEncounter.bossGuides[1]?.traits
+        .find((trait) => trait.tagId === 101402)
+        ?.linkedEffects.map((effect) => [effect.id, effect.name])
+    ).toEqual([
+      ['240140133', '战甲'],
+      ['240140134', '百炼战甲']
+    ]);
+
+    const difficultyTraitCounts = shadowGroup.encounters.map((encounter) => [
+      encounter.ordinal,
+      encounter.bossGuides[0]?.traits.length
+    ]);
+    expect(difficultyTraitCounts).toEqual([
+      [1, 2],
+      [2, 2],
+      [3, 3],
+      [4, 4]
+    ]);
+
+    const malformedEncounter = (await dataset('as')).groups
+      .find((group) => group.groupId === 3003)
+      ?.encounters.find((encounter) => encounter.configId === 30034);
+    expect(
+      malformedEncounter?.bossGuides
+        .find((guide) => guide.slot === 2)
+        ?.traits.map(({ tagId }) => tagId)
+    ).toEqual([100601, 100602, 100604]);
+
+    const mismatchEncounter = (await dataset('as')).groups
+      .find((group) => group.groupId === 3011)
+      ?.encounters.find((encounter) => encounter.configId === 30114);
+    expect(mismatchEncounter?.bossGuides.find((guide) => guide.slot === 2)).toMatchObject({
+      guideMonsterId: 203302204,
+      slot: 2,
+      traits: expect.any(Array)
+    });
     expect(
       shadowGroup.axiomSets.map((set) => [set.slot, set.options.map(({ buff }) => buff.id)])
     ).toEqual([
@@ -387,7 +667,7 @@ describe('Endgame 真实数据管线', () => {
     const encounterFields: Record<EndgameMode, string[]> = {
       moc: ['memoryTurbulence'],
       pf: ['baseMechanic'],
-      as: ['aftertaste'],
+      as: ['aftertaste', 'bossGuides'],
       aa: ['traits', 'judgmentQuadrantKey']
     };
     for (const mode of modes) {
@@ -639,6 +919,26 @@ describe('Endgame 真实数据管线', () => {
       missingIconPath: 0,
       missingDescriptionParams: 0,
       unusedParams: 77
+    });
+    expect(latest.endgameAudit.asBossGuides).toEqual({
+      slotRelations: 163,
+      applicableTraitRelations: 452,
+      displayReadyTraits: 446,
+      omittedTraitRelations: 6,
+      guideStageMonsterMismatches: 8,
+      missingMazeExtras: 0,
+      missingSlotBindings: 0,
+      missingGuides: 0,
+      missingTags: 0,
+      missingLocalization: 0,
+      arrayLengthMismatches: 0,
+      difficultyMismatches: 0,
+      duplicateTags: 0,
+      linkedEffectRelations: 192,
+      displayReadyLinkedEffects: 192,
+      omittedLinkedEffects: 0,
+      distinctMalformedTags: 1,
+      distinctUnusedParamTags: 21
     });
     expect(latest.endgameAudit.modifierRelations).toEqual({
       moc: { memoryTurbulence: 603, groupMismatches: 0 },

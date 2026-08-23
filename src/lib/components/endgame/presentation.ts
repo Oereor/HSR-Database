@@ -1,1 +1,1 @@
-export type EndgameEnemyCardVariant = 'standard' | 'compact' | 'boss';
+export type EndgameEnemyCardVariant = 'standard' | 'compact';

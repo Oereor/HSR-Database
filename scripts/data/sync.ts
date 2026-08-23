@@ -63,6 +63,7 @@ import { formatGameMarkup, formatGameText } from './text.js';
 import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildEndgameData } from './endgame.js';
+import { createExtraEffectResolver } from './extra-effects.js';
 import {
   buildEnemySkillPhases,
   normalizeEnemyPhases,
@@ -216,7 +217,10 @@ export async function syncData(): Promise<DataManifest> {
     'MonsterSkillConfig',
     'HardLevelGroup',
     'EliteGroup',
-    'ExtraEffectConfig'
+    'ExtraEffectConfig',
+    'ChallengeBossMazeExtra',
+    'MonsterGuideConfig',
+    'MonsterGuideTag'
   ] as const;
   const loaded = await Promise.all(tableNames.map((name) => readTable<Raw>(root, name)));
   const regularTables = Object.fromEntries(
@@ -322,7 +326,6 @@ export async function syncData(): Promise<DataManifest> {
   const monsterSkillRows = by(tables.MonsterSkillConfig, 'SkillID');
   const hardLevelRows = grouped(tables.HardLevelGroup, 'HardLevelGroup');
   const eliteRows = by(tables.EliteGroup, 'EliteGroup');
-  const extraEffectRows = by(tables.ExtraEffectConfig, 'ExtraEffectID');
   const avatarSpecialSkillTreeAudit = createAvatarSpecialSkillTreeAudit();
   const avatarSpecialSkillRelations = resolveAvatarSpecialSkillRelations(
     normalizeAvatarSpecialSkillRelations(
@@ -366,50 +369,42 @@ export async function syncData(): Promise<DataManifest> {
       ].map(String)
     );
 
+  const extraEffectResolver = createExtraEffectResolver(tables.ExtraEffectConfig, tr, {
+    onUnresolved: (extraEffectId, textSource) =>
+      missingText.record('C', 'unresolved-relation', textSource, `extra-effect:${extraEffectId}`),
+    onDescriptionDiagnostics: (extraEffectId, diagnostics, textSource) => {
+      collectDescriptionDiagnostics(
+        textSource.entity,
+        extraEffectId,
+        diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
+      );
+    }
+  });
+
   const resolveExtraEffects = (
     rawIds: unknown[],
     ownerEntity: string,
     ownerId: string,
     onUnresolved?: (extraEffectId: string) => void
-  ): SkillExtraEffect[] =>
-    unique(rawIds.map(String)).flatMap((extraEffectId) => {
-      const extra = extraEffectRows.get(extraEffectId);
-      if (!extra) {
-        onUnresolved?.(extraEffectId);
-        if (!onUnresolved)
-          missingText.record(
-            'C',
-            'unresolved-relation',
-            source(ownerEntity, ownerId, 'ExtraEffectIDList'),
-            `extra-effect:${extraEffectId}`
-          );
-        return [];
-      }
-      const formatted = formatGameMarkup(
-        tr(
-          extra.ExtraEffectDesc,
-          source(`${ownerEntity}-extra-effect`, extraEffectId, 'ExtraEffectDesc')
-        ),
-        values(extra.DescParamList)
-      );
-      collectDescriptionDiagnostics(
-        `${ownerEntity}-extra-effect`,
-        extraEffectId,
-        formatted.diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
-      );
-      const name = tr(
-        extra.ExtraEffectName,
-        source(`${ownerEntity}-extra-effect`, extraEffectId, 'ExtraEffectName')
-      );
-      if (!gameTextToPlain(name).trim() || !gameTextToPlain(formatted.text).trim()) return [];
-      return [
-        {
-          id: extraEffectId,
-          name,
-          description: formatted.text
-        }
-      ];
+  ): SkillExtraEffect[] => {
+    const ids = unique(rawIds.map(String));
+    if (!onUnresolved)
+      return extraEffectResolver.resolve(ids, {
+        ownerEntity,
+        ownerId,
+        field: 'ExtraEffectIDList'
+      });
+    const resolvable = ids.filter((extraEffectId) => {
+      if (extraEffectResolver.has(extraEffectId)) return true;
+      onUnresolved(extraEffectId);
+      return false;
     });
+    return extraEffectResolver.resolve(resolvable, {
+      ownerEntity,
+      ownerId,
+      field: 'ExtraEffectIDList'
+    });
+  };
   const enhancedAvatars = by(tables.AvatarConfigEnhanced, 'AvatarID');
 
   if (enhancedAvatars.size !== tables.AvatarConfigEnhanced.length)
@@ -1601,7 +1596,7 @@ export async function syncData(): Promise<DataManifest> {
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 23,
+    schemaVersion: 25,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),

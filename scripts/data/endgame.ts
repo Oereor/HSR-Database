@@ -53,6 +53,14 @@ import {
   type MazeBuffResolutionAudit,
   type MazeBuffRow
 } from './maze-buffs.js';
+import {
+  createAsBossGuideResolver,
+  type AsBossGuideAudit,
+  type ChallengeBossMazeExtraRow,
+  type MonsterGuideConfigRow,
+  type MonsterGuideTagRow
+} from './as-boss-guides.js';
+import type { ExtraEffectRow } from './extra-effects.js';
 
 type Id = number;
 
@@ -245,6 +253,7 @@ export interface EndgameAudit {
     }>;
   };
   mazeBuffs: MazeBuffResolutionAudit;
+  asBossGuides: AsBossGuideAudit;
   modifierRelations: {
     moc: { memoryTurbulence: number; groupMismatches: number };
     pf: {
@@ -275,7 +284,7 @@ export interface EndgameBuildResult {
   audit: EndgameAudit;
 }
 
-const SCHEMA_VERSION = 20 as const;
+const SCHEMA_VERSION = 22 as const;
 const MODES: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 const MAX_SAMPLES = 20;
 const PF_ROUNDING_METADATA = {
@@ -358,6 +367,10 @@ interface Tables {
   infiniteMonsterGroups: InfiniteMonsterGroupRow[];
   storyGroupExtras: ChallengeStoryGroupExtraRow[];
   bossGroupExtras: ChallengeBossGroupExtraRow[];
+  bossMazeExtras: ChallengeBossMazeExtraRow[];
+  monsterGuides: MonsterGuideConfigRow[];
+  monsterGuideTags: MonsterGuideTagRow[];
+  extraEffects: ExtraEffectRow[];
   mazeBuffs: MazeBuffRow[];
   battleEvents: BattleEventRow[];
 }
@@ -391,6 +404,10 @@ async function loadTables(root: string): Promise<Tables> {
     'StageInfiniteMonsterGroup',
     'ChallengeStoryGroupExtra',
     'ChallengeBossGroupExtra',
+    'ChallengeBossMazeExtra',
+    'MonsterGuideConfig',
+    'MonsterGuideTag',
+    'ExtraEffectConfig',
     'MazeBuff',
     'BattleEventConfig'
   ] as const;
@@ -435,6 +452,10 @@ async function loadTables(root: string): Promise<Tables> {
     infiniteMonsterGroups: table.StageInfiniteMonsterGroup,
     storyGroupExtras: table.ChallengeStoryGroupExtra,
     bossGroupExtras: table.ChallengeBossGroupExtra,
+    bossMazeExtras: table.ChallengeBossMazeExtra,
+    monsterGuides: table.MonsterGuideConfig,
+    monsterGuideTags: table.MonsterGuideTag,
+    extraEffects: table.ExtraEffectConfig,
     mazeBuffs: table.MazeBuff,
     battleEvents: table.BattleEventConfig
   };
@@ -659,6 +680,19 @@ export async function buildEndgameData(
     fail: (code, message, diagnosticContext) => diagnostics.fail(code, message, diagnosticContext),
     warn: (code, message, diagnosticContext) => diagnostics.warn(code, message, diagnosticContext)
   });
+  const asBossGuideResolver = createAsBossGuideResolver(
+    {
+      mazeExtras: tables.bossMazeExtras,
+      guides: tables.monsterGuides,
+      tags: tables.monsterGuideTags,
+      extraEffects: tables.extraEffects
+    },
+    text,
+    {
+      warn: (code, message, diagnosticContext) =>
+        diagnostics.warn(code, message, { mode: 'as', ...diagnosticContext })
+    }
+  );
   const provenance = (
     table: EndgameConfigProvenance['table'],
     ownerId: number,
@@ -1840,6 +1874,12 @@ export async function buildEndgameData(
           stageBindings
         };
         modifierRelations.as.aftertastes += 1;
+        const bossGuides = asBossGuideResolver.resolveEncounter({
+          groupId: group.GroupID,
+          configId: config.ID,
+          difficulty: config.Floor,
+          battles
+        });
         encounters.push({
           id: String(config.ID),
           configId: config.ID,
@@ -1847,7 +1887,8 @@ export async function buildEndgameData(
           ...(config.Floor === undefined ? {} : { ordinal: config.Floor }),
           variant: 'floor',
           battles,
-          aftertaste
+          aftertaste,
+          bossGuides
         });
       }
       const schedule = scheduleFor(mode, group, schedules);
@@ -2194,6 +2235,7 @@ export async function buildEndgameData(
       },
       stanceConversion,
       mazeBuffs: mazeBuffResolver.getAudit(),
+      asBossGuides: asBossGuideResolver.getAudit(),
       modifierRelations,
       summary: { modes: summary }
     }
