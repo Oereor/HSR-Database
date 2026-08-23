@@ -4,7 +4,6 @@
   import type { EndgameEnemyCardVariant } from './presentation';
 
   export let waves: EndgameWaveView[];
-  export let level: number;
   export let enemyVariant: EndgameEnemyCardVariant = 'standard';
 
   $: highDensity = waves.length >= 3 && waves.some((wave) => wave.enemies.length >= 3);
@@ -20,7 +19,7 @@
   {#each waves as wave (wave.key)}
     <section class="endgame-wave" data-wave={wave.key}>
       <h4>{wave.label}</h4>
-      <EndgameEnemyGrid enemies={wave.enemies} {level} variant={enemyVariant} />
+      <EndgameEnemyGrid enemies={wave.enemies} variant={enemyVariant} />
     </section>
   {/each}
 </div>

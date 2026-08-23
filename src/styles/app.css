@@ -2534,8 +2534,7 @@ footer a {
   margin-bottom: var(--space-4);
 }
 .endgame-enemy__name {
-  min-height: 2.9em;
-  margin: 0 0 var(--space-1);
+  margin: 0;
   color: var(--text-primary);
   font-size: var(--font-meta-value);
   font-weight: 700;
@@ -2545,16 +2544,10 @@ footer a {
 .endgame-enemy__name a:hover {
   color: var(--gold-soft);
 }
-.endgame-enemy__level {
-  color: var(--gold-soft);
-  font-size: var(--font-helper);
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
 .endgame-enemy__stats {
   display: grid;
   gap: 0.42rem;
-  margin: auto 0 0;
+  margin: 0;
 }
 .endgame-enemy__stats > div {
   display: grid;

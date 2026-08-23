@@ -232,7 +232,7 @@ test('AS 多敌人 slot 使用同级统一卡并保留完整战斗数据', async
   await expect(enemies.locator('.endgame-enemy__name')).toHaveText(['无望冽风的幻灭者', '杰帕德']);
   for (const monsterId of ['100401404', '100402604']) {
     const enemy = slot.locator(`[data-monster-id="${monsterId}"]`);
-    await expect(enemy).toContainText('Lv.90');
+    await expect(enemy.locator('.endgame-enemy__level')).toHaveCount(0);
     await expect(enemy.locator('[data-endgame-hp]')).toBeVisible();
     await expect(enemy.locator('[data-endgame-speed]')).toBeVisible();
     await expect(enemy.locator('[data-endgame-toughness]')).toBeVisible();
@@ -391,7 +391,7 @@ test('敌方实体卡采用 portrait-first 信息层级并保留全部战斗字�
   const artwork = card.locator('.endgame-enemy__artwork');
   const name = card.locator('.endgame-enemy__name');
   await expect(card).toHaveAttribute('data-enemy-card-variant', 'standard');
-  await expect(card.locator('.endgame-enemy__level')).toHaveText(/^Lv\.\d+$/);
+  await expect(card.locator('.endgame-enemy__level')).toHaveCount(0);
   await expect(card.locator('[data-endgame-hp]')).toBeVisible();
   await expect(card.locator('[data-endgame-speed]')).toBeVisible();
   await expect(card.locator('[data-endgame-toughness]')).toBeVisible();
@@ -406,6 +406,11 @@ test('敌方实体卡采用 portrait-first 信息层级并保留全部战斗字�
   expect(cardBox!.width).toBeLessThanOrEqual(262);
   expect(cardBox!.height).toBeGreaterThan(cardBox!.width);
   expect(artworkBox!.y + artworkBox!.height).toBeLessThanOrEqual(nameBox!.y);
+  const identityBox = await card.locator('.endgame-enemy__identity').boundingBox();
+  const statsBox = await card.locator('.endgame-enemy__stats').boundingBox();
+  expect(identityBox).not.toBeNull();
+  expect(statsBox).not.toBeNull();
+  expect(statsBox!.y - (identityBox!.y + identityBox!.height)).toBeLessThanOrEqual(20);
 
   const battleSurface = await page.locator('[data-battle-slot="1"]').evaluate((element) => ({
     background: getComputedStyle(element).backgroundColor,

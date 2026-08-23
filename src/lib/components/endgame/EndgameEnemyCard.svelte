@@ -7,7 +7,6 @@
   import type { EndgameEnemyCardVariant } from './presentation';
 
   export let occurrence: EnemyOccurrenceView;
-  export let level: number;
   export let variant: EndgameEnemyCardVariant = 'standard';
 
   let portraitFailed = false;
@@ -53,7 +52,6 @@
           <GameText text={occurrence.name} />
         {/if}
       </h5>
-      <span class="endgame-enemy__level">Lv.{level}</span>
     </header>
 
     <dl class="endgame-enemy__stats">

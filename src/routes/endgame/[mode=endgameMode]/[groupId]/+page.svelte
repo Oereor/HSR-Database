@@ -130,11 +130,7 @@
                           {#if battle.stages.length > 1 || stage.waves.length > 1}
                             <p>阶段 {stage.index} · {wave.label}</p>
                           {/if}
-                          <EndgameEnemyGrid
-                            enemies={wave.enemies}
-                            level={stage.level}
-                            variant="standard"
-                          />
+                          <EndgameEnemyGrid enemies={wave.enemies} variant="standard" />
                         </div>
                       {/each}
                     {/each}

@@ -4,12 +4,11 @@
   import type { EndgameEnemyCardVariant } from './presentation';
 
   export let enemies: EnemyOccurrenceView[];
-  export let level: number;
   export let variant: EndgameEnemyCardVariant = 'standard';
 </script>
 
 <div class="endgame-enemy-grid" data-enemy-grid>
   {#each enemies as enemy (enemy.identity)}
-    <EndgameEnemyCard occurrence={enemy} {level} {variant} />
+    <EndgameEnemyCard occurrence={enemy} {variant} />
   {/each}
 </div>

@@ -21,7 +21,7 @@
           <span>Lv.{stage.level}</span>
         </div>
       {/if}
-      <WaveList waves={stage.waves} level={stage.level} {enemyVariant} />
+      <WaveList waves={stage.waves} {enemyVariant} />
     </div>
   {/each}
 </section>
