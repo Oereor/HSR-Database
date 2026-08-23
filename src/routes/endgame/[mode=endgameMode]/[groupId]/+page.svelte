@@ -17,6 +17,7 @@
     buildPureFictionLocalNavigation
   } from '$lib/domain/endgame-navigation';
   import type { EndgameGroupView } from '$lib/domain/endgame-view';
+  import type { EndgameEnemyCardVariant } from '$lib/components/endgame/presentation';
   export let data;
 
   function buildLocalNavigation(group: EndgameGroupView, selectedId: string) {
@@ -28,6 +29,7 @@
   }
 
   let requestedEncounter: string | null = null;
+  let enemyVariant: EndgameEnemyCardVariant;
   afterNavigate(() => {
     requestedEncounter = new URL(window.location.href).searchParams.get('encounter');
   });
@@ -35,10 +37,8 @@
     data.group.encounters.find((encounter) => encounter.id === requestedEncounter) ??
     data.group.encounters.find((encounter) => encounter.id === data.group.defaultEncounterId) ??
     data.group.encounters[0];
-  $: bossMode =
-    data.group.mode === 'as' ||
-    selectedEncounter?.variant === 'boss-normal' ||
-    selectedEncounter?.variant === 'boss-hard';
+  $: enemyVariant =
+    data.group.mode === 'as' ? 'boss' : data.group.mode === 'pf' ? 'compact' : 'standard';
   $: localNavigation = selectedEncounter
     ? buildLocalNavigation(data.group, selectedEncounter.id)
     : undefined;
@@ -110,13 +110,9 @@
         </p>
       {/if}
 
-      <div
-        class:endgame-battle-grid--boss={bossMode}
-        class:endgame-battle-grid--with-slot-mechanics={data.group.mode === 'as'}
-        class="endgame-battle-grid"
-      >
+      <div class="endgame-battle-grid">
         {#each selectedEncounter.battles as battle (battle.slot)}
-          <BattleSection {battle} boss={bossMode} dense={data.group.mode === 'pf'}>
+          <BattleSection {battle} {enemyVariant}>
             {#if 'axiomSet' in battle && battle.axiomSet}
               <ApocalypticShadowAxiomSection axiomSet={battle.axiomSet} />
             {/if}

@@ -207,10 +207,52 @@ describe('Endgame occurrence 投影', () => {
     const group = pf.groups.find((candidate) => candidate.groupId === 2025)!;
     const view = buildGroupView(group, [buildPeriodView(group)], new Map());
     const battle = view.encounters.find((candidate) => candidate.id === '20254')!.battles[0];
+    expect(battle.stages[0].waves.map((wave) => wave.label)).toEqual([
+      '波次 1',
+      '波次 2',
+      '波次 3'
+    ]);
     expect(battle.stages[0].waves.map((wave) => wave.enemies.length)).toEqual([4, 3, 3]);
     expect(
       battle.stages[0].waves.flatMap((wave) => wave.enemies).every((enemy) => !enemy.count)
     ).toBe(true);
+  });
+
+  it('真实 MoC 保留普通双波次与历史高密度三波次结构', async () => {
+    const moc = await dataset('moc');
+    const currentGroup = moc.groups.find((candidate) => candidate.groupId === 1034)!;
+    const currentView = buildGroupView(currentGroup, [buildPeriodView(currentGroup)], new Map());
+    const current = currentView.encounters.find((candidate) => candidate.id === '5312')!;
+    expect(current.battles[0].stages[0].waves.map((wave) => wave.enemies.length)).toEqual([2, 1]);
+
+    const legacyGroup = moc.groups.find((candidate) => candidate.groupId === 101)!;
+    const legacyView = buildGroupView(legacyGroup, [buildPeriodView(legacyGroup)], new Map());
+    const legacy = legacyView.encounters.find((candidate) => candidate.id === '108')!;
+    const highDensityStage = legacy.battles
+      .flatMap((battle) => battle.stages)
+      .find(
+        (stage) => stage.waves.length === 3 && stage.waves.some((wave) => wave.enemies.length >= 3)
+      );
+    expect(highDensityStage?.waves.map((wave) => wave.enemies.length)).toEqual([4, 4, 1]);
+  });
+
+  it('真实 AA 保留 Group 6 三波次与 Group 8 双波次结构', async () => {
+    const aa = await dataset('aa');
+    const group6 = aa.groups.find((candidate) => candidate.groupId === 6)!;
+    const group6View = buildGroupView(group6, [buildPeriodView(group6)], new Map());
+    const group6Normal = group6View.encounters.find((candidate) => candidate.id === '604:normal')!;
+    expect(group6Normal.battles[0].stages[0].waves.map((wave) => wave.enemies.length)).toEqual([
+      2, 1, 1
+    ]);
+
+    const group8 = aa.groups.find((candidate) => candidate.groupId === 8)!;
+    const group8View = buildGroupView(group8, [buildPeriodView(group8)], new Map());
+    for (const encounterId of ['804:normal', '804:hard']) {
+      const encounter = group8View.encounters.find((candidate) => candidate.id === encounterId)!;
+      expect(encounter.battles[0].stages[0].waves.map((wave) => wave.enemies.length)).toEqual([
+        2, 2
+      ]);
+    }
   });
 
   it('真实 AA 只展示实际 spawned MonsterID', async () => {

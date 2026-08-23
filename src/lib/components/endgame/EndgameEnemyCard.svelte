@@ -4,18 +4,22 @@
   import { getElementColor } from '$lib/domain/elements';
   import type { EnemyOccurrenceView } from '$lib/domain/endgame-view';
   import HpDisplay from './HpDisplay.svelte';
+  import type { EndgameEnemyCardVariant } from './presentation';
 
   export let occurrence: EnemyOccurrenceView;
-  export let emphasis: 'normal' | 'boss' | 'dense' = 'normal';
+  export let level: number;
+  export let variant: EndgameEnemyCardVariant = 'standard';
 
   let portraitFailed = false;
 </script>
 
 <article
-  class:endgame-enemy--boss={emphasis === 'boss'}
-  class:endgame-enemy--dense={emphasis === 'dense'}
+  class:endgame-enemy--boss={variant === 'boss'}
+  class:endgame-enemy--compact={variant === 'compact'}
   class:endgame-enemy--with-art={occurrence.portraitUrl && !portraitFailed}
   class="endgame-enemy"
+  data-endgame-enemy-card
+  data-enemy-card-variant={variant}
   data-monster-id={occurrence.monsterId}
   data-template-id={occurrence.monsterTemplateId}
 >
@@ -34,24 +38,35 @@
     {:else}
       <span class="endgame-enemy__fallback">敌</span>
     {/if}
+    {#if occurrence.count}
+      <span class="endgame-enemy__count" aria-label={`数量 ${occurrence.count}`}
+        >×{occurrence.count}</span
+      >
+    {/if}
   </div>
-  <div class="endgame-enemy__shade" aria-hidden="true"></div>
+
   <div class="endgame-enemy__content">
-    <h4 class="endgame-enemy__name">
-      {#if occurrence.enemyHref}
-        <a href={occurrence.enemyHref}><GameText text={occurrence.name} /></a>
-      {:else}
-        <GameText text={occurrence.name} />
-      {/if}
-      {#if occurrence.count}<span class="endgame-enemy__count">×{occurrence.count}</span>{/if}
-    </h4>
+    <header class="endgame-enemy__identity">
+      <h5 class="endgame-enemy__name">
+        {#if occurrence.enemyHref}
+          <a href={occurrence.enemyHref}><GameText text={occurrence.name} /></a>
+        {:else}
+          <GameText text={occurrence.name} />
+        {/if}
+      </h5>
+      <span class="endgame-enemy__level">Lv.{level}</span>
+    </header>
 
     <dl class="endgame-enemy__stats">
       <div>
         <dt>生命值</dt>
         <dd><HpDisplay hp={occurrence.hp} /></dd>
       </div>
-      <div>
+      <div class="endgame-enemy__stat--short">
+        <dt>速度</dt>
+        <dd><strong data-endgame-speed>{occurrence.speed.rounded}</strong></dd>
+      </div>
+      <div class="endgame-enemy__stat--short">
         <dt>韧性值</dt>
         <dd>
           <strong data-endgame-toughness>
@@ -63,10 +78,6 @@
               >{/if}
           </strong>
         </dd>
-      </div>
-      <div>
-        <dt>速度</dt>
-        <dd><strong data-endgame-speed>{occurrence.speed.rounded}</strong></dd>
       </div>
       <div class="endgame-enemy__weakness-row">
         <dt>弱点属性</dt>

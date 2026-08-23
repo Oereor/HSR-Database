@@ -1,4 +1,11 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
+
+async function gridColumnCount(locator: Locator) {
+  return locator.evaluate((element) => {
+    const tracks = getComputedStyle(element).gridTemplateColumns.match(/[\d.]+px/g) ?? [];
+    return tracks.filter((track) => Number.parseFloat(track) > 1).length;
+  });
+}
 
 async function selectLocalNode(page: Page, label: string) {
   const mobileTrigger = page.locator('.endgame-local-nav-trigger');
@@ -159,9 +166,121 @@ test('PF 只显示波内唯一敌人类型', async ({ page }) => {
   await page.goto('/endgame/pf/2025?encounter=20254');
   await expect(page.getByText(/重复生成、生成次数与先后顺序已省略/)).toBeVisible();
   const firstBattle = page.locator('[data-battle-slot="1"]');
+  await expect(firstBattle.locator('[data-wave] > h4')).toHaveText(['波次 1', '波次 2', '波次 3']);
   await expect(firstBattle.locator('[data-wave="spawn-303230411"] .endgame-enemy')).toHaveCount(4);
   await expect(firstBattle.locator('[data-wave="spawn-303230412"] .endgame-enemy')).toHaveCount(3);
+  await expect(firstBattle.locator('[data-wave="spawn-303230413"] .endgame-enemy')).toHaveCount(3);
   await expect(firstBattle.locator('.endgame-enemy__count')).toHaveCount(0);
+});
+
+test('敌方实体卡采用 portrait-first 信息层级并保留全部战斗字段', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/endgame/moc/1034?encounter=5312');
+  const card = page.locator('[data-endgame-enemy-card]').first();
+  const artwork = card.locator('.endgame-enemy__artwork');
+  const name = card.locator('.endgame-enemy__name');
+  await expect(card).toHaveAttribute('data-enemy-card-variant', 'standard');
+  await expect(card.locator('.endgame-enemy__level')).toHaveText(/^Lv\.\d+$/);
+  await expect(card.locator('[data-endgame-hp]')).toBeVisible();
+  await expect(card.locator('[data-endgame-speed]')).toBeVisible();
+  await expect(card.locator('[data-endgame-toughness]')).toBeVisible();
+  await expect(card.locator('.endgame-weaknesses')).toBeVisible();
+
+  const cardBox = await card.boundingBox();
+  const artworkBox = await artwork.boundingBox();
+  const nameBox = await name.boundingBox();
+  expect(cardBox).not.toBeNull();
+  expect(artworkBox).not.toBeNull();
+  expect(nameBox).not.toBeNull();
+  expect(cardBox!.width).toBeLessThanOrEqual(262);
+  expect(cardBox!.height).toBeGreaterThan(cardBox!.width);
+  expect(artworkBox!.y + artworkBox!.height).toBeLessThanOrEqual(nameBox!.y);
+
+  const battleSurface = await page.locator('[data-battle-slot="1"]').evaluate((element) => ({
+    background: getComputedStyle(element).backgroundColor,
+    borderRadius: getComputedStyle(element).borderRadius,
+    paddingTop: getComputedStyle(element).paddingTop
+  }));
+  expect(battleSurface).toEqual({
+    background: 'rgba(0, 0, 0, 0)',
+    borderRadius: '0px',
+    paddingTop: '0px'
+  });
+
+  await page.goto('/endgame/moc/101?encounter=108');
+  await expect(page.locator('.endgame-enemy__count').first()).toHaveText(/^×[2-9]\d*$/);
+});
+
+test('四模式映射到明确的敌方卡 variant 并保持 mechanics ownership', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+
+  await page.goto('/endgame/pf/2025?encounter=20254');
+  await expect(page.locator('[data-endgame-enemy-card]').first()).toHaveAttribute(
+    'data-enemy-card-variant',
+    'compact'
+  );
+  const pfWaves = page.locator('[data-battle-slot="1"] .endgame-wave-list');
+  await expect(pfWaves.locator('[data-wave]')).toHaveCount(3);
+  await expect(pfWaves).toHaveAttribute('data-wave-layout', 'high-density');
+  expect(await gridColumnCount(pfWaves)).toBe(2);
+
+  await page.goto('/endgame/as/3020?encounter=30204');
+  await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(3);
+  await expect(page.locator('[data-endgame-enemy-card]').first()).toHaveAttribute(
+    'data-enemy-card-variant',
+    'boss'
+  );
+  const firstAsBattle = page.locator('[data-battle-slot="1"]');
+  const axiomBox = await firstAsBattle.locator('[data-endgame-mechanics="axiom"]').boundingBox();
+  const waveBox = await firstAsBattle.locator('.endgame-wave-list').boundingBox();
+  expect(axiomBox).not.toBeNull();
+  expect(waveBox).not.toBeNull();
+  expect(axiomBox!.y + axiomBox!.height).toBeLessThanOrEqual(waveBox!.y);
+
+  await page.goto('/endgame/aa/8?encounter=804%3Ahard');
+  await expect(page.locator('[data-endgame-enemy-card]').first()).toHaveAttribute(
+    'data-enemy-card-variant',
+    'standard'
+  );
+});
+
+test('AA Group 6 波次按桌面、平板与手机宽度自适应且不改变 2+1+1 投影', async ({ page }) => {
+  await page.goto('/endgame/aa/6?encounter=604%3Anormal');
+  const waveList = page.locator('[data-battle-slot="1"] .endgame-wave-list');
+  await expect(waveList.locator('[data-wave]')).toHaveCount(3);
+  await expect(
+    waveList.locator('[data-wave]').nth(0).locator('[data-endgame-enemy-card]')
+  ).toHaveCount(2);
+  await expect(
+    waveList.locator('[data-wave]').nth(1).locator('[data-endgame-enemy-card]')
+  ).toHaveCount(1);
+  await expect(
+    waveList.locator('[data-wave]').nth(2).locator('[data-endgame-enemy-card]')
+  ).toHaveCount(1);
+
+  for (const width of [1440, 1200]) {
+    await page.setViewportSize({ width, height: 1000 });
+    expect(await gridColumnCount(waveList)).toBe(3);
+  }
+
+  await page.setViewportSize({ width: 900, height: 1000 });
+  expect(await gridColumnCount(waveList)).toBe(2);
+
+  for (const width of [390, 320]) {
+    await page.setViewportSize({ width, height: 844 });
+    expect(await gridColumnCount(waveList)).toBe(1);
+    for (const grid of await waveList.locator('[data-enemy-grid]').all()) {
+      expect(await gridColumnCount(grid)).toBe(1);
+    }
+    const cardBox = await waveList.locator('[data-endgame-enemy-card]').first().boundingBox();
+    expect(cardBox).not.toBeNull();
+    expect(cardBox!.width).toBeLessThanOrEqual(280);
+    expect(cardBox!.height).toBeGreaterThan(cardBox!.width);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+  }
 });
 
 test('PF 非 canonical Monster 展示具体实例弱点', async ({ page }) => {
@@ -242,9 +361,12 @@ test('敌人立绘请求失败时保留完整数据并显示中性降级', async
   const card = page.locator('[data-monster-id="406401204"]');
   const portrait = card.locator('[data-enemy-portrait]');
   await expect(portrait).toBeVisible();
+  const artworkBefore = await card.locator('.endgame-enemy__artwork').boundingBox();
   await portrait.evaluate((image) => image.dispatchEvent(new Event('error')));
   await expect(card.locator('[data-enemy-portrait]')).toHaveCount(0);
   await expect(card.locator('.endgame-enemy__fallback')).toBeVisible();
+  const artworkAfter = await card.locator('.endgame-enemy__artwork').boundingBox();
+  expect(artworkAfter?.height).toBe(artworkBefore?.height);
   await expect(card.locator('[data-endgame-hp]')).toHaveText('7,259,250 × 2');
 });
 

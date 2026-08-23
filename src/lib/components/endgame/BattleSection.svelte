@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { EndgameBattleSlotView } from '$lib/domain/endgame-view';
+  import type { EndgameEnemyCardVariant } from './presentation';
   import WaveList from './WaveList.svelte';
 
   export let battle: EndgameBattleSlotView;
-  export let boss = false;
-  export let dense = false;
+  export let enemyVariant: EndgameEnemyCardVariant = 'standard';
 </script>
 
 <section class="endgame-battle" id={`battle-${battle.slot}`} data-battle-slot={battle.slot}>
@@ -21,7 +21,7 @@
           <span>Lv.{stage.level}</span>
         </div>
       {/if}
-      <WaveList waves={stage.waves} {boss} {dense} />
+      <WaveList waves={stage.waves} level={stage.level} {enemyVariant} />
     </div>
   {/each}
 </section>

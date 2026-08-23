@@ -1,24 +1,26 @@
 <script lang="ts">
   import type { EndgameWaveView } from '$lib/domain/endgame-view';
-  import EnemyOccurrenceRow from './EnemyOccurrenceRow.svelte';
+  import EndgameEnemyGrid from './EndgameEnemyGrid.svelte';
+  import type { EndgameEnemyCardVariant } from './presentation';
 
   export let waves: EndgameWaveView[];
-  export let boss = false;
-  export let dense = false;
+  export let level: number;
+  export let enemyVariant: EndgameEnemyCardVariant = 'standard';
+
+  $: highDensity = waves.length >= 3 && waves.some((wave) => wave.enemies.length >= 3);
+  $: sparseThreeWave = waves.length === 3 && !highDensity;
 </script>
 
-<div class="endgame-wave-list">
+<div
+  class:endgame-wave-list--high-density={highDensity}
+  class:endgame-wave-list--sparse-three={sparseThreeWave}
+  class="endgame-wave-list"
+  data-wave-layout={highDensity ? 'high-density' : 'standard'}
+>
   {#each waves as wave (wave.key)}
     <section class="endgame-wave" data-wave={wave.key}>
       <h4>{wave.label}</h4>
-      <div class="endgame-wave__enemies">
-        {#each wave.enemies as enemy (enemy.identity)}
-          <EnemyOccurrenceRow
-            occurrence={enemy}
-            emphasis={boss ? 'boss' : dense ? 'dense' : 'normal'}
-          />
-        {/each}
-      </div>
+      <EndgameEnemyGrid enemies={wave.enemies} {level} variant={enemyVariant} />
     </section>
   {/each}
 </div>
