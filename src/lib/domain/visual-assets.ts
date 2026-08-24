@@ -4,12 +4,15 @@ export interface AssetAvailability {
 }
 
 export interface VisualAssetManifest {
-  schemaVersion: 3;
+  schemaVersion: 4;
   sourceCommit?: string;
   generatedAt: string;
   characters: {
     previews: AssetAvailability;
     portraits: AssetAvailability;
+  };
+  lightCones: {
+    previews: AssetAvailability;
   };
   elements: AssetAvailability;
   paths: AssetAvailability;

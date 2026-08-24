@@ -1117,7 +1117,29 @@ export async function syncData(): Promise<DataManifest> {
     );
     const description = tr(item?.ItemDesc, source('light-cone', id, 'ItemDesc'));
     const story = tr(item?.ItemBGDesc, source('light-cone', id, 'ItemBGDesc'));
-    const skillRows = equipmentSkills.get(String(equipment.SkillID)) ?? [];
+    const passiveId = String(equipment.SkillID);
+    const skillRows = equipmentSkills.get(passiveId) ?? [];
+    const expectedLevels = Array.from(
+      { length: Number(equipment.MaxRank) },
+      (_, index) => index + 1
+    );
+    const actualLevels = skillRows.map((row) => Number(row.Level)).sort((a, b) => a - b);
+    if (actualLevels.join(',') !== expectedLevels.join(','))
+      throw new Error(
+        `光锥 ${id} 的被动 ${passiveId} 叠影等级异常：${actualLevels.join(',') || '无'}`
+      );
+    const passiveNames = skillRows.map((row) => ({
+      level: Number(row.Level),
+      name: tr(
+        row.SkillName,
+        source('light-cone-passive', `${passiveId}:${row.Level}`, 'SkillName')
+      )
+    }));
+    const distinctPassiveNames = unique(passiveNames.map((entry) => entry.name));
+    if (distinctPassiveNames.length !== 1 || !distinctPassiveNames[0])
+      throw new Error(`光锥 ${id} 的被动 ${passiveId} 在叠影等级间名称不一致或为空`);
+    const passiveName = passiveNames.find((entry) => entry.level === 1)?.name;
+    if (!passiveName) throw new Error(`光锥 ${id} 的被动 ${passiveId} 缺少叠影 I 名称`);
     const normalizedSuperimposition = normalizeLevelledDescriptions(
       skillRows.map((row) => ({
         level: Number(row.Level),
@@ -1147,9 +1169,13 @@ export async function syncData(): Promise<DataManifest> {
       ...catalog,
       kind: 'light-cone',
       story,
-      superimposition: {
-        scalingParamIndexes: normalizedSuperimposition.scalingParamIndexes,
-        levels: normalizedSuperimposition.levels
+      passive: {
+        id: passiveId,
+        name: passiveName,
+        superimposition: {
+          scalingParamIndexes: normalizedSuperimposition.scalingParamIndexes,
+          levels: normalizedSuperimposition.levels
+        }
       },
       baseStats: normalizeStatProgression(promotionRows, lightConeStatFields)
     });
@@ -1596,7 +1622,7 @@ export async function syncData(): Promise<DataManifest> {
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 25,
+    schemaVersion: 26,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),

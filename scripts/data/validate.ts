@@ -52,7 +52,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 25)
+if (manifest.schemaVersion !== 26)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -1168,8 +1168,12 @@ const lightCones = await Promise.all(
   )
 );
 for (const lightCone of lightCones) {
-  const levels = lightCone.superimposition.levels;
+  if (!lightCone.passive.id || !lightCone.passive.name)
+    throw new Error(`光锥 ${lightCone.id} 缺少被动身份或名称`);
+  const levels = lightCone.passive.superimposition.levels;
   if (!levels.length) throw new Error(`光锥 ${lightCone.id} 缺少叠影等级`);
+  if (levels.map((level) => level.level).join(',') !== '1,2,3,4,5')
+    throw new Error(`光锥 ${lightCone.id} 的叠影等级不是 I–V`);
   for (const level of levels) {
     if (level.description !== level.descriptionTokens.map((token) => token.value).join(''))
       throw new Error(`光锥 ${lightCone.id} 叠影 Lv.${level.level} 的语义文本不一致`);

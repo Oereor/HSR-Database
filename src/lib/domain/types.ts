@@ -152,6 +152,12 @@ export interface SuperimpositionEffect {
   levels: LevelledDescription[];
 }
 
+export interface LightConePassiveSkill {
+  id: string;
+  name: string;
+  superimposition: SuperimpositionEffect;
+}
+
 export type TraceType = 'stat' | 'ability';
 
 export interface Trace {
@@ -247,7 +253,7 @@ export interface Character extends CatalogEntry {
 export interface LightCone extends CatalogEntry {
   kind: 'light-cone';
   story?: string;
-  superimposition: SuperimpositionEffect;
+  passive: LightConePassiveSkill;
   baseStats: BaseStatProgression;
 }
 

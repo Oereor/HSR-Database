@@ -74,8 +74,8 @@
       </p>
       <p>
         数据来源：<a href="https://github.com/Oereor/TurnBasedGameData">TurnBasedGameData</a
-        >；角色视觉资源来源：<a href="https://github.com/Oereor/StarRailRes">StarRailRes</a>（<a
-          href="/licenses/StarRailRes-AGPL-3.0.txt">AGPL-3.0 许可证</a
+        >；角色与光锥视觉资源来源：<a href="https://github.com/Oereor/StarRailRes">StarRailRes</a
+        >（<a href="/licenses/StarRailRes-AGPL-3.0.txt">AGPL-3.0 许可证</a
         >）。数据可能延迟或存在错误；测试服、未发布或来源不明确的内容不会自动视为正式内容。
       </p>
       <p><a href="/third-party-notices.txt">第三方资源与权利声明</a></p>

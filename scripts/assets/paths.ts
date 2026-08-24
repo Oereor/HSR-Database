@@ -9,13 +9,17 @@ export const generatedAssetRoot = path.join(siteRoot, 'static', 'generated-asset
 export const generatedCharacterRoot = path.join(generatedAssetRoot, 'characters');
 export const generatedPreviewRoot = path.join(generatedCharacterRoot, 'preview');
 export const generatedPortraitRoot = path.join(generatedCharacterRoot, 'portrait');
+export const generatedLightConeRoot = path.join(generatedAssetRoot, 'light-cones');
+export const generatedLightConePreviewRoot = path.join(generatedLightConeRoot, 'preview');
 export const generatedElementRoot = path.join(generatedAssetRoot, 'elements');
 export const generatedPathRoot = path.join(generatedAssetRoot, 'paths');
 
 const requiredDirectories = [
   ['index_new', 'cn', 'characters.json'],
+  ['index_new', 'cn', 'light_cones.json'],
   ['image', 'character_preview'],
   ['image', 'character_portrait'],
+  ['image', 'light_cone_preview'],
   ['icon', 'element'],
   ['icon', 'path']
 ] as const;
@@ -56,6 +60,8 @@ export function assertAssetOutputPaths(): void {
     generatedAssetRoot,
     generatedPreviewRoot,
     generatedPortraitRoot,
+    generatedLightConeRoot,
+    generatedLightConePreviewRoot,
     generatedElementRoot,
     generatedPathRoot
   ]) {

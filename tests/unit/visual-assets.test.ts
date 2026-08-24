@@ -6,6 +6,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   resolveCharacterPreviewAsset,
   resolveCharacterPortraitAsset,
+  resolveLightConePreviewAsset,
   resolveElementIconAsset,
   resolvePathIconAsset
 } from '../../src/lib/data/visual-assets';
@@ -17,6 +18,7 @@ import {
   manifestCoversRequirements,
   PATH_SOURCE_NAMES,
   readCharacterPreviewSources,
+  readLightConePreviewSources,
   readAssetManifest,
   readAssetRequirements,
   VISUAL_ASSET_SCHEMA_VERSION,
@@ -32,6 +34,7 @@ const available = (values: string[]): AssetAvailability => ({ available: values,
 const manifest = (options?: {
   previews?: string[];
   portraits?: string[];
+  lightConePreviews?: string[];
   elements?: string[];
   paths?: string[];
 }): VisualAssetManifest => ({
@@ -40,6 +43,9 @@ const manifest = (options?: {
   characters: {
     previews: available(options?.previews ?? []),
     portraits: available(options?.portraits ?? [])
+  },
+  lightCones: {
+    previews: available(options?.lightConePreviews ?? [])
   },
   elements: available(options?.elements ?? []),
   paths: available(options?.paths ?? [])
@@ -68,6 +74,7 @@ describe('视觉资源管线', () => {
     for (const relative of [
       'image/character_preview',
       'image/character_portrait',
+      'image/light_cone_preview',
       'icon/element',
       'icon/path'
     ]) {
@@ -75,6 +82,7 @@ describe('视觉资源管线', () => {
     }
     await mkdir(path.join(root, 'index_new', 'cn'), { recursive: true });
     await writeFile(path.join(root, 'index_new', 'cn', 'characters.json'), '{}');
+    await writeFile(path.join(root, 'index_new', 'cn', 'light_cones.json'), '{}');
     expect(assertAssetRoot(root)).toBe(root);
     await rm(path.join(root, 'image'), { recursive: true });
     expect(() => assertAssetRoot(root)).toThrow(/character_portrait/);
@@ -90,6 +98,7 @@ describe('视觉资源管线', () => {
     const source = manifest({
       previews: ['1001'],
       portraits: ['1001'],
+      lightConePreviews: ['20000'],
       elements: ['Lightning'],
       paths: ['Memory']
     });
@@ -99,11 +108,15 @@ describe('视觉资源管线', () => {
     expect(resolveCharacterPortraitAsset('1001', source)).toBe(
       '/generated-assets/characters/portrait/1001.webp'
     );
+    expect(resolveLightConePreviewAsset('20000', source)).toBe(
+      '/generated-assets/light-cones/preview/20000.png'
+    );
     expect(resolveElementIconAsset('Lightning', source)).toBe(
       '/generated-assets/elements/Lightning.png'
     );
     expect(resolvePathIconAsset('Memory', source)).toBe('/generated-assets/paths/Memory.png');
     expect(resolveCharacterPreviewAsset('1002', source)).toBeUndefined();
+    expect(resolveLightConePreviewAsset('20001', source)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('../1001', source)).toBeUndefined();
   });
 
@@ -140,6 +153,7 @@ describe('视觉资源管线', () => {
     expect(
       manifestCoversRequirements(source, {
         characterIds: ['1001'],
+        lightConeIds: [],
         elements: ['Fire'],
         paths: ['Warrior']
       })
@@ -147,6 +161,7 @@ describe('视觉资源管线', () => {
     expect(
       manifestCoversRequirements(source, {
         characterIds: ['1001', '1002'],
+        lightConeIds: [],
         elements: ['Fire'],
         paths: ['Warrior']
       })
@@ -179,10 +194,11 @@ describe('视觉资源管线', () => {
     expect(iconMeta).toMatchObject({ format: 'png', width: 64, height: 64, hasAlpha: true });
   });
 
-  it('当前 manifest 覆盖 95 个角色、7 属性和 9 命途且无需名称映射', async () => {
+  it('当前 manifest 覆盖 95 个角色、165 个光锥、7 属性和 9 命途且无需名称映射', async () => {
     const requirements = await readAssetRequirements();
     const generated = await readAssetManifest();
     expect(requirements.characterIds).toHaveLength(95);
+    expect(requirements.lightConeIds).toHaveLength(165);
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
     for (const id of ['1014', '1015', '1508', '1509'])
@@ -192,6 +208,10 @@ describe('视觉资源管线', () => {
     for (const id of ['1014', '1015', '1508', '1509']) {
       expect(generated!.characters.previews.available).toContain(id);
       expect(generated!.characters.portraits.available).toContain(id);
+    }
+    for (const id of ['20000', '21015', '23000']) {
+      expect(requirements.lightConeIds).toContain(id);
+      expect(generated!.lightCones.previews.available).toContain(id);
     }
     expect(generated).not.toHaveProperty('characterNames');
   });
@@ -205,6 +225,7 @@ describe('视觉资源管线', () => {
     const parsed = JSON.parse(await readFile(file, 'utf8')) as VisualAssetManifest;
     expect(resolveCharacterPreviewAsset('1001', parsed)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('1001', parsed)).toBeUndefined();
+    expect(resolveLightConePreviewAsset('20000', parsed)).toBeUndefined();
   });
 
   it('角色 preview index 只解析网站需要的 95 个 ID 并拒绝越界路径', async () => {
@@ -236,6 +257,26 @@ describe('视觉资源管线', () => {
     ).toEqual(await readFile(sources.get(sampleId)!));
   });
 
+  it('光锥 preview index 以网站需求 ID 显式映射 165 张 348×408 PNG', async () => {
+    const root = assertAssetRoot(resolveAssetRoot());
+    const requirements = await readAssetRequirements();
+    const sources = await readLightConePreviewSources(root, requirements.lightConeIds);
+    const index = JSON.parse(
+      await readFile(path.join(root, 'index_new', 'cn', 'light_cones.json'), 'utf8')
+    ) as Record<string, { id?: string; preview?: string }>;
+    expect(sources.size).toBe(165);
+    expect(Object.values(index).filter((entry) => entry.preview)).toHaveLength(165);
+    expect([...sources.keys()].sort()).toEqual(requirements.lightConeIds);
+    for (const id of ['20000', '21015', '23000']) {
+      expect(index[id]).toMatchObject({
+        id,
+        preview: `image/light_cone_preview/${id}.png`
+      });
+      const metadata = await sharp(sources.get(id)!).metadata();
+      expect(metadata).toMatchObject({ format: 'png', width: 348, height: 408 });
+    }
+  });
+
   it('生成目录仅包含需求驱动的 preview，旧 avatar 输出不存在', async () => {
     const generated = await readAssetManifest();
     const files = await readdir(
@@ -246,6 +287,13 @@ describe('视觉资源管线', () => {
     );
     await expect(
       readdir(path.join(process.cwd(), 'static', 'generated-assets', 'characters', 'avatar'))
+    ).rejects.toMatchObject({ code: 'ENOENT' });
+    const lightConeFiles = await readdir(
+      path.join(process.cwd(), 'static', 'generated-assets', 'light-cones', 'preview')
+    );
+    expect(lightConeFiles.filter((file) => file.endsWith('.png'))).toHaveLength(165);
+    await expect(
+      readdir(path.join(process.cwd(), 'static', 'generated-assets', 'light-cones', 'portrait'))
     ).rejects.toMatchObject({ code: 'ENOENT' });
   });
 });

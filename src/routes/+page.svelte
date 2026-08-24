@@ -98,7 +98,7 @@
       配置经过无损解析、关联验证和轻量化生成，包括四种终局模式的实际敌方实例。页面不会在运行时读取兄弟目录。
     </p>
     <p>
-      结构化资料来自 TurnBasedGameData；角色预览图由 StarRailRes index 在构建时按 ID
+      结构化资料来自 TurnBasedGameData；角色与光锥预览图由 StarRailRes index 在构建时按 ID
       同步，缺失资源使用统一占位。
     </p>
   </div>

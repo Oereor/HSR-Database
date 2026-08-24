@@ -10,12 +10,13 @@ import {
   assertAssetOutputPaths,
   generatedAssetRoot,
   generatedPreviewRoot,
+  generatedLightConePreviewRoot,
   generatedElementRoot,
   generatedPathRoot,
   generatedPortraitRoot
 } from './paths.js';
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 3 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 4 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -41,6 +42,7 @@ export const PATH_SOURCE_NAMES: Readonly<Record<string, string>> = {
 
 export interface AssetRequirements {
   characterIds: string[];
+  lightConeIds: string[];
   elements: string[];
   paths: string[];
 }
@@ -48,6 +50,7 @@ export interface AssetRequirements {
 export interface AssetSizeSummary {
   previews: number;
   portraits: number;
+  lightConePreviews: number;
   elements: number;
   paths: number;
   total: number;
@@ -59,19 +62,26 @@ const uniqueSorted = (values: Array<string | undefined>): string[] =>
   );
 
 export async function readAssetRequirements(): Promise<AssetRequirements> {
-  const catalogPath = path.join(generatedRoot, 'catalogs', 'characters.json');
-  let catalog: CatalogEntry[];
+  const characterCatalogPath = path.join(generatedRoot, 'catalogs', 'characters.json');
+  const lightConeCatalogPath = path.join(generatedRoot, 'catalogs', 'light-cones.json');
+  let characterCatalog: CatalogEntry[];
+  let lightConeCatalog: CatalogEntry[];
   try {
-    catalog = JSON.parse(await readFile(catalogPath, 'utf8')) as CatalogEntry[];
+    [characterCatalog, lightConeCatalog] = await Promise.all(
+      [characterCatalogPath, lightConeCatalogPath].map(async (catalogPath) =>
+        JSON.parse(await readFile(catalogPath, 'utf8'))
+      )
+    );
   } catch (error) {
-    throw new Error(`无法读取角色目录 ${catalogPath}；请先运行 pnpm data:ensure。`, {
+    throw new Error(`无法读取角色或光锥目录；请先运行 pnpm data:ensure。`, {
       cause: error
     });
   }
   return {
-    characterIds: uniqueSorted(catalog.map((entry) => entry.id)),
-    elements: uniqueSorted(catalog.map((entry) => entry.element)),
-    paths: uniqueSorted(catalog.map((entry) => entry.path))
+    characterIds: uniqueSorted(characterCatalog.map((entry) => entry.id)),
+    lightConeIds: uniqueSorted(lightConeCatalog.map((entry) => entry.id)),
+    elements: uniqueSorted(characterCatalog.map((entry) => entry.element)),
+    paths: uniqueSorted([...characterCatalog, ...lightConeCatalog].map((entry) => entry.path))
   };
 }
 
@@ -102,6 +112,9 @@ export function emptyAssetManifest(requirements: AssetRequirements): VisualAsset
       previews: unavailable(requirements.characterIds),
       portraits: unavailable(requirements.characterIds)
     },
+    lightCones: {
+      previews: unavailable(requirements.lightConeIds)
+    },
     elements: unavailable(requirements.elements),
     paths: unavailable(requirements.paths)
   };
@@ -130,9 +143,13 @@ async function resetOutputDirectories(): Promise<void> {
   assertAssetOutputPaths();
   await rm(generatedAssetRoot, { recursive: true, force: true });
   await Promise.all(
-    [generatedPreviewRoot, generatedPortraitRoot, generatedElementRoot, generatedPathRoot].map(
-      (directory) => mkdir(directory, { recursive: true })
-    )
+    [
+      generatedPreviewRoot,
+      generatedPortraitRoot,
+      generatedLightConePreviewRoot,
+      generatedElementRoot,
+      generatedPathRoot
+    ].map((directory) => mkdir(directory, { recursive: true }))
   );
 }
 
@@ -159,6 +176,11 @@ async function processRequested(
 }
 
 interface CharacterResourceIndexEntry {
+  preview?: unknown;
+}
+
+interface LightConeResourceIndexEntry {
+  id?: unknown;
   preview?: unknown;
 }
 
@@ -199,6 +221,31 @@ export async function readCharacterPreviewSources(
   return sources;
 }
 
+export async function readLightConePreviewSources(
+  sourceRoot: string,
+  lightConeIds: string[]
+): Promise<ReadonlyMap<string, string>> {
+  const indexPath = path.join(sourceRoot, 'index_new', 'cn', 'light_cones.json');
+  const index = JSON.parse(await readFile(indexPath, 'utf8')) as Record<
+    string,
+    LightConeResourceIndexEntry
+  >;
+  if (!index || typeof index !== 'object' || Array.isArray(index))
+    throw new Error(`StarRailRes 光锥 index 格式异常：${indexPath}`);
+  const sources = new Map<string, string>();
+  for (const id of lightConeIds) {
+    const entry = index[id];
+    if (!entry || entry.preview === undefined) continue;
+    if (entry.id !== id) throw new Error(`光锥 ${id} 的 index identity 不一致：${entry.id}`);
+    const source = resolveIndexedAssetPath(sourceRoot, entry.preview);
+    const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
+    if (!/^image\/light_cone_preview\/[^/]+\.png$/i.test(relative))
+      throw new Error(`光锥 ${id} 的 preview 路径不属于 light_cone_preview：${relative}`);
+    sources.set(id, source);
+  }
+  return sources;
+}
+
 export async function writePortraitAsset(source: string, output: string): Promise<void> {
   await sharp(source)
     .resize({ width: 960, height: 960, fit: 'inside', withoutEnlargement: true })
@@ -216,6 +263,10 @@ export async function generateVisualAssets(
 ): Promise<Omit<VisualAssetManifest, 'schemaVersion' | 'sourceCommit' | 'generatedAt'>> {
   await resetOutputDirectories();
   const previewSources = await readCharacterPreviewSources(sourceRoot, requirements.characterIds);
+  const lightConePreviewSources = await readLightConePreviewSources(
+    sourceRoot,
+    requirements.lightConeIds
+  );
   const previews = await processRequested(
     requirements.characterIds,
     (id) => previewSources.get(id),
@@ -227,6 +278,12 @@ export async function generateVisualAssets(
     (id) => path.join(sourceRoot, 'image', 'character_portrait', `${id}.png`),
     (id) => path.join(generatedPortraitRoot, `${id}.webp`),
     writePortraitAsset
+  );
+  const lightConePreviews = await processRequested(
+    requirements.lightConeIds,
+    (id) => lightConePreviewSources.get(id),
+    (id) => path.join(generatedLightConePreviewRoot, `${id}.png`),
+    async (source, output) => copyFile(source, output)
   );
   const elements = await processRequested(
     requirements.elements,
@@ -240,7 +297,12 @@ export async function generateVisualAssets(
     (code) => path.join(generatedPathRoot, `${code}.png`),
     writeSemanticIconAsset
   );
-  return { characters: { previews, portraits }, elements, paths };
+  return {
+    characters: { previews, portraits },
+    lightCones: { previews: lightConePreviews },
+    elements,
+    paths
+  };
 }
 
 const collectionCovers = (collection: AssetAvailability, required: string[]): boolean => {
@@ -261,6 +323,7 @@ export function manifestCoversRequirements(
     manifest.schemaVersion === VISUAL_ASSET_SCHEMA_VERSION &&
     collectionCovers(manifest.characters.previews, requirements.characterIds) &&
     collectionCovers(manifest.characters.portraits, requirements.characterIds) &&
+    collectionCovers(manifest.lightCones.previews, requirements.lightConeIds) &&
     collectionCovers(manifest.elements, requirements.elements) &&
     collectionCovers(manifest.paths, requirements.paths)
   );
@@ -280,6 +343,7 @@ export function manifestCoversCharacters(
 const expectedFiles = (manifest: VisualAssetManifest): Array<[string, string[]]> => [
   [generatedPreviewRoot, manifest.characters.previews.available.map((id) => `${id}.png`)],
   [generatedPortraitRoot, manifest.characters.portraits.available.map((id) => `${id}.webp`)],
+  [generatedLightConePreviewRoot, manifest.lightCones.previews.available.map((id) => `${id}.png`)],
   [generatedElementRoot, manifest.elements.available.map((code) => `${code}.png`)],
   [generatedPathRoot, manifest.paths.available.map((code) => `${code}.png`)]
 ];
@@ -309,11 +373,19 @@ async function directorySize(directory: string): Promise<number> {
 }
 
 export async function assetSizeSummary(): Promise<AssetSizeSummary> {
-  const [previews, portraits, elements, paths] = await Promise.all([
+  const [previews, portraits, lightConePreviews, elements, paths] = await Promise.all([
     directorySize(generatedPreviewRoot),
     directorySize(generatedPortraitRoot),
+    directorySize(generatedLightConePreviewRoot),
     directorySize(generatedElementRoot),
     directorySize(generatedPathRoot)
   ]);
-  return { previews, portraits, elements, paths, total: previews + portraits + elements + paths };
+  return {
+    previews,
+    portraits,
+    lightConePreviews,
+    elements,
+    paths,
+    total: previews + portraits + lightConePreviews + elements + paths
+  };
 }

@@ -55,6 +55,9 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
     `  角色立绘 ${manifest.characters.portraits.available.length}，缺失 ${manifest.characters.portraits.missing.length}，${mb(sizes.portraits)}`
   );
   console.log(
+    `  光锥预览图 ${manifest.lightCones.previews.available.length}，缺失 ${manifest.lightCones.previews.missing.length}，${mb(sizes.lightConePreviews)}`
+  );
+  console.log(
     `  属性图标 ${manifest.elements.available.length}，缺失 ${manifest.elements.missing.length}；命途图标 ${manifest.paths.available.length}，缺失 ${manifest.paths.missing.length}，合计 ${mb(sizes.elements + sizes.paths)}`
   );
   console.log(`  输出总计 ${mb(sizes.total)}`);

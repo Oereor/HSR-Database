@@ -623,7 +623,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(95);
-    expect(manifest.schemaVersion).toBe(25);
+    expect(manifest.schemaVersion).toBe(26);
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     const basicAttack = variantOf(character, '100101');
@@ -672,7 +672,8 @@ describe('真实数据管线', () => {
       extraEffects: [expect.objectContaining({ id: '10000003', name: '反击' })]
     });
     expect(lightCone.name).toBe('锋镝');
-    expect(lightCone.superimposition.levels).toHaveLength(5);
+    expect(lightCone.passive).toMatchObject({ id: '20000', name: '危机' });
+    expect(lightCone.passive.superimposition.levels).toHaveLength(5);
   });
 
   it('记忆开拓者保留第四项额外能力的结构化类型', async () => {
@@ -787,18 +788,31 @@ describe('真实数据管线', () => {
     const amber = await readLightCone('20003');
     const resolution = await readLightCone('21015');
     const trend = await readLightCone('21016');
+    const night = await readLightCone('23000');
 
-    expect(arrows.superimposition.levels.map((level) => level.level)).toEqual([1, 2, 3, 4, 5]);
-    expect(arrows.superimposition.scalingParamIndexes).toEqual([0]);
+    expect(arrows.passive).toMatchObject({ id: '20000', name: '危机' });
+    expect(arrows.passive.superimposition.levels.map((level) => level.level)).toEqual([
+      1, 2, 3, 4, 5
+    ]);
+    expect(arrows.passive.superimposition.scalingParamIndexes).toEqual([0]);
     expect(
-      arrows.superimposition.levels[0].descriptionTokens.filter(
+      arrows.passive.superimposition.levels[0].descriptionTokens.filter(
         (token) => token.type === 'scaling-value'
       )
     ).toEqual([{ type: 'scaling-value', value: '12%', color: '#f29e38ff', unbreak: true }]);
-    expect(arrows.superimposition.levels.at(-1)?.description).toContain('24%');
-    expect(amber.superimposition.scalingParamIndexes).toEqual([0, 2]);
-    expect(resolution.superimposition.scalingParamIndexes).toEqual([0, 1]);
-    expect(trend.superimposition.scalingParamIndexes).toEqual([0, 1, 2]);
+    expect(arrows.passive.superimposition.levels.at(-1)?.description).toContain('24%');
+    expect(amber.passive.superimposition.scalingParamIndexes).toEqual([0, 2]);
+    expect(resolution.passive.superimposition.scalingParamIndexes).toEqual([0, 1]);
+    expect(trend.passive.superimposition.scalingParamIndexes).toEqual([0, 1, 2]);
+    expect(resolution.passive).toMatchObject({ id: '21015', name: '回眸' });
+    expect(night).toMatchObject({
+      id: '23000',
+      name: '银河铁道之夜',
+      rarity: 5,
+      path: 'Mage',
+      pathName: '智识',
+      passive: { id: '23000', name: '流星群' }
+    });
   });
 
   it('七种属性文字颜色来自唯一规范映射', () => {
@@ -1249,6 +1263,8 @@ describe('真实数据管线', () => {
     expect(getBaseStatsAtLevel(march.baseStats, 19).hp).toBe(273.6);
     expect(getBaseStatsAtLevel(march.baseStats, 20).hp).toBe(338.4);
     expect(getBaseStatsAtLevel(march.baseStats, 80).hp).toBe(1058.4);
+    expect(getBaseStatsAtLevel(arrows.baseStats, 1).hp).toBe(38.4);
+    expect(getBaseStatsAtLevel(arrows.baseStats, 20).hp).toBe(193.92);
     expect(getBaseStatsAtLevel(arrows.baseStats, 80).hp).toBe(846.72);
     expect(formatBaseStat(getBaseStatsAtLevel(march.baseStats, 20).hp)).toBe('338');
     expect(formatBaseStat(getBaseStatsAtLevel(arrows.baseStats, 80).hp)).toBe('847');

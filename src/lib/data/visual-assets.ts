@@ -5,6 +5,7 @@ const manifest = manifestJson as VisualAssetManifest;
 const sets = {
   preview: new Set(manifest.characters.previews.available),
   portrait: new Set(manifest.characters.portraits.available),
+  lightConePreview: new Set(manifest.lightCones.previews.available),
   element: new Set(manifest.elements.available),
   path: new Set(manifest.paths.available)
 };
@@ -49,6 +50,19 @@ export function resolveCharacterPortraitAsset(
   );
 }
 
+export function resolveLightConePreviewAsset(
+  lightConeId: string,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  return resolveAsset(
+    lightConeId,
+    source.lightCones.previews,
+    'light-cones/preview',
+    'png',
+    source === manifest ? sets.lightConePreview : undefined
+  );
+}
+
 export function resolveElementIconAsset(
   element: string | undefined,
   source: VisualAssetManifest = manifest
@@ -79,6 +93,8 @@ export const getCharacterPreviewUrl = (id: string): string | undefined =>
   resolveCharacterPreviewAsset(id);
 export const getCharacterPortraitUrl = (id: string): string | undefined =>
   resolveCharacterPortraitAsset(id);
+export const getLightConePreviewUrl = (id: string): string | undefined =>
+  resolveLightConePreviewAsset(id);
 export const getElementIconUrl = (element: string | undefined): string | undefined =>
   resolveElementIconAsset(element);
 export const getPathIconUrl = (path: string | undefined): string | undefined =>

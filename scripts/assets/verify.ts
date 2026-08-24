@@ -3,6 +3,7 @@ import sharp from 'sharp';
 import {
   assertAssetRoot,
   generatedPreviewRoot,
+  generatedLightConePreviewRoot,
   generatedElementRoot,
   generatedPathRoot,
   generatedPortraitRoot,
@@ -56,6 +57,12 @@ export async function verifyAssets(): Promise<void> {
       throw new Error(`生成立绘格式或尺寸异常：${id}`);
     }
   }
+  for (const id of manifest.lightCones.previews.available) {
+    const metadata = await sharp(path.join(generatedLightConePreviewRoot, `${id}.png`)).metadata();
+    if (metadata.format !== 'png' || metadata.width !== 348 || metadata.height !== 408) {
+      throw new Error(`生成光锥预览图格式或尺寸异常：${id}`);
+    }
+  }
   for (const code of manifest.elements.available) {
     const metadata = await sharp(path.join(generatedElementRoot, `${code}.png`)).metadata();
     if (metadata.width !== 64 || metadata.height !== 64)
@@ -67,7 +74,7 @@ export async function verifyAssets(): Promise<void> {
       throw new Error(`命途图标尺寸异常：${code}`);
   }
   console.log(
-    `视觉资源验证通过：${manifest.characters.previews.available.length} 角色预览图、${manifest.characters.portraits.available.length} 立绘、${manifest.elements.available.length} 属性图标、${manifest.paths.available.length} 命途图标。`
+    `视觉资源验证通过：${manifest.characters.previews.available.length} 角色预览图、${manifest.characters.portraits.available.length} 立绘、${manifest.lightCones.previews.available.length} 光锥预览图、${manifest.elements.available.length} 属性图标、${manifest.paths.available.length} 命途图标。`
   );
 }
 

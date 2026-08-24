@@ -13,7 +13,7 @@
     normalizeEnemyRankFilter
   } from '$lib/domain/enemy-overview';
   import { gameTextToPlain } from '$lib/domain/game-text';
-  import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
+  import { getCharacterPreviewUrl, getLightConePreviewUrl } from '$lib/data/visual-assets';
 
   export let entries: CatalogEntry[];
   export let category: string;
@@ -258,14 +258,18 @@
   {#key `${category}:${visible.map((entry) => entry.id).join(',')}`}
     <div
       class="entity-grid"
-      class:entity-grid--overview={category === 'characters' || category === 'enemies'}
+      class:entity-grid--overview={category === 'characters' ||
+        category === 'light-cones' ||
+        category === 'enemies'}
     >
       {#each visible as entry (entry.id)}
-        {#if category === 'characters'}
+        {#if category === 'characters' || category === 'light-cones'}
           <CharacterOverviewCard
             {entry}
-            href={`/characters/${entry.id}`}
-            imageUrl={getCharacterPreviewUrl(entry.id)}
+            href={`/${category}/${entry.id}`}
+            imageUrl={category === 'characters'
+              ? getCharacterPreviewUrl(entry.id)
+              : getLightConePreviewUrl(entry.id)}
           />
         {:else if category === 'enemies'}
           <EnemyOverviewCard
@@ -274,11 +278,7 @@
             imageUrl={enemyPortraits[entry.id]}
           />
         {:else}
-          <LegacyEntityCard
-            {entry}
-            href={`/${category}/${entry.id}`}
-            kind={category === 'light-cones' ? 'light-cone' : 'relic'}
-          />
+          <LegacyEntityCard {entry} href={`/${category}/${entry.id}`} kind="relic" />
         {/if}
       {/each}
     </div>

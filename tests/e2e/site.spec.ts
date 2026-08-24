@@ -56,6 +56,53 @@ test('角色目录按 ID 加载 preview 并保留安全缺图降级', async ({ p
   await expect(firstCard.locator('.entity-overview-card__fallback')).toBeVisible();
 });
 
+test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', async ({ page }) => {
+  const failedImages: string[] = [];
+  page.on('response', (response) => {
+    if (response.request().resourceType() === 'image' && response.status() >= 400)
+      failedImages.push(response.url());
+  });
+
+  for (const [id, name, rarity, pathName] of [
+    ['20000', '锋镝', '★★★', '巡猎'],
+    ['21015', '决心如汗珠般闪耀', '★★★★', '虚无'],
+    ['23000', '银河铁道之夜', '★★★★★', '智识']
+  ] as const) {
+    await page.goto(`/light-cones?q=${encodeURIComponent(name)}`);
+    const card = page.locator(`a[href="/light-cones/${id}"]`);
+    await expect(card).toBeVisible();
+    await expect(card).toHaveClass(/entity-overview-card/);
+    await expect(card.locator('.entity-overview-card__title')).toHaveText(name);
+    await expect(card.locator('.rarity-stars')).toHaveText(rarity);
+    await expect(card.locator('[data-icon-kind="path"]')).toContainText(pathName);
+    await expect(card.locator('[data-icon-kind="element"]')).toHaveCount(0);
+    await expect(card.locator('.entity-overview-card__metadata > *')).toHaveCount(1);
+    await expect(card.locator('.entity-overview-card__artwork img')).toHaveAttribute(
+      'src',
+      `/generated-assets/light-cones/preview/${id}.png`
+    );
+    await expect(card.locator('.entity-card__body')).toHaveCount(0);
+    await expect(card).not.toContainText('光锥技能仅对该命途生效');
+    await expect(card).not.toContainText(/生命值|攻击力|防御力/);
+  }
+
+  await page.goto('/light-cones?rarity=5');
+  const cards = page.locator('.entity-overview-card');
+  await expect(cards.first()).toBeVisible();
+  const heights = await Promise.all(
+    [0, 1, 2].map(async (index) => (await cards.nth(index).boundingBox())?.height)
+  );
+  expect(heights.every((height) => height === heights[0])).toBe(true);
+
+  const firstCard = cards.first();
+  await firstCard
+    .locator('.entity-overview-card__artwork img')
+    .evaluate((image: HTMLImageElement) => image.dispatchEvent(new Event('error')));
+  await expect(firstCard).toHaveAttribute('data-image-missing', 'true');
+  await expect(firstCard.locator('.entity-overview-card__fallback')).toBeVisible();
+  expect(failedImages).toEqual([]);
+});
+
 test('角色目录与详情接入属性、命途图标和优化立绘', async ({ page, isMobile }) => {
   const failedImages: string[] = [];
   page.on('response', (response) => {
@@ -614,6 +661,7 @@ test('光锥等级与叠影滑块独立且叠影默认 1', async ({ page }) => {
   await expect(stats.locator('.base-stat-card')).toHaveCount(3);
   await expect(stats.locator('[data-base-stat="hp"]')).toContainText('生命值847');
   await expect(stats).not.toContainText(/HP|ATK|DEF|SPD/);
+  await expect(superimposition.getByRole('heading', { level: 3 })).toHaveText('危机');
   await expect(superimposition.locator('output')).toHaveText('Lv.1');
   await expect(superimposition.locator('.scaling-value')).toHaveText('12%');
   await stats.getByRole('slider', { name: '光锥等级' }).fill('1');

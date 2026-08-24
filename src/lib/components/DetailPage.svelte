@@ -214,8 +214,8 @@
   </section>
   <section class="detail-section">
     <h2>光锥效果</h2>
-    {#if detail.superimposition.levels.length}<SuperimpositionPanel
-        effect={detail.superimposition}
+    {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
+        passive={detail.passive}
         lightConeId={detail.id}
       />{:else}<p class="data-placeholder">上游未提供可展示的叠影效果。</p>{/if}
   </section>
