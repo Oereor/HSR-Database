@@ -6,6 +6,8 @@
   export let artworkFit: 'contain' | 'cover' | 'scale-down' = 'contain';
   export let artworkPosition = 'center bottom';
   export let artworkScale = 1;
+  export let size: 'large' | 'compact' = 'large';
+  export let mediaPresentation: 'artwork' | 'icon' = 'artwork';
 
   let failedSource: string | undefined;
   $: visibleSource = imageUrl && imageUrl !== failedSource ? imageUrl : undefined;
@@ -15,7 +17,11 @@
 <a
   class="entity-overview-card"
   class:entity-overview-card--missing={!visibleSource}
+  class:entity-overview-card--compact={size === 'compact'}
+  class:entity-overview-card--icon-media={mediaPresentation === 'icon'}
   data-image-missing={!visibleSource}
+  data-card-size={size}
+  data-media-presentation={mediaPresentation}
   {href}
 >
   <span class="entity-overview-card__artwork" aria-hidden={!imageAlt}>
@@ -37,8 +43,13 @@
     {/if}
   </span>
   <span class="entity-overview-card__overlay"><slot name="overlay" /></span>
-  <span class="entity-overview-card__content">
+  <span
+    class="entity-overview-card__content"
+    class:entity-overview-card__content--title-only={!$$slots.metadata}
+  >
     <h3 class="entity-overview-card__title"><slot name="title" /></h3>
-    <span class="entity-overview-card__metadata"><slot name="metadata" /></span>
+    {#if $$slots.metadata}<span class="entity-overview-card__metadata"
+        ><slot name="metadata" /></span
+      >{/if}
   </span>
 </a>

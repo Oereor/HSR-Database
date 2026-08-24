@@ -7,6 +7,8 @@ import {
   resolveCharacterPreviewAsset,
   resolveCharacterPortraitAsset,
   resolveLightConePreviewAsset,
+  resolveRelicPropertyIconAsset,
+  resolveRelicSetIconAsset,
   resolveElementIconAsset,
   resolvePathIconAsset
 } from '../../src/lib/data/visual-assets';
@@ -19,6 +21,8 @@ import {
   PATH_SOURCE_NAMES,
   readCharacterPreviewSources,
   readLightConePreviewSources,
+  readRelicPropertyIconSources,
+  readRelicSetIconSources,
   readAssetManifest,
   readAssetRequirements,
   VISUAL_ASSET_SCHEMA_VERSION,
@@ -35,6 +39,8 @@ const manifest = (options?: {
   previews?: string[];
   portraits?: string[];
   lightConePreviews?: string[];
+  relicIcons?: string[];
+  relicPropertyIcons?: string[];
   elements?: string[];
   paths?: string[];
 }): VisualAssetManifest => ({
@@ -46,6 +52,12 @@ const manifest = (options?: {
   },
   lightCones: {
     previews: available(options?.lightConePreviews ?? [])
+  },
+  relics: {
+    icons: available(options?.relicIcons ?? [])
+  },
+  relicProperties: {
+    icons: available(options?.relicPropertyIcons ?? [])
   },
   elements: available(options?.elements ?? []),
   paths: available(options?.paths ?? [])
@@ -75,6 +87,8 @@ describe('视觉资源管线', () => {
       'image/character_preview',
       'image/character_portrait',
       'image/light_cone_preview',
+      'icon/relic',
+      'icon/property',
       'icon/element',
       'icon/path'
     ]) {
@@ -83,6 +97,8 @@ describe('视觉资源管线', () => {
     await mkdir(path.join(root, 'index_new', 'cn'), { recursive: true });
     await writeFile(path.join(root, 'index_new', 'cn', 'characters.json'), '{}');
     await writeFile(path.join(root, 'index_new', 'cn', 'light_cones.json'), '{}');
+    await writeFile(path.join(root, 'index_new', 'cn', 'relic_sets.json'), '{}');
+    await writeFile(path.join(root, 'index_new', 'cn', 'properties.json'), '{}');
     expect(assertAssetRoot(root)).toBe(root);
     await rm(path.join(root, 'image'), { recursive: true });
     expect(() => assertAssetRoot(root)).toThrow(/character_portrait/);
@@ -99,6 +115,8 @@ describe('视觉资源管线', () => {
       previews: ['1001'],
       portraits: ['1001'],
       lightConePreviews: ['20000'],
+      relicIcons: ['101'],
+      relicPropertyIcons: ['IconAttack'],
       elements: ['Lightning'],
       paths: ['Memory']
     });
@@ -110,6 +128,10 @@ describe('视觉资源管线', () => {
     );
     expect(resolveLightConePreviewAsset('20000', source)).toBe(
       '/generated-assets/light-cones/preview/20000.png'
+    );
+    expect(resolveRelicSetIconAsset('101', source)).toBe('/generated-assets/relics/icons/101.png');
+    expect(resolveRelicPropertyIconAsset('IconAttack', source)).toBe(
+      '/generated-assets/relic-properties/IconAttack.png'
     );
     expect(resolveElementIconAsset('Lightning', source)).toBe(
       '/generated-assets/elements/Lightning.png'
@@ -154,6 +176,8 @@ describe('视觉资源管线', () => {
       manifestCoversRequirements(source, {
         characterIds: ['1001'],
         lightConeIds: [],
+        relicSetIds: [],
+        relicPropertyIcons: [],
         elements: ['Fire'],
         paths: ['Warrior']
       })
@@ -162,6 +186,8 @@ describe('视觉资源管线', () => {
       manifestCoversRequirements(source, {
         characterIds: ['1001', '1002'],
         lightConeIds: [],
+        relicSetIds: [],
+        relicPropertyIcons: [],
         elements: ['Fire'],
         paths: ['Warrior']
       })
@@ -194,11 +220,13 @@ describe('视觉资源管线', () => {
     expect(iconMeta).toMatchObject({ format: 'png', width: 64, height: 64, hasAlpha: true });
   });
 
-  it('当前 manifest 覆盖 95 个角色、165 个光锥、7 属性和 9 命途且无需名称映射', async () => {
+  it('当前 manifest 覆盖角色、光锥、遗器套装、遗器属性和语义图标需求', async () => {
     const requirements = await readAssetRequirements();
     const generated = await readAssetManifest();
     expect(requirements.characterIds).toHaveLength(95);
     expect(requirements.lightConeIds).toHaveLength(165);
+    expect(requirements.relicSetIds).toHaveLength(60);
+    expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(18);
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
     for (const id of ['1014', '1015', '1508', '1509'])
@@ -213,6 +241,8 @@ describe('视觉资源管线', () => {
       expect(requirements.lightConeIds).toContain(id);
       expect(generated!.lightCones.previews.available).toContain(id);
     }
+    expect(generated!.relics.icons.available).toHaveLength(60);
+    expect(generated!.relicProperties.icons.available).toHaveLength(18);
     expect(generated).not.toHaveProperty('characterNames');
   });
 
@@ -226,6 +256,8 @@ describe('视觉资源管线', () => {
     expect(resolveCharacterPreviewAsset('1001', parsed)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('1001', parsed)).toBeUndefined();
     expect(resolveLightConePreviewAsset('20000', parsed)).toBeUndefined();
+    expect(resolveRelicSetIconAsset('101', parsed)).toBeUndefined();
+    expect(resolveRelicPropertyIconAsset('IconAttack', parsed)).toBeUndefined();
   });
 
   it('角色 preview index 只解析网站需要的 95 个 ID 并拒绝越界路径', async () => {
@@ -275,6 +307,32 @@ describe('视觉资源管线', () => {
       const metadata = await sharp(sources.get(id)!).metadata();
       expect(metadata).toMatchObject({ format: 'png', width: 348, height: 408 });
     }
+  });
+
+  it('遗器资源只同步 60 张套装图标与 18 张属性图标，不生成单件遗器图片', async () => {
+    const root = assertAssetRoot(resolveAssetRoot());
+    const requirements = await readAssetRequirements();
+    const setSources = await readRelicSetIconSources(root, requirements.relicSetIds);
+    const propertySources = await readRelicPropertyIconSources(
+      root,
+      requirements.relicPropertyIcons
+    );
+    expect(setSources.size).toBe(60);
+    expect(propertySources.size).toBe(18);
+    for (const [id, source] of setSources) {
+      expect(path.basename(source)).toBe(`${id}.png`);
+      expect(path.basename(source)).not.toMatch(/_\d+\.png$/);
+      expect(await sharp(source).metadata()).toMatchObject({
+        format: 'png',
+        width: 128,
+        height: 128
+      });
+    }
+    const generatedRelicFiles = await readdir(
+      path.join(process.cwd(), 'static', 'generated-assets', 'relics', 'icons')
+    );
+    expect(generatedRelicFiles).toHaveLength(60);
+    expect(generatedRelicFiles.some((file) => /_\d+\.png$/.test(file))).toBe(false);
   });
 
   it('生成目录仅包含需求驱动的 preview，旧 avatar 输出不存在', async () => {

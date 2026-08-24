@@ -103,6 +103,135 @@ test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', 
   expect(failedImages).toEqual([]);
 });
 
+test('遗器目录复用 shared compact Overview，并保留可读 typography 与 icon fitting', async ({
+  page
+}) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/characters');
+  const largeCards = page.locator('.entity-overview-card');
+  const largeFirstRow = await largeCards.evaluateAll((cards) => {
+    const boxes = cards.slice(0, 8).map((card) => card.getBoundingClientRect());
+    return boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1).length;
+  });
+  const largeMetrics = await largeCards.first().evaluate((card) => {
+    const artwork = card.querySelector<HTMLElement>('.entity-overview-card__artwork')!;
+    const title = card.querySelector<HTMLElement>('.entity-overview-card__title')!;
+    const overlay = card.querySelector<HTMLElement>('.entity-overview-card__overlay')!;
+    return {
+      cardHeight: card.getBoundingClientRect().height,
+      artworkHeight: artwork.getBoundingClientRect().height,
+      titleSize: getComputedStyle(title).fontSize,
+      titleWeight: getComputedStyle(title).fontWeight,
+      overlaySize: getComputedStyle(overlay).fontSize,
+      overlayPadding: getComputedStyle(overlay).padding
+    };
+  });
+
+  await page.goto('/relics?sort=id');
+  const relicCards = page.locator('.entity-overview-card');
+  const firstRelic = page.locator('a[href="/relics/101"]');
+  await expect(firstRelic).toBeVisible();
+  await expect(firstRelic).toHaveAttribute('data-card-size', 'compact');
+  await expect(firstRelic).toHaveAttribute('data-media-presentation', 'icon');
+  await expect(firstRelic.locator('.entity-overview-card__overlay')).toHaveText('隧洞遗器');
+  await expect(firstRelic.locator('.entity-overview-card__title')).toHaveText('云无留迹的过客');
+  await expect(firstRelic.locator('.entity-overview-card__metadata')).toHaveCount(0);
+  await expect(firstRelic.locator('.entity-card__body')).toHaveCount(0);
+  await expect(firstRelic).not.toContainText(/ID 101|版本 1\.0|2件：/);
+
+  const firstIcon = firstRelic.locator('.entity-overview-card__artwork img');
+  await expect(firstIcon).toHaveAttribute('src', '/generated-assets/relics/icons/101.png');
+  await expect(firstIcon).toHaveCSS('object-fit', 'contain');
+  await expect(firstIcon).toHaveCSS('object-position', '50% 50%');
+  const iconBox = await firstIcon.boundingBox();
+  expect(iconBox).not.toBeNull();
+  expect(iconBox!.width).toBeLessThanOrEqual(128);
+  expect(iconBox!.height).toBeLessThanOrEqual(128);
+
+  const compactMetrics = await firstRelic.evaluate((card) => {
+    const artwork = card.querySelector<HTMLElement>('.entity-overview-card__artwork')!;
+    const title = card.querySelector<HTMLElement>('.entity-overview-card__title')!;
+    const overlay = card.querySelector<HTMLElement>('.entity-overview-card__overlay')!;
+    return {
+      cardHeight: card.getBoundingClientRect().height,
+      artworkHeight: artwork.getBoundingClientRect().height,
+      titleSize: getComputedStyle(title).fontSize,
+      titleWeight: getComputedStyle(title).fontWeight,
+      overlaySize: getComputedStyle(overlay).fontSize,
+      overlayPadding: getComputedStyle(overlay).padding
+    };
+  });
+  expect(compactMetrics.cardHeight).toBeLessThan(largeMetrics.cardHeight);
+  expect(compactMetrics.artworkHeight).toBeLessThan(largeMetrics.artworkHeight);
+  expect(compactMetrics.artworkHeight).toBeCloseTo(176, 0);
+  expect(compactMetrics.titleSize).toBe(largeMetrics.titleSize);
+  expect(compactMetrics.titleWeight).toBe(largeMetrics.titleWeight);
+  expect(compactMetrics.overlaySize).toBe(largeMetrics.overlaySize);
+  expect(compactMetrics.overlayPadding).toBe(largeMetrics.overlayPadding);
+
+  const compactFirstRow = await relicCards.evaluateAll((cards) => {
+    const boxes = cards.slice(0, 12).map((card) => card.getBoundingClientRect());
+    return boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1).length;
+  });
+  expect(compactFirstRow).toBeGreaterThan(largeFirstRow);
+
+  for (const [id, name, category] of [
+    ['129', '闪耀功勋的魔法少女', '隧洞遗器'],
+    ['301', '太空封印站', '位面饰品'],
+    ['314', '出云显世与高天神国', '位面饰品']
+  ] as const) {
+    await page.goto(`/relics?q=${encodeURIComponent(name)}`);
+    const card = page.locator(`a[href="/relics/${id}"]`);
+    await expect(card).toBeVisible();
+    await expect(card.locator('.entity-overview-card__overlay')).toHaveText(category);
+    await expect(card.locator('.entity-overview-card__title')).toHaveText(name);
+    await expect(card.locator('.entity-overview-card__metadata')).toHaveCount(0);
+    await expect(card.locator('.entity-overview-card__artwork img')).toHaveAttribute(
+      'src',
+      `/generated-assets/relics/icons/${id}.png`
+    );
+    expect(
+      await card.locator('.entity-overview-card__title').evaluate((title) => {
+        const style = getComputedStyle(title);
+        return title.scrollHeight - title.clientHeight <= 1 && style.webkitLineClamp === '2';
+      })
+    ).toBe(true);
+  }
+
+  const navigableCard = page.locator('a[href="/relics/314"]');
+  await navigableCard.click();
+  await expect(page).toHaveURL(/\/relics\/314$/);
+  await expect(page.getByRole('heading', { level: 1, name: '出云显世与高天神国' })).toBeVisible();
+
+  await page.goto('/relics?q=%E4%BA%91%E6%97%A0%E7%95%99%E8%BF%B9%E7%9A%84%E8%BF%87%E5%AE%A2');
+  const fallbackCard = page.locator('a[href="/relics/101"]');
+  await fallbackCard
+    .locator('.entity-overview-card__artwork img')
+    .evaluate((image) => image.dispatchEvent(new Event('error')));
+  await expect(fallbackCard).toHaveAttribute('data-image-missing', 'true');
+  await expect(fallbackCard.locator('.entity-overview-card__fallback')).toBeVisible();
+
+  for (const viewport of [
+    { width: 768, height: 900, minimumColumns: 2 },
+    { width: 390, height: 844, minimumColumns: 1 }
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto('/relics?sort=id');
+    const cards = page.locator('.entity-overview-card');
+    const firstRow = await cards.evaluateAll((items) => {
+      const boxes = items.slice(0, 8).map((item) => item.getBoundingClientRect());
+      return boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1).length;
+    });
+    expect(firstRow).toBeGreaterThanOrEqual(viewport.minimumColumns);
+    if (viewport.width === 390) expect(firstRow).toBe(1);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      )
+    ).toBeLessThanOrEqual(1);
+  }
+});
+
 test('角色目录与详情接入属性、命途图标和优化立绘', async ({ page, isMobile }) => {
   const failedImages: string[] = [];
   page.on('response', (response) => {

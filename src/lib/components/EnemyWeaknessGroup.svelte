@@ -4,12 +4,18 @@
   import SemanticIconLabel from './SemanticIconLabel.svelte';
 
   export let weaknesses: ElementLabel[];
+  export let iconOnly = false;
 
   $: accessibilityLabel = `弱点：${weaknesses.map((weakness) => weakness.name).join('、')}`;
 </script>
 
 {#if weaknesses.length}
-  <span class="enemy-weakness-group" role="group" aria-label={accessibilityLabel}>
+  <span
+    class:enemy-weakness-group--icon-only={iconOnly}
+    class="enemy-weakness-group"
+    role="group"
+    aria-label={accessibilityLabel}
+  >
     {#each weaknesses as weakness (weakness.element)}
       <SemanticIconLabel
         kind="element"

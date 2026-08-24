@@ -13,14 +13,18 @@
   import CharacterPortrait from '$lib/components/CharacterPortrait.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import EnemyDetailPage from '$lib/components/enemy/EnemyDetailPage.svelte';
+  import EquipmentRecommendationSection from '$lib/components/EquipmentRecommendationSection.svelte';
   import { getElementColor } from '$lib/domain/elements';
+  import { relicTypeNames } from '$lib/domain/constants';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
   import type { CatalogEntry } from '$lib/domain/types';
+  import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
   export let detail: any;
   export let category: string;
   export let singular: string;
   export let specialEffectTargets: CatalogEntry[] = [];
+  export let equipmentRecommendation: EquipmentRecommendationView | undefined = undefined;
   let portraitAvailable = false;
   let specialEffectsOpen = false;
   let specialEffectTrigger: HTMLButtonElement | undefined;
@@ -139,7 +143,7 @@
   <nav class="detail-tabs" aria-label="详情章节">
     <a href="#stats">属性</a><a href="#skills">技能</a><a href="#traces">行迹</a><a href="#eidolons"
       >星魂</a
-    >
+    ><a href="#equipment-recommendation">装备推荐</a>
   </nav>
   <section id="stats" class="detail-section">
     <div class="section-heading">
@@ -194,6 +198,9 @@
         </div>{:else}<p class="data-placeholder">上游未提供可展示的星魂记录。</p>{/if}
     </section>
   {/key}
+  {#if equipmentRecommendation}<EquipmentRecommendationSection
+      recommendation={equipmentRecommendation}
+    />{/if}
   {#if specialEffectsAvailable}<SpecialEffectDialog
       open={specialEffectsOpen}
       entries={specialEffects}
@@ -239,7 +246,7 @@
     <h2>套装部件</h2>
     {#if detail.pieces.length}<div class="piece-grid">
         {#each detail.pieces as piece}<article class="info-card">
-            <span class="piece-type">{piece.type || '部件类型未提供'}</span>
+            <span class="piece-type">{relicTypeNames[piece.slot] || '部件类型未提供'}</span>
             <h3><GameText text={piece.name} /></h3>
             <p><GameText text={piece.description || '上游未提供该部件的文字说明。'} /></p>
           </article>{/each}
@@ -261,7 +268,7 @@
     TurnBasedGameData 提供结构化数据；{category === 'enemies'
       ? '敌人立绘由现有静态资源管线按 MonsterTemplateID 同步到网站本地。'
       : category === 'characters'
-        ? '角色预览图与详情立绘由 StarRailRes 在构建时按 AvatarID 同步。'
+        ? '角色预览图、详情立绘与装备推荐所需图标由 StarRailRes 在构建时按稳定 ID 同步。'
         : '相关视觉资源在构建时同步到网站本地。'}
   </p>
 </aside>

@@ -81,7 +81,22 @@ describe('重构 invariants', () => {
     expect(source).toContain('<slot name="overlay" />');
     expect(source).toContain('<slot name="title" />');
     expect(source).toContain('<slot name="metadata" />');
+    expect(source).toMatch(/export let size: 'large' \| 'compact' = 'large'/);
+    expect(source).toMatch(/export let mediaPresentation: 'artwork' \| 'icon' = 'artwork'/);
+    expect(source).toContain('{#if $$slots.metadata}');
     expect(source).not.toMatch(/subtitle|__fade|slot name="tags"/);
+  });
+
+  it('Compact Entity Card 仅提供展示 slots 与语义化链接', async () => {
+    const source = await readFile(
+      path.join(root, 'src', 'lib', 'components', 'CompactEntityCard.svelte'),
+      'utf8'
+    );
+    expect(source).not.toMatch(/LightCone|RelicSet|Enemy|weakness|rarity|rank/i);
+    expect(source).toContain("this={href ? 'a' : 'article'}");
+    expect(source).toContain('<slot name="title" />');
+    expect(source).toContain('<slot name="secondary" />');
+    expect(source).toContain('<slot name="tertiary" />');
   });
 
   it('游戏文本始终通过安全 token 渲染而不使用 raw HTML', async () => {

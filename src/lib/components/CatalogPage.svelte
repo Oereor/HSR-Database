@@ -4,8 +4,14 @@
   import { onMount, tick } from 'svelte';
   import CharacterOverviewCard from './CharacterOverviewCard.svelte';
   import EnemyOverviewCard from './EnemyOverviewCard.svelte';
-  import LegacyEntityCard from './LegacyEntityCard.svelte';
-  import type { CatalogEntry, EnemyCatalogEntry } from '$lib/domain/types';
+  import EntityOverviewCard from './EntityOverviewCard.svelte';
+  import GameText from './GameText.svelte';
+  import type {
+    CatalogEntry,
+    EnemyCatalogEntry,
+    RelicCatalogEntry,
+    RelicSetCategory
+  } from '$lib/domain/types';
   import {
     ENEMY_RANK_CATEGORIES,
     getEnemyRankCategory,
@@ -13,7 +19,11 @@
     normalizeEnemyRankFilter
   } from '$lib/domain/enemy-overview';
   import { gameTextToPlain } from '$lib/domain/game-text';
-  import { getCharacterPreviewUrl, getLightConePreviewUrl } from '$lib/data/visual-assets';
+  import {
+    getCharacterPreviewUrl,
+    getLightConePreviewUrl,
+    getRelicSetIconUrl
+  } from '$lib/data/visual-assets';
 
   export let entries: CatalogEntry[];
   export let category: string;
@@ -97,6 +107,18 @@
   function enemyEntry(entry: CatalogEntry): EnemyCatalogEntry {
     if (!isEnemyCatalogEntry(entry)) throw new Error(`敌人目录 ${entry.id} 缺少弱点投影`);
     return entry;
+  }
+
+  const relicCategoryLabels: Record<RelicSetCategory, string> = {
+    cavern: '隧洞遗器',
+    planar: '位面饰品'
+  };
+
+  function relicEntry(entry: CatalogEntry): RelicCatalogEntry {
+    const category = (entry as Partial<RelicCatalogEntry>).category;
+    if (category !== 'cavern' && category !== 'planar')
+      throw new Error(`遗器目录 ${entry.id} 缺少有效套装分类`);
+    return entry as RelicCatalogEntry;
   }
 
   async function submitQuery() {
@@ -260,7 +282,9 @@
       class="entity-grid"
       class:entity-grid--overview={category === 'characters' ||
         category === 'light-cones' ||
-        category === 'enemies'}
+        category === 'enemies' ||
+        category === 'relics'}
+      class:entity-grid--overview-compact={category === 'relics'}
     >
       {#each visible as entry (entry.id)}
         {#if category === 'characters' || category === 'light-cones'}
@@ -277,8 +301,21 @@
             href={`/enemies/${entry.id}`}
             imageUrl={enemyPortraits[entry.id]}
           />
-        {:else}
-          <LegacyEntityCard {entry} href={`/${category}/${entry.id}`} kind="relic" />
+        {:else if category === 'relics'}
+          {@const relic = relicEntry(entry)}
+          <EntityOverviewCard
+            href={`/relics/${relic.id}`}
+            imageUrl={getRelicSetIconUrl(relic.id)}
+            imageAlt=""
+            fallbackLabel={relic.name}
+            artworkFit="contain"
+            artworkPosition="center"
+            size="compact"
+            mediaPresentation="icon"
+          >
+            <svelte:fragment slot="overlay">{relicCategoryLabels[relic.category]}</svelte:fragment>
+            <svelte:fragment slot="title"><GameText text={relic.name} /></svelte:fragment>
+          </EntityOverviewCard>
         {/if}
       {/each}
     </div>

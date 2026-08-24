@@ -1,7 +1,14 @@
 import { CATEGORY_CONFIG, isCategory } from '$lib/domain/constants';
-import { getCatalog, getDetail, getManifest } from '$lib/server/generated';
+import {
+  getCatalog,
+  getDetail,
+  getManifest,
+  getRelicCatalog,
+  getRelicProperties
+} from '$lib/server/generated';
 import { getEnemyDetail } from '$lib/server/enemies';
-import type { CharacterSpecialEffectEntry } from '$lib/domain/types';
+import { resolveEquipmentRecommendation } from '$lib/domain/equipment-recommendation-view';
+import type { Character, CharacterSpecialEffectEntry } from '$lib/domain/types';
 import { error } from '@sveltejs/kit';
 
 export const prerender = true;
@@ -23,15 +30,34 @@ export async function load({ params }) {
       params.category === 'characters'
         ? await resolveSpecialEffectTargets(detail as Record<string, unknown>)
         : [];
+    const equipmentRecommendation =
+      params.category === 'characters'
+        ? await resolveCharacterEquipmentRecommendation(detail as unknown as Character)
+        : undefined;
     return {
       category: params.category,
       config: CATEGORY_CONFIG[params.category],
       detail,
-      specialEffectTargets
+      specialEffectTargets,
+      equipmentRecommendation
     };
   } catch {
     error(404, '没有找到这条数据');
   }
+}
+
+async function resolveCharacterEquipmentRecommendation(character: Character) {
+  const [lightCones, relicSets, relicProperties] = await Promise.all([
+    getCatalog('light-cones'),
+    getRelicCatalog(),
+    getRelicProperties()
+  ]);
+  return resolveEquipmentRecommendation(
+    character.equipmentRecommendation,
+    lightCones,
+    relicSets,
+    relicProperties
+  );
 }
 
 async function resolveSpecialEffectTargets(detail: Record<string, unknown>) {

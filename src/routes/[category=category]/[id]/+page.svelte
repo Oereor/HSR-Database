@@ -8,4 +8,5 @@
   category={data.category}
   singular={data.config.singular}
   specialEffectTargets={data.specialEffectTargets}
+  equipmentRecommendation={data.equipmentRecommendation}
 />

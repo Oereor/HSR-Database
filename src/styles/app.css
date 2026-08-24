@@ -711,6 +711,9 @@ footer a {
   justify-content: center;
   gap: 1rem;
 }
+.entity-grid.entity-grid--overview-compact {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 220px));
+}
 .entity-overview-card {
   position: relative;
   display: grid;
@@ -726,6 +729,9 @@ footer a {
     border-color var(--motion),
     box-shadow var(--motion),
     background var(--motion);
+}
+.entity-overview-card.entity-overview-card--compact {
+  grid-template-rows: 176px auto;
 }
 .entity-overview-card:hover {
   transform: translateY(-2px);
@@ -757,6 +763,17 @@ footer a {
   max-width: 100%;
   flex: 0 0 auto;
   transform-origin: center bottom;
+}
+.entity-overview-card--icon-media .entity-overview-card__artwork {
+  place-items: center;
+}
+.entity-overview-card--icon-media .entity-overview-card__artwork img {
+  width: calc(100% - 2 * var(--space-6));
+  height: calc(100% - 2 * var(--space-6));
+  max-width: 8rem;
+  max-height: 8rem;
+  margin: auto;
+  transform-origin: center;
 }
 .entity-overview-card__overlay {
   position: absolute;
@@ -799,6 +816,18 @@ footer a {
   justify-content: space-between;
   padding: var(--space-3) var(--space-3) var(--space-4);
   text-align: center;
+}
+.entity-overview-card--compact .entity-overview-card__content {
+  height: auto;
+  padding: var(--space-4);
+}
+.entity-overview-card__content--title-only {
+  justify-content: center;
+}
+.entity-overview-card--compact
+  .entity-overview-card__content--title-only
+  .entity-overview-card__title {
+  min-height: 0;
 }
 .entity-overview-card__title {
   display: -webkit-box;
@@ -887,6 +916,11 @@ footer a {
   color: var(--text-muted);
   font-size: 2rem;
   font-weight: 700;
+}
+.entity-overview-card--compact .entity-overview-card__fallback {
+  width: 7rem;
+  height: 7rem;
+  margin-bottom: 0;
 }
 .entity-overview-card--missing .entity-overview-card__artwork {
   opacity: 0.72;
@@ -3281,6 +3315,222 @@ th {
   margin-top: 15vh;
 }
 
+.compact-entity-grid,
+.enemy-summon-list {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  align-items: stretch;
+  gap: var(--space-3);
+}
+.compact-entity-card {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  min-height: 5.4rem;
+  height: 100%;
+  grid-template-columns: 4.6rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  background: rgb(14 20 34 / 68%);
+  padding: 0.45rem 0.85rem 0.45rem 0.45rem;
+  color: inherit;
+  transition:
+    border-color var(--motion),
+    background var(--motion),
+    transform var(--motion);
+}
+.compact-entity-card--link:hover {
+  border-color: var(--border-strong);
+  background: rgb(20 28 46 / 78%);
+  transform: translateY(-1px);
+}
+.compact-entity-card--link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.compact-entity-card__artwork {
+  display: grid;
+  width: 4.6rem;
+  height: 4.6rem;
+  place-items: center;
+  overflow: hidden;
+  border-radius: calc(var(--radius-control) - 2px);
+  background: radial-gradient(circle, rgb(215 181 109 / 13%), transparent 70%);
+}
+.compact-entity-card__artwork img {
+  width: 100%;
+  height: 100%;
+}
+.compact-entity-card__fallback {
+  color: var(--gold);
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+.compact-entity-card__content {
+  display: grid;
+  min-width: 0;
+  align-content: center;
+  gap: 0.26rem;
+}
+.compact-entity-card__title {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--text-primary);
+  font-size: var(--font-meta-value);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.compact-entity-card__secondary,
+.compact-entity-card__tertiary {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  color: var(--faint);
+  font-size: var(--font-internal);
+  line-height: 1.3;
+}
+.compact-entity-card__secondary .rarity-stars {
+  font-size: 0.75rem;
+}
+.compact-entity-card__tertiary .semantic-icon-label {
+  gap: 0.32rem;
+  color: var(--text-secondary);
+  font-size: inherit;
+}
+.compact-entity-card__tertiary .semantic-icon-label img {
+  width: 1rem;
+  height: 1rem;
+}
+.compact-entity-card__arrow {
+  color: var(--gold);
+  font-size: 1rem;
+}
+.enemy-weakness-group--icon-only {
+  display: inline-flex;
+  gap: 0.42rem;
+}
+.enemy-weakness-group--icon-only .semantic-icon-label > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.equipment-recommendation {
+  display: grid;
+  gap: var(--space-6);
+}
+.equipment-recommendation__heading {
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.equipment-recommendation__heading p {
+  margin: 0;
+  color: var(--faint);
+  font-size: var(--font-helper);
+}
+.equipment-recommendation__group,
+.equipment-recommendation__subgroup {
+  display: grid;
+  gap: var(--space-3);
+}
+.equipment-recommendation__group {
+  gap: var(--space-4);
+}
+.equipment-recommendation__group h3,
+.equipment-recommendation__subgroup h4 {
+  margin: 0;
+}
+.equipment-recommendation__group h3 {
+  font-size: var(--font-major-title);
+}
+.equipment-recommendation__subgroup h4 {
+  color: var(--text-secondary);
+  font-size: var(--font-helper);
+  letter-spacing: 0.04em;
+}
+.recommendation-stats-surface {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: rgb(14 20 34 / 68%);
+}
+.recommendation-main-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.recommendation-main-stat {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+.recommendation-main-stat + .recommendation-main-stat {
+  border-left: 1px solid var(--border);
+}
+.recommendation-main-stat h4,
+.recommendation-substats h4 {
+  margin: 0;
+  color: var(--faint);
+  font-size: var(--font-helper);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+}
+.recommendation-main-stat > div {
+  display: grid;
+  gap: var(--space-3);
+}
+.recommendation-main-stat .relic-property-token {
+  font-weight: 600;
+}
+.recommendation-substats {
+  display: grid;
+  gap: var(--space-4);
+  border-top: 1px solid var(--border);
+  padding: var(--space-6);
+}
+.recommendation-substats > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+}
+.relic-property-token {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-primary);
+  font-size: var(--font-meta-value);
+  line-height: 1.3;
+}
+.relic-property-token img {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+.relic-property-token--chip {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 3%);
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-primary);
+  font-size: var(--font-helper);
+  font-weight: 500;
+}
+
 @media (max-width: 1180px) {
   .entity-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3652,6 +3902,18 @@ th {
   }
 }
 
+@media (max-width: 640px) {
+  .recommendation-main-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .recommendation-main-stat:nth-child(3) {
+    border-left: 0;
+  }
+  .recommendation-main-stat:nth-child(n + 3) {
+    border-top: 1px solid var(--border);
+  }
+}
+
 @media (max-width: 520px) {
   .category-grid,
   .entity-grid,
@@ -3692,6 +3954,24 @@ th {
   }
   .enemy-summon-list {
     grid-template-columns: 1fr;
+  }
+  .recommendation-main-stats {
+    grid-template-columns: 1fr;
+  }
+  .recommendation-main-stat + .recommendation-main-stat {
+    border-top: 1px solid var(--border);
+    border-left: 0;
+  }
+  .recommendation-main-stat,
+  .recommendation-substats {
+    padding: var(--space-4);
+  }
+  .compact-entity-card {
+    grid-template-columns: 4rem minmax(0, 1fr) auto;
+  }
+  .compact-entity-card__artwork {
+    width: 4rem;
+    height: 4rem;
   }
   .enemy-summon-card {
     grid-template-columns: 3.6rem minmax(0, 1fr) auto;

@@ -31,6 +31,16 @@ export const characterLdSourceSpecs = [
     tableName: 'AvatarPromotionConfig',
     additionalName: 'AvatarPromotionConfigLD',
     identityOf: (row: RawRecord) => `${String(row.AvatarID)}:${String(row.MaxLevel)}`
+  },
+  {
+    tableName: 'AvatarEquipRecommend',
+    additionalName: 'AvatarEquipRecommendLD',
+    identityOf: (row: RawRecord) => String(row.AvatarID)
+  },
+  {
+    tableName: 'AvatarRelicRecommend',
+    additionalName: 'AvatarRelicRecommendLD',
+    identityOf: (row: RawRecord) => String(row.AvatarID)
   }
 ] as const;
 
@@ -40,5 +50,7 @@ export const characterLdSourceNames = [
   'AvatarSkillConfigLD',
   'AvatarSkillTreeConfigLD',
   'AvatarRankConfigLD',
-  'AvatarPromotionConfigLD'
+  'AvatarPromotionConfigLD',
+  'AvatarEquipRecommendLD',
+  'AvatarRelicRecommendLD'
 ] as const;

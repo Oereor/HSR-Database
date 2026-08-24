@@ -3,6 +3,7 @@ import { mkdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type {
+  AvatarEquipmentRecommendation,
   CatalogEntry,
   Character,
   CharacterEnergy,
@@ -12,7 +13,12 @@ import type {
   Enemy,
   EnemySkill,
   LightCone,
+  RelicCatalogEntry,
+  RelicEffectRequirement,
+  RelicProperty,
   RelicSet,
+  RelicSetCategory,
+  RelicSlot,
   SearchEntry,
   SkillExtraEffect,
   SkillVariant,
@@ -211,6 +217,11 @@ export async function syncData(): Promise<DataManifest> {
     'RelicSetConfig',
     'RelicSetSkillConfig',
     'RelicDataInfo',
+    'RelicBaseType',
+    'RelicMainAffixConfig',
+    'RelicSubAffixConfig',
+    'AvatarEquipRecommend',
+    'AvatarRelicRecommend',
     'ItemComefrom',
     'MonsterTemplateConfig',
     'MonsterConfig',
@@ -303,6 +314,7 @@ export async function syncData(): Promise<DataManifest> {
   };
   const avatarItems = by(tables.ItemConfigAvatar, 'ID');
   const equipmentItems = by(tables.ItemConfigEquipment, 'ID');
+  const equipmentRows = by(tables.EquipmentConfig, 'EquipmentID');
   const pathRows = by(tables.AvatarBaseType, 'ID');
   const damageRows = by(tables.DamageType, 'ID');
   const itemSources = grouped(tables.ItemComefrom, 'ID');
@@ -321,6 +333,12 @@ export async function syncData(): Promise<DataManifest> {
   const relicSkills = grouped(tables.RelicSetSkillConfig, 'SetID');
   const relicParts = grouped(tables.RelicDataInfo, 'SetID');
   const relicSetRows = by(tables.RelicSetConfig, 'SetID');
+  const relicBaseTypes = by(
+    tables.RelicBaseType.filter((row) => row.Type),
+    'Type'
+  );
+  const equipmentRecommendations = by(tables.AvatarEquipRecommend, 'AvatarID');
+  const relicRecommendations = by(tables.AvatarRelicRecommend, 'AvatarID');
   const monsterRows = by(tables.MonsterConfig, 'MonsterID');
   const monsterTemplates = by(tables.MonsterTemplateConfig, 'MonsterTemplateID');
   const monsterSkillRows = by(tables.MonsterSkillConfig, 'SkillID');
@@ -565,6 +583,129 @@ export async function syncData(): Promise<DataManifest> {
         .map((row) => tr(row.Desc, source('item-source', id, 'Desc')))
         .filter(Boolean)
     );
+
+  const relicSlots = ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK', 'OBJECT'] as const;
+  const cavernSlots = new Set<RelicSlot>(['HEAD', 'HAND', 'BODY', 'FOOT']);
+  const planarSlots = new Set<RelicSlot>(['NECK', 'OBJECT']);
+  const normalizeRelicSlot = (value: unknown, context: string): RelicSlot => {
+    const slot = String(value ?? '');
+    if (!(relicSlots as readonly string[]).includes(slot))
+      throw new Error(`${context} 包含未知遗器槽位：${slot}`);
+    return slot as RelicSlot;
+  };
+  const relicCategoryForSlots = (slots: RelicSlot[], context: string): RelicSetCategory => {
+    if (slots.length && slots.every((slot) => cavernSlots.has(slot))) return 'cavern';
+    if (slots.length && slots.every((slot) => planarSlots.has(slot))) return 'planar';
+    throw new Error(`${context} 的遗器部件槽位无法归入单一套装分类：${slots.join(',')}`);
+  };
+  const relicCategoryForSet = (setId: string): RelicSetCategory =>
+    relicCategoryForSlots(
+      (relicParts.get(setId) ?? []).map((piece) =>
+        normalizeRelicSlot(piece.Type, `遗器套装 ${setId}`)
+      ),
+      `遗器套装 ${setId}`
+    );
+
+  const mainAffixPropertyTypes = new Set(
+    tables.RelicMainAffixConfig.map((row) => String(row.Property ?? '')).filter(Boolean)
+  );
+  const subAffixPropertyTypes = new Set(
+    tables.RelicSubAffixConfig.map((row) => String(row.Property ?? '')).filter(Boolean)
+  );
+  const relicPropertyTypes = unique([...mainAffixPropertyTypes, ...subAffixPropertyTypes]).sort(
+    (a, b) => a.localeCompare(b)
+  );
+  const relicProperties: RelicProperty[] = relicPropertyTypes.map((propertyType) => {
+    const property = avatarProperties.get(propertyType);
+    if (!property) throw new Error(`遗器属性 ${propertyType} 无法关联 AvatarPropertyConfig`);
+    const allowedMainSlots = relicSlots.filter((slot) =>
+      (relicBaseTypes.get(slot)?.ValidPropertyList ?? []).map(String).includes(propertyType)
+    );
+    if (mainAffixPropertyTypes.has(propertyType) && !allowedMainSlots.length)
+      throw new Error(`遗器主属性 ${propertyType} 没有合法槽位`);
+    const iconName = path.posix.basename(String(property.IconPath ?? '').replaceAll('\\', '/'));
+    const iconKey = /^[A-Za-z0-9_-]+\.png$/i.test(iconName)
+      ? iconName.replace(/\.png$/i, '')
+      : undefined;
+    return {
+      propertyType,
+      name: tr(
+        property.PropertyNameRelic ?? property.PropertyName,
+        source('relic-property', propertyType, 'PropertyNameRelic'),
+        propertyType
+      ),
+      ...(iconKey ? { iconKey } : {}),
+      allowedMainSlots,
+      canBeSubStat: subAffixPropertyTypes.has(propertyType)
+    };
+  });
+  const relicPropertiesByType = new Map(
+    relicProperties.map((property) => [property.propertyType, property])
+  );
+
+  const recommendationSlots = [
+    ['BODY', 'PropertyList3'],
+    ['FOOT', 'PropertyList4'],
+    ['NECK', 'PropertyList5'],
+    ['OBJECT', 'PropertyList6']
+  ] as const;
+  const recommendationIds = (value: unknown, context: string): string[] => {
+    if (!Array.isArray(value)) throw new Error(`${context} 不是数组`);
+    const ids = value.map(String);
+    if (new Set(ids).size !== ids.length) throw new Error(`${context} 包含重复引用`);
+    return ids;
+  };
+  const recommendationFor = (avatarId: string): AvatarEquipmentRecommendation => {
+    const equipment = equipmentRecommendations.get(avatarId);
+    const relic = relicRecommendations.get(avatarId);
+    if (!equipment || !relic) throw new Error(`角色 ${avatarId} 缺少完整装备推荐配置`);
+    const lightConeIds = recommendationIds(
+      equipment.EquipmentList,
+      `角色 ${avatarId} EquipmentList`
+    );
+    for (const id of lightConeIds)
+      if (!equipmentRows.has(id)) throw new Error(`角色 ${avatarId} 推荐了未知光锥 ${id}`);
+    const cavernSetIds = recommendationIds(relic.Set4IDList, `角色 ${avatarId} Set4IDList`);
+    const planarSetIds = recommendationIds(relic.Set2IDList, `角色 ${avatarId} Set2IDList`);
+    for (const id of cavernSetIds) {
+      if (!relicSetRows.has(id)) throw new Error(`角色 ${avatarId} 推荐了未知遗器套装 ${id}`);
+      if (relicCategoryForSet(id) !== 'cavern')
+        throw new Error(`角色 ${avatarId} 的隧洞遗器推荐 ${id} 分类错误`);
+    }
+    for (const id of planarSetIds) {
+      if (!relicSetRows.has(id)) throw new Error(`角色 ${avatarId} 推荐了未知遗器套装 ${id}`);
+      if (relicCategoryForSet(id) !== 'planar')
+        throw new Error(`角色 ${avatarId} 的位面饰品推荐 ${id} 分类错误`);
+    }
+    const mainStatOptions = recommendationSlots.map(([slot, field]) => {
+      const propertyTypes = recommendationIds(relic[field], `角色 ${avatarId} ${field}`);
+      if (!propertyTypes.length) throw new Error(`角色 ${avatarId} 的 ${slot} 推荐主属性为空`);
+      for (const propertyType of propertyTypes) {
+        const property = relicPropertiesByType.get(propertyType);
+        if (!property) throw new Error(`角色 ${avatarId} 推荐了未知遗器属性 ${propertyType}`);
+        if (!property.allowedMainSlots.includes(slot))
+          throw new Error(`角色 ${avatarId} 的 ${propertyType} 不能用于 ${slot}`);
+      }
+      return { slot, propertyTypes };
+    });
+    const subStatPropertyTypes = recommendationIds(
+      relic.SubAffixPropertyList,
+      `角色 ${avatarId} SubAffixPropertyList`
+    );
+    for (const propertyType of subStatPropertyTypes) {
+      const property = relicPropertiesByType.get(propertyType);
+      if (!property?.canBeSubStat)
+        throw new Error(`角色 ${avatarId} 推荐了非法副属性 ${propertyType}`);
+    }
+    return {
+      avatarId,
+      lightConeIds,
+      cavernSetIds,
+      planarSetIds,
+      mainStatOptions,
+      subStatPropertyTypes
+    };
+  };
 
   const characterCatalog: CatalogEntry[] = [];
   const characters: Character[] = [];
@@ -1065,6 +1206,7 @@ export async function syncData(): Promise<DataManifest> {
       kind: 'character',
       fullName,
       profiles,
+      equipmentRecommendation: recommendationFor(id),
       baseStats: normalizeStatProgression(promotionRows, characterStatFields, {
         speed: numberOf(promotionRows[0]?.SpeedBase),
         criticalChance: numberOf(promotionRows[0]?.CriticalChance),
@@ -1192,41 +1334,56 @@ export async function syncData(): Promise<DataManifest> {
     });
   }
 
-  const relicCatalog: CatalogEntry[] = [];
+  const relicCatalog: RelicCatalogEntry[] = [];
   const relics: RelicSet[] = [];
   for (const set of tables.RelicSetConfig) {
     const id = String(set.SetID);
     const name = tr(set.SetName, source('relic-set', id, 'SetName'), `遗器套装 ${id}`);
-    const effects = (relicSkills.get(id) ?? []).map((skill) => ({
-      required: Number(skill.RequireNum),
-      description: formatGameText(
-        trSymbolic(
-          skill.SkillDesc,
-          source('relic-set-effect', `${id}:${skill.RequireNum}`, 'SkillDesc')
-        ),
-        values(skill.AbilityParamList)
-      )
-    }));
-    const pieces = (relicParts.get(id) ?? []).map((piece) => ({
-      type: relicTypeNames[piece.Type] ?? piece.Type,
-      name:
-        trSymbolic(
-          piece.RelicName,
-          source('relic-piece', piece.ID ?? `${id}:${piece.Type}`, 'RelicName')
-        ) || `${name}·${relicTypeNames[piece.Type] ?? piece.Type}`,
-      description: trSymbolic(
-        piece.ItemBGDesc,
-        source('relic-piece', piece.ID ?? `${id}:${piece.Type}`, 'ItemBGDesc')
-      )
-    }));
+    const effects = (relicSkills.get(id) ?? []).map((skill) => {
+      const required = Number(skill.RequireNum);
+      if (required !== 2 && required !== 4)
+        throw new Error(`遗器套装 ${id} 包含未知套装效果需求：${required}`);
+      return {
+        required: required as RelicEffectRequirement,
+        description: formatGameText(
+          trSymbolic(
+            skill.SkillDesc,
+            source('relic-set-effect', `${id}:${skill.RequireNum}`, 'SkillDesc')
+          ),
+          values(skill.AbilityParamList)
+        )
+      };
+    });
+    const pieces = (relicParts.get(id) ?? []).map((piece) => {
+      const slot = normalizeRelicSlot(piece.Type, `遗器套装 ${id}`);
+      return {
+        slot,
+        name:
+          trSymbolic(
+            piece.RelicName,
+            source('relic-piece', piece.ID ?? `${id}:${piece.Type}`, 'RelicName')
+          ) || `${name}·${relicTypeNames[slot] ?? slot}`,
+        description: trSymbolic(
+          piece.ItemBGDesc,
+          source('relic-piece', piece.ID ?? `${id}:${piece.Type}`, 'ItemBGDesc')
+        )
+      };
+    });
     const sources = sourceTexts(set.DisplayItemID);
-    const catalog: CatalogEntry = {
+    const category = relicCategoryForSlots(
+      pieces.map((piece) => piece.slot),
+      `遗器套装 ${id}`
+    );
+    const effectRequirements = effects.map((effect) => effect.required);
+    const catalog: RelicCatalogEntry = {
       id,
       name,
       description: effects.map((effect) => `${effect.required}件：${effect.description}`).join(' '),
       version: set.ReleaseVersion,
-      type: pieces.some((piece) => piece.type === '位面球') ? 'planar' : 'cavern',
-      typeName: pieces.some((piece) => piece.type === '位面球') ? '位面饰品' : '隧洞遗器'
+      category,
+      effectRequirements,
+      type: category,
+      typeName: category === 'planar' ? '位面饰品' : '隧洞遗器'
     };
     relicCatalog.push(catalog);
     relics.push({ ...catalog, kind: 'relic', effects, pieces, sources });
@@ -1397,7 +1554,8 @@ export async function syncData(): Promise<DataManifest> {
       const monsterId = String(rawSummonId);
       const summonConfig = monsterRows.get(monsterId);
       const monsterTemplateId = String(summonConfig?.MonsterTemplateID ?? '');
-      if (!summonConfig || !monsterTemplates.has(monsterTemplateId)) {
+      const summonTemplate = monsterTemplates.get(monsterTemplateId);
+      if (!summonConfig || !summonTemplate) {
         enemyAudit.unresolvedSummons.push({ enemyId: id, monsterId });
         continue;
       }
@@ -1407,6 +1565,12 @@ export async function syncData(): Promise<DataManifest> {
         monsterId,
         monsterTemplateId,
         name: canonicalEnemyName(monsterTemplateId),
+        rank: String(summonTemplate.Rank ?? ''),
+        weaknesses: (summonConfig.StanceWeakList ?? []).flatMap((rawElement: unknown) => {
+          const sourceElement = String(rawElement);
+          const element = normalizeElementType(sourceElement);
+          return isElementType(element) ? [{ element, name: elementName(sourceElement) }] : [];
+        }),
         href: `/enemies/${monsterTemplateId}`
       });
     }
@@ -1554,12 +1718,21 @@ export async function syncData(): Promise<DataManifest> {
         const monsterId = String(rawSummonId);
         const summonConfig = monsterRows.get(monsterId);
         const summonTemplateId = String(summonConfig?.MonsterTemplateID ?? '');
-        return summonConfig && monsterTemplates.has(summonTemplateId)
+        const summonTemplate = monsterTemplates.get(summonTemplateId);
+        return summonConfig && summonTemplate
           ? [
               {
                 monsterId,
                 monsterTemplateId: summonTemplateId,
                 name: canonicalEnemyName(summonTemplateId),
+                rank: String(summonTemplate.Rank ?? ''),
+                weaknesses: (summonConfig.StanceWeakList ?? []).flatMap((rawElement: unknown) => {
+                  const sourceElement = String(rawElement);
+                  const element = normalizeElementType(sourceElement);
+                  return isElementType(element)
+                    ? [{ element, name: elementName(sourceElement) }]
+                    : [];
+                }),
                 href: `/enemies/${summonTemplateId}`
               }
             ]
@@ -1618,11 +1791,12 @@ export async function syncData(): Promise<DataManifest> {
       await writeJson(path.join(generatedRoot, 'details', category, `${detail.id}.json`), detail);
     }
   }
+  await writeJson(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), relicProperties);
   for (const [mode, dataset] of Object.entries(endgame.datasets))
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 26,
+    schemaVersion: 27,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),
@@ -1631,6 +1805,7 @@ export async function syncData(): Promise<DataManifest> {
       characters: characters.length,
       lightCones: lightCones.length,
       relics: relics.length,
+      relicProperties: relicProperties.length,
       enemies: enemies.length
     },
     routes: {

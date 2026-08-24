@@ -8,6 +8,10 @@ import type {
   DataManifest,
   Enemy,
   LightCone,
+  RelicCatalogEntry,
+  RelicProperty,
+  RelicSet,
+  RelicSlot,
   SearchEntry
 } from '../../src/lib/domain/types.js';
 import type {
@@ -52,7 +56,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 26)
+if (manifest.schemaVersion !== 27)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -573,6 +577,46 @@ for (const [category, count] of Object.entries(expected)) {
     await access(path.join(generatedRoot, 'details', category, `${item.id}.json`));
 }
 
+const relicProperties = JSON.parse(
+  await readFile(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), 'utf8')
+) as RelicProperty[];
+if (relicProperties.length !== manifest.counts.relicProperties || relicProperties.length !== 21)
+  throw new Error(`遗器属性数量异常：${relicProperties.length}`);
+if (
+  new Set(relicProperties.map((property) => property.propertyType)).size !== relicProperties.length
+)
+  throw new Error('遗器属性存在重复 PropertyType');
+const relicPropertiesByType = new Map(
+  relicProperties.map((property) => [property.propertyType, property])
+);
+const relicCatalog = JSON.parse(
+  await readFile(path.join(generatedRoot, 'catalogs', 'relics.json'), 'utf8')
+) as RelicCatalogEntry[];
+if (relicCatalog.filter((set) => set.category === 'cavern').length !== 32)
+  throw new Error('隧洞遗器套装数量异常');
+if (relicCatalog.filter((set) => set.category === 'planar').length !== 28)
+  throw new Error('位面饰品套装数量异常');
+const relicCatalogById = new Map(relicCatalog.map((set) => [set.id, set]));
+const relicDetails = await Promise.all(
+  manifest.routes.relics.map(
+    async (id) =>
+      JSON.parse(
+        await readFile(path.join(generatedRoot, 'details', 'relics', `${id}.json`), 'utf8')
+      ) as RelicSet
+  )
+);
+const cavernSlots = new Set<RelicSlot>(['HEAD', 'HAND', 'BODY', 'FOOT']);
+const planarSlots = new Set<RelicSlot>(['NECK', 'OBJECT']);
+for (const set of relicDetails) {
+  const expectedSlots = set.category === 'cavern' ? cavernSlots : planarSlots;
+  if (!set.pieces.length || set.pieces.some((piece) => !expectedSlots.has(piece.slot)))
+    throw new Error(`遗器套装 ${set.id} 的部件槽位与分类不一致`);
+  if (set.effects.some((effect) => effect.required !== 2 && effect.required !== 4))
+    throw new Error(`遗器套装 ${set.id} 包含未知套装效果需求`);
+  if (set.effectRequirements.join(',') !== set.effects.map((effect) => effect.required).join(','))
+    throw new Error(`遗器套装 ${set.id} 的目录效果需求与详情不一致`);
+}
+
 const enemyDetails = await Promise.all(
   manifest.routes.enemies.map(
     async (id) =>
@@ -1072,6 +1116,12 @@ const profileIds = (profile: CharacterProfile): Set<string> =>
     ...profile.eidolons.map((eidolon) => eidolon.id)
   ]);
 
+const lightConeCatalog = JSON.parse(
+  await readFile(path.join(generatedRoot, 'catalogs', 'light-cones.json'), 'utf8')
+) as CatalogEntry[];
+const lightConeIds = new Set(lightConeCatalog.map((entry) => entry.id));
+const recommendationMainSlots = ['BODY', 'FOOT', 'NECK', 'OBJECT'] as const;
+
 for (const character of characters) {
   if (character.element && !isElementType(character.element))
     throw new Error(`角色 ${character.id} 使用未知属性：${character.element}`);
@@ -1090,6 +1140,51 @@ for (const character of characters) {
   const level80 = getBaseStatsAtLevel(character.baseStats, 80);
   if (![level80.hp, level80.attack, level80.defence].every(Number.isFinite))
     throw new Error(`角色 ${character.id} 的 Lv.80 属性无效`);
+  const recommendation = character.equipmentRecommendation;
+  if (!recommendation || recommendation.avatarId !== character.id)
+    throw new Error(`角色 ${character.id} 的装备推荐 ownership 异常`);
+  if (![2, 3].includes(recommendation.lightConeIds.length))
+    throw new Error(`角色 ${character.id} 的推荐光锥数量异常`);
+  if (![2, 3].includes(recommendation.cavernSetIds.length))
+    throw new Error(`角色 ${character.id} 的隧洞遗器推荐数量异常`);
+  if (recommendation.planarSetIds.length !== 3)
+    throw new Error(`角色 ${character.id} 的位面饰品推荐数量异常`);
+  if (recommendation.mainStatOptions.length !== recommendationMainSlots.length)
+    throw new Error(`角色 ${character.id} 的推荐主属性槽位数量异常`);
+  recommendation.lightConeIds.forEach((id) => {
+    if (!lightConeIds.has(id)) throw new Error(`角色 ${character.id} 引用了未知光锥 ${id}`);
+  });
+  recommendation.cavernSetIds.forEach((id) => {
+    if (relicCatalogById.get(id)?.category !== 'cavern')
+      throw new Error(`角色 ${character.id} 引用了非法隧洞遗器 ${id}`);
+  });
+  recommendation.planarSetIds.forEach((id) => {
+    if (relicCatalogById.get(id)?.category !== 'planar')
+      throw new Error(`角色 ${character.id} 引用了非法位面饰品 ${id}`);
+  });
+  recommendation.mainStatOptions.forEach((option, index) => {
+    if (
+      option.slot !== recommendationMainSlots[index] ||
+      ![1, 2].includes(option.propertyTypes.length)
+    )
+      throw new Error(`角色 ${character.id} 的 ${option.slot} 推荐主属性结构异常`);
+    option.propertyTypes.forEach((propertyType) => {
+      if (!relicPropertiesByType.get(propertyType)?.allowedMainSlots.includes(option.slot))
+        throw new Error(`角色 ${character.id} 的 ${propertyType} 不能用于 ${option.slot}`);
+    });
+  });
+  if (
+    recommendation.subStatPropertyTypes.length < 2 ||
+    recommendation.subStatPropertyTypes.length > 5
+  )
+    throw new Error(`角色 ${character.id} 的推荐副属性数量异常`);
+  recommendation.subStatPropertyTypes.forEach((propertyType) => {
+    if (!relicPropertiesByType.get(propertyType)?.canBeSubStat)
+      throw new Error(`角色 ${character.id} 引用了非法副属性 ${propertyType}`);
+  });
+  const recommendationJson = JSON.stringify(recommendation);
+  if (recommendationJson.includes('PropertyList') || recommendationJson.includes('ScoreRankList'))
+    throw new Error(`角色 ${character.id} 暴露了未确认的推荐字段`);
 }
 
 if (skillVariantCount !== 619)

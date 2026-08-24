@@ -6,7 +6,9 @@ import {
   type Character,
   type CharacterProfile,
   type DataManifest,
-  type LightCone
+  type LightCone,
+  type RelicCatalogEntry,
+  type RelicProperty
 } from '../../src/lib/domain/types';
 import { ELEMENT_COLORS, getElementColor } from '../../src/lib/domain/elements';
 import { formatBaseStat, getBaseStatsAtLevel } from '../../src/lib/domain/stats';
@@ -265,7 +267,9 @@ describe('真实数据管线', () => {
       AvatarSkillConfig: [{ SkillID: 101401, Level: 10 }, '101401:10'],
       AvatarSkillTreeConfig: [{ PointID: 1014001, EnhancedID: 0, Level: 6 }, '1014001:0:6'],
       AvatarRankConfig: [{ RankID: 101401 }, '101401'],
-      AvatarPromotionConfig: [{ AvatarID: 1014, MaxLevel: 80 }, '1014:80']
+      AvatarPromotionConfig: [{ AvatarID: 1014, MaxLevel: 80 }, '1014:80'],
+      AvatarEquipRecommend: [{ AvatarID: 1014 }, '1014'],
+      AvatarRelicRecommend: [{ AvatarID: 1014 }, '1014']
     };
     for (const spec of characterLdSourceSpecs) {
       const [row, expectedIdentity] = identityExamples[spec.tableName];
@@ -283,7 +287,7 @@ describe('真实数据管线', () => {
         )
       ).toHaveLength(regular.length + additional.length);
     }
-    expect(characterLdSourceNames).toHaveLength(6);
+    expect(characterLdSourceNames).toHaveLength(8);
   });
 
   it('解析并验证默认上游路径', () => {
@@ -623,7 +627,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(95);
-    expect(manifest.schemaVersion).toBe(26);
+    expect(manifest.schemaVersion).toBe(27);
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     const basicAttack = variantOf(character, '100101');
@@ -1368,5 +1372,56 @@ describe('真实数据管线', () => {
       '暴击伤害提高<unbreak>24%</unbreak>'
     );
     expect(enhanced.eidolons[0].description).toContain('暴击伤害提高<unbreak>36%</unbreak>');
+  });
+
+  it('按具体 AvatarID 生成完整装备推荐并解析最小遗器领域模型', async () => {
+    const readCharacter = async (id: string) =>
+      JSON.parse(
+        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+      ) as Character;
+    const [march, huntMarch, trailblazerMale, trailblazerFemale, gallagher, sparkle, rin] =
+      await Promise.all(
+        ['1001', '1224', '8001', '8002', '1301', '1501', '1508'].map(readCharacter)
+      );
+    expect(march.equipmentRecommendation).toEqual({
+      avatarId: '1001',
+      lightConeIds: ['21002', '23005', '24002'],
+      cavernSetIds: ['103', '128', '106'],
+      planarSetIds: ['304', '310', '317'],
+      mainStatOptions: [
+        { slot: 'BODY', propertyTypes: ['DefenceAddedRatio', 'StatusProbabilityBase'] },
+        { slot: 'FOOT', propertyTypes: ['SpeedDelta', 'DefenceAddedRatio'] },
+        { slot: 'NECK', propertyTypes: ['DefenceAddedRatio'] },
+        { slot: 'OBJECT', propertyTypes: ['DefenceAddedRatio'] }
+      ],
+      subStatPropertyTypes: [
+        'DefenceAddedRatio',
+        'SpeedDelta',
+        'StatusProbabilityBase',
+        'StatusResistanceBase'
+      ]
+    });
+    expect(huntMarch.equipmentRecommendation.avatarId).toBe('1224');
+    expect(trailblazerMale.equipmentRecommendation.avatarId).toBe('8001');
+    expect(trailblazerFemale.equipmentRecommendation.avatarId).toBe('8002');
+    expect(gallagher.equipmentRecommendation.lightConeIds).toHaveLength(2);
+    expect(gallagher.equipmentRecommendation.mainStatOptions[2].propertyTypes).toHaveLength(2);
+    expect(sparkle.equipmentRecommendation.cavernSetIds).toHaveLength(2);
+    expect(rin.equipmentRecommendation.avatarId).toBe('1508');
+    expect(JSON.stringify(rin.equipmentRecommendation)).not.toMatch(/PropertyList|ScoreRankList/);
+
+    const relics = JSON.parse(
+      await readFile(path.join(generatedRoot, 'catalogs', 'relics.json'), 'utf8')
+    ) as RelicCatalogEntry[];
+    const properties = JSON.parse(
+      await readFile(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), 'utf8')
+    ) as RelicProperty[];
+    expect(relics.filter((set) => set.category === 'cavern')).toHaveLength(32);
+    expect(relics.filter((set) => set.category === 'planar')).toHaveLength(28);
+    expect(properties).toHaveLength(21);
+    expect(new Set(properties.flatMap((property) => property.iconKey ?? [])).size).toBe(18);
+    expect(
+      properties.find((property) => property.propertyType === 'StatusResistanceBase')
+    ).toMatchObject({ name: '效果抵抗', allowedMainSlots: [], canBeSubStat: true });
   });
 });

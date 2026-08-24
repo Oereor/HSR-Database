@@ -2,8 +2,11 @@
   import EnemySkillCard from './EnemySkillCard.svelte';
   import EnemyStatsPanel from './EnemyStatsPanel.svelte';
   import GameText from '$lib/components/GameText.svelte';
+  import CompactEntityCard from '$lib/components/CompactEntityCard.svelte';
+  import EnemyWeaknessGroup from '$lib/components/EnemyWeaknessGroup.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import { getElementColor } from '$lib/domain/elements';
+  import { getEnemyRankLabel } from '$lib/domain/enemy-overview';
   import type { EnemyDetailView, EnemyMonsterDetailView } from '$lib/domain/enemy-view';
 
   export let detail: EnemyDetailView;
@@ -228,27 +231,19 @@
         <span>{selectedMonster.summons.length} 个</span>
       </div>
       <div class="enemy-summon-list">
-        {#each selectedMonster.summons as summon (summon.monsterId)}<a
-            class="enemy-summon-card"
+        {#each selectedMonster.summons as summon (summon.monsterId)}<CompactEntityCard
             href={summon.href}
+            imageUrl={summon.portraitUrl}
+            fallbackLabel={summon.name}
             data-summon-monster={summon.monsterId}
             data-summon-template={summon.monsterTemplateId}
           >
-            <div class="enemy-summon-card__art">
-              {#if summon.portraitUrl}<img
-                  src={summon.portraitUrl}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                />{:else}<span aria-hidden="true">✦</span>{/if}
-            </div>
-            <div>
-              <strong><GameText text={summon.name} /></strong><small
-                >Monster #{summon.monsterId}</small
-              >
-            </div>
-            <span aria-hidden="true">→</span>
-          </a>{/each}
+            <svelte:fragment slot="title"><GameText text={summon.name} /></svelte:fragment>
+            <svelte:fragment slot="secondary">{getEnemyRankLabel(summon.rank)}</svelte:fragment>
+            <svelte:fragment slot="tertiary">
+              <EnemyWeaknessGroup weaknesses={summon.weaknesses} iconOnly />
+            </svelte:fragment>
+          </CompactEntityCard>{/each}
       </div>
     </section>{/if}
 

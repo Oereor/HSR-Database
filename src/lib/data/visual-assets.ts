@@ -6,6 +6,8 @@ const sets = {
   preview: new Set(manifest.characters.previews.available),
   portrait: new Set(manifest.characters.portraits.available),
   lightConePreview: new Set(manifest.lightCones.previews.available),
+  relicIcon: new Set(manifest.relics.icons.available),
+  relicPropertyIcon: new Set(manifest.relicProperties.icons.available),
   element: new Set(manifest.elements.available),
   path: new Set(manifest.paths.available)
 };
@@ -63,6 +65,32 @@ export function resolveLightConePreviewAsset(
   );
 }
 
+export function resolveRelicSetIconAsset(
+  relicSetId: string,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  return resolveAsset(
+    relicSetId,
+    source.relics.icons,
+    'relics/icons',
+    'png',
+    source === manifest ? sets.relicIcon : undefined
+  );
+}
+
+export function resolveRelicPropertyIconAsset(
+  iconKey: string | undefined,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  return resolveAsset(
+    iconKey,
+    source.relicProperties.icons,
+    'relic-properties',
+    'png',
+    source === manifest ? sets.relicPropertyIcon : undefined
+  );
+}
+
 export function resolveElementIconAsset(
   element: string | undefined,
   source: VisualAssetManifest = manifest
@@ -95,6 +123,9 @@ export const getCharacterPortraitUrl = (id: string): string | undefined =>
   resolveCharacterPortraitAsset(id);
 export const getLightConePreviewUrl = (id: string): string | undefined =>
   resolveLightConePreviewAsset(id);
+export const getRelicSetIconUrl = (id: string): string | undefined => resolveRelicSetIconAsset(id);
+export const getRelicPropertyIconUrl = (iconKey: string | undefined): string | undefined =>
+  resolveRelicPropertyIconAsset(iconKey);
 export const getElementIconUrl = (element: string | undefined): string | undefined =>
   resolveElementIconAsset(element);
 export const getPathIconUrl = (path: string | undefined): string | undefined =>

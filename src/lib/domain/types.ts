@@ -216,6 +216,32 @@ export interface CharacterProfile {
   eidolons: Eidolon[];
 }
 
+export type RelicSlot = 'HEAD' | 'HAND' | 'BODY' | 'FOOT' | 'NECK' | 'OBJECT';
+export type RelicSetCategory = 'cavern' | 'planar';
+export type RelicEffectRequirement = 2 | 4;
+
+export interface RelicProperty {
+  propertyType: string;
+  name: string;
+  iconKey?: string;
+  allowedMainSlots: RelicSlot[];
+  canBeSubStat: boolean;
+}
+
+export interface RelicMainStatRecommendation {
+  slot: Extract<RelicSlot, 'BODY' | 'FOOT' | 'NECK' | 'OBJECT'>;
+  propertyTypes: string[];
+}
+
+export interface AvatarEquipmentRecommendation {
+  avatarId: string;
+  lightConeIds: string[];
+  cavernSetIds: string[];
+  planarSetIds: string[];
+  mainStatOptions: RelicMainStatRecommendation[];
+  subStatPropertyTypes: string[];
+}
+
 export interface ElementLabel {
   element: string;
   name: string;
@@ -248,6 +274,7 @@ export interface Character extends CatalogEntry {
     enhanced?: CharacterProfile;
   };
   baseStats: BaseStatProgression;
+  equipmentRecommendation: AvatarEquipmentRecommendation;
 }
 
 export interface LightCone extends CatalogEntry {
@@ -257,10 +284,15 @@ export interface LightCone extends CatalogEntry {
   baseStats: BaseStatProgression;
 }
 
-export interface RelicSet extends CatalogEntry {
+export interface RelicCatalogEntry extends CatalogEntry {
+  category: RelicSetCategory;
+  effectRequirements: RelicEffectRequirement[];
+}
+
+export interface RelicSet extends RelicCatalogEntry {
   kind: 'relic';
-  effects: Array<{ required: number; description: string }>;
-  pieces: Array<{ type: string; name: string; description: string }>;
+  effects: Array<{ required: RelicEffectRequirement; description: string }>;
+  pieces: Array<{ slot: RelicSlot; name: string; description: string }>;
   sources: string[];
 }
 
@@ -356,6 +388,8 @@ export interface EnemySummonReference {
   monsterId: string;
   monsterTemplateId: string;
   name: string;
+  rank: string;
+  weaknesses: ElementLabel[];
   href: string;
 }
 
@@ -392,7 +426,7 @@ export interface DataManifest {
   sourceVersion: string;
   generatedAt: string;
   language: 'CHS';
-  counts: Record<'characters' | 'lightCones' | 'relics' | 'enemies', number>;
+  counts: Record<'characters' | 'lightCones' | 'relics' | 'relicProperties' | 'enemies', number>;
   routes: Record<'characters' | 'light-cones' | 'relics' | 'enemies', string[]>;
   endgame: import('./endgame.js').EndgameManifestSummary;
 }
