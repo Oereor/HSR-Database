@@ -10,14 +10,18 @@
   import SuperimpositionPanel from '$lib/components/SuperimpositionPanel.svelte';
   import TraceCardPanel from '$lib/components/TraceCardPanel.svelte';
   import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
-  import CharacterPortrait from '$lib/components/CharacterPortrait.svelte';
+  import DetailArtwork from '$lib/components/DetailArtwork.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import EnemyDetailPage from '$lib/components/enemy/EnemyDetailPage.svelte';
   import EquipmentRecommendationSection from '$lib/components/EquipmentRecommendationSection.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { relicTypeNames } from '$lib/domain/constants';
   import { gameTextToPlain } from '$lib/domain/game-text';
-  import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
+  import {
+    getCharacterPortraitUrl,
+    getCharacterPreviewUrl,
+    getLightConePortraitUrl
+  } from '$lib/data/visual-assets';
   import type { CatalogEntry } from '$lib/domain/types';
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
   export let detail: any;
@@ -25,7 +29,6 @@
   export let singular: string;
   export let specialEffectTargets: CatalogEntry[] = [];
   export let equipmentRecommendation: EquipmentRecommendationView | undefined = undefined;
-  let portraitAvailable = false;
   let specialEffectsOpen = false;
   let specialEffectTrigger: HTMLButtonElement | undefined;
   let specialEffectLevel = 1;
@@ -50,6 +53,10 @@
   $: specialEffectsAvailable = specialEffects.length > 0;
   $: specialEffectIconUrl =
     category === 'characters' ? getCharacterPreviewUrl(detail.id) : undefined;
+  $: characterPortraitSource =
+    category === 'characters' ? getCharacterPortraitUrl(detail.id) : undefined;
+  $: lightConePortraitSource =
+    category === 'light-cones' ? getLightConePortraitUrl(detail.id) : undefined;
   $: if (specialEffectsOpen && !specialEffectsAvailable) specialEffectsOpen = false;
 
   function openSpecialEffects(trigger: HTMLButtonElement, level: number) {
@@ -88,10 +95,108 @@
 </svelte:head>
 
 <a class="back-link" href={`/${category}`}>← 返回{singular}列表</a>
-{#if category !== 'enemies'}<header
-    class:detail-hero--with-portrait={category === 'characters' && portraitAvailable}
-    class="detail-hero"
-  >
+{#if category === 'characters'}
+  <header class="detail-profile-hero detail-profile-hero--character">
+    <div class="detail-profile-hero__identity">
+      <DetailArtwork
+        source={characterPortraitSource}
+        width={960}
+        height={960}
+        fit="cover"
+        data-character-portrait={detail.id}
+      />
+      <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
+      <div class="hero-identity-copy">
+        <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
+        <h1><GameText text={detail.name} /></h1>
+        {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
+            <GameText text={detail.fullName} />
+          </p>{/if}
+        <div class="hero-identity-tags">
+          {#if detail.rarity}<span class="tone-rarity">{'★'.repeat(detail.rarity)}</span>{/if}
+          {#if detail.pathName}<SemanticIconLabel
+              kind="path"
+              code={detail.path}
+              label={detail.pathName}
+              size="hero"
+            />{/if}
+          {#if detail.elementName}<SemanticIconLabel
+              kind="element"
+              code={detail.element}
+              label={detail.elementName}
+              color={getElementColor(detail.element)}
+              size="hero"
+            />{/if}
+        </div>
+        {#if hasEnhancedProfile}<div class="enhancement-control">
+            <span>角色加强</span>
+            <button
+              class="enhancement-switch"
+              type="button"
+              role="switch"
+              aria-label="角色加强"
+              aria-checked={enhancedEnabled}
+              on:click={toggleEnhanced}
+            >
+              <span class="enhancement-switch__track" aria-hidden="true"><span></span></span>
+              <strong>{enhancedEnabled ? '加强后' : '加强前'}</strong>
+            </button>
+          </div>{/if}
+        <div class="hero-biography">
+          {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
+              class="muted"
+            >
+              上游数据未提供可用简介。
+            </p>{/if}
+        </div>
+      </div>
+    </div>
+    <aside id="stats" class="detail-profile-hero__inspection" aria-label="基础属性与等级">
+      <BaseStatsPanel
+        progression={detail.baseStats}
+        energy={activeProfile.energy}
+        controlId={`character-level-${detail.id}`}
+      />
+    </aside>
+  </header>
+{:else if category === 'light-cones'}
+  <header class="detail-profile-hero detail-profile-hero--light-cone">
+    <div class="detail-profile-hero__identity">
+      <DetailArtwork
+        source={lightConePortraitSource}
+        width={689}
+        height={960}
+        fit="contain"
+        data-light-cone-portrait={detail.id}
+      />
+      <div class="hero-identity-copy">
+        <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
+        <h1><GameText text={detail.name} /></h1>
+        <div class="hero-identity-tags">
+          {#if detail.rarity}<span class="tone-rarity">{'★'.repeat(detail.rarity)}</span>{/if}
+          {#if detail.pathName}<SemanticIconLabel
+              kind="path"
+              code={detail.path}
+              label={detail.pathName}
+              size="hero"
+            />{/if}
+        </div>
+      </div>
+    </div>
+    <aside class="detail-profile-hero__inspection" aria-label="基础属性与叠影效果">
+      <BaseStatsPanel
+        progression={detail.baseStats}
+        controlId={`light-cone-level-${detail.id}`}
+        controlLabel="光锥等级"
+      />
+      <div class="detail-inspection-divider" aria-hidden="true"></div>
+      {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
+          passive={detail.passive}
+          lightConeId={detail.id}
+        />{:else}<p class="data-placeholder">上游未提供可展示的叠影效果。</p>{/if}
+    </aside>
+  </header>
+{:else if category !== 'enemies'}<header class="detail-hero">
     <div class="detail-hero__content">
       <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
       <h1><GameText text={detail.name} /></h1>
@@ -115,28 +220,10 @@
         {#if detail.version}<span>版本 {detail.version}</span>{/if}
         {#if detail.rank}<span>{detail.rank}</span>{/if}
       </div>
-      {#if hasEnhancedProfile}<div class="enhancement-control">
-          <span>角色加强</span>
-          <button
-            class="enhancement-switch"
-            type="button"
-            role="switch"
-            aria-label="角色加强"
-            aria-checked={enhancedEnabled}
-            on:click={toggleEnhanced}
-          >
-            <span class="enhancement-switch__track" aria-hidden="true"><span></span></span>
-            <strong>{enhancedEnabled ? '加强后' : '加强前'}</strong>
-          </button>
-        </div>{/if}
       {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p class="muted">
           上游数据未提供可用简介。
         </p>{/if}
     </div>
-    {#if category === 'characters'}<CharacterPortrait
-        characterId={detail.id}
-        onAvailabilityChange={(available) => (portraitAvailable = available)}
-      />{/if}
   </header>{/if}
 
 {#if category === 'characters'}
@@ -145,16 +232,6 @@
       >星魂</a
     ><a href="#equipment-recommendation">装备推荐</a>
   </nav>
-  <section id="stats" class="detail-section">
-    <div class="section-heading">
-      <h2>基础属性与晋阶</h2>
-    </div>
-    <BaseStatsPanel
-      progression={detail.baseStats}
-      energy={activeProfile.energy}
-      controlId={`character-level-${detail.id}`}
-    />
-  </section>
   {#key profileMode}
     <section id="skills" class="detail-section">
       <div class="section-heading">
@@ -211,21 +288,6 @@
       onClosed={handleSpecialEffectsClosed}
     />{/if}
 {:else if category === 'light-cones'}
-  <section class="detail-section">
-    <h2>基础属性</h2>
-    <BaseStatsPanel
-      progression={detail.baseStats}
-      controlId={`light-cone-level-${detail.id}`}
-      controlLabel="光锥等级"
-    />
-  </section>
-  <section class="detail-section">
-    <h2>光锥效果</h2>
-    {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
-        passive={detail.passive}
-        lightConeId={detail.id}
-      />{:else}<p class="data-placeholder">上游未提供可展示的叠影效果。</p>{/if}
-  </section>
   <section class="detail-section prose">
     <h2>背景故事</h2>
     <p class:muted={!detail.story}>

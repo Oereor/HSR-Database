@@ -58,6 +58,9 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
     `  光锥预览图 ${manifest.lightCones.previews.available.length}，缺失 ${manifest.lightCones.previews.missing.length}，${mb(sizes.lightConePreviews)}`
   );
   console.log(
+    `  光锥立绘 ${manifest.lightCones.portraits.available.length}，缺失 ${manifest.lightCones.portraits.missing.length}，${mb(sizes.lightConePortraits)}`
+  );
+  console.log(
     `  遗器套装图标 ${manifest.relics.icons.available.length}，缺失 ${manifest.relics.icons.missing.length}；遗器属性图标 ${manifest.relicProperties.icons.available.length}，缺失 ${manifest.relicProperties.icons.missing.length}，合计 ${mb(sizes.relicIcons + sizes.relicPropertyIcons)}`
   );
   console.log(

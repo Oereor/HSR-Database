@@ -6,6 +6,7 @@ const sets = {
   preview: new Set(manifest.characters.previews.available),
   portrait: new Set(manifest.characters.portraits.available),
   lightConePreview: new Set(manifest.lightCones.previews.available),
+  lightConePortrait: new Set(manifest.lightCones.portraits.available),
   relicIcon: new Set(manifest.relics.icons.available),
   relicPropertyIcon: new Set(manifest.relicProperties.icons.available),
   element: new Set(manifest.elements.available),
@@ -62,6 +63,19 @@ export function resolveLightConePreviewAsset(
     'light-cones/preview',
     'png',
     source === manifest ? sets.lightConePreview : undefined
+  );
+}
+
+export function resolveLightConePortraitAsset(
+  lightConeId: string,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  return resolveAsset(
+    lightConeId,
+    source.lightCones.portraits,
+    'light-cones/portrait',
+    'webp',
+    source === manifest ? sets.lightConePortrait : undefined
   );
 }
 
@@ -123,6 +137,8 @@ export const getCharacterPortraitUrl = (id: string): string | undefined =>
   resolveCharacterPortraitAsset(id);
 export const getLightConePreviewUrl = (id: string): string | undefined =>
   resolveLightConePreviewAsset(id);
+export const getLightConePortraitUrl = (id: string): string | undefined =>
+  resolveLightConePortraitAsset(id);
 export const getRelicSetIconUrl = (id: string): string | undefined => resolveRelicSetIconAsset(id);
 export const getRelicPropertyIconUrl = (iconKey: string | undefined): string | undefined =>
   resolveRelicPropertyIconAsset(iconKey);

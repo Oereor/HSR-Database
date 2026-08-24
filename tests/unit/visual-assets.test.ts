@@ -7,6 +7,7 @@ import {
   resolveCharacterPreviewAsset,
   resolveCharacterPortraitAsset,
   resolveLightConePreviewAsset,
+  resolveLightConePortraitAsset,
   resolveRelicPropertyIconAsset,
   resolveRelicSetIconAsset,
   resolveElementIconAsset,
@@ -17,10 +18,12 @@ import { assertAssetRoot, resolveAssetRoot } from '../../scripts/assets/paths';
 import {
   ELEMENT_SOURCE_NAMES,
   assertAssetCleanTarget,
+  generateLightConePortraitAssets,
   manifestCoversRequirements,
   PATH_SOURCE_NAMES,
   readCharacterPreviewSources,
   readLightConePreviewSources,
+  readLightConePortraitSources,
   readRelicPropertyIconSources,
   readRelicSetIconSources,
   readAssetManifest,
@@ -39,6 +42,7 @@ const manifest = (options?: {
   previews?: string[];
   portraits?: string[];
   lightConePreviews?: string[];
+  lightConePortraits?: string[];
   relicIcons?: string[];
   relicPropertyIcons?: string[];
   elements?: string[];
@@ -51,7 +55,8 @@ const manifest = (options?: {
     portraits: available(options?.portraits ?? [])
   },
   lightCones: {
-    previews: available(options?.lightConePreviews ?? [])
+    previews: available(options?.lightConePreviews ?? []),
+    portraits: available(options?.lightConePortraits ?? [])
   },
   relics: {
     icons: available(options?.relicIcons ?? [])
@@ -87,6 +92,7 @@ describe('视觉资源管线', () => {
       'image/character_preview',
       'image/character_portrait',
       'image/light_cone_preview',
+      'image/light_cone_portrait',
       'icon/relic',
       'icon/property',
       'icon/element',
@@ -115,6 +121,7 @@ describe('视觉资源管线', () => {
       previews: ['1001'],
       portraits: ['1001'],
       lightConePreviews: ['20000'],
+      lightConePortraits: ['20000'],
       relicIcons: ['101'],
       relicPropertyIcons: ['IconAttack'],
       elements: ['Lightning'],
@@ -129,6 +136,9 @@ describe('视觉资源管线', () => {
     expect(resolveLightConePreviewAsset('20000', source)).toBe(
       '/generated-assets/light-cones/preview/20000.png'
     );
+    expect(resolveLightConePortraitAsset('20000', source)).toBe(
+      '/generated-assets/light-cones/portrait/20000.webp'
+    );
     expect(resolveRelicSetIconAsset('101', source)).toBe('/generated-assets/relics/icons/101.png');
     expect(resolveRelicPropertyIconAsset('IconAttack', source)).toBe(
       '/generated-assets/relic-properties/IconAttack.png'
@@ -139,7 +149,9 @@ describe('视觉资源管线', () => {
     expect(resolvePathIconAsset('Memory', source)).toBe('/generated-assets/paths/Memory.png');
     expect(resolveCharacterPreviewAsset('1002', source)).toBeUndefined();
     expect(resolveLightConePreviewAsset('20001', source)).toBeUndefined();
+    expect(resolveLightConePortraitAsset('20001', source)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('../1001', source)).toBeUndefined();
+    expect(resolveLightConePortraitAsset('../20000', source)).toBeUndefined();
   });
 
   it('七属性与九命途使用已审计的 StarRailRes 映射', () => {
@@ -169,13 +181,15 @@ describe('视觉资源管线', () => {
     const source = manifest({
       previews: ['1001'],
       portraits: ['1001'],
+      lightConePreviews: ['20000'],
+      lightConePortraits: ['20000'],
       elements: ['Fire'],
       paths: ['Warrior']
     });
     expect(
       manifestCoversRequirements(source, {
         characterIds: ['1001'],
-        lightConeIds: [],
+        lightConeIds: ['20000'],
         relicSetIds: [],
         relicPropertyIcons: [],
         elements: ['Fire'],
@@ -185,7 +199,7 @@ describe('视觉资源管线', () => {
     expect(
       manifestCoversRequirements(source, {
         characterIds: ['1001', '1002'],
-        lightConeIds: [],
+        lightConeIds: ['20000'],
         relicSetIds: [],
         relicPropertyIcons: [],
         elements: ['Fire'],
@@ -194,7 +208,7 @@ describe('视觉资源管线', () => {
     ).toBe(false);
   });
 
-  it('小型 fixture 生成 960 以内透明 WebP 立绘和 64px PNG 图标', async () => {
+  it('小型 portrait fixture 保持比例并生成不放大的 960px 内透明 WebP', async () => {
     const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-assets-image-'));
     temporaryDirectories.push(root);
     const source = path.join(root, 'source.png');
@@ -202,8 +216,8 @@ describe('视觉资源管线', () => {
     const icon = path.join(root, 'icon.png');
     await sharp({
       create: {
-        width: 1200,
-        height: 1000,
+        width: 904,
+        height: 1260,
         channels: 4,
         background: { r: 50, g: 60, b: 70, alpha: 0.5 }
       }
@@ -214,10 +228,46 @@ describe('视觉资源管线', () => {
     await writeSemanticIconAsset(source, icon);
     const portraitMeta = await sharp(portrait).metadata();
     const iconMeta = await sharp(icon).metadata();
-    expect(portraitMeta.format).toBe('webp');
-    expect(portraitMeta.width).toBeLessThanOrEqual(960);
-    expect(portraitMeta.hasAlpha).toBe(true);
+    expect(portraitMeta).toMatchObject({ format: 'webp', width: 689, height: 960, hasAlpha: true });
     expect(iconMeta).toMatchObject({ format: 'png', width: 64, height: 64, hasAlpha: true });
+  });
+
+  it('光锥 portrait 生成将有效 index PNG 写入隔离 WebP 输出目录', async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-light-cone-portrait-generate-'));
+    temporaryDirectories.push(root);
+    const portraitDirectory = path.join(root, 'image', 'light_cone_portrait');
+    const indexDirectory = path.join(root, 'index_new', 'cn');
+    const outputDirectory = path.join(root, 'output');
+    await Promise.all([
+      mkdir(portraitDirectory, { recursive: true }),
+      mkdir(indexDirectory, { recursive: true })
+    ]);
+    await sharp({
+      create: {
+        width: 904,
+        height: 1260,
+        channels: 4,
+        background: { r: 50, g: 60, b: 70, alpha: 0.5 }
+      }
+    })
+      .png()
+      .toFile(path.join(portraitDirectory, '20000.png'));
+    await writeFile(
+      path.join(indexDirectory, 'light_cones.json'),
+      JSON.stringify({
+        20000: { id: '20000', portrait: 'image/light_cone_portrait/20000.png' }
+      })
+    );
+
+    const generated = await generateLightConePortraitAssets(root, ['20000'], outputDirectory);
+    const output = path.join(outputDirectory, '20000.webp');
+    const files = await readdir(outputDirectory);
+    const metadata = await sharp(output).metadata();
+
+    expect(generated).toEqual({ available: ['20000'], missing: [] });
+    expect(files.filter((file) => file.endsWith('.webp'))).toHaveLength(generated.available.length);
+    expect(metadata).toMatchObject({ format: 'webp', width: 689, height: 960 });
+    expect(metadata.width! / metadata.height!).toBeCloseTo(904 / 1260, 3);
   });
 
   it('当前 manifest 覆盖角色、光锥、遗器套装、遗器属性和语义图标需求', async () => {
@@ -256,6 +306,7 @@ describe('视觉资源管线', () => {
     expect(resolveCharacterPreviewAsset('1001', parsed)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('1001', parsed)).toBeUndefined();
     expect(resolveLightConePreviewAsset('20000', parsed)).toBeUndefined();
+    expect(resolveLightConePortraitAsset('20000', parsed)).toBeUndefined();
     expect(resolveRelicSetIconAsset('101', parsed)).toBeUndefined();
     expect(resolveRelicPropertyIconAsset('IconAttack', parsed)).toBeUndefined();
   });
@@ -309,6 +360,47 @@ describe('视觉资源管线', () => {
     }
   });
 
+  it('光锥 portrait index 只读取 portrait，显式映射网站需要的 165 张图片', async () => {
+    const root = assertAssetRoot(resolveAssetRoot());
+    const requirements = await readAssetRequirements();
+    const sources = await readLightConePortraitSources(root, requirements.lightConeIds);
+    const index = JSON.parse(
+      await readFile(path.join(root, 'index_new', 'cn', 'light_cones.json'), 'utf8')
+    ) as Record<string, { id?: string; portrait?: string }>;
+    expect(sources.size).toBe(165);
+    expect([...sources.keys()].sort()).toEqual(requirements.lightConeIds);
+    for (const id of requirements.lightConeIds) {
+      expect(index[id]).toMatchObject({
+        id,
+        portrait: `image/light_cone_portrait/${id}.png`
+      });
+      expect(path.relative(root, sources.get(id)!).replaceAll('\\', '/')).toBe(
+        `image/light_cone_portrait/${id}.png`
+      );
+    }
+  });
+
+  it('光锥 portrait index 拒绝错误目录、越界路径和不一致 ID', async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-light-cone-portrait-index-'));
+    temporaryDirectories.push(root);
+    const indexDirectory = path.join(root, 'index_new', 'cn');
+    await mkdir(indexDirectory, { recursive: true });
+    const readSources = async (entry: unknown) => {
+      await writeFile(
+        path.join(indexDirectory, 'light_cones.json'),
+        JSON.stringify({ 20000: entry })
+      );
+      return readLightConePortraitSources(root, ['20000']);
+    };
+    await expect(
+      readSources({ id: '20000', portrait: 'image/light_cone_preview/20000.png' })
+    ).rejects.toThrow(/light_cone_portrait/);
+    await expect(readSources({ id: '20000', portrait: '../outside.png' })).rejects.toThrow(/越界/);
+    await expect(
+      readSources({ id: '20001', portrait: 'image/light_cone_portrait/20000.png' })
+    ).rejects.toThrow(/identity/);
+  });
+
   it('遗器资源只同步 60 张套装图标与 18 张属性图标，不生成单件遗器图片', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
@@ -335,7 +427,7 @@ describe('视觉资源管线', () => {
     expect(generatedRelicFiles.some((file) => /_\d+\.png$/.test(file))).toBe(false);
   });
 
-  it('生成目录仅包含需求驱动的 preview，旧 avatar 输出不存在', async () => {
+  it('生成目录仅包含需求驱动的 preview 与光锥 portrait 输出', async () => {
     const generated = await readAssetManifest();
     const files = await readdir(
       path.join(process.cwd(), 'static', 'generated-assets', 'characters', 'preview')
@@ -350,8 +442,11 @@ describe('视觉资源管线', () => {
       path.join(process.cwd(), 'static', 'generated-assets', 'light-cones', 'preview')
     );
     expect(lightConeFiles.filter((file) => file.endsWith('.png'))).toHaveLength(165);
-    await expect(
-      readdir(path.join(process.cwd(), 'static', 'generated-assets', 'light-cones', 'portrait'))
-    ).rejects.toMatchObject({ code: 'ENOENT' });
+    const lightConePortraitFiles = await readdir(
+      path.join(process.cwd(), 'static', 'generated-assets', 'light-cones', 'portrait')
+    );
+    expect(lightConePortraitFiles.filter((file) => file.endsWith('.webp'))).toHaveLength(
+      generated!.lightCones.portraits.available.length
+    );
   });
 });

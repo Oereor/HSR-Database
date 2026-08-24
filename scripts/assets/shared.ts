@@ -11,6 +11,7 @@ import {
   generatedAssetRoot,
   generatedPreviewRoot,
   generatedLightConePreviewRoot,
+  generatedLightConePortraitRoot,
   generatedRelicIconRoot,
   generatedRelicPropertyRoot,
   generatedElementRoot,
@@ -18,7 +19,7 @@ import {
   generatedPortraitRoot
 } from './paths.js';
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 5 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 6 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -55,6 +56,7 @@ export interface AssetSizeSummary {
   previews: number;
   portraits: number;
   lightConePreviews: number;
+  lightConePortraits: number;
   relicIcons: number;
   relicPropertyIcons: number;
   elements: number;
@@ -127,7 +129,8 @@ export function emptyAssetManifest(requirements: AssetRequirements): VisualAsset
       portraits: unavailable(requirements.characterIds)
     },
     lightCones: {
-      previews: unavailable(requirements.lightConeIds)
+      previews: unavailable(requirements.lightConeIds),
+      portraits: unavailable(requirements.lightConeIds)
     },
     relics: {
       icons: unavailable(requirements.relicSetIds)
@@ -169,6 +172,7 @@ async function resetOutputDirectories(): Promise<void> {
       generatedPreviewRoot,
       generatedPortraitRoot,
       generatedLightConePreviewRoot,
+      generatedLightConePortraitRoot,
       generatedRelicIconRoot,
       generatedRelicPropertyRoot,
       generatedElementRoot,
@@ -206,6 +210,7 @@ interface CharacterResourceIndexEntry {
 interface LightConeResourceIndexEntry {
   id?: unknown;
   preview?: unknown;
+  portrait?: unknown;
 }
 
 interface RelicSetResourceIndexEntry {
@@ -280,6 +285,31 @@ export async function readLightConePreviewSources(
   return sources;
 }
 
+export async function readLightConePortraitSources(
+  sourceRoot: string,
+  lightConeIds: string[]
+): Promise<ReadonlyMap<string, string>> {
+  const indexPath = path.join(sourceRoot, 'index_new', 'cn', 'light_cones.json');
+  const index = JSON.parse(await readFile(indexPath, 'utf8')) as Record<
+    string,
+    LightConeResourceIndexEntry
+  >;
+  if (!index || typeof index !== 'object' || Array.isArray(index))
+    throw new Error(`StarRailRes 光锥 index 格式异常：${indexPath}`);
+  const sources = new Map<string, string>();
+  for (const id of lightConeIds) {
+    const entry = index[id];
+    if (!entry || entry.portrait === undefined) continue;
+    if (entry.id !== id) throw new Error(`光锥 ${id} 的 index identity 不一致：${entry.id}`);
+    const source = resolveIndexedAssetPath(sourceRoot, entry.portrait);
+    const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
+    if (!/^image\/light_cone_portrait\/[^/]+\.png$/i.test(relative))
+      throw new Error(`光锥 ${id} 的 portrait 路径不属于 light_cone_portrait：${relative}`);
+    sources.set(id, source);
+  }
+  return sources;
+}
+
 export async function readRelicSetIconSources(
   sourceRoot: string,
   relicSetIds: string[]
@@ -345,6 +375,21 @@ export async function writeSemanticIconAsset(source: string, output: string): Pr
   await sharp(source).resize(64, 64, { fit: 'contain' }).png().toFile(output);
 }
 
+export async function generateLightConePortraitAssets(
+  sourceRoot: string,
+  lightConeIds: string[],
+  outputRoot = generatedLightConePortraitRoot
+): Promise<AssetAvailability> {
+  const sources = await readLightConePortraitSources(sourceRoot, lightConeIds);
+  await mkdir(outputRoot, { recursive: true });
+  return processRequested(
+    lightConeIds,
+    (id) => sources.get(id),
+    (id) => path.join(outputRoot, `${id}.webp`),
+    writePortraitAsset
+  );
+}
+
 export async function generateVisualAssets(
   sourceRoot: string,
   requirements: AssetRequirements
@@ -378,6 +423,10 @@ export async function generateVisualAssets(
     (id) => path.join(generatedLightConePreviewRoot, `${id}.png`),
     async (source, output) => copyFile(source, output)
   );
+  const lightConePortraits = await generateLightConePortraitAssets(
+    sourceRoot,
+    requirements.lightConeIds
+  );
   const relicIcons = await processRequested(
     requirements.relicSetIds,
     (id) => relicSetIconSources.get(id),
@@ -407,7 +456,7 @@ export async function generateVisualAssets(
   );
   return {
     characters: { previews, portraits },
-    lightCones: { previews: lightConePreviews },
+    lightCones: { previews: lightConePreviews, portraits: lightConePortraits },
     relics: { icons: relicIcons },
     relicProperties: { icons: relicPropertyIcons },
     elements,
@@ -434,6 +483,7 @@ export function manifestCoversRequirements(
     collectionCovers(manifest.characters.previews, requirements.characterIds) &&
     collectionCovers(manifest.characters.portraits, requirements.characterIds) &&
     collectionCovers(manifest.lightCones.previews, requirements.lightConeIds) &&
+    collectionCovers(manifest.lightCones.portraits, requirements.lightConeIds) &&
     collectionCovers(manifest.relics.icons, requirements.relicSetIds) &&
     collectionCovers(
       manifest.relicProperties.icons,
@@ -459,6 +509,10 @@ const expectedFiles = (manifest: VisualAssetManifest): Array<[string, string[]]>
   [generatedPreviewRoot, manifest.characters.previews.available.map((id) => `${id}.png`)],
   [generatedPortraitRoot, manifest.characters.portraits.available.map((id) => `${id}.webp`)],
   [generatedLightConePreviewRoot, manifest.lightCones.previews.available.map((id) => `${id}.png`)],
+  [
+    generatedLightConePortraitRoot,
+    manifest.lightCones.portraits.available.map((id) => `${id}.webp`)
+  ],
   [generatedRelicIconRoot, manifest.relics.icons.available.map((id) => `${id}.png`)],
   [
     generatedRelicPropertyRoot,
@@ -493,25 +547,42 @@ async function directorySize(directory: string): Promise<number> {
 }
 
 export async function assetSizeSummary(): Promise<AssetSizeSummary> {
-  const [previews, portraits, lightConePreviews, relicIcons, relicPropertyIcons, elements, paths] =
-    await Promise.all([
-      directorySize(generatedPreviewRoot),
-      directorySize(generatedPortraitRoot),
-      directorySize(generatedLightConePreviewRoot),
-      directorySize(generatedRelicIconRoot),
-      directorySize(generatedRelicPropertyRoot),
-      directorySize(generatedElementRoot),
-      directorySize(generatedPathRoot)
-    ]);
+  const [
+    previews,
+    portraits,
+    lightConePreviews,
+    lightConePortraits,
+    relicIcons,
+    relicPropertyIcons,
+    elements,
+    paths
+  ] = await Promise.all([
+    directorySize(generatedPreviewRoot),
+    directorySize(generatedPortraitRoot),
+    directorySize(generatedLightConePreviewRoot),
+    directorySize(generatedLightConePortraitRoot),
+    directorySize(generatedRelicIconRoot),
+    directorySize(generatedRelicPropertyRoot),
+    directorySize(generatedElementRoot),
+    directorySize(generatedPathRoot)
+  ]);
   return {
     previews,
     portraits,
     lightConePreviews,
+    lightConePortraits,
     relicIcons,
     relicPropertyIcons,
     elements,
     paths,
     total:
-      previews + portraits + lightConePreviews + relicIcons + relicPropertyIcons + elements + paths
+      previews +
+      portraits +
+      lightConePreviews +
+      lightConePortraits +
+      relicIcons +
+      relicPropertyIcons +
+      elements +
+      paths
   };
 }

@@ -5,7 +5,7 @@
   export let code: string | undefined;
   export let label: string;
   export let color: string | undefined = undefined;
-  export let size: 'default' | 'large' = 'default';
+  export let size: 'default' | 'large' | 'hero' = 'default';
   export let showLabel = true;
 
   let failedSource: string | undefined;
