@@ -875,6 +875,26 @@ test('角色 Detail Hero 展示完整 identity、放大标签与不截断传记'
   }
 });
 
+test('角色与光锥 Detail Hero 复用 Overview 星级颜色并降低 identity tag 字重', async ({ page }) => {
+  for (const [url, heroSelector, rarity, color, tagCount] of [
+    ['/characters/1402', '.detail-profile-hero--character', 5, 'rgb(255, 215, 0)', 2],
+    ['/characters/1001', '.detail-profile-hero--character', 4, 'rgb(199, 125, 255)', 2],
+    ['/light-cones/20000', '.detail-profile-hero--light-cone', 3, 'rgb(96, 144, 255)', 1]
+  ] as const) {
+    await page.goto(url);
+    const hero = page.locator(heroSelector);
+    const rarityStars = hero.locator('.hero-identity-tags > .rarity-stars');
+    await expect(rarityStars).toHaveAttribute('aria-label', `${rarity}星`);
+    await expect(rarityStars).toHaveCSS('color', color);
+
+    const identityTags = hero.locator('.hero-identity-tags > .semantic-icon-label');
+    await expect(identityTags).toHaveCount(tagCount);
+    for (let index = 0; index < tagCount; index += 1) {
+      await expect(identityTags.nth(index)).toHaveCSS('font-weight', '500');
+    }
+  }
+});
+
 test('角色等级属性默认 Lv.80、使用突破后边界并严格按语义行排序', async ({ page }) => {
   await page.goto('/characters/1001');
   const panel = page.locator('.base-stats-panel');

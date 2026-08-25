@@ -1111,8 +1111,9 @@ footer a {
   border-radius: 999px;
   background: rgb(7 10 18 / 72%);
   color: var(--gold-soft);
+  font-weight: 500;
 }
-.hero-identity-tags > .tone-rarity {
+.hero-identity-tags > .rarity-stars {
   flex-basis: 100%;
   font-size: 1rem;
   letter-spacing: 0.12em;

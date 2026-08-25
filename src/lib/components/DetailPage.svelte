@@ -11,6 +11,7 @@
   import TraceCardPanel from '$lib/components/TraceCardPanel.svelte';
   import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
   import DetailArtwork from '$lib/components/DetailArtwork.svelte';
+  import RarityStars from '$lib/components/RarityStars.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import EnemyDetailPage from '$lib/components/enemy/EnemyDetailPage.svelte';
   import EquipmentRecommendationSection from '$lib/components/EquipmentRecommendationSection.svelte';
@@ -113,7 +114,7 @@
             <GameText text={detail.fullName} />
           </p>{/if}
         <div class="hero-identity-tags">
-          {#if detail.rarity}<span class="tone-rarity">{'★'.repeat(detail.rarity)}</span>{/if}
+          {#if detail.rarity}<RarityStars rarity={detail.rarity} />{/if}
           {#if detail.pathName}<SemanticIconLabel
               kind="path"
               code={detail.path}
@@ -173,7 +174,7 @@
         <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
         <h1><GameText text={detail.name} /></h1>
         <div class="hero-identity-tags">
-          {#if detail.rarity}<span class="tone-rarity">{'★'.repeat(detail.rarity)}</span>{/if}
+          {#if detail.rarity}<RarityStars rarity={detail.rarity} />{/if}
           {#if detail.pathName}<SemanticIconLabel
               kind="path"
               code={detail.path}
