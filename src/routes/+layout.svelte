@@ -1,5 +1,7 @@
 <script lang="ts">
   import '../styles/app.css';
+  import '../styles/presentation/detail-hero.css';
+  import '../styles/presentation/detail-inspection.css';
   import { page } from '$app/stores';
 
   export let data;

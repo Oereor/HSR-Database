@@ -1,0 +1,186 @@
+.detail-profile-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 1px;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--border);
+}
+
+.detail-profile-hero__identity,
+.detail-profile-hero__inspection {
+  min-width: 0;
+  background: var(--surface);
+}
+
+.detail-profile-hero__identity {
+  position: relative;
+  min-height: 580px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.detail-profile-hero--light-cone .detail-profile-hero__identity {
+  min-height: 680px;
+  background:
+    radial-gradient(circle at 66% 42%, rgb(91 130 210 / 18%), transparent 48%), var(--surface);
+}
+
+.detail-profile-hero--enemy .detail-profile-hero__identity {
+  min-height: 520px;
+  background:
+    radial-gradient(circle at 78% 48%, rgb(215 181 109 / 12%), transparent 38%), var(--surface);
+}
+
+.detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='contain'] {
+  background: linear-gradient(145deg, rgb(255 255 255 / 3%), transparent 58%);
+  padding: 1.5rem 1.25rem 0 36%;
+}
+
+.detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='contain'] img {
+  object-position: right bottom;
+  filter: drop-shadow(0 1.25rem 2rem rgb(0 0 0 / 38%));
+}
+
+.detail-profile-hero__gradient {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    90deg,
+    rgb(7 10 18 / 96%) 0%,
+    rgb(7 10 18 / 82%) 34%,
+    rgb(7 10 18 / 34%) 68%,
+    rgb(7 10 18 / 5%) 100%
+  );
+}
+
+.detail-profile-hero--light-cone .detail-profile-hero__identity::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(7 10 18 / 88%), transparent 55%);
+  content: '';
+  pointer-events: none;
+}
+
+.hero-identity-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: 100%;
+  max-width: 68%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  background-color: transparent;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.detail-profile-hero--light-cone .hero-identity-copy {
+  max-width: 60%;
+}
+
+.detail-profile-hero--enemy .hero-identity-copy {
+  max-width: 72%;
+}
+
+.detail-profile-hero h1 {
+  margin: 0.7rem 0 0.8rem;
+  font-size: clamp(2.2rem, 4vw, 3.35rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.hero-identity-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0.7rem 0 1.15rem;
+}
+
+.hero-description {
+  width: 100%;
+  overflow: visible;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgb(7 10 18 / 76%);
+  padding: 0.9rem 1rem;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.hero-description p {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.detail-profile-hero__inspection {
+  scroll-margin-top: 70px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.detail-inspection-divider {
+  height: 1px;
+  margin: 1.8rem 0;
+  background: var(--border);
+}
+
+@media (max-width: 820px) {
+  .detail-profile-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .detail-profile-hero__identity {
+    min-height: 560px;
+  }
+
+  .detail-profile-hero--light-cone .detail-profile-hero__identity {
+    min-height: 640px;
+  }
+
+  .detail-profile-hero__inspection {
+    border-top: 1px solid var(--border);
+  }
+
+  .hero-identity-copy {
+    max-width: 100%;
+  }
+
+  .detail-profile-hero--light-cone .hero-identity-copy {
+    max-width: 72%;
+  }
+
+  .detail-artwork-stage[data-artwork-fit='contain'] {
+    padding: 1rem;
+  }
+
+  .detail-profile-hero--enemy .hero-identity-copy {
+    max-width: 100%;
+  }
+
+  .detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='contain'] {
+    padding: 2rem 0 0 38%;
+  }
+}
+
+@media (max-width: 520px) {
+  .detail-profile-hero--enemy .detail-profile-hero__identity {
+    min-height: 540px;
+  }
+
+  .detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='contain'] {
+    padding: 8rem 0 0 42%;
+  }
+
+  .detail-profile-hero--enemy .detail-artwork-stage img {
+    opacity: 0.62;
+  }
+}

@@ -45,6 +45,7 @@ import {
 } from './enemy-detail.js';
 import {
   addDecimals,
+  decimalOf,
   decimalEquals,
   internalStanceToToughness,
   multiplyDecimals,
@@ -56,7 +57,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 27)
+if (manifest.schemaVersion !== 28)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -651,6 +652,12 @@ for (const enemy of enemyDetails) {
   const config = rawConfigByMonsterId.get(enemy.id);
   if (!template || !config || String(config.MonsterTemplateID) !== enemy.id)
     throw new Error(`敌人 ${enemy.id} canonical join 失败`);
+  const expectedCriticalDamage = decimalOf(
+    template.CriticalDamageBase,
+    `MonsterTemplate.${enemy.id}.CriticalDamageBase`
+  );
+  if (enemy.template.baseStats.criticalDamage !== expectedCriticalDamage)
+    throw new Error(`敌人 ${enemy.id} Template 暴击伤害未从 raw config 正确透传`);
   if (enemy.defaultMonsterId !== enemy.id)
     throw new Error(`敌人 ${enemy.id} 默认 MonsterID 必须是 canonical ID`);
   if (enemy.defaultMonster.monsterId !== enemy.defaultMonsterId)

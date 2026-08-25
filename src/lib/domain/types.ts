@@ -314,6 +314,7 @@ export interface EnemyTemplateBaseStats {
   hp: import('./endgame.js').DecimalString;
   attack: import('./endgame.js').DecimalString;
   defence: import('./endgame.js').DecimalString;
+  criticalDamage: import('./endgame.js').DecimalString;
   speed?: import('./endgame.js').DecimalString;
   stance?: import('./endgame.js').DecimalString;
   effectResistance?: import('./endgame.js').DecimalString;

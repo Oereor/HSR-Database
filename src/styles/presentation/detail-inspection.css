@@ -1,0 +1,39 @@
+.inspection-stat-list {
+  margin-top: 1.35rem;
+  margin-bottom: 0;
+  border-top: 1px solid var(--border);
+  padding-left: 0;
+}
+
+.inspection-stat-row {
+  display: flex;
+  min-width: 0;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 0;
+}
+
+.inspection-stat-row + .inspection-stat-row {
+  border-top: 1px solid var(--border);
+}
+
+.inspection-stat-row dt {
+  color: var(--text-secondary);
+  font-size: var(--font-meta-key);
+}
+
+.inspection-stat-row dd {
+  margin: 0;
+  text-align: right;
+}
+
+.inspection-stat-row dd strong {
+  color: var(--text-primary);
+  font-size: 1.08rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.inspection-stat-list .scaling-value {
+  color: var(--skill-scaling-value-color);
+}

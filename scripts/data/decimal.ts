@@ -1,4 +1,9 @@
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
+export {
+  divideDecimalByIntegerExact,
+  INTERNAL_STANCE_PER_TOUGHNESS,
+  internalStanceToToughness
+} from '../../src/lib/domain/decimal.js';
 
 const DECIMAL_PATTERN = /^([+-]?)(\d+)(?:\.(\d+))?$/;
 
@@ -20,8 +25,6 @@ interface DecimalParts {
   coefficient: bigint;
   scale: number;
 }
-
-export const INTERNAL_STANCE_PER_TOUGHNESS = 3;
 
 function parts(value: DecimalString): DecimalParts {
   const match = DECIMAL_PATTERN.exec(value)!;
@@ -74,26 +77,6 @@ export function multiplyDecimals(values: readonly DecimalString[]): DecimalStrin
     scale += parsed.scale;
   }
   return renderParts({ coefficient, scale });
-}
-
-export function divideDecimalByIntegerExact(
-  value: DecimalString,
-  divisor: number
-): DecimalString | undefined {
-  if (!Number.isSafeInteger(divisor) || divisor <= 0)
-    throw new Error(`十进制除数必须是正安全整数，实际为 ${divisor}`);
-  const parsed = parts(value);
-  const integerDivisor = BigInt(divisor);
-  if (parsed.coefficient % integerDivisor !== 0n) return undefined;
-  return renderParts({ coefficient: parsed.coefficient / integerDivisor, scale: parsed.scale });
-}
-
-// HSR stores stance in internal units. Player-facing toughness uses one point
-// per three internal units, after all encounter scaling has been resolved.
-export function internalStanceToToughness(
-  internalStance: DecimalString
-): DecimalString | undefined {
-  return divideDecimalByIntegerExact(internalStance, INTERNAL_STANCE_PER_TOUGHNESS);
 }
 
 export function compareDecimals(left: DecimalString, right: DecimalString): number {

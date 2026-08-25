@@ -1,11 +1,15 @@
 <script lang="ts">
   import EnemySkillCard from './EnemySkillCard.svelte';
   import EnemyStatsPanel from './EnemyStatsPanel.svelte';
+  import EnemyTemplateBaseStatsPanel from './EnemyTemplateBaseStatsPanel.svelte';
+  import EnemyRankTag from './EnemyRankTag.svelte';
+  import DetailArtwork from '$lib/components/DetailArtwork.svelte';
   import GameText from '$lib/components/GameText.svelte';
   import CompactEntityCard from '$lib/components/CompactEntityCard.svelte';
   import EnemyWeaknessGroup from '$lib/components/EnemyWeaknessGroup.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import { getElementColor } from '$lib/domain/elements';
+  import { formatRatioPercentage } from '$lib/domain/endgame-view';
   import { getEnemyRankLabel } from '$lib/domain/enemy-overview';
   import type { EnemyDetailView, EnemyMonsterDetailView } from '$lib/domain/enemy-view';
 
@@ -21,7 +25,6 @@
   }
 
   const initialMonster = defaultMonsterOf(detail);
-  let failedPortrait = false;
   let selectedMonsterId = detail.defaultMonsterId;
   let level = initialMonster.stats.defaultLevel;
   let activePhaseIndex = initialMonster.skillPhases[0]?.index;
@@ -30,9 +33,6 @@
     detail.monsters.find((monster) => monster.monsterId === selectedMonsterId) ?? initialMonster;
   $: if (!selectedMonster.skillPhases.some((phase) => phase.index === activePhaseIndex))
     activePhaseIndex = selectedMonster.skillPhases[0]?.index;
-
-  const percent = (value: number | string): string =>
-    `${new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 2 }).format(Number(value) * 100)}%`;
 
   function selectMonster(monsterId: string, target?: HTMLElement): void {
     selectedMonsterId = monsterId;
@@ -86,24 +86,34 @@
       : '无弱点数据';
 </script>
 
-<header class:enemy-hero--with-art={detail.portraitUrl && !failedPortrait} class="enemy-hero">
-  <div class="enemy-hero__copy">
-    <p class="kicker">ENEMY / TEMPLATE ID {detail.template.monsterTemplateId}</p>
-    <h1><GameText text={detail.template.name} /></h1>
-    <div class="tag-row"><span>{detail.template.rank}</span></div>
-    {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p class="muted">
-        上游数据未提供可用简介。
-      </p>{/if}
+<header class="detail-profile-hero detail-profile-hero--enemy" data-enemy-hero>
+  <div class="detail-profile-hero__identity">
+    <DetailArtwork
+      source={detail.portraitUrl}
+      width={376}
+      height={512}
+      fit="contain"
+      data-enemy-portrait={detail.template.monsterTemplateId}
+    />
+    <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
+    <div class="hero-identity-copy">
+      <p class="kicker">ENEMY / TEMPLATE ID {detail.template.monsterTemplateId}</p>
+      <h1><GameText text={detail.template.name} /></h1>
+      <div class="hero-identity-metadata">
+        <EnemyRankTag label={getEnemyRankLabel(detail.template.rank)} />
+      </div>
+      <div class="hero-description">
+        {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
+            class="muted"
+          >
+            上游数据未提供可用简介。
+          </p>{/if}
+      </div>
+    </div>
   </div>
-  {#if detail.portraitUrl && !failedPortrait}<div class="enemy-hero__art" aria-hidden="true">
-      <img
-        src={detail.portraitUrl}
-        alt=""
-        loading="eager"
-        decoding="async"
-        on:error={() => (failedPortrait = true)}
-      />
-    </div>{/if}
+  <aside class="detail-profile-hero__inspection" aria-label="Enemy Template 基础数据">
+    <EnemyTemplateBaseStatsPanel baseStats={detail.template.baseStats} />
+  </aside>
 </header>
 
 <section id="monsters" class="detail-section enemy-detail-section">
@@ -158,6 +168,7 @@
                   code={weakness.element}
                   label={weakness.name}
                   color={getElementColor(weakness.element)}
+                  showLabel={false}
                 /></span
               >{/each}
           </span>
@@ -205,7 +216,7 @@
                   label={resistance.name}
                   color={getElementColor(resistance.element)}
                 />
-                <strong>{percent(resistance.value)}</strong>
+                <strong>{formatRatioPercentage(resistance.value)}</strong>
               </div>{/each}
           </div>
         </div>{/if}
@@ -219,7 +230,9 @@
               class="enemy-special-resistance-item"
               data-special-resistance={resistance.code}
             >
-              <span>{resistance.label}</span><strong>{percent(resistance.value)}</strong>
+              <span>{resistance.label}</span><strong
+                >{formatRatioPercentage(resistance.value)}</strong
+              >
             </div>{/each}
         </div>
       </section>{/if}
@@ -290,6 +303,7 @@
                       code={skill.damageType.element}
                       label={skill.damageType.name}
                       color={getElementColor(skill.damageType.element)}
+                      showLabel={false}
                     />{/if}
                 </span>
                 <strong><GameText text={skill.name} /></strong><span aria-hidden="true">↘</span>

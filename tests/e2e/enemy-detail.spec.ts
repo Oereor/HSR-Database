@@ -1,5 +1,68 @@
 import { expect, test } from '@playwright/test';
 
+test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/enemies/1004014');
+
+  const hero = page.locator('[data-enemy-hero]');
+  await expect(hero).toBeVisible();
+  await expect(hero.getByRole('heading', { level: 2, name: '基础数据' })).toBeVisible();
+  await expect(hero.getByRole('slider')).toHaveCount(0);
+  await expect(page.getByRole('slider', { name: '敌人等级' })).toHaveCount(1);
+  expect(
+    await hero.evaluate(
+      (element) => getComputedStyle(element).gridTemplateColumns.split(' ').length
+    )
+  ).toBe(2);
+
+  const stats = hero.locator('[data-enemy-template-stat]');
+  await expect(stats).toHaveCount(7);
+  await expect(hero.locator('dl.inspection-stat-list')).toHaveCount(1);
+  await expect(hero.locator('.inspection-stat-row')).toHaveCount(7);
+  expect(await stats.evaluateAll((rows) => rows.map((row) => row.textContent?.trim()))).toEqual([
+    '基础生命值 5,813',
+    '基础攻击力 18',
+    '基础防御力 210',
+    '基础速度 130',
+    '基础韧性值 100',
+    '基础暴击伤害 20%',
+    '基础效果抵抗 30%'
+  ]);
+  await expect(hero.locator('[data-enemy-portrait]')).toHaveAttribute(
+    'data-artwork-fit',
+    'contain'
+  );
+  await expect(hero.locator('[data-enemy-portrait] img')).toHaveCSS('object-fit', 'contain');
+});
+
+test('Enemy Detail Hero 本地化普通、精英与首领类型', async ({ page }) => {
+  for (const [id, label, raw] of [
+    ['1002011', '普通敌人', 'MinionLv2'],
+    ['1003012', '精英敌人', 'Elite'],
+    ['1004014', '首领敌人', 'LittleBoss']
+  ]) {
+    await page.goto(`/enemies/${id}`);
+    const hero = page.locator('[data-enemy-hero]');
+    const rank = hero.locator(`[data-enemy-rank-label="${label}"]`);
+    await expect(rank).toHaveClass(/enemy-rank-tag/);
+    await expect(rank).toHaveText(label);
+    await expect(hero.locator('[data-icon-presentation="path-identity"]')).toHaveCount(0);
+    await expect(hero).not.toContainText(raw);
+  }
+});
+
+test('Enemy Detail Hero 对缺失 Template 字段保留固定行', async ({ page }) => {
+  await page.goto('/enemies/3004010');
+  await expect(page.locator('[data-enemy-template-stat="speed"]')).toContainText('资料未提供');
+  await expect(page.locator('[data-enemy-template-stat="toughness"]')).toContainText('资料未提供');
+
+  await page.goto('/enemies/1005010');
+  await expect(page.locator('[data-enemy-template-stat="effect-resistance"]')).toContainText(
+    '资料未提供'
+  );
+  await expect(page.locator('[data-enemy-template-stat]')).toHaveCount(7);
+});
+
 test('Enemy Detail 默认选择 canonical Monster，切换 concrete Monster 时共享等级不重置', async ({
   page
 }) => {
@@ -201,10 +264,18 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
       expect(await selector.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(
         true
       );
-    if (viewport.width <= 520) await expect(page.locator('.enemy-hero__art')).toBeHidden();
+    const heroColumns = await page
+      .locator('[data-enemy-hero]')
+      .evaluate((hero) => getComputedStyle(hero).gridTemplateColumns.split(' ').length);
+    expect(heroColumns).toBe(viewport.width <= 820 ? 1 : 2);
+    await expect(page.locator('[data-enemy-portrait]')).toBeVisible();
   }
 
   await page.goto('/enemies/8003060');
-  await expect(page.locator('.enemy-hero__art')).toHaveCount(0);
+  await expect(page.locator('[data-enemy-portrait]')).toHaveAttribute(
+    'data-artwork-available',
+    'false'
+  );
+  await expect(page.locator('[data-enemy-portrait] img')).toHaveCount(0);
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 });

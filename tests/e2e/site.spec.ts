@@ -312,6 +312,38 @@ test('四名 LD 角色进入 Character Overview、Search、Detail 与本地资�
   }
 });
 
+test('Path、Character Element、Enemy Weakness 使用独立且稳定的 presentation semantics', async ({
+  page
+}) => {
+  await page.goto('/characters?q=三月七');
+  const characterMetadata = page
+    .locator('a[href="/characters/1001"] .entity-overview-card__metadata')
+    .first();
+  await expect(characterMetadata.locator('[data-icon-kind="path"]')).toHaveAttribute(
+    'data-icon-presentation',
+    'path-identity'
+  );
+  await expect(characterMetadata.locator('[data-icon-kind="element"]')).toHaveAttribute(
+    'data-icon-presentation',
+    'character-element-identity'
+  );
+
+  await page.goto('/light-cones?q=锋镝');
+  await expect(
+    page.locator('a[href="/light-cones/20000"] [data-icon-kind="path"]')
+  ).toHaveAttribute('data-icon-presentation', 'path-identity');
+
+  await page.goto('/enemies?sort=id');
+  const weakness = page
+    .locator('a[href="/enemies/1002015"] .enemy-weakness-group [data-icon-kind="element"]')
+    .first();
+  await expect(weakness).toHaveAttribute('data-icon-presentation', 'plain');
+  await expect(weakness).not.toHaveAttribute(
+    'data-icon-presentation',
+    'character-element-identity'
+  );
+});
+
 test('Global Buff 作为正常 Talent Variant 展示且不泄漏配置术语', async ({ page }) => {
   for (const [id, originalId, globalId, originalName, globalName, description] of [
     ['1407', '140704', '140704:global-buff:1', '掌心淌过的荒芜', '月茧之庇', '月茧'],
@@ -819,16 +851,15 @@ test('角色 Detail Hero 展示完整 identity、放大标签与不截断传记'
     expect(gradientMetrics.firstAlpha).toBeGreaterThan(0.85);
     expect(gradientMetrics.lastAlpha).toBeLessThan(0.15);
     expect(gradientMetrics.firstAlpha - gradientMetrics.lastAlpha).toBeGreaterThan(0.7);
-    await expect(hero.locator('.hero-identity-tags [data-icon-kind="path"]')).toHaveAttribute(
+    await expect(hero.locator('.hero-identity-metadata [data-icon-kind="path"]')).toHaveAttribute(
       'data-label-size',
       'hero'
     );
-    await expect(hero.locator('.hero-identity-tags [data-icon-kind="element"]')).toHaveAttribute(
-      'data-label-size',
-      'hero'
-    );
+    await expect(
+      hero.locator('.hero-identity-metadata [data-icon-kind="element"]')
+    ).toHaveAttribute('data-label-size', 'hero');
     const heroTagMetrics = await hero
-      .locator('.hero-identity-tags [data-icon-kind="path"]')
+      .locator('.hero-identity-metadata [data-icon-kind="path"]')
       .evaluate((label) => {
         const icon = label.querySelector('img')!;
         return {
@@ -838,15 +869,15 @@ test('角色 Detail Hero 展示完整 identity、放大标签与不截断传记'
       });
     expect(heroTagMetrics.fontSize).toBeGreaterThan(baselineFontSize);
     expect(heroTagMetrics.iconSize).toBeGreaterThan(baselineIconSize);
-    await expect(hero.locator('.hero-biography')).toHaveCSS('border-top-width', '1px');
-    await expect(hero.locator('.hero-biography')).toHaveCSS('text-overflow', 'clip');
+    await expect(hero.locator('.hero-description')).toHaveCSS('border-top-width', '1px');
+    await expect(hero.locator('.hero-description')).toHaveCSS('text-overflow', 'clip');
     expect(
       await hero
-        .locator('.hero-biography')
+        .locator('.hero-description')
         .evaluate((element) => element.scrollHeight - element.clientHeight)
     ).toBeLessThanOrEqual(1);
     if (id === '1317') {
-      const biography = hero.locator('.hero-biography');
+      const biography = hero.locator('.hero-description');
       await expect(biography).toContainText(
         '身为「巡海游侠」的一员，始终追猎着名为「御猿•邪忍」的恶党，直至银河尽头。'
       );
@@ -875,7 +906,7 @@ test('角色 Detail Hero 展示完整 identity、放大标签与不截断传记'
   }
 });
 
-test('角色与光锥 Detail Hero 复用 Overview 星级颜色并降低 identity tag 字重', async ({ page }) => {
+test('角色与光锥 Detail Hero 的 rarity 与 identity presentation 保持语义隔离', async ({ page }) => {
   for (const [url, heroSelector, rarity, color, tagCount] of [
     ['/characters/1402', '.detail-profile-hero--character', 5, 'rgb(255, 215, 0)', 2],
     ['/characters/1001', '.detail-profile-hero--character', 4, 'rgb(199, 125, 255)', 2],
@@ -883,11 +914,28 @@ test('角色与光锥 Detail Hero 复用 Overview 星级颜色并降低 identity
   ] as const) {
     await page.goto(url);
     const hero = page.locator(heroSelector);
-    const rarityStars = hero.locator('.hero-identity-tags > .rarity-stars');
+    const rarityStars = hero.locator('.hero-identity-metadata > .rarity-stars');
     await expect(rarityStars).toHaveAttribute('aria-label', `${rarity}星`);
+    await expect(rarityStars).toHaveAttribute('data-rarity-size', 'hero');
     await expect(rarityStars).toHaveCSS('color', color);
+    expect(
+      await rarityStars.evaluate((element) => {
+        const style = getComputedStyle(element);
+        return {
+          borderWidth: style.borderTopWidth,
+          backgroundColor: style.backgroundColor,
+          paddingLeft: style.paddingLeft,
+          paddingRight: style.paddingRight
+        };
+      })
+    ).toEqual({
+      borderWidth: '0px',
+      backgroundColor: 'rgba(0, 0, 0, 0)',
+      paddingLeft: '0px',
+      paddingRight: '0px'
+    });
 
-    const identityTags = hero.locator('.hero-identity-tags > .semantic-icon-label');
+    const identityTags = hero.locator('.hero-identity-metadata > .semantic-icon-label');
     await expect(identityTags).toHaveCount(tagCount);
     for (let index = 0; index < tagCount; index += 1) {
       await expect(identityTags.nth(index)).toHaveCSS('font-weight', '500');
@@ -904,16 +952,16 @@ test('角色等级属性默认 Lv.80、使用突破后边界并严格按语义�
     page.locator('.detail-profile-hero__inspection#stats .base-stats-panel')
   ).toHaveCount(1);
   await expect(page.locator('.detail-section .base-stats-panel')).toHaveCount(0);
-  await expect(panel.locator('dl.base-stat-rows')).toHaveCount(1);
-  await expect(panel.locator('.base-stat-row')).toHaveCount(5);
-  await expect(panel.locator('.base-stat-row > dt')).toHaveText([
+  await expect(panel.locator('dl.inspection-stat-list')).toHaveCount(1);
+  await expect(panel.locator('.inspection-stat-row')).toHaveCount(5);
+  await expect(panel.locator('.inspection-stat-row > dt')).toHaveText([
     '生命值',
     '攻击力',
     '防御力',
     '基础速度',
     '能量上限'
   ]);
-  await expect(panel.locator('.base-stat-row > dd')).toHaveCount(5);
+  await expect(panel.locator('.inspection-stat-row > dd')).toHaveCount(5);
   await expect(panel.locator('[data-base-stat="hp"] > dd')).toHaveText('1,058');
   await expect(panel.locator('[data-base-stat="attack"]')).toContainText('攻击力');
   await expect(panel.locator('[data-base-stat="defence"]')).toContainText('防御力');
@@ -924,13 +972,51 @@ test('角色等级属性默认 Lv.80、使用突破后边界并严格按语义�
     .locator(':scope > *')
     .evaluateAll((children) => children.map((child) => child.className));
   expect(directOrder[0]).toContain('stat-level-control');
-  expect(directOrder[1]).toContain('base-stat-rows');
+  expect(directOrder[1]).toContain('inspection-stat-list');
   await slider.fill('20');
-  await expect(panel.locator('.base-stat-rows .scaling-value').first()).toHaveText('338');
-  await expect(panel.locator('.base-stat-rows .scaling-value').first()).toHaveCSS(
+  await expect(panel.locator('.inspection-stat-list .scaling-value').first()).toHaveText('338');
+  await expect(panel.locator('.inspection-stat-list .scaling-value').first()).toHaveCSS(
     'color',
     'rgb(242, 164, 95)'
   );
+});
+
+test('角色、光锥与敌人 Hero 共享 inspection stat row presentation', async ({ page }) => {
+  const readRowPresentation = async (url: string) => {
+    await page.goto(url);
+    const list = page.locator('.detail-profile-hero__inspection .inspection-stat-list');
+    const row = list.locator('.inspection-stat-row').nth(1);
+    await expect(list).toBeVisible();
+    return row.evaluate((element) => {
+      const rowStyle = getComputedStyle(element);
+      const labelStyle = getComputedStyle(element.querySelector('dt')!);
+      const valueStyle = getComputedStyle(element.querySelector('dd strong')!);
+      return {
+        display: rowStyle.display,
+        paddingTop: rowStyle.paddingTop,
+        paddingBottom: rowStyle.paddingBottom,
+        borderTopWidth: rowStyle.borderTopWidth,
+        borderTopColor: rowStyle.borderTopColor,
+        labelColor: labelStyle.color,
+        labelFontSize: labelStyle.fontSize,
+        valueColor: valueStyle.color,
+        valueFontSize: valueStyle.fontSize,
+        valueFontWeight: valueStyle.fontWeight
+      };
+    });
+  };
+
+  const character = await readRowPresentation('/characters/1001');
+  const lightCone = await readRowPresentation('/light-cones/20000');
+  const enemy = await readRowPresentation('/enemies/1004014');
+  const withoutValueColor = ({ valueColor, ...presentation }: typeof character) => {
+    void valueColor;
+    return presentation;
+  };
+  expect(withoutValueColor(lightCone)).toEqual(withoutValueColor(character));
+  expect(withoutValueColor(enemy)).toEqual(withoutValueColor(character));
+  expect(lightCone.valueColor).toBe(character.valueColor);
+  expect(enemy.valueColor).toBe('rgb(242, 245, 251)');
 });
 
 test('光锥 Detail Hero 使用完整 contain portrait、单一 Hero 命途标签与稳定降级', async ({
@@ -944,12 +1030,12 @@ test('光锥 Detail Hero 使用完整 contain portrait、单一 Hero 命途标�
     await expect(hero).toHaveCount(1);
     await expect(image).toHaveAttribute('src', `/generated-assets/light-cones/portrait/${id}.webp`);
     await expect(image).toHaveCSS('object-fit', 'contain');
-    await expect(hero.locator('.hero-identity-tags [data-icon-kind="path"]')).toHaveAttribute(
+    await expect(hero.locator('.hero-identity-metadata [data-icon-kind="path"]')).toHaveAttribute(
       'data-label-size',
       'hero'
     );
-    await expect(hero.locator('.hero-identity-tags [data-icon-kind="element"]')).toHaveCount(0);
-    await expect(hero.locator('.hero-biography')).toHaveCount(0);
+    await expect(hero.locator('.hero-identity-metadata [data-icon-kind="element"]')).toHaveCount(0);
+    await expect(hero.locator('.hero-description')).toHaveCount(0);
     await expect(hero.locator('.hero-identity-copy')).not.toContainText(/仅对|装备者|叠影/);
   }
 
@@ -1005,10 +1091,14 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
   const stats = page.locator('.base-stats-panel');
   const superimposition = page.locator('.superimposition-panel');
   await expect(stats.locator('output')).toHaveText('Lv.80');
-  await expect(stats.locator('dl.base-stat-rows')).toHaveCount(1);
-  await expect(stats.locator('.base-stat-row')).toHaveCount(3);
-  await expect(stats.locator('.base-stat-row > dt')).toHaveText(['生命值', '攻击力', '防御力']);
-  await expect(stats.locator('.base-stat-row > dd')).toHaveCount(3);
+  await expect(stats.locator('dl.inspection-stat-list')).toHaveCount(1);
+  await expect(stats.locator('.inspection-stat-row')).toHaveCount(3);
+  await expect(stats.locator('.inspection-stat-row > dt')).toHaveText([
+    '生命值',
+    '攻击力',
+    '防御力'
+  ]);
+  await expect(stats.locator('.inspection-stat-row > dd')).toHaveCount(3);
   await expect(stats.locator('[data-base-stat="hp"] > dd')).toHaveText('847');
   await expect(stats).not.toContainText(/HP|ATK|DEF|SPD/);
   await expect(inspection.locator('.info-card')).toHaveCount(0);
@@ -1300,7 +1390,7 @@ test('属性行迹、普通换行与光锥 identity 内容边界正确渲染', a
   await page.goto('/characters/1407');
   await expect(page.locator('[data-trace-id="1407202"]')).toContainText('量子属性伤害提高3.2%');
   await expect(page.locator('[data-trace-id="1407204"]')).toContainText('暴击伤害提高5.3%');
-  const introduction = page.locator('.hero-biography');
+  const introduction = page.locator('.hero-description');
   await expect(introduction.locator('.game-text')).toHaveCSS('white-space', 'pre-line');
   expect((await introduction.innerText()).split('\n')).toHaveLength(3);
 
@@ -1414,13 +1504,7 @@ test('四类详情页使用收敛后的标题层级与章节留白', async ({ pa
   for (const url of ['/characters/1001', '/light-cones/20000', '/relics/101', '/enemies/1002011']) {
     await page.goto(url);
     const heroSize = await page
-      .locator(
-        url.startsWith('/enemies/')
-          ? '.enemy-hero h1'
-          : url.startsWith('/relics/')
-            ? '.detail-hero h1'
-            : '.detail-profile-hero h1'
-      )
+      .locator(url.startsWith('/relics/') ? '.detail-hero h1' : '.detail-profile-hero h1')
       .evaluate((element) => Number.parseFloat(getComputedStyle(element).fontSize));
     const section = page.locator('.detail-section').first();
     const sectionSize = await section
@@ -1438,7 +1522,7 @@ test('四类详情页使用收敛后的标题层级与章节留白', async ({ pa
 
 test('角色与敌人属性文字使用统一颜色', async ({ page }) => {
   await page.goto('/characters/1005');
-  await expect(page.locator('.hero-identity-tags').getByText('雷', { exact: true })).toHaveCSS(
+  await expect(page.locator('.hero-identity-metadata').getByText('雷', { exact: true })).toHaveCSS(
     'color',
     'rgb(212, 106, 235)'
   );

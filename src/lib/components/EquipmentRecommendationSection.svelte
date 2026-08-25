@@ -28,13 +28,14 @@
         >
           <svelte:fragment slot="title"><GameText text={lightCone.name} /></svelte:fragment>
           <svelte:fragment slot="secondary">
-            {#if lightCone.rarity}<RarityStars rarity={lightCone.rarity} />{/if}
+            {#if lightCone.rarity}<RarityStars rarity={lightCone.rarity} size="compact" />{/if}
           </svelte:fragment>
           <svelte:fragment slot="tertiary">
             {#if lightCone.pathName}<SemanticIconLabel
                 kind="path"
                 code={lightCone.path}
                 label={lightCone.pathName}
+                presentation="path-identity"
               />{/if}
           </svelte:fragment>
         </CompactEntityCard>

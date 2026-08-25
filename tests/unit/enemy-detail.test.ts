@@ -12,7 +12,7 @@ import {
   normalizeSpecialResistances,
   resolveCanonicalEnemyStats
 } from '../../scripts/data/enemy-detail';
-import { generatedRoot, auditRoot } from '../../scripts/data/paths';
+import { generatedRoot, auditRoot, assertDataRoot } from '../../scripts/data/paths';
 
 const wrapped = (value: string) => ({ Value: value });
 const enemy = async (id: string): Promise<Enemy> =>
@@ -127,6 +127,22 @@ describe('Enemy Detail parser/resolver', () => {
 });
 
 describe('Enemy Detail 真实数据回归', () => {
+  it('从 MonsterTemplateConfig 无损透传 CriticalDamageBase', async () => {
+    const templates = JSON.parse(
+      await readFile(
+        path.join(assertDataRoot(), 'ExcelOutput', 'MonsterTemplateConfig.json'),
+        'utf8'
+      )
+    ) as Array<{
+      MonsterTemplateID: number;
+      CriticalDamageBase: { Value: number | string };
+    }>;
+    const raw = templates.find((template) => template.MonsterTemplateID === 1004014)!;
+    const detail = await enemy(String(raw.MonsterTemplateID));
+
+    expect(detail.template.baseStats.criticalDamage).toBe(String(raw.CriticalDamageBase.Value));
+  });
+
   it('显式表达 Template → Monster 关系，并保留 concrete ownership', async () => {
     const detail = await enemy('1002015');
     expect(detail.template.monsterTemplateId).toBe('1002015');

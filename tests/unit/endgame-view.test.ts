@@ -15,6 +15,7 @@ import {
   formatExactDecimal,
   formatFullHp,
   formatHpWithPhases,
+  formatRatioPercentage,
   formatRoundedDecimal,
   mergeFixedOccurrences,
   occurrenceIdentity,
@@ -128,6 +129,16 @@ describe('Endgame UI 生命值格式', () => {
     ['1234.50', '1,234.5']
   ])('玩家韧性 %s 保留精确值并格式化为 %s', (source, expected) => {
     expect(formatExactDecimal(decimal(source))).toBe(expected);
+  });
+});
+
+describe('共享比例格式', () => {
+  it.each([
+    ['0.2', '20%'],
+    ['0.25', '25%'],
+    ['1', '100%']
+  ])('将 ratio %s 格式化为 %s', (source, expected) => {
+    expect(formatRatioPercentage(source)).toBe(expected);
   });
 });
 

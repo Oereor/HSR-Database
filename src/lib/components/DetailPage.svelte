@@ -113,13 +113,14 @@
         {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
             <GameText text={detail.fullName} />
           </p>{/if}
-        <div class="hero-identity-tags">
-          {#if detail.rarity}<RarityStars rarity={detail.rarity} />{/if}
+        <div class="hero-identity-metadata">
+          {#if detail.rarity}<RarityStars rarity={detail.rarity} size="hero" />{/if}
           {#if detail.pathName}<SemanticIconLabel
               kind="path"
               code={detail.path}
               label={detail.pathName}
               size="hero"
+              presentation="path-identity"
             />{/if}
           {#if detail.elementName}<SemanticIconLabel
               kind="element"
@@ -127,6 +128,7 @@
               label={detail.elementName}
               color={getElementColor(detail.element)}
               size="hero"
+              presentation="character-element-identity"
             />{/if}
         </div>
         {#if hasEnhancedProfile}<div class="enhancement-control">
@@ -143,7 +145,7 @@
               <strong>{enhancedEnabled ? '加强后' : '加强前'}</strong>
             </button>
           </div>{/if}
-        <div class="hero-biography">
+        <div class="hero-description">
           {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
               class="muted"
             >
@@ -173,13 +175,14 @@
       <div class="hero-identity-copy">
         <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
         <h1><GameText text={detail.name} /></h1>
-        <div class="hero-identity-tags">
-          {#if detail.rarity}<RarityStars rarity={detail.rarity} />{/if}
+        <div class="hero-identity-metadata">
+          {#if detail.rarity}<RarityStars rarity={detail.rarity} size="hero" />{/if}
           {#if detail.pathName}<SemanticIconLabel
               kind="path"
               code={detail.path}
               label={detail.pathName}
               size="hero"
+              presentation="path-identity"
             />{/if}
         </div>
       </div>

@@ -262,6 +262,12 @@ export function formatRoundedDecimal(value: DecimalString): string {
   return new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 0 }).format(integer);
 }
 
+export function formatRatioPercentage(value: number | string): string {
+  const ratio = Number(value);
+  if (!Number.isFinite(ratio)) throw new Error(`无效的比例数值：${value}`);
+  return `${new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 2 }).format(ratio * 100)}%`;
+}
+
 export function formatExactDecimal(value: DecimalString): string {
   const match = /^(\d+)(?:\.(\d+))?$/.exec(value);
   if (!match) throw new Error(`无效的正十进制字符串：${value}`);

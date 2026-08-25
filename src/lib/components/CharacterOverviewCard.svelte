@@ -23,6 +23,7 @@
           code={entry.path}
           label={entry.pathName}
           size="large"
+          presentation="path-identity"
         />{/if}
       {#if entry.elementName}<SemanticIconLabel
           kind="element"
@@ -30,6 +31,7 @@
           label={entry.elementName}
           color={getElementColor(entry.element)}
           size="large"
+          presentation="character-element-identity"
         />{/if}
     </svelte:fragment>
   </EntityOverviewCard>

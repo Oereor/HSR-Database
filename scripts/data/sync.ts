@@ -1626,6 +1626,10 @@ export async function syncData(): Promise<DataManifest> {
           hp: decimalOf(template.HPBase, `MonsterTemplate.${id}.HPBase`),
           attack: decimalOf(template.AttackBase, `MonsterTemplate.${id}.AttackBase`),
           defence: decimalOf(template.DefenceBase, `MonsterTemplate.${id}.DefenceBase`),
+          criticalDamage: decimalOf(
+            template.CriticalDamageBase,
+            `MonsterTemplate.${id}.CriticalDamageBase`
+          ),
           ...(template.SpeedBase !== undefined
             ? { speed: decimalOf(template.SpeedBase, `MonsterTemplate.${id}.SpeedBase`) }
             : {}),
@@ -1796,7 +1800,7 @@ export async function syncData(): Promise<DataManifest> {
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
 
   const manifest: DataManifest = {
-    schemaVersion: 27,
+    schemaVersion: 28,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),

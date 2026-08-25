@@ -30,24 +30,27 @@
         <span>Lv.{progression.minLevel}</span><span>Lv.{progression.maxLevel}</span>
       </div>
     </div>
-    <dl class="base-stat-rows">
-      <div class="base-stat-row" data-base-stat="hp">
+    <dl class="inspection-stat-list">
+      <div class="inspection-stat-row" data-base-stat="hp">
         <dt>生命值</dt>
         <dd><strong class="scaling-value">{formatBaseStat(stats.hp)}</strong></dd>
       </div>
-      <div class="base-stat-row" data-base-stat="attack">
+      <div class="inspection-stat-row" data-base-stat="attack">
         <dt>攻击力</dt>
         <dd><strong class="scaling-value">{formatBaseStat(stats.attack)}</strong></dd>
       </div>
-      <div class="base-stat-row" data-base-stat="defence">
+      <div class="inspection-stat-row" data-base-stat="defence">
         <dt>防御力</dt>
         <dd><strong class="scaling-value">{formatBaseStat(stats.defence)}</strong></dd>
       </div>
-      {#if progression.fixed?.speed !== undefined}<div class="base-stat-row" data-base-stat="speed">
+      {#if progression.fixed?.speed !== undefined}<div
+          class="inspection-stat-row"
+          data-base-stat="speed"
+        >
           <dt>基础速度</dt>
           <dd><strong>{formatBaseStat(progression.fixed.speed)}</strong></dd>
         </div>{/if}
-      {#if energy}<div class="base-stat-row" data-base-stat="energy">
+      {#if energy}<div class="inspection-stat-row" data-base-stat="energy">
           <dt>能量上限</dt>
           <dd>
             <strong>{energy.kind === 'special' ? '特殊能量' : formatBaseStat(energy.max)}</strong>

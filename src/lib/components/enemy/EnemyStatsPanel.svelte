@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { EnemyStatProgression, EnemyStatValue } from '$lib/domain/types';
-  import { formatRoundedDecimal } from '$lib/domain/endgame-view';
+  import { formatRatioPercentage, formatRoundedDecimal } from '$lib/domain/endgame-view';
 
   export let progression: EnemyStatProgression;
   export let level: number;
@@ -10,9 +10,7 @@
   const integer = (value: EnemyStatValue): string =>
     value.status === 'resolved' ? formatRoundedDecimal(value.value) : '资料未提供';
   const percent = (value: EnemyStatValue): string =>
-    value.status === 'resolved'
-      ? `${new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 2 }).format(Number(value.value) * 100)}%`
-      : '资料未提供';
+    value.status === 'resolved' ? formatRatioPercentage(value.value) : '资料未提供';
 
   $: stats = row
     ? [
