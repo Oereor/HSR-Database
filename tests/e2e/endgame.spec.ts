@@ -183,30 +183,30 @@ test('AS 三个战斗 slot 分别使用统一敌方卡并保留终焉公理与�
   }
   const slotOne = page.locator('[data-as-battle-slot="1"]');
   await expect(slotOne.getByRole('heading', { name: '坚防守备', exact: true })).toBeVisible();
-  await expect(slotOne.getByRole('heading', { name: '攻守易型', exact: true })).toBeVisible();
-  await expect(slotOne.getByRole('heading', { name: '绝境逆转', exact: true })).toBeVisible();
-  await expect(slotOne.getByRole('heading', { name: '众星拱卫', exact: true })).toBeVisible();
-  await expect(slotOne.locator('[data-as-boss-traits]')).toContainText('60%');
-  await expect(slotOne.locator('[data-as-boss-traits]')).toContainText('125%');
+  await expect(slotOne.getByRole('heading', { name: '丰亨豫大', exact: true })).toBeVisible();
+  await expect(slotOne.getByRole('heading', { name: '如鹿添翼', exact: true })).toBeVisible();
+  await expect(slotOne.getByRole('heading', { name: '仙光夺目', exact: true })).toBeVisible();
+  await expect(slotOne.locator('[data-as-boss-traits]')).toContainText('50%');
+  await expect(slotOne.locator('[data-as-boss-traits]')).toContainText('100%');
   await expect(
     slotOne
       .locator('[data-as-boss-traits] .endgame-mechanic-entry')
       .first()
       .locator('[data-stage-effect-explanations]')
   ).toHaveCount(0);
-  const slotTwoExplanations = page.locator(
-    '[data-as-battle-slot="2"] [data-stage-effect-explanations]'
+  const slotThreeExplanations = page.locator(
+    '[data-as-battle-slot="3"] [data-stage-effect-explanations]'
   );
-  await expect(slotTwoExplanations).toHaveCount(1);
+  await expect(slotThreeExplanations).toHaveCount(1);
   expect(
-    await slotTwoExplanations
+    await slotThreeExplanations
       .locator('[data-extra-effect]')
       .evaluateAll((items) => items.map((item) => item.getAttribute('data-extra-effect')))
-  ).toEqual(['240140133', '240140134']);
-  await slotTwoExplanations.locator('summary').click();
-  await expect(slotTwoExplanations).toContainText('战甲');
-  await expect(slotTwoExplanations).toContainText('百炼战甲');
-  expect(await slotTwoExplanations.textContent()).not.toContain('240140133');
+  ).toEqual(['501401001', '70000318']);
+  await slotThreeExplanations.locator('summary').click();
+  await expect(slotThreeExplanations).toContainText('连麦PK');
+  await expect(slotThreeExplanations).toContainText('韧性锁止');
+  expect(await slotThreeExplanations.textContent()).not.toContain('501401001');
   await expect(page.locator('[data-endgame-mechanics] img')).toHaveCount(0);
   await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(3);
   await expect(page.locator('[data-as-boss-profile], .as-enemy-profile-card')).toHaveCount(0);

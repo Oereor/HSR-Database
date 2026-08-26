@@ -313,6 +313,22 @@ export function buildUniqueIndex<T>(
   return result;
 }
 
+export function resolveEndgameSchedule(
+  mode: 'moc' | 'pf' | 'as',
+  group: Pick<ChallengeGroupRow, 'GroupID' | 'ScheduleDataID'>,
+  schedules: ReadonlyMap<string, ScheduleRow>,
+  issues: Pick<Diagnostics, 'warn'>
+): ScheduleRow | undefined {
+  const schedule = group.ScheduleDataID ? schedules.get(String(group.ScheduleDataID)) : undefined;
+  if (group.ScheduleDataID && !schedule)
+    issues.warn('missing-schedule', 'Group.ScheduleDataID 无法解析', {
+      mode,
+      groupId: group.GroupID,
+      scheduleId: group.ScheduleDataID
+    });
+  return schedule;
+}
+
 function groupBy<T>(rows: readonly T[], keyOf: (row: T) => string | number): Map<string, T[]> {
   const result = new Map<string, T[]>();
   for (const row of rows) {
@@ -1426,20 +1442,6 @@ export async function buildEndgameData(
         }))
     );
 
-  const scheduleFor = (
-    mode: 'moc' | 'pf' | 'as',
-    group: ChallengeGroupRow,
-    schedules: Map<string, ScheduleRow>
-  ): ScheduleRow | undefined => {
-    const schedule = group.ScheduleDataID ? schedules.get(String(group.ScheduleDataID)) : undefined;
-    if (group.ScheduleDataID && !schedule)
-      diagnostics.fail('missing-schedule', 'Group.ScheduleDataID 无法解析', {
-        mode,
-        groupId: group.GroupID,
-        scheduleId: group.ScheduleDataID
-      });
-    return schedule;
-  };
   const tierceFor = (
     mode: 'moc' | 'pf' | 'as',
     group: ChallengeGroupRow,
@@ -1546,7 +1548,7 @@ export async function buildEndgameData(
           memoryTurbulence
         });
       }
-      const schedule = scheduleFor(mode, group, schedules);
+      const schedule = resolveEndgameSchedule(mode, group, schedules, diagnostics);
       groups.push({
         mode,
         groupId: group.GroupID,
@@ -1682,7 +1684,7 @@ export async function buildEndgameData(
           ...(baseMechanic ? { baseMechanic } : {})
         });
       }
-      const schedule = scheduleFor(mode, group, schedules);
+      const schedule = resolveEndgameSchedule(mode, group, schedules, diagnostics);
       groups.push({
         mode,
         groupId: group.GroupID,
@@ -1891,7 +1893,7 @@ export async function buildEndgameData(
           bossGuides
         });
       }
-      const schedule = scheduleFor(mode, group, schedules);
+      const schedule = resolveEndgameSchedule(mode, group, schedules, diagnostics);
       groups.push({
         mode,
         groupId: group.GroupID,

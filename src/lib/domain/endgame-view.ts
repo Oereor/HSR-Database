@@ -445,9 +445,11 @@ export function buildPeriodView(group: EndgameGroup, now = Date.now()): EndgameP
 
 export function recommendedGroupId(groups: EndgameGroup[], now = Date.now()): number | undefined {
   if (!groups.length) return undefined;
-  if (groups.every((group) => !group.schedule))
-    return [...groups].sort((a, b) => b.groupId - a.groupId)[0].groupId;
-  const scheduled = groups.filter((group) => group.schedule);
+  const named = groups.filter((group) => group.name?.trim());
+  const candidates = named.length ? named : groups;
+  const newest = [...candidates].sort((a, b) => b.groupId - a.groupId)[0];
+  if (!newest.schedule) return newest.groupId;
+  const scheduled = candidates.filter((group) => group.schedule);
   const current = scheduled
     .filter((group) => {
       const begin = parseSchedule(group.schedule!.begin);

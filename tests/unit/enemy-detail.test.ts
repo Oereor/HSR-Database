@@ -284,7 +284,7 @@ describe('Enemy Detail 真实数据回归', () => {
     const audit = JSON.parse(
       await readFile(path.join(auditRoot, 'latest.json'), 'utf8')
     ).enemyAudit;
-    expect(audit.canonicalJoin).toEqual({ resolved: 613, missing: [] });
+    expect(audit.canonicalJoin).toEqual({ resolved: 628, missing: [] });
     expect(audit.weaknessResistanceConflicts).toHaveLength(13);
     expect(audit.unknownDebuffResist).toEqual([]);
     expect(audit.unresolvedSummons).toEqual([]);

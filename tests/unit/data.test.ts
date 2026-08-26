@@ -626,7 +626,7 @@ describe('真实数据管线', () => {
     const lightCone = JSON.parse(
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
-    expect(manifest.counts.characters).toBe(95);
+    expect(manifest.counts.characters).toBe(97);
     expect(manifest.schemaVersion).toBe(28);
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
@@ -761,12 +761,12 @@ describe('真实数据管线', () => {
     };
     const missing = audit.missingTextAudit;
     expect(missing.D.count).toBe(0);
-    expect(missing.A.count).toBe(1666);
+    expect(missing.A.count).toBe(1711);
     expect(missing.A.groups).toContainEqual({
       reason: 'missing-source-field',
       entity: 'character-trace',
       field: 'PointDesc',
-      count: 1050
+      count: 1070
     });
     expect(
       missing.A.groups.some(

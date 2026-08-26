@@ -273,8 +273,8 @@ describe('视觉资源管线', () => {
   it('当前 manifest 覆盖角色、光锥、遗器套装、遗器属性和语义图标需求', async () => {
     const requirements = await readAssetRequirements();
     const generated = await readAssetManifest();
-    expect(requirements.characterIds).toHaveLength(95);
-    expect(requirements.lightConeIds).toHaveLength(165);
+    expect(requirements.characterIds).toHaveLength(97);
+    expect(requirements.lightConeIds).toHaveLength(169);
     expect(requirements.relicSetIds).toHaveLength(60);
     expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(18);
     expect(requirements.elements).toHaveLength(7);
@@ -287,10 +287,14 @@ describe('视觉资源管线', () => {
       expect(generated!.characters.previews.available).toContain(id);
       expect(generated!.characters.portraits.available).toContain(id);
     }
+    expect(generated!.characters.previews.missing).toEqual(['1512', '1513']);
+    expect(generated!.characters.portraits.missing).toEqual(['1512', '1513']);
     for (const id of ['20000', '21015', '23000']) {
       expect(requirements.lightConeIds).toContain(id);
       expect(generated!.lightCones.previews.available).toContain(id);
     }
+    expect(generated!.lightCones.previews.missing).toEqual(['21066', '22008', '23063', '23064']);
+    expect(generated!.lightCones.portraits.missing).toEqual(['21066', '22008', '23063', '23064']);
     expect(generated!.relics.icons.available).toHaveLength(60);
     expect(generated!.relicProperties.icons.available).toHaveLength(18);
     expect(generated).not.toHaveProperty('characterNames');
@@ -311,7 +315,7 @@ describe('视觉资源管线', () => {
     expect(resolveRelicPropertyIconAsset('IconAttack', parsed)).toBeUndefined();
   });
 
-  it('角色 preview index 只解析网站需要的 95 个 ID 并拒绝越界路径', async () => {
+  it('角色 preview index 解析上游已有 ID 并为缺失的 4.5 资源保留 fallback', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readCharacterPreviewSources(root, requirements.characterIds);
@@ -320,7 +324,10 @@ describe('视觉资源管线', () => {
     ) as Record<string, { preview?: string }>;
     expect(sources.size).toBe(95);
     expect(Object.values(index).filter((entry) => entry.preview)).toHaveLength(95);
-    expect([...sources.keys()].sort()).toEqual(requirements.characterIds);
+    expect([...sources.keys()].sort()).toEqual(
+      requirements.characterIds.filter((id) => !['1512', '1513'].includes(id))
+    );
+    expect(requirements.characterIds.filter((id) => !sources.has(id))).toEqual(['1512', '1513']);
     expect(() => resolveIndexedAssetPath(root, '../outside.png')).toThrow(/越界/);
     expect(() =>
       resolveIndexedAssetPath(root, 'image/character_preview/../../outside.png')
@@ -340,7 +347,7 @@ describe('视觉资源管线', () => {
     ).toEqual(await readFile(sources.get(sampleId)!));
   });
 
-  it('光锥 preview index 以网站需求 ID 显式映射 165 张 348×408 PNG', async () => {
+  it('光锥 preview index 显式映射已有的 165 张 348×408 PNG', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readLightConePreviewSources(root, requirements.lightConeIds);
@@ -349,7 +356,15 @@ describe('视觉资源管线', () => {
     ) as Record<string, { id?: string; preview?: string }>;
     expect(sources.size).toBe(165);
     expect(Object.values(index).filter((entry) => entry.preview)).toHaveLength(165);
-    expect([...sources.keys()].sort()).toEqual(requirements.lightConeIds);
+    expect([...sources.keys()].sort()).toEqual(
+      requirements.lightConeIds.filter((id) => !['21066', '22008', '23063', '23064'].includes(id))
+    );
+    expect(requirements.lightConeIds.filter((id) => !sources.has(id))).toEqual([
+      '21066',
+      '22008',
+      '23063',
+      '23064'
+    ]);
     for (const id of ['20000', '21015', '23000']) {
       expect(index[id]).toMatchObject({
         id,
@@ -360,7 +375,7 @@ describe('视觉资源管线', () => {
     }
   });
 
-  it('光锥 portrait index 只读取 portrait，显式映射网站需要的 165 张图片', async () => {
+  it('光锥 portrait index 只读取上游已有的 165 张图片', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readLightConePortraitSources(root, requirements.lightConeIds);
@@ -368,8 +383,16 @@ describe('视觉资源管线', () => {
       await readFile(path.join(root, 'index_new', 'cn', 'light_cones.json'), 'utf8')
     ) as Record<string, { id?: string; portrait?: string }>;
     expect(sources.size).toBe(165);
-    expect([...sources.keys()].sort()).toEqual(requirements.lightConeIds);
-    for (const id of requirements.lightConeIds) {
+    expect([...sources.keys()].sort()).toEqual(
+      requirements.lightConeIds.filter((id) => !['21066', '22008', '23063', '23064'].includes(id))
+    );
+    expect(requirements.lightConeIds.filter((id) => !sources.has(id))).toEqual([
+      '21066',
+      '22008',
+      '23063',
+      '23064'
+    ]);
+    for (const id of sources.keys()) {
       expect(index[id]).toMatchObject({
         id,
         portrait: `image/light_cone_portrait/${id}.png`

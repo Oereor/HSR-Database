@@ -24,7 +24,7 @@ describe('Enemy Overview presentation', () => {
     const catalog = JSON.parse(
       await readFile(path.join(generatedRoot, 'catalogs', 'enemies.json'), 'utf8')
     ) as EnemyCatalogEntry[];
-    expect(catalog).toHaveLength(613);
+    expect(catalog).toHaveLength(628);
     for (const entry of catalog) {
       const detail = JSON.parse(
         await readFile(path.join(generatedRoot, 'details', 'enemies', `${entry.id}.json`), 'utf8')

@@ -9,7 +9,11 @@ import type {
   EndgameStage,
   EnemyOccurrence
 } from '../../src/lib/domain/endgame';
-import { buildUniqueIndex, type EndgameAudit } from '../../scripts/data/endgame';
+import {
+  buildUniqueIndex,
+  resolveEndgameSchedule,
+  type EndgameAudit
+} from '../../scripts/data/endgame';
 import { createMazeBuffResolver, type MazeBuffRow } from '../../scripts/data/maze-buffs';
 import { createAsBossGuideResolver } from '../../scripts/data/as-boss-guides';
 import type { TextResolver } from '../../scripts/data/localization';
@@ -497,6 +501,49 @@ describe('PF HP resolver', () => {
   });
 });
 
+describe('Endgame schedule 容错', () => {
+  it.each(['moc', 'pf', 'as'] as const)('%s 缺少 schedule 时记录 warning 并继续', (mode) => {
+    const warnings: Array<{ code: string; context: Record<string, unknown> }> = [];
+    const schedule = resolveEndgameSchedule(
+      mode,
+      { GroupID: 1034, ScheduleDataID: 291015 },
+      new Map(),
+      {
+        warn: (code, _message, context) => warnings.push({ code, context })
+      }
+    );
+
+    expect(schedule).toBeUndefined();
+    expect(warnings).toEqual([
+      {
+        code: 'missing-schedule',
+        context: { mode, groupId: 1034, scheduleId: 291015 }
+      }
+    ]);
+  });
+
+  it('返回已经存在的 schedule 且不记录 warning', () => {
+    const warnings: string[] = [];
+    const expected = {
+      ID: 201034,
+      BeginTime: '2026-08-17 04:00:00',
+      EndTime: '2026-09-28 04:00:00'
+    };
+
+    expect(
+      resolveEndgameSchedule(
+        'moc',
+        { GroupID: 1034, ScheduleDataID: 201034 },
+        new Map([['201034', expected]]),
+        {
+          warn: (code) => warnings.push(code)
+        }
+      )
+    ).toBe(expected);
+    expect(warnings).toEqual([]);
+  });
+});
+
 describe('Endgame 真实数据管线', () => {
   it('四个模式使用 schema 21 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
@@ -507,7 +554,7 @@ describe('Endgame 真实数据管线', () => {
     expect((await fixture('pf', 2025, 20254, 30323041, 100402014)).stage.waveModel.kind).toBe(
       'spawn-sequence'
     );
-    expect((await fixture('as', 3020, 30204, 420484, 401401304)).stage.waveModel.kind).toBe(
+    expect((await fixture('as', 3019, 30194, 420484, 401401304)).stage.waveModel.kind).toBe(
       'fixed'
     );
     expect((await fixture('aa', 8, 804, 30508022, 501403002)).stage.waveModel.kind).toBe(
@@ -530,7 +577,7 @@ describe('Endgame 真实数据管线', () => {
 
     const pf = await dataset('pf');
     const pfGroup = pf.groups.find((group) => group.groupId === 2025)!;
-    expect(pfGroup.groupBaseMechanic).toMatchObject({ mazeBuffId: 3031220 });
+    expect(pfGroup.groupBaseMechanic).toMatchObject({ mazeBuffId: 3031230 });
     expect(pfGroup.groupBaseMechanic?.display).toBeUndefined();
     expect(
       pfGroup.encounters.find((encounter) => encounter.configId === 20254)?.baseMechanic
@@ -553,11 +600,11 @@ describe('Endgame 真实数据管线', () => {
     const aftertaste = shadowGroup.encounters.find(
       (encounter) => encounter.configId === 30204
     )?.aftertaste;
-    expect(aftertaste?.buff).toMatchObject({ id: 3110006, name: '末法余烬' });
+    expect(aftertaste?.buff).toMatchObject({ id: 3110018, name: '末法余烬' });
     expect(aftertaste?.stageBindings.map(({ slot, mazeBuffId }) => [slot, mazeBuffId])).toEqual([
-      [1, 3110006],
-      [2, 3110006],
-      [3, 3110006]
+      [1, 3110018],
+      [2, 3110018],
+      [3, 3110018]
     ]);
 
     const shadowEncounter = shadowGroup.encounters.find(
@@ -567,7 +614,7 @@ describe('Endgame 真实数据管线', () => {
     expect(shadowEncounter.bossGuides[0]).toMatchObject({
       key: 'as:30204:MonsterID1',
       slot: 1,
-      guideMonsterId: 302401304,
+      guideMonsterId: 202401604,
       difficulty: 4,
       provenance: {
         table: 'ChallengeBossMazeExtra',
@@ -576,27 +623,27 @@ describe('Endgame 真实数据管线', () => {
       }
     });
     expect(shadowEncounter.bossGuides[0]?.traits.map(({ tagId, name }) => [tagId, name])).toEqual([
-      [100201, '坚防守备'],
-      [100202, '攻守易型'],
-      [100203, '绝境逆转'],
-      [100204, '众星拱卫']
+      [101701, '坚防守备'],
+      [101702, '丰亨豫大'],
+      [101703, '如鹿添翼'],
+      [101704, '仙光夺目']
     ]);
-    expect(gameTextToPlain(shadowEncounter.bossGuides[0]?.traits[0]?.description)).toContain('60%');
+    expect(gameTextToPlain(shadowEncounter.bossGuides[0]?.traits[0]?.description)).toContain('50%');
     expect(gameTextToPlain(shadowEncounter.bossGuides[0]?.traits[0]?.description)).toContain(
-      '125%'
+      '100%'
     );
     expect(
       shadowEncounter.bossGuides[0]?.traits.map((trait) =>
         trait.linkedEffects.map((effect) => effect.id)
       )
-    ).toEqual([[], ['70000303'], [], []]);
+    ).toEqual([[], [], [], ['220240163']]);
     expect(
-      shadowEncounter.bossGuides[1]?.traits
-        .find((trait) => trait.tagId === 101402)
+      shadowEncounter.bossGuides[2]?.traits
+        .find((trait) => trait.tagId === 101602)
         ?.linkedEffects.map((effect) => [effect.id, effect.name])
     ).toEqual([
-      ['240140133', '战甲'],
-      ['240140134', '百炼战甲']
+      ['501401001', '连麦PK'],
+      ['70000318', '韧性锁止']
     ]);
 
     const difficultyTraitCounts = shadowGroup.encounters.map((encounter) => [
@@ -630,9 +677,9 @@ describe('Endgame 真实数据管线', () => {
     expect(
       shadowGroup.axiomSets.map((set) => [set.slot, set.options.map(({ buff }) => buff.id)])
     ).toEqual([
-      [1, [3111077, 3111078, 3111058]],
-      [2, [3111083, 3111065, 3111079]],
-      [3, [3111082, 3111081, 3111085]]
+      [1, [3111092, 3111065, 3111089]],
+      [2, [3111093, 3111080, 3111058]],
+      [3, [3111089, 3111079, 3111068]]
     ]);
 
     const arbitration = await dataset('aa');
@@ -654,10 +701,10 @@ describe('Endgame 真实数据管线', () => {
 
   it('新增字段之外的完整 Endgame hierarchy 与敌方数据摘要保持不变', async () => {
     const expected = {
-      moc: '4086e5f63a700dd56e5ede0cc64a305fdd749a97749bf2810c77290422b99730',
-      pf: 'ea10b04587824c99343c5e0930085cf28f1929ab288db95e95c793eb16c8652c',
-      as: '0dd5da2df84f345abd7c117620fa71045c9aa410030991af241ca62136cd23fc',
-      aa: '739820959ac5f3bbfbb2be4cf1469068701a3dfac47b8a8e296efb370b8b5022'
+      moc: 'f0c1b03e4844fcdeaf242fec867403d97f822a6a8a97a2b2cf484709c2010833',
+      pf: 'cb34270ddf74c8e06304b47b0725458ca5c1a20eee5f9b14390b5170c7e070d9',
+      as: '015183494e922c2b6d9a3a0f720870457f3210aaaa12628dabd46aea931439f2',
+      aa: 'f75ed2b81b95884881683ec394d6c054c39d52ecc990a84773cc3a0c5e9af155'
     } as const;
     const groupFields: Record<EndgameMode, string[]> = {
       moc: [],
@@ -690,7 +737,7 @@ describe('Endgame 真实数据管线', () => {
   it.each([
     ['moc', 1034, 5312, 30124121, 3024020, ['4650', '1', '375.4385', '6.5'], '11347628.66250'],
     ['pf', 2025, 20254, 30323041, 100402014, ['1023', '7.5', '188.2636', '1'], '1444452.47100'],
-    ['as', 3020, 30204, 420484, 401401304, ['32550', '1', '236.53471', '1.9'], '14628489.139950'],
+    ['as', 3019, 30194, 420484, 401401304, ['32550', '1', '236.53471', '1.9'], '14628489.139950'],
     [
       'aa',
       8,
@@ -715,10 +762,10 @@ describe('Endgame 真实数据管线', () => {
   );
 
   it('AA 使用实际生成 MonsterID，并仅将通用 ID 作为 preview', async () => {
-    const { stage, occurrence } = await fixture('aa', 8, 804, 30508022, 501403002);
-    expect(occurrence.monsterTemplateId).toBe(5014030);
-    expect(stage.previewMonsterIds).toContain(5014030);
-    expect(occurrences(stage).some((item) => item.monsterId === 5014030)).toBe(false);
+    const { stage, occurrence } = await fixture('aa', 7, 704, 30507021, 802501003);
+    expect(occurrence.monsterTemplateId).toBe(8025010);
+    expect(stage.previewMonsterIds).toContain(5012010);
+    expect(occurrences(stage).some((item) => item.monsterId === 5012010)).toBe(false);
   });
 
   it('PF 保留 spawn 顺序与重复 MonsterID', async () => {
@@ -805,7 +852,9 @@ describe('Endgame 真实数据管线', () => {
     for (const wave of stage.waveModel.waves) {
       expect(wave.pureFictionMechanic?.killTransfer).toMatchObject({
         status: 'unconfirmed',
-        reason: 'ability-body-missing'
+        reason: 'percentage-expression-unresolved',
+        bindingKey: 'FantasticStory_BaseAbility_2310',
+        sourceMazeBuffId: 3031231
       });
       expect(
         wave.monsterGroups
@@ -816,7 +865,7 @@ describe('Endgame 真实数据管线', () => {
   });
 
   it('多阶段和共享生命只作为机制元数据，不伪造总 HP', async () => {
-    const { occurrence } = await fixture('as', 3020, 30204, 420484, 401401304);
+    const { occurrence } = await fixture('as', 3019, 30194, 420484, 401401304);
     expect(occurrence.mechanics).toMatchObject({
       phaseCount: 2,
       sharedHp: true,
@@ -900,33 +949,33 @@ describe('Endgame 真实数据管线', () => {
     };
     expect(latest.endgameAudit.inferredMonsterEliteFallbacks).toBe(5272);
     expect(latest.endgameAudit.stanceConversion).toMatchObject({
-      totalOccurrences: 24374,
-      resolvedInternal: 24215,
-      missingInternal: 159,
-      resolvedDisplay: 24215,
+      totalOccurrences: 25469,
+      resolvedInternal: 25301,
+      missingInternal: 168,
+      resolvedDisplay: 25301,
       nonDivisibleByThree: 0,
       conversionUnavailable: 0,
-      multiBarOccurrences: 36,
+      multiBarOccurrences: 40,
       nonPositiveDisplay: 0,
       minDisplayed: '10',
       maxDisplayed: '800',
       samples: []
     });
     expect(latest.endgameAudit.mazeBuffs).toEqual({
-      distinctReferenced: 318,
-      resolved: 318,
-      displayReady: 311,
+      distinctReferenced: 329,
+      resolved: 329,
+      displayReady: 322,
       missingLocalization: 7,
       missingIconPath: 0,
       missingDescriptionParams: 0,
-      unusedParams: 77
+      unusedParams: 78
     });
     expect(latest.endgameAudit.asBossGuides).toEqual({
       slotRelations: 163,
       applicableTraitRelations: 452,
       displayReadyTraits: 446,
       omittedTraitRelations: 6,
-      guideStageMonsterMismatches: 8,
+      guideStageMonsterMismatches: 12,
       missingMazeExtras: 0,
       missingSlotBindings: 0,
       missingGuides: 0,
@@ -935,20 +984,20 @@ describe('Endgame 真实数据管线', () => {
       arrayLengthMismatches: 0,
       difficultyMismatches: 0,
       duplicateTags: 0,
-      linkedEffectRelations: 192,
-      displayReadyLinkedEffects: 192,
+      linkedEffectRelations: 181,
+      displayReadyLinkedEffects: 181,
       omittedLinkedEffects: 0,
       distinctMalformedTags: 1,
-      distinctUnusedParamTags: 21
+      distinctUnusedParamTags: 22
     });
     expect(latest.endgameAudit.modifierRelations).toEqual({
-      moc: { memoryTurbulence: 603, groupMismatches: 0 },
+      moc: { memoryTurbulence: 615, groupMismatches: 0 },
       pf: {
-        groupBaseMechanics: 25,
-        encounterBaseMechanics: 100,
-        battleWillMechanics: 45,
-        cacophonyGroups: 25,
-        cacophonyOptions: 75
+        groupBaseMechanics: 26,
+        encounterBaseMechanics: 104,
+        battleWillMechanics: 48,
+        cacophonyGroups: 26,
+        cacophonyOptions: 78
       },
       as: {
         aftertastes: 80,
@@ -957,10 +1006,10 @@ describe('Endgame 真实数据管线', () => {
         stageBindingMismatches: 0
       },
       aa: {
-        traits: 69,
-        judgmentQuadrants: 8,
-        quadrantOptions: 24,
-        battleEventReferences: 40
+        traits: 77,
+        judgmentQuadrants: 9,
+        quadrantOptions: 27,
+        battleEventReferences: 45
       }
     });
   });

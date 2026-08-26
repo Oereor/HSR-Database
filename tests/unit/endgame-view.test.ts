@@ -3,6 +3,7 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type {
   DecimalString,
+  EndgameGroup,
   EndgameMode,
   EndgameModeDataset,
   EnemyOccurrence
@@ -19,6 +20,7 @@ import {
   formatRoundedDecimal,
   mergeFixedOccurrences,
   occurrenceIdentity,
+  recommendedGroupId,
   resolveEndgameEnemyReference,
   type EndgameEnemyDetailSource,
   uniqueSpawnOccurrences
@@ -92,6 +94,21 @@ function occurrence(overrides: Partial<EnemyOccurrence> = {}): EnemyOccurrence {
   };
 }
 
+function mocGroup(
+  groupId: number,
+  options: { name?: string; begin?: string; end?: string } = {}
+): EndgameGroup {
+  return {
+    mode: 'moc',
+    groupId,
+    ...(options.name === undefined ? {} : { name: options.name }),
+    ...(options.begin && options.end
+      ? { schedule: { begin: options.begin, end: options.end } }
+      : {}),
+    encounters: []
+  };
+}
+
 describe('Endgame UI 生命值格式', () => {
   it.each([
     ['1444452.47100', '1,444,452'],
@@ -139,6 +156,74 @@ describe('共享比例格式', () => {
     ['1', '100%']
   ])('将 ratio %s 格式化为 %s', (source, expected) => {
     expect(formatRatioPercentage(source)).toBe(expected);
+  });
+});
+
+describe('Endgame 赛期回退与推荐', () => {
+  const historical = mocGroup(1033, {
+    name: '历史一期',
+    begin: '2026-07-01 04:00:00',
+    end: '2026-08-01 04:00:00'
+  });
+
+  it('保留未命名无时间组的展示回退，但推荐最新具名组', () => {
+    const namedWithoutSchedule = mocGroup(1034, { name: '扫除风暴' });
+    const unnamedWithoutSchedule = mocGroup(1035);
+
+    expect(buildPeriodView(unnamedWithoutSchedule)).toMatchObject({
+      name: '数据组 1035',
+      dateLabel: '时间资料未提供',
+      status: 'unknown'
+    });
+    expect(recommendedGroupId([historical, namedWithoutSchedule, unnamedWithoutSchedule])).toBe(
+      1034
+    );
+  });
+
+  it('全部无时间时仍选择 ID 最大的具名组', () => {
+    expect(
+      recommendedGroupId([
+        mocGroup(1033, { name: '旧组' }),
+        mocGroup(1034, { name: '新组' }),
+        mocGroup(1035)
+      ])
+    ).toBe(1034);
+  });
+
+  it('只有未命名组时回退到 ID 最大的组', () => {
+    expect(recommendedGroupId([mocGroup(1034), mocGroup(1035)])).toBe(1035);
+  });
+
+  it('最新具名组有时间时维持当前赛期优先', () => {
+    const current = mocGroup(1034, {
+      name: '当前一期',
+      begin: '2026-08-01 04:00:00',
+      end: '2026-09-01 04:00:00'
+    });
+    const upcoming = mocGroup(1035, {
+      name: '未来一期',
+      begin: '2026-09-01 04:00:00',
+      end: '2026-10-01 04:00:00'
+    });
+
+    expect(
+      recommendedGroupId([historical, current, upcoming], Date.parse('2026-08-20T00:00:00Z'))
+    ).toBe(1034);
+  });
+
+  it('真实 4.5 MoC 保留 1034/1035 并默认推荐具名的 1034', async () => {
+    const moc = await dataset('moc');
+    const group1034 = moc.groups.find((group) => group.groupId === 1034)!;
+    const group1035 = moc.groups.find((group) => group.groupId === 1035)!;
+
+    expect(group1034).toMatchObject({ name: '扫除风暴' });
+    expect(group1034.schedule).toBeUndefined();
+    expect(group1034.encounters).toHaveLength(12);
+    expect(group1035.name).toBeUndefined();
+    expect(group1035.schedule).toBeUndefined();
+    expect(group1035.encounters).toHaveLength(12);
+    expect(buildPeriodView(group1035).name).toBe('数据组 1035');
+    expect(recommendedGroupId(moc.groups)).toBe(1034);
   });
 });
 
@@ -347,7 +432,7 @@ describe('Endgame occurrence 投影', () => {
       }
       expect(resolveEndgameEnemyReference(detail, monsterId).weaknesses).toBeInstanceOf(Array);
     }
-    expect(details.size).toBe(185);
+    expect(details.size).toBe(190);
   });
 });
 
@@ -406,7 +491,7 @@ describe('Endgame mechanics 视图投影', () => {
     const currentView = buildGroupView(current, [buildPeriodView(current)], new Map());
     if (currentView.mode !== 'as') throw new Error('AS view mode 不匹配');
     const encounter = currentView.encounters.find((candidate) => candidate.id === '30204')!;
-    expect(encounter.aftertaste?.id).toBe(3110006);
+    expect(encounter.aftertaste?.id).toBe(3110018);
     expect(encounter.battles.map((battle) => battle.axiomSet?.options.length)).toEqual([3, 3, 3]);
     expect(encounter.battles.map((battle) => battle.axiomSet?.key)).toEqual([
       'as:3020:BuffList1',
@@ -416,18 +501,18 @@ describe('Endgame mechanics 视图投影', () => {
     expect(encounter.battles.map((battle) => battle.bossGuide?.traits.length)).toEqual([4, 4, 4]);
     expect(encounter.battles[0]?.bossGuide?.traits.map(({ name }) => name)).toEqual([
       '坚防守备',
-      '攻守易型',
-      '绝境逆转',
-      '众星拱卫'
+      '丰亨豫大',
+      '如鹿添翼',
+      '仙光夺目'
     ]);
     expect(
-      encounter.battles[1]?.bossGuide?.traits
-        .find((trait) => trait.id === 101402)
+      encounter.battles[2]?.bossGuide?.traits
+        .find((trait) => trait.id === 101602)
         ?.linkedEffects.map((effect) => effect.id)
-    ).toEqual(['240140133', '240140134']);
+    ).toEqual(['501401001', '70000318']);
     expect(
       encounter.battles.map((battle) => battle.stages[0]?.waves[0]?.enemies[0]?.monsterId)
-    ).toEqual([302401304, 401401304, 300402104]);
+    ).toEqual([202401604, 203501204, 501401404]);
     expect(encounter.battles.every((battle) => !('bossProfile' in battle))).toBe(true);
 
     const twoSlots = shadow.groups.find((group) => group.groupId === 3001)!;

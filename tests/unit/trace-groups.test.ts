@@ -104,9 +104,9 @@ describe('行迹卡片展示分组', () => {
         standaloneStats += groups.standaloneStats.length;
       }
     }
-    expect(profileCount).toBe(105);
-    expect(ownedStats).toBe(818);
-    expect(standaloneStats).toBe(232);
+    expect(profileCount).toBe(107);
+    expect(ownedStats).toBe(833);
+    expect(standaloneStats).toBe(237);
   });
 
   it('拒绝重复、悬空、自引用、循环、多个前置和特殊能力归属', () => {

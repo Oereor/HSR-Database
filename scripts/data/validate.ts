@@ -92,8 +92,8 @@ for (const [sourceName, expectedRows] of [
   ['AvatarGlobalBuffConfig', 2],
   ['AvatarServantSkillLink', 14],
   ['ChallengeBossMazeExtra', 80],
-  ['MonsterGuideConfig', 80],
-  ['MonsterGuideTag', 64]
+  ['MonsterGuideConfig', 84],
+  ['MonsterGuideTag', 68]
 ] as const)
   if (audit.upstreamTables?.[sourceName] !== expectedRows)
     throw new Error(`${sourceName} 上游来源计数异常：${audit.upstreamTables?.[sourceName]}`);
@@ -293,13 +293,13 @@ for (const mode of endgameModes) {
 }
 
 const expectedMazeBuffAudit = {
-  distinctReferenced: 318,
-  resolved: 318,
-  displayReady: 311,
+  distinctReferenced: 329,
+  resolved: 329,
+  displayReady: 322,
   missingLocalization: 7,
   missingIconPath: 0,
   missingDescriptionParams: 0,
-  unusedParams: 77
+  unusedParams: 78
 };
 if (JSON.stringify(audit.endgameAudit.mazeBuffs) !== JSON.stringify(expectedMazeBuffAudit))
   throw new Error('Endgame MazeBuff 解析审计与当前权威配置不一致');
@@ -309,7 +309,7 @@ const expectedAsBossGuideAudit = {
   applicableTraitRelations: 452,
   displayReadyTraits: 446,
   omittedTraitRelations: 6,
-  guideStageMonsterMismatches: 8,
+  guideStageMonsterMismatches: 12,
   missingMazeExtras: 0,
   missingSlotBindings: 0,
   missingGuides: 0,
@@ -318,11 +318,11 @@ const expectedAsBossGuideAudit = {
   arrayLengthMismatches: 0,
   difficultyMismatches: 0,
   duplicateTags: 0,
-  linkedEffectRelations: 192,
-  displayReadyLinkedEffects: 192,
+  linkedEffectRelations: 181,
+  displayReadyLinkedEffects: 181,
   omittedLinkedEffects: 0,
   distinctMalformedTags: 1,
-  distinctUnusedParamTags: 21
+  distinctUnusedParamTags: 22
 };
 if (JSON.stringify(audit.endgameAudit.asBossGuides) !== JSON.stringify(expectedAsBossGuideAudit))
   throw new Error('AS 首领特性解析审计与当前权威配置不一致');
@@ -345,7 +345,7 @@ const pfEncounterBase = pfModifierGroup?.encounters.find(
   (encounter) => encounter.configId === 20254
 )?.baseMechanic;
 if (
-  pfModifierGroup?.groupBaseMechanic?.mazeBuffId !== 3031220 ||
+  pfModifierGroup?.groupBaseMechanic?.mazeBuffId !== 3031230 ||
   pfModifierGroup.groupBaseMechanic.display !== undefined ||
   pfEncounterBase?.mazeBuffId !== 3031230 ||
   pfEncounterBase.display !== undefined ||
@@ -370,36 +370,34 @@ const asBossGuides = asModifierGroup?.encounters.find(
   (encounter) => encounter.configId === 30204
 )?.bossGuides;
 if (
-  asAftertaste?.buff.id !== 3110006 ||
+  asAftertaste?.buff.id !== 3110018 ||
   asAftertaste.buff.name !== '末法余烬' ||
   asAftertaste.stageBindings.length !== 3 ||
-  asAftertaste.stageBindings.some((binding) => binding.mazeBuffId !== 3110006) ||
+  asAftertaste.stageBindings.some((binding) => binding.mazeBuffId !== 3110018) ||
   JSON.stringify(
     asModifierGroup?.axiomSets.map((set) => [set.slot, set.options.map(({ buff }) => buff.id)])
   ) !==
     JSON.stringify([
-      [1, [3111077, 3111078, 3111058]],
-      [2, [3111083, 3111065, 3111079]],
-      [3, [3111082, 3111081, 3111085]]
+      [1, [3111092, 3111065, 3111089]],
+      [2, [3111093, 3111080, 3111058]],
+      [3, [3111089, 3111079, 3111068]]
     ])
 )
   throw new Error('AS 3020/30204 末法余烬、stage binding 或终焉公理 relation 异常');
 const asSlotOneGuide = asBossGuides?.find((guide) => guide.slot === 1);
-const asSlotTwoGuide = asBossGuides?.find((guide) => guide.slot === 2);
+const asSlotThreeGuide = asBossGuides?.find((guide) => guide.slot === 3);
 if (
   asBossGuides?.length !== 3 ||
-  asSlotOneGuide?.guideMonsterId !== 302401304 ||
-  asSlotOneGuide.traits.map((trait) => trait.tagId).join(',') !== '100201,100202,100203,100204' ||
+  asSlotOneGuide?.guideMonsterId !== 202401604 ||
+  asSlotOneGuide.traits.map((trait) => trait.tagId).join(',') !== '101701,101702,101703,101704' ||
   asSlotOneGuide.traits.map((trait) => trait.name).join(',') !==
-    '坚防守备,攻守易型,绝境逆转,众星拱卫' ||
-  !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('60%') ||
-  !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('125%') ||
+    '坚防守备,丰亨豫大,如鹿添翼,仙光夺目' ||
+  !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('50%') ||
+  !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('100%') ||
   asSlotOneGuide.traits[0]?.linkedEffects.length !== 0 ||
-  asSlotOneGuide.traits[1]?.linkedEffects.map((effect) => effect.id).join(',') !== '70000303' ||
-  asSlotTwoGuide?.traits
-    .find((trait) => trait.tagId === 101402)
-    ?.linkedEffects.map((effect) => effect.id)
-    .join(',') !== '240140133,240140134'
+  asSlotOneGuide.traits[3]?.linkedEffects.map((effect) => effect.id).join(',') !== '220240163' ||
+  asSlotThreeGuide?.traits[1]?.linkedEffects.map((effect) => effect.id).join(',') !==
+    '501401001,70000318'
 )
   throw new Error('AS 3020/30204 关卡效果 relation、参数插值或 EffectID 解析异常');
 
@@ -417,10 +415,10 @@ if (
   throw new Error('AA 8/804 normal/hard traits 或裁决象限 relation 异常');
 
 const legacyEndgameDigests: Record<EndgameMode, string> = {
-  moc: '4086e5f63a700dd56e5ede0cc64a305fdd749a97749bf2810c77290422b99730',
-  pf: 'ea10b04587824c99343c5e0930085cf28f1929ab288db95e95c793eb16c8652c',
-  as: '0dd5da2df84f345abd7c117620fa71045c9aa410030991af241ca62136cd23fc',
-  aa: '739820959ac5f3bbfbb2be4cf1469068701a3dfac47b8a8e296efb370b8b5022'
+  moc: 'f0c1b03e4844fcdeaf242fec867403d97f822a6a8a97a2b2cf484709c2010833',
+  pf: 'cb34270ddf74c8e06304b47b0725458ca5c1a20eee5f9b14390b5170c7e070d9',
+  as: '015183494e922c2b6d9a3a0f720870457f3210aaaa12628dabd46aea931439f2',
+  aa: 'f75ed2b81b95884881683ec394d6c054c39d52ecc990a84773cc3a0c5e9af155'
 };
 const modifierGroupFields: Record<EndgameMode, string[]> = {
   moc: [],
@@ -475,7 +473,7 @@ function fixtureOccurrence(
 const hpFixtures = [
   ['moc', 1034, 5312, 30124121, 3024020, '11347628.66250'],
   ['pf', 2025, 20254, 30323041, 100402014, '1444452.47100'],
-  ['as', 3020, 30204, 420484, 401401304, '14628489.139950'],
+  ['as', 3019, 30194, 420484, 401401304, '14628489.139950'],
   ['aa', 8, 804, 30508022, 501403002, '63467351.45020015200']
 ] as const;
 for (const [mode, groupId, configId, stageId, monsterId, expectedHp] of hpFixtures) {
@@ -542,10 +540,10 @@ if (stanceAudit.nonDivisibleByThree)
 if (stanceAudit.nonPositiveDisplay)
   console.warn(`Endgame 警告：${stanceAudit.nonPositiveDisplay} 个玩家韧性值不是正数`);
 
-const aaFixture = fixtureOccurrence('aa', 8, 804, 30508022, 501403002);
-if (!aaFixture.stage.previewMonsterIds.includes(5014030))
-  throw new Error('AA 回归失败：未保留 StageConfig preview MonsterID 5014030');
-if (occurrencesOf(aaFixture.stage).some((item) => item.monsterId === 5014030))
+const aaFixture = fixtureOccurrence('aa', 7, 704, 30507021, 802501003);
+if (!aaFixture.stage.previewMonsterIds.includes(5012010))
+  throw new Error('AA 回归失败：未保留 StageConfig preview MonsterID 5012010');
+if (occurrencesOf(aaFixture.stage).some((item) => item.monsterId === 5012010))
   throw new Error('AA 回归失败：preview MonsterID 被错误用作实际生成敌人');
 
 for (const [mode, groupId, configId] of [
@@ -1194,14 +1192,14 @@ for (const character of characters) {
     throw new Error(`角色 ${character.id} 暴露了未确认的推荐字段`);
 }
 
-if (skillVariantCount !== 619)
+if (skillVariantCount !== 635)
   throw new Error(`Character Skill Variant 总数异常：${skillVariantCount}`);
-if (statTraceCount !== 1050 || abilityTraceCount !== 317)
+if (statTraceCount !== 1070 || abilityTraceCount !== 323)
   throw new Error(`行迹类型数量异常：属性 ${statTraceCount}，额外能力 ${abilityTraceCount}`);
 if (
-  traceDependencyCount !== 893 ||
-  traceDependencyDirections.get('stat->stat') !== 505 ||
-  traceDependencyDirections.get('stat->ability') !== 374 ||
+  traceDependencyCount !== 910 ||
+  traceDependencyDirections.get('stat->stat') !== 513 ||
+  traceDependencyDirections.get('stat->ability') !== 383 ||
   traceDependencyDirections.get('ability->stat') !== 14 ||
   traceDependencyDirections.size !== 3
 )
