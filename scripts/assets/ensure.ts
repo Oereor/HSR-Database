@@ -4,7 +4,8 @@ import {
   manifestCoversRequirements,
   manifestFilesExist,
   readAssetManifest,
-  readAssetRequirements
+  readAssetRequirements,
+  warnAssetFallback
 } from './shared.js';
 
 const requirements = await readAssetRequirements();
@@ -18,8 +19,10 @@ try {
     manifest.sourceCommit === commit &&
     manifestCoversRequirements(manifest, requirements) &&
     (await manifestFilesExist(manifest));
-  if (valid) console.log(`视觉资源已是最新版本：${commit.slice(0, 12)}`);
-  else await syncAssets();
+  if (valid) {
+    console.log(`视觉资源已是最新版本：${commit.slice(0, 12)}`);
+    warnAssetFallback(manifest, `缓存对应 StarRailRes ${commit.slice(0, 12)}`);
+  } else await syncAssets();
 } catch (error) {
   const validCache =
     !!manifest &&
@@ -27,6 +30,7 @@ try {
     (await manifestFilesExist(manifest));
   if (validCache) {
     console.warn(`视觉资源上游暂不可用，继续使用已有缓存：${(error as Error).message}`);
+    warnAssetFallback(manifest, '现有缓存');
   } else {
     await syncAssets();
   }

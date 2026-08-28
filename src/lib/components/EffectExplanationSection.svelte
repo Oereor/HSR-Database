@@ -3,7 +3,7 @@
   import type { ExtraEffect } from '$lib/domain/types';
 
   export let effects: ExtraEffect[] = [];
-  export let context: 'skill' | 'stage-effect' = 'skill';
+  export let context: 'skill' | 'stage-effect' | 'rogue' = 'skill';
 </script>
 
 {#if effects.length}
@@ -12,6 +12,7 @@
     data-effect-explanations
     data-skill-extra-effects={context === 'skill' ? true : undefined}
     data-stage-effect-explanations={context === 'stage-effect' ? true : undefined}
+    data-rogue-extra-effects={context === 'rogue' ? true : undefined}
   >
     <summary>效果说明</summary>
     <div class="enemy-extra-effects__body">

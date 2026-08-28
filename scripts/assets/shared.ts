@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 import type { CatalogEntry, RelicCatalogEntry, RelicProperty } from '../../src/lib/domain/types.js';
@@ -18,6 +18,9 @@ import {
   generatedPathRoot,
   generatedPortraitRoot
 } from './paths.js';
+
+// Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
+sharp.cache(false);
 
 export const VISUAL_ASSET_SCHEMA_VERSION = 6 as const;
 
@@ -62,6 +65,23 @@ export interface AssetSizeSummary {
   elements: number;
   paths: number;
   total: number;
+}
+
+export interface AssetOutputPaths {
+  root: string;
+  previews: string;
+  portraits: string;
+  lightConePreviews: string;
+  lightConePortraits: string;
+  relicIcons: string;
+  relicPropertyIcons: string;
+  elements: string;
+  paths: string;
+}
+
+export interface AssetFallbackEntry {
+  label: string;
+  missing: string[];
 }
 
 const uniqueSorted = (values: Array<string | undefined>): string[] =>
@@ -116,7 +136,51 @@ export async function readAssetManifest(): Promise<VisualAssetManifest | undefin
 export async function writeAssetManifest(manifest: VisualAssetManifest): Promise<void> {
   assertAssetOutputPaths();
   await mkdir(assetManifestRoot, { recursive: true });
-  await writeFile(assetManifestPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+  const temporaryPath = `${assetManifestPath}.${process.pid}.${Date.now()}.tmp`;
+  const backupPath = `${assetManifestPath}.${process.pid}.${Date.now()}.backup`;
+  let backedUp = false;
+  try {
+    await writeFile(temporaryPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+    try {
+      await rename(assetManifestPath, backupPath);
+      backedUp = true;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+    }
+    await rename(temporaryPath, assetManifestPath);
+    if (backedUp) await rm(backupPath, { force: true });
+  } catch (error) {
+    if (backedUp) {
+      await rm(assetManifestPath, { force: true });
+      await rename(backupPath, assetManifestPath);
+    }
+    throw error;
+  } finally {
+    await rm(temporaryPath, { force: true });
+  }
+}
+
+export function assetFallbackEntries(manifest: VisualAssetManifest): AssetFallbackEntry[] {
+  return [
+    { label: '角色预览图', missing: manifest.characters.previews.missing },
+    { label: '角色立绘', missing: manifest.characters.portraits.missing },
+    { label: '光锥预览图', missing: manifest.lightCones.previews.missing },
+    { label: '光锥立绘', missing: manifest.lightCones.portraits.missing },
+    { label: '遗器套装图标', missing: manifest.relics.icons.missing },
+    { label: '遗器属性图标', missing: manifest.relicProperties.icons.missing },
+    { label: '属性图标', missing: manifest.elements.missing },
+    { label: '命途图标', missing: manifest.paths.missing }
+  ].filter((entry) => entry.missing.length > 0);
+}
+
+export function warnAssetFallback(manifest: VisualAssetManifest, context: string): void {
+  const entries = assetFallbackEntries(manifest);
+  if (!entries.length) return;
+  console.warn(
+    `视觉资源 fallback 已启用（${context}）：上游暂缺 ${entries.reduce((sum, entry) => sum + entry.missing.length, 0)} 项资源。`
+  );
+  for (const entry of entries) console.warn(`  ${entry.label}: ${entry.missing.join(', ')}`);
+  console.warn('  仅缺失项使用无图降级；非法索引、损坏图片和转换错误仍会中止同步。');
 }
 
 export function emptyAssetManifest(requirements: AssetRequirements): VisualAssetManifest {
@@ -164,19 +228,32 @@ export function assertAssetCleanTarget(target: string): void {
   }
 }
 
-async function resetOutputDirectories(): Promise<void> {
-  assertAssetOutputPaths();
-  await rm(generatedAssetRoot, { recursive: true, force: true });
+export function assetOutputPaths(root = generatedAssetRoot): AssetOutputPaths {
+  return {
+    root,
+    previews: path.join(root, 'characters', 'preview'),
+    portraits: path.join(root, 'characters', 'portrait'),
+    lightConePreviews: path.join(root, 'light-cones', 'preview'),
+    lightConePortraits: path.join(root, 'light-cones', 'portrait'),
+    relicIcons: path.join(root, 'relics', 'icons'),
+    relicPropertyIcons: path.join(root, 'relic-properties'),
+    elements: path.join(root, 'elements'),
+    paths: path.join(root, 'paths')
+  };
+}
+
+async function prepareOutputDirectories(output: AssetOutputPaths): Promise<void> {
+  await rm(output.root, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 });
   await Promise.all(
     [
-      generatedPreviewRoot,
-      generatedPortraitRoot,
-      generatedLightConePreviewRoot,
-      generatedLightConePortraitRoot,
-      generatedRelicIconRoot,
-      generatedRelicPropertyRoot,
-      generatedElementRoot,
-      generatedPathRoot
+      output.previews,
+      output.portraits,
+      output.lightConePreviews,
+      output.lightConePortraits,
+      output.relicIcons,
+      output.relicPropertyIcons,
+      output.elements,
+      output.paths
     ].map((directory) => mkdir(directory, { recursive: true }))
   );
 }
@@ -191,14 +268,25 @@ async function processRequested(
   const missing: string[] = [];
   for (const value of requested) {
     const source = sourcePath(value);
-    try {
-      if (!source) throw new Error(`缺少资源来源：${value}`);
-      await stat(source);
-      await transform(source, outputPath(value));
-      available.push(value);
-    } catch {
+    if (!source) {
       missing.push(value);
+      continue;
     }
+    try {
+      await stat(source);
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        missing.push(value);
+        continue;
+      }
+      throw new Error(`无法读取视觉资源 ${value}：${source}`, { cause: error });
+    }
+    try {
+      await transform(source, outputPath(value));
+    } catch (error) {
+      throw new Error(`无法生成视觉资源 ${value}：${source}`, { cause: error });
+    }
+    available.push(value);
   }
   return { available, missing };
 }
@@ -236,6 +324,14 @@ export function resolveIndexedAssetPath(sourceRoot: string, relativePath: unknow
   return resolved;
 }
 
+function resolveOptionalIndexedAssetPath(
+  sourceRoot: string,
+  relativePath: unknown
+): string | undefined {
+  if (relativePath === null || relativePath === undefined) return undefined;
+  return resolveIndexedAssetPath(sourceRoot, relativePath);
+}
+
 export async function readCharacterPreviewSources(
   sourceRoot: string,
   characterIds: string[]
@@ -250,8 +346,8 @@ export async function readCharacterPreviewSources(
   const sources = new Map<string, string>();
   for (const id of characterIds) {
     const preview = index[id]?.preview;
-    if (preview === undefined) continue;
-    const source = resolveIndexedAssetPath(sourceRoot, preview);
+    const source = resolveOptionalIndexedAssetPath(sourceRoot, preview);
+    if (!source) continue;
     const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
     if (!/^image\/character_preview\/[^/]+\.png$/i.test(relative))
       throw new Error(`角色 ${id} 的 preview 路径不属于 character_preview：${relative}`);
@@ -274,9 +370,10 @@ export async function readLightConePreviewSources(
   const sources = new Map<string, string>();
   for (const id of lightConeIds) {
     const entry = index[id];
-    if (!entry || entry.preview === undefined) continue;
+    if (!entry) continue;
     if (entry.id !== id) throw new Error(`光锥 ${id} 的 index identity 不一致：${entry.id}`);
-    const source = resolveIndexedAssetPath(sourceRoot, entry.preview);
+    const source = resolveOptionalIndexedAssetPath(sourceRoot, entry.preview);
+    if (!source) continue;
     const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
     if (!/^image\/light_cone_preview\/[^/]+\.png$/i.test(relative))
       throw new Error(`光锥 ${id} 的 preview 路径不属于 light_cone_preview：${relative}`);
@@ -299,9 +396,10 @@ export async function readLightConePortraitSources(
   const sources = new Map<string, string>();
   for (const id of lightConeIds) {
     const entry = index[id];
-    if (!entry || entry.portrait === undefined) continue;
+    if (!entry) continue;
     if (entry.id !== id) throw new Error(`光锥 ${id} 的 index identity 不一致：${entry.id}`);
-    const source = resolveIndexedAssetPath(sourceRoot, entry.portrait);
+    const source = resolveOptionalIndexedAssetPath(sourceRoot, entry.portrait);
+    if (!source) continue;
     const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
     if (!/^image\/light_cone_portrait\/[^/]+\.png$/i.test(relative))
       throw new Error(`光锥 ${id} 的 portrait 路径不属于 light_cone_portrait：${relative}`);
@@ -324,9 +422,10 @@ export async function readRelicSetIconSources(
   const sources = new Map<string, string>();
   for (const id of relicSetIds) {
     const entry = index[id];
-    if (!entry || entry.icon === undefined) continue;
+    if (!entry) continue;
     if (entry.id !== id) throw new Error(`遗器套装 ${id} 的 index identity 不一致：${entry.id}`);
-    const source = resolveIndexedAssetPath(sourceRoot, entry.icon);
+    const source = resolveOptionalIndexedAssetPath(sourceRoot, entry.icon);
+    if (!source) continue;
     const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
     if (relative !== `icon/relic/${id}.png`)
       throw new Error(`遗器套装 ${id} 必须使用套装图标 XXX.png：${relative}`);
@@ -349,10 +448,11 @@ export async function readRelicPropertyIconSources(
   const sources = new Map<string, string>();
   for (const property of properties) {
     const entry = index[property.propertyType];
-    if (!entry || entry.icon === undefined) continue;
+    if (!entry) continue;
     if (entry.type !== property.propertyType)
       throw new Error(`遗器属性 ${property.propertyType} 的 index identity 不一致：${entry.type}`);
-    const source = resolveIndexedAssetPath(sourceRoot, entry.icon);
+    const source = resolveOptionalIndexedAssetPath(sourceRoot, entry.icon);
+    if (!source) continue;
     const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
     if (relative !== `icon/property/${property.iconKey}.png`)
       throw new Error(`遗器属性 ${property.propertyType} 的图标映射不一致：${relative}`);
@@ -392,11 +492,16 @@ export async function generateLightConePortraitAssets(
 
 export async function generateVisualAssets(
   sourceRoot: string,
-  requirements: AssetRequirements
+  requirements: AssetRequirements,
+  outputRoot = generatedAssetRoot
 ): Promise<Omit<VisualAssetManifest, 'schemaVersion' | 'sourceCommit' | 'generatedAt'>> {
-  await resetOutputDirectories();
+  // Validate every index before touching output so malformed upstream data cannot erase a cache.
   const previewSources = await readCharacterPreviewSources(sourceRoot, requirements.characterIds);
   const lightConePreviewSources = await readLightConePreviewSources(
+    sourceRoot,
+    requirements.lightConeIds
+  );
+  const lightConePortraitSources = await readLightConePortraitSources(
     sourceRoot,
     requirements.lightConeIds
   );
@@ -405,32 +510,36 @@ export async function generateVisualAssets(
     sourceRoot,
     requirements.relicPropertyIcons
   );
+  const output = assetOutputPaths(outputRoot);
+  await prepareOutputDirectories(output);
   const previews = await processRequested(
     requirements.characterIds,
     (id) => previewSources.get(id),
-    (id) => path.join(generatedPreviewRoot, `${id}.png`),
+    (id) => path.join(output.previews, `${id}.png`),
     async (source, output) => copyFile(source, output)
   );
   const portraits = await processRequested(
     requirements.characterIds,
     (id) => path.join(sourceRoot, 'image', 'character_portrait', `${id}.png`),
-    (id) => path.join(generatedPortraitRoot, `${id}.webp`),
+    (id) => path.join(output.portraits, `${id}.webp`),
     writePortraitAsset
   );
   const lightConePreviews = await processRequested(
     requirements.lightConeIds,
     (id) => lightConePreviewSources.get(id),
-    (id) => path.join(generatedLightConePreviewRoot, `${id}.png`),
+    (id) => path.join(output.lightConePreviews, `${id}.png`),
     async (source, output) => copyFile(source, output)
   );
-  const lightConePortraits = await generateLightConePortraitAssets(
-    sourceRoot,
-    requirements.lightConeIds
+  const lightConePortraits = await processRequested(
+    requirements.lightConeIds,
+    (id) => lightConePortraitSources.get(id),
+    (id) => path.join(output.lightConePortraits, `${id}.webp`),
+    writePortraitAsset
   );
   const relicIcons = await processRequested(
     requirements.relicSetIds,
     (id) => relicSetIconSources.get(id),
-    (id) => path.join(generatedRelicIconRoot, `${id}.png`),
+    (id) => path.join(output.relicIcons, `${id}.png`),
     async (source, output) => copyFile(source, output)
   );
   const relicPropertyIconKeys = uniqueSorted(
@@ -439,19 +548,19 @@ export async function generateVisualAssets(
   const relicPropertyIcons = await processRequested(
     relicPropertyIconKeys,
     (iconKey) => relicPropertyIconSources.get(iconKey),
-    (iconKey) => path.join(generatedRelicPropertyRoot, `${iconKey}.png`),
+    (iconKey) => path.join(output.relicPropertyIcons, `${iconKey}.png`),
     async (source, output) => copyFile(source, output)
   );
   const elements = await processRequested(
     requirements.elements,
     (code) => path.join(sourceRoot, 'icon', 'element', `${ELEMENT_SOURCE_NAMES[code]}.png`),
-    (code) => path.join(generatedElementRoot, `${code}.png`),
+    (code) => path.join(output.elements, `${code}.png`),
     writeSemanticIconAsset
   );
   const paths = await processRequested(
     requirements.paths,
     (code) => path.join(sourceRoot, 'icon', 'path', `${PATH_SOURCE_NAMES[code]}.png`),
-    (code) => path.join(generatedPathRoot, `${code}.png`),
+    (code) => path.join(output.paths, `${code}.png`),
     writeSemanticIconAsset
   );
   return {
@@ -505,32 +614,99 @@ export function manifestCoversCharacters(
   );
 }
 
-const expectedFiles = (manifest: VisualAssetManifest): Array<[string, string[]]> => [
-  [generatedPreviewRoot, manifest.characters.previews.available.map((id) => `${id}.png`)],
-  [generatedPortraitRoot, manifest.characters.portraits.available.map((id) => `${id}.webp`)],
-  [generatedLightConePreviewRoot, manifest.lightCones.previews.available.map((id) => `${id}.png`)],
+const expectedFiles = (
+  manifest: VisualAssetManifest,
+  output = assetOutputPaths()
+): Array<[string, string[]]> => [
+  [output.previews, manifest.characters.previews.available.map((id) => `${id}.png`)],
+  [output.portraits, manifest.characters.portraits.available.map((id) => `${id}.webp`)],
+  [output.lightConePreviews, manifest.lightCones.previews.available.map((id) => `${id}.png`)],
+  [output.lightConePortraits, manifest.lightCones.portraits.available.map((id) => `${id}.webp`)],
+  [output.relicIcons, manifest.relics.icons.available.map((id) => `${id}.png`)],
   [
-    generatedLightConePortraitRoot,
-    manifest.lightCones.portraits.available.map((id) => `${id}.webp`)
-  ],
-  [generatedRelicIconRoot, manifest.relics.icons.available.map((id) => `${id}.png`)],
-  [
-    generatedRelicPropertyRoot,
+    output.relicPropertyIcons,
     manifest.relicProperties.icons.available.map((iconKey) => `${iconKey}.png`)
   ],
-  [generatedElementRoot, manifest.elements.available.map((code) => `${code}.png`)],
-  [generatedPathRoot, manifest.paths.available.map((code) => `${code}.png`)]
+  [output.elements, manifest.elements.available.map((code) => `${code}.png`)],
+  [output.paths, manifest.paths.available.map((code) => `${code}.png`)]
 ];
 
-export async function manifestFilesExist(manifest: VisualAssetManifest): Promise<boolean> {
+export async function manifestFilesExist(
+  manifest: VisualAssetManifest,
+  outputRoot = generatedAssetRoot
+): Promise<boolean> {
   try {
-    for (const [directory, requiredFiles] of expectedFiles(manifest)) {
+    for (const [directory, requiredFiles] of expectedFiles(
+      manifest,
+      assetOutputPaths(outputRoot)
+    )) {
       const files = new Set(await readdir(directory));
       if (!requiredFiles.every((file) => files.has(file))) return false;
     }
     return true;
   } catch {
     return false;
+  }
+}
+
+export async function validateGeneratedAssetFiles(
+  manifest: VisualAssetManifest,
+  outputRoot = generatedAssetRoot
+): Promise<void> {
+  const output = assetOutputPaths(outputRoot);
+  if (!(await manifestFilesExist(manifest, outputRoot)))
+    throw new Error('视觉资源 manifest 与生成文件不一致。');
+  for (const id of manifest.characters.previews.available) {
+    const metadata = await sharp(path.join(output.previews, `${id}.png`)).metadata();
+    if (metadata.format !== 'png' || !metadata.width || !metadata.height)
+      throw new Error(`生成角色预览图格式或尺寸异常：${id}`);
+  }
+  for (const id of manifest.characters.portraits.available) {
+    const metadata = await sharp(path.join(output.portraits, `${id}.webp`)).metadata();
+    if (
+      metadata.format !== 'webp' ||
+      !metadata.width ||
+      !metadata.height ||
+      metadata.width > 960 ||
+      metadata.height > 960
+    )
+      throw new Error(`生成立绘格式或尺寸异常：${id}`);
+  }
+  for (const id of manifest.lightCones.previews.available) {
+    const metadata = await sharp(path.join(output.lightConePreviews, `${id}.png`)).metadata();
+    if (metadata.format !== 'png' || metadata.width !== 348 || metadata.height !== 408)
+      throw new Error(`生成光锥预览图格式或尺寸异常：${id}`);
+  }
+  for (const id of manifest.lightCones.portraits.available) {
+    const metadata = await sharp(path.join(output.lightConePortraits, `${id}.webp`)).metadata();
+    if (
+      metadata.format !== 'webp' ||
+      !metadata.width ||
+      !metadata.height ||
+      metadata.width > 960 ||
+      metadata.height > 960
+    )
+      throw new Error(`生成光锥立绘格式或尺寸异常：${id}`);
+  }
+  for (const id of manifest.relics.icons.available) {
+    const metadata = await sharp(path.join(output.relicIcons, `${id}.png`)).metadata();
+    if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128)
+      throw new Error(`遗器套装图标格式或尺寸异常：${id}`);
+  }
+  for (const iconKey of manifest.relicProperties.icons.available) {
+    const metadata = await sharp(path.join(output.relicPropertyIcons, `${iconKey}.png`)).metadata();
+    if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128)
+      throw new Error(`遗器属性图标格式或尺寸异常：${iconKey}`);
+  }
+  for (const code of manifest.elements.available) {
+    const metadata = await sharp(path.join(output.elements, `${code}.png`)).metadata();
+    if (metadata.width !== 64 || metadata.height !== 64)
+      throw new Error(`属性图标尺寸异常：${code}`);
+  }
+  for (const code of manifest.paths.available) {
+    const metadata = await sharp(path.join(output.paths, `${code}.png`)).metadata();
+    if (metadata.width !== 64 || metadata.height !== 64)
+      throw new Error(`命途图标尺寸异常：${code}`);
   }
 }
 

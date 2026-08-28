@@ -1,6 +1,13 @@
+import { mkdir, mkdtemp, rename, rm } from 'node:fs/promises';
 import path from 'node:path';
 import type { VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
-import { assertAssetRoot, assetSourceCommit, resolveAssetRoot } from './paths.js';
+import {
+  assertAssetOutputPaths,
+  assertAssetRoot,
+  assetSourceCommit,
+  generatedAssetRoot,
+  resolveAssetRoot
+} from './paths.js';
 import {
   assetSizeSummary,
   emptyAssetManifest,
@@ -9,11 +16,59 @@ import {
   manifestFilesExist,
   readAssetManifest,
   readAssetRequirements,
+  validateGeneratedAssetFiles,
   VISUAL_ASSET_SCHEMA_VERSION,
+  warnAssetFallback,
   writeAssetManifest
 } from './shared.js';
 
 const mb = (bytes: number): string => `${(bytes / 1024 / 1024).toFixed(2)} MiB`;
+
+async function publishGeneratedAssets(
+  stagingRoot: string,
+  manifest: VisualAssetManifest
+): Promise<void> {
+  assertAssetOutputPaths();
+  const parent = path.dirname(generatedAssetRoot);
+  const resolvedStage = path.resolve(stagingRoot);
+  if (
+    path.dirname(resolvedStage) !== parent ||
+    !path.basename(resolvedStage).startsWith('.generated-assets-stage-')
+  ) {
+    throw new Error(`拒绝发布非预期视觉资源暂存目录：${resolvedStage}`);
+  }
+  const backupRoot = path.join(parent, `.generated-assets-backup-${process.pid}-${Date.now()}`);
+  let backedUp = false;
+  let published = false;
+  try {
+    try {
+      await rename(generatedAssetRoot, backupRoot);
+      backedUp = true;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+    }
+    await rename(resolvedStage, generatedAssetRoot);
+    published = true;
+    await writeAssetManifest(manifest);
+  } catch (error) {
+    if (published)
+      await rm(generatedAssetRoot, {
+        recursive: true,
+        force: true,
+        maxRetries: 10,
+        retryDelay: 200
+      });
+    if (backedUp) await rename(backupRoot, generatedAssetRoot);
+    throw error;
+  }
+  if (backedUp) {
+    try {
+      await rm(backupRoot, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 });
+    } catch (error) {
+      console.warn(`旧视觉资源备份清理失败，当前发布仍然有效：${(error as Error).message}`);
+    }
+  }
+}
 
 export async function syncAssets(): Promise<VisualAssetManifest> {
   const requirements = await readAssetRequirements();
@@ -38,14 +93,35 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
     return manifest;
   }
 
-  const generated = await generateVisualAssets(root, requirements);
-  const manifest: VisualAssetManifest = {
-    schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
-    sourceCommit,
-    generatedAt: new Date().toISOString(),
-    ...generated
-  };
-  await writeAssetManifest(manifest);
+  const stagingParent = path.dirname(generatedAssetRoot);
+  await mkdir(stagingParent, { recursive: true });
+  const stagingRoot = await mkdtemp(path.join(stagingParent, '.generated-assets-stage-'));
+  let manifest: VisualAssetManifest;
+  try {
+    const generated = await generateVisualAssets(root, requirements, stagingRoot);
+    manifest = {
+      schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
+      sourceCommit,
+      generatedAt: new Date().toISOString(),
+      ...generated
+    };
+    await validateGeneratedAssetFiles(manifest, stagingRoot);
+    await publishGeneratedAssets(stagingRoot, manifest);
+  } catch (error) {
+    console.error(`视觉资源同步失败，正式缓存保持不变：${(error as Error).message}`);
+    try {
+      await rm(stagingRoot, {
+        recursive: true,
+        force: true,
+        maxRetries: 10,
+        retryDelay: 200
+      });
+    } catch (cleanupError) {
+      console.warn(`视觉资源暂存目录清理失败：${(cleanupError as Error).message}`);
+    }
+    throw error;
+  }
+  await rm(stagingRoot, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 });
   const sizes = await assetSizeSummary();
   console.log(`视觉资源同步完成（StarRailRes ${sourceCommit.slice(0, 12)}）：`);
   console.log(
@@ -67,6 +143,7 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
     `  属性图标 ${manifest.elements.available.length}，缺失 ${manifest.elements.missing.length}；命途图标 ${manifest.paths.available.length}，缺失 ${manifest.paths.missing.length}，合计 ${mb(sizes.elements + sizes.paths)}`
   );
   console.log(`  输出总计 ${mb(sizes.total)}`);
+  warnAssetFallback(manifest, `StarRailRes ${sourceCommit.slice(0, 12)}`);
   return manifest;
 }
 

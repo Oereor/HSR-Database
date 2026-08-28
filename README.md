@@ -183,7 +183,7 @@ schema 16 的敌人详情只使用 `MonsterID == MonsterTemplateID` 的 canonica
 
 `pnpm build` 生成纯静态站点。CI 必须把两个上游仓库作为独立兄弟目录检出到固定 commit，设置 `HSR_DATA_ROOT` 与 `HSR_ASSET_ROOT`，依次运行数据/资源同步、验证和构建。生产环境应把 `PUBLIC_SITE_URL` 设置为正式域名。
 
-资源同步只处理当前目录真实需要的 95 个角色、7 种属性与 9 种命途，不复制完整资源仓库。Overview preview 按中文 index 的 `preview` 字段选择并保留原始透明 PNG；2048px 原始立绘生成最大 960px、quality 84 的透明 WebP；属性与命途图标生成 64px PNG。单图缺失不阻止构建，也不会请求不存在的 URL；Overview 使用中性占位，详情立绘自动恢复无图 Hero，图标保留中文文字。
+资源同步只处理当前数据目录实际引用的角色、光锥、遗器、7 种属性与 9 种命途，不复制完整资源仓库。Overview preview 按中文 index 的稳定 ID 路径选择并保留原始透明 PNG；原始立绘生成最大 960px、quality 84 的透明 WebP；属性与命途图标生成 64px PNG。若 StarRailRes 已新增 index 记录、但路径为 `null` 或对应文件尚未提交，同步会将该 ID 明确写入 manifest 的 `missing` 并输出 fallback warning，其余实际存在的资源仍正常发布；Overview 使用中性占位，详情立绘自动恢复无图 Hero，图标保留中文文字。非法或越界路径、identity 不一致、损坏图片及转换错误仍会中止同步。上游后续提交资源并产生新 commit 后，`assets:ensure` 会自动重同步并解除对应 fallback，无需修改管线。
 
 生成资源始终加入 gitignore。未来 CI 或其他构建平台需要在 build 前单独取得固定版本 StarRailRes，设置 `HSR_ASSET_ROOT`，运行 `pnpm assets:sync` 后再构建。可以使用 shallow clone、partial clone 与 sparse checkout，仅获取 `index_new/cn/characters.json`、`image/character_preview`、`image/character_portrait`、`icon/element` 和 `icon/path`。
 

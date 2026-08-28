@@ -3,13 +3,17 @@
 
   export let rarity: number;
   export let size: 'default' | 'hero' | 'compact' = 'default';
+  export let color: string | undefined = undefined;
 
-  $: color = getRarityColor(rarity);
+  $: resolvedColor = color ?? getRarityColor(rarity);
   $: stars = '★'.repeat(Math.max(0, rarity));
 </script>
 
-<span class="rarity-stars" aria-label={`${rarity}星`} data-rarity-size={size} style:color
-  >{stars}</span
+<span
+  class="rarity-stars"
+  aria-label={`${rarity}星`}
+  data-rarity-size={size}
+  style:color={resolvedColor}>{stars}</span
 >
 
 <style>

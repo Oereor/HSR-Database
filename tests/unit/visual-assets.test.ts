@@ -19,6 +19,7 @@ import {
   ELEMENT_SOURCE_NAMES,
   assertAssetCleanTarget,
   generateLightConePortraitAssets,
+  generateVisualAssets,
   manifestCoversRequirements,
   PATH_SOURCE_NAMES,
   readCharacterPreviewSources,
@@ -30,6 +31,7 @@ import {
   readAssetRequirements,
   VISUAL_ASSET_SCHEMA_VERSION,
   resolveIndexedAssetPath,
+  validateGeneratedAssetFiles,
   writePortraitAsset,
   writeSemanticIconAsset
 } from '../../scripts/assets/shared';
@@ -422,6 +424,220 @@ describe('视觉资源管线', () => {
     await expect(
       readSources({ id: '20001', portrait: 'image/light_cone_portrait/20000.png' })
     ).rejects.toThrow(/identity/);
+    await expect(readSources({ id: '20000', portrait: '' })).rejects.toThrow(/有效资源路径/);
+    await expect(readSources({ id: '20000', portrait: 20000 })).rejects.toThrow(/有效资源路径/);
+  });
+
+  it('四类 index 将 null 与缺字段识别为临时缺失，但仍校验记录 identity', async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-null-index-'));
+    temporaryDirectories.push(root);
+    const indexDirectory = path.join(root, 'index_new', 'cn');
+    await mkdir(indexDirectory, { recursive: true });
+    await Promise.all([
+      writeFile(
+        path.join(indexDirectory, 'characters.json'),
+        JSON.stringify({ 1001: { preview: null }, 1002: {} })
+      ),
+      writeFile(
+        path.join(indexDirectory, 'light_cones.json'),
+        JSON.stringify({ 20000: { id: '20000', preview: null, portrait: null } })
+      ),
+      writeFile(
+        path.join(indexDirectory, 'relic_sets.json'),
+        JSON.stringify({ 101: { id: '101', icon: null } })
+      ),
+      writeFile(
+        path.join(indexDirectory, 'properties.json'),
+        JSON.stringify({ HP: { type: 'HP', icon: null } })
+      )
+    ]);
+
+    await expect(readCharacterPreviewSources(root, ['1001', '1002'])).resolves.toEqual(new Map());
+    await expect(readLightConePreviewSources(root, ['20000'])).resolves.toEqual(new Map());
+    await expect(readLightConePortraitSources(root, ['20000'])).resolves.toEqual(new Map());
+    await expect(readRelicSetIconSources(root, ['101'])).resolves.toEqual(new Map());
+    await expect(
+      readRelicPropertyIconSources(root, [{ propertyType: 'HP', iconKey: 'IconHP' }])
+    ).resolves.toEqual(new Map());
+
+    await writeFile(
+      path.join(indexDirectory, 'light_cones.json'),
+      JSON.stringify({ 20000: { id: '20001', preview: null } })
+    );
+    await expect(readLightConePreviewSources(root, ['20000'])).rejects.toThrow(/identity/);
+  });
+
+  it('生成器继续同步实际存在的资源，并只将 null 与 ENOENT 记为 missing', async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-partial-assets-'));
+    temporaryDirectories.push(root);
+    const outputRoot = path.join(root, 'output');
+    const indexDirectory = path.join(root, 'index_new', 'cn');
+    const previewDirectory = path.join(root, 'image', 'character_preview');
+    const portraitDirectory = path.join(root, 'image', 'character_portrait');
+    await Promise.all([
+      mkdir(indexDirectory, { recursive: true }),
+      mkdir(previewDirectory, { recursive: true }),
+      mkdir(portraitDirectory, { recursive: true })
+    ]);
+    await Promise.all([
+      writeFile(
+        path.join(indexDirectory, 'characters.json'),
+        JSON.stringify({
+          1001: { preview: 'image/character_preview/1001.png' },
+          1002: { preview: null },
+          1003: { preview: 'image/character_preview/1003.png' }
+        })
+      ),
+      writeFile(path.join(indexDirectory, 'light_cones.json'), '{}'),
+      writeFile(path.join(indexDirectory, 'relic_sets.json'), '{}'),
+      writeFile(path.join(indexDirectory, 'properties.json'), '{}'),
+      sharp({
+        create: {
+          width: 32,
+          height: 32,
+          channels: 4,
+          background: { r: 1, g: 2, b: 3, alpha: 1 }
+        }
+      })
+        .png()
+        .toFile(path.join(previewDirectory, '1001.png')),
+      sharp({
+        create: {
+          width: 32,
+          height: 48,
+          channels: 4,
+          background: { r: 4, g: 5, b: 6, alpha: 1 }
+        }
+      })
+        .png()
+        .toFile(path.join(portraitDirectory, '1001.png'))
+    ]);
+
+    const generated = await generateVisualAssets(
+      root,
+      {
+        characterIds: ['1001', '1002', '1003'],
+        lightConeIds: [],
+        relicSetIds: [],
+        relicPropertyIcons: [],
+        elements: [],
+        paths: []
+      },
+      outputRoot
+    );
+    const candidate: VisualAssetManifest = {
+      schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
+      generatedAt: '2026-01-01T00:00:00.000Z',
+      ...generated
+    };
+
+    expect(candidate.characters.previews).toEqual({
+      available: ['1001'],
+      missing: ['1002', '1003']
+    });
+    expect(candidate.characters.portraits).toEqual({
+      available: ['1001'],
+      missing: ['1002', '1003']
+    });
+    await expect(validateGeneratedAssetFiles(candidate, outputRoot)).resolves.toBeUndefined();
+    expect(await readdir(path.join(outputRoot, 'characters', 'preview'))).toEqual(['1001.png']);
+
+    await Promise.all([
+      writeFile(
+        path.join(indexDirectory, 'characters.json'),
+        JSON.stringify({
+          1001: { preview: 'image/character_preview/1001.png' },
+          1002: { preview: 'image/character_preview/1002.png' },
+          1003: { preview: 'image/character_preview/1003.png' }
+        })
+      ),
+      sharp({
+        create: {
+          width: 32,
+          height: 32,
+          channels: 4,
+          background: { r: 7, g: 8, b: 9, alpha: 1 }
+        }
+      })
+        .png()
+        .toFile(path.join(previewDirectory, '1002.png')),
+      sharp({
+        create: {
+          width: 32,
+          height: 48,
+          channels: 4,
+          background: { r: 10, g: 11, b: 12, alpha: 1 }
+        }
+      })
+        .png()
+        .toFile(path.join(portraitDirectory, '1002.png'))
+    ]);
+    const recovered = await generateVisualAssets(
+      root,
+      {
+        characterIds: ['1001', '1002', '1003'],
+        lightConeIds: [],
+        relicSetIds: [],
+        relicPropertyIcons: [],
+        elements: [],
+        paths: []
+      },
+      outputRoot
+    );
+    expect(recovered.characters.previews).toEqual({
+      available: ['1001', '1002'],
+      missing: ['1003']
+    });
+    expect(recovered.characters.portraits).toEqual({
+      available: ['1001', '1002'],
+      missing: ['1003']
+    });
+  });
+
+  it('损坏图片保持致命错误，暂存失败不会触及已有发布目录', async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-corrupt-assets-'));
+    temporaryDirectories.push(root);
+    const outputRoot = path.join(root, 'staging');
+    const publishedRoot = path.join(root, 'published');
+    const indexDirectory = path.join(root, 'index_new', 'cn');
+    const previewDirectory = path.join(root, 'image', 'character_preview');
+    const portraitDirectory = path.join(root, 'image', 'character_portrait');
+    await Promise.all([
+      mkdir(indexDirectory, { recursive: true }),
+      mkdir(previewDirectory, { recursive: true }),
+      mkdir(portraitDirectory, { recursive: true }),
+      mkdir(publishedRoot, { recursive: true })
+    ]);
+    await Promise.all([
+      writeFile(
+        path.join(indexDirectory, 'characters.json'),
+        JSON.stringify({ 1001: { preview: 'image/character_preview/1001.png' } })
+      ),
+      writeFile(path.join(indexDirectory, 'light_cones.json'), '{}'),
+      writeFile(path.join(indexDirectory, 'relic_sets.json'), '{}'),
+      writeFile(path.join(indexDirectory, 'properties.json'), '{}'),
+      writeFile(path.join(previewDirectory, '1001.png'), 'not a png'),
+      writeFile(path.join(portraitDirectory, '1001.png'), 'not a png'),
+      writeFile(path.join(publishedRoot, 'sentinel.txt'), 'old cache')
+    ]);
+
+    await expect(
+      generateVisualAssets(
+        root,
+        {
+          characterIds: ['1001'],
+          lightConeIds: [],
+          relicSetIds: [],
+          relicPropertyIcons: [],
+          elements: [],
+          paths: []
+        },
+        outputRoot
+      )
+    ).rejects.toThrow(/无法生成视觉资源 1001/);
+    await expect(readFile(path.join(publishedRoot, 'sentinel.txt'), 'utf8')).resolves.toBe(
+      'old cache'
+    );
   });
 
   it('遗器资源只同步 60 张套装图标与 18 张属性图标，不生成单件遗器图片', async () => {

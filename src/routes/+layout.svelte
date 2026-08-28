@@ -13,7 +13,7 @@
     ['/relics', '遗器', '遗'],
     ['/enemies', '敌人', '敌'],
     ['/endgame', 'Endgame', '终'],
-    ['/search', '全局搜索', '⌕']
+    ['/rogue', 'Rogue', '宇']
   ];
 </script>
 

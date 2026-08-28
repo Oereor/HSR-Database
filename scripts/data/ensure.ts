@@ -22,20 +22,35 @@ const endgameFilesPresent = await Promise.all(
     }
   })
 );
+const rogueFilesPresent = await Promise.all(
+  ['su.json', 'du-tourn3.json'].map(async (file) => {
+    try {
+      await readFile(path.join(generatedRoot, 'rogue', file), 'utf8');
+      return true;
+    } catch {
+      return false;
+    }
+  })
+);
 
 try {
   const root = assertDataRoot(resolveDataRoot());
   const commit = sourceCommit(root);
   if (
     !manifest ||
-    manifest.schemaVersion !== 28 ||
+    manifest.schemaVersion !== 29 ||
     manifest.sourceCommit !== commit ||
-    endgameFilesPresent.includes(false)
+    endgameFilesPresent.includes(false) ||
+    rogueFilesPresent.includes(false)
   )
     await syncData();
   else console.log(`生成数据已是最新版本：${commit.slice(0, 12)}`);
 } catch (error) {
-  if (manifest?.schemaVersion === 28 && !endgameFilesPresent.includes(false)) {
+  if (
+    manifest?.schemaVersion === 29 &&
+    !endgameFilesPresent.includes(false) &&
+    !rogueFilesPresent.includes(false)
+  ) {
     console.warn(`上游暂不可用，继续使用已有生成数据：${(error as Error).message}`);
   } else {
     throw error;

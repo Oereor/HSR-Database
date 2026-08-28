@@ -430,4 +430,5 @@ export interface DataManifest {
   counts: Record<'characters' | 'lightCones' | 'relics' | 'relicProperties' | 'enemies', number>;
   routes: Record<'characters' | 'light-cones' | 'relics' | 'enemies', string[]>;
   endgame: import('./endgame.js').EndgameManifestSummary;
+  rogue: import('./rogue.js').RogueManifestSummary;
 }

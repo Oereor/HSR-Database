@@ -8,6 +8,7 @@
   export let size: 'default' | 'large' | 'hero' = 'default';
   export let presentation: 'plain' | 'path-identity' | 'character-element-identity' = 'plain';
   export let showLabel = true;
+  export let fallbackMark: string | undefined = undefined;
 
   let failedSource: string | undefined;
   $: source = kind === 'element' ? getElementIconUrl(code) : getPathIconUrl(code);
@@ -33,7 +34,9 @@
       loading="lazy"
       decoding="async"
       on:error={() => (failedSource = visibleSource)}
-    />{/if}
+    />{:else if fallbackMark}<span class="semantic-icon-label__fallback" aria-hidden="true"
+      >{fallbackMark}</span
+    >{/if}
   {#if showLabel}<span class="semantic-icon-label__text">{label}</span>{/if}
 </span>
 
@@ -61,6 +64,18 @@
     clip: var(--semantic-icon-label-clip, auto);
     clip-path: var(--semantic-icon-label-clip-path, none);
     white-space: var(--semantic-icon-label-white-space, normal);
+  }
+
+  .semantic-icon-label__fallback {
+    display: grid;
+    width: var(--semantic-icon-image-size, 1rem);
+    height: var(--semantic-icon-image-size, 1rem);
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: calc(var(--semantic-icon-image-size, 1rem) * 0.42);
+    font-weight: 800;
   }
 
   .semantic-icon-label[data-label-size='large'] {
