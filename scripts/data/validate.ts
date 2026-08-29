@@ -59,7 +59,7 @@ import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 29)
+if (manifest.schemaVersion !== 30)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 
@@ -659,15 +659,25 @@ const relicDetails = await Promise.all(
 );
 const cavernSlots = new Set<RelicSlot>(['HEAD', 'HAND', 'BODY', 'FOOT']);
 const planarSlots = new Set<RelicSlot>(['NECK', 'OBJECT']);
+const relicPieceIds = new Set<string>();
 for (const set of relicDetails) {
   const expectedSlots = set.category === 'cavern' ? cavernSlots : planarSlots;
-  if (!set.pieces.length || set.pieces.some((piece) => !expectedSlots.has(piece.slot)))
+  if (
+    set.pieces.length !== expectedSlots.size ||
+    set.pieces.some((piece) => !expectedSlots.has(piece.slot))
+  )
     throw new Error(`遗器套装 ${set.id} 的部件槽位与分类不一致`);
+  for (const piece of set.pieces) {
+    if (!/^\d+$/.test(piece.id)) throw new Error(`遗器套装 ${set.id} 包含非法部件 ID`);
+    if (relicPieceIds.has(piece.id)) throw new Error(`遗器部件 ID 重复：${piece.id}`);
+    relicPieceIds.add(piece.id);
+  }
   if (set.effects.some((effect) => effect.required !== 2 && effect.required !== 4))
     throw new Error(`遗器套装 ${set.id} 包含未知套装效果需求`);
   if (set.effectRequirements.join(',') !== set.effects.map((effect) => effect.required).join(','))
     throw new Error(`遗器套装 ${set.id} 的目录效果需求与详情不一致`);
 }
+if (relicPieceIds.size !== 184) throw new Error(`遗器部件数量异常：${relicPieceIds.size}`);
 
 const enemyDetails = await Promise.all(
   manifest.routes.enemies.map(

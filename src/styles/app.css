@@ -1274,21 +1274,6 @@ footer a {
   border-radius: 50%;
   color: var(--gold);
 }
-.piece-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.8rem;
-}
-.piece-type {
-  display: inline-block;
-  margin-bottom: 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 3%);
-  padding: 0.2rem 0.45rem;
-  color: var(--gold-soft);
-  font-size: 0.7rem;
-}
 .data-placeholder {
   margin: 0;
   border: 1px dashed var(--border);
@@ -3188,7 +3173,6 @@ th {
     border-top: 1px solid var(--border);
     border-left: 0;
   }
-  .piece-grid,
   .stage-list,
   .search-results {
     grid-template-columns: repeat(2, 1fr);
@@ -3264,7 +3248,6 @@ th {
 @media (max-width: 520px) {
   .category-grid,
   .entity-grid,
-  .piece-grid,
   .stage-list,
   .search-results {
     grid-template-columns: 1fr;

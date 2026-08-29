@@ -14,9 +14,9 @@
   import RarityStars from '$lib/components/RarityStars.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
   import EnemyDetailPage from '$lib/components/enemy/EnemyDetailPage.svelte';
+  import RelicDetailPage from '$lib/components/relic/RelicDetailPage.svelte';
   import EquipmentRecommendationSection from '$lib/components/EquipmentRecommendationSection.svelte';
   import { getElementColor } from '$lib/domain/elements';
-  import { relicTypeNames } from '$lib/domain/constants';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import {
     getCharacterPortraitUrl,
@@ -200,6 +200,8 @@
         />{:else}<p class="data-placeholder">上游未提供可展示的叠影效果。</p>{/if}
     </aside>
   </header>
+{:else if category === 'relics'}
+  <RelicDetailPage {detail} {singular} />
 {:else if category !== 'enemies'}<header class="detail-hero">
     <div class="detail-hero__content">
       <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
@@ -298,32 +300,6 @@
       <GameText text={detail.story || '上游未提供可用的背景故事文本。'} />
     </p>
   </section>
-{:else if category === 'relics'}
-  <section class="detail-section">
-    <h2>套装效果</h2>
-    {#if detail.effects.length}<div class="stack-list">
-        {#each detail.effects as effect}<article class="info-card">
-            <div class="info-card__heading"><h3>{effect.required} 件套</h3></div>
-            <p><GameText text={effect.description || '上游未提供可解析的套装描述。'} /></p>
-          </article>{/each}
-      </div>{:else}<p class="data-placeholder">上游未提供可解析的套装效果。</p>{/if}
-  </section>
-  <section class="detail-section">
-    <h2>套装部件</h2>
-    {#if detail.pieces.length}<div class="piece-grid">
-        {#each detail.pieces as piece}<article class="info-card">
-            <span class="piece-type">{relicTypeNames[piece.slot] || '部件类型未提供'}</span>
-            <h3><GameText text={piece.name} /></h3>
-            <p><GameText text={piece.description || '上游未提供该部件的文字说明。'} /></p>
-          </article>{/each}
-      </div>{:else}<p class="data-placeholder">上游未提供套装部件记录。</p>{/if}
-  </section>
-  <section class="detail-section">
-    <h2>获取来源</h2>
-    {#if detail.sources.length}<ul>
-        {#each detail.sources as source}<li><GameText text={source} /></li>{/each}
-      </ul>{:else}<p class="muted">上游数据未提供可解析的获取来源。</p>{/if}
-  </section>
 {:else if category === 'enemies'}
   {#key detail.id}<EnemyDetailPage {detail} />{/key}
 {/if}
@@ -335,6 +311,8 @@
       ? '敌人立绘由现有静态资源管线按 MonsterTemplateID 同步到网站本地。'
       : category === 'characters'
         ? '角色预览图、详情立绘与装备推荐所需图标由 StarRailRes 在构建时按稳定 ID 同步。'
-        : '相关视觉资源在构建时同步到网站本地。'}
+        : category === 'relics'
+          ? '遗器套装预览与各部件图标由 StarRailRes 在构建时按稳定 ID 同步到网站本地。'
+          : '相关视觉资源在构建时同步到网站本地。'}
   </p>
 </aside>

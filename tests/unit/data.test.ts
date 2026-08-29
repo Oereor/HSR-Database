@@ -8,7 +8,8 @@ import {
   type DataManifest,
   type LightCone,
   type RelicCatalogEntry,
-  type RelicProperty
+  type RelicProperty,
+  type RelicSet
 } from '../../src/lib/domain/types';
 import { ELEMENT_COLORS, getElementColor } from '../../src/lib/domain/elements';
 import { formatBaseStat, getBaseStatsAtLevel } from '../../src/lib/domain/stats';
@@ -627,7 +628,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(97);
-    expect(manifest.schemaVersion).toBe(29);
+    expect(manifest.schemaVersion).toBe(30);
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     const basicAttack = variantOf(character, '100101');
@@ -1416,8 +1417,16 @@ describe('真实数据管线', () => {
     const properties = JSON.parse(
       await readFile(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), 'utf8')
     ) as RelicProperty[];
+    const cavern = JSON.parse(
+      await readFile(path.join(generatedRoot, 'details', 'relics', '101.json'), 'utf8')
+    ) as RelicSet;
+    const planar = JSON.parse(
+      await readFile(path.join(generatedRoot, 'details', 'relics', '301.json'), 'utf8')
+    ) as RelicSet;
     expect(relics.filter((set) => set.category === 'cavern')).toHaveLength(32);
     expect(relics.filter((set) => set.category === 'planar')).toHaveLength(28);
+    expect(cavern.pieces.map((piece) => piece.id)).toEqual(['31011', '31012', '31013', '31014']);
+    expect(planar.pieces.map((piece) => piece.id)).toEqual(['33015', '33016']);
     expect(properties).toHaveLength(21);
     expect(new Set(properties.flatMap((property) => property.iconKey ?? [])).size).toBe(18);
     expect(

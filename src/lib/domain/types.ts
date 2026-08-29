@@ -292,7 +292,7 @@ export interface RelicCatalogEntry extends CatalogEntry {
 export interface RelicSet extends RelicCatalogEntry {
   kind: 'relic';
   effects: Array<{ required: RelicEffectRequirement; description: string }>;
-  pieces: Array<{ slot: RelicSlot; name: string; description: string }>;
+  pieces: Array<{ id: string; slot: RelicSlot; name: string; description: string }>;
   sources: string[];
 }
 

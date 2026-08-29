@@ -14,6 +14,7 @@ export const generatedLightConePreviewRoot = path.join(generatedLightConeRoot, '
 export const generatedLightConePortraitRoot = path.join(generatedLightConeRoot, 'portrait');
 export const generatedRelicRoot = path.join(generatedAssetRoot, 'relics');
 export const generatedRelicIconRoot = path.join(generatedRelicRoot, 'icons');
+export const generatedRelicPieceRoot = path.join(generatedRelicRoot, 'pieces');
 export const generatedRelicPropertyRoot = path.join(generatedAssetRoot, 'relic-properties');
 export const generatedElementRoot = path.join(generatedAssetRoot, 'elements');
 export const generatedPathRoot = path.join(generatedAssetRoot, 'paths');
@@ -22,6 +23,7 @@ const requiredDirectories = [
   ['index_new', 'cn', 'characters.json'],
   ['index_new', 'cn', 'light_cones.json'],
   ['index_new', 'cn', 'relic_sets.json'],
+  ['index_new', 'cn', 'relics.json'],
   ['index_new', 'cn', 'properties.json'],
   ['image', 'character_preview'],
   ['image', 'character_portrait'],
@@ -74,6 +76,7 @@ export function assertAssetOutputPaths(): void {
     generatedLightConePortraitRoot,
     generatedRelicRoot,
     generatedRelicIconRoot,
+    generatedRelicPieceRoot,
     generatedRelicPropertyRoot,
     generatedElementRoot,
     generatedPathRoot

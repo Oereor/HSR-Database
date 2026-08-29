@@ -137,7 +137,7 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
     `  光锥立绘 ${manifest.lightCones.portraits.available.length}，缺失 ${manifest.lightCones.portraits.missing.length}，${mb(sizes.lightConePortraits)}`
   );
   console.log(
-    `  遗器套装图标 ${manifest.relics.icons.available.length}，缺失 ${manifest.relics.icons.missing.length}；遗器属性图标 ${manifest.relicProperties.icons.available.length}，缺失 ${manifest.relicProperties.icons.missing.length}，合计 ${mb(sizes.relicIcons + sizes.relicPropertyIcons)}`
+    `  遗器套装图标 ${manifest.relics.icons.available.length}，缺失 ${manifest.relics.icons.missing.length}；遗器部件图标 ${manifest.relics.pieces.available.length}，缺失 ${manifest.relics.pieces.missing.length}；遗器属性图标 ${manifest.relicProperties.icons.available.length}，缺失 ${manifest.relicProperties.icons.missing.length}，合计 ${mb(sizes.relicIcons + sizes.relicPieces + sizes.relicPropertyIcons)}`
   );
   console.log(
     `  属性图标 ${manifest.elements.available.length}，缺失 ${manifest.elements.missing.length}；命途图标 ${manifest.paths.available.length}，缺失 ${manifest.paths.missing.length}，合计 ${mb(sizes.elements + sizes.paths)}`

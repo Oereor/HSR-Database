@@ -1504,7 +1504,7 @@ test('四类详情页使用收敛后的标题层级与章节留白', async ({ pa
   for (const url of ['/characters/1001', '/light-cones/20000', '/relics/101', '/enemies/1002011']) {
     await page.goto(url);
     const heroSize = await page
-      .locator(url.startsWith('/relics/') ? '.detail-hero h1' : '.detail-profile-hero h1')
+      .locator('.detail-profile-hero h1')
       .evaluate((element) => Number.parseFloat(getComputedStyle(element).fontSize));
     const section = page.locator('.detail-section').first();
     const sectionSize = await section

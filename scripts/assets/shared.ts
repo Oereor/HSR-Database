@@ -1,7 +1,13 @@
 import { copyFile, mkdir, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
-import type { CatalogEntry, RelicCatalogEntry, RelicProperty } from '../../src/lib/domain/types.js';
+import type {
+  CatalogEntry,
+  RelicCatalogEntry,
+  RelicProperty,
+  RelicSet,
+  RelicSlot
+} from '../../src/lib/domain/types.js';
 import type { AssetAvailability, VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
 import { generatedRoot } from '../data/paths.js';
 import {
@@ -13,6 +19,7 @@ import {
   generatedLightConePreviewRoot,
   generatedLightConePortraitRoot,
   generatedRelicIconRoot,
+  generatedRelicPieceRoot,
   generatedRelicPropertyRoot,
   generatedElementRoot,
   generatedPathRoot,
@@ -22,7 +29,7 @@ import {
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 6 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 7 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -50,6 +57,7 @@ export interface AssetRequirements {
   characterIds: string[];
   lightConeIds: string[];
   relicSetIds: string[];
+  relicPieces: Array<{ id: string; setId: string; slot: RelicSlot }>;
   relicPropertyIcons: Array<{ propertyType: string; iconKey: string }>;
   elements: string[];
   paths: string[];
@@ -61,6 +69,7 @@ export interface AssetSizeSummary {
   lightConePreviews: number;
   lightConePortraits: number;
   relicIcons: number;
+  relicPieces: number;
   relicPropertyIcons: number;
   elements: number;
   paths: number;
@@ -74,6 +83,7 @@ export interface AssetOutputPaths {
   lightConePreviews: string;
   lightConePortraits: string;
   relicIcons: string;
+  relicPieces: string;
   relicPropertyIcons: string;
   elements: string;
   paths: string;
@@ -97,6 +107,7 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
   let characterCatalog: CatalogEntry[];
   let lightConeCatalog: CatalogEntry[];
   let relicCatalog: RelicCatalogEntry[];
+  let relicDetails: RelicSet[];
   let relicProperties: RelicProperty[];
   try {
     [characterCatalog, lightConeCatalog, relicCatalog, relicProperties] = (await Promise.all(
@@ -104,6 +115,13 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
         async (catalogPath) => JSON.parse(await readFile(catalogPath, 'utf8'))
       )
     )) as [CatalogEntry[], CatalogEntry[], RelicCatalogEntry[], RelicProperty[]];
+    relicDetails = await Promise.all(
+      relicCatalog.map(async (set) =>
+        JSON.parse(
+          await readFile(path.join(generatedRoot, 'details', 'relics', `${set.id}.json`), 'utf8')
+        )
+      )
+    );
   } catch (error) {
     throw new Error(`无法读取角色、光锥或遗器目录；请先运行 pnpm data:ensure。`, {
       cause: error
@@ -113,6 +131,11 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
     characterIds: uniqueSorted(characterCatalog.map((entry) => entry.id)),
     lightConeIds: uniqueSorted(lightConeCatalog.map((entry) => entry.id)),
     relicSetIds: uniqueSorted(relicCatalog.map((entry) => entry.id)),
+    relicPieces: relicDetails
+      .flatMap((set) =>
+        set.pieces.map((piece) => ({ id: piece.id, setId: set.id, slot: piece.slot }))
+      )
+      .sort((a, b) => a.id.localeCompare(b.id)),
     relicPropertyIcons: relicProperties.flatMap((property) =>
       property.iconKey ? [{ propertyType: property.propertyType, iconKey: property.iconKey }] : []
     ),
@@ -167,6 +190,7 @@ export function assetFallbackEntries(manifest: VisualAssetManifest): AssetFallba
     { label: '光锥预览图', missing: manifest.lightCones.previews.missing },
     { label: '光锥立绘', missing: manifest.lightCones.portraits.missing },
     { label: '遗器套装图标', missing: manifest.relics.icons.missing },
+    { label: '遗器部件图标', missing: manifest.relics.pieces.missing },
     { label: '遗器属性图标', missing: manifest.relicProperties.icons.missing },
     { label: '属性图标', missing: manifest.elements.missing },
     { label: '命途图标', missing: manifest.paths.missing }
@@ -197,7 +221,8 @@ export function emptyAssetManifest(requirements: AssetRequirements): VisualAsset
       portraits: unavailable(requirements.lightConeIds)
     },
     relics: {
-      icons: unavailable(requirements.relicSetIds)
+      icons: unavailable(requirements.relicSetIds),
+      pieces: unavailable(requirements.relicPieces.map((piece) => piece.id))
     },
     relicProperties: {
       icons: unavailable(
@@ -236,6 +261,7 @@ export function assetOutputPaths(root = generatedAssetRoot): AssetOutputPaths {
     lightConePreviews: path.join(root, 'light-cones', 'preview'),
     lightConePortraits: path.join(root, 'light-cones', 'portrait'),
     relicIcons: path.join(root, 'relics', 'icons'),
+    relicPieces: path.join(root, 'relics', 'pieces'),
     relicPropertyIcons: path.join(root, 'relic-properties'),
     elements: path.join(root, 'elements'),
     paths: path.join(root, 'paths')
@@ -251,6 +277,7 @@ async function prepareOutputDirectories(output: AssetOutputPaths): Promise<void>
       output.lightConePreviews,
       output.lightConePortraits,
       output.relicIcons,
+      output.relicPieces,
       output.relicPropertyIcons,
       output.elements,
       output.paths
@@ -303,6 +330,13 @@ interface LightConeResourceIndexEntry {
 
 interface RelicSetResourceIndexEntry {
   id?: unknown;
+  icon?: unknown;
+}
+
+interface RelicResourceIndexEntry {
+  id?: unknown;
+  set_id?: unknown;
+  type?: unknown;
   icon?: unknown;
 }
 
@@ -434,6 +468,35 @@ export async function readRelicSetIconSources(
   return sources;
 }
 
+export async function readRelicPieceIconSources(
+  sourceRoot: string,
+  pieces: AssetRequirements['relicPieces']
+): Promise<ReadonlyMap<string, string>> {
+  const indexPath = path.join(sourceRoot, 'index_new', 'cn', 'relics.json');
+  const index = JSON.parse(await readFile(indexPath, 'utf8')) as Record<
+    string,
+    RelicResourceIndexEntry
+  >;
+  if (!index || typeof index !== 'object' || Array.isArray(index))
+    throw new Error(`StarRailRes 遗器 index 格式异常：${indexPath}`);
+  const sources = new Map<string, string>();
+  for (const piece of pieces) {
+    const entry = index[piece.id];
+    if (!entry) continue;
+    if (entry.id !== piece.id)
+      throw new Error(`遗器部件 ${piece.id} 的 index identity 不一致：${entry.id}`);
+    if (String(entry.set_id) !== piece.setId || entry.type !== piece.slot)
+      throw new Error(`遗器部件 ${piece.id} 的套装或槽位不一致：${entry.set_id}/${entry.type}`);
+    const source = resolveOptionalIndexedAssetPath(sourceRoot, entry.icon);
+    if (!source) continue;
+    const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
+    if (!/^icon\/relic\/[^/]+\.png$/i.test(relative))
+      throw new Error(`遗器部件 ${piece.id} 的图标路径不属于 icon/relic：${relative}`);
+    sources.set(piece.id, source);
+  }
+  return sources;
+}
+
 export async function readRelicPropertyIconSources(
   sourceRoot: string,
   properties: AssetRequirements['relicPropertyIcons']
@@ -506,6 +569,10 @@ export async function generateVisualAssets(
     requirements.lightConeIds
   );
   const relicSetIconSources = await readRelicSetIconSources(sourceRoot, requirements.relicSetIds);
+  const relicPieceIconSources = await readRelicPieceIconSources(
+    sourceRoot,
+    requirements.relicPieces
+  );
   const relicPropertyIconSources = await readRelicPropertyIconSources(
     sourceRoot,
     requirements.relicPropertyIcons
@@ -542,6 +609,12 @@ export async function generateVisualAssets(
     (id) => path.join(output.relicIcons, `${id}.png`),
     async (source, output) => copyFile(source, output)
   );
+  const relicPieces = await processRequested(
+    requirements.relicPieces.map((piece) => piece.id),
+    (id) => relicPieceIconSources.get(id),
+    (id) => path.join(output.relicPieces, `${id}.png`),
+    async (source, output) => copyFile(source, output)
+  );
   const relicPropertyIconKeys = uniqueSorted(
     requirements.relicPropertyIcons.map((entry) => entry.iconKey)
   );
@@ -566,7 +639,7 @@ export async function generateVisualAssets(
   return {
     characters: { previews, portraits },
     lightCones: { previews: lightConePreviews, portraits: lightConePortraits },
-    relics: { icons: relicIcons },
+    relics: { icons: relicIcons, pieces: relicPieces },
     relicProperties: { icons: relicPropertyIcons },
     elements,
     paths
@@ -594,6 +667,10 @@ export function manifestCoversRequirements(
     collectionCovers(manifest.lightCones.previews, requirements.lightConeIds) &&
     collectionCovers(manifest.lightCones.portraits, requirements.lightConeIds) &&
     collectionCovers(manifest.relics.icons, requirements.relicSetIds) &&
+    collectionCovers(
+      manifest.relics.pieces,
+      requirements.relicPieces.map((piece) => piece.id)
+    ) &&
     collectionCovers(
       manifest.relicProperties.icons,
       uniqueSorted(requirements.relicPropertyIcons.map((entry) => entry.iconKey))
@@ -623,6 +700,7 @@ const expectedFiles = (
   [output.lightConePreviews, manifest.lightCones.previews.available.map((id) => `${id}.png`)],
   [output.lightConePortraits, manifest.lightCones.portraits.available.map((id) => `${id}.webp`)],
   [output.relicIcons, manifest.relics.icons.available.map((id) => `${id}.png`)],
+  [output.relicPieces, manifest.relics.pieces.available.map((id) => `${id}.png`)],
   [
     output.relicPropertyIcons,
     manifest.relicProperties.icons.available.map((iconKey) => `${iconKey}.png`)
@@ -693,6 +771,11 @@ export async function validateGeneratedAssetFiles(
     if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128)
       throw new Error(`遗器套装图标格式或尺寸异常：${id}`);
   }
+  for (const id of manifest.relics.pieces.available) {
+    const metadata = await sharp(path.join(output.relicPieces, `${id}.png`)).metadata();
+    if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128)
+      throw new Error(`遗器部件图标格式或尺寸异常：${id}`);
+  }
   for (const iconKey of manifest.relicProperties.icons.available) {
     const metadata = await sharp(path.join(output.relicPropertyIcons, `${iconKey}.png`)).metadata();
     if (metadata.format !== 'png' || metadata.width !== 128 || metadata.height !== 128)
@@ -729,6 +812,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
     lightConePreviews,
     lightConePortraits,
     relicIcons,
+    relicPieces,
     relicPropertyIcons,
     elements,
     paths
@@ -738,6 +822,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
     directorySize(generatedLightConePreviewRoot),
     directorySize(generatedLightConePortraitRoot),
     directorySize(generatedRelicIconRoot),
+    directorySize(generatedRelicPieceRoot),
     directorySize(generatedRelicPropertyRoot),
     directorySize(generatedElementRoot),
     directorySize(generatedPathRoot)
@@ -748,6 +833,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
     lightConePreviews,
     lightConePortraits,
     relicIcons,
+    relicPieces,
     relicPropertyIcons,
     elements,
     paths,
@@ -757,6 +843,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
       lightConePreviews +
       lightConePortraits +
       relicIcons +
+      relicPieces +
       relicPropertyIcons +
       elements +
       paths

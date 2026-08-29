@@ -34,6 +34,12 @@
     radial-gradient(circle at 78% 48%, rgb(215 181 109 / 12%), transparent 38%), var(--surface);
 }
 
+.detail-profile-hero--relic .detail-profile-hero__identity {
+  min-height: 540px;
+  background:
+    radial-gradient(circle at 62% 38%, rgb(215 181 109 / 8%), transparent 30%), var(--surface);
+}
+
 .detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='contain'] {
   background: linear-gradient(145deg, rgb(255 255 255 / 3%), transparent 58%);
   padding: 1.5rem 1.25rem 0 36%;
@@ -56,6 +62,18 @@
     rgb(7 10 18 / 34%) 68%,
     rgb(7 10 18 / 5%) 100%
   );
+}
+
+.detail-profile-hero__gradient--relic {
+  background-image:
+    linear-gradient(
+      25deg,
+      rgb(7 10 18 / 98%) 0%,
+      rgb(7 10 18 / 88%) 28%,
+      rgb(7 10 18 / 28%) 63%,
+      transparent 88%
+    ),
+    linear-gradient(0deg, rgb(7 10 18 / 80%) 0%, transparent 52%);
 }
 
 .detail-profile-hero--light-cone .detail-profile-hero__identity::after {
@@ -86,6 +104,10 @@
 
 .detail-profile-hero--enemy .hero-identity-copy {
   max-width: 72%;
+}
+
+.detail-profile-hero--relic .hero-identity-copy {
+  max-width: 84%;
 }
 
 .detail-profile-hero h1 {
@@ -166,12 +188,20 @@
     max-width: 100%;
   }
 
+  .detail-profile-hero--relic .hero-identity-copy {
+    max-width: 100%;
+  }
+
   .detail-profile-hero--enemy .detail-artwork-stage[data-artwork-fit='contain'] {
     padding: 2rem 0 0 38%;
   }
 }
 
 @media (max-width: 520px) {
+  .detail-profile-hero--relic .detail-profile-hero__identity {
+    min-height: 500px;
+  }
+
   .detail-profile-hero--enemy .detail-profile-hero__identity {
     min-height: 540px;
   }

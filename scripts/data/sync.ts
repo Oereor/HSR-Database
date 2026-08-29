@@ -607,6 +607,13 @@ export async function syncData(): Promise<DataManifest> {
       `遗器套装 ${setId}`
     );
 
+  const relicPieceId = (piece: Raw, context: string): string => {
+    const id =
+      typeof piece.RelicName === 'string' ? /_(\d+)$/.exec(piece.RelicName)?.[1] : undefined;
+    if (!id) throw new Error(`${context} 的 RelicName 缺少稳定的遗器部件 ID`);
+    return id;
+  };
+
   const mainAffixPropertyTypes = new Set(
     tables.RelicMainAffixConfig.map((row) => String(row.Property ?? '')).filter(Boolean)
   );
@@ -1357,17 +1364,14 @@ export async function syncData(): Promise<DataManifest> {
     });
     const pieces = (relicParts.get(id) ?? []).map((piece) => {
       const slot = normalizeRelicSlot(piece.Type, `遗器套装 ${id}`);
+      const pieceId = relicPieceId(piece, `遗器套装 ${id} 的 ${slot} 部件`);
       return {
+        id: pieceId,
         slot,
         name:
-          trSymbolic(
-            piece.RelicName,
-            source('relic-piece', piece.ID ?? `${id}:${piece.Type}`, 'RelicName')
-          ) || `${name}·${relicTypeNames[slot] ?? slot}`,
-        description: trSymbolic(
-          piece.ItemBGDesc,
-          source('relic-piece', piece.ID ?? `${id}:${piece.Type}`, 'ItemBGDesc')
-        )
+          trSymbolic(piece.RelicName, source('relic-piece', pieceId, 'RelicName')) ||
+          `${name}·${relicTypeNames[slot] ?? slot}`,
+        description: trSymbolic(piece.ItemBGDesc, source('relic-piece', pieceId, 'ItemBGDesc'))
       };
     });
     const sources = sourceTexts(set.DisplayItemID);
@@ -1805,7 +1809,7 @@ export async function syncData(): Promise<DataManifest> {
   await writeJson(path.join(generatedRoot, 'rogue', 'du-tourn3.json'), rogue.datasets.du);
 
   const manifest: DataManifest = {
-    schemaVersion: 29,
+    schemaVersion: 30,
     sourceCommit: commit,
     sourceVersion,
     generatedAt: new Date().toISOString(),

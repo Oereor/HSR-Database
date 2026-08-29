@@ -8,6 +8,7 @@ import {
   resolveCharacterPortraitAsset,
   resolveLightConePreviewAsset,
   resolveLightConePortraitAsset,
+  resolveRelicPieceIconAsset,
   resolveRelicPropertyIconAsset,
   resolveRelicSetIconAsset,
   resolveElementIconAsset,
@@ -26,6 +27,7 @@ import {
   readLightConePreviewSources,
   readLightConePortraitSources,
   readRelicPropertyIconSources,
+  readRelicPieceIconSources,
   readRelicSetIconSources,
   readAssetManifest,
   readAssetRequirements,
@@ -46,6 +48,7 @@ const manifest = (options?: {
   lightConePreviews?: string[];
   lightConePortraits?: string[];
   relicIcons?: string[];
+  relicPieces?: string[];
   relicPropertyIcons?: string[];
   elements?: string[];
   paths?: string[];
@@ -61,7 +64,8 @@ const manifest = (options?: {
     portraits: available(options?.lightConePortraits ?? [])
   },
   relics: {
-    icons: available(options?.relicIcons ?? [])
+    icons: available(options?.relicIcons ?? []),
+    pieces: available(options?.relicPieces ?? [])
   },
   relicProperties: {
     icons: available(options?.relicPropertyIcons ?? [])
@@ -106,6 +110,7 @@ describe('视觉资源管线', () => {
     await writeFile(path.join(root, 'index_new', 'cn', 'characters.json'), '{}');
     await writeFile(path.join(root, 'index_new', 'cn', 'light_cones.json'), '{}');
     await writeFile(path.join(root, 'index_new', 'cn', 'relic_sets.json'), '{}');
+    await writeFile(path.join(root, 'index_new', 'cn', 'relics.json'), '{}');
     await writeFile(path.join(root, 'index_new', 'cn', 'properties.json'), '{}');
     expect(assertAssetRoot(root)).toBe(root);
     await rm(path.join(root, 'image'), { recursive: true });
@@ -125,6 +130,7 @@ describe('视觉资源管线', () => {
       lightConePreviews: ['20000'],
       lightConePortraits: ['20000'],
       relicIcons: ['101'],
+      relicPieces: ['31011'],
       relicPropertyIcons: ['IconAttack'],
       elements: ['Lightning'],
       paths: ['Memory']
@@ -142,6 +148,9 @@ describe('视觉资源管线', () => {
       '/generated-assets/light-cones/portrait/20000.webp'
     );
     expect(resolveRelicSetIconAsset('101', source)).toBe('/generated-assets/relics/icons/101.png');
+    expect(resolveRelicPieceIconAsset('31011', source)).toBe(
+      '/generated-assets/relics/pieces/31011.png'
+    );
     expect(resolveRelicPropertyIconAsset('IconAttack', source)).toBe(
       '/generated-assets/relic-properties/IconAttack.png'
     );
@@ -193,6 +202,7 @@ describe('视觉资源管线', () => {
         characterIds: ['1001'],
         lightConeIds: ['20000'],
         relicSetIds: [],
+        relicPieces: [],
         relicPropertyIcons: [],
         elements: ['Fire'],
         paths: ['Warrior']
@@ -203,6 +213,7 @@ describe('视觉资源管线', () => {
         characterIds: ['1001', '1002'],
         lightConeIds: ['20000'],
         relicSetIds: [],
+        relicPieces: [],
         relicPropertyIcons: [],
         elements: ['Fire'],
         paths: ['Warrior']
@@ -272,12 +283,13 @@ describe('视觉资源管线', () => {
     expect(metadata.width! / metadata.height!).toBeCloseTo(904 / 1260, 3);
   });
 
-  it('当前 manifest 覆盖角色、光锥、遗器套装、遗器属性和语义图标需求', async () => {
+  it('当前 manifest 覆盖角色、光锥、遗器套装与部件、遗器属性和语义图标需求', async () => {
     const requirements = await readAssetRequirements();
     const generated = await readAssetManifest();
     expect(requirements.characterIds).toHaveLength(97);
     expect(requirements.lightConeIds).toHaveLength(169);
     expect(requirements.relicSetIds).toHaveLength(60);
+    expect(requirements.relicPieces).toHaveLength(184);
     expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(18);
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
@@ -298,6 +310,7 @@ describe('视觉资源管线', () => {
     expect(generated!.lightCones.previews.missing).toEqual(['21066', '22008', '23063', '23064']);
     expect(generated!.lightCones.portraits.missing).toEqual(['21066', '22008', '23063', '23064']);
     expect(generated!.relics.icons.available).toHaveLength(60);
+    expect(generated!.relics.pieces.available).toHaveLength(184);
     expect(generated!.relicProperties.icons.available).toHaveLength(18);
     expect(generated).not.toHaveProperty('characterNames');
   });
@@ -314,6 +327,7 @@ describe('视觉资源管线', () => {
     expect(resolveLightConePreviewAsset('20000', parsed)).toBeUndefined();
     expect(resolveLightConePortraitAsset('20000', parsed)).toBeUndefined();
     expect(resolveRelicSetIconAsset('101', parsed)).toBeUndefined();
+    expect(resolveRelicPieceIconAsset('31011', parsed)).toBeUndefined();
     expect(resolveRelicPropertyIconAsset('IconAttack', parsed)).toBeUndefined();
   });
 
@@ -428,7 +442,7 @@ describe('视觉资源管线', () => {
     await expect(readSources({ id: '20000', portrait: 20000 })).rejects.toThrow(/有效资源路径/);
   });
 
-  it('四类 index 将 null 与缺字段识别为临时缺失，但仍校验记录 identity', async () => {
+  it('各类 index 将 null 与缺字段识别为临时缺失，但仍校验记录 identity', async () => {
     const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-null-index-'));
     temporaryDirectories.push(root);
     const indexDirectory = path.join(root, 'index_new', 'cn');
@@ -447,6 +461,12 @@ describe('视觉资源管线', () => {
         JSON.stringify({ 101: { id: '101', icon: null } })
       ),
       writeFile(
+        path.join(indexDirectory, 'relics.json'),
+        JSON.stringify({
+          31011: { id: '31011', set_id: '101', type: 'HEAD', icon: null }
+        })
+      ),
+      writeFile(
         path.join(indexDirectory, 'properties.json'),
         JSON.stringify({ HP: { type: 'HP', icon: null } })
       )
@@ -457,6 +477,9 @@ describe('视觉资源管线', () => {
     await expect(readLightConePortraitSources(root, ['20000'])).resolves.toEqual(new Map());
     await expect(readRelicSetIconSources(root, ['101'])).resolves.toEqual(new Map());
     await expect(
+      readRelicPieceIconSources(root, [{ id: '31011', setId: '101', slot: 'HEAD' }])
+    ).resolves.toEqual(new Map());
+    await expect(
       readRelicPropertyIconSources(root, [{ propertyType: 'HP', iconKey: 'IconHP' }])
     ).resolves.toEqual(new Map());
 
@@ -465,6 +488,15 @@ describe('视觉资源管线', () => {
       JSON.stringify({ 20000: { id: '20001', preview: null } })
     );
     await expect(readLightConePreviewSources(root, ['20000'])).rejects.toThrow(/identity/);
+    await writeFile(
+      path.join(indexDirectory, 'relics.json'),
+      JSON.stringify({
+        31011: { id: '31011', set_id: '301', type: 'NECK', icon: null }
+      })
+    );
+    await expect(
+      readRelicPieceIconSources(root, [{ id: '31011', setId: '101', slot: 'HEAD' }])
+    ).rejects.toThrow(/套装或槽位/);
   });
 
   it('生成器继续同步实际存在的资源，并只将 null 与 ENOENT 记为 missing', async () => {
@@ -490,6 +522,7 @@ describe('视觉资源管线', () => {
       ),
       writeFile(path.join(indexDirectory, 'light_cones.json'), '{}'),
       writeFile(path.join(indexDirectory, 'relic_sets.json'), '{}'),
+      writeFile(path.join(indexDirectory, 'relics.json'), '{}'),
       writeFile(path.join(indexDirectory, 'properties.json'), '{}'),
       sharp({
         create: {
@@ -519,6 +552,7 @@ describe('视觉资源管线', () => {
         characterIds: ['1001', '1002', '1003'],
         lightConeIds: [],
         relicSetIds: [],
+        relicPieces: [],
         relicPropertyIcons: [],
         elements: [],
         paths: []
@@ -578,6 +612,7 @@ describe('视觉资源管线', () => {
         characterIds: ['1001', '1002', '1003'],
         lightConeIds: [],
         relicSetIds: [],
+        relicPieces: [],
         relicPropertyIcons: [],
         elements: [],
         paths: []
@@ -615,6 +650,7 @@ describe('视觉资源管线', () => {
       ),
       writeFile(path.join(indexDirectory, 'light_cones.json'), '{}'),
       writeFile(path.join(indexDirectory, 'relic_sets.json'), '{}'),
+      writeFile(path.join(indexDirectory, 'relics.json'), '{}'),
       writeFile(path.join(indexDirectory, 'properties.json'), '{}'),
       writeFile(path.join(previewDirectory, '1001.png'), 'not a png'),
       writeFile(path.join(portraitDirectory, '1001.png'), 'not a png'),
@@ -628,6 +664,7 @@ describe('视觉资源管线', () => {
           characterIds: ['1001'],
           lightConeIds: [],
           relicSetIds: [],
+          relicPieces: [],
           relicPropertyIcons: [],
           elements: [],
           paths: []
@@ -640,15 +677,17 @@ describe('视觉资源管线', () => {
     );
   });
 
-  it('遗器资源只同步 60 张套装图标与 18 张属性图标，不生成单件遗器图片', async () => {
+  it('遗器资源按稳定 ID 同步 60 张套装图标、184 张部件图标与 18 张属性图标', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const setSources = await readRelicSetIconSources(root, requirements.relicSetIds);
+    const pieceSources = await readRelicPieceIconSources(root, requirements.relicPieces);
     const propertySources = await readRelicPropertyIconSources(
       root,
       requirements.relicPropertyIcons
     );
     expect(setSources.size).toBe(60);
+    expect(pieceSources.size).toBe(184);
     expect(propertySources.size).toBe(18);
     for (const [id, source] of setSources) {
       expect(path.basename(source)).toBe(`${id}.png`);
@@ -659,11 +698,25 @@ describe('视觉资源管线', () => {
         height: 128
       });
     }
+    for (const piece of requirements.relicPieces) {
+      const source = pieceSources.get(piece.id);
+      expect(source).toBeDefined();
+      expect(source!.replaceAll('\\', '/')).toMatch(/\/icon\/relic\/[^/]+\.png$/);
+      expect(await sharp(source!).metadata()).toMatchObject({
+        format: 'png',
+        width: 128,
+        height: 128
+      });
+    }
     const generatedRelicFiles = await readdir(
       path.join(process.cwd(), 'static', 'generated-assets', 'relics', 'icons')
     );
     expect(generatedRelicFiles).toHaveLength(60);
     expect(generatedRelicFiles.some((file) => /_\d+\.png$/.test(file))).toBe(false);
+    const generatedPieceFiles = await readdir(
+      path.join(process.cwd(), 'static', 'generated-assets', 'relics', 'pieces')
+    );
+    expect(generatedPieceFiles).toHaveLength(184);
   });
 
   it('生成目录仅包含需求驱动的 preview 与光锥 portrait 输出', async () => {

@@ -4,7 +4,7 @@ export interface AssetAvailability {
 }
 
 export interface VisualAssetManifest {
-  schemaVersion: 6;
+  schemaVersion: 7;
   sourceCommit?: string;
   generatedAt: string;
   characters: {
@@ -17,6 +17,7 @@ export interface VisualAssetManifest {
   };
   relics: {
     icons: AssetAvailability;
+    pieces: AssetAvailability;
   };
   relicProperties: {
     icons: AssetAvailability;
