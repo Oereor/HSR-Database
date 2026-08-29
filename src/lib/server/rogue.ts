@@ -17,7 +17,7 @@ async function readJson<T>(file: string): Promise<T> {
   return JSON.parse(await readFile(path.join(root, file), 'utf8')) as T;
 }
 
-async function getSuMode(mode: RogueSuMode): Promise<RogueSuPageView> {
+export async function getRogueSuPage(mode: RogueSuMode): Promise<RogueSuPageView> {
   const dataset = await readJson<RogueSuDataset>('su.json');
   if (dataset.schemaVersion !== 1 || dataset.kind !== 'su')
     throw new Error('Rogue SU 生成数据 schema 不匹配');
@@ -34,7 +34,7 @@ async function getSuMode(mode: RogueSuMode): Promise<RogueSuPageView> {
   };
 }
 
-async function getDuMode(): Promise<RogueDuPageView> {
+export async function getRogueDuPage(): Promise<RogueDuPageView> {
   const dataset = await readJson<RogueDuDataset>('du-tourn3.json');
   if (dataset.schemaVersion !== 1 || dataset.kind !== 'du' || dataset.revision !== 'Tourn3')
     throw new Error('Rogue DU 生成数据不是受支持的 Tourn3 dataset');
@@ -50,9 +50,14 @@ async function getDuMode(): Promise<RogueDuPageView> {
 }
 
 export async function getRoguePage(mode: RogueMode): Promise<RoguePageView> {
-  return mode === 'du' ? getDuMode() : getSuMode(mode);
+  return mode === 'du' ? getRogueDuPage() : getRogueSuPage(mode);
 }
 
 export function getRogueRoutePaths(): string[] {
-  return ['/rogue', ...ROGUE_MODES.map((mode) => `/rogue/${mode}`)];
+  return [
+    '/rogue',
+    ...ROGUE_MODES.map((mode) => `/rogue/${mode}`),
+    '/rogue/du/blessings',
+    '/rogue/du/equations'
+  ];
 }

@@ -35,27 +35,27 @@
     min-width: 0;
     align-items: center;
     justify-content: center;
-    gap: 0.45rem;
+    gap: 0.6rem;
   }
   .rogue-path-visual__main,
   .rogue-path-visual__sub {
     display: grid;
     min-width: 0;
     justify-items: center;
-    gap: 0.45rem;
+    gap: 0.5rem;
     color: var(--rogue-accent);
   }
   .rogue-path-visual__main {
-    --semantic-icon-image-size: 4.6rem;
+    --semantic-icon-image-size: 5.2rem;
   }
   .rogue-path-visual__sub {
-    --semantic-icon-image-size: 2.7rem;
+    --semantic-icon-image-size: 3rem;
     align-self: end;
-    padding-bottom: 0.8rem;
+    padding-bottom: 0.9rem;
     color: color-mix(in srgb, var(--rogue-accent) 76%, var(--text-secondary));
   }
   .rogue-path-visual span {
-    max-width: 5.2rem;
+    max-width: 5.4rem;
     overflow: hidden;
     color: var(--text-secondary);
     font-size: var(--font-internal);
@@ -67,11 +67,11 @@
       gap: 0.25rem;
     }
     .rogue-path-visual__main {
-      --semantic-icon-image-size: 3.25rem;
+      --semantic-icon-image-size: 3.5rem;
     }
     .rogue-path-visual__sub {
-      --semantic-icon-image-size: 2rem;
-      padding-bottom: 0.65rem;
+      --semantic-icon-image-size: 2.05rem;
+      padding-bottom: 0.7rem;
     }
     .rogue-path-visual span {
       max-width: 3.75rem;

@@ -18,9 +18,21 @@
   </svelte:fragment>
   <svelte:fragment slot="title"><GameText text={equation.effect.name} /></svelte:fragment>
   <svelte:fragment slot="secondary">
-    <div class="equation-requirements" data-equation-requirements>
-      <span>{equation.main.path.name} × {equation.main.count}</span>
-      {#if equation.sub}<span>{equation.sub.path.name} × {equation.sub.count}</span>{/if}
+    <div
+      class="equation-requirements"
+      data-equation-requirements
+      data-equation-requirement-kind={equation.kind}
+    >
+      <span class="equation-requirements__label">展开条件</span>
+      {#if equation.kind === 'critical'}
+        <span>× {equation.main.count}</span>
+      {:else}
+        <span>{equation.main.path.name} × {equation.main.count}</span>
+        {#if equation.sub}
+          <span class="equation-requirements__separator" aria-hidden="true">·</span>
+          <span>{equation.sub.path.name} × {equation.sub.count}</span>
+        {/if}
+      {/if}
     </div>
   </svelte:fragment>
 
@@ -33,21 +45,23 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: 0.35rem;
-    color: var(--text-secondary);
+    gap: 0.28rem;
+    color: var(--text-muted);
     font-size: var(--font-internal);
+    line-height: 1.5;
+    text-align: right;
   }
-  .equation-requirements span {
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-capsule);
-    padding: 0.26rem 0.58rem;
-    background: rgb(4 10 23 / 45%);
-    white-space: nowrap;
+  .equation-requirements__label {
+    margin-right: 0.18rem;
+    color: color-mix(in srgb, var(--rogue-accent) 70%, var(--text-muted));
+  }
+  .equation-requirements__separator {
+    color: var(--surface-border-strong);
   }
   .rogue-description {
     margin: 0;
     color: var(--text-secondary);
-    line-height: 1.75;
+    line-height: 1.82;
   }
   @media (max-width: 640px) {
     .equation-requirements {

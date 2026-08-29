@@ -16,6 +16,7 @@
   <svelte:fragment slot="secondary">
     <div class="cross-owner">
       <span>主·{resonance.main.path.name}</span>
+      <span aria-hidden="true">·</span>
       <span>副·{resonance.sub.path.name}</span>
     </div>
   </svelte:fragment>
@@ -28,20 +29,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: 0.35rem;
-    color: var(--text-secondary);
+    gap: 0.28rem;
+    color: var(--text-muted);
     font-size: var(--font-internal);
-  }
-  .cross-owner span {
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-capsule);
-    padding: 0.26rem 0.58rem;
-    white-space: nowrap;
+    line-height: 1.5;
+    text-align: right;
   }
   p {
     margin: 0;
     color: var(--text-secondary);
-    line-height: 1.75;
+    line-height: 1.82;
   }
   @media (max-width: 640px) {
     .cross-owner {

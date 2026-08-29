@@ -5,6 +5,8 @@
   export let activeMode: RogueMode;
   let navigation: HTMLElement;
 
+  const hrefFor = (mode: RogueMode) => (mode === 'du' ? '/rogue/du/blessings' : `/rogue/${mode}`);
+
   onMount(() => {
     navigation
       .querySelector<HTMLElement>('[aria-current="page"]')
@@ -14,7 +16,7 @@
 
 <nav class="rogue-mode-nav" aria-label="Rogue 模式" bind:this={navigation}>
   {#each ROGUE_MODES as mode}
-    <a href={`/rogue/${mode}`} aria-current={activeMode === mode ? 'page' : undefined}>
+    <a href={hrefFor(mode)} aria-current={activeMode === mode ? 'page' : undefined}>
       {#if activeMode === mode}<h1>{ROGUE_MODE_LABELS[mode]}</h1>{:else}<strong
           >{ROGUE_MODE_LABELS[mode]}</strong
         >{/if}

@@ -41,33 +41,32 @@
   .blessing-levels {
     display: inline-flex;
     overflow: hidden;
-    border: 1px solid var(--surface-border);
-    border-radius: var(--radius-capsule);
-    background: rgb(4 10 23 / 48%);
+    border: 1px solid color-mix(in srgb, var(--rogue-accent) 18%, var(--surface-border));
+    border-radius: 999px;
+    background: rgb(4 10 23 / 34%);
+    padding: 2px;
   }
   button {
     border: 0;
-    padding: 0.32rem 0.7rem;
+    border-radius: 999px;
+    padding: 0.28rem 0.68rem;
     background: transparent;
-    color: var(--text-secondary);
+    color: var(--text-muted);
     cursor: pointer;
     font: inherit;
     font-size: var(--font-internal);
   }
-  button + button {
-    border-left: 1px solid var(--surface-border);
-  }
   button.active {
-    background: color-mix(in srgb, var(--rogue-accent) 22%, transparent);
+    background: color-mix(in srgb, var(--rogue-accent) 16%, transparent);
     color: var(--text-primary);
   }
   button:focus-visible {
-    outline: 2px solid var(--focus-ring);
+    outline: 2px solid var(--gold);
     outline-offset: -2px;
   }
   .rogue-description {
     margin: 0;
     color: var(--text-secondary);
-    line-height: 1.75;
+    line-height: 1.82;
   }
 </style>

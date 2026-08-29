@@ -2,7 +2,12 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { RogueDuDataset, RogueSuDataset } from '../../src/lib/domain/rogue';
-import { getRoguePage, getRogueRoutePaths } from '../../src/lib/server/rogue';
+import {
+  getRogueDuPage,
+  getRoguePage,
+  getRogueRoutePaths,
+  getRogueSuPage
+} from '../../src/lib/server/rogue';
 
 const generated = path.resolve('src', 'lib', 'generated', 'rogue');
 const auditRoot = path.resolve('data', 'audit');
@@ -75,23 +80,29 @@ describe('Rogue generated data', () => {
   });
 
   it('assembles mode views without leaking cross-owner availability', async () => {
-    const [su, swarm, gears, du] = await Promise.all([
+    const [su, swarm, gears, du, typedSu, typedDu] = await Promise.all([
       getRoguePage('su'),
       getRoguePage('swarm-disaster'),
       getRoguePage('gold-and-gears'),
-      getRoguePage('du')
+      getRoguePage('du'),
+      getRogueSuPage('su'),
+      getRogueDuPage()
     ]);
     expect(su.kind === 'su' && su.blessings).toHaveLength(162);
     expect(su.kind === 'su' && su.crossResonances).toHaveLength(0);
     expect(swarm.kind === 'su' && swarm.crossResonances).toHaveLength(16);
     expect(gears.kind === 'su' && gears.crossResonances).toHaveLength(18);
     expect(du.kind === 'du' && du.revisionLabel).toBe('差分宇宙·乐园漫记');
+    expect(typedSu.kind).toBe('su');
+    expect(typedDu.kind).toBe('du');
     expect(getRogueRoutePaths()).toEqual([
       '/rogue',
       '/rogue/su',
       '/rogue/swarm-disaster',
       '/rogue/gold-and-gears',
-      '/rogue/du'
+      '/rogue/du',
+      '/rogue/du/blessings',
+      '/rogue/du/equations'
     ]);
   });
 

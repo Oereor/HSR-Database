@@ -48,6 +48,6 @@
   p {
     margin: 0;
     color: var(--text-secondary);
-    line-height: 1.75;
+    line-height: 1.82;
   }
 </style>
