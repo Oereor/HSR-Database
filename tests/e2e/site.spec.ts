@@ -1157,6 +1157,13 @@ test('光锥等级与叠影滑块独立、控件先于效果且动态参数更�
   await expect(stats.locator('output')).toHaveText('Lv.1');
 });
 
+test('光锥叠影效果名称使用加粗样式', async ({ page }) => {
+  await page.goto('/light-cones/23044');
+  const name = page.locator('.superimposition-effect__name');
+  await expect(name).toHaveText('失却');
+  await expect(name).toHaveCSS('font-weight', '700');
+});
+
 test('特殊能量使用结构化标记且旧版银狼保持普通能量', async ({ page }) => {
   for (const id of ['1308', '1506']) {
     await page.goto(`/characters/${id}`);

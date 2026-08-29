@@ -917,9 +917,10 @@ footer a {
   border-top: 1px solid var(--border);
   padding-top: 1.4rem;
 }
-.superimposition-effect h3 {
+.superimposition-effect__name {
   margin: 0 0 0.7rem;
   font-size: var(--font-major-title);
+  font-weight: 700;
 }
 .superimposition-effect p {
   margin-bottom: 0;

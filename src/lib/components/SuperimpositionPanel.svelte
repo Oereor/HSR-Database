@@ -38,7 +38,7 @@
         </div>
       </div>{:else}<small>固定等级 Lv.{selected.level}</small>{/if}
     <div class="superimposition-effect">
-      <h3><GameText text={passive.name} /></h3>
+      <h3 class="superimposition-effect__name"><GameText text={passive.name} /></h3>
       {#if selected.descriptionTokens.length}<p class="levelled-description">
           <DescriptionText tokens={selected.descriptionTokens} />
         </p>{:else}<p class="data-placeholder">上游原始数据未提供该叠影描述。</p>{/if}
