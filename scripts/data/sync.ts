@@ -71,6 +71,7 @@ import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-te
 import { buildEndgameData } from './endgame.js';
 import { createExtraEffectResolver } from './extra-effects.js';
 import { buildRogueData } from './rogue.js';
+import { parseGameVersion } from './source-metadata.js';
 import {
   buildEnemySkillPhases,
   normalizeEnemyPhases,
@@ -139,9 +140,12 @@ export async function syncData(): Promise<DataManifest> {
     ['-c', `safe.directory=${root.replaceAll('\\', '/')}`, '-C', root, 'log', '-1', '--pretty=%s'],
     { encoding: 'utf8', windowsHide: true }
   ).trim();
+  const gameVersion = parseGameVersion(sourceVersion);
 
   console.log(`读取上游数据：${root}`);
   console.log(`上游版本：${commit.slice(0, 12)} · ${sourceVersion}`);
+  if (!gameVersion.gameVersionFull)
+    console.warn('数据版本解析失败：TurnBasedGameData HEAD subject 不符合 OSPRODWin 版本格式。');
 
   const missingText = createMissingTextAuditCollector();
   const text = await createTextResolver(await loadTextMap(root), (kind, identifier, textSource) => {
@@ -1809,9 +1813,10 @@ export async function syncData(): Promise<DataManifest> {
   await writeJson(path.join(generatedRoot, 'rogue', 'du-tourn3.json'), rogue.datasets.du);
 
   const manifest: DataManifest = {
-    schemaVersion: 30,
+    schemaVersion: 31,
     sourceCommit: commit,
     sourceVersion,
+    ...gameVersion,
     generatedAt: new Date().toISOString(),
     language: 'CHS',
     counts: {

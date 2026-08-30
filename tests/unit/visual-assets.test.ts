@@ -12,7 +12,8 @@ import {
   resolveRelicPropertyIconAsset,
   resolveRelicSetIconAsset,
   resolveElementIconAsset,
-  resolvePathIconAsset
+  resolvePathIconAsset,
+  resolveNavigationIconAsset
 } from '../../src/lib/data/visual-assets';
 import type { AssetAvailability, VisualAssetManifest } from '../../src/lib/domain/visual-assets';
 import { assertAssetRoot, resolveAssetRoot } from '../../scripts/assets/paths';
@@ -22,6 +23,7 @@ import {
   generateLightConePortraitAssets,
   generateVisualAssets,
   manifestCoversRequirements,
+  NAVIGATION_ICON_SOURCE_NAMES,
   PATH_SOURCE_NAMES,
   readCharacterPreviewSources,
   readLightConePreviewSources,
@@ -35,7 +37,8 @@ import {
   resolveIndexedAssetPath,
   validateGeneratedAssetFiles,
   writePortraitAsset,
-  writeSemanticIconAsset
+  writeSemanticIconAsset,
+  writeNavigationIconAsset
 } from '../../scripts/assets/shared';
 
 sharp.cache(false);
@@ -52,6 +55,7 @@ const manifest = (options?: {
   relicPropertyIcons?: string[];
   elements?: string[];
   paths?: string[];
+  navigationIcons?: string[];
 }): VisualAssetManifest => ({
   schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
   generatedAt: '2026-01-01T00:00:00.000Z',
@@ -71,7 +75,8 @@ const manifest = (options?: {
     icons: available(options?.relicPropertyIcons ?? [])
   },
   elements: available(options?.elements ?? []),
-  paths: available(options?.paths ?? [])
+  paths: available(options?.paths ?? []),
+  navigation: { icons: available(options?.navigationIcons ?? []) }
 });
 
 afterEach(async () => {
@@ -102,7 +107,8 @@ describe('视觉资源管线', () => {
       'icon/relic',
       'icon/property',
       'icon/element',
-      'icon/path'
+      'icon/path',
+      'icon/sign'
     ]) {
       await mkdir(path.join(root, relative), { recursive: true });
     }
@@ -133,7 +139,8 @@ describe('视觉资源管线', () => {
       relicPieces: ['31011'],
       relicPropertyIcons: ['IconAttack'],
       elements: ['Lightning'],
-      paths: ['Memory']
+      paths: ['Memory'],
+      navigationIcons: ['overview']
     });
     expect(resolveCharacterPreviewAsset('1001', source)).toBe(
       '/generated-assets/characters/preview/1001.png'
@@ -158,6 +165,10 @@ describe('视觉资源管线', () => {
       '/generated-assets/elements/Lightning.png'
     );
     expect(resolvePathIconAsset('Memory', source)).toBe('/generated-assets/paths/Memory.png');
+    expect(resolveNavigationIconAsset('overview', source)).toBe(
+      '/generated-assets/navigation/overview.png'
+    );
+    expect(resolveNavigationIconAsset('characters', source)).toBeUndefined();
     expect(resolveCharacterPreviewAsset('1002', source)).toBeUndefined();
     expect(resolveLightConePreviewAsset('20001', source)).toBeUndefined();
     expect(resolveLightConePortraitAsset('20001', source)).toBeUndefined();
@@ -186,6 +197,15 @@ describe('视觉资源管线', () => {
       Memory: 'Remembrance',
       Elation: 'Elation'
     });
+    expect(NAVIGATION_ICON_SOURCE_NAMES).toEqual({
+      overview: 'AllIcon',
+      characters: 'AvatarIcon',
+      'light-cones': 'ShopLightConIcon',
+      relics: 'InventoryFosterIcon',
+      enemies: 'IconActivityTreasureTrotter',
+      endgame: 'AbyssIcon01',
+      rogue: 'CampFirstWorld'
+    });
   });
 
   it('manifest 必须覆盖角色、属性与命途的完整需求集合', () => {
@@ -195,7 +215,8 @@ describe('视觉资源管线', () => {
       lightConePreviews: ['20000'],
       lightConePortraits: ['20000'],
       elements: ['Fire'],
-      paths: ['Warrior']
+      paths: ['Warrior'],
+      navigationIcons: ['overview']
     });
     expect(
       manifestCoversRequirements(source, {
@@ -205,7 +226,8 @@ describe('视觉资源管线', () => {
         relicPieces: [],
         relicPropertyIcons: [],
         elements: ['Fire'],
-        paths: ['Warrior']
+        paths: ['Warrior'],
+        navigationIcons: ['overview']
       })
     ).toBe(true);
     expect(
@@ -216,7 +238,8 @@ describe('视觉资源管线', () => {
         relicPieces: [],
         relicPropertyIcons: [],
         elements: ['Fire'],
-        paths: ['Warrior']
+        paths: ['Warrior'],
+        navigationIcons: ['overview']
       })
     ).toBe(false);
   });
@@ -227,6 +250,7 @@ describe('视觉资源管线', () => {
     const source = path.join(root, 'source.png');
     const portrait = path.join(root, 'portrait.webp');
     const icon = path.join(root, 'icon.png');
+    const navigationIcon = path.join(root, 'navigation.png');
     await sharp({
       create: {
         width: 904,
@@ -239,10 +263,13 @@ describe('视觉资源管线', () => {
       .toFile(source);
     await writePortraitAsset(source, portrait);
     await writeSemanticIconAsset(source, icon);
+    await writeNavigationIconAsset(source, navigationIcon);
     const portraitMeta = await sharp(portrait).metadata();
     const iconMeta = await sharp(icon).metadata();
+    const navigationMeta = await sharp(navigationIcon).metadata();
     expect(portraitMeta).toMatchObject({ format: 'webp', width: 689, height: 960, hasAlpha: true });
     expect(iconMeta).toMatchObject({ format: 'png', width: 64, height: 64, hasAlpha: true });
+    expect(navigationMeta).toMatchObject({ format: 'png', width: 64, height: 64, hasAlpha: true });
   });
 
   it('光锥 portrait 生成将有效 index PNG 写入隔离 WebP 输出目录', async () => {
@@ -293,6 +320,7 @@ describe('视觉资源管线', () => {
     expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(18);
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
+    expect(requirements.navigationIcons).toHaveLength(7);
     for (const id of ['1014', '1015', '1508', '1509'])
       expect(requirements.characterIds).toContain(id);
     expect(generated).toBeDefined();
@@ -301,17 +329,18 @@ describe('视觉资源管线', () => {
       expect(generated!.characters.previews.available).toContain(id);
       expect(generated!.characters.portraits.available).toContain(id);
     }
-    expect(generated!.characters.previews.missing).toEqual(['1512', '1513']);
-    expect(generated!.characters.portraits.missing).toEqual(['1512', '1513']);
+    expect(generated!.characters.previews.missing).toEqual([]);
+    expect(generated!.characters.portraits.missing).toEqual([]);
     for (const id of ['20000', '21015', '23000']) {
       expect(requirements.lightConeIds).toContain(id);
       expect(generated!.lightCones.previews.available).toContain(id);
     }
-    expect(generated!.lightCones.previews.missing).toEqual(['21066', '22008', '23063', '23064']);
-    expect(generated!.lightCones.portraits.missing).toEqual(['21066', '22008', '23063', '23064']);
+    expect(generated!.lightCones.previews.missing).toEqual([]);
+    expect(generated!.lightCones.portraits.missing).toEqual([]);
     expect(generated!.relics.icons.available).toHaveLength(60);
     expect(generated!.relics.pieces.available).toHaveLength(184);
     expect(generated!.relicProperties.icons.available).toHaveLength(18);
+    expect(generated!.navigation.icons.available).toEqual(requirements.navigationIcons);
     expect(generated).not.toHaveProperty('characterNames');
   });
 
@@ -331,19 +360,17 @@ describe('视觉资源管线', () => {
     expect(resolveRelicPropertyIconAsset('IconAttack', parsed)).toBeUndefined();
   });
 
-  it('角色 preview index 解析上游已有 ID 并为缺失的 4.5 资源保留 fallback', async () => {
+  it('角色 preview index 解析上游当前 4.5 的全部 97 个 ID', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readCharacterPreviewSources(root, requirements.characterIds);
     const index = JSON.parse(
       await readFile(path.join(root, 'index_new', 'cn', 'characters.json'), 'utf8')
     ) as Record<string, { preview?: string }>;
-    expect(sources.size).toBe(95);
-    expect(Object.values(index).filter((entry) => entry.preview)).toHaveLength(95);
-    expect([...sources.keys()].sort()).toEqual(
-      requirements.characterIds.filter((id) => !['1512', '1513'].includes(id))
-    );
-    expect(requirements.characterIds.filter((id) => !sources.has(id))).toEqual(['1512', '1513']);
+    expect(sources.size).toBe(97);
+    expect(Object.values(index).filter((entry) => entry.preview)).toHaveLength(97);
+    expect([...sources.keys()].sort()).toEqual(requirements.characterIds);
+    expect(requirements.characterIds.filter((id) => !sources.has(id))).toEqual([]);
     expect(() => resolveIndexedAssetPath(root, '../outside.png')).toThrow(/越界/);
     expect(() =>
       resolveIndexedAssetPath(root, 'image/character_preview/../../outside.png')
@@ -363,24 +390,17 @@ describe('视觉资源管线', () => {
     ).toEqual(await readFile(sources.get(sampleId)!));
   });
 
-  it('光锥 preview index 显式映射已有的 165 张 348×408 PNG', async () => {
+  it('光锥 preview index 显式映射当前 169 张 348×408 PNG', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readLightConePreviewSources(root, requirements.lightConeIds);
     const index = JSON.parse(
       await readFile(path.join(root, 'index_new', 'cn', 'light_cones.json'), 'utf8')
     ) as Record<string, { id?: string; preview?: string }>;
-    expect(sources.size).toBe(165);
-    expect(Object.values(index).filter((entry) => entry.preview)).toHaveLength(165);
-    expect([...sources.keys()].sort()).toEqual(
-      requirements.lightConeIds.filter((id) => !['21066', '22008', '23063', '23064'].includes(id))
-    );
-    expect(requirements.lightConeIds.filter((id) => !sources.has(id))).toEqual([
-      '21066',
-      '22008',
-      '23063',
-      '23064'
-    ]);
+    expect(sources.size).toBe(169);
+    expect(Object.values(index).filter((entry) => entry.preview)).toHaveLength(169);
+    expect([...sources.keys()].sort()).toEqual(requirements.lightConeIds);
+    expect(requirements.lightConeIds.filter((id) => !sources.has(id))).toEqual([]);
     for (const id of ['20000', '21015', '23000']) {
       expect(index[id]).toMatchObject({
         id,
@@ -391,23 +411,16 @@ describe('视觉资源管线', () => {
     }
   });
 
-  it('光锥 portrait index 只读取上游已有的 165 张图片', async () => {
+  it('光锥 portrait index 读取上游当前 169 张图片', async () => {
     const root = assertAssetRoot(resolveAssetRoot());
     const requirements = await readAssetRequirements();
     const sources = await readLightConePortraitSources(root, requirements.lightConeIds);
     const index = JSON.parse(
       await readFile(path.join(root, 'index_new', 'cn', 'light_cones.json'), 'utf8')
     ) as Record<string, { id?: string; portrait?: string }>;
-    expect(sources.size).toBe(165);
-    expect([...sources.keys()].sort()).toEqual(
-      requirements.lightConeIds.filter((id) => !['21066', '22008', '23063', '23064'].includes(id))
-    );
-    expect(requirements.lightConeIds.filter((id) => !sources.has(id))).toEqual([
-      '21066',
-      '22008',
-      '23063',
-      '23064'
-    ]);
+    expect(sources.size).toBe(169);
+    expect([...sources.keys()].sort()).toEqual(requirements.lightConeIds);
+    expect(requirements.lightConeIds.filter((id) => !sources.has(id))).toEqual([]);
     for (const id of sources.keys()) {
       expect(index[id]).toMatchObject({
         id,
@@ -555,7 +568,8 @@ describe('视觉资源管线', () => {
         relicPieces: [],
         relicPropertyIcons: [],
         elements: [],
-        paths: []
+        paths: [],
+        navigationIcons: []
       },
       outputRoot
     );
@@ -615,7 +629,8 @@ describe('视觉资源管线', () => {
         relicPieces: [],
         relicPropertyIcons: [],
         elements: [],
-        paths: []
+        paths: [],
+        navigationIcons: []
       },
       outputRoot
     );
@@ -667,7 +682,8 @@ describe('视觉资源管线', () => {
           relicPieces: [],
           relicPropertyIcons: [],
           elements: [],
-          paths: []
+          paths: [],
+          navigationIcons: []
         },
         outputRoot
       )
@@ -733,7 +749,9 @@ describe('视觉资源管线', () => {
     const lightConeFiles = await readdir(
       path.join(process.cwd(), 'static', 'generated-assets', 'light-cones', 'preview')
     );
-    expect(lightConeFiles.filter((file) => file.endsWith('.png'))).toHaveLength(165);
+    expect(lightConeFiles.filter((file) => file.endsWith('.png'))).toHaveLength(
+      generated!.lightCones.previews.available.length
+    );
     const lightConePortraitFiles = await readdir(
       path.join(process.cwd(), 'static', 'generated-assets', 'light-cones', 'portrait')
     );

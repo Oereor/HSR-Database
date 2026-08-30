@@ -18,6 +18,7 @@ export const generatedRelicPieceRoot = path.join(generatedRelicRoot, 'pieces');
 export const generatedRelicPropertyRoot = path.join(generatedAssetRoot, 'relic-properties');
 export const generatedElementRoot = path.join(generatedAssetRoot, 'elements');
 export const generatedPathRoot = path.join(generatedAssetRoot, 'paths');
+export const generatedNavigationRoot = path.join(generatedAssetRoot, 'navigation');
 
 const requiredDirectories = [
   ['index_new', 'cn', 'characters.json'],
@@ -32,7 +33,8 @@ const requiredDirectories = [
   ['icon', 'relic'],
   ['icon', 'property'],
   ['icon', 'element'],
-  ['icon', 'path']
+  ['icon', 'path'],
+  ['icon', 'sign']
 ] as const;
 
 export function resolveAssetRoot(value = process.env.HSR_ASSET_ROOT): string {
@@ -79,7 +81,8 @@ export function assertAssetOutputPaths(): void {
     generatedRelicPieceRoot,
     generatedRelicPropertyRoot,
     generatedElementRoot,
-    generatedPathRoot
+    generatedPathRoot,
+    generatedNavigationRoot
   ]) {
     assertInsideSite(output);
   }

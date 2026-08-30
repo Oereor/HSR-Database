@@ -4,7 +4,7 @@ export interface AssetAvailability {
 }
 
 export interface VisualAssetManifest {
-  schemaVersion: 7;
+  schemaVersion: 8;
   sourceCommit?: string;
   generatedAt: string;
   characters: {
@@ -24,4 +24,7 @@ export interface VisualAssetManifest {
   };
   elements: AssetAvailability;
   paths: AssetAvailability;
+  navigation: {
+    icons: AssetAvailability;
+  };
 }

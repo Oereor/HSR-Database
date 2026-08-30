@@ -142,6 +142,9 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
   console.log(
     `  属性图标 ${manifest.elements.available.length}，缺失 ${manifest.elements.missing.length}；命途图标 ${manifest.paths.available.length}，缺失 ${manifest.paths.missing.length}，合计 ${mb(sizes.elements + sizes.paths)}`
   );
+  console.log(
+    `  导航图标 ${manifest.navigation.icons.available.length}，缺失 ${manifest.navigation.icons.missing.length}，${mb(sizes.navigation)}`
+  );
   console.log(`  输出总计 ${mb(sizes.total)}`);
   warnAssetFallback(manifest, `StarRailRes ${sourceCommit.slice(0, 12)}`);
   return manifest;

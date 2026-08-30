@@ -1,5 +1,6 @@
 import manifestJson from '$lib/generated-assets/manifest.json';
 import type { AssetAvailability, VisualAssetManifest } from '$lib/domain/visual-assets';
+import type { NavigationIconKey } from '$lib/navigation';
 
 const manifest = manifestJson as VisualAssetManifest;
 const sets = {
@@ -11,7 +12,8 @@ const sets = {
   relicPiece: new Set(manifest.relics.pieces.available),
   relicPropertyIcon: new Set(manifest.relicProperties.icons.available),
   element: new Set(manifest.elements.available),
-  path: new Set(manifest.paths.available)
+  path: new Set(manifest.paths.available),
+  navigation: new Set(manifest.navigation.icons.available)
 };
 
 function resolveAsset(
@@ -145,6 +147,19 @@ export function resolvePathIconAsset(
   );
 }
 
+export function resolveNavigationIconAsset(
+  iconKey: NavigationIconKey,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  return resolveAsset(
+    iconKey,
+    source.navigation.icons,
+    'navigation',
+    'png',
+    source === manifest ? sets.navigation : undefined
+  );
+}
+
 export const getCharacterPreviewUrl = (id: string): string | undefined =>
   resolveCharacterPreviewAsset(id);
 export const getCharacterPortraitUrl = (id: string): string | undefined =>
@@ -162,3 +177,5 @@ export const getElementIconUrl = (element: string | undefined): string | undefin
   resolveElementIconAsset(element);
 export const getPathIconUrl = (path: string | undefined): string | undefined =>
   resolvePathIconAsset(path);
+export const getNavigationIconUrl = (iconKey: NavigationIconKey): string | undefined =>
+  resolveNavigationIconAsset(iconKey);

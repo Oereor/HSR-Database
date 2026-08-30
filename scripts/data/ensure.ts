@@ -38,7 +38,7 @@ try {
   const commit = sourceCommit(root);
   if (
     !manifest ||
-    manifest.schemaVersion !== 30 ||
+    manifest.schemaVersion !== 31 ||
     manifest.sourceCommit !== commit ||
     endgameFilesPresent.includes(false) ||
     rogueFilesPresent.includes(false)
@@ -47,7 +47,7 @@ try {
   else console.log(`生成数据已是最新版本：${commit.slice(0, 12)}`);
 } catch (error) {
   if (
-    manifest?.schemaVersion === 30 &&
+    manifest?.schemaVersion === 31 &&
     !endgameFilesPresent.includes(false) &&
     !rogueFilesPresent.includes(false)
   ) {

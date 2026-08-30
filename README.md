@@ -83,12 +83,12 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 
 ### 可选：精简检出上游仓库
 
-在目前的项目进度中，只使用到了 `StarRailRes` 的角色中文 index、角色 preview/portrait、属性与命途图标。fork 时如需精简项目体积，可只检出这些资源：
+在目前的项目进度中，只使用 `StarRailRes` 中被页面引用的 index、preview/portrait、遗器资源、语义图标和七张导航图标。fork 时如需精简项目体积，可只检出这些资源：
 
 ```bash
 git clone --filter=blob:none --no-checkout https://github.com/Oereor/StarRailRes.git StarRailRes
 git -C StarRailRes sparse-checkout init --cone
-git -C StarRailRes sparse-checkout set index_new/cn/characters.json image/character_preview image/character_portrait icon/element icon/path
+git -C StarRailRes sparse-checkout set index_new/cn/characters.json index_new/cn/light_cones.json index_new/cn/relic_sets.json index_new/cn/relics.json index_new/cn/properties.json image/character_preview image/character_portrait image/light_cone_preview image/light_cone_portrait icon/relic icon/property icon/element icon/path icon/sign
 git -C StarRailRes checkout b95e75c7e1273d819d20c530c0b7e13a3ef19fb4
 ```
 
@@ -141,6 +141,8 @@ pnpm.cmd dev -- --open
 
 生成数据位于 `src/lib/generated/`、`static/generated/`，视觉文件及资源 manifest 位于 `static/generated-assets/`、`src/lib/generated-assets/`，审计 JSON 位于 `data/audit/`。
 
+数据 manifest 在生成阶段记录 TurnBasedGameData 的完整 Git revision 和 HEAD subject，并从 `OSPRODWin<major>.<minor>.<patch>_...` 解析 `gameVersionFull` 与用于 UI 的 `gameVersion`。格式无法识别时版本字段为 `null` 并输出 warning，不回退到硬编码版本；浏览器和部署运行时不访问兄弟仓库或其 `.git`。
+
 ### Endgame 构建数据
 
 `data:sync` 会在 `src/lib/generated/endgame/` 分别生成混沌回忆、虚构叙事、末日幻影和异相仲裁数据。它们区分敌人模板与具体关卡中的 MonsterID 实例，并以无损十进制字符串保存：
@@ -183,9 +185,9 @@ schema 16 的敌人详情只使用 `MonsterID == MonsterTemplateID` 的 canonica
 
 `pnpm build` 生成纯静态站点。CI 必须把两个上游仓库作为独立兄弟目录检出到固定 commit，设置 `HSR_DATA_ROOT` 与 `HSR_ASSET_ROOT`，依次运行数据/资源同步、验证和构建。生产环境应把 `PUBLIC_SITE_URL` 设置为正式域名。
 
-资源同步只处理当前数据目录实际引用的角色、光锥、遗器、7 种属性与 9 种命途，不复制完整资源仓库。Overview preview 按中文 index 的稳定 ID 路径选择并保留原始透明 PNG；原始立绘生成最大 960px、quality 84 的透明 WebP；属性与命途图标生成 64px PNG。若 StarRailRes 已新增 index 记录、但路径为 `null` 或对应文件尚未提交，同步会将该 ID 明确写入 manifest 的 `missing` 并输出 fallback warning，其余实际存在的资源仍正常发布；Overview 使用中性占位，详情立绘自动恢复无图 Hero，图标保留中文文字。非法或越界路径、identity 不一致、损坏图片及转换错误仍会中止同步。上游后续提交资源并产生新 commit 后，`assets:ensure` 会自动重同步并解除对应 fallback，无需修改管线。
+资源同步只处理当前数据目录实际引用的角色、光锥、遗器、7 种属性、9 种命途与 7 张导航图标，不复制完整资源仓库。Overview preview 按中文 index 的稳定 ID 路径选择并保留原始透明 PNG；原始立绘生成最大 960px、quality 84 的透明 WebP；属性、命途与导航图标生成 64px PNG，导航图标会先去除纯透明外边缘再等比居中。若 StarRailRes 已新增 index 记录、但路径为 `null` 或对应文件尚未提交，同步会将该 ID 明确写入 manifest 的 `missing` 并输出 fallback warning，其余实际存在的资源仍正常发布；Overview 使用中性占位，详情立绘自动恢复无图 Hero，图标保留中文文字。非法或越界路径、identity 不一致、损坏图片及转换错误仍会中止同步。上游后续提交资源并产生新 commit 后，`assets:ensure` 会自动重同步并解除对应 fallback，无需修改管线。
 
-生成资源始终加入 gitignore。未来 CI 或其他构建平台需要在 build 前单独取得固定版本 StarRailRes，设置 `HSR_ASSET_ROOT`，运行 `pnpm assets:sync` 后再构建。可以使用 shallow clone、partial clone 与 sparse checkout，仅获取 `index_new/cn/characters.json`、`image/character_preview`、`image/character_portrait`、`icon/element` 和 `icon/path`。
+生成资源始终加入 gitignore。未来 CI 或其他构建平台需要在 build 前单独取得固定版本 StarRailRes，设置 `HSR_ASSET_ROOT`，运行 `pnpm assets:sync` 后再构建。可以使用 shallow clone、partial clone 与 sparse checkout；所需目录以本节上方命令为准，并包含导航使用的 `icon/sign`。
 
 ### GitHub Actions 示例
 

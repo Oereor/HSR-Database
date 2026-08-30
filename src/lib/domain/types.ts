@@ -425,6 +425,8 @@ export interface DataManifest {
   schemaVersion: number;
   sourceCommit: string;
   sourceVersion: string;
+  gameVersionFull: string | null;
+  gameVersion: string | null;
   generatedAt: string;
   language: 'CHS';
   counts: Record<'characters' | 'lightCones' | 'relics' | 'relicProperties' | 'enemies', number>;

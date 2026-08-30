@@ -9,6 +9,7 @@ import type {
   RelicSlot
 } from '../../src/lib/domain/types.js';
 import type { AssetAvailability, VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
+import { NAVIGATION_ITEMS, type NavigationIconKey } from '../../src/lib/navigation.js';
 import { generatedRoot } from '../data/paths.js';
 import {
   assetManifestPath,
@@ -22,6 +23,7 @@ import {
   generatedRelicPieceRoot,
   generatedRelicPropertyRoot,
   generatedElementRoot,
+  generatedNavigationRoot,
   generatedPathRoot,
   generatedPortraitRoot
 } from './paths.js';
@@ -29,7 +31,7 @@ import {
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 7 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 8 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -53,6 +55,16 @@ export const PATH_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Elation: 'Elation'
 };
 
+export const NAVIGATION_ICON_SOURCE_NAMES: Readonly<Record<NavigationIconKey, string>> = {
+  overview: 'AllIcon',
+  characters: 'AvatarIcon',
+  'light-cones': 'ShopLightConIcon',
+  relics: 'InventoryFosterIcon',
+  enemies: 'IconActivityTreasureTrotter',
+  endgame: 'AbyssIcon01',
+  rogue: 'CampFirstWorld'
+};
+
 export interface AssetRequirements {
   characterIds: string[];
   lightConeIds: string[];
@@ -61,6 +73,7 @@ export interface AssetRequirements {
   relicPropertyIcons: Array<{ propertyType: string; iconKey: string }>;
   elements: string[];
   paths: string[];
+  navigationIcons: NavigationIconKey[];
 }
 
 export interface AssetSizeSummary {
@@ -73,6 +86,7 @@ export interface AssetSizeSummary {
   relicPropertyIcons: number;
   elements: number;
   paths: number;
+  navigation: number;
   total: number;
 }
 
@@ -87,6 +101,7 @@ export interface AssetOutputPaths {
   relicPropertyIcons: string;
   elements: string;
   paths: string;
+  navigation: string;
 }
 
 export interface AssetFallbackEntry {
@@ -140,7 +155,8 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
       property.iconKey ? [{ propertyType: property.propertyType, iconKey: property.iconKey }] : []
     ),
     elements: uniqueSorted(characterCatalog.map((entry) => entry.element)),
-    paths: uniqueSorted([...characterCatalog, ...lightConeCatalog].map((entry) => entry.path))
+    paths: uniqueSorted([...characterCatalog, ...lightConeCatalog].map((entry) => entry.path)),
+    navigationIcons: NAVIGATION_ITEMS.map((item) => item.iconKey)
   };
 }
 
@@ -193,7 +209,8 @@ export function assetFallbackEntries(manifest: VisualAssetManifest): AssetFallba
     { label: '遗器部件图标', missing: manifest.relics.pieces.missing },
     { label: '遗器属性图标', missing: manifest.relicProperties.icons.missing },
     { label: '属性图标', missing: manifest.elements.missing },
-    { label: '命途图标', missing: manifest.paths.missing }
+    { label: '命途图标', missing: manifest.paths.missing },
+    { label: '导航图标', missing: manifest.navigation.icons.missing }
   ].filter((entry) => entry.missing.length > 0);
 }
 
@@ -230,7 +247,8 @@ export function emptyAssetManifest(requirements: AssetRequirements): VisualAsset
       )
     },
     elements: unavailable(requirements.elements),
-    paths: unavailable(requirements.paths)
+    paths: unavailable(requirements.paths),
+    navigation: { icons: unavailable(requirements.navigationIcons) }
   };
 }
 
@@ -264,7 +282,8 @@ export function assetOutputPaths(root = generatedAssetRoot): AssetOutputPaths {
     relicPieces: path.join(root, 'relics', 'pieces'),
     relicPropertyIcons: path.join(root, 'relic-properties'),
     elements: path.join(root, 'elements'),
-    paths: path.join(root, 'paths')
+    paths: path.join(root, 'paths'),
+    navigation: path.join(root, 'navigation')
   };
 }
 
@@ -280,15 +299,16 @@ async function prepareOutputDirectories(output: AssetOutputPaths): Promise<void>
       output.relicPieces,
       output.relicPropertyIcons,
       output.elements,
-      output.paths
+      output.paths,
+      output.navigation
     ].map((directory) => mkdir(directory, { recursive: true }))
   );
 }
 
-async function processRequested(
-  requested: string[],
-  sourcePath: (value: string) => string | undefined,
-  outputPath: (value: string) => string,
+async function processRequested<TValue extends string>(
+  requested: TValue[],
+  sourcePath: (value: TValue) => string | undefined,
+  outputPath: (value: TValue) => string,
   transform: (source: string, output: string) => Promise<void>
 ): Promise<AssetAvailability> {
   const available: string[] = [];
@@ -538,6 +558,17 @@ export async function writeSemanticIconAsset(source: string, output: string): Pr
   await sharp(source).resize(64, 64, { fit: 'contain' }).png().toFile(output);
 }
 
+export async function writeNavigationIconAsset(source: string, output: string): Promise<void> {
+  await sharp(source)
+    .trim({ background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .resize(64, 64, {
+      fit: 'contain',
+      background: { r: 0, g: 0, b: 0, alpha: 0 }
+    })
+    .png()
+    .toFile(output);
+}
+
 export async function generateLightConePortraitAssets(
   sourceRoot: string,
   lightConeIds: string[],
@@ -636,13 +667,21 @@ export async function generateVisualAssets(
     (code) => path.join(output.paths, `${code}.png`),
     writeSemanticIconAsset
   );
+  const navigationIcons = await processRequested(
+    requirements.navigationIcons,
+    (iconKey) =>
+      path.join(sourceRoot, 'icon', 'sign', `${NAVIGATION_ICON_SOURCE_NAMES[iconKey]}.png`),
+    (iconKey) => path.join(output.navigation, `${iconKey}.png`),
+    writeNavigationIconAsset
+  );
   return {
     characters: { previews, portraits },
     lightCones: { previews: lightConePreviews, portraits: lightConePortraits },
     relics: { icons: relicIcons, pieces: relicPieces },
     relicProperties: { icons: relicPropertyIcons },
     elements,
-    paths
+    paths,
+    navigation: { icons: navigationIcons }
   };
 }
 
@@ -650,9 +689,10 @@ const collectionCovers = (collection: AssetAvailability, required: string[]): bo
   const recorded = [...collection.available, ...collection.missing].sort((a, b) =>
     a.localeCompare(b)
   );
+  const expected = [...required].sort((a, b) => a.localeCompare(b));
   return (
-    recorded.length === required.length &&
-    recorded.every((value, index) => value === required[index])
+    recorded.length === expected.length &&
+    recorded.every((value, index) => value === expected[index])
   );
 };
 
@@ -676,7 +716,8 @@ export function manifestCoversRequirements(
       uniqueSorted(requirements.relicPropertyIcons.map((entry) => entry.iconKey))
     ) &&
     collectionCovers(manifest.elements, requirements.elements) &&
-    collectionCovers(manifest.paths, requirements.paths)
+    collectionCovers(manifest.paths, requirements.paths) &&
+    collectionCovers(manifest.navigation.icons, requirements.navigationIcons)
   );
 }
 
@@ -706,7 +747,8 @@ const expectedFiles = (
     manifest.relicProperties.icons.available.map((iconKey) => `${iconKey}.png`)
   ],
   [output.elements, manifest.elements.available.map((code) => `${code}.png`)],
-  [output.paths, manifest.paths.available.map((code) => `${code}.png`)]
+  [output.paths, manifest.paths.available.map((code) => `${code}.png`)],
+  [output.navigation, manifest.navigation.icons.available.map((iconKey) => `${iconKey}.png`)]
 ];
 
 export async function manifestFilesExist(
@@ -791,6 +833,16 @@ export async function validateGeneratedAssetFiles(
     if (metadata.width !== 64 || metadata.height !== 64)
       throw new Error(`命途图标尺寸异常：${code}`);
   }
+  for (const iconKey of manifest.navigation.icons.available) {
+    const metadata = await sharp(path.join(output.navigation, `${iconKey}.png`)).metadata();
+    if (
+      metadata.format !== 'png' ||
+      metadata.width !== 64 ||
+      metadata.height !== 64 ||
+      !metadata.hasAlpha
+    )
+      throw new Error(`导航图标格式或尺寸异常：${iconKey}`);
+  }
 }
 
 async function directorySize(directory: string): Promise<number> {
@@ -815,7 +867,8 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
     relicPieces,
     relicPropertyIcons,
     elements,
-    paths
+    paths,
+    navigation
   ] = await Promise.all([
     directorySize(generatedPreviewRoot),
     directorySize(generatedPortraitRoot),
@@ -825,7 +878,8 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
     directorySize(generatedRelicPieceRoot),
     directorySize(generatedRelicPropertyRoot),
     directorySize(generatedElementRoot),
-    directorySize(generatedPathRoot)
+    directorySize(generatedPathRoot),
+    directorySize(generatedNavigationRoot)
   ]);
   return {
     previews,
@@ -837,6 +891,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
     relicPropertyIcons,
     elements,
     paths,
+    navigation,
     total:
       previews +
       portraits +
@@ -846,6 +901,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
       relicPieces +
       relicPropertyIcons +
       elements +
-      paths
+      paths +
+      navigation
   };
 }

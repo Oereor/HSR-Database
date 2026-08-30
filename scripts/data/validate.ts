@@ -55,13 +55,20 @@ import type { EndgameAudit } from './endgame.js';
 import type { RogueDuDataset, RogueSuDataset } from '../../src/lib/domain/rogue.js';
 import type { RogueBuildAudit } from './rogue.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
+import { parseGameVersion } from './source-metadata.js';
 
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 30)
+if (manifest.schemaVersion !== 31)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
+const parsedGameVersion = parseGameVersion(manifest.sourceVersion);
+if (
+  manifest.gameVersionFull !== parsedGameVersion.gameVersionFull ||
+  manifest.gameVersion !== parsedGameVersion.gameVersion
+)
+  throw new Error('生成数据的游戏版本与 TurnBasedGameData sourceVersion 不一致');
 
 const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'utf8')) as {
   upstreamTables: Record<string, number>;
