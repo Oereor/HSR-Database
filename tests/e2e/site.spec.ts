@@ -103,6 +103,142 @@ test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', 
   expect(failedImages).toEqual([]);
 });
 
+test('光锥 Overview 支持命途与稀有度多选，并在清除筛选时保留搜索', async ({ page }) => {
+  await page.goto('/light-cones?q=银河');
+  await page.getByRole('button', { name: '智识' }).click();
+  await page.getByRole('button', { name: '虚无' }).click();
+  await page.getByRole('button', { name: '5★' }).click();
+  await page.getByRole('button', { name: '4★' }).click();
+  await expect(page).toHaveURL(/path=Mage/);
+  await expect(page).toHaveURL(/path=Warlock/);
+  await expect(page).toHaveURL(/rarity=5/);
+  await expect(page).toHaveURL(/rarity=4/);
+  await expect(page.getByRole('button', { name: '智识' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: '4★' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.overview-toolbar')).toContainText('个结果');
+
+  await page.getByRole('button', { name: '清除筛选' }).click();
+  await expect(page).toHaveURL(/q=%E9%93%B6%E6%B2%B3/);
+  await expect(page).not.toHaveURL(/path=|rarity=/);
+});
+
+test('遗器 Overview 使用统一页面外壳与本地套装 Hero decoration', async ({ page }) => {
+  await page.goto('/relics?sort=id');
+
+  const hero = page.locator('.overview-hero');
+  await expect(hero.getByText('DATABASE / RELICS')).toBeVisible();
+  await expect(hero.getByRole('heading', { level: 1, name: '遗器' })).toBeVisible();
+  await expect(hero).toContainText('浏览、搜索并筛选遗器套装资料。');
+  await expect(hero.getByText('共 60 套遗器', { exact: true })).toBeVisible();
+  const heroArtwork = hero.locator('.overview-hero__artwork img');
+  await expect(heroArtwork).toHaveCount(3);
+  expect(
+    await heroArtwork.evaluateAll((images) => images.map((image) => image.getAttribute('src')))
+  ).toEqual([
+    '/generated-assets/relics/icons/101.png',
+    '/generated-assets/relics/icons/102.png',
+    '/generated-assets/relics/icons/103.png'
+  ]);
+
+  await expect(page.getByPlaceholder('搜索遗器套装', { exact: true })).toBeVisible();
+  const categoryGroup = page.locator('[aria-labelledby="filter-group-relic-category"]');
+  await expect(categoryGroup.getByRole('button')).toHaveText(['全部', '隧洞遗器', '位面饰品']);
+  await expect(categoryGroup.locator('img')).toHaveCount(0);
+  await expect(page.locator('.overview-toolbar')).toContainText('共 60 个结果');
+  await expect(page.getByRole('button', { name: '筛选与排序' })).toHaveCount(0);
+  await expect(page.locator('.filters, .filter-backdrop')).toHaveCount(0);
+});
+
+test('遗器类别使用单选语义并保留排序、重置分页', async ({ page }) => {
+  await page.goto('/relics?sort=id&page=2');
+  const all = page.getByRole('button', { name: '全部', exact: true });
+  const cavern = page.getByRole('button', { name: '隧洞遗器', exact: true });
+  const planar = page.getByRole('button', { name: '位面饰品', exact: true });
+
+  await cavern.click();
+  await expect(page).toHaveURL(/type=cavern/);
+  await expect(page).toHaveURL(/sort=id/);
+  await expect(page).not.toHaveURL(/page=/);
+  await expect(all).toHaveAttribute('aria-pressed', 'false');
+  await expect(cavern).toHaveAttribute('aria-pressed', 'true');
+  await expect(planar).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('.overview-toolbar')).toContainText('共 32 个结果');
+  await expect(page.locator('.entity-overview-card')).toHaveCount(32);
+  await expect(page.locator('.entity-overview-card__overlay')).toHaveText(
+    Array(32).fill('隧洞遗器')
+  );
+
+  await planar.click();
+  await expect(page).toHaveURL(/type=planar/);
+  await expect(page).not.toHaveURL(/type=cavern/);
+  await expect(cavern).toHaveAttribute('aria-pressed', 'false');
+  await expect(planar).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.overview-toolbar')).toContainText('共 28 个结果');
+  await expect(page.locator('.entity-overview-card')).toHaveCount(28);
+  await expect(page.locator('.entity-overview-card__overlay')).toHaveText(
+    Array(28).fill('位面饰品')
+  );
+
+  await planar.click();
+  await expect(planar).toHaveAttribute('aria-pressed', 'true');
+  await all.click();
+  await expect(page).not.toHaveURL(/type=/);
+  await expect(page).toHaveURL(/sort=id/);
+  await expect(all).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.overview-toolbar')).toContainText('共 60 个结果');
+});
+
+test('遗器搜索与历史 type 参数可组合，清空搜索后保留类别', async ({ page }) => {
+  for (const [type, query, id] of [
+    ['cavern', '云无留迹的过客', '101'],
+    ['planar', '太空封印站', '301']
+  ] as const) {
+    await page.goto(`/relics?type=${type}&sort=name`);
+    const expectedLabel = type === 'cavern' ? '隧洞遗器' : '位面饰品';
+    await expect(page.getByRole('button', { name: expectedLabel, exact: true })).toHaveAttribute(
+      'aria-pressed',
+      'true'
+    );
+    const input = page.getByPlaceholder('搜索遗器套装', { exact: true });
+    await input.fill(query);
+    await page.getByRole('button', { name: '搜索', exact: true }).click();
+    await expect(page.locator(`a[href="/relics/${id}"]`)).toBeVisible();
+    expect(new URL(page.url()).searchParams.get('type')).toBe(type);
+    expect(new URL(page.url()).searchParams.get('sort')).toBe('name');
+  }
+
+  const input = page.getByPlaceholder('搜索遗器套装', { exact: true });
+  await input.fill('');
+  await page.getByRole('button', { name: '搜索', exact: true }).click();
+  expect(new URL(page.url()).searchParams.get('type')).toBe('planar');
+  expect(new URL(page.url()).searchParams.has('q')).toBe(false);
+  await expect(page.locator('.overview-toolbar')).toContainText('共 28 个结果');
+});
+
+test('遗器统一页面外壳与专用 Grid 在各断点不横向溢出', async ({ page }) => {
+  for (const viewport of [
+    { width: 1280, height: 800 },
+    { width: 700, height: 900 },
+    { width: 520, height: 844 },
+    { width: 390, height: 844 },
+    { width: 340, height: 720 }
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto('/relics?sort=id');
+    await expect(page.locator('.overview-hero')).toBeVisible();
+    await expect(page.getByPlaceholder('搜索遗器套装', { exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: '隧洞遗器', exact: true })).toBeVisible();
+    await expect(page.locator('.overview-toolbar')).toBeVisible();
+    await expect(page.locator('.entity-grid--overview-compact')).toBeVisible();
+    await expect(page.getByRole('button', { name: '筛选与排序' })).toHaveCount(0);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      )
+    ).toBeLessThanOrEqual(1);
+  }
+});
+
 test('遗器目录复用 shared compact Overview，并保留可读 typography 与 icon fitting', async ({
   page
 }) => {
@@ -173,7 +309,8 @@ test('遗器目录复用 shared compact Overview，并保留可读 typography �
     const boxes = cards.slice(0, 12).map((card) => card.getBoundingClientRect());
     return boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1).length;
   });
-  expect(compactFirstRow).toBeGreaterThan(largeFirstRow);
+  expect(largeFirstRow).toBeGreaterThanOrEqual(4);
+  expect(compactFirstRow).toBeGreaterThanOrEqual(4);
 
   for (const [id, name, category] of [
     ['129', '闪耀功勋的魔法少女', '隧洞遗器'],
@@ -380,17 +517,16 @@ test('敌人目录使用本地立绘、三类 Rank 和 default Monster 弱点', 
   await expect(card).not.toContainText('MinionLv2');
 
   await page.goto('/enemies?type=MinionLv2&sort=id');
-  await expect(page.locator('select[name="type"]')).toHaveValue('normal');
+  await expect(page.getByRole('button', { name: '普通', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true'
+  );
   await expect(page.locator('.entity-overview-card').first()).toContainText('普通敌人');
-  await expect(page.locator('select[name="type"] option')).toHaveText([
-    '全部',
-    '普通敌人',
-    '精英敌人',
-    '首领敌人'
-  ]);
+  const typeGroup = page.locator('[aria-labelledby="filter-group-enemy-type"]');
+  await expect(typeGroup.getByRole('button')).toHaveText(['全部', '普通', '精英', '首领']);
 });
 
-test('Enemy Overview 将 2/3/4 个弱点收拢为单行 Group 并在极窄容器隐藏文字', async ({ page }) => {
+test('Enemy Overview 弱点使用可访问的 icon-only 单行 Group', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto('/enemies');
 
@@ -404,15 +540,18 @@ test('Enemy Overview 将 2/3/4 个弱点收拢为单行 Group 并在极窄容器
     const group = metadata.locator(':scope > .enemy-weakness-group');
     const items = group.locator('.semantic-icon-label');
     await expect(group).toHaveCount(1);
+    await expect(group).toHaveClass(/enemy-weakness-group--overview/);
     await expect(items).toHaveCount(count);
-    await expect(group).toHaveCSS('border-top-width', '1px');
-    await expect(items.first()).toHaveCSS('border-top-width', '0px');
+    await expect(group).toHaveCSS('border-top-width', '0px');
+    await expect(items.first().locator('img')).toHaveCSS('width', '20px');
     const boxes = await Promise.all(
       [...Array(count).keys()].map((index) => items.nth(index).boundingBox())
     );
     expect(boxes.every((box) => box !== null && Math.abs(box.y - boxes[0]!.y) < 1)).toBe(true);
-    for (const label of await items.locator(':scope > span').all()) {
-      await expect(label).toHaveCSS('position', 'static');
+    for (const item of await items.all()) {
+      await expect(item).toHaveAttribute('role', 'img');
+      await expect(item).toHaveAttribute('aria-label', /属性弱点$/);
+      await expect(item.locator('.semantic-icon-label__text')).toHaveCount(0);
     }
   }
 
@@ -437,10 +576,16 @@ test('Enemy Overview 将 2/3/4 个弱点收拢为单行 Group 并在极窄容器
   const narrowGroup = page.locator('a[href="/enemies/4034018"] .enemy-weakness-group').first();
   await expect(narrowGroup).toHaveAttribute('aria-label', '弱点：物理、冰、雷、量子');
   await expect(narrowGroup.locator('img')).toHaveCount(4);
-  for (const label of await narrowGroup.locator('.semantic-icon-label > span').all()) {
-    await expect(label).toHaveCSS('position', 'absolute');
-    await expect(label).toHaveCSS('clip-path', 'inset(50%)');
-  }
+  await expect(narrowGroup.locator('img').first()).toHaveCSS('width', '20px');
+  await expect(narrowGroup.locator('.enemy-weakness-group__item').first()).toHaveAttribute(
+    'title',
+    '物理属性弱点'
+  );
+  const narrowItems = await narrowGroup.locator('.semantic-icon-label').all();
+  const narrowBoxes = await Promise.all(narrowItems.map((item) => item.boundingBox()));
+  expect(narrowBoxes.every((box) => box !== null && Math.abs(box.y - narrowBoxes[0]!.y) < 1)).toBe(
+    true
+  );
   expect(
     await narrowGroup.evaluate((group) => group.scrollWidth - group.clientWidth)
   ).toBeLessThanOrEqual(1);
@@ -449,6 +594,30 @@ test('Enemy Overview 将 2/3/4 个弱点收拢为单行 Group 并在极窄容器
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth
     )
   ).toBeLessThanOrEqual(1);
+});
+
+test('敌方单位 Overview 支持类型多选、弱点 OR 与相关性优先排序', async ({ page }) => {
+  await page.goto('/enemies?page=2&sort=id');
+  await page.getByRole('button', { name: '精英', exact: true }).click();
+  await page.getByRole('button', { name: '首领', exact: true }).click();
+  await page.getByRole('button', { name: '冰', exact: true }).click();
+  await page.getByRole('button', { name: '虚数', exact: true }).click();
+  await expect(page).toHaveURL(/type=elite/);
+  await expect(page).toHaveURL(/type=boss/);
+  await expect(page).toHaveURL(/weakness=Ice/);
+  await expect(page).toHaveURL(/weakness=Imaginary/);
+  await expect(page).not.toHaveURL(/page=/);
+
+  await page.goto('/enemies?weakness=Physical&weakness=Ice&weakness=Imaginary&sort=id');
+  const rankedCards = page.locator('.entity-overview-card');
+  await expect(rankedCards.first()).toHaveAttribute('href', '/enemies/1002030');
+  await expect(rankedCards.nth(11)).toHaveAttribute('href', '/enemies/1002020');
+
+  await page.goto(
+    '/enemies?q=%E8%9A%95%E9%A3%9F%E8%80%85%E4%B9%8B%E5%BD%B1&weakness=Physical&weakness=Ice&weakness=Imaginary'
+  );
+  await expect(page.locator('.entity-overview-card')).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: '没有匹配结果' })).toBeVisible();
 });
 
 test('敌人缺图 Template 使用共享 fallback 且不发起远程请求', async ({ page }) => {
@@ -463,26 +632,29 @@ test('敌人缺图 Template 使用共享 fallback 且不发起远程请求', asy
   expect(requestedUrls.some((url) => url.includes('nanoka'))).toBe(false);
 });
 
-test('Character 与 Enemy Overview 使用纵向自适应 Grid 且不溢出', async ({ page }) => {
-  for (const path of ['/characters', '/enemies?sort=id']) {
+test('Character、Light Cone 与 Enemy Overview 使用统一紧凑 Grid 且不溢出', async ({ page }) => {
+  for (const path of ['/characters', '/light-cones', '/enemies?sort=id']) {
     for (const viewport of [
-      { width: 1600, height: 1000, columns: [4, 5] },
-      { width: 1280, height: 800, columns: [3] },
-      { width: 768, height: 900, columns: [2] },
-      { width: 390, height: 844, columns: [1] },
-      { width: 320, height: 720, columns: [1] }
+      { width: 1600, height: 1000 },
+      { width: 1280, height: 800 },
+      { width: 768, height: 900 },
+      { width: 390, height: 844 },
+      { width: 320, height: 720 }
     ]) {
       await page.setViewportSize(viewport);
       await page.goto(path);
       const cards = page.locator('.entity-overview-card');
-      const boxes = (
-        await Promise.all([...Array(6).keys()].map((index) => cards.nth(index).boundingBox()))
-      ).filter((box): box is NonNullable<typeof box> => box !== null);
+      await expect(cards.nth(5)).toBeVisible();
+      const boxes = await cards.evaluateAll((elements) =>
+        elements.slice(0, 6).map((element) => {
+          const box = element.getBoundingClientRect();
+          return { x: box.x, y: box.y, width: box.width, height: box.height };
+        })
+      );
       expect(boxes.length).toBe(6);
       const firstRow = boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1);
-      const isCharacter = path === '/characters';
-      const expectedColumns = isCharacter
-        ? viewport.width >= 1350
+      const expectedColumns =
+        viewport.width >= 1350
           ? [5, 6]
           : viewport.width >= 821
             ? [3, 4, 5]
@@ -490,30 +662,34 @@ test('Character 与 Enemy Overview 使用纵向自适应 Grid 且不溢出', asy
               ? [3]
               : viewport.width > 340
                 ? [2]
-                : [1]
-        : viewport.columns;
-      expect(expectedColumns).toContain(firstRow.length);
-      expect(Math.max(...firstRow.map((box) => box.height))).toBeLessThanOrEqual(
-        isCharacter ? 390 : 466
-      );
-      expect(Math.min(...firstRow.map((box) => box.height))).toBeGreaterThanOrEqual(
-        isCharacter ? 300 : 407
-      );
+                : [1];
+      expect(expectedColumns, `${path} @ ${viewport.width}px`).toContain(firstRow.length);
+      expect(Math.max(...firstRow.map((box) => box.height))).toBeLessThanOrEqual(390);
+      expect(Math.min(...firstRow.map((box) => box.height))).toBeGreaterThanOrEqual(300);
       expect(Math.max(...firstRow.map((box) => box.height))).toBeCloseTo(
         Math.min(...firstRow.map((box) => box.height)),
         0
       );
 
       const firstCard = cards.first();
-      const artwork = await firstCard.locator('.entity-overview-card__artwork').boundingBox();
-      const content = await firstCard.locator('.entity-overview-card__content').boundingBox();
-      const overlay = await firstCard.locator('.entity-overview-card__overlay').boundingBox();
-      expect(artwork).not.toBeNull();
-      expect(content).not.toBeNull();
-      expect(overlay).not.toBeNull();
-      expect(artwork!.y + artwork!.height).toBeLessThanOrEqual(content!.y + 1);
-      expect(overlay!.y).toBeGreaterThanOrEqual(artwork!.y);
-      expect(overlay!.x + overlay!.width).toBeLessThanOrEqual(artwork!.x + artwork!.width);
+      const cardMetrics = await firstCard.evaluate((card) => {
+        const rect = (selector: string) => {
+          const box = card.querySelector<HTMLElement>(selector)!.getBoundingClientRect();
+          return { x: box.x, y: box.y, width: box.width, height: box.height };
+        };
+        return {
+          artwork: rect('.entity-overview-card__artwork'),
+          content: rect('.entity-overview-card__content'),
+          overlay: rect('.entity-overview-card__overlay')
+        };
+      });
+      expect(cardMetrics.artwork.y + cardMetrics.artwork.height).toBeLessThanOrEqual(
+        cardMetrics.content.y + 1
+      );
+      expect(cardMetrics.overlay.y).toBeGreaterThanOrEqual(cardMetrics.artwork.y);
+      expect(cardMetrics.overlay.x + cardMetrics.overlay.width).toBeLessThanOrEqual(
+        cardMetrics.artwork.x + cardMetrics.artwork.width
+      );
       expect(
         await page.evaluate(
           () => document.documentElement.scrollWidth - document.documentElement.clientWidth
@@ -602,13 +778,13 @@ test('筛选状态写入 URL、分页响应客户端导航并进入详情', asyn
   const firstPageFirstId = await page.locator('.entity-overview-card').first().getAttribute('href');
   await page.getByRole('link', { name: '下一页' }).click();
   await expect(page).toHaveURL(/page=2/);
-  await expect(page.locator('.pagination').getByText('第 2 / 3 页')).toBeVisible();
+  await expect(page.locator('.overview-pagination').getByText('第 2 / 3 页')).toBeVisible();
   await expect(page.locator('.entity-overview-card').first()).not.toHaveAttribute(
     'href',
     firstPageFirstId!
   );
   await page.getByRole('link', { name: '上一页' }).click();
-  await expect(page.locator('.pagination').getByText('第 1 / 3 页')).toBeVisible();
+  await expect(page.locator('.overview-pagination').getByText('第 1 / 3 页')).toBeVisible();
 
   await page.goto('/characters?rarity=4&page=2');
   await expect(page.getByRole('button', { name: '4★' })).toHaveAttribute('aria-pressed', 'true');
@@ -617,6 +793,98 @@ test('筛选状态写入 URL、分页响应客户端导航并进入详情', asyn
   await expect(page).not.toHaveURL(/page=/);
   await page.goto('/characters/1001');
   await expect(page.getByRole('heading', { name: '三月七·存护' })).toBeVisible();
+});
+
+test('Overview 分页保留实时筛选、重复参数与排序状态', async ({ page }) => {
+  const cases = [
+    {
+      route: '/characters?sort=name',
+      filters: ['4★', '5★'],
+      parameter: 'rarity',
+      values: ['4', '5']
+    },
+    {
+      route: '/light-cones?sort=name',
+      filters: ['4★', '5★'],
+      parameter: 'rarity',
+      values: ['4', '5']
+    },
+    {
+      route: '/enemies?sort=name',
+      filters: ['冰', '虚数'],
+      parameter: 'weakness',
+      values: ['Ice', 'Imaginary']
+    }
+  ] as const;
+
+  for (const scenario of cases) {
+    await page.goto(scenario.route);
+    for (const filter of scenario.filters) {
+      await page.getByRole('button', { name: filter, exact: true }).click();
+    }
+
+    const nextPage = page.getByRole('link', { name: '下一页', exact: true });
+    await expect(nextPage).toBeVisible();
+    const nextHref = await nextPage.getAttribute('href');
+    const numericHref = await page
+      .getByRole('link', { name: '2', exact: true })
+      .getAttribute('href');
+    expect(nextHref).not.toBeNull();
+    expect(numericHref).not.toBeNull();
+
+    for (const href of [nextHref!, numericHref!]) {
+      const params = new URL(href, 'http://localhost').searchParams;
+      expect(params.getAll(scenario.parameter)).toEqual(scenario.values);
+      expect(params.get('sort')).toBe('name');
+      expect(params.get('page')).toBe('2');
+    }
+
+    await nextPage.click();
+    await expect(page).toHaveURL(/page=2/);
+    const navigatedParams = new URL(page.url()).searchParams;
+    expect(navigatedParams.getAll(scenario.parameter)).toEqual(scenario.values);
+    expect(navigatedParams.get('sort')).toBe('name');
+    for (const filter of scenario.filters) {
+      await expect(page.getByRole('button', { name: filter, exact: true })).toHaveAttribute(
+        'aria-pressed',
+        'true'
+      );
+    }
+  }
+});
+
+test('从第二页修改筛选后，新分页链接使用重置后的完整状态', async ({ page }) => {
+  await page.goto('/characters?rarity=4&rarity=5&sort=name&page=2');
+  await page.getByRole('button', { name: '4★', exact: true }).click();
+  await expect(page).not.toHaveURL(/page=/);
+
+  const nextPage = page.getByRole('link', { name: '下一页', exact: true });
+  await expect(nextPage).toBeVisible();
+  const nextHref = await nextPage.getAttribute('href');
+  expect(nextHref).not.toBeNull();
+  const params = new URL(nextHref!, 'http://localhost').searchParams;
+  expect(params.getAll('rarity')).toEqual(['5']);
+  expect(params.get('sort')).toBe('name');
+  expect(params.get('page')).toBe('2');
+
+  await nextPage.click();
+  await expect(page).toHaveURL(/page=2/);
+  await expect(page.getByRole('button', { name: '4★', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'false'
+  );
+  await expect(page.getByRole('button', { name: '5★', exact: true })).toHaveAttribute(
+    'aria-pressed',
+    'true'
+  );
+});
+
+test('遗器分页在 hydration 后保留排序参数', async ({ page }) => {
+  await page.goto('/relics?sort=id');
+  const nextPage = page.getByRole('link', { name: '下一页', exact: true });
+  await expect(nextPage).toHaveAttribute('href', '?sort=id&page=2');
+  await nextPage.click();
+  await expect(page).toHaveURL('/relics?sort=id&page=2');
 });
 
 test('目录搜索只在提交时应用草稿并重置分页', async ({ page }) => {
@@ -652,7 +920,7 @@ test('角色目录支持同类多选与跨类组合筛选', async ({ page }) => 
   await page.getByRole('button', { name: '雷' }).click();
   await expect(page).toHaveURL(/element=Fire/);
   await expect(page).toHaveURL(/element=Lightning/);
-  await expect(page.locator('.character-controls__summary')).toContainText('个结果');
+  await expect(page.locator('.overview-toolbar')).toContainText('个结果');
   await page.getByRole('button', { name: '清除筛选' }).click();
   await expect(page).toHaveURL('/characters');
   await expect(page.getByRole('button', { name: '巡猎' })).toHaveAttribute('aria-pressed', 'false');
@@ -1577,8 +1845,8 @@ test('移动导航可用且页面无横向溢出', async ({ page, isMobile }) =>
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');
   await page.goto('/characters');
-  await page.getByRole('button', { name: '筛选与排序' }).click();
-  await expect(page.getByRole('dialog', { name: '筛选与排序' })).toBeVisible();
+  await expect(page.getByRole('button', { name: '筛选与排序' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: '巡猎' })).toBeVisible();
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth
   );

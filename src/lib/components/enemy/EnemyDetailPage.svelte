@@ -254,7 +254,7 @@
             <svelte:fragment slot="title"><GameText text={summon.name} /></svelte:fragment>
             <svelte:fragment slot="secondary">{getEnemyRankLabel(summon.rank)}</svelte:fragment>
             <svelte:fragment slot="tertiary">
-              <EnemyWeaknessGroup weaknesses={summon.weaknesses} iconOnly />
+              <EnemyWeaknessGroup weaknesses={summon.weaknesses} />
             </svelte:fragment>
           </CompactEntityCard>{/each}
       </div>

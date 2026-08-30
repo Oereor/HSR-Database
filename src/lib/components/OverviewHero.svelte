@@ -1,23 +1,17 @@
 <script lang="ts">
-  import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
-  import type { CatalogEntry } from '$lib/domain/types';
-
-  export let entries: CatalogEntry[] = [];
+  export let eyebrow = 'DATABASE';
   export let title = '角色';
   export let description = '浏览、搜索并筛选角色资料。';
-
-  $: artwork = entries
-    .slice(0, 3)
-    .map((entry) => ({ id: entry.id, url: getCharacterPreviewUrl(entry.id) }))
-    .filter((entry): entry is { id: string; url: string } => Boolean(entry.url));
+  export let countLabel = '';
+  export let artwork: Array<{ id: string; url: string }> = [];
 </script>
 
 <header class="overview-hero">
   <div class="overview-hero__copy">
-    <p class="kicker">DATABASE / CHARACTERS</p>
+    <p class="kicker">{eyebrow}</p>
     <h1>{title}</h1>
     <p class="overview-hero__description">{description}</p>
-    <span class="overview-hero__count">共 {entries.length} 位角色</span>
+    <span class="overview-hero__count">{countLabel}</span>
   </div>
   {#if artwork.length}
     <div class="overview-hero__artwork" aria-hidden="true">

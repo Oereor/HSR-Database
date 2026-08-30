@@ -1,20 +1,20 @@
 <script lang="ts">
   import FilterChip from './FilterChip.svelte';
 
+  export let id: string;
   export let label: string;
-  export let kind: 'path' | 'element' | 'rarity';
+  export let iconKind: 'path' | 'element' | undefined = undefined;
   export let options: Array<{ value: string; label: string }> = [];
   export let selected: Set<string> = new Set();
   export let onToggle: (value: string | undefined) => void;
 </script>
 
-<section class="filter-group" aria-labelledby={`filter-group-${kind}`}>
-  <h2 id={`filter-group-${kind}`}>{label}</h2>
+<section class="filter-group" aria-labelledby={`filter-group-${id}`}>
+  <h2 id={`filter-group-${id}`}>{label}</h2>
   <div class="filter-group__chips">
     <FilterChip
       label="全部"
       value="all"
-      {kind}
       selected={selected.size === 0}
       on:click={() => onToggle(undefined)}
     />
@@ -22,7 +22,7 @@
       <FilterChip
         label={option.label}
         value={option.value}
-        {kind}
+        {iconKind}
         selected={selected.has(option.value)}
         on:click={() => onToggle(option.value)}
       />

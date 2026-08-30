@@ -1,45 +1,46 @@
 <script lang="ts">
-  import { page } from '$app/stores';
   import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
   import { onMount } from 'svelte';
-  import CharacterOverviewCard from './CharacterOverviewCard.svelte';
+  import {
+    ENEMY_RANK_CATEGORIES,
+    compareEnemyOverviewEntries,
+    hasEnemyOverviewFilters,
+    isEnemyCatalogEntry,
+    matchesEnemyOverviewFilters,
+    readEnemyOverviewFilterState,
+    writeEnemyOverviewFilterState,
+    type EnemyOverviewFilterState
+  } from '$lib/domain/enemy-overview';
+  import { gameTextToPlain } from '$lib/domain/game-text';
+  import type { CatalogEntry, EnemyCatalogEntry } from '$lib/domain/types';
+  import EnemyOverviewCard from './EnemyOverviewCard.svelte';
   import FilterGroup from './FilterGroup.svelte';
   import OverviewGrid from './OverviewGrid.svelte';
   import OverviewHero from './OverviewHero.svelte';
   import OverviewPagination from './OverviewPagination.svelte';
   import OverviewSearch from './OverviewSearch.svelte';
   import OverviewToolbar from './OverviewToolbar.svelte';
-  import type { CatalogEntry } from '$lib/domain/types';
-  import { gameTextToPlain } from '$lib/domain/game-text';
-  import {
-    hasCharacterFilters,
-    matchesCharacterFilters,
-    readCharacterFilterState,
-    writeCharacterFilterState,
-    type CharacterFilterState
-  } from '$lib/domain/character-filters';
-  import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
 
   export let entries: CatalogEntry[] = [];
-  export let title = '角色';
-  export let description = '浏览、搜索并筛选角色资料。';
+  export let title = '敌方单位';
+  export let description = '浏览、搜索并筛选敌方单位资料。';
+  export let enemyPortraits: Record<string, string> = {};
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
   let clientReady = false;
   onMount(() => (clientReady = true));
 
+  $: enemies = entries.map(enemyEntry);
   $: params = clientReady ? new URLSearchParams($page.url.searchParams) : new URLSearchParams();
   $: appliedQuery = params.get('q') ?? '';
   $: synchronizeDraft(appliedQuery);
-  $: filterState = readCharacterFilterState(params);
+  $: filterState = readEnemyOverviewFilterState(params);
   $: sort = params.get('sort') ?? 'rarity';
   $: requestedPage = Number(params.get('page') ?? 1);
-  $: heroArtwork = entries
-    .slice(0, 3)
-    .map((entry) => ({ id: entry.id, url: getCharacterPreviewUrl(entry.id) }))
-    .filter((entry): entry is { id: string; url: string } => Boolean(entry.url));
-  $: filtered = entries
+  $: heroArtwork = resolveHeroArtwork(enemies, enemyPortraits);
+  $: filtered = enemies
     .filter((entry) => {
       const query = appliedQuery.trim().toLocaleLowerCase();
       return (
@@ -47,30 +48,45 @@
           gameTextToPlain(`${entry.name} ${entry.description ?? ''}`)
             .toLocaleLowerCase()
             .includes(query)) &&
-        matchesCharacterFilters(entry, filterState)
+        matchesEnemyOverviewFilters(entry, filterState)
       );
     })
-    .sort((a, b) => {
-      if (sort === 'name') return a.name.localeCompare(b.name, 'zh-CN');
-      if (sort === 'id') return Number(a.id) - Number(b.id);
-      return (b.rarity ?? 0) - (a.rarity ?? 0) || a.name.localeCompare(b.name, 'zh-CN');
-    });
-  const pageSize = 36;
+    .sort((a, b) => compareEnemyOverviewEntries(a, b, sort, filterState.weaknesses));
+  const pageSize = 48;
   $: pages = Math.max(1, Math.ceil(filtered.length / pageSize));
   $: currentPage =
     Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, pages) : 1;
   $: visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  $: weaknessOptions = [
+    ...new Map(
+      enemies.flatMap((entry) =>
+        entry.weaknesses.map((weakness) => [weakness.element, weakness.name] as const)
+      )
+    ).entries()
+  ]
+    .sort((a, b) => a[1].localeCompare(b[1], 'zh-CN'))
+    .map(([value, label]) => ({ value, label }));
 
-  const options = (key: 'path' | 'element' | 'rarity', labelKey?: 'pathName' | 'elementName') =>
-    [
-      ...new Map(
-        entries
-          .filter((entry) => entry[key] !== undefined)
-          .map((entry) => [String(entry[key]), String(labelKey ? entry[labelKey] : entry[key])])
-      ).entries()
-    ]
-      .sort((a, b) => a[1].localeCompare(b[1], 'zh-CN'))
-      .map(([value, label]) => ({ value, label }));
+  function enemyEntry(entry: CatalogEntry): EnemyCatalogEntry {
+    if (!isEnemyCatalogEntry(entry)) throw new Error(`敌方单位目录 ${entry.id} 缺少弱点投影`);
+    return entry;
+  }
+
+  function resolveHeroArtwork(
+    catalog: EnemyCatalogEntry[],
+    portraits: Record<string, string>
+  ): Array<{ id: string; url: string }> {
+    const seen = new Set<string>();
+    const artwork: Array<{ id: string; url: string }> = [];
+    for (const entry of catalog) {
+      const url = portraits[entry.id];
+      if (!url || seen.has(url)) continue;
+      artwork.push({ id: entry.id, url });
+      seen.add(url);
+      if (artwork.length === 3) break;
+    }
+    return artwork;
+  }
 
   function synchronizeDraft(query: string) {
     if (query === synchronizedQuery) return;
@@ -95,26 +111,21 @@
     await navigate(next);
   }
 
-  async function toggleFilter(category: keyof CharacterFilterState, value: string | undefined) {
-    const nextState: CharacterFilterState = {
-      paths: new Set(filterState.paths),
-      elements: new Set(filterState.elements),
-      rarities: new Set(filterState.rarities)
+  async function toggleFilter(category: keyof EnemyOverviewFilterState, value: string | undefined) {
+    const nextState: EnemyOverviewFilterState = {
+      types: new Set(filterState.types),
+      weaknesses: new Set(filterState.weaknesses)
     };
     const selected = nextState[category];
     if (value === undefined) selected.clear();
     else if (selected.has(value)) selected.delete(value);
     else selected.add(value);
-    await navigate(writeCharacterFilterState(params, nextState));
+    await navigate(writeEnemyOverviewFilterState(params, nextState));
   }
 
   async function clearFilters() {
     await navigate(
-      writeCharacterFilterState(params, {
-        paths: new Set(),
-        elements: new Set(),
-        rarities: new Set()
-      })
+      writeEnemyOverviewFilterState(params, { types: new Set(), weaknesses: new Set() })
     );
   }
 
@@ -129,50 +140,45 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow="DATABASE / CHARACTERS"
+  eyebrow="DATABASE / ENEMIES"
   {title}
   {description}
-  countLabel={`共 ${entries.length} 位角色`}
+  countLabel={`共 ${enemies.length} 个敌方单位`}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label="角色搜索与筛选">
+<section class="overview-controls" aria-label="敌方单位搜索与筛选">
   <OverviewSearch
-    id="character-search-input"
+    id="enemy-search-input"
     bind:value={draftQuery}
-    placeholder="搜索角色"
+    placeholder="搜索敌方单位"
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
-      id="character-path"
-      label="命途"
-      iconKind="path"
-      options={options('path', 'pathName')}
-      selected={filterState.paths}
-      onToggle={(value) => toggleFilter('paths', value)}
+      id="enemy-type"
+      label="敌人类型"
+      options={ENEMY_RANK_CATEGORIES.map((option) => ({
+        value: option.code,
+        label: option.filterLabel
+      }))}
+      selected={filterState.types}
+      onToggle={(value) => toggleFilter('types', value)}
     />
     <FilterGroup
-      id="character-element"
-      label="属性"
+      id="enemy-weakness"
+      label="弱点属性"
       iconKind="element"
-      options={options('element', 'elementName')}
-      selected={filterState.elements}
-      onToggle={(value) => toggleFilter('elements', value)}
-    />
-    <FilterGroup
-      id="character-rarity"
-      label="稀有度"
-      options={options('rarity').map((option) => ({ ...option, label: `${option.label}★` }))}
-      selected={filterState.rarities}
-      onToggle={(value) => toggleFilter('rarities', value)}
+      options={weaknessOptions}
+      selected={filterState.weaknesses}
+      onToggle={(value) => toggleFilter('weaknesses', value)}
     />
   </div>
 
   <OverviewToolbar
     resultCount={filtered.length}
-    hasFilters={hasCharacterFilters(filterState)}
+    hasFilters={hasEnemyOverviewFilters(filterState)}
     {sort}
     onClearFilters={clearFilters}
     onSortChange={(value) => {
@@ -187,11 +193,10 @@
 {#if visible.length}
   <OverviewGrid>
     {#each visible as entry (entry.id)}
-      <CharacterOverviewCard
+      <EnemyOverviewCard
         {entry}
-        href={`/characters/${entry.id}`}
-        imageUrl={getCharacterPreviewUrl(entry.id)}
-        density="compact"
+        href={`/enemies/${entry.id}`}
+        imageUrl={enemyPortraits[entry.id]}
       />
     {/each}
   </OverviewGrid>

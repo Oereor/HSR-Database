@@ -4,16 +4,16 @@
 
   export let label: string;
   export let value: string;
-  export let kind: 'path' | 'element' | 'rarity';
+  export let iconKind: 'path' | 'element' | undefined = undefined;
   export let selected = false;
 
   $: icon =
-    kind === 'path'
+    iconKind === 'path'
       ? getPathIconUrl(value)
-      : kind === 'element'
+      : iconKind === 'element'
         ? getElementIconUrl(value)
         : undefined;
-  $: color = kind === 'element' ? getElementColor(value) : undefined;
+  $: color = iconKind === 'element' ? getElementColor(value) : undefined;
 </script>
 
 <button

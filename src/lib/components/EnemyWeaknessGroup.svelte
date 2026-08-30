@@ -4,26 +4,28 @@
   import SemanticIconLabel from './SemanticIconLabel.svelte';
 
   export let weaknesses: ElementLabel[];
-  export let iconOnly = false;
+  export let size: 'default' | 'overview' = 'default';
 
   $: accessibilityLabel = `弱点：${weaknesses.map((weakness) => weakness.name).join('、')}`;
 </script>
 
 {#if weaknesses.length}
   <span
-    class:enemy-weakness-group--icon-only={iconOnly}
     class="enemy-weakness-group"
+    class:enemy-weakness-group--overview={size === 'overview'}
     role="group"
     aria-label={accessibilityLabel}
   >
     {#each weaknesses as weakness (weakness.element)}
-      <SemanticIconLabel
-        kind="element"
-        code={weakness.element}
-        label={weakness.name}
-        color={getElementColor(weakness.element)}
-        showLabel={!iconOnly}
-      />
+      <span class="enemy-weakness-group__item" title={`${weakness.name}属性弱点`}>
+        <SemanticIconLabel
+          kind="element"
+          code={weakness.element}
+          label={`${weakness.name}属性弱点`}
+          color={getElementColor(weakness.element)}
+          showLabel={false}
+        />
+      </span>
     {/each}
   </span>
 {/if}
@@ -41,37 +43,19 @@
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    gap: 0.52rem;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: rgb(255 255 255 / 3%);
-    padding: 0.38rem 0.62rem;
-    color: var(--text-secondary);
-    font-size: 0.78rem;
+    gap: 0.42rem;
+    color: inherit;
     line-height: 1.2;
     white-space: nowrap;
   }
 
-  .enemy-weakness-group--icon-only {
-    gap: 0.42rem;
-    border: 0;
-    background: transparent;
-    padding: 0;
-    color: inherit;
+  .enemy-weakness-group__item {
+    display: inline-flex;
   }
 
-  @container overview-metadata (max-width: 190px) {
-    .enemy-weakness-group:not(.enemy-weakness-group--icon-only) {
-      --semantic-icon-label-position: absolute;
-      --semantic-icon-label-width: 1px;
-      --semantic-icon-label-height: 1px;
-      --semantic-icon-label-overflow: hidden;
-      --semantic-icon-label-clip: rect(0 0 0 0);
-      --semantic-icon-label-clip-path: inset(50%);
-      --semantic-icon-label-white-space: nowrap;
+  .enemy-weakness-group--overview {
+    --semantic-icon-image-size: 1.25rem;
 
-      gap: 0.58rem;
-      padding-inline: 0.58rem;
-    }
+    gap: 0.36rem;
   }
 </style>

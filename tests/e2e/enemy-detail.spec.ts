@@ -174,7 +174,7 @@ test('召唤单位严格随 selected Monster 切换，并使用解析后的 Temp
   const summon = page.locator('[data-summon-template="1002050"]');
   await expect(summon).toContainText(/普通敌人|精英敌人|首领敌人|敌方单位/);
   await expect(summon.locator('.compact-entity-card__tertiary')).toHaveCount(1);
-  await expect(summon.locator('.enemy-weakness-group--icon-only')).toHaveCount(1);
+  await expect(summon.locator('.enemy-weakness-group')).toHaveCount(1);
   await expect(summon).not.toContainText(/Monster #/);
   await summon.click();
   await expect(page).toHaveURL(/\/enemies\/1002050$/);
