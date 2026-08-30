@@ -31,7 +31,7 @@ import {
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 8 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 9 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -62,7 +62,7 @@ export const NAVIGATION_ICON_SOURCE_NAMES: Readonly<Record<NavigationIconKey, st
   relics: 'InventoryFosterIcon',
   enemies: 'IconActivityTreasureTrotter',
   endgame: 'AbyssIcon01',
-  rogue: 'CampFirstWorld'
+  rogue: 'Rogue'
 };
 
 export interface AssetRequirements {

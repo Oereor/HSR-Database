@@ -4,7 +4,7 @@ export interface AssetAvailability {
 }
 
 export interface VisualAssetManifest {
-  schemaVersion: 8;
+  schemaVersion: 9;
   sourceCommit?: string;
   generatedAt: string;
   characters: {

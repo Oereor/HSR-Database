@@ -204,7 +204,7 @@ describe('视觉资源管线', () => {
       relics: 'InventoryFosterIcon',
       enemies: 'IconActivityTreasureTrotter',
       endgame: 'AbyssIcon01',
-      rogue: 'CampFirstWorld'
+      rogue: 'Rogue'
     });
   });
 
