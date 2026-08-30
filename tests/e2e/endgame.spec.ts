@@ -15,7 +15,7 @@ async function selectLocalNode(page: Page, label: string) {
 
 test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
   await page.goto('/endgame');
-  await expect(page.getByRole('heading', { name: 'Endgame', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '高难模式', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: /混沌回忆/ }).first()).toBeVisible();
 
   await page.goto('/endgame/moc');
@@ -27,9 +27,61 @@ test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
   await expect(page.locator('[data-battle-slot]')).toHaveCount(3);
 });
 
-test('Endgame mode tabs 保持四项导航并由 active tab 承担页面标题', async ({ page }) => {
+test('Endgame overview 使用统一 Hero、3 + 1 卡片和严格日期降级', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/endgame');
+
+  await expect(page.getByText('DATABASE / ENDGAME', { exact: true })).toBeVisible();
+  await expect(page.getByText('共 4 种模式', { exact: true })).toBeVisible();
+  await expect(page.locator('.endgame-hero-artwork__icon')).toHaveCount(4);
+  await expect(page.getByRole('navigation', { name: '高难模式切换' })).toHaveCount(0);
+  await expect(page.getByText(/生命值来自关卡中实际 MonsterID/)).toHaveCount(0);
+
+  const cards = page.locator('[data-endgame-overview-card]');
+  await expect(cards).toHaveCount(4);
+  await expect(page.locator('.endgame-overview-grid > [data-endgame-overview-card]')).toHaveCount(
+    3
+  );
+  await expect(page.locator('[data-endgame-overview-card="aa"]')).toHaveClass(
+    /endgame-overview-card--featured/
+  );
+  await expect(page.locator('[data-endgame-overview-card="moc"]')).toContainText('扫除风暴');
+  await expect(page.locator('[data-endgame-overview-card="moc"]')).toContainText('-');
+  await expect(page.locator('[data-endgame-overview-card="pf"]')).toContainText(
+    '2026/08/03 – 2026/09/14'
+  );
+  await expect(page.locator('[data-endgame-overview-card="aa"]')).toContainText('军团再临');
+  await expect(page.locator('[data-endgame-overview-card="aa"]')).toContainText('-');
+  await expect(cards.getByText(/MOC|PF|AS|AA/, { exact: true })).toHaveCount(0);
+
+  expect(await gridColumnCount(page.locator('.endgame-overview-grid'))).toBe(3);
+  const footerTops = await page
+    .locator('.endgame-overview-grid .endgame-overview-card__footer')
+    .evaluateAll((footers) => footers.map((footer) => footer.getBoundingClientRect().top));
+  expect(Math.max(...footerTops) - Math.min(...footerTops)).toBeLessThanOrEqual(1);
+
+  const firstCard = page.locator('[data-endgame-overview-card="moc"]');
+  await firstCard.focus();
+  expect(
+    await firstCard.evaluate((element) => ({
+      tag: element.tagName,
+      outline: getComputedStyle(element).outlineStyle
+    }))
+  ).toEqual({ tag: 'A', outline: 'solid' });
+
+  for (const width of [900, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await gridColumnCount(page.locator('.endgame-overview-grid'))).toBe(1);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+  }
+});
+
+test('Endgame floating switcher 保持四项页面导航与独立页面标题', async ({ page }) => {
   await page.goto('/endgame/pf/2025?encounter=20254');
-  const modeNav = page.getByRole('navigation', { name: '终局模式' });
+  const modeNav = page.getByRole('navigation', { name: '高难模式切换' });
   const expectedModes = [
     ['混沌回忆', '/endgame/moc'],
     ['虚构叙事', '/endgame/pf'],
@@ -45,8 +97,39 @@ test('Endgame mode tabs 保持四项导航并由 active tab 承担页面标题',
   }
   const activeMode = modeNav.getByRole('link', { name: /虚构叙事/ });
   await expect(activeMode).toHaveAttribute('aria-current', 'page');
-  await expect(activeMode.getByRole('heading', { name: '虚构叙事', level: 1 })).toBeVisible();
+  await expect(activeMode.getByRole('heading')).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: '构事生意', level: 1 })).toBeVisible();
   await expect(page.getByText(/PF ENCOUNTER|PF PERIODS/)).toHaveCount(0);
+});
+
+test('Endgame floating switcher 使用模式 accent 并在长页面滚动时吸附', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 800 });
+  const expectations = [
+    ['/endgame/moc', '混沌回忆', '#8157f0'],
+    ['/endgame/pf', '虚构叙事', '#4fa4e1'],
+    ['/endgame/as', '末日幻影', '#d068ed'],
+    ['/endgame/aa', '异相仲裁', '#fb4554']
+  ] as const;
+
+  for (const [url, label, accent] of expectations) {
+    await page.goto(url);
+    const active = page
+      .getByRole('navigation', { name: '高难模式切换' })
+      .getByRole('link', { name: label, exact: true });
+    await expect(active).toHaveAttribute('aria-current', 'page');
+    expect(
+      await active.evaluate((element) =>
+        getComputedStyle(element).getPropertyValue('--endgame-accent').trim()
+      )
+    ).toBe(accent);
+  }
+
+  await page.goto('/endgame/moc');
+  const switcher = page.locator('.endgame-mode-switcher');
+  await page.evaluate(() => window.scrollTo(0, 1200));
+  await page.waitForTimeout(500);
+  expect(await switcher.evaluate((element) => getComputedStyle(element).position)).toBe('sticky');
+  expect((await switcher.boundingBox())!.y).toBeLessThanOrEqual(14);
 });
 
 test('Endgame desktop local rail 保持窄栏、active ownership 与原 query href', async ({ page }) => {
@@ -645,7 +728,7 @@ test('AA 王棋普通和绝境使用实际 spawned occurrence', async ({ page })
 test('Endgame 移动端折叠 local rail，dialog 支持 ESC、焦点返回与节点导航', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/endgame/moc/1034?encounter=5312');
-  const modeNav = page.getByRole('navigation', { name: '终局模式' });
+  const modeNav = page.getByRole('navigation', { name: '高难模式切换' });
   const modeNavLayout = await modeNav.evaluate((element) => ({
     display: getComputedStyle(element).display,
     flexWrap: getComputedStyle(element).flexWrap,

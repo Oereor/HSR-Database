@@ -1,47 +1,94 @@
 <script lang="ts">
-  import EndgameModeNav from '$lib/components/endgame/EndgameModeNav.svelte';
+  import OverviewHero from '$lib/components/OverviewHero.svelte';
+  import EndgameOverviewCard from '$lib/components/endgame/EndgameOverviewCard.svelte';
+  import EndgameOverviewHeroArtwork from '$lib/components/endgame/EndgameOverviewHeroArtwork.svelte';
   import type { EndgameModeView } from '$lib/domain/endgame-view';
+
   export let data;
 
-  const statusText = (mode: EndgameModeView) => {
-    const period = mode.periods.find((candidate) => candidate.groupId === mode.recommendedGroupId);
-    if (!period) return '暂无赛期数据';
-    return `${period.name} · ${period.dateLabel}`;
-  };
+  const regularModes = data.modes.filter((mode: EndgameModeView) => mode.mode !== 'aa');
+  const arbitration = data.modes.find((mode: EndgameModeView) => mode.mode === 'aa');
 </script>
 
 <svelte:head>
-  <title>Endgame｜星轨档案库</title>
-  <meta
-    name="description"
-    content="查看混沌回忆、虚构叙事、末日幻影与异相仲裁的真实敌方实例、弱点和配置生命值。"
-  />
+  <title>高难模式｜星轨档案库</title>
+  <meta name="description" content="浏览混沌回忆、虚构叙事、末日幻影与异相仲裁的历史赛期。" />
 </svelte:head>
 
-<header class="page-heading">
-  <div>
-    <p class="kicker">ENDGAME ARCHIVE</p>
-    <h1>Endgame</h1>
-    <p>按模式、赛期和关卡查看实际敌方实例、弱点、波次与配置生命值。</p>
-  </div>
-  <span class="count-badge">4 种模式</span>
-</header>
+<OverviewHero
+  eyebrow="DATABASE / ENDGAME"
+  title="高难模式"
+  description="浏览混沌回忆、虚构叙事、末日幻影与异相仲裁的历史赛期。"
+  countLabel="共 4 种模式"
+>
+  <svelte:fragment slot="artwork"><EndgameOverviewHeroArtwork /></svelte:fragment>
+</OverviewHero>
 
-<EndgameModeNav />
+<div class="endgame-overview-sections">
+  <section class="endgame-overview-section" aria-labelledby="regular-endgame-heading">
+    <header class="endgame-overview-section__heading">
+      <h2 id="regular-endgame-heading">常规高难</h2>
+      <p>混沌回忆、虚构叙事与末日幻影交替更新。</p>
+    </header>
+    <div class="endgame-overview-grid">
+      {#each regularModes as mode (mode.mode)}
+        <EndgameOverviewCard {mode} />
+      {/each}
+    </div>
+  </section>
 
-<section class="endgame-mode-grid" aria-label="终局模式">
-  {#each data.modes as mode}
-    <a class="endgame-mode-card" href={`/endgame/${mode.mode}`}>
-      <span>{mode.mode.toUpperCase()}</span>
-      <h2>{mode.label}</h2>
-      <p>{mode.description}</p>
-      <small>{statusText(mode)}</small>
-      <strong>查看 {mode.periods.length} 个赛期 →</strong>
-    </a>
-  {/each}
-</section>
+  {#if arbitration}
+    <section
+      class="endgame-overview-section endgame-overview-section--arbitration"
+      aria-labelledby="arbitration-heading"
+    >
+      <header class="endgame-overview-section__heading">
+        <h2 id="arbitration-heading">异相仲裁</h2>
+        <p>独立高难模式。</p>
+      </header>
+      <EndgameOverviewCard mode={arbitration} featured />
+    </section>
+  {/if}
+</div>
 
-<p class="source-note">
-  生命值来自关卡中实际 MonsterID 的配置结果。多阶段数值按“单条生命值 ×
-  阶段数”展示，不代表简单相乘后的实际击破伤害。
-</p>
+<style>
+  .endgame-overview-sections {
+    display: grid;
+    gap: var(--space-12);
+  }
+
+  .endgame-overview-section__heading {
+    margin-bottom: var(--space-4);
+  }
+
+  .endgame-overview-section__heading h2 {
+    margin: 0 0 var(--space-1);
+    font-size: var(--font-section-title);
+  }
+
+  .endgame-overview-section__heading p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-helper);
+  }
+
+  .endgame-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .endgame-overview-section--arbitration {
+    padding-top: var(--space-2);
+  }
+
+  @media (max-width: 959px) {
+    .endgame-overview-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .endgame-overview-sections {
+      gap: var(--space-16);
+    }
+  }
+</style>

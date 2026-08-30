@@ -56,13 +56,14 @@
   <a class="back-link endgame-breadcrumb" href={`/endgame/${data.group.mode}`}
     >← {data.group.modeLabel}赛期</a
   >
-  <EndgameModeNav activeMode={data.group.mode} />
-  <EndgameSeasonHeader
-    mode={data.group.mode}
-    period={data.group.period}
-    periods={data.group.periods}
-  />
 </header>
+
+<EndgameModeNav activeMode={data.group.mode} />
+<EndgameSeasonHeader
+  mode={data.group.mode}
+  period={data.group.period}
+  periods={data.group.periods}
+/>
 
 {#if selectedEncounter && localNavigation}
   <div class="endgame-content-layout">

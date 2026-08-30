@@ -12,6 +12,7 @@ import {
   buildGroupView,
   buildOccurrenceView,
   buildPeriodView,
+  ENDGAME_MODE_META,
   endgameEnemyReferenceKey,
   formatExactDecimal,
   formatFullHp,
@@ -29,6 +30,24 @@ import { ELEMENT_COLORS, getElementColor } from '../../src/lib/domain/elements';
 
 const generatedRoot = path.resolve('src', 'lib', 'generated');
 const decimal = (value: string) => value as DecimalString;
+
+describe('Endgame 模式视觉 metadata', () => {
+  it('集中维护四种模式的官方图标与主题色', () => {
+    expect(
+      Object.fromEntries(
+        Object.entries(ENDGAME_MODE_META).map(([mode, metadata]) => [
+          mode,
+          [metadata.iconKey, metadata.accent]
+        ])
+      )
+    ).toEqual({
+      moc: ['AbyssThemeTabIcon', '#8157f0'],
+      pf: ['ChallengeStory', '#4fa4e1'],
+      as: ['ChallengeBoss', '#d068ed'],
+      aa: ['StopFightingIcon', '#fb4554']
+    });
+  });
+});
 
 async function dataset(mode: EndgameMode): Promise<EndgameModeDataset> {
   return JSON.parse(

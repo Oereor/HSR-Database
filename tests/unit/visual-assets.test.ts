@@ -13,7 +13,8 @@ import {
   resolveRelicSetIconAsset,
   resolveElementIconAsset,
   resolvePathIconAsset,
-  resolveNavigationIconAsset
+  resolveNavigationIconAsset,
+  resolveEndgameModeIconAsset
 } from '../../src/lib/data/visual-assets';
 import type { AssetAvailability, VisualAssetManifest } from '../../src/lib/domain/visual-assets';
 import { assertAssetRoot, resolveAssetRoot } from '../../scripts/assets/paths';
@@ -56,6 +57,7 @@ const manifest = (options?: {
   elements?: string[];
   paths?: string[];
   navigationIcons?: string[];
+  endgameModeIcons?: string[];
 }): VisualAssetManifest => ({
   schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
   generatedAt: '2026-01-01T00:00:00.000Z',
@@ -76,7 +78,8 @@ const manifest = (options?: {
   },
   elements: available(options?.elements ?? []),
   paths: available(options?.paths ?? []),
-  navigation: { icons: available(options?.navigationIcons ?? []) }
+  navigation: { icons: available(options?.navigationIcons ?? []) },
+  endgame: { modeIcons: available(options?.endgameModeIcons ?? []) }
 });
 
 afterEach(async () => {
@@ -216,7 +219,8 @@ describe('视觉资源管线', () => {
       lightConePortraits: ['20000'],
       elements: ['Fire'],
       paths: ['Warrior'],
-      navigationIcons: ['overview']
+      navigationIcons: ['overview'],
+      endgameModeIcons: ['AbyssThemeTabIcon']
     });
     expect(
       manifestCoversRequirements(source, {
@@ -227,7 +231,8 @@ describe('视觉资源管线', () => {
         relicPropertyIcons: [],
         elements: ['Fire'],
         paths: ['Warrior'],
-        navigationIcons: ['overview']
+        navigationIcons: ['overview'],
+        endgameModeIcons: ['AbyssThemeTabIcon']
       })
     ).toBe(true);
     expect(
@@ -239,7 +244,8 @@ describe('视觉资源管线', () => {
         relicPropertyIcons: [],
         elements: ['Fire'],
         paths: ['Warrior'],
-        navigationIcons: ['overview']
+        navigationIcons: ['overview'],
+        endgameModeIcons: ['AbyssThemeTabIcon']
       })
     ).toBe(false);
   });
@@ -321,6 +327,12 @@ describe('视觉资源管线', () => {
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
     expect(requirements.navigationIcons).toHaveLength(7);
+    expect(requirements.endgameModeIcons).toEqual([
+      'AbyssThemeTabIcon',
+      'ChallengeStory',
+      'ChallengeBoss',
+      'StopFightingIcon'
+    ]);
     for (const id of ['1014', '1015', '1508', '1509'])
       expect(requirements.characterIds).toContain(id);
     expect(generated).toBeDefined();
@@ -341,6 +353,10 @@ describe('视觉资源管线', () => {
     expect(generated!.relics.pieces.available).toHaveLength(184);
     expect(generated!.relicProperties.icons.available).toHaveLength(18);
     expect(generated!.navigation.icons.available).toEqual(requirements.navigationIcons);
+    expect(generated!.endgame.modeIcons.available).toEqual(requirements.endgameModeIcons);
+    expect(resolveEndgameModeIconAsset('ChallengeStory', generated)).toBe(
+      '/generated-assets/endgame/modes/ChallengeStory.png'
+    );
     expect(generated).not.toHaveProperty('characterNames');
   });
 
@@ -569,7 +585,8 @@ describe('视觉资源管线', () => {
         relicPropertyIcons: [],
         elements: [],
         paths: [],
-        navigationIcons: []
+        navigationIcons: [],
+        endgameModeIcons: []
       },
       outputRoot
     );
@@ -630,7 +647,8 @@ describe('视觉资源管线', () => {
         relicPropertyIcons: [],
         elements: [],
         paths: [],
-        navigationIcons: []
+        navigationIcons: [],
+        endgameModeIcons: []
       },
       outputRoot
     );
@@ -683,7 +701,8 @@ describe('视觉资源管线', () => {
           relicPropertyIcons: [],
           elements: [],
           paths: [],
-          navigationIcons: []
+          navigationIcons: [],
+          endgameModeIcons: []
         },
         outputRoot
       )

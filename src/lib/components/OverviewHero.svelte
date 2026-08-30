@@ -13,17 +13,21 @@
     <p class="overview-hero__description">{description}</p>
     <span class="overview-hero__count">{countLabel}</span>
   </div>
-  {#if artwork.length}
+  {#if artwork.length || $$slots.artwork}
     <div class="overview-hero__artwork" aria-hidden="true">
-      {#each artwork as item, index (item.id)}
-        <img
-          src={item.url}
-          alt=""
-          class={`overview-hero__character overview-hero__character--${index + 1}`}
-          loading="lazy"
-          decoding="async"
-        />
-      {/each}
+      {#if $$slots.artwork}
+        <slot name="artwork" />
+      {:else}
+        {#each artwork as item, index (item.id)}
+          <img
+            src={item.url}
+            alt=""
+            class={`overview-hero__character overview-hero__character--${index + 1}`}
+            loading="lazy"
+            decoding="async"
+          />
+        {/each}
+      {/if}
     </div>
   {/if}
 </header>

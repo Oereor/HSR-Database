@@ -13,29 +13,45 @@ import type { ExtraEffect } from './types';
 
 export const ENDGAME_MODES = ['moc', 'pf', 'as', 'aa'] as const satisfies readonly EndgameMode[];
 
-export const ENDGAME_MODE_META: Record<
-  EndgameMode,
-  { label: string; shortLabel: string; description: string }
-> = {
+export type EndgameModeIconKey =
+  'AbyssThemeTabIcon' | 'ChallengeStory' | 'ChallengeBoss' | 'StopFightingIcon';
+
+export interface EndgameModeMetadata {
+  label: string;
+  shortLabel: string;
+  description: string;
+  accent: `#${string}`;
+  iconKey: EndgameModeIconKey;
+}
+
+export const ENDGAME_MODE_META: Record<EndgameMode, EndgameModeMetadata> = {
   moc: {
     label: '混沌回忆',
     shortLabel: '混沌',
-    description: '按楼层查看固定编队、波次、弱点与配置生命值。'
+    description: '按楼层查看固定编队、波次、弱点与配置生命值。',
+    accent: '#8157f0',
+    iconKey: 'AbyssThemeTabIcon'
   },
   pf: {
     label: '虚构叙事',
     shortLabel: '虚构',
-    description: '按波次查看可能出现的敌人类型，不展开运行时重复生成顺序。'
+    description: '按波次查看可能出现的敌人类型，不展开运行时重复生成顺序。',
+    accent: '#4fa4e1',
+    iconKey: 'ChallengeStory'
   },
   as: {
     label: '末日幻影',
     shortLabel: '末日',
-    description: '以首领为中心查看各难度、队伍关卡、阶段与生命机制。'
+    description: '以首领为中心查看各难度、队伍关卡、阶段与生命机制。',
+    accent: '#d068ed',
+    iconKey: 'ChallengeBoss'
   },
   aa: {
     label: '异相仲裁',
     shortLabel: '仲裁',
-    description: '分别查看骑士关卡、普通王棋与绝境王棋的实际敌方实例。'
+    description: '分别查看骑士关卡、普通王棋与绝境王棋的实际敌方实例。',
+    accent: '#fb4554',
+    iconKey: 'StopFightingIcon'
   }
 };
 

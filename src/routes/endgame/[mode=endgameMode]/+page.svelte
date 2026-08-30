@@ -14,12 +14,17 @@
 
 <header class="endgame-page-header">
   <a class="back-link endgame-breadcrumb" href="/endgame">← Endgame</a>
-  <EndgameModeNav activeMode={data.mode.mode} />
-  <div class="endgame-mode-summary">
-    <p>{data.mode.description}</p>
-    <span class="count-badge">{data.mode.periods.length} 个赛期</span>
-  </div>
 </header>
+
+<EndgameModeNav activeMode={data.mode.mode} />
+
+<section class="endgame-mode-summary" aria-labelledby="endgame-mode-title">
+  <div>
+    <h1 id="endgame-mode-title">{data.mode.label}</h1>
+    <p>{data.mode.description}</p>
+  </div>
+  <span class="count-badge">{data.mode.periods.length} 个赛期</span>
+</section>
 
 <section class="endgame-period-list" aria-label="赛期列表">
   {#each data.mode.periods as period}

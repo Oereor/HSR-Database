@@ -9,6 +9,11 @@ import type {
   RelicSlot
 } from '../../src/lib/domain/types.js';
 import type { AssetAvailability, VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
+import {
+  ENDGAME_MODES,
+  ENDGAME_MODE_META,
+  type EndgameModeIconKey
+} from '../../src/lib/domain/endgame-view.js';
 import { NAVIGATION_ITEMS, type NavigationIconKey } from '../../src/lib/navigation.js';
 import { generatedRoot } from '../data/paths.js';
 import {
@@ -23,6 +28,7 @@ import {
   generatedRelicPieceRoot,
   generatedRelicPropertyRoot,
   generatedElementRoot,
+  generatedEndgameModeRoot,
   generatedNavigationRoot,
   generatedPathRoot,
   generatedPortraitRoot
@@ -31,7 +37,7 @@ import {
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 9 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 10 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -74,6 +80,7 @@ export interface AssetRequirements {
   elements: string[];
   paths: string[];
   navigationIcons: NavigationIconKey[];
+  endgameModeIcons: EndgameModeIconKey[];
 }
 
 export interface AssetSizeSummary {
@@ -87,6 +94,7 @@ export interface AssetSizeSummary {
   elements: number;
   paths: number;
   navigation: number;
+  endgameModeIcons: number;
   total: number;
 }
 
@@ -102,6 +110,7 @@ export interface AssetOutputPaths {
   elements: string;
   paths: string;
   navigation: string;
+  endgameModeIcons: string;
 }
 
 export interface AssetFallbackEntry {
@@ -156,7 +165,8 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
     ),
     elements: uniqueSorted(characterCatalog.map((entry) => entry.element)),
     paths: uniqueSorted([...characterCatalog, ...lightConeCatalog].map((entry) => entry.path)),
-    navigationIcons: NAVIGATION_ITEMS.map((item) => item.iconKey)
+    navigationIcons: NAVIGATION_ITEMS.map((item) => item.iconKey),
+    endgameModeIcons: ENDGAME_MODES.map((mode) => ENDGAME_MODE_META[mode].iconKey)
   };
 }
 
@@ -210,7 +220,8 @@ export function assetFallbackEntries(manifest: VisualAssetManifest): AssetFallba
     { label: '遗器属性图标', missing: manifest.relicProperties.icons.missing },
     { label: '属性图标', missing: manifest.elements.missing },
     { label: '命途图标', missing: manifest.paths.missing },
-    { label: '导航图标', missing: manifest.navigation.icons.missing }
+    { label: '导航图标', missing: manifest.navigation.icons.missing },
+    { label: '高难模式图标', missing: manifest.endgame.modeIcons.missing }
   ].filter((entry) => entry.missing.length > 0);
 }
 
@@ -248,7 +259,8 @@ export function emptyAssetManifest(requirements: AssetRequirements): VisualAsset
     },
     elements: unavailable(requirements.elements),
     paths: unavailable(requirements.paths),
-    navigation: { icons: unavailable(requirements.navigationIcons) }
+    navigation: { icons: unavailable(requirements.navigationIcons) },
+    endgame: { modeIcons: unavailable(requirements.endgameModeIcons) }
   };
 }
 
@@ -283,7 +295,8 @@ export function assetOutputPaths(root = generatedAssetRoot): AssetOutputPaths {
     relicPropertyIcons: path.join(root, 'relic-properties'),
     elements: path.join(root, 'elements'),
     paths: path.join(root, 'paths'),
-    navigation: path.join(root, 'navigation')
+    navigation: path.join(root, 'navigation'),
+    endgameModeIcons: path.join(root, 'endgame', 'modes')
   };
 }
 
@@ -300,7 +313,8 @@ async function prepareOutputDirectories(output: AssetOutputPaths): Promise<void>
       output.relicPropertyIcons,
       output.elements,
       output.paths,
-      output.navigation
+      output.navigation,
+      output.endgameModeIcons
     ].map((directory) => mkdir(directory, { recursive: true }))
   );
 }
@@ -569,6 +583,17 @@ export async function writeNavigationIconAsset(source: string, output: string): 
     .toFile(output);
 }
 
+export async function writeEndgameModeIconAsset(source: string, output: string): Promise<void> {
+  await sharp(source)
+    .trim({ background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .resize(128, 128, {
+      fit: 'contain',
+      background: { r: 0, g: 0, b: 0, alpha: 0 }
+    })
+    .png()
+    .toFile(output);
+}
+
 export async function generateLightConePortraitAssets(
   sourceRoot: string,
   lightConeIds: string[],
@@ -674,6 +699,12 @@ export async function generateVisualAssets(
     (iconKey) => path.join(output.navigation, `${iconKey}.png`),
     writeNavigationIconAsset
   );
+  const endgameModeIcons = await processRequested(
+    requirements.endgameModeIcons,
+    (iconKey) => path.join(sourceRoot, 'icon', 'sign', `${iconKey}.png`),
+    (iconKey) => path.join(output.endgameModeIcons, `${iconKey}.png`),
+    writeEndgameModeIconAsset
+  );
   return {
     characters: { previews, portraits },
     lightCones: { previews: lightConePreviews, portraits: lightConePortraits },
@@ -681,7 +712,8 @@ export async function generateVisualAssets(
     relicProperties: { icons: relicPropertyIcons },
     elements,
     paths,
-    navigation: { icons: navigationIcons }
+    navigation: { icons: navigationIcons },
+    endgame: { modeIcons: endgameModeIcons }
   };
 }
 
@@ -717,7 +749,8 @@ export function manifestCoversRequirements(
     ) &&
     collectionCovers(manifest.elements, requirements.elements) &&
     collectionCovers(manifest.paths, requirements.paths) &&
-    collectionCovers(manifest.navigation.icons, requirements.navigationIcons)
+    collectionCovers(manifest.navigation.icons, requirements.navigationIcons) &&
+    collectionCovers(manifest.endgame.modeIcons, requirements.endgameModeIcons)
   );
 }
 
@@ -748,7 +781,8 @@ const expectedFiles = (
   ],
   [output.elements, manifest.elements.available.map((code) => `${code}.png`)],
   [output.paths, manifest.paths.available.map((code) => `${code}.png`)],
-  [output.navigation, manifest.navigation.icons.available.map((iconKey) => `${iconKey}.png`)]
+  [output.navigation, manifest.navigation.icons.available.map((iconKey) => `${iconKey}.png`)],
+  [output.endgameModeIcons, manifest.endgame.modeIcons.available.map((iconKey) => `${iconKey}.png`)]
 ];
 
 export async function manifestFilesExist(
@@ -843,6 +877,16 @@ export async function validateGeneratedAssetFiles(
     )
       throw new Error(`导航图标格式或尺寸异常：${iconKey}`);
   }
+  for (const iconKey of manifest.endgame.modeIcons.available) {
+    const metadata = await sharp(path.join(output.endgameModeIcons, `${iconKey}.png`)).metadata();
+    if (
+      metadata.format !== 'png' ||
+      metadata.width !== 128 ||
+      metadata.height !== 128 ||
+      !metadata.hasAlpha
+    )
+      throw new Error(`高难模式图标格式或尺寸异常：${iconKey}`);
+  }
 }
 
 async function directorySize(directory: string): Promise<number> {
@@ -868,7 +912,8 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
     relicPropertyIcons,
     elements,
     paths,
-    navigation
+    navigation,
+    endgameModeIcons
   ] = await Promise.all([
     directorySize(generatedPreviewRoot),
     directorySize(generatedPortraitRoot),
@@ -879,7 +924,8 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
     directorySize(generatedRelicPropertyRoot),
     directorySize(generatedElementRoot),
     directorySize(generatedPathRoot),
-    directorySize(generatedNavigationRoot)
+    directorySize(generatedNavigationRoot),
+    directorySize(generatedEndgameModeRoot)
   ]);
   return {
     previews,
@@ -892,6 +938,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
     elements,
     paths,
     navigation,
+    endgameModeIcons,
     total:
       previews +
       portraits +
@@ -902,6 +949,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
       relicPropertyIcons +
       elements +
       paths +
-      navigation
+      navigation +
+      endgameModeIcons
   };
 }

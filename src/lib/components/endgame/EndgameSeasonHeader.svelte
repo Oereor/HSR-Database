@@ -11,7 +11,7 @@
 
 <section class="endgame-season-header" aria-labelledby="endgame-season-title">
   <div class="endgame-season-header__identity">
-    <h2 id="endgame-season-title"><GameText text={period.name} /></h2>
+    <h1 id="endgame-season-title"><GameText text={period.name} /></h1>
     <p>
       <span>{period.dateLabel}</span>
       {#if period.status === 'current'}
