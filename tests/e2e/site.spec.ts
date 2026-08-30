@@ -480,9 +480,25 @@ test('Character 与 Enemy Overview 使用纵向自适应 Grid 且不溢出', asy
       ).filter((box): box is NonNullable<typeof box> => box !== null);
       expect(boxes.length).toBe(6);
       const firstRow = boxes.filter((box) => Math.abs(box.y - boxes[0].y) < 1);
-      expect(viewport.columns).toContain(firstRow.length);
-      expect(Math.max(...firstRow.map((box) => box.height))).toBeLessThanOrEqual(466);
-      expect(Math.min(...firstRow.map((box) => box.height))).toBeGreaterThanOrEqual(407);
+      const isCharacter = path === '/characters';
+      const expectedColumns = isCharacter
+        ? viewport.width >= 1350
+          ? [5, 6]
+          : viewport.width >= 821
+            ? [3, 4, 5]
+            : viewport.width >= 521
+              ? [3]
+              : viewport.width > 340
+                ? [2]
+                : [1]
+        : viewport.columns;
+      expect(expectedColumns).toContain(firstRow.length);
+      expect(Math.max(...firstRow.map((box) => box.height))).toBeLessThanOrEqual(
+        isCharacter ? 390 : 466
+      );
+      expect(Math.min(...firstRow.map((box) => box.height))).toBeGreaterThanOrEqual(
+        isCharacter ? 300 : 407
+      );
       expect(Math.max(...firstRow.map((box) => box.height))).toBeCloseTo(
         Math.min(...firstRow.map((box) => box.height)),
         0
@@ -581,7 +597,7 @@ test('技能在桌面保持双列等高并在窄屏切换单列', async ({ page 
   expect(narrowSecond!.y).toBeGreaterThan(narrowFirst!.y + narrowFirst!.height - 1);
 });
 
-test('筛选状态写入 URL、分页响应客户端导航并进入详情', async ({ page, isMobile }) => {
+test('筛选状态写入 URL、分页响应客户端导航并进入详情', async ({ page }) => {
   await page.goto('/characters');
   const firstPageFirstId = await page.locator('.entity-overview-card').first().getAttribute('href');
   await page.getByRole('link', { name: '下一页' }).click();
@@ -595,21 +611,17 @@ test('筛选状态写入 URL、分页响应客户端导航并进入详情', asyn
   await expect(page.locator('.pagination').getByText('第 1 / 3 页')).toBeVisible();
 
   await page.goto('/characters?rarity=4&page=2');
-  if (isMobile) {
-    await page.getByRole('button', { name: '筛选与排序' }).click();
-    await expect(page.getByRole('dialog', { name: '筛选与排序' })).toBeVisible();
-  }
-  await expect(page.locator('select[name="rarity"]')).toHaveValue('4');
-  await page.locator('select[name="rarity"]').selectOption('5');
+  await expect(page.getByRole('button', { name: '4★' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: '5★' }).click();
+  await expect(page).toHaveURL(/rarity=5/);
   await expect(page).not.toHaveURL(/page=/);
   await page.goto('/characters/1001');
   await expect(page.getByRole('heading', { name: '三月七·存护' })).toBeVisible();
 });
 
-test('目录搜索只在提交时应用草稿并重置分页', async ({ page, isMobile }) => {
+test('目录搜索只在提交时应用草稿并重置分页', async ({ page }) => {
   await page.goto('/characters?page=2');
   await page.waitForLoadState('networkidle');
-  if (isMobile) await page.getByRole('button', { name: '筛选与排序' }).click();
   const firstResult = page.locator('.entity-overview-card').first();
   const originalHref = await firstResult.getAttribute('href');
   const input = page.getByPlaceholder('搜索角色', { exact: true });
@@ -625,6 +637,25 @@ test('目录搜索只在提交时应用草稿并重置分页', async ({ page, is
     'src',
     '/generated-assets/characters/preview/1001.png'
   );
+});
+
+test('角色目录支持同类多选与跨类组合筛选', async ({ page }) => {
+  await page.goto('/characters');
+  await page.getByRole('button', { name: '巡猎' }).click();
+  await page.getByRole('button', { name: '虚无' }).click();
+  await expect(page).toHaveURL(/path=Rogue/);
+  await expect(page).toHaveURL(/path=Warlock/);
+  await expect(page.getByRole('button', { name: '巡猎' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: '虚无' })).toHaveAttribute('aria-pressed', 'true');
+
+  await page.getByRole('button', { name: '火' }).click();
+  await page.getByRole('button', { name: '雷' }).click();
+  await expect(page).toHaveURL(/element=Fire/);
+  await expect(page).toHaveURL(/element=Lightning/);
+  await expect(page.locator('.character-controls__summary')).toContainText('个结果');
+  await page.getByRole('button', { name: '清除筛选' }).click();
+  await expect(page).toHaveURL('/characters');
+  await expect(page.getByRole('button', { name: '巡猎' })).toHaveAttribute('aria-pressed', 'false');
 });
 
 test('全局搜索只包含保留的简中领域', async ({ page }) => {

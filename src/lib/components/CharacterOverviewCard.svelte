@@ -9,10 +9,11 @@
   export let entry: CatalogEntry;
   export let href: string;
   export let imageUrl: string | undefined;
+  export let density: 'default' | 'compact' = 'default';
 </script>
 
 {#key entry.id}
-  <EntityOverviewCard {href} {imageUrl} imageAlt="" fallbackLabel={entry.name}>
+  <EntityOverviewCard {href} {imageUrl} {density} imageAlt="" fallbackLabel={entry.name}>
     <svelte:fragment slot="overlay">
       {#if entry.rarity}<RarityStars rarity={entry.rarity} />{/if}
     </svelte:fragment>

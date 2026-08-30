@@ -7,6 +7,7 @@
   export let artworkPosition = 'center bottom';
   export let artworkScale = 1;
   export let size: 'large' | 'compact' = 'large';
+  export let density: 'default' | 'compact' = 'default';
   export let mediaPresentation: 'artwork' | 'icon' = 'artwork';
 
   let failedSource: string | undefined;
@@ -18,9 +19,11 @@
   class="entity-overview-card"
   class:entity-overview-card--missing={!visibleSource}
   class:entity-overview-card--compact={size === 'compact'}
+  class:entity-overview-card--dense={density === 'compact'}
   class:entity-overview-card--icon-media={mediaPresentation === 'icon'}
   data-image-missing={!visibleSource}
   data-card-size={size}
+  data-card-density={density}
   data-media-presentation={mediaPresentation}
   {href}
 >
@@ -74,6 +77,10 @@
 
   .entity-overview-card.entity-overview-card--compact {
     grid-template-rows: 176px auto;
+  }
+
+  .entity-overview-card.entity-overview-card--dense {
+    grid-template-rows: 236px 122px;
   }
 
   .entity-overview-card:hover {
@@ -168,6 +175,15 @@
     padding: var(--space-4);
   }
 
+  .entity-overview-card--dense .entity-overview-card__content {
+    padding: var(--space-3) var(--space-3) var(--space-4);
+  }
+
+  .entity-overview-card--dense .entity-overview-card__metadata {
+    min-height: 2.5rem;
+    gap: 0.35rem;
+  }
+
   .entity-overview-card__content--title-only {
     justify-content: center;
   }
@@ -233,6 +249,10 @@
   @media (max-width: 520px) {
     .entity-overview-card {
       grid-template-rows: 284px 124px;
+    }
+
+    .entity-overview-card.entity-overview-card--dense {
+      grid-template-rows: 190px 122px;
     }
   }
 </style>
