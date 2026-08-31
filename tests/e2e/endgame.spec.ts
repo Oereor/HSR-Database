@@ -291,29 +291,53 @@ test('Endgame desktop local rail 保持窄栏、active ownership 与原 query hr
   );
 });
 
-test('Endgame season selector 继续导航到同模式其他赛期', async ({ page }) => {
+test('MoC 与 PF 使用共享 Hero，AS 与 AA 保留 season selector', async ({ page }) => {
   await page.goto('/endgame/moc/1034?encounter=5312');
-  const selector = page.getByLabel('选择赛期');
-  const current = await selector.inputValue();
-  const target = await selector
-    .locator('option')
-    .evaluateAll(
-      (options, selected) =>
-        options
-          .map((option) => (option as HTMLOptionElement).value)
-          .find((value) => value !== selected),
-      current
-    );
-  if (!target) throw new Error('未找到可用于赛期 selector 回归的其他 MoC 赛期');
-  await selector.selectOption(target);
-  await expect(page).toHaveURL(new RegExp(`/endgame/moc/${target}$`));
+  await expect(page.getByLabel('选择赛期')).toHaveCount(0);
+
+  await page.goto('/endgame/pf/2025?encounter=20254');
+  const hero = page.locator('.endgame-season-hero');
+  await expect(page.getByLabel('选择赛期')).toHaveCount(0);
+  await expect(hero.getByText('赛期 ID · 2025', { exact: true })).toBeVisible();
+  await expect(hero.getByRole('heading', { name: '构事生意', level: 1 })).toBeVisible();
+  await expect(hero).toContainText('2026/08/03 – 2026/09/14');
+  await expect(hero).toContainText('当前');
+
+  await page.goto('/endgame/as/3020?encounter=30204');
+  await expect(page.getByLabel('选择赛期')).toBeVisible();
+  await page.goto('/endgame/aa/8?encounter=804%3Anormal');
+  await expect(page.getByLabel('选择赛期')).toBeVisible();
+});
+
+test('MoC Hero 与三级 inline divider heading 建立明确层级', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/endgame/moc/1033');
+  const hero = page.locator('.endgame-season-hero');
+  await expect(hero.getByText('赛期 ID · 1033', { exact: true })).toBeVisible();
+  await expect(hero.getByRole('heading', { name: '学院怪谈', level: 1 })).toBeVisible();
+  await expect(hero).toContainText('2026/07/06 – 2026/08/17');
+  expect(
+    await hero
+      .getByRole('heading', { name: '学院怪谈', level: 1 })
+      .evaluate((element) => Number.parseInt(getComputedStyle(element).fontWeight, 10))
+  ).toBeGreaterThanOrEqual(700);
+
+  await page.goto('/endgame/moc/1034?encounter=5312');
+  await expect(page.getByRole('heading', { name: '扫除风暴其十二', level: 2 })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '节点一', level: 3 })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '波次一', level: 4 }).first()).toBeVisible();
+  await expect(page.locator('.moc-encounter-heading')).not.toContainText('场战斗');
+  await expect(page.locator('[data-battle-slot="1"]')).not.toContainText('战斗 1');
+  await expect(
+    page.locator('[data-battle-slot="1"] > .endgame-node-section__heading')
+  ).not.toContainText('Lv.');
 });
 
 test('MoC 相同记忆紊流只展示一次并保留 GameText 格式', async ({ page }) => {
   await page.goto('/endgame/moc/1034?encounter=5312');
   const turbulence = page.locator('[data-endgame-mechanics="memory-turbulence"]');
   await expect(turbulence).toHaveCount(1);
-  const surface = turbulence.locator('.endgame-mechanic-surface');
+  const surface = turbulence.locator('.season-mechanic-card');
   await expect(surface.getByRole('heading', { name: '记忆紊流', level: 2 })).toBeVisible();
   await expect(turbulence.locator(':scope > .section-heading')).toHaveCount(0);
   const percentage = turbulence.locator('[data-game-color="#f29e38ff"]').filter({ hasText: '80%' });
@@ -321,28 +345,155 @@ test('MoC 相同记忆紊流只展示一次并保留 GameText 格式', async ({ 
   await expect(percentage).toHaveClass(/description-token--unbreak/);
   await expect(turbulence).toContainText('1回合');
   await expect(turbulence.locator('img')).toHaveCount(0);
+  await expect(surface.getByRole('heading', { name: '记忆紊流', level: 2 })).toHaveCSS(
+    'color',
+    'rgb(241, 220, 162)'
+  );
 });
 
-test('PF 战意机制与荒腔走板保持 fixed/selectable 分离', async ({ page }) => {
+test('MoC WaveGroup 按卡片数量定宽并在窄屏保持分组原子性', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/endgame/moc/1034?encounter=5312');
+
+  const firstNodeGroups = page.locator('[data-battle-slot="1"] [data-endgame-wave-group]');
+  await expect(firstNodeGroups).toHaveCount(2);
+  await expect(firstNodeGroups.nth(0).locator('[data-endgame-enemy-card]')).toHaveCount(2);
+  await expect(firstNodeGroups.nth(1).locator('[data-endgame-enemy-card]')).toHaveCount(1);
+  const firstNodeBoxes = await firstNodeGroups.evaluateAll((groups) =>
+    groups.map((group) => {
+      const box = group.getBoundingClientRect();
+      return { width: box.width, y: box.y };
+    })
+  );
+  expect(firstNodeBoxes[0].width).toBeGreaterThan(firstNodeBoxes[1].width * 1.7);
+  expect(Math.abs(firstNodeBoxes[0].y - firstNodeBoxes[1].y)).toBeLessThanOrEqual(1);
+  expect(
+    await firstNodeGroups.nth(1).evaluate((group) => getComputedStyle(group, '::before').width)
+  ).toBe('1px');
+
+  const thirdNodeGroups = page.locator('[data-battle-slot="3"] [data-endgame-wave-group]');
+  await expect(thirdNodeGroups.nth(0).locator('[data-endgame-enemy-card]')).toHaveCount(3);
+  await expect(thirdNodeGroups.nth(1).locator('[data-endgame-enemy-card]')).toHaveCount(1);
+  const thirdNodeY = await thirdNodeGroups.evaluateAll((groups) =>
+    groups.map((group) => group.getBoundingClientRect().y)
+  );
+  expect(Math.abs(thirdNodeY[0] - thirdNodeY[1])).toBeLessThanOrEqual(1);
+
+  await page.setViewportSize({ width: 900, height: 1000 });
+  const tabletBoxes = await firstNodeGroups.evaluateAll((groups) =>
+    groups.map((group) => {
+      const box = group.getBoundingClientRect();
+      return { width: box.width, y: box.y };
+    })
+  );
+  expect(tabletBoxes[1].y).toBeGreaterThan(tabletBoxes[0].y);
+  expect(Math.abs(tabletBoxes[0].width - tabletBoxes[1].width)).toBeLessThanOrEqual(1);
+  expect(
+    await firstNodeGroups.nth(1).evaluate((group) => getComputedStyle(group, '::before').content)
+  ).toBe('none');
+  const tabletCardY = await firstNodeGroups
+    .nth(0)
+    .locator('[data-endgame-enemy-card]')
+    .evaluateAll((cards) => cards.map((card) => card.getBoundingClientRect().y));
+  expect(Math.abs(tabletCardY[0] - tabletCardY[1])).toBeLessThanOrEqual(1);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  const mobileCardY = await firstNodeGroups
+    .nth(0)
+    .locator('[data-endgame-enemy-card]')
+    .evaluateAll((cards) => cards.map((card) => card.getBoundingClientRect().y));
+  expect(mobileCardY[1]).toBeGreaterThan(mobileCardY[0]);
+  for (const width of [900, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+  }
+});
+
+test('MoC 两个单敌人 wave 保持内容宽度，不平分整行', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/endgame/moc/1025?encounter=4405');
+  const groups = page.locator('[data-battle-slot="2"] [data-endgame-wave-group]');
+  await expect(groups).toHaveCount(2);
+  const boxes = await groups.evaluateAll((items) =>
+    items.map((item) => {
+      const box = item.getBoundingClientRect();
+      return { width: box.width, y: box.y };
+    })
+  );
+  expect(boxes.every(({ width }) => width < 320)).toBe(true);
+  expect(Math.abs(boxes[0].y - boxes[1].y)).toBeLessThanOrEqual(1);
+});
+
+test('MoC WaveLayout 按实际卡片数整体配对或换行', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+
+  await page.goto('/endgame/moc/100?encounter=5');
+  const twoByTwo = page.locator('[data-battle-slot="1"] [data-endgame-wave-group]');
+  await expect(twoByTwo).toHaveCount(2);
+  await expect(twoByTwo.nth(0).locator('[data-endgame-enemy-card]')).toHaveCount(2);
+  await expect(twoByTwo.nth(1).locator('[data-endgame-enemy-card]')).toHaveCount(2);
+  const pairedBoxes = await twoByTwo.evaluateAll((groups) =>
+    groups.map((group) => {
+      const box = group.getBoundingClientRect();
+      const cardY = [...group.querySelectorAll('[data-endgame-enemy-card]')].map(
+        (card) => card.getBoundingClientRect().y
+      );
+      return { width: box.width, y: box.y, cardY };
+    })
+  );
+  expect(Math.abs(pairedBoxes[0].y - pairedBoxes[1].y)).toBeLessThanOrEqual(1);
+  expect(Math.abs(pairedBoxes[0].width - pairedBoxes[1].width)).toBeLessThanOrEqual(1);
+  expect(new Set(pairedBoxes[0].cardY.map(Math.round)).size).toBe(1);
+  expect(new Set(pairedBoxes[1].cardY.map(Math.round)).size).toBe(1);
+
+  await page.goto('/endgame/moc/100?encounter=3');
+  const threeByTwo = page.locator('[data-battle-slot="1"] [data-endgame-wave-group]');
+  await expect(threeByTwo).toHaveCount(2);
+  const wrappedY = await threeByTwo.evaluateAll((groups) =>
+    groups.map((group) => group.getBoundingClientRect().y)
+  );
+  expect(wrappedY[1]).toBeGreaterThan(wrappedY[0]);
+
+  await page.goto('/endgame/moc/100?encounter=11');
+  const oneByTwo = page.locator('[data-battle-slot="1"] [data-endgame-wave-group]');
+  await expect(oneByTwo).toHaveCount(2);
+  const asymmetricBoxes = await oneByTwo.evaluateAll((groups) =>
+    groups.map((group) => {
+      const box = group.getBoundingClientRect();
+      return { width: box.width, y: box.y };
+    })
+  );
+  expect(Math.abs(asymmetricBoxes[0].y - asymmetricBoxes[1].y)).toBeLessThanOrEqual(1);
+  expect(asymmetricBoxes[1].width).toBeGreaterThan(asymmetricBoxes[0].width * 1.7);
+});
+
+test('PF 战意机制复用 segmented SeasonMechanicCard，荒腔走板保持静态中性', async ({ page }) => {
   await page.goto('/endgame/pf/2025?encounter=20254');
   const battleWill = page.locator('[data-endgame-mechanics="battle-will"]');
-  const fixedSurface = battleWill.locator('.endgame-mechanic-surface');
+  const fixedSurface = battleWill.locator('.season-mechanic-card');
   await expect(fixedSurface).toHaveCount(1);
   await expect(fixedSurface.getByRole('heading', { name: '战意机制', level: 2 })).toBeVisible();
-  await expect(battleWill.locator('.endgame-mechanic-entry')).toHaveCount(3);
-  await expect(battleWill.locator('.endgame-mechanic-entry h3')).toHaveText([
+  await expect(battleWill.locator('.season-mechanic-card__segment')).toHaveCount(3);
+  await expect(battleWill.locator('.season-mechanic-card__segment h3')).toHaveText([
     '追加攻击',
     '战熄潮平',
     '战意汹涌'
   ]);
-  await expect(battleWill.locator('.endgame-mechanic-entry.endgame-option-card')).toHaveCount(0);
   await expect(battleWill.getByRole('heading', { name: '追加攻击' })).toBeVisible();
   await expect(battleWill.getByRole('heading', { name: '战熄潮平' })).toBeVisible();
   await expect(battleWill.getByRole('heading', { name: '战意汹涌' })).toBeVisible();
+  await expect(fixedSurface.getByRole('heading', { name: '战意机制', level: 2 })).toHaveCSS(
+    'color',
+    'rgb(241, 220, 162)'
+  );
 
   const cacophony = page.locator('[data-endgame-mechanics="cacophony"]');
-  await expect(cacophony.getByText('三选一 · 每队', { exact: true })).toBeVisible();
-  await expect(cacophony.locator('.endgame-option-card')).toHaveCount(3);
+  await expect(cacophony.getByText(/三选一/)).toHaveCount(0);
+  await expect(cacophony.locator('.pf-cacophony__tile')).toHaveCount(3);
+  await expect(cacophony.locator('.endgame-option-card')).toHaveCount(0);
   await expect(cacophony.getByRole('heading', { name: '暴言' })).toBeVisible();
   await expect(cacophony.getByRole('heading', { name: '高论' })).toBeVisible();
   await expect(cacophony.getByRole('heading', { name: '快嘴' })).toBeVisible();
@@ -350,21 +501,32 @@ test('PF 战意机制与荒腔走板保持 fixed/selectable 分离', async ({ pa
   await expect(cacophony.locator('img')).toHaveCount(0);
   expect(
     await cacophony
-      .locator('.endgame-option-card')
+      .locator('.pf-cacophony__tile')
       .first()
-      .evaluate((element) => getComputedStyle(element).cursor)
-  ).not.toBe('pointer');
+      .evaluate((element) => ({
+        cursor: getComputedStyle(element).cursor,
+        boxShadow: getComputedStyle(element).boxShadow
+      }))
+  ).toEqual({ cursor: 'auto', boxShadow: 'none' });
+
+  await page.goto('/endgame/pf/2001?encounter=20014');
+  const historical = page.locator('[data-endgame-mechanics="battle-will"]');
+  await expect(historical.locator('.season-mechanic-card__segment')).toHaveCount(1);
+  await expect(historical.locator('[data-season-mechanic-segments]')).toHaveAttribute(
+    'data-season-mechanic-segments',
+    '1'
+  );
 });
 
-test('PF fixed 与 selectable mechanics 按真实内容宽度降级为 3/2/1 列', async ({ page }) => {
+test('PF 战意与荒腔走板按真实内容宽度降级为 3/2/1 列', async ({ page }) => {
   await page.goto('/endgame/pf/2025?encounter=20254');
   const fixedEntries = page.locator(
-    '[data-endgame-mechanics="battle-will"] .endgame-mechanic-entry-list'
+    '[data-endgame-mechanics="battle-will"] .season-mechanic-card__segments'
   );
-  const options = page.locator('[data-endgame-mechanics="cacophony"] .endgame-option-grid');
+  const options = page.locator('[data-endgame-mechanics="cacophony"] .pf-cacophony__grid');
   for (const [width, expectedColumns] of [
     [1440, 3],
-    [1200, 2],
+    [1100, 2],
     [390, 1]
   ] as const) {
     await page.setViewportSize({ width, height: 1000 });
@@ -591,11 +753,23 @@ test('PF 只显示波内唯一敌人类型', async ({ page }) => {
   await page.goto('/endgame/pf/2025?encounter=20254');
   await expect(page.getByText(/重复生成、生成次数与先后顺序已省略/)).toBeVisible();
   const firstBattle = page.locator('[data-battle-slot="1"]');
-  await expect(firstBattle.locator('[data-wave] > h4')).toHaveText(['波次 1', '波次 2', '波次 3']);
+  await expect(page.getByRole('heading', { name: '构事生意其四', level: 2 })).toBeVisible();
+  await expect(firstBattle.getByRole('heading', { name: '节点一', level: 3 })).toBeVisible();
+  await expect(firstBattle.locator('[data-wave] h4')).toHaveText(['波次一', '波次二', '波次三']);
+  await expect(page.locator('.pf-encounter-heading')).not.toContainText('场战斗');
+  await expect(firstBattle).not.toContainText('战斗 1');
+  await expect(firstBattle.locator('.endgame-node-section__heading')).not.toContainText('Lv.');
   await expect(firstBattle.locator('[data-wave="spawn-303230411"] .endgame-enemy')).toHaveCount(4);
   await expect(firstBattle.locator('[data-wave="spawn-303230412"] .endgame-enemy')).toHaveCount(3);
   await expect(firstBattle.locator('[data-wave="spawn-303230413"] .endgame-enemy')).toHaveCount(3);
   await expect(firstBattle.locator('.endgame-enemy__count')).toHaveCount(0);
+  const cards = firstBattle.locator('[data-endgame-enemy-card]');
+  expect(
+    await cards.evaluateAll((items) =>
+      items.every((item) => item.getAttribute('data-endgame-enemy-level') === '85')
+    )
+  ).toBe(true);
+  await expect(cards.first().locator('.endgame-enemy__level')).toHaveText('Lv.85');
 });
 
 test('敌方实体卡采用 portrait-first 信息层级并保留全部战斗字段', async ({ page }) => {
@@ -605,7 +779,8 @@ test('敌方实体卡采用 portrait-first 信息层级并保留全部战斗字�
   const artwork = card.locator('.endgame-enemy__artwork');
   const name = card.locator('.endgame-enemy__name');
   await expect(card).toHaveAttribute('data-enemy-card-variant', 'standard');
-  await expect(card.locator('.endgame-enemy__level')).toHaveCount(0);
+  await expect(card).toHaveAttribute('data-endgame-enemy-level', '95');
+  await expect(card.locator('.endgame-enemy__level')).toHaveText('Lv.95');
   await expect(card.locator('[data-endgame-hp]')).toBeVisible();
   await expect(card.locator('[data-endgame-speed]')).toBeVisible();
   await expect(card.locator('[data-endgame-toughness]')).toBeVisible();
@@ -641,7 +816,7 @@ test('敌方实体卡采用 portrait-first 信息层级并保留全部战斗字�
   await expect(page.locator('.endgame-enemy__count').first()).toHaveText(/^×[2-9]\d*$/);
 });
 
-test('PF 保留 compact variant，AS 与其它模式复用 standard 敌方卡', async ({ page }) => {
+test('PF 保留 compact variant 并固定一波一行，AS 与其它模式继续使用原布局', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
 
   await page.goto('/endgame/pf/2025?encounter=20254');
@@ -649,10 +824,42 @@ test('PF 保留 compact variant，AS 与其它模式复用 standard 敌方卡', 
     'data-enemy-card-variant',
     'compact'
   );
-  const pfWaves = page.locator('[data-battle-slot="1"] .endgame-wave-list');
+  const pfWaves = page.locator('[data-battle-slot="1"] [data-wave-layout="stacked"]');
   await expect(pfWaves.locator('[data-wave]')).toHaveCount(3);
-  await expect(pfWaves).toHaveAttribute('data-wave-layout', 'high-density');
-  expect(await gridColumnCount(pfWaves)).toBe(2);
+  const waveBoxes = await pfWaves.locator('[data-wave]').evaluateAll((waves) =>
+    waves.map((wave) => {
+      const box = wave.getBoundingClientRect();
+      return { width: box.width, y: box.y };
+    })
+  );
+  expect(waveBoxes[1].y).toBeGreaterThan(waveBoxes[0].y);
+  expect(waveBoxes[2].y).toBeGreaterThan(waveBoxes[1].y);
+  expect(
+    Math.max(...waveBoxes.map(({ width }) => width)) -
+      Math.min(...waveBoxes.map(({ width }) => width))
+  ).toBeLessThanOrEqual(1);
+  const firstWaveCardY = await pfWaves
+    .locator('[data-wave]')
+    .first()
+    .locator('[data-endgame-enemy-card]')
+    .evaluateAll((cards) => cards.map((card) => card.getBoundingClientRect().y));
+  expect(new Set(firstWaveCardY.map(Math.round)).size).toBe(1);
+
+  for (const width of [1200, 900, 390]) {
+    await page.setViewportSize({ width, height: 1000 });
+    const rows = await pfWaves
+      .locator('[data-wave]')
+      .evaluateAll((waves) => waves.map((wave) => wave.getBoundingClientRect().y));
+    expect(rows[1]).toBeGreaterThan(rows[0]);
+    expect(rows[2]).toBeGreaterThan(rows[1]);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      )
+    ).toBeLessThanOrEqual(1);
+  }
+
+  await page.setViewportSize({ width: 1440, height: 1000 });
 
   await page.goto('/endgame/as/3020?encounter=30204');
   await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(3);
@@ -892,7 +1099,7 @@ test('Endgame 移动端折叠 local rail，dialog 支持 ESC、焦点返回与�
   await expect(page.getByRole('button', { name: '选择关卡，当前关卡 11' })).toBeVisible();
 
   const columns = await page
-    .locator('.endgame-battle-grid')
+    .locator('.moc-node-list')
     .evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
   expect(columns).toBe(1);
   const overflow = await page.evaluate(
@@ -901,11 +1108,11 @@ test('Endgame 移动端折叠 local rail，dialog 支持 ESC、焦点返回与�
   expect(overflow).toBeLessThanOrEqual(1);
 });
 
-test('Endgame selectable mechanics 移动端单列且无横向溢出', async ({ page }) => {
+test('PF 荒腔走板移动端单列且无横向溢出', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/endgame/pf/2025?encounter=20254');
   const columns = await page
-    .locator('[data-endgame-mechanics="cacophony"] .endgame-option-grid')
+    .locator('[data-endgame-mechanics="cacophony"] .pf-cacophony__grid')
     .evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
   expect(columns).toBe(1);
   const overflow = await page.evaluate(

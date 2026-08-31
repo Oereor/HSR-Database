@@ -1820,15 +1820,8 @@ footer a {
 }
 
 @container endgame-main (min-width: 620px) {
-  .endgame-option-grid--pf,
   .endgame-option-grid--aa {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@container endgame-main (min-width: 860px) {
-  .endgame-option-grid--pf {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -2110,11 +2103,19 @@ footer a {
   font-size: 2.25rem;
   line-height: 1;
 }
-.endgame-enemy__count {
+.endgame-enemy__artwork-tags {
   position: absolute;
   z-index: 1;
   top: var(--space-3);
   right: var(--space-3);
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: var(--space-1);
+  pointer-events: none;
+}
+.endgame-enemy__level,
+.endgame-enemy__count {
   border: 1px solid rgb(215 181 109 / 28%);
   border-radius: 999px;
   background: rgb(7 10 18 / 76%);
@@ -2123,6 +2124,15 @@ footer a {
   backdrop-filter: blur(6px);
   font-size: var(--font-helper);
   font-weight: 700;
+}
+.endgame-enemy__level {
+  border-color: rgb(180 198 230 / 18%);
+  background: rgb(7 10 18 / 72%);
+  padding: 0.2rem 0.44rem;
+  color: var(--text-secondary);
+  font-size: var(--font-internal);
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
 }
 .endgame-enemy__content {
   display: flex;

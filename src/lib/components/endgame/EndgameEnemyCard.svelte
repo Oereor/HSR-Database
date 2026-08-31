@@ -8,6 +8,7 @@
 
   export let occurrence: EnemyOccurrenceView;
   export let variant: EndgameEnemyCardVariant = 'standard';
+  export let level: number | undefined = undefined;
 
   let portraitFailed = false;
 </script>
@@ -20,6 +21,7 @@
   data-enemy-card-variant={variant}
   data-monster-id={occurrence.monsterId}
   data-template-id={occurrence.monsterTemplateId}
+  data-endgame-enemy-level={level}
 >
   <div class="endgame-enemy__artwork" aria-hidden="true">
     {#if occurrence.portraitUrl && !portraitFailed}
@@ -36,10 +38,15 @@
     {:else}
       <span class="endgame-enemy__fallback">敌</span>
     {/if}
-    {#if occurrence.count}
-      <span class="endgame-enemy__count" aria-label={`数量 ${occurrence.count}`}
-        >×{occurrence.count}</span
-      >
+    {#if level !== undefined || occurrence.count}
+      <span class="endgame-enemy__artwork-tags">
+        {#if level !== undefined}<span class="endgame-enemy__level">Lv.{level}</span>{/if}
+        {#if occurrence.count}
+          <span class="endgame-enemy__count" aria-label={`数量 ${occurrence.count}`}
+            >×{occurrence.count}</span
+          >
+        {/if}
+      </span>
     {/if}
   </div>
 
