@@ -1402,49 +1402,6 @@ footer a {
   color: var(--text-secondary);
   font-size: var(--font-helper);
 }
-.endgame-period-card {
-  display: flex;
-  min-width: 0;
-  border: 1px solid var(--surface-border);
-  border-radius: var(--radius-card);
-  background: linear-gradient(145deg, rgb(21 29 45 / 88%), rgb(10 15 25 / 76%));
-  transition:
-    border-color var(--motion),
-    background var(--motion);
-}
-.endgame-period-card:hover,
-.endgame-period-card--recommended {
-  border-color: var(--surface-border-strong);
-  background: linear-gradient(145deg, rgb(25 35 54 / 94%), rgb(12 18 30 / 84%));
-}
-.endgame-period-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-3);
-}
-.endgame-period-card {
-  align-items: end;
-  justify-content: space-between;
-  gap: var(--space-6);
-  padding: var(--space-4);
-}
-.endgame-period-card h2 {
-  margin: var(--space-2) 0 var(--space-1);
-  font-size: var(--font-major-title);
-}
-.endgame-period-card p,
-.endgame-period-card strong {
-  margin: 0;
-  font-size: var(--font-helper);
-}
-.endgame-period-card strong {
-  flex: 0 0 auto;
-  color: var(--gold-soft);
-}
-.endgame-period-card strong span {
-  margin-left: var(--space-2);
-}
-.endgame-period-status,
 .endgame-inline-status {
   display: inline-flex;
   border: 1px solid var(--surface-border);
@@ -1454,29 +1411,9 @@ footer a {
   font-size: var(--font-internal);
   font-weight: 700;
 }
-.endgame-period-status--current,
 .endgame-inline-status {
   border-color: var(--surface-border-strong);
   color: var(--gold-soft);
-}
-.endgame-period-status--upcoming {
-  color: #9fc4ff;
-}
-.endgame-mode-summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-6);
-  margin-bottom: var(--space-8);
-}
-.endgame-mode-summary p {
-  max-width: 760px;
-  margin: 0;
-  color: var(--text-secondary);
-}
-.endgame-mode-summary h1 {
-  margin: 0 0 var(--space-2);
-  font-size: var(--font-page-title);
 }
 .endgame-season-header {
   display: flex;
@@ -3112,15 +3049,6 @@ th {
   .endgame-breadcrumb {
     margin-bottom: var(--space-2);
   }
-  .endgame-period-list {
-    grid-template-columns: 1fr;
-  }
-  .endgame-mode-summary {
-    align-items: start;
-    flex-direction: column;
-    gap: var(--space-3);
-    margin-bottom: var(--space-6);
-  }
   .endgame-season-header {
     align-items: stretch;
     flex-direction: column;
@@ -3210,11 +3138,6 @@ th {
   .enhancement-control {
     width: 100%;
     justify-content: space-between;
-  }
-  .endgame-period-card {
-    align-items: start;
-    flex-direction: column;
-    gap: var(--space-3);
   }
   .endgame-encounter-heading {
     margin-bottom: 0;

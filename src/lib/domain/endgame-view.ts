@@ -65,6 +65,19 @@ export interface EndgamePeriodView {
   encounterCount: number;
 }
 
+export type EndgamePeriodGroups = Record<EndgamePeriodStatus, EndgamePeriodView[]>;
+
+export function groupEndgamePeriods(periods: EndgamePeriodView[]): EndgamePeriodGroups {
+  const groups: EndgamePeriodGroups = {
+    current: [],
+    upcoming: [],
+    historical: [],
+    unknown: []
+  };
+  for (const period of periods) groups[period.status].push(period);
+  return groups;
+}
+
 export interface EndgameModeView {
   mode: EndgameMode;
   label: string;

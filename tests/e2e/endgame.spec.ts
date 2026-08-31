@@ -19,7 +19,9 @@ test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
   await expect(page.getByRole('link', { name: /混沌回忆/ }).first()).toBeVisible();
 
   await page.goto('/endgame/moc');
-  await expect(page.getByRole('heading', { name: '混沌回忆' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '混沌回忆赛期', level: 1 })).toHaveClass(
+    /sr-only/
+  );
   await expect(page.getByRole('link', { name: /扫除风暴/ })).toBeVisible();
 
   await page.goto('/endgame/moc/1034?encounter=5312');
@@ -72,6 +74,135 @@ test('Endgame overview 使用统一 Hero、3 + 1 卡片和严格日期降级', a
   for (const width of [900, 390]) {
     await page.setViewportSize({ width, height: 900 });
     expect(await gridColumnCount(page.locator('.endgame-overview-grid'))).toBe(1);
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+  }
+});
+
+test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown 与 History 布局', async ({
+  page
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+
+  await page.goto('/endgame/moc');
+  await expect(page.locator('.endgame-mode-summary')).toHaveCount(0);
+  await expect(page.getByText(/按楼层查看固定编队/)).toHaveCount(0);
+  await expect(page.getByText('56 个赛期', { exact: true })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: '时间未知', level: 2 })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '历史赛期', level: 2 })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '当前赛期', level: 2 })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: '即将开放', level: 2 })).toBeVisible();
+  await expect(page.locator('[data-endgame-season-card="upcoming"]')).toHaveCount(2);
+  const mocUnknown = page.locator('[data-endgame-season-card="unknown"]');
+  await expect(mocUnknown).toHaveCount(4);
+  await expect(mocUnknown.locator('.endgame-season-card__date')).toHaveText(['-', '-', '-', '-']);
+  await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(50);
+  const sweep = page.getByRole('link', { name: '扫除风暴，查看赛期详情', exact: true });
+  await expect(sweep).toHaveAttribute('href', '/endgame/moc/1034');
+  await expect(sweep).toContainText('12 个关卡');
+
+  await page.goto('/endgame/pf');
+  await expect(page.getByRole('heading', { name: '当前赛期', level: 2 })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '即将开放', level: 2 })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '历史赛期', level: 2 })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /时间未知/, level: 2 })).toHaveCount(0);
+  const current = page.locator('[data-endgame-season-card="current"]');
+  const upcoming = page.locator('[data-endgame-season-card="upcoming"]');
+  const history = page.locator('[data-endgame-season-card="historical"]');
+  await expect(current).toHaveCount(1);
+  await expect(current).toContainText('构事生意');
+  await expect(upcoming).toHaveCount(1);
+  await expect(upcoming).toContainText('立界开篇');
+  await expect(history).toHaveCount(24);
+  await expect(current.locator('.endgame-season-card__watermark')).toHaveAttribute(
+    'aria-hidden',
+    'true'
+  );
+  await expect(upcoming.locator('.endgame-season-card__watermark')).toHaveCount(0);
+  await expect(history.locator('.endgame-season-card__watermark')).toHaveCount(0);
+  await expect(page.locator('.endgame-period-status')).toHaveCount(0);
+  const heights = await Promise.all([
+    current.evaluate((element) => element.getBoundingClientRect().height),
+    upcoming.evaluate((element) => element.getBoundingClientRect().height),
+    history.first().evaluate((element) => element.getBoundingClientRect().height)
+  ]);
+  expect(heights[0]).toBeGreaterThan(heights[1]);
+  expect(heights[1]).toBeGreaterThan(heights[2]);
+  const desktopUpcomingSpacing = await upcoming.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return {
+      paddingTop: style.paddingTop,
+      paddingRight: style.paddingRight,
+      paddingBottom: style.paddingBottom,
+      paddingLeft: style.paddingLeft
+    };
+  });
+  expect(desktopUpcomingSpacing).toEqual({
+    paddingTop: '16px',
+    paddingRight: '24px',
+    paddingBottom: '16px',
+    paddingLeft: '24px'
+  });
+  await current.focus();
+  await expect(current).toBeFocused();
+  expect(await current.evaluate((element) => getComputedStyle(element).outlineStyle)).toBe('solid');
+
+  await page.setViewportSize({ width: 390, height: 900 });
+  const mobileUpcomingSpacing = await upcoming.evaluate((element) => {
+    const style = getComputedStyle(element);
+    const cardRect = element.getBoundingClientRect();
+    const titleRect = element.querySelector('h3')!.getBoundingClientRect();
+    const footerRect = element
+      .querySelector('.endgame-season-card__footer')!
+      .getBoundingClientRect();
+    const arrowRect = element.querySelector('.endgame-season-card__arrow')!.getBoundingClientRect();
+    return {
+      padding: style.padding,
+      topInset: titleRect.top - cardRect.top,
+      leftInset: titleRect.left - cardRect.left,
+      bottomInset: cardRect.bottom - footerRect.bottom,
+      rightInset: cardRect.right - arrowRect.right
+    };
+  });
+  expect(mobileUpcomingSpacing.padding).toBe('16px');
+  expect(mobileUpcomingSpacing.topInset).toBeGreaterThan(16);
+  expect(mobileUpcomingSpacing.leftInset).toBeGreaterThan(16);
+  expect(mobileUpcomingSpacing.bottomInset).toBeGreaterThan(16);
+  expect(mobileUpcomingSpacing.rightInset).toBeGreaterThan(16);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    )
+  ).toBeLessThanOrEqual(1);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+
+  await page.goto('/endgame/as');
+  await expect(page.locator('[data-endgame-season-card="current"]')).toHaveCount(1);
+  await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(19);
+  await expect(page.getByRole('heading', { name: '即将开放', level: 2 })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: /时间未知/, level: 2 })).toHaveCount(0);
+
+  await page.goto('/endgame/aa');
+  await expect(page.getByRole('heading', { name: '时间未知', level: 2 })).toBeVisible();
+  await expect(page.locator('[data-endgame-season-card="unknown"]')).toHaveCount(9);
+  await expect(page.locator('[data-endgame-season-card="current"]')).toHaveCount(0);
+  await expect(page.locator('[data-endgame-season-card="upcoming"]')).toHaveCount(0);
+  await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(0);
+});
+
+test('Endgame archive grid 在四档宽度保持 4/3/2/1 列且无页面溢出', async ({ page }) => {
+  await page.goto('/endgame/pf');
+  const grid = page.locator('.endgame-archive-grid');
+  for (const [width, columns] of [
+    [1440, 4],
+    [1100, 3],
+    [768, 2],
+    [390, 1]
+  ] as const) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await gridColumnCount(grid)).toBe(columns);
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth
     );

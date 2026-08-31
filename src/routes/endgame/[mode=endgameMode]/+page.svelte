@@ -1,10 +1,10 @@
 <script lang="ts">
   import EndgameModeNav from '$lib/components/endgame/EndgameModeNav.svelte';
-  import type { EndgamePeriodStatus } from '$lib/domain/endgame-view';
+  import EndgameSeasonCard from '$lib/components/endgame/EndgameSeasonCard.svelte';
+  import { groupEndgamePeriods } from '$lib/domain/endgame-view';
   export let data;
 
-  const statusLabel = (status: EndgamePeriodStatus) =>
-    ({ current: '当前', upcoming: '即将开放', historical: '历史', unknown: '时间未知' })[status];
+  $: periodGroups = groupEndgamePeriods(data.mode.periods);
 </script>
 
 <svelte:head>
@@ -18,29 +18,132 @@
 
 <EndgameModeNav activeMode={data.mode.mode} />
 
-<section class="endgame-mode-summary" aria-labelledby="endgame-mode-title">
-  <div>
-    <h1 id="endgame-mode-title">{data.mode.label}</h1>
-    <p>{data.mode.description}</p>
-  </div>
-  <span class="count-badge">{data.mode.periods.length} 个赛期</span>
-</section>
+<h1 class="sr-only">{data.mode.label}赛期</h1>
 
-<section class="endgame-period-list" aria-label="赛期列表">
-  {#each data.mode.periods as period}
-    <a
-      class:endgame-period-card--recommended={period.groupId === data.mode.recommendedGroupId}
-      class="endgame-period-card"
-      href={`/endgame/${data.mode.mode}/${period.groupId}`}
-    >
-      <div>
-        <span class={`endgame-period-status endgame-period-status--${period.status}`}>
-          {statusLabel(period.status)}
-        </span>
-        <h2>{period.name}</h2>
-        <p>{period.dateLabel}</p>
+<div class="endgame-archive">
+  {#if periodGroups.current.length}
+    <section class="endgame-archive-section" aria-labelledby="endgame-current-periods">
+      <div class="endgame-archive-section__heading">
+        <h2 id="endgame-current-periods">当前赛期</h2>
+        <span aria-hidden="true"></span>
       </div>
-      <strong>{period.encounterCount} 个关卡 <span>→</span></strong>
-    </a>
-  {/each}
-</section>
+      <div class="endgame-archive-featured-list">
+        {#each periodGroups.current as period (period.groupId)}
+          <EndgameSeasonCard mode={data.mode.mode} {period} variant="current" />
+        {/each}
+      </div>
+    </section>
+  {/if}
+
+  {#if periodGroups.upcoming.length}
+    <section class="endgame-archive-section" aria-labelledby="endgame-upcoming-periods">
+      <div class="endgame-archive-section__heading">
+        <h2 id="endgame-upcoming-periods">即将开放</h2>
+        <span aria-hidden="true"></span>
+      </div>
+      <div class="endgame-archive-featured-list">
+        {#each periodGroups.upcoming as period (period.groupId)}
+          <EndgameSeasonCard mode={data.mode.mode} {period} variant="upcoming" />
+        {/each}
+      </div>
+    </section>
+  {/if}
+
+  {#if periodGroups.unknown.length}
+    <section class="endgame-archive-section" aria-labelledby="endgame-unknown-periods">
+      <div class="endgame-archive-section__heading">
+        <h2 id="endgame-unknown-periods">时间未知</h2>
+        <span aria-hidden="true"></span>
+      </div>
+      <div class="endgame-archive-grid">
+        {#each periodGroups.unknown as period (period.groupId)}
+          <EndgameSeasonCard mode={data.mode.mode} {period} variant="unknown" />
+        {/each}
+      </div>
+    </section>
+  {/if}
+
+  {#if periodGroups.historical.length}
+    <section class="endgame-archive-section" aria-labelledby="endgame-historical-periods">
+      <div class="endgame-archive-section__heading">
+        <h2 id="endgame-historical-periods">历史赛期</h2>
+        <span aria-hidden="true"></span>
+      </div>
+      <div class="endgame-archive-grid">
+        {#each periodGroups.historical as period (period.groupId)}
+          <EndgameSeasonCard mode={data.mode.mode} {period} variant="historical" />
+        {/each}
+      </div>
+    </section>
+  {/if}
+</div>
+
+<style>
+  .endgame-archive {
+    display: grid;
+    gap: var(--space-12);
+  }
+
+  .endgame-archive-section {
+    min-width: 0;
+  }
+
+  .endgame-archive-section__heading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .endgame-archive-section__heading h2 {
+    flex: 0 0 auto;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-major-title);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+
+  .endgame-archive-section__heading span {
+    height: 1px;
+    flex: 1 1 auto;
+    background: color-mix(in srgb, var(--border) 72%, transparent);
+  }
+
+  .endgame-archive-featured-list {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .endgame-archive-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-3);
+  }
+
+  @media (max-width: 1180px) {
+    .endgame-archive-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 820px) {
+    .endgame-archive {
+      gap: var(--space-10);
+    }
+
+    .endgame-archive-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 520px) {
+    .endgame-archive {
+      gap: var(--space-8);
+    }
+
+    .endgame-archive-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

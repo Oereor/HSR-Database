@@ -19,11 +19,13 @@ import {
   formatHpWithPhases,
   formatRatioPercentage,
   formatRoundedDecimal,
+  groupEndgamePeriods,
   mergeFixedOccurrences,
   occurrenceIdentity,
   recommendedGroupId,
   resolveEndgameEnemyReference,
   type EndgameEnemyDetailSource,
+  type EndgamePeriodView,
   uniqueSpawnOccurrences
 } from '../../src/lib/domain/endgame-view';
 import { ELEMENT_COLORS, getElementColor } from '../../src/lib/domain/elements';
@@ -243,6 +245,60 @@ describe('Endgame 赛期回退与推荐', () => {
     expect(group1035.encounters).toHaveLength(12);
     expect(buildPeriodView(group1035).name).toBe('数据组 1035');
     expect(recommendedGroupId(moc.groups)).toBe(1034);
+  });
+});
+
+describe('Endgame archive 赛期分组', () => {
+  it('保持 begin <= now < end 的既有边界规则', () => {
+    const group = mocGroup(1036, {
+      name: '边界测试',
+      begin: '2026-08-31 04:00:00',
+      end: '2026-09-14 04:00:00'
+    });
+    const begin = Date.parse('2026-08-30T20:00:00.000Z');
+    const end = Date.parse('2026-09-13T20:00:00.000Z');
+
+    expect(buildPeriodView(group, begin - 1).status).toBe('upcoming');
+    expect(buildPeriodView(group, begin).status).toBe('current');
+    expect(buildPeriodView(group, end - 1).status).toBe('current');
+    expect(buildPeriodView(group, end).status).toBe('historical');
+  });
+
+  it('按既有状态稳定分组且不改变输入顺序', () => {
+    const periods: EndgamePeriodView[] = [
+      { groupId: 4, name: '未来', dateLabel: '未来日期', status: 'upcoming', encounterCount: 4 },
+      {
+        groupId: 3,
+        name: '未知',
+        dateLabel: '时间资料未提供',
+        status: 'unknown',
+        encounterCount: 4
+      },
+      { groupId: 2, name: '当前', dateLabel: '当前日期', status: 'current', encounterCount: 4 },
+      { groupId: 1, name: '历史', dateLabel: '历史日期', status: 'historical', encounterCount: 4 }
+    ];
+
+    const groups = groupEndgamePeriods(periods);
+    expect(groups.current.map(({ groupId }) => groupId)).toEqual([2]);
+    expect(groups.upcoming.map(({ groupId }) => groupId)).toEqual([4]);
+    expect(groups.unknown.map(({ groupId }) => groupId)).toEqual([3]);
+    expect(groups.historical.map(({ groupId }) => groupId)).toEqual([1]);
+  });
+
+  it('真实 MoC 与 AA 无排期记录只进入 unknown', async () => {
+    const now = Date.parse('2026-08-31T08:00:00.000Z');
+    const moc = await dataset('moc');
+    const aa = await dataset('aa');
+    const mocGroups = groupEndgamePeriods(moc.groups.map((group) => buildPeriodView(group, now)));
+    const aaGroups = groupEndgamePeriods(aa.groups.map((group) => buildPeriodView(group, now)));
+
+    expect(mocGroups.unknown.map(({ groupId }) => groupId)).toEqual([100, 900, 1034, 1035]);
+    expect(mocGroups.upcoming.map(({ groupId }) => groupId)).toEqual([108, 109]);
+    expect(mocGroups.historical).toHaveLength(50);
+    expect(aaGroups.unknown).toHaveLength(9);
+    expect(aaGroups.current).toHaveLength(0);
+    expect(aaGroups.upcoming).toHaveLength(0);
+    expect(aaGroups.historical).toHaveLength(0);
   });
 });
 
