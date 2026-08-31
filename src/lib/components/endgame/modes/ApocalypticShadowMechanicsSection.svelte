@@ -1,12 +1,12 @@
 <script lang="ts">
-  import GameText from '$lib/components/GameText.svelte';
   import type { EndgameMechanicView } from '$lib/domain/endgame-view';
-  import MechanicSurface from '../mechanics/MechanicSurface.svelte';
+  import MechanicSectionCard from '../mechanics/MechanicSectionCard.svelte';
 
   export let mechanic: EndgameMechanicView;
+
+  $: content = { kind: 'description' as const, description: mechanic.description };
 </script>
 
 <section class="endgame-mechanics-section" data-endgame-mechanics="aftertaste">
-  <div class="section-heading"><h2><GameText text={mechanic.name} /></h2></div>
-  <MechanicSurface description={mechanic.description} />
+  <MechanicSectionCard title={mechanic.name} {content} headingLevel={2} />
 </section>

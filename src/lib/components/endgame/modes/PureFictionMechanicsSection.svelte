@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { EndgameMechanicView, PureFictionCacophonyView } from '$lib/domain/endgame-view';
-  import SeasonMechanicCard from '../mechanics/SeasonMechanicCard.svelte';
+  import MechanicSectionCard from '../mechanics/MechanicSectionCard.svelte';
   import PureFictionCacophonySection from './PureFictionCacophonySection.svelte';
 
   export let fixedMechanics: EndgameMechanicView[] = [];
@@ -21,7 +21,7 @@
     class="endgame-mechanics-section endgame-mechanics-section--fixed"
     data-endgame-mechanics="battle-will"
   >
-    <SeasonMechanicCard title="战意机制" content={battleWillContent} headingLevel={2} />
+    <MechanicSectionCard title="战意机制" content={battleWillContent} headingLevel={2} />
   </section>
 {/if}
 

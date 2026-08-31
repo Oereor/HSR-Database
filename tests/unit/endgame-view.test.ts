@@ -426,6 +426,26 @@ describe('Endgame occurrence 投影', () => {
     }
   });
 
+  it('真实 AA 骑士关的 battle 仅是单 battle、单 stage 的展示 wrapper', async () => {
+    const aa = await dataset('aa');
+    let knightCount = 0;
+
+    for (const group of aa.groups) {
+      const view = buildGroupView(group, [buildPeriodView(group)], new Map());
+      for (const knight of view.encounters.filter(
+        (encounter) => encounter.variant === 'preliminary'
+      )) {
+        knightCount += 1;
+        expect(knight.battles).toHaveLength(1);
+        expect(knight.battles[0].stages).toHaveLength(1);
+        expect(knight.battles[0].stages[0].waves.length).toBeGreaterThanOrEqual(1);
+        expect(knight.battles[0].stages[0].waves.length).toBeLessThanOrEqual(2);
+      }
+    }
+
+    expect(knightCount).toBe(27);
+  });
+
   it('真实 AA 只展示实际 spawned MonsterID', async () => {
     const aa = await dataset('aa');
     const group = aa.groups.find((candidate) => candidate.groupId === 8)!;
@@ -640,5 +660,42 @@ describe('Endgame mechanics 视图投影', () => {
     expect(preliminary.judgmentQuadrantKey).toBeUndefined();
     expect('battleRule' in normal).toBe(false);
     expect('battleRule' in hard).toBe(false);
+  });
+
+  it('AA 王棋全部复用单 battle/stage 数据骨架并保留真实波次形态', async () => {
+    const arbitration = await dataset('aa');
+    const kingEncounters = arbitration.groups.flatMap((group) => {
+      const view = buildGroupView(group, [buildPeriodView(group)], new Map());
+      if (view.mode !== 'aa') throw new Error('AA view mode 不匹配');
+      return view.encounters
+        .filter(
+          (encounter) => encounter.variant === 'boss-normal' || encounter.variant === 'boss-hard'
+        )
+        .map((encounter) => ({ groupId: group.groupId, encounter }));
+    });
+
+    expect(kingEncounters).toHaveLength(18);
+    expect(
+      kingEncounters.every(
+        ({ encounter }) =>
+          encounter.battles.length === 1 && encounter.battles[0]?.stages.length === 1
+      )
+    ).toBe(true);
+    expect(
+      kingEncounters.every(({ encounter }) => {
+        const level = encounter.battles[0]?.stages[0]?.level;
+        return level === (encounter.variant === 'boss-hard' ? 120 : 100);
+      })
+    ).toBe(true);
+    expect(
+      kingEncounters
+        .filter(({ encounter }) => encounter.battles[0]?.stages[0]?.waves.length === 1)
+        .map(({ groupId }) => groupId)
+    ).toEqual([2, 2, 3, 3, 9, 9]);
+    expect(
+      kingEncounters
+        .filter(({ encounter }) => encounter.battles[0]?.stages[0]?.waves[0]?.enemies.length === 1)
+        .map(({ groupId }) => groupId)
+    ).toEqual([2, 2, 3, 3, 9, 9]);
   });
 });

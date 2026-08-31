@@ -1,10 +1,9 @@
 <script lang="ts">
-  import InlineDividerHeading from '$lib/components/InlineDividerHeading.svelte';
   import type { EndgameBattleSlotView } from '$lib/domain/endgame-view';
+  import EndgameNodeHeading from './EndgameNodeHeading.svelte';
   import EndgameWaveLayout from './EndgameWaveLayout.svelte';
   import {
     buildEndgameWaveGroups,
-    formatChineseOrdinal,
     type EndgameEnemyCardVariant,
     type EndgameWaveLayoutPolicy
   } from './presentation';
@@ -18,9 +17,7 @@
 
 <section class="endgame-node-section" id={`battle-${battle.slot}`} data-battle-slot={battle.slot}>
   <div class="endgame-node-section__heading">
-    <InlineDividerHeading level={3} scale="medium">
-      节点{formatChineseOrdinal(battle.slot)}
-    </InlineDividerHeading>
+    <EndgameNodeHeading slot={battle.slot} />
   </div>
   <EndgameWaveLayout {groups} policy={waveLayout} {enemyVariant} />
 </section>
