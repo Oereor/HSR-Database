@@ -138,9 +138,8 @@
 
   .home-hero {
     position: relative;
-    display: grid;
+    display: flex;
     min-height: 360px;
-    grid-template-columns: minmax(0, 0.85fr) minmax(420px, 1.15fr);
     align-items: center;
     overflow: hidden;
     border-bottom: 1px solid var(--border);
@@ -152,15 +151,16 @@
   .home-hero__identity {
     position: relative;
     z-index: 5;
+    width: 100%;
     padding: var(--space-12) 0;
   }
 
   .home-hero h1 {
-    max-width: 720px;
     margin: 0;
     font-size: clamp(2.45rem, 4.4vw, 4.25rem);
     line-height: 1.08;
     letter-spacing: -0.05em;
+    white-space: nowrap;
   }
 
   .home-hero__identity p {
@@ -172,10 +172,20 @@
   }
 
   .home-hero__collage {
-    position: relative;
-    align-self: stretch;
+    position: absolute;
+    z-index: 1;
+    inset: 0 0 0 auto;
+    width: min(68%, 880px);
     min-height: 360px;
     isolation: isolate;
+    mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 15%) 18%, #000 48%, #000 100%);
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgb(0 0 0 / 15%) 18%,
+      #000 48%,
+      #000 100%
+    );
   }
 
   .home-hero__collage::after {
@@ -360,16 +370,25 @@
 
   @media (max-width: 820px) {
     .home-hero {
+      display: block;
       min-height: 0;
-      grid-template-columns: minmax(0, 1fr);
     }
 
     .home-hero__identity {
       padding: var(--space-8) 0 var(--space-4);
     }
 
+    .home-hero h1 {
+      white-space: normal;
+    }
+
     .home-hero__collage {
+      position: relative;
+      inset: auto;
+      width: 100%;
       min-height: 270px;
+      mask-image: none;
+      -webkit-mask-image: none;
     }
 
     .home-hero__collage::after {
