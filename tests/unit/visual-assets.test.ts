@@ -14,6 +14,7 @@ import {
   resolveElementIconAsset,
   resolvePathIconAsset,
   resolveNavigationIconAsset,
+  resolveBrandIconAsset,
   resolveEndgameModeIconAsset
 } from '../../src/lib/data/visual-assets';
 import type { AssetAvailability, VisualAssetManifest } from '../../src/lib/domain/visual-assets';
@@ -25,6 +26,7 @@ import {
   generateVisualAssets,
   manifestCoversRequirements,
   NAVIGATION_ICON_SOURCE_NAMES,
+  BRAND_ICON_SOURCE_NAMES,
   PATH_SOURCE_NAMES,
   readCharacterPreviewSources,
   readLightConePreviewSources,
@@ -57,6 +59,7 @@ const manifest = (options?: {
   elements?: string[];
   paths?: string[];
   navigationIcons?: string[];
+  brandIcons?: string[];
   endgameModeIcons?: string[];
 }): VisualAssetManifest => ({
   schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
@@ -79,6 +82,7 @@ const manifest = (options?: {
   elements: available(options?.elements ?? []),
   paths: available(options?.paths ?? []),
   navigation: { icons: available(options?.navigationIcons ?? []) },
+  branding: { icons: available(options?.brandIcons ?? []) },
   endgame: { modeIcons: available(options?.endgameModeIcons ?? []) }
 });
 
@@ -143,7 +147,8 @@ describe('视觉资源管线', () => {
       relicPropertyIcons: ['IconAttack'],
       elements: ['Lightning'],
       paths: ['Memory'],
-      navigationIcons: ['overview']
+      navigationIcons: ['overview'],
+      brandIcons: ['train-party']
     });
     expect(resolveCharacterPreviewAsset('1001', source)).toBe(
       '/generated-assets/characters/preview/1001.png'
@@ -170,6 +175,9 @@ describe('视觉资源管线', () => {
     expect(resolvePathIconAsset('Memory', source)).toBe('/generated-assets/paths/Memory.png');
     expect(resolveNavigationIconAsset('overview', source)).toBe(
       '/generated-assets/navigation/overview.png'
+    );
+    expect(resolveBrandIconAsset('train-party', source)).toBe(
+      '/generated-assets/branding/train-party.png'
     );
     expect(resolveNavigationIconAsset('characters', source)).toBeUndefined();
     expect(resolveCharacterPreviewAsset('1002', source)).toBeUndefined();
@@ -208,6 +216,7 @@ describe('视觉资源管线', () => {
       enemies: 'IconActivityTreasureTrotter',
       endgame: 'AbyssIcon01'
     });
+    expect(BRAND_ICON_SOURCE_NAMES).toEqual({ 'train-party': 'TrainPartyIcon' });
   });
 
   it('manifest 必须覆盖角色、属性与命途的完整需求集合', () => {
@@ -219,6 +228,7 @@ describe('视觉资源管线', () => {
       elements: ['Fire'],
       paths: ['Warrior'],
       navigationIcons: ['overview'],
+      brandIcons: ['train-party'],
       endgameModeIcons: ['AbyssThemeTabIcon']
     });
     expect(
@@ -231,6 +241,7 @@ describe('视觉资源管线', () => {
         elements: ['Fire'],
         paths: ['Warrior'],
         navigationIcons: ['overview'],
+        brandIcons: ['train-party'],
         endgameModeIcons: ['AbyssThemeTabIcon']
       })
     ).toBe(true);
@@ -244,6 +255,7 @@ describe('视觉资源管线', () => {
         elements: ['Fire'],
         paths: ['Warrior'],
         navigationIcons: ['overview'],
+        brandIcons: ['train-party'],
         endgameModeIcons: ['AbyssThemeTabIcon']
       })
     ).toBe(false);
@@ -326,6 +338,7 @@ describe('视觉资源管线', () => {
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
     expect(requirements.navigationIcons).toHaveLength(6);
+    expect(requirements.brandIcons).toEqual(['train-party']);
     expect(requirements.endgameModeIcons).toEqual([
       'AbyssThemeTabIcon',
       'ChallengeStory',
@@ -352,6 +365,10 @@ describe('视觉资源管线', () => {
     expect(generated!.relics.pieces.available).toHaveLength(184);
     expect(generated!.relicProperties.icons.available).toHaveLength(18);
     expect(generated!.navigation.icons.available).toEqual(requirements.navigationIcons);
+    expect(generated!.branding.icons.available).toEqual(requirements.brandIcons);
+    expect(resolveBrandIconAsset('train-party', generated)).toBe(
+      '/generated-assets/branding/train-party.png'
+    );
     expect(generated!.endgame.modeIcons.available).toEqual(requirements.endgameModeIcons);
     expect(resolveEndgameModeIconAsset('ChallengeStory', generated)).toBe(
       '/generated-assets/endgame/modes/ChallengeStory.png'
@@ -373,6 +390,7 @@ describe('视觉资源管线', () => {
     expect(resolveRelicSetIconAsset('101', parsed)).toBeUndefined();
     expect(resolveRelicPieceIconAsset('31011', parsed)).toBeUndefined();
     expect(resolveRelicPropertyIconAsset('IconAttack', parsed)).toBeUndefined();
+    expect(resolveBrandIconAsset('train-party', parsed)).toBeUndefined();
   });
 
   it('角色 preview index 解析上游当前 4.5 的全部 97 个 ID', async () => {
@@ -585,6 +603,7 @@ describe('视觉资源管线', () => {
         elements: [],
         paths: [],
         navigationIcons: [],
+        brandIcons: [],
         endgameModeIcons: []
       },
       outputRoot
@@ -647,6 +666,7 @@ describe('视觉资源管线', () => {
         elements: [],
         paths: [],
         navigationIcons: [],
+        brandIcons: [],
         endgameModeIcons: []
       },
       outputRoot
@@ -701,6 +721,7 @@ describe('视觉资源管线', () => {
           elements: [],
           paths: [],
           navigationIcons: [],
+          brandIcons: [],
           endgameModeIcons: []
         },
         outputRoot

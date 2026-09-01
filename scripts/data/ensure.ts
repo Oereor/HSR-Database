@@ -1,7 +1,12 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { DataManifest } from '../../src/lib/domain/types.js';
+import type {
+  CatalogEntry,
+  DataManifest,
+  HomepageRecentWarpData
+} from '../../src/lib/domain/types.js';
 import { assertDataRoot, generatedRoot, resolveDataRoot, sourceCommit } from './paths.js';
+import { assertHomepageRecentWarpData } from './homepage.js';
 import { syncData } from './sync.js';
 
 const manifestPath = path.join(generatedRoot, 'manifest.json');
@@ -22,19 +27,41 @@ const endgameFilesPresent = await Promise.all(
     }
   })
 );
+let homepageFilesValid = true;
+try {
+  const [homepage, characterCatalog, lightConeCatalog] = await Promise.all([
+    readFile(path.join(generatedRoot, 'homepage.json'), 'utf8').then(
+      (value) => JSON.parse(value) as HomepageRecentWarpData
+    ),
+    readFile(path.join(generatedRoot, 'catalogs', 'characters.json'), 'utf8').then(
+      (value) => JSON.parse(value) as CatalogEntry[]
+    ),
+    readFile(path.join(generatedRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
+      (value) => JSON.parse(value) as CatalogEntry[]
+    )
+  ]);
+  assertHomepageRecentWarpData(homepage, characterCatalog, lightConeCatalog);
+} catch {
+  homepageFilesValid = false;
+}
 try {
   const root = assertDataRoot(resolveDataRoot());
   const commit = sourceCommit(root);
   if (
     !manifest ||
-    manifest.schemaVersion !== 32 ||
+    manifest.schemaVersion !== 33 ||
     manifest.sourceCommit !== commit ||
-    endgameFilesPresent.includes(false)
+    endgameFilesPresent.includes(false) ||
+    !homepageFilesValid
   )
     await syncData();
   else console.log(`生成数据已是最新版本：${commit.slice(0, 12)}`);
 } catch (error) {
-  if (manifest?.schemaVersion === 32 && !endgameFilesPresent.includes(false)) {
+  if (
+    manifest?.schemaVersion === 33 &&
+    !endgameFilesPresent.includes(false) &&
+    homepageFilesValid
+  ) {
     console.warn(`上游暂不可用，继续使用已有生成数据：${(error as Error).message}`);
   } else {
     throw error;

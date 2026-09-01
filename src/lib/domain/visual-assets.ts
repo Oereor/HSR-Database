@@ -3,8 +3,11 @@ export interface AssetAvailability {
   missing: string[];
 }
 
+export const BRAND_ICON_KEYS = ['train-party'] as const;
+export type BrandIconKey = (typeof BRAND_ICON_KEYS)[number];
+
 export interface VisualAssetManifest {
-  schemaVersion: 10;
+  schemaVersion: 11;
   sourceCommit?: string;
   generatedAt: string;
   characters: {
@@ -25,6 +28,9 @@ export interface VisualAssetManifest {
   elements: AssetAvailability;
   paths: AssetAvailability;
   navigation: {
+    icons: AssetAvailability;
+  };
+  branding: {
     icons: AssetAvailability;
   };
   endgame: {

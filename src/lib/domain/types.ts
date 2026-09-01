@@ -421,6 +421,12 @@ export interface SearchEntry {
   meta?: string;
 }
 
+export interface HomepageRecentWarpData {
+  schemaVersion: 1;
+  avatarUps: Array<{ gachaId: number; avatarId: string }>;
+  weaponUps: Array<{ gachaId: number; equipmentId: string }>;
+}
+
 export interface DataManifest {
   schemaVersion: number;
   sourceCommit: string;

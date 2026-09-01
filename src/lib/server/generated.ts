@@ -3,6 +3,7 @@ import path from 'node:path';
 import type {
   CatalogEntry,
   DataManifest,
+  HomepageRecentWarpData,
   RelicCatalogEntry,
   RelicProperty
 } from '$lib/domain/types';
@@ -15,6 +16,7 @@ async function readJson<T>(...segments: string[]): Promise<T> {
 }
 
 export const getManifest = () => readJson<DataManifest>('manifest.json');
+export const getHomepageRecentWarps = () => readJson<HomepageRecentWarpData>('homepage.json');
 export const getCatalog = (category: CategorySlug) =>
   readJson<CatalogEntry[]>('catalogs', `${category}.json`);
 export const getRelicCatalog = () => readJson<RelicCatalogEntry[]>('catalogs', 'relics.json');

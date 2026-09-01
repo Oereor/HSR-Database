@@ -19,6 +19,7 @@ export const generatedRelicPropertyRoot = path.join(generatedAssetRoot, 'relic-p
 export const generatedElementRoot = path.join(generatedAssetRoot, 'elements');
 export const generatedPathRoot = path.join(generatedAssetRoot, 'paths');
 export const generatedNavigationRoot = path.join(generatedAssetRoot, 'navigation');
+export const generatedBrandingRoot = path.join(generatedAssetRoot, 'branding');
 export const generatedEndgameRoot = path.join(generatedAssetRoot, 'endgame');
 export const generatedEndgameModeRoot = path.join(generatedEndgameRoot, 'modes');
 
@@ -85,6 +86,7 @@ export function assertAssetOutputPaths(): void {
     generatedElementRoot,
     generatedPathRoot,
     generatedNavigationRoot,
+    generatedBrandingRoot,
     generatedEndgameRoot,
     generatedEndgameModeRoot
   ]) {

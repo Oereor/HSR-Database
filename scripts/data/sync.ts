@@ -70,6 +70,7 @@ import { characterLdSourceNames, characterLdSourceSpecs } from './character-sour
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildEndgameData } from './endgame.js';
 import { createExtraEffectResolver } from './extra-effects.js';
+import { buildHomepageRecentWarpData } from './homepage.js';
 import { parseGameVersion } from './source-metadata.js';
 import {
   buildEnemySkillPhases,
@@ -215,6 +216,7 @@ export async function syncData(): Promise<DataManifest> {
     'AvatarPromotionConfig',
     'AvatarPropertyConfig',
     'EquipmentConfig',
+    'GachaBasicInfo',
     'ItemConfigEquipment',
     'EquipmentSkillConfig',
     'EquipmentPromotionConfig',
@@ -1785,6 +1787,11 @@ export async function syncData(): Promise<DataManifest> {
   console.log('构建 Endgame 敌方实例与精确 HP…');
   // Normalize and validate every required relation before replacing the last known-good output.
   const endgame = await buildEndgameData(root, text);
+  const homepage = buildHomepageRecentWarpData(
+    tables.GachaBasicInfo,
+    characterCatalog,
+    lightConeCatalog
+  );
 
   await resetDirectory(generatedRoot);
   await resetDirectory(staticGeneratedRoot);
@@ -1806,9 +1813,10 @@ export async function syncData(): Promise<DataManifest> {
   await writeJson(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), relicProperties);
   for (const [mode, dataset] of Object.entries(endgame.datasets))
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
+  await writeJson(path.join(generatedRoot, 'homepage.json'), homepage);
 
   const manifest: DataManifest = {
-    schemaVersion: 32,
+    schemaVersion: 33,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,

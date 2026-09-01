@@ -35,6 +35,7 @@ const requiredFiles = [
   'ExcelOutput/ChallengePeakBossConfig.json',
   'ExcelOutput/BattleEventConfig.json',
   'ExcelOutput/EquipmentConfig.json',
+  'ExcelOutput/GachaBasicInfo.json',
   'ExcelOutput/RelicSetConfig.json',
   'ExcelOutput/ItemConfig.json',
   'ExcelOutput/MonsterTemplateConfig.json',

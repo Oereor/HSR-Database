@@ -628,7 +628,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(97);
-    expect(manifest.schemaVersion).toBe(32);
+    expect(manifest.schemaVersion).toBe(33);
     expect(manifest.gameVersionFull).toBe('4.5.0');
     expect(manifest.gameVersion).toBe('4.5');
     expect(manifest.language).toBe('CHS');

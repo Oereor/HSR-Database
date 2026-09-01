@@ -30,7 +30,7 @@ export async function verifyAssets(): Promise<void> {
     if (!PATH_SOURCE_NAMES[code]) throw new Error(`缺少命途图标映射：${code}`);
   }
   console.log(
-    `视觉资源验证通过：${manifest.characters.previews.available.length} 角色预览图、${manifest.characters.portraits.available.length} 角色立绘、${manifest.lightCones.previews.available.length} 光锥预览图、${manifest.lightCones.portraits.available.length} 光锥立绘、${manifest.relics.icons.available.length} 遗器套装图标、${manifest.relics.pieces.available.length} 遗器部件图标、${manifest.relicProperties.icons.available.length} 遗器属性图标、${manifest.elements.available.length} 属性图标、${manifest.paths.available.length} 命途图标、${manifest.navigation.icons.available.length} 导航图标、${manifest.endgame.modeIcons.available.length} 高难模式图标。`
+    `视觉资源验证通过：${manifest.characters.previews.available.length} 角色预览图、${manifest.characters.portraits.available.length} 角色立绘、${manifest.lightCones.previews.available.length} 光锥预览图、${manifest.lightCones.portraits.available.length} 光锥立绘、${manifest.relics.icons.available.length} 遗器套装图标、${manifest.relics.pieces.available.length} 遗器部件图标、${manifest.relicProperties.icons.available.length} 遗器属性图标、${manifest.elements.available.length} 属性图标、${manifest.paths.available.length} 命途图标、${manifest.navigation.icons.available.length} 导航图标、${manifest.branding.icons.available.length} 品牌图标、${manifest.endgame.modeIcons.available.length} 高难模式图标。`
   );
   warnAssetFallback(
     manifest,

@@ -7,6 +7,7 @@ import type {
   CharacterProfile,
   DataManifest,
   Enemy,
+  HomepageRecentWarpData,
   LightCone,
   RelicCatalogEntry,
   RelicProperty,
@@ -54,11 +55,16 @@ import {
 import type { EndgameAudit } from './endgame.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
 import { parseGameVersion } from './source-metadata.js';
+import {
+  assertHomepageRecentWarpData,
+  buildHomepageRecentWarpData,
+  type HomepageGachaRow
+} from './homepage.js';
 
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 32)
+if (manifest.schemaVersion !== 33)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 const parsedGameVersion = parseGameVersion(manifest.sourceVersion);
@@ -67,6 +73,29 @@ if (
   manifest.gameVersion !== parsedGameVersion.gameVersion
 )
   throw new Error('生成数据的游戏版本与 TurnBasedGameData sourceVersion 不一致');
+
+const rawRoot = assertDataRoot();
+const [homepage, homepageCharacterCatalog, homepageLightConeCatalog, homepageGachaRows] =
+  await Promise.all([
+    readFile(path.join(generatedRoot, 'homepage.json'), 'utf8').then(
+      (value) => JSON.parse(value) as HomepageRecentWarpData
+    ),
+    readFile(path.join(generatedRoot, 'catalogs', 'characters.json'), 'utf8').then(
+      (value) => JSON.parse(value) as CatalogEntry[]
+    ),
+    readFile(path.join(generatedRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
+      (value) => JSON.parse(value) as CatalogEntry[]
+    ),
+    readTable<HomepageGachaRow>(rawRoot, 'GachaBasicInfo')
+  ]);
+assertHomepageRecentWarpData(homepage, homepageCharacterCatalog, homepageLightConeCatalog);
+const expectedHomepage = buildHomepageRecentWarpData(
+  homepageGachaRows,
+  homepageCharacterCatalog,
+  homepageLightConeCatalog
+);
+if (JSON.stringify(homepage) !== JSON.stringify(expectedHomepage))
+  throw new Error('Homepage 生成文件与 GachaBasicInfo 最近跃迁选择结果不一致');
 
 const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'utf8')) as {
   upstreamTables: Record<string, number>;
@@ -641,7 +670,6 @@ const enemyDetails = await Promise.all(
       ) as Enemy
   )
 );
-const rawRoot = assertDataRoot();
 const [rawTemplates, rawConfigs, rawHardLevels, rawElites] = await Promise.all([
   readTable<Record<string, any>>(rawRoot, 'MonsterTemplateConfig'),
   readTable<Record<string, any>>(rawRoot, 'MonsterConfig'),
