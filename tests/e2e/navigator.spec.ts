@@ -1,14 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-const expectedIcons = [
-  'overview',
-  'characters',
-  'light-cones',
-  'relics',
-  'enemies',
-  'endgame',
-  'rogue'
-];
+const expectedIcons = ['overview', 'characters', 'light-cones', 'relics', 'enemies', 'endgame'];
 
 test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', async ({ page, isMobile }) => {
   test.skip(isMobile, '仅桌面项目执行');
@@ -18,7 +10,7 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
   const rail = page.locator('.navigator-rail');
   await expect(rail).toBeVisible();
   expect((await rail.boundingBox())?.width).toBe(72);
-  await expect(rail.locator('.primary-navigation a')).toHaveCount(7);
+  await expect(rail.locator('.primary-navigation a')).toHaveCount(6);
   await expect(rail.locator('a[aria-current="page"]')).toHaveAttribute('href', '/');
 
   const iconSources = await rail
@@ -42,7 +34,7 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
   await expect(dialog.getByText('星轨档案库')).toBeVisible();
   await expect(dialog.getByText('数据版本 4.5')).toBeVisible();
   await expect(dialog.getByText('014e33e2')).toBeVisible();
-  await expect(dialog.getByRole('navigation').getByRole('link')).toHaveCount(7);
+  await expect(dialog.getByRole('navigation').getByRole('link')).toHaveCount(6);
   const after = await main.boundingBox();
   expect(after?.x).toBe(before?.x);
   expect(after?.width).toBe(before?.width);
@@ -61,14 +53,14 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
 
 test('移动端仅保留顶部触发器并使用完整抽屉', async ({ page, isMobile }) => {
   test.skip(!isMobile, '仅移动项目执行');
-  await page.goto('/rogue');
+  await page.goto('/endgame');
   await expect(page.locator('.navigator-rail')).toBeHidden();
   await expect(page.locator('.mobile-header')).toBeVisible();
 
   await page.getByRole('button', { name: '打开导航' }).click();
   const dialog = page.getByRole('dialog', { name: '完整导航' });
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole('link', { name: '模拟宇宙' })).toHaveAttribute(
+  await expect(dialog.getByRole('link', { name: '高难模式' })).toHaveAttribute(
     'aria-current',
     'page'
   );
@@ -93,11 +85,14 @@ test('导航重构后的代表路由均保留全局 shell', async ({ page }) => 
     '/light-cones/20000',
     '/relics/101',
     '/enemies/1002011',
-    '/endgame',
-    '/rogue'
+    '/endgame'
   ]) {
     await page.goto(route);
     await expect(page.locator('.site-shell')).toBeVisible();
     await expect(page.locator('main')).toBeVisible();
   }
+
+  const response = await page.goto('/rogue');
+  expect(response?.status()).toBe(404);
+  await expect(page.getByRole('heading', { name: '这条星轨暂不存在' })).toBeVisible();
 });

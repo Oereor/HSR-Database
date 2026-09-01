@@ -1,5 +1,6 @@
 <script lang="ts">
   import GameText from '$lib/components/GameText.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
   import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
   import { groupTracesForDisplay } from '$lib/domain/trace-groups';
   import type { Trace } from '$lib/domain/types';
@@ -56,7 +57,9 @@
 
   {#if groups.specialAbilities.length || groups.standaloneStats.length}
     <section class="trace-independent-section" data-trace-independent-section>
-      <h3>{groups.specialAbilities.length ? '独立行迹' : '独立属性加成'}</h3>
+      <SectionHeading level={3} headingLevel={3}
+        >{groups.specialAbilities.length ? '独立行迹' : '独立属性加成'}</SectionHeading
+      >
       {#each groups.specialAbilities as ability (ability.id)}
         <article
           class="trace-card trace-card--ability trace-card--special"

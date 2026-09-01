@@ -8,6 +8,8 @@
   import CompactEntityCard from '$lib/components/CompactEntityCard.svelte';
   import EnemyWeaknessGroup from '$lib/components/EnemyWeaknessGroup.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import SectionNav from '$lib/components/SectionNav.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { formatRatioPercentage } from '$lib/domain/endgame-view';
   import { getEnemyRankLabel } from '$lib/domain/enemy-overview';
@@ -84,6 +86,12 @@
     monster.weaknesses.length
       ? `弱点：${monster.weaknesses.map((weakness) => weakness.name).join('、')}`
       : '无弱点数据';
+
+  const sectionNavItems = [
+    { id: 'stats', label: '基础数据' },
+    { id: 'monsters', label: '派生个体' },
+    { id: 'skills', label: '技能' }
+  ] as const;
 </script>
 
 <header class="detail-profile-hero detail-profile-hero--enemy" data-enemy-hero>
@@ -111,16 +119,22 @@
       </div>
     </div>
   </div>
-  <aside class="detail-profile-hero__inspection" aria-label="Enemy Template 基础数据">
+  <aside
+    id="stats"
+    class="detail-profile-hero__inspection section-nav-target"
+    aria-label="Enemy Template 基础数据"
+  >
     <EnemyTemplateBaseStatsPanel baseStats={detail.template.baseStats} />
   </aside>
 </header>
 
-<section id="monsters" class="detail-section enemy-detail-section">
-  <div class="section-heading">
-    <h2>派生个体</h2>
-    <span>{detail.monsters.length} 个变种</span>
-  </div>
+<SectionNav items={sectionNavItems} />
+
+<section id="monsters" class="detail-section enemy-detail-section section-nav-target">
+  <SectionHeading level={1}>
+    派生个体
+    <svelte:fragment slot="meta">{detail.monsters.length} 个变种</svelte:fragment>
+  </SectionHeading>
 
   <div class="skill-level-control enemy-level-control enemy-level-control--standalone">
     <div>
@@ -239,10 +253,10 @@
   </div>
 
   {#if selectedMonster.summons.length}<section id="summons" class="enemy-owned-section">
-      <div class="section-heading">
-        <h3>召唤单位</h3>
-        <span>{selectedMonster.summons.length} 个</span>
-      </div>
+      <SectionHeading level={2}>
+        召唤单位
+        <svelte:fragment slot="meta">{selectedMonster.summons.length} 个</svelte:fragment>
+      </SectionHeading>
       <div class="enemy-summon-list">
         {#each selectedMonster.summons as summon (summon.monsterId)}<CompactEntityCard
             href={summon.href}
@@ -261,7 +275,7 @@
     </section>{/if}
 
   <section id="skill-groups" class="enemy-owned-section">
-    <div class="section-heading"><h3>技能组</h3></div>
+    <SectionHeading level={2}>技能组</SectionHeading>
     {#if selectedMonster.skillPhases.length > 1}
       <div class="enemy-phase-tabs" role="tablist" aria-label="敌人技能阶段">
         {#each selectedMonster.skillPhases as phase (phase.index)}
@@ -315,11 +329,11 @@
   </section>
 </section>
 
-<section id="skills" class="detail-section enemy-detail-section">
-  <div class="section-heading">
-    <h2>技能</h2>
-    <span>{detail.skillDefinitions.length} 项</span>
-  </div>
+<section id="skills" class="detail-section enemy-detail-section section-nav-target">
+  <SectionHeading level={1}>
+    技能
+    <svelte:fragment slot="meta">{detail.skillDefinitions.length} 项</svelte:fragment>
+  </SectionHeading>
   {#if detail.skillDefinitions.length}<div class="enemy-skill-list">
       {#each detail.skillDefinitions as skill (skill.id)}<EnemySkillCard {skill} />{/each}
     </div>{:else}<p class="data-placeholder">上游未提供可展示的敌人技能。</p>{/if}

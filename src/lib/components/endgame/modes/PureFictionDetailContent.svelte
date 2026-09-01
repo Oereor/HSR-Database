@@ -1,6 +1,6 @@
 <script lang="ts">
   import GameText from '$lib/components/GameText.svelte';
-  import InlineDividerHeading from '$lib/components/InlineDividerHeading.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
   import type { PureFictionEncounterView, PureFictionGroupView } from '$lib/domain/endgame-view';
   import EndgameNodeSection from '../EndgameNodeSection.svelte';
   import PureFictionMechanicsSection from './PureFictionMechanicsSection.svelte';
@@ -19,9 +19,9 @@
 {/if}
 
 <section class="pf-encounter-heading" aria-labelledby="pf-encounter-title">
-  <InlineDividerHeading level={2} scale="large" id="pf-encounter-title">
+  <SectionHeading level={1} id="pf-encounter-title">
     <GameText text={encounter.label} />
-  </InlineDividerHeading>
+  </SectionHeading>
 </section>
 
 {#if encounter.baseMechanic}
@@ -43,7 +43,6 @@
 <style>
   .pf-encounter-heading {
     min-width: 0;
-    margin-bottom: var(--space-8);
   }
 
   .pf-encounter-mechanic {
@@ -57,10 +56,6 @@
   }
 
   @media (max-width: 520px) {
-    .pf-encounter-heading {
-      margin-bottom: var(--space-6);
-    }
-
     .pf-node-list {
       gap: var(--space-8);
     }

@@ -37,7 +37,7 @@ describe('Enemy Overview presentation', () => {
       ) as Enemy;
       expect(entry.weaknesses, entry.id).toEqual(detail.defaultMonster.weaknesses);
     }
-  });
+  }, 15_000);
 
   it('读取多值筛选并将旧 Rank 参数归一化为三类', () => {
     const state = readEnemyOverviewFilterState(

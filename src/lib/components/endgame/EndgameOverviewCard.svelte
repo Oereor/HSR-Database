@@ -9,12 +9,13 @@
   $: metadata = ENDGAME_MODE_META[mode.mode];
   $: period = mode.periods.find((candidate) => candidate.groupId === mode.recommendedGroupId);
   $: dateLabel = period && period.status !== 'unknown' ? period.dateLabel : '-';
+  $: href = period ? `/endgame/${mode.mode}/${period.groupId}` : `/endgame/${mode.mode}`;
 </script>
 
 <a
   class="endgame-overview-card"
   class:endgame-overview-card--featured={featured}
-  href={`/endgame/${mode.mode}`}
+  {href}
   style={`--endgame-accent: ${metadata.accent};`}
   data-endgame-overview-card={mode.mode}
 >

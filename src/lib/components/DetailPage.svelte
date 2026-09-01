@@ -13,6 +13,8 @@
   import DetailArtwork from '$lib/components/DetailArtwork.svelte';
   import RarityStars from '$lib/components/RarityStars.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
+  import SectionNav from '$lib/components/SectionNav.svelte';
   import EnemyDetailPage from '$lib/components/enemy/EnemyDetailPage.svelte';
   import RelicDetailPage from '$lib/components/relic/RelicDetailPage.svelte';
   import EquipmentRecommendationSection from '$lib/components/EquipmentRecommendationSection.svelte';
@@ -59,6 +61,13 @@
   $: lightConePortraitSource =
     category === 'light-cones' ? getLightConePortraitUrl(detail.id) : undefined;
   $: if (specialEffectsOpen && !specialEffectsAvailable) specialEffectsOpen = false;
+  $: characterSectionNavItems = [
+    { id: 'stats', label: '属性' },
+    { id: 'skills', label: '技能' },
+    { id: 'traces', label: '行迹' },
+    { id: 'eidolons', label: '星魂' },
+    ...(equipmentRecommendation ? [{ id: 'equipment-recommendation', label: '装备推荐' }] : [])
+  ];
 
   function openSpecialEffects(trigger: HTMLButtonElement, level: number) {
     specialEffectTrigger = trigger;
@@ -154,7 +163,11 @@
         </div>
       </div>
     </div>
-    <aside id="stats" class="detail-profile-hero__inspection" aria-label="基础属性与等级">
+    <aside
+      id="stats"
+      class="detail-profile-hero__inspection section-nav-target"
+      aria-label="基础属性与等级"
+    >
       <BaseStatsPanel
         progression={detail.baseStats}
         energy={activeProfile.energy}
@@ -233,17 +246,13 @@
   </header>{/if}
 
 {#if category === 'characters'}
-  <nav class="detail-tabs" aria-label="详情章节">
-    <a href="#stats">属性</a><a href="#skills">技能</a><a href="#traces">行迹</a><a href="#eidolons"
-      >星魂</a
-    ><a href="#equipment-recommendation">装备推荐</a>
-  </nav>
+  <SectionNav items={characterSectionNavItems} />
   {#key profileMode}
-    <section id="skills" class="detail-section">
-      <div class="section-heading">
-        <h2>技能</h2>
-        <span>{activeProfile.skillCards.length} 类</span>
-      </div>
+    <section id="skills" class="detail-section section-nav-target">
+      <SectionHeading level={1}>
+        技能
+        <svelte:fragment slot="meta">{activeProfile.skillCards.length} 类</svelte:fragment>
+      </SectionHeading>
       {#if activeProfile.skillCards.length}<div class="stack-list skill-card-grid">
           {#each activeProfile.skillCards as card (card.category)}<SkillCardPanel
               {card}
@@ -253,19 +262,19 @@
             />{/each}
         </div>{:else}<p class="data-placeholder">上游未提供可展示的技能记录。</p>{/if}
     </section>
-    <section id="traces" class="detail-section">
-      <div class="section-heading">
-        <h2>行迹</h2>
-        <span>{activeProfile.traces.length} 条记录</span>
-      </div>
+    <section id="traces" class="detail-section section-nav-target">
+      <SectionHeading level={1}>
+        行迹
+        <svelte:fragment slot="meta">{activeProfile.traces.length} 条记录</svelte:fragment>
+      </SectionHeading>
       {#if activeProfile.traces.length}<TraceCardPanel traces={activeProfile.traces} />{:else}<p
           class="data-placeholder"
         >
           上游未提供可展示的行迹记录。
         </p>{/if}
     </section>
-    <section id="eidolons" class="detail-section">
-      <div class="section-heading"><h2>星魂</h2></div>
+    <section id="eidolons" class="detail-section section-nav-target">
+      <SectionHeading level={1}>星魂</SectionHeading>
       {#if activeProfile.eidolons.length}<div class="stack-list">
           {#each activeProfile.eidolons as rank (rank.id)}<article
               class="info-card rank-card"
@@ -295,7 +304,7 @@
     />{/if}
 {:else if category === 'light-cones'}
   <section class="detail-section prose">
-    <h2>背景故事</h2>
+    <SectionHeading level={1}>背景故事</SectionHeading>
     <p class:muted={!detail.story}>
       <GameText text={detail.story || '上游未提供可用的背景故事文本。'} />
     </p>

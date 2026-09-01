@@ -16,9 +16,7 @@
 </script>
 
 <section class="endgame-node-section" id={`battle-${battle.slot}`} data-battle-slot={battle.slot}>
-  <div class="endgame-node-section__heading">
-    <EndgameNodeHeading slot={battle.slot} />
-  </div>
+  <EndgameNodeHeading slot={battle.slot} />
   <EndgameWaveLayout {groups} policy={waveLayout} {enemyVariant} />
 </section>
 
@@ -26,9 +24,5 @@
   .endgame-node-section {
     min-width: 0;
     scroll-margin-top: 80px;
-  }
-
-  .endgame-node-section__heading {
-    margin-bottom: var(--space-6);
   }
 </style>

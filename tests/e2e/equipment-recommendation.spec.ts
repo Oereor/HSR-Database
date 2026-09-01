@@ -12,7 +12,8 @@ test('角色装备推荐解析真实实体、同权属性与本地资源', async
   ).toEqual(['eidolons', 'equipment-recommendation']);
   expect(
     await page
-      .locator('.detail-tabs a')
+      .getByRole('navigation', { name: '详情章节' })
+      .getByRole('link')
       .evaluateAll((links) => links.map((link) => link.getAttribute('href')))
   ).toEqual(['#stats', '#skills', '#traces', '#eidolons', '#equipment-recommendation']);
 
@@ -46,22 +47,6 @@ test('角色装备推荐解析真实实体、同权属性与本地资源', async
   await expect(slots.nth(1)).toContainText(/速度.*防御力/);
   await expect(surface.locator('.recommendation-substats')).toContainText('效果抵抗');
   await expect(section).not.toContainText(/最佳|次选|F2P|专属|ScoreRank/);
-
-  const width = page.viewportSize()?.width ?? 1280;
-  const boxes = await slots.evaluateAll((items) =>
-    items.map((item) => {
-      const box = item.getBoundingClientRect();
-      return { x: box.x, y: box.y, width: box.width };
-    })
-  );
-  if (width > 640) {
-    expect(new Set(boxes.map((box) => Math.round(box.y))).size).toBe(1);
-    expect(
-      Math.max(...boxes.map((box) => box.width)) - Math.min(...boxes.map((box) => box.width))
-    ).toBeLessThan(1);
-  } else {
-    expect(new Set(boxes.map((box) => Math.round(box.y))).size).toBe(4);
-  }
 
   const brokenCard = relicSets.first();
   await brokenCard

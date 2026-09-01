@@ -1,6 +1,5 @@
 import { getManifest } from '$lib/server/generated';
 import { getEndgameRoutePaths } from '$lib/server/endgame';
-import { getRogueRoutePaths } from '$lib/server/rogue';
 
 export const prerender = true;
 
@@ -11,7 +10,6 @@ export async function GET() {
     '/',
     '/search',
     ...endgameRoutes,
-    ...getRogueRoutePaths(),
     ...Object.entries(manifest.routes).flatMap(([category, ids]) => [
       `/${category}`,
       ...ids.map((id) => `/${category}/${id}`)

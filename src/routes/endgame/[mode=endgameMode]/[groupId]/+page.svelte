@@ -1,7 +1,7 @@
 <script lang="ts">
   import { afterNavigate } from '$app/navigation';
   import GameText from '$lib/components/GameText.svelte';
-  import InlineDividerHeading from '$lib/components/InlineDividerHeading.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
   import EndgameLocalNav from '$lib/components/endgame/EndgameLocalNav.svelte';
   import EndgameModeNav from '$lib/components/endgame/EndgameModeNav.svelte';
   import EndgameSeasonHero from '$lib/components/endgame/EndgameSeasonHero.svelte';
@@ -81,9 +81,9 @@
         {/if}
 
         <section class="moc-encounter-heading" aria-labelledby="moc-encounter-title">
-          <InlineDividerHeading level={2} scale="large" id="moc-encounter-title">
+          <SectionHeading level={1} id="moc-encounter-title">
             <GameText text={selectedEncounter.label} />
-          </InlineDividerHeading>
+          </SectionHeading>
         </section>
 
         {#if selectedEncounter.memoryTurbulence}
@@ -110,7 +110,6 @@
 <style>
   .moc-encounter-heading {
     min-width: 0;
-    margin-bottom: var(--space-8);
   }
 
   .moc-node-list {
@@ -120,10 +119,6 @@
   }
 
   @media (max-width: 520px) {
-    .moc-encounter-heading {
-      margin-bottom: var(--space-6);
-    }
-
     .moc-node-list {
       gap: var(--space-8);
     }

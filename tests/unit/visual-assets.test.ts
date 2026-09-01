@@ -206,8 +206,7 @@ describe('视觉资源管线', () => {
       'light-cones': 'ShopLightConIcon',
       relics: 'InventoryFosterIcon',
       enemies: 'IconActivityTreasureTrotter',
-      endgame: 'AbyssIcon01',
-      rogue: 'Rogue'
+      endgame: 'AbyssIcon01'
     });
   });
 
@@ -326,7 +325,7 @@ describe('视觉资源管线', () => {
     expect(new Set(requirements.relicPropertyIcons.map((entry) => entry.iconKey)).size).toBe(18);
     expect(requirements.elements).toHaveLength(7);
     expect(requirements.paths).toHaveLength(9);
-    expect(requirements.navigationIcons).toHaveLength(7);
+    expect(requirements.navigationIcons).toHaveLength(6);
     expect(requirements.endgameModeIcons).toEqual([
       'AbyssThemeTabIcon',
       'ChallengeStory',

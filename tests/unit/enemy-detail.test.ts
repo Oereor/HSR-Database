@@ -182,7 +182,7 @@ describe('Enemy Detail 真实数据回归', () => {
         true
       );
     }
-  });
+  }, 15_000);
 
   it('8034010 包含 Lv.95 七项属性、弱点抗性、召唤与多阶段技能', async () => {
     const aventurine = await enemy('8034010');

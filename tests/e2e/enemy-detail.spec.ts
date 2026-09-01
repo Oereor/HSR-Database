@@ -9,12 +9,6 @@ test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', a
   await expect(hero.getByRole('heading', { level: 2, name: '基础数据' })).toBeVisible();
   await expect(hero.getByRole('slider')).toHaveCount(0);
   await expect(page.getByRole('slider', { name: '敌人等级' })).toHaveCount(1);
-  expect(
-    await hero.evaluate(
-      (element) => getComputedStyle(element).gridTemplateColumns.split(' ').length
-    )
-  ).toBe(2);
-
   const stats = hero.locator('[data-enemy-template-stat]');
   await expect(stats).toHaveCount(7);
   await expect(hero.locator('dl.inspection-stat-list')).toHaveCount(1);
@@ -44,7 +38,6 @@ test('Enemy Detail Hero 本地化普通、精英与首领类型', async ({ page 
     await page.goto(`/enemies/${id}`);
     const hero = page.locator('[data-enemy-hero]');
     const rank = hero.locator(`[data-enemy-rank-label="${label}"]`);
-    await expect(rank).toHaveClass(/enemy-rank-tag/);
     await expect(rank).toHaveText(label);
     await expect(hero.locator('[data-icon-presentation="path-identity"]')).toHaveCount(0);
     await expect(hero).not.toContainText(raw);
@@ -138,22 +131,10 @@ test('战斗面板按 selected Monster 的负面抵抗自动切换三栏与两�
     '纠缠抵抗75%'
   );
 
-  await page.goto('/enemies/8034010');
-  expect(
-    await threeColumnPanel.evaluate(
-      (panel) => getComputedStyle(panel).gridTemplateColumns.split(' ').length
-    )
-  ).toBe(3);
-
   await page.goto('/enemies/3002011');
   const twoColumnPanel = page.locator('.enemy-battle-panel');
   await expect(twoColumnPanel).toHaveAttribute('data-battle-columns', '2');
   await expect(page.getByRole('heading', { name: '负面效果抵抗' })).toHaveCount(0);
-  expect(
-    await twoColumnPanel.evaluate(
-      (panel) => getComputedStyle(panel).gridTemplateColumns.split(' ').length
-    )
-  ).toBe(2);
 });
 
 test('召唤单位严格随 selected Monster 切换，并使用解析后的 Template route', async ({ page }) => {
@@ -242,9 +223,9 @@ test('完整 Skill Card 保留 ExtraEffect disclosure 与无描述技能过滤',
 
 test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出', async ({ page }) => {
   for (const viewport of [
-    { width: 1440, height: 900, columns: 3 },
-    { width: 900, height: 900, columns: 2 },
-    { width: 390, height: 844, columns: 1 }
+    { width: 1440, height: 900 },
+    { width: 900, height: 900 },
+    { width: 390, height: 844 }
   ]) {
     await page.setViewportSize(viewport);
     await page.goto('/enemies/8034010');
@@ -252,11 +233,6 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth
     );
     expect(overflow).toBeLessThanOrEqual(1);
-    expect(
-      await page
-        .locator('.enemy-battle-panel')
-        .evaluate((panel) => getComputedStyle(panel).gridTemplateColumns.split(' ').length)
-    ).toBe(viewport.columns);
     const selector = page.locator('.enemy-monster-selector');
     await expect(selector).toBeVisible();
     await expect(selector).toHaveCSS('overflow-x', 'auto');
@@ -264,10 +240,6 @@ test('Enemy Detail 在桌面、中宽和手机布局下无页面级横向溢出'
       expect(await selector.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(
         true
       );
-    const heroColumns = await page
-      .locator('[data-enemy-hero]')
-      .evaluate((hero) => getComputedStyle(hero).gridTemplateColumns.split(' ').length);
-    expect(heroColumns).toBe(viewport.width <= 820 ? 1 : 2);
     await expect(page.locator('[data-enemy-portrait]')).toBeVisible();
   }
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { render } from 'svelte/server';
 import AsBossDossier from '../../src/lib/components/endgame/as/AsBossDossier.svelte';
-import EndgameNodeHeading from '../../src/lib/components/endgame/EndgameNodeHeading.svelte';
+import EndgameOverviewCard from '../../src/lib/components/endgame/EndgameOverviewCard.svelte';
 import BuffOptionGroup from '../../src/lib/components/endgame/mechanics/BuffOptionGroup.svelte';
 import MechanicSectionCard from '../../src/lib/components/endgame/mechanics/MechanicSectionCard.svelte';
 import AnomalyArbitrationDetailContent from '../../src/lib/components/endgame/modes/AnomalyArbitrationDetailContent.svelte';
@@ -213,11 +213,20 @@ describe('MechanicSectionCard', () => {
 });
 
 describe('Endgame shared detail primitives', () => {
-  it('renders the shared node heading with Chinese ordinals at h3', () => {
-    const { body } = render(EndgameNodeHeading, { props: { slot: 3 } });
+  it('keeps the mode overview href when no recommended period exists', () => {
+    const { body } = render(EndgameOverviewCard, {
+      props: {
+        mode: {
+          mode: 'moc',
+          label: '混沌回忆',
+          description: '测试模式',
+          periods: []
+        }
+      }
+    });
 
-    expect(body).toContain('<h3');
-    expect(body).toContain('节点三');
+    expect(body).toContain('href="/endgame/moc"');
+    expect(body).toContain('暂无赛期');
   });
 
   it.each([1, 2, 3])('renders %i informational buff tiles without empty slots', (count) => {
@@ -232,7 +241,7 @@ describe('Endgame shared detail primitives', () => {
         title: '终焉公理',
         options,
         headingLevel: 4,
-        headingScale: 'medium'
+        level: 2
       }
     });
 

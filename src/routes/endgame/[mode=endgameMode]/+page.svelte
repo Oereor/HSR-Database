@@ -1,5 +1,5 @@
 <script lang="ts">
-  import InlineDividerHeading from '$lib/components/InlineDividerHeading.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
   import EndgameModeNav from '$lib/components/endgame/EndgameModeNav.svelte';
   import EndgameSeasonCard from '$lib/components/endgame/EndgameSeasonCard.svelte';
   import { groupEndgamePeriods } from '$lib/domain/endgame-view';
@@ -24,11 +24,9 @@
 <div class="endgame-archive">
   {#if periodGroups.current.length}
     <section class="endgame-archive-section" aria-labelledby="endgame-current-periods">
-      <div class="endgame-archive-section__heading">
-        <InlineDividerHeading level={2} scale="medium" tone="muted" id="endgame-current-periods"
-          >当前赛期</InlineDividerHeading
-        >
-      </div>
+      <SectionHeading level={2} headingLevel={2} tone="muted" id="endgame-current-periods"
+        >当前赛期</SectionHeading
+      >
       <div class="endgame-archive-featured-list">
         {#each periodGroups.current as period (period.groupId)}
           <EndgameSeasonCard mode={data.mode.mode} {period} variant="current" />
@@ -39,11 +37,9 @@
 
   {#if periodGroups.upcoming.length}
     <section class="endgame-archive-section" aria-labelledby="endgame-upcoming-periods">
-      <div class="endgame-archive-section__heading">
-        <InlineDividerHeading level={2} scale="medium" tone="muted" id="endgame-upcoming-periods"
-          >即将开放</InlineDividerHeading
-        >
-      </div>
+      <SectionHeading level={2} headingLevel={2} tone="muted" id="endgame-upcoming-periods"
+        >即将开放</SectionHeading
+      >
       <div class="endgame-archive-featured-list">
         {#each periodGroups.upcoming as period (period.groupId)}
           <EndgameSeasonCard mode={data.mode.mode} {period} variant="upcoming" />
@@ -54,11 +50,9 @@
 
   {#if periodGroups.unknown.length}
     <section class="endgame-archive-section" aria-labelledby="endgame-unknown-periods">
-      <div class="endgame-archive-section__heading">
-        <InlineDividerHeading level={2} scale="medium" tone="muted" id="endgame-unknown-periods"
-          >时间未知</InlineDividerHeading
-        >
-      </div>
+      <SectionHeading level={2} headingLevel={2} tone="muted" id="endgame-unknown-periods"
+        >时间未知</SectionHeading
+      >
       <div class="endgame-archive-grid">
         {#each periodGroups.unknown as period (period.groupId)}
           <EndgameSeasonCard mode={data.mode.mode} {period} variant="unknown" />
@@ -69,11 +63,9 @@
 
   {#if periodGroups.historical.length}
     <section class="endgame-archive-section" aria-labelledby="endgame-historical-periods">
-      <div class="endgame-archive-section__heading">
-        <InlineDividerHeading level={2} scale="medium" tone="muted" id="endgame-historical-periods"
-          >历史赛期</InlineDividerHeading
-        >
-      </div>
+      <SectionHeading level={2} headingLevel={2} tone="muted" id="endgame-historical-periods"
+        >历史赛期</SectionHeading
+      >
       <div class="endgame-archive-grid">
         {#each periodGroups.historical as period (period.groupId)}
           <EndgameSeasonCard mode={data.mode.mode} {period} variant="historical" />
@@ -91,10 +83,6 @@
 
   .endgame-archive-section {
     min-width: 0;
-  }
-
-  .endgame-archive-section__heading {
-    margin-bottom: var(--space-4);
   }
 
   .endgame-archive-featured-list {

@@ -70,7 +70,6 @@ import { characterLdSourceNames, characterLdSourceSpecs } from './character-sour
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { buildEndgameData } from './endgame.js';
 import { createExtraEffectResolver } from './extra-effects.js';
-import { buildRogueData } from './rogue.js';
 import { parseGameVersion } from './source-metadata.js';
 import {
   buildEnemySkillPhases,
@@ -1786,8 +1785,6 @@ export async function syncData(): Promise<DataManifest> {
   console.log('构建 Endgame 敌方实例与精确 HP…');
   // Normalize and validate every required relation before replacing the last known-good output.
   const endgame = await buildEndgameData(root, text);
-  console.log('构建 Rogue 祝福、方程与回响图鉴…');
-  const rogue = await buildRogueData(root, text);
 
   await resetDirectory(generatedRoot);
   await resetDirectory(staticGeneratedRoot);
@@ -1809,11 +1806,9 @@ export async function syncData(): Promise<DataManifest> {
   await writeJson(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), relicProperties);
   for (const [mode, dataset] of Object.entries(endgame.datasets))
     await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
-  await writeJson(path.join(generatedRoot, 'rogue', 'su.json'), rogue.datasets.su);
-  await writeJson(path.join(generatedRoot, 'rogue', 'du-tourn3.json'), rogue.datasets.du);
 
   const manifest: DataManifest = {
-    schemaVersion: 31,
+    schemaVersion: 32,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,
@@ -1832,8 +1827,7 @@ export async function syncData(): Promise<DataManifest> {
       relics: relics.map((item) => item.id),
       enemies: enemies.map((item) => item.id)
     },
-    endgame: endgame.audit.summary,
-    rogue: rogue.audit.summary
+    endgame: endgame.audit.summary
   };
   await writeJson(path.join(generatedRoot, 'manifest.json'), manifest);
   await writeJson(
@@ -1856,7 +1850,6 @@ export async function syncData(): Promise<DataManifest> {
     specialEffectAudit: specialEffectLinks.audit,
     enemyAudit,
     endgameAudit: endgame.audit,
-    rogueAudit: rogue.audit,
     missingTextAudit: missingText.getSummary(),
     notes: {
       images: '上游仅包含 SpriteOutput 路径，不包含图片二进制文件。',

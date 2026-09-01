@@ -1,5 +1,6 @@
 <script lang="ts">
   import GameText from '$lib/components/GameText.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
   import RelicIcon from '$lib/components/relic/RelicIcon.svelte';
   import { getRelicPieceIconUrl, getRelicSetIconUrl } from '$lib/data/visual-assets';
   import { relicTypeNames } from '$lib/domain/constants';
@@ -34,10 +35,7 @@
     class="detail-profile-hero__inspection relic-effects-panel"
     aria-labelledby="relic-effects"
   >
-    <div class="relic-effects-panel__heading">
-      <p class="kicker">SET BONUS</p>
-      <h2 id="relic-effects">套装效果</h2>
-    </div>
+    <SectionHeading level={1} id="relic-effects">套装效果</SectionHeading>
     {#if detail.effects.length}
       <div class="relic-effect-list" data-effect-count={detail.effects.length}>
         {#each detail.effects as effect (effect.required)}
@@ -54,10 +52,10 @@
 </header>
 
 <section class="detail-section relic-piece-section" data-relic-piece-count={detail.pieces.length}>
-  <div class="section-heading">
-    <h2>套装部件</h2>
-    <span>{detail.pieces.length} 件</span>
-  </div>
+  <SectionHeading level={1}>
+    套装部件
+    <svelte:fragment slot="meta">{detail.pieces.length} 件</svelte:fragment>
+  </SectionHeading>
   {#if detail.pieces.length}
     <div class="relic-piece-grid">
       {#each detail.pieces as piece (piece.id)}
@@ -120,17 +118,6 @@
     grid-template-rows: auto minmax(0, 1fr);
   }
 
-  .relic-effects-panel__heading {
-    border-bottom: 1px solid var(--border);
-    padding-bottom: var(--space-4);
-  }
-
-  .relic-effects-panel__heading h2 {
-    margin: var(--space-2) 0 0;
-    font-size: var(--font-section-title);
-    line-height: 1.2;
-  }
-
   .relic-effect-list {
     display: grid;
     min-width: 0;
@@ -170,15 +157,6 @@
     font-size: var(--font-body);
     line-height: 1.85;
     overflow-wrap: anywhere;
-  }
-
-  .relic-piece-section > .section-heading {
-    align-items: baseline;
-  }
-
-  .relic-piece-section > .section-heading span {
-    color: var(--faint);
-    font-size: var(--font-helper);
   }
 
   .relic-piece-grid {

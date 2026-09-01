@@ -1,10 +1,8 @@
 <script lang="ts">
-  import InlineDividerHeading from '$lib/components/InlineDividerHeading.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
   import { formatChineseOrdinal } from './presentation';
 
   export let slot: number;
 </script>
 
-<InlineDividerHeading level={3} scale="medium">
-  节点{formatChineseOrdinal(slot)}
-</InlineDividerHeading>
+<SectionHeading level={2} headingLevel={3}>节点{formatChineseOrdinal(slot)}</SectionHeading>

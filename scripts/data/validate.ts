@@ -52,15 +52,13 @@ import {
   parseDecimal
 } from './decimal.js';
 import type { EndgameAudit } from './endgame.js';
-import type { RogueDuDataset, RogueSuDataset } from '../../src/lib/domain/rogue.js';
-import type { RogueBuildAudit } from './rogue.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
 import { parseGameVersion } from './source-metadata.js';
 
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 31)
+if (manifest.schemaVersion !== 32)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 const parsedGameVersion = parseGameVersion(manifest.sourceVersion);
@@ -88,58 +86,7 @@ const audit = JSON.parse(await readFile(path.join(auditRoot, 'latest.json'), 'ut
     missingAttributes: Record<string, string[]>;
   };
   endgameAudit: EndgameAudit;
-  rogueAudit: RogueBuildAudit;
 };
-
-const rogueSu = JSON.parse(
-  await readFile(path.join(generatedRoot, 'rogue', 'su.json'), 'utf8')
-) as RogueSuDataset;
-const rogueDu = JSON.parse(
-  await readFile(path.join(generatedRoot, 'rogue', 'du-tourn3.json'), 'utf8')
-) as RogueDuDataset;
-if (rogueSu.schemaVersion !== 1 || rogueSu.kind !== 'su')
-  throw new Error('SU Rogue 生成数据 schema 不匹配');
-if (rogueDu.schemaVersion !== 1 || rogueDu.kind !== 'du' || rogueDu.revision !== 'Tourn3')
-  throw new Error('DU Rogue 生成数据不是 Tourn3');
-if (
-  rogueSu.blessings.length !== 162 ||
-  rogueSu.baseResonances.length !== 9 ||
-  rogueSu.enhancementGroups.length !== 9 ||
-  rogueSu.enhancementGroups.some((group) => group.effects.length !== 3) ||
-  rogueSu.crossResonances.filter((item) => item.availableIn === 'swarm-disaster').length !== 16 ||
-  rogueSu.crossResonances.filter((item) => item.availableIn === 'gold-and-gears').length !== 18
-)
-  throw new Error('SU Rogue 汇总数量或回响 ownership 异常');
-if (
-  rogueDu.blessings.length !== 144 ||
-  rogueDu.equations.length !== 104 ||
-  rogueDu.equations.filter((item) => item.kind === 'critical').length !== 8 ||
-  rogueDu.blessings.some((item) => item.tournMode !== 'Tourn3') ||
-  rogueDu.equations.some((item) => item.tournMode !== 'Tourn3')
-)
-  throw new Error('DU Rogue 数量或 revision 隔离异常');
-if (
-  rogueSu.blessings.some(
-    (item) => item.levels.length !== 2 || item.levels[0].level !== 1 || item.levels[1].level !== 2
-  ) ||
-  rogueDu.blessings.some(
-    (item) => item.levels.length !== 2 || item.levels[0].level !== 1 || item.levels[1].level !== 2
-  )
-)
-  throw new Error('Rogue Blessing Lv1/Lv2 identity 被拆分或丢失');
-if (
-  rogueDu.equations.some(
-    (item) =>
-      (item.kind === 'ordinary' && !item.sub) ||
-      (item.kind === 'critical' && (item.sub !== undefined || item.main.count !== 16))
-  )
-)
-  throw new Error('Rogue Equation requirement 或 Main/Sub 方向异常');
-if (
-  JSON.stringify(audit.rogueAudit.summary) !== JSON.stringify(manifest.rogue) ||
-  audit.rogueAudit.summary.diagnostics.ordinarySuAvailability !== 'shared-catalog'
-)
-  throw new Error('Rogue audit 与 manifest 汇总不一致');
 for (const [sourceName, expectedRows] of [
   ['AvatarConfigLD', 4],
   ['ItemConfigAvatarLD', 4],

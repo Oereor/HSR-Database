@@ -1,20 +1,18 @@
 <script lang="ts">
-  import InlineDividerHeading from '$lib/components/InlineDividerHeading.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
   import type { EndgameOrderedMechanicView } from '$lib/domain/endgame-view';
   import BuffOptionTile from './BuffOptionTile.svelte';
 
   export let title: string;
   export let options: EndgameOrderedMechanicView[];
   export let headingLevel: 2 | 3 | 4 = 2;
-  export let headingScale: 'large' | 'medium' | 'small' = 'large';
+  export let level: 1 | 2 | 3 = 1;
 
   $: optionHeadingLevel = Math.min(headingLevel + 1, 5) as 3 | 4 | 5;
 </script>
 
 <div class="buff-option-group" data-buff-option-group>
-  <div class="buff-option-group__heading">
-    <InlineDividerHeading level={headingLevel} scale={headingScale}>{title}</InlineDividerHeading>
-  </div>
+  <SectionHeading {level} {headingLevel}>{title}</SectionHeading>
   <div class="buff-option-group__grid" data-buff-option-grid>
     {#each options as option (option.order)}
       <BuffOptionTile {option} headingLevel={optionHeadingLevel} />
@@ -25,10 +23,6 @@
 <style>
   .buff-option-group {
     min-width: 0;
-  }
-
-  .buff-option-group__heading {
-    margin-bottom: var(--space-4);
   }
 
   .buff-option-group__grid {

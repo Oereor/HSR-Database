@@ -46,6 +46,8 @@
   --motion: 180ms ease;
   --navigator-rail-width: 72px;
   --navigator-pane-width: 288px;
+  --site-header-height: 0px;
+  --section-nav-height: 3.25rem;
   font-family:
     Inter,
     ui-sans-serif,
@@ -851,28 +853,12 @@ footer a {
   background: var(--gold);
   transform: translateX(1.05rem);
 }
-.detail-tabs {
-  position: sticky;
-  top: 0;
-  z-index: 8;
-  display: flex;
-  gap: 1.3rem;
-  overflow-x: auto;
-  border-bottom: 1px solid var(--border);
-  background: rgb(7 10 18 / 94%);
-  padding: 0.9rem 0;
-  white-space: nowrap;
-}
-.detail-tabs a {
-  color: var(--muted);
-  font-size: 0.78rem;
-}
 .detail-section {
   scroll-margin-top: 70px;
   border-bottom: 1px solid var(--border);
   padding: 3.25rem 0;
 }
-.detail-section h2 {
+.detail-section > h2 {
   font-size: var(--font-section-title);
   line-height: 1.25;
   letter-spacing: -0.012em;
@@ -1333,12 +1319,6 @@ footer a {
   margin-top: 1.5rem;
   border-top: 1px solid var(--border);
   padding-top: 1.25rem;
-}
-.trace-independent-section > h3 {
-  margin: 0 0 0.85rem;
-  color: var(--text-secondary);
-  font-size: var(--font-meta-key);
-  letter-spacing: 0.06em;
 }
 .trace-card--special {
   margin-bottom: 1rem;
@@ -1851,10 +1831,6 @@ th {
   border-bottom: 0;
   padding-block: 3.75rem;
 }
-.enemy-detail-section .section-heading > span {
-  color: var(--faint);
-  font-size: var(--font-helper);
-}
 .enemy-stats-panel {
   width: 100%;
 }
@@ -2077,17 +2053,6 @@ th {
 .enemy-owned-section {
   scroll-margin-top: 70px;
   margin-top: var(--space-12);
-}
-.enemy-owned-section > .section-heading {
-  margin-bottom: var(--space-4);
-}
-.enemy-owned-section > .section-heading h3 {
-  margin: 0;
-  font-size: var(--font-major-title);
-}
-.enemy-owned-section > .section-heading span {
-  color: var(--faint);
-  font-size: var(--font-helper);
 }
 .enemy-summon-list {
   display: grid;
@@ -2340,39 +2305,15 @@ th {
   align-items: stretch;
   gap: var(--space-3);
 }
-.equipment-recommendation {
-  display: grid;
-  gap: var(--space-6);
-}
-.equipment-recommendation__heading {
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-}
-.equipment-recommendation__heading p {
-  margin: 0;
-  color: var(--faint);
-  font-size: var(--font-helper);
-}
 .equipment-recommendation__group,
 .equipment-recommendation__subgroup {
-  display: grid;
-  gap: var(--space-3);
+  min-width: 0;
 }
-.equipment-recommendation__group {
-  gap: var(--space-4);
+.equipment-recommendation__group + .equipment-recommendation__group {
+  margin-top: var(--space-8);
 }
-.equipment-recommendation__group h3,
-.equipment-recommendation__subgroup h4 {
-  margin: 0;
-}
-.equipment-recommendation__group h3 {
-  font-size: var(--font-major-title);
-}
-.equipment-recommendation__subgroup h4 {
-  color: var(--text-secondary);
-  font-size: var(--font-helper);
-  letter-spacing: 0.04em;
+.equipment-recommendation__subgroup + .equipment-recommendation__subgroup {
+  margin-top: var(--space-6);
 }
 .recommendation-stats-surface {
   overflow: hidden;
@@ -2480,6 +2421,10 @@ th {
 }
 
 @media (max-width: 820px) {
+  :root {
+    --site-header-height: 60px;
+  }
+
   .site-shell {
     display: block;
   }
@@ -2491,7 +2436,7 @@ th {
     top: 0;
     z-index: 20;
     display: flex;
-    height: 60px;
+    height: var(--site-header-height);
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--border);

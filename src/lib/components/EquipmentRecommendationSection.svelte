@@ -6,19 +6,26 @@
   import GameText from './GameText.svelte';
   import RarityStars from './RarityStars.svelte';
   import RelicPropertyToken from './RelicPropertyToken.svelte';
+  import SectionHeading from './SectionHeading.svelte';
   import SemanticIconLabel from './SemanticIconLabel.svelte';
 
   export let recommendation: EquipmentRecommendationView;
 </script>
 
-<section id="equipment-recommendation" class="detail-section equipment-recommendation">
-  <div class="section-heading equipment-recommendation__heading">
-    <h2>装备推荐</h2>
-    <p><span aria-hidden="true">ⓘ</span> 来自游戏配置中的系统推荐数据，不代表实时玩家使用率。</p>
-  </div>
+<section
+  id="equipment-recommendation"
+  class="detail-section equipment-recommendation section-nav-target"
+>
+  <SectionHeading level={1}>
+    装备推荐
+    <svelte:fragment slot="meta"
+      ><span aria-hidden="true">ⓘ</span>
+      来自游戏配置中的系统推荐数据，不代表实时玩家使用率。</svelte:fragment
+    >
+  </SectionHeading>
 
   <div class="equipment-recommendation__group">
-    <h3>光锥建议</h3>
+    <SectionHeading level={2}>光锥建议</SectionHeading>
     <div class="compact-entity-grid">
       {#each recommendation.lightCones as lightCone (lightCone.id)}
         <CompactEntityCard
@@ -44,9 +51,9 @@
   </div>
 
   <div class="equipment-recommendation__group">
-    <h3>遗器建议</h3>
+    <SectionHeading level={2}>遗器建议</SectionHeading>
     <div class="equipment-recommendation__subgroup">
-      <h4>隧洞遗器</h4>
+      <SectionHeading level={3}>隧洞遗器</SectionHeading>
       <div class="compact-entity-grid">
         {#each recommendation.cavernSets as relicSet (relicSet.id)}
           <CompactEntityCard
@@ -61,7 +68,7 @@
       </div>
     </div>
     <div class="equipment-recommendation__subgroup">
-      <h4>位面饰品</h4>
+      <SectionHeading level={3}>位面饰品</SectionHeading>
       <div class="compact-entity-grid">
         {#each recommendation.planarSets as relicSet (relicSet.id)}
           <CompactEntityCard
@@ -78,7 +85,7 @@
   </div>
 
   <div class="equipment-recommendation__group">
-    <h3>推荐属性</h3>
+    <SectionHeading level={2}>推荐属性</SectionHeading>
     <article class="recommendation-stats-surface">
       <div class="recommendation-main-stats">
         {#each recommendation.mainStats as stat (stat.slot)}

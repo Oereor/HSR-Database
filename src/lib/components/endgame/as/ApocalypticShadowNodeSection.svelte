@@ -13,9 +13,7 @@
   data-as-battle-slot={battle.slot}
   data-battle-slot={battle.slot}
 >
-  <div class="as-node-section__heading">
-    <EndgameNodeHeading slot={battle.slot} />
-  </div>
+  <EndgameNodeHeading slot={battle.slot} />
 
   <AsBossDossier stages={battle.stages} bossGuide={battle.bossGuide} />
 
@@ -25,7 +23,7 @@
         title="终焉公理"
         options={battle.axiomSet.options}
         headingLevel={4}
-        headingScale="medium"
+        level={2}
       />
     </section>
   {/if}
@@ -35,10 +33,6 @@
   .as-node-section {
     min-width: 0;
     scroll-margin-top: 80px;
-  }
-
-  .as-node-section__heading {
-    margin-bottom: var(--space-6);
   }
 
   .as-node-section__axiom {

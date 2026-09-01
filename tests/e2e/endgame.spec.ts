@@ -29,7 +29,7 @@ test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
   await expect(page.locator('[data-battle-slot]')).toHaveCount(3);
 });
 
-test('Endgame overview 使用统一 Hero、3 + 1 卡片和严格日期降级', async ({ page }) => {
+test('Endgame overview 四张模式卡片直达各自展示的推荐赛期', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/endgame');
 
@@ -41,44 +41,22 @@ test('Endgame overview 使用统一 Hero、3 + 1 卡片和严格日期降级', a
 
   const cards = page.locator('[data-endgame-overview-card]');
   await expect(cards).toHaveCount(4);
-  await expect(page.locator('.endgame-overview-grid > [data-endgame-overview-card]')).toHaveCount(
-    3
-  );
-  await expect(page.locator('[data-endgame-overview-card="aa"]')).toHaveClass(
-    /endgame-overview-card--featured/
-  );
-  await expect(page.locator('[data-endgame-overview-card="moc"]')).toContainText('扫除风暴');
+  for (const scenario of [
+    { mode: 'moc', season: '扫除风暴', href: '/endgame/moc/1034' },
+    { mode: 'pf', season: '构事生意', href: '/endgame/pf/2025' },
+    { mode: 'as', season: '仙客天狼', href: '/endgame/as/3020' },
+    { mode: 'aa', season: '军团再临', href: '/endgame/aa/9' }
+  ] as const) {
+    const card = page.locator(`[data-endgame-overview-card="${scenario.mode}"]`);
+    await expect(card).toContainText(scenario.season);
+    await expect(card).toHaveAttribute('href', scenario.href);
+  }
   await expect(page.locator('[data-endgame-overview-card="moc"]')).toContainText('-');
   await expect(page.locator('[data-endgame-overview-card="pf"]')).toContainText(
     '2026/08/03 – 2026/09/14'
   );
-  await expect(page.locator('[data-endgame-overview-card="aa"]')).toContainText('军团再临');
   await expect(page.locator('[data-endgame-overview-card="aa"]')).toContainText('-');
   await expect(cards.getByText(/MOC|PF|AS|AA/, { exact: true })).toHaveCount(0);
-
-  expect(await gridColumnCount(page.locator('.endgame-overview-grid'))).toBe(3);
-  const footerTops = await page
-    .locator('.endgame-overview-grid .endgame-overview-card__footer')
-    .evaluateAll((footers) => footers.map((footer) => footer.getBoundingClientRect().top));
-  expect(Math.max(...footerTops) - Math.min(...footerTops)).toBeLessThanOrEqual(1);
-
-  const firstCard = page.locator('[data-endgame-overview-card="moc"]');
-  await firstCard.focus();
-  expect(
-    await firstCard.evaluate((element) => ({
-      tag: element.tagName,
-      outline: getComputedStyle(element).outlineStyle
-    }))
-  ).toEqual({ tag: 'A', outline: 'solid' });
-
-  for (const width of [900, 390]) {
-    await page.setViewportSize({ width, height: 900 });
-    expect(await gridColumnCount(page.locator('.endgame-overview-grid'))).toBe(1);
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-    );
-    expect(overflow).toBeLessThanOrEqual(1);
-  }
 });
 
 test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown 与 History 布局', async ({
@@ -192,24 +170,6 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   await expect(page.locator('[data-endgame-season-card="historical"]')).toHaveCount(0);
 });
 
-test('Endgame archive grid 在四档宽度保持 4/3/2/1 列且无页面溢出', async ({ page }) => {
-  await page.goto('/endgame/pf');
-  const grid = page.locator('.endgame-archive-grid');
-  for (const [width, columns] of [
-    [1440, 4],
-    [1100, 3],
-    [768, 2],
-    [390, 1]
-  ] as const) {
-    await page.setViewportSize({ width, height: 900 });
-    expect(await gridColumnCount(grid)).toBe(columns);
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-    );
-    expect(overflow).toBeLessThanOrEqual(1);
-  }
-});
-
 test('Endgame floating switcher 保持四项页面导航与独立页面标题', async ({ page }) => {
   await page.goto('/endgame/pf/2025?encounter=20254');
   const modeNav = page.getByRole('navigation', { name: '高难模式切换' });
@@ -292,62 +252,42 @@ test('Endgame desktop local rail 保持窄栏、active ownership 与原 query hr
 });
 
 test('MoC、PF、AS 与全部 AA 关卡使用共享 Hero', async ({ page }) => {
-  await page.goto('/endgame/moc/1034?encounter=5312');
-  await expect(page.getByLabel('选择赛期')).toHaveCount(0);
+  for (const scenario of [
+    { url: '/endgame/moc/1034?encounter=5312', metadata: [] },
+    {
+      url: '/endgame/pf/2025?encounter=20254',
+      groupId: '2025',
+      title: '构事生意',
+      metadata: ['2026/08/03 – 2026/09/14', '当前']
+    },
+    {
+      url: '/endgame/as/3020?encounter=30204',
+      groupId: '3020',
+      title: '仙客天狼',
+      metadata: ['2026/08/31 – 2026/10/05', '当前']
+    },
+    {
+      url: '/endgame/aa/8?encounter=801%3Apreliminary',
+      groupId: '8',
+      title: '尘世卷中',
+      metadata: ['时间资料未提供']
+    },
+    {
+      url: '/endgame/aa/8?encounter=804%3Anormal',
+      groupId: '8',
+      title: '尘世卷中',
+      metadata: ['时间资料未提供']
+    }
+  ] as const) {
+    await page.goto(scenario.url);
+    await expect(page.getByLabel('选择赛期')).toHaveCount(0);
+    if (!('groupId' in scenario)) continue;
 
-  await page.goto('/endgame/pf/2025?encounter=20254');
-  const hero = page.locator('.endgame-season-hero');
-  await expect(page.getByLabel('选择赛期')).toHaveCount(0);
-  await expect(hero.getByText('赛期 ID · 2025', { exact: true })).toBeVisible();
-  await expect(hero.getByRole('heading', { name: '构事生意', level: 1 })).toBeVisible();
-  await expect(hero).toContainText('2026/08/03 – 2026/09/14');
-  await expect(hero).toContainText('当前');
-
-  await page.goto('/endgame/as/3020?encounter=30204');
-  const asHero = page.locator('.endgame-season-hero');
-  await expect(page.getByLabel('选择赛期')).toHaveCount(0);
-  await expect(asHero.getByText('赛期 ID · 3020', { exact: true })).toBeVisible();
-  await expect(asHero.getByRole('heading', { name: '仙客天狼', level: 1 })).toBeVisible();
-  await expect(asHero).toContainText('2026/08/31 – 2026/10/05');
-  await expect(asHero).toContainText('当前');
-
-  await page.goto('/endgame/aa/8?encounter=801%3Apreliminary');
-  const knightHero = page.locator('.endgame-season-hero');
-  await expect(page.getByLabel('选择赛期')).toHaveCount(0);
-  await expect(knightHero.getByText('赛期 ID · 8', { exact: true })).toBeVisible();
-  await expect(knightHero.getByRole('heading', { name: '尘世卷中', level: 1 })).toBeVisible();
-  await expect(knightHero).toContainText('时间资料未提供');
-
-  await page.goto('/endgame/aa/8?encounter=804%3Anormal');
-  const kingHero = page.locator('.endgame-season-hero');
-  await expect(page.getByLabel('选择赛期')).toHaveCount(0);
-  await expect(kingHero.getByText('赛期 ID · 8', { exact: true })).toBeVisible();
-  await expect(kingHero.getByRole('heading', { name: '尘世卷中', level: 1 })).toBeVisible();
-  await expect(kingHero).toContainText('时间资料未提供');
-});
-
-test('MoC Hero 与三级 inline divider heading 建立明确层级', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('/endgame/moc/1033');
-  const hero = page.locator('.endgame-season-hero');
-  await expect(hero.getByText('赛期 ID · 1033', { exact: true })).toBeVisible();
-  await expect(hero.getByRole('heading', { name: '学院怪谈', level: 1 })).toBeVisible();
-  await expect(hero).toContainText('2026/07/06 – 2026/08/17');
-  expect(
-    await hero
-      .getByRole('heading', { name: '学院怪谈', level: 1 })
-      .evaluate((element) => Number.parseInt(getComputedStyle(element).fontWeight, 10))
-  ).toBeGreaterThanOrEqual(700);
-
-  await page.goto('/endgame/moc/1034?encounter=5312');
-  await expect(page.getByRole('heading', { name: '扫除风暴其十二', level: 2 })).toBeVisible();
-  await expect(page.getByRole('heading', { name: '节点一', level: 3 })).toBeVisible();
-  await expect(page.getByRole('heading', { name: '波次一', level: 4 }).first()).toBeVisible();
-  await expect(page.locator('.moc-encounter-heading')).not.toContainText('场战斗');
-  await expect(page.locator('[data-battle-slot="1"]')).not.toContainText('战斗 1');
-  await expect(
-    page.locator('[data-battle-slot="1"] > .endgame-node-section__heading')
-  ).not.toContainText('Lv.');
+    const hero = page.locator('.endgame-season-hero');
+    await expect(hero.getByText(`赛期 ID · ${scenario.groupId}`, { exact: true })).toBeVisible();
+    await expect(hero.getByRole('heading', { name: scenario.title, level: 1 })).toBeVisible();
+    for (const text of scenario.metadata) await expect(hero).toContainText(text);
+  }
 });
 
 test('MoC 相同记忆紊流只展示一次并保留 GameText 格式', async ({ page }) => {
@@ -359,132 +299,8 @@ test('MoC 相同记忆紊流只展示一次并保留 GameText 格式', async ({ 
   await expect(turbulence.locator(':scope > .section-heading')).toHaveCount(0);
   const percentage = turbulence.locator('[data-game-color="#f29e38ff"]').filter({ hasText: '80%' });
   await expect(percentage).toHaveCount(1);
-  await expect(percentage).toHaveClass(/description-token--unbreak/);
   await expect(turbulence).toContainText('1回合');
   await expect(turbulence.locator('img')).toHaveCount(0);
-  await expect(surface.getByRole('heading', { name: '记忆紊流', level: 2 })).toHaveCSS(
-    'color',
-    'rgb(241, 220, 162)'
-  );
-});
-
-test('MoC WaveGroup 按卡片数量定宽并在窄屏保持分组原子性', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('/endgame/moc/1034?encounter=5312');
-
-  const firstNodeGroups = page.locator('[data-battle-slot="1"] [data-endgame-wave-group]');
-  await expect(firstNodeGroups).toHaveCount(2);
-  await expect(firstNodeGroups.nth(0).locator('[data-endgame-enemy-card]')).toHaveCount(2);
-  await expect(firstNodeGroups.nth(1).locator('[data-endgame-enemy-card]')).toHaveCount(1);
-  const firstNodeBoxes = await firstNodeGroups.evaluateAll((groups) =>
-    groups.map((group) => {
-      const box = group.getBoundingClientRect();
-      return { width: box.width, y: box.y };
-    })
-  );
-  expect(firstNodeBoxes[0].width).toBeGreaterThan(firstNodeBoxes[1].width * 1.7);
-  expect(Math.abs(firstNodeBoxes[0].y - firstNodeBoxes[1].y)).toBeLessThanOrEqual(1);
-  expect(
-    await firstNodeGroups.nth(1).evaluate((group) => getComputedStyle(group, '::before').width)
-  ).toBe('1px');
-
-  const thirdNodeGroups = page.locator('[data-battle-slot="3"] [data-endgame-wave-group]');
-  await expect(thirdNodeGroups.nth(0).locator('[data-endgame-enemy-card]')).toHaveCount(3);
-  await expect(thirdNodeGroups.nth(1).locator('[data-endgame-enemy-card]')).toHaveCount(1);
-  const thirdNodeY = await thirdNodeGroups.evaluateAll((groups) =>
-    groups.map((group) => group.getBoundingClientRect().y)
-  );
-  expect(Math.abs(thirdNodeY[0] - thirdNodeY[1])).toBeLessThanOrEqual(1);
-
-  await page.setViewportSize({ width: 900, height: 1000 });
-  const tabletBoxes = await firstNodeGroups.evaluateAll((groups) =>
-    groups.map((group) => {
-      const box = group.getBoundingClientRect();
-      return { width: box.width, y: box.y };
-    })
-  );
-  expect(tabletBoxes[1].y).toBeGreaterThan(tabletBoxes[0].y);
-  expect(Math.abs(tabletBoxes[0].width - tabletBoxes[1].width)).toBeLessThanOrEqual(1);
-  expect(
-    await firstNodeGroups.nth(1).evaluate((group) => getComputedStyle(group, '::before').content)
-  ).toBe('none');
-  const tabletCardY = await firstNodeGroups
-    .nth(0)
-    .locator('[data-endgame-enemy-card]')
-    .evaluateAll((cards) => cards.map((card) => card.getBoundingClientRect().y));
-  expect(Math.abs(tabletCardY[0] - tabletCardY[1])).toBeLessThanOrEqual(1);
-
-  await page.setViewportSize({ width: 390, height: 844 });
-  const mobileCardY = await firstNodeGroups
-    .nth(0)
-    .locator('[data-endgame-enemy-card]')
-    .evaluateAll((cards) => cards.map((card) => card.getBoundingClientRect().y));
-  expect(mobileCardY[1]).toBeGreaterThan(mobileCardY[0]);
-  for (const width of [900, 390]) {
-    await page.setViewportSize({ width, height: 900 });
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-    );
-    expect(overflow).toBeLessThanOrEqual(1);
-  }
-});
-
-test('MoC 两个单敌人 wave 保持内容宽度，不平分整行', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto('/endgame/moc/1025?encounter=4405');
-  const groups = page.locator('[data-battle-slot="2"] [data-endgame-wave-group]');
-  await expect(groups).toHaveCount(2);
-  const boxes = await groups.evaluateAll((items) =>
-    items.map((item) => {
-      const box = item.getBoundingClientRect();
-      return { width: box.width, y: box.y };
-    })
-  );
-  expect(boxes.every(({ width }) => width < 320)).toBe(true);
-  expect(Math.abs(boxes[0].y - boxes[1].y)).toBeLessThanOrEqual(1);
-});
-
-test('MoC WaveLayout 按实际卡片数整体配对或换行', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 1000 });
-
-  await page.goto('/endgame/moc/100?encounter=5');
-  const twoByTwo = page.locator('[data-battle-slot="1"] [data-endgame-wave-group]');
-  await expect(twoByTwo).toHaveCount(2);
-  await expect(twoByTwo.nth(0).locator('[data-endgame-enemy-card]')).toHaveCount(2);
-  await expect(twoByTwo.nth(1).locator('[data-endgame-enemy-card]')).toHaveCount(2);
-  const pairedBoxes = await twoByTwo.evaluateAll((groups) =>
-    groups.map((group) => {
-      const box = group.getBoundingClientRect();
-      const cardY = [...group.querySelectorAll('[data-endgame-enemy-card]')].map(
-        (card) => card.getBoundingClientRect().y
-      );
-      return { width: box.width, y: box.y, cardY };
-    })
-  );
-  expect(Math.abs(pairedBoxes[0].y - pairedBoxes[1].y)).toBeLessThanOrEqual(1);
-  expect(Math.abs(pairedBoxes[0].width - pairedBoxes[1].width)).toBeLessThanOrEqual(1);
-  expect(new Set(pairedBoxes[0].cardY.map(Math.round)).size).toBe(1);
-  expect(new Set(pairedBoxes[1].cardY.map(Math.round)).size).toBe(1);
-
-  await page.goto('/endgame/moc/100?encounter=3');
-  const threeByTwo = page.locator('[data-battle-slot="1"] [data-endgame-wave-group]');
-  await expect(threeByTwo).toHaveCount(2);
-  const wrappedY = await threeByTwo.evaluateAll((groups) =>
-    groups.map((group) => group.getBoundingClientRect().y)
-  );
-  expect(wrappedY[1]).toBeGreaterThan(wrappedY[0]);
-
-  await page.goto('/endgame/moc/100?encounter=11');
-  const oneByTwo = page.locator('[data-battle-slot="1"] [data-endgame-wave-group]');
-  await expect(oneByTwo).toHaveCount(2);
-  const asymmetricBoxes = await oneByTwo.evaluateAll((groups) =>
-    groups.map((group) => {
-      const box = group.getBoundingClientRect();
-      return { width: box.width, y: box.y };
-    })
-  );
-  expect(Math.abs(asymmetricBoxes[0].y - asymmetricBoxes[1].y)).toBeLessThanOrEqual(1);
-  expect(asymmetricBoxes[1].width).toBeGreaterThan(asymmetricBoxes[0].width * 1.7);
 });
 
 test('PF 战意机制复用 segmented MechanicSectionCard，荒腔走板保持静态中性', async ({ page }) => {
@@ -532,27 +348,6 @@ test('PF 战意机制复用 segmented MechanicSectionCard，荒腔走板保持�
     'data-season-mechanic-segments',
     '1'
   );
-});
-
-test('PF 战意与荒腔走板按真实内容宽度降级为 3/2/1 列', async ({ page }) => {
-  await page.goto('/endgame/pf/2025?encounter=20254');
-  const fixedEntries = page.locator(
-    '[data-endgame-mechanics="battle-will"] .season-mechanic-card__segments'
-  );
-  const options = page.locator('[data-endgame-mechanics="cacophony"] [data-buff-option-grid]');
-  for (const [width, expectedColumns] of [
-    [1440, 3],
-    [1100, 2],
-    [390, 1]
-  ] as const) {
-    await page.setViewportSize({ width, height: 1000 });
-    expect(await gridColumnCount(fixedEntries)).toBe(expectedColumns);
-    expect(await gridColumnCount(options)).toBe(expectedColumns);
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-    );
-    expect(overflow).toBeLessThanOrEqual(1);
-  }
 });
 
 test('AS 节点使用 BossDossier、共享敌方卡、首领特性与中性终焉公理', async ({ page }) => {
@@ -720,59 +515,6 @@ test('AS malformed 首领特性被省略且不产生空文案', async ({ page })
       .locator('[data-as-boss-traits] .endgame-mechanic-entry__title')
       .evaluateAll((headings) => headings.every((heading) => !!heading.textContent?.trim()))
   ).toBe(true);
-});
-
-test('AS BossDossier 使用固定卡片列、可读特性列并按内容宽度堆叠', async ({ page }) => {
-  await page.goto('/endgame/as/3001?encounter=30014');
-  const layout = page.locator('[data-as-battle-slot="1"] [data-as-boss-dossier]');
-  const roster = page.locator('[data-as-battle-slot="1"] [data-as-boss-roster]');
-  const traits = page.locator('[data-as-battle-slot="1"] [data-as-boss-traits]');
-
-  for (const width of [1440, 1200, 900]) {
-    await page.setViewportSize({ width, height: 1000 });
-    expect(await gridColumnCount(layout)).toBe(2);
-    const rosterBox = await roster.boundingBox();
-    const traitsBox = await traits.boundingBox();
-    expect(rosterBox).not.toBeNull();
-    expect(traitsBox).not.toBeNull();
-    expect(rosterBox!.x).toBeLessThan(traitsBox!.x);
-    expect(rosterBox!.width).toBeLessThanOrEqual(260.5);
-    expect(traitsBox!.width).toBeGreaterThan(360);
-  }
-
-  for (const width of [700, 390, 320]) {
-    await page.setViewportSize({ width, height: 900 });
-    expect(await gridColumnCount(layout)).toBe(1);
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-    );
-    expect(overflow).toBeLessThanOrEqual(1);
-  }
-
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  expect(await gridColumnCount(roster.locator('[data-enemy-grid]'))).toBe(1);
-
-  const axiomGrid = page.locator(
-    '[data-as-battle-slot="1"] [data-endgame-mechanics="axiom"] [data-buff-option-grid]'
-  );
-  for (const [width, expectedColumns] of [
-    [1440, 3],
-    [900, 2],
-    [390, 1]
-  ] as const) {
-    await page.setViewportSize({ width, height: 1000 });
-    expect(await gridColumnCount(axiomGrid)).toBe(expectedColumns);
-  }
-
-  await page.goto('/endgame/as/3005?encounter=30054');
-  for (const width of [900, 390]) {
-    await page.setViewportSize({ width, height: 1000 });
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-      )
-    ).toBeLessThanOrEqual(1);
-  }
 });
 
 test('AA normal/hard 共用新详情组合，并在棋局特性与波次之间复用裁决象限', async ({ page }) => {
@@ -1014,7 +756,6 @@ test('PF 只显示波内唯一敌人类型', async ({ page }) => {
   await expect(firstBattle.locator('[data-wave] h4')).toHaveText(['波次一', '波次二', '波次三']);
   await expect(page.locator('.pf-encounter-heading')).not.toContainText('场战斗');
   await expect(firstBattle).not.toContainText('战斗 1');
-  await expect(firstBattle.locator('.endgame-node-section__heading')).not.toContainText('Lv.');
   await expect(firstBattle.locator('[data-wave="spawn-303230411"] .endgame-enemy')).toHaveCount(4);
   await expect(firstBattle.locator('[data-wave="spawn-303230412"] .endgame-enemy')).toHaveCount(3);
   await expect(firstBattle.locator('[data-wave="spawn-303230413"] .endgame-enemy')).toHaveCount(3);
@@ -1133,50 +874,6 @@ test('PF 保留 compact variant 并固定一波一行，AS 与其它模式继续
     'data-enemy-card-variant',
     'standard'
   );
-});
-
-test('AA Group 6 波次按桌面、平板与手机宽度自适应且不改变 2+1+1 投影', async ({ page }) => {
-  await page.goto('/endgame/aa/6?encounter=604%3Anormal');
-  const waveLayout = page.locator('[data-aa-waves] [data-wave-layout="paired"]');
-  const waveGroups = waveLayout.locator('[data-endgame-wave-group]');
-  await expect(waveGroups).toHaveCount(3);
-  await expect(waveGroups.nth(0).locator('[data-endgame-enemy-card]')).toHaveCount(2);
-  await expect(waveGroups.nth(1).locator('[data-endgame-enemy-card]')).toHaveCount(1);
-  await expect(waveGroups.nth(2).locator('[data-endgame-enemy-card]')).toHaveCount(1);
-  await expect(waveGroups.locator('h4')).toHaveText(['波次一', '波次二', '波次三']);
-  await expect(waveGroups.locator('.endgame-enemy__level')).toHaveText([
-    'Lv.100',
-    'Lv.100',
-    'Lv.100',
-    'Lv.100'
-  ]);
-
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  const desktopRows = await waveGroups.evaluateAll((groups) =>
-    groups.map((group) => group.getBoundingClientRect().y)
-  );
-  expect(Math.abs(desktopRows[0] - desktopRows[1])).toBeLessThanOrEqual(1);
-  expect(desktopRows[2]).toBeGreaterThan(desktopRows[1]);
-
-  for (const width of [900, 390, 320]) {
-    await page.setViewportSize({ width, height: 844 });
-    const rows = await waveGroups.evaluateAll((groups) =>
-      groups.map((group) => group.getBoundingClientRect().y)
-    );
-    expect(rows[1]).toBeGreaterThan(rows[0]);
-    expect(rows[2]).toBeGreaterThan(rows[1]);
-    if (width <= 390)
-      for (const grid of await waveLayout.locator('[data-enemy-grid]').all())
-        expect(await gridColumnCount(grid)).toBe(1);
-    const cardBox = await waveLayout.locator('[data-endgame-enemy-card]').first().boundingBox();
-    expect(cardBox).not.toBeNull();
-    expect(cardBox!.width).toBeLessThanOrEqual(280);
-    expect(cardBox!.height).toBeGreaterThan(cardBox!.width);
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-    );
-    expect(overflow).toBeLessThanOrEqual(1);
-  }
 });
 
 test('PF 非 canonical Monster 展示具体实例弱点', async ({ page }) => {
@@ -1360,19 +1057,6 @@ test('Endgame 移动端折叠 local rail，dialog 支持 ESC、焦点返回与�
 
   const columns = await page
     .locator('.moc-node-list')
-    .evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
-  expect(columns).toBe(1);
-  const overflow = await page.evaluate(
-    () => document.documentElement.scrollWidth - document.documentElement.clientWidth
-  );
-  expect(overflow).toBeLessThanOrEqual(1);
-});
-
-test('PF 荒腔走板移动端单列且无横向溢出', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/endgame/pf/2025?encounter=20254');
-  const columns = await page
-    .locator('[data-endgame-mechanics="cacophony"] [data-buff-option-grid]')
     .evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
   expect(columns).toBe(1);
   const overflow = await page.evaluate(

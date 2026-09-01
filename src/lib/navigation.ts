@@ -40,13 +40,6 @@ export const NAVIGATION_ITEMS = [
     label: '高难模式',
     iconKey: 'endgame',
     fallback: '难'
-  },
-  {
-    id: 'rogue',
-    href: '/rogue',
-    label: '模拟宇宙',
-    iconKey: 'rogue',
-    fallback: '宇'
   }
 ] as const;
 

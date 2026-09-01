@@ -1,5 +1,5 @@
 <script lang="ts">
-  import InlineDividerHeading from '$lib/components/InlineDividerHeading.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
   import type { EndgameWaveView } from '$lib/domain/endgame-view';
   import EndgameEnemyGrid from './EndgameEnemyGrid.svelte';
   import { formatChineseOrdinal, type EndgameEnemyCardVariant } from './presentation';
@@ -23,11 +23,9 @@
   data-endgame-wave-group
   data-wave-level={level}
 >
-  <div class="endgame-wave-group__heading">
-    <InlineDividerHeading level={4} scale="small" tone="muted">
-      波次{formatChineseOrdinal(ordinal)}
-    </InlineDividerHeading>
-  </div>
+  <SectionHeading level={3} headingLevel={4} tone="muted">
+    波次{formatChineseOrdinal(ordinal)}
+  </SectionHeading>
   <EndgameEnemyGrid enemies={wave.enemies} variant={enemyVariant} {level} />
 </section>
 
@@ -47,10 +45,6 @@
 
   .endgame-wave-group--full-row {
     width: 100%;
-  }
-
-  .endgame-wave-group__heading {
-    margin-bottom: var(--space-3);
   }
 
   .endgame-wave-group :global(.endgame-enemy-grid) {

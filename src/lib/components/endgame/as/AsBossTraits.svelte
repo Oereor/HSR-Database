@@ -1,6 +1,6 @@
 <script lang="ts">
   import EffectExplanationSection from '$lib/components/EffectExplanationSection.svelte';
-  import InlineDividerHeading from '$lib/components/InlineDividerHeading.svelte';
+  import SectionHeading from '$lib/components/SectionHeading.svelte';
   import type { ApocalypticShadowSlotGuideView } from '$lib/domain/endgame-view';
   import MechanicEntry from '../mechanics/MechanicEntry.svelte';
 
@@ -8,9 +8,7 @@
 </script>
 
 <section class="as-boss-traits" data-endgame-mechanics="boss-traits">
-  <div class="as-boss-traits__heading">
-    <InlineDividerHeading level={4} scale="medium">首领特性</InlineDividerHeading>
-  </div>
+  <SectionHeading level={2} headingLevel={4}>首领特性</SectionHeading>
   <div class="as-boss-traits__list" data-as-boss-traits>
     {#each traits as trait (trait.order)}
       <MechanicEntry mechanic={trait} headingLevel={5}>
@@ -23,10 +21,6 @@
 <style>
   .as-boss-traits {
     min-width: 0;
-  }
-
-  .as-boss-traits__heading {
-    margin-bottom: var(--space-4);
   }
 
   .as-boss-traits__list {
