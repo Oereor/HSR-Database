@@ -164,7 +164,7 @@ schema 16 延续 schema 15 的 Endgame HP 分层语义：common factors、`baseE
 
 `/endgame` 使用独立的构建期 view-model adapter 按赛期读取这些文件；HP 与速度显示整数，韧性直接显示精确换算值，HP 使用完整千分位。多阶段生命和多管韧性分别使用“单条配置值 × 数量”，不会声明为运行时总值。PF 的底层数据继续保存完整有序 spawn sequence，页面仅按波次展示唯一的实际 occurrence 类型。PF wave 另存 HP modifier、HPParentChild 与 kill-transfer 的证据状态；当前 `FantasticStory_BaseAbility_2310` 缺少可验证的 ability body，因此 kill-transfer 百分比保持 unconfirmed，不写入猜测值。
 
-Endgame occurrence 通过 `MonsterTemplateID` 关联现有敌人百科的弱点、详情路由和可选本地立绘。页面只在构建期读取 `static/generated-enemy-assets/index.json`，不会访问远程图片；缺少 manifest、映射或 WebP 时保留完整数据并使用中性降级。下载生成物位于已忽略的 `static/generated-enemy-assets/`，需要图片的部署者应自行准备合法来源，或显式运行 `pnpm assets:sync:enemies`；该命令不会由 `dev` 或 `build` 自动调用。
+Endgame occurrence 通过 `MonsterTemplateID` 关联现有敌人百科的弱点、详情路由和可选本地立绘。页面只在构建期读取 `static/generated-enemy-assets/index.json`，不会访问远程图片；缺少 manifest、映射或 WebP 时保留完整数据并使用中性降级。下载生成物位于已忽略的 `static/generated-enemy-assets/`。普通 `dev` / `build` 不自动联网；可显式运行 `pnpm assets:ensure:enemies`（按版本和 cache 增量准备）或 `pnpm assets:sync:enemies`（完整刷新映射）。正式 `pnpm deploy:build` 会在 data generation 后自动执行 enemy ensure，保证 clean deployment 将图片写入最终静态产物。
 
 schema 16 的敌人详情只使用 `MonsterID == MonsterTemplateID` 的 canonical 配置，并预生成 Lv.1–100（默认 Lv.95）的生命值、攻击力、防御力、速度、韧性、效果命中和效果抵抗。详情页还保留弱点与全部非零元素抗性、已验证的特殊状态抗性、canonical 召唤链接、声明式 DamageType、PhaseList 和 ExtraEffect；AI、技能参数、延迟、SPHitBase 与 ModifierList 仅参与构建期诊断，不进入浏览器数据。旧的百科“出现关卡”字段和 UI 已删除，Endgame 赛期数据不受影响。
 

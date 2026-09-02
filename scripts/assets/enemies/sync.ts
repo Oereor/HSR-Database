@@ -1,4 +1,3 @@
-import { stat } from 'node:fs/promises';
 import path from 'node:path';
 import { createCurlFetch } from './curl.js';
 import {
@@ -14,12 +13,15 @@ import {
   enemyIconRoot,
   ensureEnemyIcon,
   fetchJson,
+  fetchNanokaVersion,
   HttpError,
+  isToleratedEnemyAssetFailure,
   mapConcurrent,
   parseNanokaMonster,
   provenanceReadme,
   pruneEnemyIcons,
   readEnemyRequirements,
+  validateEnemyAssetCache,
   validateWebpFile,
   writeFileAtomically,
   type EnemyAssetFailure,
@@ -66,6 +68,7 @@ export interface EnemyAssetSyncStats {
   missingMonsterJson: number;
   missingImagePath: number;
   failedMonsterJson: number;
+  missingImageFiles: number;
   failedImageDownloads: number;
   iconDirectoryBytes: number;
   mappingBytes: number;
@@ -88,21 +91,6 @@ export interface EnemyAssetSyncOptions extends RetryOptions {
   assetRoot?: string;
 }
 
-const objectRecord = (value: unknown): Record<string, unknown> | undefined =>
-  value !== null && typeof value === 'object' && !Array.isArray(value)
-    ? (value as Record<string, unknown>)
-    : undefined;
-
-function resolvedVersion(value: unknown): string {
-  const manifest = objectRecord(value);
-  const hsr = objectRecord(manifest?.hsr);
-  const latest = hsr?.latest;
-  if (typeof latest !== 'string' || !latest.trim()) {
-    throw new Error('Nanoka manifest 缺少 hsr.latest。');
-  }
-  return latest.trim();
-}
-
 function failureFromError(
   requirement: EnemyRequirement,
   endpoint: string,
@@ -111,7 +99,9 @@ function failureFromError(
 ): EnemyAssetFailure {
   const http = error instanceof HttpError ? error : undefined;
   let kind = fallbackKind;
-  if (fallbackKind !== 'failed-image-download') {
+  if (fallbackKind === 'failed-image-download' && http?.status === 404) {
+    kind = 'missing-image-file';
+  } else if (fallbackKind !== 'failed-image-download') {
     if (http?.status === 404) kind = 'missing-monster-json';
     else if (error instanceof Error && /image_path/.test(error.message))
       kind = 'missing-image-path';
@@ -145,6 +135,7 @@ function printSummary(result: EnemyAssetSyncResult, log: (message: string) => vo
   log(`  missing monster JSON: ${stats.missingMonsterJson}`);
   log(`  missing image_path: ${stats.missingImagePath}`);
   log(`  failed monster JSON: ${stats.failedMonsterJson}`);
+  log(`  missing image file: ${stats.missingImageFiles}`);
   log(`  failed image download: ${stats.failedImageDownloads}`);
   log(`  image directory size: ${mib(stats.iconDirectoryBytes)}`);
   log(`  mapping JSON size: ${kib(stats.mappingBytes)}`);
@@ -196,8 +187,7 @@ export async function syncEnemyAssets(
   const cleanedTemporaryFiles = await cleanEnemyTemporaryFiles(iconRoot);
   if (cleanedTemporaryFiles) log(`已清理遗留临时 WebP：${cleanedTemporaryFiles}`);
 
-  const manifestUrl = `${baseUrl}/manifest.json`;
-  const version = resolvedVersion(await fetchJson(manifestUrl, retryOptions));
+  const version = await fetchNanokaVersion(baseUrl, retryOptions);
   log(`Nanoka HSR version: ${version}`);
   const monsterIndexUrl = `${baseUrl}/hsr/${encodeURIComponent(version)}/monster.json`;
   const monsterIndex = await fetchJson(monsterIndexUrl, retryOptions);
@@ -291,15 +281,38 @@ export async function syncEnemyAssets(
     version,
     generatedAt: now().toISOString(),
     resourceType: 'MonsterMiddleIcon',
-    monsters
+    monsters,
+    unavailable: Object.fromEntries(
+      failures.filter(isToleratedEnemyAssetFailure).map((failure) => [
+        failure.monsterTemplateId,
+        {
+          name: failure.name,
+          kind: failure.kind as
+            'missing-monster-json' | 'missing-image-path' | 'missing-image-file',
+          ...(failure.status === undefined ? {} : { status: failure.status })
+        }
+      ])
+    )
   };
-  await writeFileAtomically(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+
+  const hardFailures = failures.filter((failure) => !isToleratedEnemyAssetFailure(failure));
+  if (hardFailures.length) {
+    const first = hardFailures[0];
+    throw new Error(
+      `敌人资源同步存在 ${hardFailures.length} 个 operational failure；首个为 ${first.monsterTemplateId} ${first.kind}：${first.reason}`
+    );
+  }
+  const cacheValidation = await validateEnemyAssetCache(requirements, manifest, iconRoot);
+  if (!cacheValidation.valid) {
+    throw new Error(`敌人资源同步结果不可发布：${cacheValidation.reason}`);
+  }
 
   const referencedImageIds = new Set(Object.values(monsters).map((entry) => entry.imageId));
-  const prunedImages =
-    failures.length === 0 ? await pruneEnemyIcons(referencedImageIds, iconRoot) : 0;
+  const prunedImages = await pruneEnemyIcons(referencedImageIds, iconRoot);
   const iconDirectoryBytes = await directoryFileSize(iconRoot);
-  const mappingBytes = (await stat(manifestPath)).size;
+  const serializedManifest = `${JSON.stringify(manifest, null, 2)}\n`;
+  const mappingBytes = Buffer.byteLength(serializedManifest);
+  await writeFileAtomically(manifestPath, serializedManifest);
   const successes = iconResults.filter((result): result is IconSuccess => 'disposition' in result);
   const stats: EnemyAssetSyncStats = {
     totalMonsterTemplateIds: requirements.length,
@@ -317,7 +330,12 @@ export async function syncEnemyAssets(
     failedMonsterJson: failures.filter((failure) =>
       ['failed-monster-json', 'invalid-monster-json'].includes(failure.kind)
     ).length,
-    failedImageDownloads: iconFailures.length,
+    missingImageFiles: iconFailures.filter(
+      (failure) => failure.error instanceof HttpError && failure.error.status === 404
+    ).length,
+    failedImageDownloads: iconFailures.filter(
+      (failure) => !(failure.error instanceof HttpError && failure.error.status === 404)
+    ).length,
     iconDirectoryBytes,
     mappingBytes
   };
@@ -351,7 +369,8 @@ if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.met
       force: cli.force,
       ...(cli.useCurl ? { fetchImpl: createCurlFetch() } : {})
     });
-    if (result.failures.length) process.exitCode = 1;
+    if (result.failures.length)
+      console.warn(`敌人资源包含 ${result.failures.length} 个合法缺失项。`);
   } catch (error) {
     console.error(error instanceof Error ? error.message : error);
     process.exitCode = 1;
