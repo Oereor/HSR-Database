@@ -1,4 +1,5 @@
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { mkdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -68,6 +69,12 @@ import { characterStatFields, lightConeStatFields, normalizeStatProgression } fr
 import { formatGameMarkup, formatGameText } from './text.js';
 import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
+import {
+  buildSearchEntityEntries,
+  collectEndgameSearchNames,
+  GLOBAL_SEARCH_SCHEMA_VERSION,
+  type GlobalSearchIndex
+} from '../../src/lib/domain/search-index.js';
 import { buildEndgameData } from './endgame.js';
 import { createExtraEffectResolver } from './extra-effects.js';
 import { buildHomepageRecentWarpData } from './homepage.js';
@@ -1787,6 +1794,13 @@ export async function syncData(): Promise<DataManifest> {
   console.log('构建 Endgame 敌方实例与精确 HP…');
   // Normalize and validate every required relation before replacing the last known-good output.
   const endgame = await buildEndgameData(root, text);
+  const globalSearchIndex: GlobalSearchIndex = {
+    schemaVersion: GLOBAL_SEARCH_SCHEMA_VERSION,
+    entities: buildSearchEntityEntries(searchSeeds.map((seed) => seed.entry)),
+    endgameEnemies: collectEndgameSearchNames(endgame.datasets, (name) =>
+      createHash('sha256').update(name).digest('hex').slice(0, 16)
+    )
+  };
   const homepage = buildHomepageRecentWarpData(
     tables.GachaBasicInfo,
     characterCatalog,
@@ -1838,10 +1852,7 @@ export async function syncData(): Promise<DataManifest> {
     endgame: endgame.audit.summary
   };
   await writeJson(path.join(generatedRoot, 'manifest.json'), manifest);
-  await writeJson(
-    path.join(staticGeneratedRoot, 'search.json'),
-    searchSeeds.map((seed) => seed.entry)
-  );
+  await writeJson(path.join(staticGeneratedRoot, 'search.json'), globalSearchIndex);
   await writeJson(path.join(staticGeneratedRoot, 'meta.json'), manifest);
   await writeJson(path.join(auditRoot, 'latest.json'), {
     ...manifest,

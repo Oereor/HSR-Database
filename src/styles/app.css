@@ -289,28 +289,6 @@ small {
   border-radius: 999px;
   background: currentColor;
 }
-.navigator-search label {
-  display: block;
-  margin-bottom: 0.45rem;
-  color: var(--faint);
-  font-size: 0.7rem;
-}
-.navigator-search div {
-  display: flex;
-}
-.navigator-search input {
-  width: 100%;
-  min-width: 0;
-  border-radius: 10px 0 0 10px;
-  font-size: 0.8rem;
-}
-.navigator-search button {
-  border: 1px solid var(--border);
-  border-left: 0;
-  border-radius: 0 10px 10px 0;
-  background: var(--surface-2);
-  padding: 0 0.8rem;
-}
 .primary-navigation {
   display: grid;
   gap: 0.35rem;
@@ -568,22 +546,6 @@ footer a {
   color: var(--gold);
   font-size: 0.8rem;
 }
-.page-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 2rem;
-  padding: 1rem 0 2.2rem;
-  border-bottom: 1px solid var(--border);
-}
-.page-heading h1 {
-  margin-bottom: 0.7rem;
-  font-size: clamp(2.3rem, 6vw, 4rem);
-}
-.page-heading p {
-  max-width: 660px;
-  margin-bottom: 0;
-}
 .count-badge {
   flex: 0 0 auto;
   border: 1px solid var(--border);
@@ -607,14 +569,6 @@ footer a {
 }
 .tone-rarity {
   color: var(--gold-soft) !important;
-}
-.entity-grid.entity-grid--overview {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 300px));
-  justify-content: center;
-  gap: 1rem;
-}
-.entity-grid.entity-grid--overview-compact {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 220px));
 }
 .empty-state {
   margin: 3rem auto;
@@ -1473,7 +1427,8 @@ footer a {
 .endgame-enemy-grid {
   display: grid;
   min-width: 0;
-  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 260px));
+  justify-content: start;
   gap: var(--space-3);
   align-items: stretch;
 }
@@ -1484,7 +1439,7 @@ footer a {
   max-width: 260px;
   min-width: 0;
   height: 100%;
-  justify-self: center;
+  justify-self: start;
   flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--surface-border);
@@ -2113,64 +2068,6 @@ th {
   font-size: 0.75rem;
 }
 
-.search-page-field {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  align-items: center;
-  gap: 0.65rem;
-  margin: 2rem 0;
-}
-.search-page-field input {
-  width: 100%;
-  border-color: var(--border-strong);
-  padding: 1.1rem 1.2rem;
-  font-size: 1rem;
-}
-.search-page-field kbd {
-  color: var(--faint);
-  font-size: 0.65rem;
-}
-.search-page-field .button {
-  align-self: stretch;
-  min-width: 5.5rem;
-}
-.search-group {
-  margin-top: 2rem;
-}
-.search-results {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.55rem;
-}
-.search-results a {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface);
-  padding: 0.85rem;
-  transition:
-    border-color var(--motion),
-    background var(--motion);
-}
-.search-results a:hover,
-.search-results a.active {
-  border-color: var(--border-strong);
-  background: var(--surface-2);
-}
-.search-results strong {
-  font-size: 0.8rem;
-}
-.search-results span {
-  color: var(--faint);
-  font-size: 0.68rem;
-}
-.search-suggestions,
-.loading-state {
-  padding: 4rem 0;
-  text-align: center;
-}
 .dialog-heading {
   display: flex;
   align-items: center;
@@ -2381,10 +2278,6 @@ th {
   .entity-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .page-heading {
-    align-items: start;
-    flex-direction: column;
-  }
   .detail-hero {
     min-height: 0;
     padding: 0.25rem 0 2.25rem;
@@ -2424,8 +2317,7 @@ th {
     border-top: 1px solid var(--border);
     border-left: 0;
   }
-  .stage-list,
-  .search-results {
+  .stage-list {
     grid-template-columns: repeat(2, 1fr);
   }
   .endgame-page-header {
@@ -2460,8 +2352,7 @@ th {
 
 @media (max-width: 520px) {
   .entity-grid,
-  .stage-list,
-  .search-results {
+  .stage-list {
     grid-template-columns: 1fr;
   }
   .enemy-detail-section {
@@ -2490,21 +2381,12 @@ th {
     flex-wrap: wrap;
     gap: 0.65rem;
   }
-  .search-page-field {
-    grid-template-columns: minmax(0, 1fr) auto;
-  }
-  .search-page-field kbd {
-    display: none;
-  }
   .split-section {
     grid-template-columns: 1fr;
   }
   .enhancement-control {
     width: 100%;
     justify-content: space-between;
-  }
-  .endgame-enemy-grid {
-    grid-template-columns: minmax(0, 1fr);
   }
   .endgame-enemy {
     width: min(100%, 260px);

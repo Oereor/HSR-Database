@@ -699,7 +699,7 @@ describe('真实数据管线', () => {
   it('将四名 LD 角色完整纳入同一 Character domain 与搜索索引', async () => {
     const search = JSON.parse(
       await readFile(path.join(process.cwd(), 'static', 'generated', 'search.json'), 'utf8')
-    ) as Array<{ id: string; kind: string; name: string }>;
+    ) as { entities: Array<{ id: string; kind: string; name: string }> };
     for (const [id, name, pathName, elementName] of [
       ['1014', 'Saber', '毁灭', '风'],
       ['1015', 'Archer', '巡猎', '量子'],
@@ -714,7 +714,9 @@ describe('真实数据管线', () => {
       expect(baseProfile(character).skillCards).toHaveLength(5);
       expect(baseProfile(character).traces).toHaveLength(13);
       expect(baseProfile(character).eidolons).toHaveLength(6);
-      expect(search).toContainEqual(expect.objectContaining({ id, kind: 'character', name }));
+      expect(search.entities).toContainEqual(
+        expect.objectContaining({ id, kind: 'character', name })
+      );
     }
   });
 

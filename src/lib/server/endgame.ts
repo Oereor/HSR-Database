@@ -1,7 +1,12 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { getEnemyPortraitUrl } from '$lib/server/enemy-assets';
-import type { EndgameDatasetByMode, EndgameMode, EndgameModeDataset } from '$lib/domain/endgame';
+import type {
+  EndgameDatasetByMode,
+  EndgameGroup,
+  EndgameMode,
+  EndgameModeDataset
+} from '$lib/domain/endgame';
 import {
   buildGroupView,
   buildModeView,
@@ -10,14 +15,23 @@ import {
   ENDGAME_MODES,
   resolveEndgameEnemyReference,
   type EndgameEnemyDetailSource,
+  type EndgameEnemyGridItem,
   type EndgameEnemyReference,
   type EndgameGroupView,
-  type EndgameModeView
+  type EndgameModeView,
+  type EndgamePeriodView
 } from '$lib/domain/endgame-view';
+import {
+  endgameOccurrenceLocatorKey,
+  type EndgameOccurrenceLocator,
+  type EndgameOccurrenceShard
+} from '$lib/domain/search-index';
+import { getSearchIndex } from '$lib/server/generated';
 
 const generatedRoot = path.resolve('src', 'lib', 'generated');
 const datasetCache = new Map<EndgameMode, Promise<EndgameModeDataset>>();
 const enemyCache = new Map<string, Promise<EndgameEnemyReference>>();
+const groupViewCache = new Map<string, Promise<EndgameGroupView | undefined>>();
 
 async function readJson<T>(...segments: string[]): Promise<T> {
   return JSON.parse(await readFile(path.join(generatedRoot, ...segments), 'utf8')) as T;
@@ -76,13 +90,10 @@ export async function getEndgameMode(mode: EndgameMode): Promise<EndgameModeView
   return buildModeView(mode, (await getEndgameDataset(mode)).groups);
 }
 
-export async function getEndgameGroup(
-  mode: EndgameMode,
-  groupId: number
-): Promise<EndgameGroupView | undefined> {
-  const dataset = await getEndgameDataset(mode);
-  const group = dataset.groups.find((candidate) => candidate.groupId === groupId);
-  if (!group) return undefined;
+async function buildResolvedGroupView(
+  group: EndgameGroup,
+  periods: EndgamePeriodView[]
+): Promise<EndgameGroupView> {
   const referencedEnemies = new Map<string, { monsterId: number; templateId: number }>();
   for (const encounter of group.encounters)
     for (const battle of encounter.battles)
@@ -107,13 +118,78 @@ export async function getEndgameGroup(
       references.set(key, await getEnemyReference(monsterId, templateId))
     )
   );
-  return buildGroupView(
-    group,
-    [...dataset.groups]
+  return buildGroupView(group, periods, references);
+}
+
+export async function getEndgameGroup(
+  mode: EndgameMode,
+  groupId: number
+): Promise<EndgameGroupView | undefined> {
+  const key = `${mode}:${groupId}`;
+  const cached = groupViewCache.get(key);
+  if (cached) return cached;
+  const pending = getEndgameDataset(mode).then(async (dataset) => {
+    const group = dataset.groups.find((candidate) => candidate.groupId === groupId);
+    if (!group) return undefined;
+    const periods = [...dataset.groups]
       .sort((a, b) => b.groupId - a.groupId)
-      .map((candidate) => buildPeriodView(candidate)),
-    references
+      .map((candidate) => buildPeriodView(candidate));
+    return buildResolvedGroupView(group, periods);
+  });
+  groupViewCache.set(key, pending);
+  return pending;
+}
+
+function resolveEndgameGridItem(
+  group: EndgameGroupView,
+  locator: EndgameOccurrenceLocator
+): EndgameEnemyGridItem | undefined {
+  const stage =
+    group.encounters[locator.encounterIndex]?.battles[locator.battleIndex]?.stages[
+      locator.stageIndex
+    ];
+  const occurrence = stage?.waves[locator.waveIndex]?.enemies[locator.occurrenceIndex];
+  if (!stage || !occurrence) return undefined;
+  return { key: endgameOccurrenceLocatorKey(locator), occurrence, level: stage.level };
+}
+
+export async function getEndgameOccurrenceEntryIds(): Promise<Array<{ entryId: string }>> {
+  return (await getSearchIndex()).endgameEnemies.map(({ entryId }) => ({ entryId }));
+}
+
+export async function getEndgameOccurrenceShard(
+  entryId: string
+): Promise<EndgameOccurrenceShard | undefined> {
+  const entry = (await getSearchIndex()).endgameEnemies.find(
+    (candidate) => candidate.entryId === entryId
   );
+  if (!entry) return undefined;
+  const groupKeys = [...new Set(entry.locators.map(({ mode, groupId }) => `${mode}:${groupId}`))];
+  const groups = new Map<string, EndgameGroupView>();
+  await Promise.all(
+    groupKeys.map(async (key) => {
+      const [mode, groupId] = key.split(':') as [EndgameMode, string];
+      const group = await getEndgameGroup(mode, Number(groupId));
+      if (!group) throw new Error(`Endgame locator 缺少赛期：${key}`);
+      groups.set(key, group);
+    })
+  );
+  const occurrences: Record<string, EndgameEnemyGridItem> = {};
+  for (const locator of entry.locators) {
+    const group = groups.get(`${locator.mode}:${locator.groupId}`)!;
+    const item = resolveEndgameGridItem(group, locator);
+    if (!item) throw new Error(`Endgame locator 无法解析：${endgameOccurrenceLocatorKey(locator)}`);
+    occurrences[item.key] = item;
+  }
+  return {
+    schemaVersion: 1,
+    entryId,
+    periods: groupKeys.map((key) => {
+      const group = groups.get(key)!;
+      return { mode: group.mode, period: group.period };
+    }),
+    occurrences
+  };
 }
 
 export async function getEndgameGroupEntries(): Promise<

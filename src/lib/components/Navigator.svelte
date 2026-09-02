@@ -5,6 +5,7 @@
   import { getBrandIconUrl } from '$lib/data/visual-assets';
   import type { DataManifest } from '$lib/domain/types';
   import PrimaryNavigation from './PrimaryNavigation.svelte';
+  import SearchBar from './SearchBar.svelte';
 
   export let manifest: DataManifest;
 
@@ -122,13 +123,12 @@
       </button>
     </div>
 
-    <form class="navigator-search" action="/search" role="search">
-      <label for="global-search">全局搜索</label>
-      <div>
-        <input id="global-search" name="q" placeholder="搜索角色、光锥…" />
-        <button type="submit" aria-label="开始搜索">⌕</button>
-      </div>
-    </form>
+    <SearchBar
+      id="global-search"
+      label="全局搜索"
+      placeholder="搜索角色、光锥…"
+      variant="sidebar"
+    />
 
     <PrimaryNavigation pathname={$page.url.pathname} onSelect={closeNavigator} />
 

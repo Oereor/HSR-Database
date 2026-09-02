@@ -47,11 +47,6 @@
     width: 100%;
   }
 
-  .endgame-wave-group :global(.endgame-enemy-grid) {
-    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 260px));
-    justify-content: start;
-  }
-
   @container endgame-main (min-width: 1100px) {
     .endgame-wave-group--separated::before {
       position: absolute;

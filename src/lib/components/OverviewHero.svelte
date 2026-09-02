@@ -11,7 +11,7 @@
     <p class="kicker">{eyebrow}</p>
     <h1>{title}</h1>
     <p class="overview-hero__description">{description}</p>
-    <span class="overview-hero__count">{countLabel}</span>
+    {#if countLabel}<span class="overview-hero__count">{countLabel}</span>{/if}
   </div>
   {#if artwork.length || $$slots.artwork}
     <div class="overview-hero__artwork" aria-hidden="true">

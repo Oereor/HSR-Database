@@ -1,4 +1,8 @@
-<div class="overview-grid"><slot /></div>
+<script lang="ts">
+  export let variant: 'default' | 'compact' = 'default';
+</script>
+
+<div class:overview-grid--compact={variant === 'compact'} class="overview-grid"><slot /></div>
 
 <style>
   .overview-grid {
@@ -6,6 +10,12 @@
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 218px), 1fr));
     justify-content: stretch;
     gap: 0.85rem;
+  }
+
+  .overview-grid--compact {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 220px));
+    justify-content: center;
+    gap: 1rem;
   }
 
   @media (min-width: 1350px) {
@@ -18,6 +28,11 @@
     .overview-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.65rem;
+    }
+
+    .overview-grid--compact {
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
   }
 

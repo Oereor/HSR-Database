@@ -12,9 +12,15 @@ import type {
   RelicCatalogEntry,
   RelicProperty,
   RelicSet,
-  RelicSlot,
-  SearchEntry
+  RelicSlot
 } from '../../src/lib/domain/types.js';
+import {
+  collectEndgameSearchNames,
+  endgameOccurrenceLocatorKey,
+  GLOBAL_SEARCH_SCHEMA_VERSION,
+  normalizeSearchLabel,
+  type GlobalSearchIndex
+} from '../../src/lib/domain/search-index.js';
 import type {
   EndgameDatasetByMode,
   EndgameMode,
@@ -853,10 +859,41 @@ for (const [label, unresolved] of [
   if (unresolved.length) console.warn(`Enemy 警告：${unresolved.length} 个 unresolved ${label}`);
 const search = JSON.parse(
   await readFile(path.join(staticGeneratedRoot, 'search.json'), 'utf8')
-) as SearchEntry[];
-if (search.length !== Object.values(expected).reduce((sum, value) => sum + value, 0)) {
+) as GlobalSearchIndex;
+if (search.schemaVersion !== GLOBAL_SEARCH_SCHEMA_VERSION) throw new Error('搜索索引 schema 异常');
+if (search.entities.length !== Object.values(expected).reduce((sum, value) => sum + value, 0)) {
   throw new Error('搜索索引数量与目录数量不一致');
 }
+for (const entry of search.entities) {
+  if (
+    !entry.normalizedLabels.length ||
+    entry.normalizedLabels.some((label) => label !== normalizeSearchLabel(label))
+  )
+    throw new Error(`搜索索引 ${entry.kind}:${entry.id} 包含未规范化标签`);
+  if (new Set(entry.normalizedLabels).size !== entry.normalizedLabels.length)
+    throw new Error(`搜索索引 ${entry.kind}:${entry.id} 包含重复标签`);
+}
+const expectedEndgameSearch = collectEndgameSearchNames(endgame, (name) =>
+  createHash('sha256').update(name).digest('hex').slice(0, 16)
+);
+if (search.endgameEnemies.length !== expectedEndgameSearch.length)
+  throw new Error('Endgame 搜索名称索引数量异常');
+if (
+  new Set(search.endgameEnemies.map(({ entryId }) => entryId)).size !== search.endgameEnemies.length
+)
+  throw new Error('Endgame 搜索 entryId 冲突');
+const indexedLocatorKeys = search.endgameEnemies.flatMap(({ name, normalizedName, locators }) => {
+  if (normalizedName !== normalizeSearchLabel(name))
+    throw new Error(`Endgame 搜索名称未规范化：${name}`);
+  return locators.map(endgameOccurrenceLocatorKey);
+});
+const expectedLocatorKeys = expectedEndgameSearch.flatMap(({ locators }) =>
+  locators.map(endgameOccurrenceLocatorKey)
+);
+if (JSON.stringify(indexedLocatorKeys) !== JSON.stringify(expectedLocatorKeys))
+  throw new Error('Endgame 搜索 locator 无法按展示模型解析');
+if (new Set(indexedLocatorKeys).size !== indexedLocatorKeys.length)
+  throw new Error('Endgame 搜索 locator 不唯一');
 
 let emptySkillDescriptions = 0;
 let skillVariantCount = 0;
@@ -1392,7 +1429,11 @@ for (const [id, name, pathName, elementName] of [
     !baseProfile(character)?.skillCards.length
   )
     throw new Error(`LD 角色 ${id} 的 Character domain 不完整`);
-  if (!search.some((entry) => entry.kind === 'character' && entry.id === id && entry.name === name))
+  if (
+    !search.entities.some(
+      (entry) => entry.kind === 'character' && entry.id === id && entry.name === name
+    )
+  )
     throw new Error(`LD 角色 ${id} 未进入搜索索引`);
 }
 const skillIdsFor = (character: Character | undefined, category: string): string[] =>
@@ -1752,5 +1793,5 @@ if (audit.avatarSpecialSkillTreeAudit.diagnostics.length)
     `AvatarSpecialSkillTree relation 警告：${audit.avatarSpecialSkillTreeAudit.diagnostics.length} 条诊断，详见 data/audit/latest.json。`
   );
 console.log(
-  `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，${search.length} 条简中搜索记录。`
+  `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，${search.entities.length} 条简中搜索记录。`
 );

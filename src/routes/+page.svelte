@@ -2,6 +2,7 @@
   import type { PageData } from './$types';
   import CharacterOverviewCard from '$lib/components/CharacterOverviewCard.svelte';
   import LightConeOverviewCard from '$lib/components/LightConeOverviewCard.svelte';
+  import SearchBar from '$lib/components/SearchBar.svelte';
   import SectionHeading from '$lib/components/SectionHeading.svelte';
   import {
     getCharacterPreviewUrl,
@@ -79,11 +80,9 @@
   </section>
 
   <section class="home-directory" aria-label="数据库入口">
-    <form class="home-search" action="/search" role="search">
-      <label class="sr-only" for="home-search">搜索资料库</label>
-      <input id="home-search" name="q" placeholder="输入名称，搜索资料库" />
-      <button type="submit">搜索</button>
-    </form>
+    <div class="home-search">
+      <SearchBar id="home-search" label="搜索资料库" placeholder="输入名称，搜索资料库" />
+    </div>
 
     <nav class="home-directory__list" aria-label="数据库分类">
       {#each directoryItems as item}
@@ -244,28 +243,7 @@
   }
 
   .home-search {
-    display: grid;
-    width: 100%;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--space-3);
     margin-bottom: var(--space-4);
-  }
-
-  .home-search input {
-    width: 100%;
-    min-width: 0;
-    min-height: 48px;
-    background: rgb(7 10 18 / 72%);
-  }
-
-  .home-search button {
-    min-width: 7.5rem;
-    border: 1px solid rgb(255 255 255 / 8%);
-    border-radius: var(--radius-control);
-    background: linear-gradient(135deg, #c7a55e, #806431);
-    padding: 0.72rem 1.35rem;
-    color: #0b0d12;
-    font-weight: 800;
   }
 
   .home-directory__list {
@@ -436,15 +414,6 @@
     .home-hero__light-cone--this-is-me {
       right: 7%;
       width: 34%;
-    }
-
-    .home-search {
-      gap: var(--space-2);
-    }
-
-    .home-search button {
-      min-width: 4.75rem;
-      padding-inline: var(--space-3);
     }
 
     .home-directory-row {

@@ -12,13 +12,13 @@
     writeRelicFilterState
   } from '$lib/domain/relic-filters';
   import type { CatalogEntry, RelicCatalogEntry, RelicSetCategory } from '$lib/domain/types';
-  import EntityOverviewCard from './EntityOverviewCard.svelte';
   import FilterGroup from './FilterGroup.svelte';
-  import GameText from './GameText.svelte';
+  import OverviewGrid from './OverviewGrid.svelte';
   import OverviewHero from './OverviewHero.svelte';
   import OverviewPagination from './OverviewPagination.svelte';
   import OverviewSearch from './OverviewSearch.svelte';
   import OverviewToolbar from './OverviewToolbar.svelte';
+  import RelicOverviewCard from './RelicOverviewCard.svelte';
 
   export let entries: CatalogEntry[] = [];
   export let title = '遗器';
@@ -174,23 +174,15 @@
 </section>
 
 {#if visible.length}
-  <div class="entity-grid entity-grid--overview entity-grid--overview-compact">
+  <OverviewGrid variant="compact">
     {#each visible as relic (relic.id)}
-      <EntityOverviewCard
+      <RelicOverviewCard
+        entry={relic}
         href={`/relics/${relic.id}`}
         imageUrl={getRelicSetIconUrl(relic.id)}
-        imageAlt=""
-        fallbackLabel={relic.name}
-        artworkFit="contain"
-        artworkPosition="center"
-        size="compact"
-        mediaPresentation="icon"
-      >
-        <svelte:fragment slot="overlay">{relicCategoryLabels[relic.category]}</svelte:fragment>
-        <svelte:fragment slot="title"><GameText text={relic.name} /></svelte:fragment>
-      </EntityOverviewCard>
+      />
     {/each}
-  </div>
+  </OverviewGrid>
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">

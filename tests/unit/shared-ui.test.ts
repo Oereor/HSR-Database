@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { render } from 'svelte/server';
+import SearchBar from '../../src/lib/components/SearchBar.svelte';
 import SectionNav from '../../src/lib/components/SectionNav.svelte';
 import SectionHeadingFixture from '../fixtures/SectionHeadingFixture.svelte';
 
@@ -34,5 +35,25 @@ describe('SectionNav', () => {
     expect(body).toContain('aria-current="location"');
     expect(body).toContain('属性');
     expect(body).toContain('技能');
+  });
+});
+
+describe('SearchBar', () => {
+  it('共享 canonical route 并将 Sidebar 可见标签关联到输入框', () => {
+    const { body } = render(SearchBar, {
+      props: {
+        id: 'global-search',
+        label: '全局搜索',
+        placeholder: '搜索角色、光锥…',
+        variant: 'sidebar'
+      }
+    });
+
+    expect(body).toContain('<form');
+    expect(body).toContain('action="/search"');
+    expect(body).toMatch(/<label[^>]*for="global-search"[^>]*>全局搜索<\/label>/);
+    expect(body).toContain('id="global-search"');
+    expect(body).toContain('name="q"');
+    expect(body).toContain('aria-label="开始搜索"');
   });
 });
