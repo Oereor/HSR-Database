@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "assets:sync:enemies": "pnpm data:ensure && tsx scripts/assets/enemies/sync.ts",
+    "assets:ensure:enemies": "tsx scripts/assets/enemies/ensure.ts",
     "assets:sync": "tsx scripts/assets/sync.ts",
     "assets:ensure": "tsx scripts/assets/ensure.ts",
     "assets:validate": "tsx scripts/assets/validate.ts",

@@ -7,7 +7,7 @@ source-controlled upstream.lock.json
         ↓
 pinned sparse checkouts in .upstream/
         ↓
-existing data/assets ensure pipeline
+data ensure → Nanoka enemy ensure → StarRailRes asset ensure
         ↓
 static SvelteKit build/
 ```
@@ -22,6 +22,7 @@ static SvelteKit build/
 - `scripts/deployment/git.ts`：跨平台 Git 执行、SHA/remote/path 验证、临时目录替换和复用。
 - `scripts/deployment/prepare.ts`：TurnBasedGameData 保守 sparse checkout 与 StarRailRes 两阶段 sparse checkout。
 - `scripts/deployment/build.ts`：deployment 编排入口。
+- `scripts/assets/enemies/ensure.ts`：验证或增量生成 Nanoka enemy cache；代理环境使用现有 curl transport。
 
 ## Local Development
 
@@ -35,7 +36,9 @@ static SvelteKit build/
 pnpm deploy:build
 ```
 
-该命令验证 lock，准备或复用 `.upstream/`，设置 `HSR_DATA_ROOT`/`HSR_ASSET_ROOT`，运行现有 ensure 脚本，最后执行 `vite build` 输出 `build/`。它不会调用 `pnpm build`，因此不会递归触发自身；原有 `build`/`prebuild` 保持不变。
+该命令验证 lock，准备或复用 `.upstream/`，设置 `HSR_DATA_ROOT`/`HSR_ASSET_ROOT`，依次运行 data ensure、Nanoka enemy ensure、StarRailRes asset ensure，最后执行 `vite build` 输出 `build/`。它不会调用 `pnpm build`，因此不会递归触发自身；原有 `build`/`prebuild` 保持不变。
+
+Enemy manifest 使用 schema 2，以 `monsters + unavailable` 精确覆盖当前 enemy catalog。明确的单资源 404 或缺少 `image_path` 保持 UI fallback；网络、解析、内容类型、图片签名或系统性覆盖失败会终止 deployment build。schema 1 仍可由 UI 读取，但 enemy ensure 会刷新为 schema 2。
 
 ## Updating Upstreams
 
@@ -78,6 +81,17 @@ Warm build（保留 `.upstream/` 与 ensure cache）：
 - StarRailRes sparse worktree：755,259,994 bytes，826 files；Git metadata：755,063,418 bytes
 
 Warm build 日志确认两个 checkout 均被复用，没有重新完整 clone；data/assets ensure 也复用了现有 cache 语义。
+
+Phase 03 enemy regression clean build（保留 `.upstream/`，删除 enemy cache）：
+
+- Nanoka version：4.5.52
+- enemy ensure：101.343s
+- deployment overall：129.604s；外部计时 130.305s
+- 628 个模板：605 条可用映射、23 条合法 `missing-image-path`
+- 210 张 WebP：16,088,650 bytes
+- `static/generated-enemy-assets/` 与 `build/generated-enemy-assets/` 数量和字节完全一致
+
+Warm enemy ensure 仅验证 Nanoka version 与本地 cache，完整 warm deployment 中实测 1.122s；210 张图片全部复用，没有重新下载。该次 deployment script overall 为 34.262s，外部计时为 34.939s。
 
 ## Build Independence
 

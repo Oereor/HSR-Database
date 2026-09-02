@@ -6,8 +6,18 @@ import {
   prepareTurnBasedGameData,
   siteRoot
 } from './prepare.js';
+import type { UpstreamLock } from './lock.js';
 
-function runPnpm(args: string[], env: NodeJS.ProcessEnv): Promise<void> {
+export type DeploymentCommandRunner = (args: string[], env: NodeJS.ProcessEnv) => Promise<void>;
+
+export interface DeploymentBuildDependencies {
+  loadLock?: () => Promise<UpstreamLock>;
+  prepareTurnBased?: (lock: UpstreamLock) => Promise<string>;
+  prepareStarRail?: (lock: UpstreamLock) => Promise<string>;
+  commandRunner?: DeploymentCommandRunner;
+}
+
+const runPnpm: DeploymentCommandRunner = (args, env) => {
   return new Promise((resolve, reject) => {
     const pnpmEntrypoint = process.env.npm_execpath;
     const command = pnpmEntrypoint ? process.execPath : 'pnpm';
@@ -24,7 +34,7 @@ function runPnpm(args: string[], env: NodeJS.ProcessEnv): Promise<void> {
       code === 0 ? resolve() : reject(new Error(`[build] pnpm ${args.join(' ')} 失败（${code}）`))
     );
   });
-}
+};
 
 async function timed<T>(label: string, operation: () => Promise<T>): Promise<T> {
   const started = performance.now();
@@ -35,30 +45,43 @@ async function timed<T>(label: string, operation: () => Promise<T>): Promise<T> 
   }
 }
 
-const overallStarted = performance.now();
-const lock = await timed('lock', loadDeploymentLock);
-const turnBasedRoot = await timed('TurnBasedGameData preparation', () =>
-  prepareTurnBasedGameData(lock)
-);
-const env = {
-  ...process.env,
-  HSR_DATA_ROOT: path.relative(siteRoot, turnBasedRoot).replaceAll('\\', '/'),
-  HSR_ASSET_ROOT: path
-    .relative(siteRoot, path.join(siteRoot, '.upstream', 'StarRailRes'))
-    .replaceAll('\\', '/')
-};
+export async function runDeploymentBuild(
+  dependencies: DeploymentBuildDependencies = {}
+): Promise<void> {
+  const overallStarted = performance.now();
+  const loadLock = dependencies.loadLock ?? loadDeploymentLock;
+  const prepareTurnBased = dependencies.prepareTurnBased ?? prepareTurnBasedGameData;
+  const prepareStarRail = dependencies.prepareStarRail ?? prepareStarRailRes;
+  const commandRunner = dependencies.commandRunner ?? runPnpm;
+  const lock = await timed('lock', loadLock);
+  const turnBasedRoot = await timed('TurnBasedGameData preparation', () => prepareTurnBased(lock));
+  const env = {
+    ...process.env,
+    HSR_DATA_ROOT: path.relative(siteRoot, turnBasedRoot).replaceAll('\\', '/'),
+    HSR_ASSET_ROOT: path
+      .relative(siteRoot, path.join(siteRoot, '.upstream', 'StarRailRes'))
+      .replaceAll('\\', '/')
+  };
 
-console.log(`[data] HSR_DATA_ROOT=${env.HSR_DATA_ROOT}`);
-await timed('data ensure/generation', () => runPnpm(['data:ensure'], env));
+  console.log(`[data] HSR_DATA_ROOT=${env.HSR_DATA_ROOT}`);
+  await timed('data ensure/generation', () => commandRunner(['data:ensure'], env));
 
-const starRailRoot = await timed('StarRailRes preparation', () => prepareStarRailRes(lock));
-env.HSR_ASSET_ROOT = path.relative(siteRoot, starRailRoot).replaceAll('\\', '/');
-console.log(`[assets] HSR_ASSET_ROOT=${env.HSR_ASSET_ROOT}`);
-await timed('asset ensure/generation', () => runPnpm(['assets:ensure'], env));
+  console.log('[enemy-assets] ensuring Nanoka enemy images');
+  await timed('enemy asset ensure/generation', () => commandRunner(['assets:ensure:enemies'], env));
 
-console.log('[build] vite build');
-await timed('SvelteKit build', async () => {
-  await runPnpm(['exec', 'svelte-kit', 'sync'], env);
-  await runPnpm(['exec', 'vite', 'build'], env);
-});
-console.log(`[timing] overall: ${((performance.now() - overallStarted) / 1000).toFixed(3)}s`);
+  const starRailRoot = await timed('StarRailRes preparation', () => prepareStarRail(lock));
+  env.HSR_ASSET_ROOT = path.relative(siteRoot, starRailRoot).replaceAll('\\', '/');
+  console.log(`[assets] HSR_ASSET_ROOT=${env.HSR_ASSET_ROOT}`);
+  await timed('asset ensure/generation', () => commandRunner(['assets:ensure'], env));
+
+  console.log('[build] vite build');
+  await timed('SvelteKit build', async () => {
+    await commandRunner(['exec', 'svelte-kit', 'sync'], env);
+    await commandRunner(['exec', 'vite', 'build'], env);
+  });
+  console.log(`[timing] overall: ${((performance.now() - overallStarted) / 1000).toFixed(3)}s`);
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(import.meta.filename)) {
+  await runDeploymentBuild();
+}

@@ -1,19 +1,27 @@
-import { mkdir, rm, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { parseCurlResponse } from '../../scripts/assets/enemies/curl';
+import {
+  ensureEnemyAssets,
+  hasProxyEnvironment,
+  shouldUseCurlTransport
+} from '../../scripts/assets/enemies/ensure';
 import { syncEnemyAssets } from '../../scripts/assets/enemies/sync';
 import { loadEnemyPortraitMap } from '../../src/lib/server/enemy-assets';
 import {
   cleanEnemyTemporaryFiles,
+  ENEMY_ASSET_SCHEMA_VERSION,
   enemyAssetRoot,
   ensureEnemyIcon,
   extractImageId,
   fetchWithRetry,
   parseNanokaMonster,
   pruneEnemyIcons,
+  readEnemyAssetManifest,
   readEnemyRequirements,
+  validateEnemyAssetCache,
   validateWebpFile,
   type EnemyRequirement,
   type NanokaMonster
@@ -263,10 +271,11 @@ describe('Nanoka 敌人头像同步核心', () => {
         icon: '/generated-enemy-assets/icons/Monster_7000.webp'
       }
     });
+    expect(result.manifest.unavailable).toEqual({});
     await expect(stat(path.join(iconRoot, 'Monster_9999.webp'))).rejects.toBeDefined();
   });
 
-  it('部分失败仍生成成功 mapping、返回诊断且不清理旧图', async () => {
+  it('合法缺失进入 unavailable，仍生成 mapping 并清理未引用旧图', async () => {
     const root = await testRoot('partial');
     const catalog = path.join(root, 'catalog.json');
     const iconRoot = path.join(root, 'icons');
@@ -301,11 +310,14 @@ describe('Nanoka 敌人头像同步核心', () => {
     });
     expect(result.manifest.monsters).toHaveProperty('1');
     expect(result.manifest.monsters).not.toHaveProperty('2');
+    expect(result.manifest.unavailable).toMatchObject({
+      '2': { kind: 'missing-monster-json', status: 404 }
+    });
     expect(result.failures).toMatchObject([
       { monsterTemplateId: '2', kind: 'missing-monster-json', status: 404 }
     ]);
-    expect(result.stats.prunedImages).toBe(0);
-    await expect(stat(path.join(iconRoot, 'Monster_9999.webp'))).resolves.toBeDefined();
+    expect(result.stats.prunedImages).toBe(1);
+    await expect(stat(path.join(iconRoot, 'Monster_9999.webp'))).rejects.toBeDefined();
   });
 
   it('清理函数只删除未引用的标准命名 WebP', async () => {
@@ -347,6 +359,195 @@ describe('Nanoka 敌人头像同步核心', () => {
       })
     ).rejects.toMatchObject({ status: 404 });
   });
+
+  it('单个图片 404 进入 unavailable，其他有效资源继续发布', async () => {
+    const root = await testRoot('missing-image-file');
+    const catalog = path.join(root, 'catalog.json');
+    await writeFile(
+      catalog,
+      JSON.stringify([
+        { id: '1', name: '有图' },
+        { id: '2', name: '缺图' }
+      ])
+    );
+    const fetchImpl = vi.fn<typeof fetch>(async (input) => {
+      const url = String(input);
+      if (url.endsWith('/manifest.json'))
+        return new Response(JSON.stringify({ hsr: { latest: '9.9.9' } }));
+      if (url.endsWith('/monster.json')) return new Response(JSON.stringify([]));
+      if (url.endsWith('/1.json'))
+        return new Response(
+          JSON.stringify({ id: '1', name: '有图', image_path: 'Monster_7000.png' })
+        );
+      if (url.endsWith('/2.json'))
+        return new Response(
+          JSON.stringify({ id: '2', name: '缺图', image_path: 'Monster_8000.png' })
+        );
+      if (url.endsWith('/Monster_8000.webp')) return new Response('', { status: 404 });
+      return new Response(validWebpBody, { headers: { 'content-type': 'image/webp' } });
+    });
+    const result = await syncEnemyAssets({
+      assetRoot: root,
+      catalogFile: catalog,
+      baseUrl: 'https://example.test',
+      fetchImpl,
+      log: () => undefined
+    });
+    expect(result.manifest.monsters).toHaveProperty('1');
+    expect(result.manifest.unavailable).toMatchObject({
+      '2': { kind: 'missing-image-file', status: 404 }
+    });
+    expect(result.stats.missingImageFiles).toBe(1);
+    expect(result.stats.failedImageDownloads).toBe(0);
+  });
+
+  it('operational failure 在发布前失败并保留旧 manifest', async () => {
+    const root = await testRoot('operational-failure');
+    const catalog = path.join(root, 'catalog.json');
+    const manifestPath = path.join(root, 'index.json');
+    const previous = '{"sentinel":true}\n';
+    await writeFile(catalog, JSON.stringify([{ id: '1', name: '失败对象' }]));
+    await writeFile(manifestPath, previous);
+    const fetchImpl = vi.fn<typeof fetch>(async (input) => {
+      const url = String(input);
+      if (url.endsWith('/manifest.json'))
+        return new Response(JSON.stringify({ hsr: { latest: '9.9.9' } }));
+      if (url.endsWith('/monster.json')) return new Response(JSON.stringify([]));
+      return new Response('', { status: 403 });
+    });
+    await expect(
+      syncEnemyAssets({
+        assetRoot: root,
+        catalogFile: catalog,
+        baseUrl: 'https://example.test',
+        fetchImpl,
+        log: () => undefined
+      })
+    ).rejects.toThrow(/operational failure/);
+    await expect(readFile(manifestPath, 'utf8')).resolves.toBe(previous);
+  });
+});
+
+describe('Enemy asset ensure cache', () => {
+  async function writeCache(
+    root: string,
+    options: { version?: string; filename?: string; schemaVersion?: number } = {}
+  ): Promise<string> {
+    const iconRoot = path.join(root, 'icons');
+    await mkdir(iconRoot, { recursive: true });
+    await writeFile(path.join(iconRoot, options.filename ?? 'Monster_7000.webp'), validWebp);
+    const manifestPath = path.join(root, 'index.json');
+    await writeFile(
+      manifestPath,
+      JSON.stringify({
+        schemaVersion: options.schemaVersion ?? ENEMY_ASSET_SCHEMA_VERSION,
+        source: 'static.nanoka.cc',
+        version: options.version ?? '9.9.9',
+        generatedAt: '2026-01-01T00:00:00.000Z',
+        resourceType: 'MonsterMiddleIcon',
+        monsters: {
+          '1': {
+            name: '测试敌人',
+            imageId: '7000',
+            icon: '/generated-enemy-assets/icons/Monster_7000.webp'
+          }
+        },
+        unavailable: {}
+      })
+    );
+    return manifestPath;
+  }
+
+  it('schema 2 cache 完整且版本一致时只请求 version manifest', async () => {
+    const root = await testRoot('ensure-warm');
+    const catalog = path.join(root, 'catalog.json');
+    await writeFile(catalog, JSON.stringify([{ id: '1', name: '测试敌人' }]));
+    await writeCache(root);
+    const fetchImpl = vi.fn<typeof fetch>(async () =>
+      Promise.resolve(new Response(JSON.stringify({ hsr: { latest: '9.9.9' } })))
+    );
+    const result = await ensureEnemyAssets({
+      assetRoot: root,
+      catalogFile: catalog,
+      baseUrl: 'https://example.test',
+      fetchImpl,
+      log: () => undefined
+    });
+    expect(result.disposition).toBe('reused');
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+  });
+
+  it('版本变化时刷新 mapping，但复用有效图片', async () => {
+    const root = await testRoot('ensure-version');
+    const catalog = path.join(root, 'catalog.json');
+    await writeFile(catalog, JSON.stringify([{ id: '1', name: '测试敌人' }]));
+    await writeCache(root, { version: '9.9.8' });
+    let imageRequests = 0;
+    const fetchImpl = vi.fn<typeof fetch>(async (input) => {
+      const url = String(input);
+      if (url.endsWith('/manifest.json'))
+        return new Response(JSON.stringify({ hsr: { latest: '9.9.9' } }));
+      if (url.endsWith('/monster.json')) return new Response(JSON.stringify([]));
+      if (url.endsWith('/1.json'))
+        return new Response(
+          JSON.stringify({ id: '1', name: '测试敌人', image_path: 'Monster_7000.png' })
+        );
+      imageRequests += 1;
+      return new Response(validWebpBody, { headers: { 'content-type': 'image/webp' } });
+    });
+    const result = await ensureEnemyAssets({
+      assetRoot: root,
+      catalogFile: catalog,
+      baseUrl: 'https://example.test',
+      fetchImpl,
+      log: () => undefined
+    });
+    expect(result.disposition).toBe('synced');
+    expect(imageRequests).toBe(0);
+  });
+
+  it('版本探测暂时失败时继续使用完整 cache', async () => {
+    const root = await testRoot('ensure-offline');
+    const catalog = path.join(root, 'catalog.json');
+    await writeFile(catalog, JSON.stringify([{ id: '1', name: '测试敌人' }]));
+    await writeCache(root);
+    const result = await ensureEnemyAssets({
+      assetRoot: root,
+      catalogFile: catalog,
+      baseUrl: 'https://example.test',
+      fetchImpl: vi.fn<typeof fetch>().mockRejectedValue(new Error('offline')),
+      maxRetries: 0,
+      log: () => undefined
+    });
+    expect(result.disposition).toBe('reused');
+    expect(result.validation.valid).toBe(true);
+  });
+
+  it('schema 1 不作为 ensure cache，且严格拒绝文件名大小写不一致', async () => {
+    const root = await testRoot('ensure-invalid');
+    const catalog = path.join(root, 'catalog.json');
+    const requirements = [requirement('1')];
+    await writeFile(catalog, JSON.stringify(requirements));
+    const legacyPath = await writeCache(root, { schemaVersion: 1 });
+    await expect(readEnemyAssetManifest(legacyPath)).resolves.toBeUndefined();
+    await rm(path.join(root, 'icons', 'Monster_7000.webp'));
+    await writeCache(root, { filename: 'monster_7000.webp' });
+    const manifest = await readEnemyAssetManifest(legacyPath);
+    await expect(
+      validateEnemyAssetCache(requirements, manifest, path.join(root, 'icons'))
+    ).resolves.toMatchObject({
+      valid: false,
+      reason: expect.stringMatching(/大小写/)
+    });
+  });
+
+  it('代理环境或显式参数选择 curl transport', () => {
+    expect(hasProxyEnvironment({ HTTPS_PROXY: 'http://127.0.0.1:7890' })).toBe(true);
+    expect(hasProxyEnvironment({})).toBe(false);
+    expect(shouldUseCurlTransport([], { ALL_PROXY: 'http://127.0.0.1:7890' })).toBe(true);
+    expect(shouldUseCurlTransport(['--curl'], {})).toBe(true);
+    expect(shouldUseCurlTransport([], {})).toBe(false);
+  });
 });
 
 describe('Endgame 本地敌人立绘 resolver', () => {
@@ -360,7 +561,10 @@ describe('Endgame 本地敌人立绘 resolver', () => {
     await writeFile(
       path.join(assetRoot, 'index.json'),
       JSON.stringify({
-        schemaVersion: 1,
+        schemaVersion: 2,
+        source: 'static.nanoka.cc',
+        version: '9.9.9',
+        generatedAt: '2026-01-01T00:00:00.000Z',
         resourceType: 'MonsterMiddleIcon',
         monsters: {
           '1': {
@@ -373,7 +577,8 @@ describe('Endgame 本地敌人立绘 resolver', () => {
             imageId: '7000',
             icon: '/generated-enemy-assets/icons/Monster_7000.webp'
           }
-        }
+        },
+        unavailable: {}
       })
     );
     const portraits = await loadEnemyPortraitMap({

@@ -6,7 +6,7 @@ import type { CatalogEntry } from '../../../src/lib/domain/types.js';
 import { assertInsideSite, generatedRoot, siteRoot } from '../../data/paths.js';
 
 export const NANOKA_BASE_URL = 'https://static.nanoka.cc';
-export const ENEMY_ASSET_SCHEMA_VERSION = 1 as const;
+export const ENEMY_ASSET_SCHEMA_VERSION = 2 as const;
 export const DEFAULT_CONCURRENCY = 4;
 export const DEFAULT_TIMEOUT_MS = 15_000;
 export const DEFAULT_MAX_RETRIES = 3;
@@ -41,6 +41,12 @@ export interface EnemyAssetEntry {
   icon: string;
 }
 
+export interface EnemyAssetUnavailableEntry {
+  name: string;
+  kind: 'missing-monster-json' | 'missing-image-path' | 'missing-image-file';
+  status?: number;
+}
+
 export interface EnemyAssetManifest {
   schemaVersion: typeof ENEMY_ASSET_SCHEMA_VERSION;
   source: 'static.nanoka.cc';
@@ -48,6 +54,7 @@ export interface EnemyAssetManifest {
   generatedAt: string;
   resourceType: 'MonsterMiddleIcon';
   monsters: Record<string, EnemyAssetEntry>;
+  unavailable: Record<string, EnemyAssetUnavailableEntry>;
 }
 
 export type FailureKind =
@@ -55,6 +62,7 @@ export type FailureKind =
   | 'failed-monster-json'
   | 'invalid-monster-json'
   | 'missing-image-path'
+  | 'missing-image-file'
   | 'failed-image-download';
 
 export interface EnemyAssetFailure {
@@ -70,6 +78,14 @@ export interface ImageMetadata {
   width: number;
   height: number;
   size: number;
+}
+
+export interface EnemyAssetCacheValidation {
+  valid: boolean;
+  reason?: string;
+  mappedMonsterTemplateIds: number;
+  unavailableMonsterTemplateIds: number;
+  uniqueImageIds: number;
 }
 
 export type IconWriteResult =
@@ -101,6 +117,39 @@ const objectRecord = (value: unknown): Record<string, unknown> | undefined =>
   value !== null && typeof value === 'object' && !Array.isArray(value)
     ? (value as Record<string, unknown>)
     : undefined;
+
+export function isToleratedEnemyAssetFailure(failure: EnemyAssetFailure): boolean {
+  return ['missing-monster-json', 'missing-image-path', 'missing-image-file'].includes(
+    failure.kind
+  );
+}
+
+export function parseEnemyAssetManifest(value: unknown): EnemyAssetManifest | undefined {
+  const manifest = objectRecord(value);
+  if (
+    manifest?.schemaVersion !== ENEMY_ASSET_SCHEMA_VERSION ||
+    manifest.source !== 'static.nanoka.cc' ||
+    typeof manifest.version !== 'string' ||
+    !manifest.version.trim() ||
+    typeof manifest.generatedAt !== 'string' ||
+    manifest.resourceType !== 'MonsterMiddleIcon' ||
+    !objectRecord(manifest.monsters) ||
+    !objectRecord(manifest.unavailable)
+  ) {
+    return undefined;
+  }
+  return manifest as unknown as EnemyAssetManifest;
+}
+
+export async function readEnemyAssetManifest(
+  manifestFile = enemyAssetManifestPath
+): Promise<EnemyAssetManifest | undefined> {
+  try {
+    return parseEnemyAssetManifest(JSON.parse(await readFile(manifestFile, 'utf8')));
+  } catch {
+    return undefined;
+  }
+}
 
 const decimalId = (value: unknown): string | undefined => {
   const normalized = typeof value === 'number' ? String(value) : value;
@@ -234,6 +283,25 @@ export async function fetchJson(url: string, options: RetryOptions = {}): Promis
   }
 }
 
+export function resolveNanokaVersion(value: unknown): string {
+  const manifest = objectRecord(value);
+  const hsr = objectRecord(manifest?.hsr);
+  const latest = hsr?.latest;
+  if (typeof latest !== 'string' || !latest.trim()) {
+    throw new Error('Nanoka manifest 缺少 hsr.latest。');
+  }
+  return latest.trim();
+}
+
+export async function fetchNanokaVersion(
+  baseUrl = NANOKA_BASE_URL,
+  options: RetryOptions = {}
+): Promise<string> {
+  return resolveNanokaVersion(
+    await fetchJson(`${baseUrl.replace(/\/$/, '')}/manifest.json`, options)
+  );
+}
+
 export async function mapConcurrent<T, R>(
   values: readonly T[],
   concurrency: number,
@@ -281,6 +349,129 @@ export async function validateWebpFile(file: string): Promise<ImageMetadata> {
     throw new Error('Sharp 无法确认有效的 WebP 尺寸。');
   }
   return { width: image.width, height: image.height, size: metadata.size };
+}
+
+const invalidCache = (
+  reason: string,
+  mappedMonsterTemplateIds = 0,
+  unavailableMonsterTemplateIds = 0,
+  uniqueImageIds = 0
+): EnemyAssetCacheValidation => ({
+  valid: false,
+  reason,
+  mappedMonsterTemplateIds,
+  unavailableMonsterTemplateIds,
+  uniqueImageIds
+});
+
+export async function validateEnemyAssetCache(
+  requirements: readonly EnemyRequirement[],
+  manifest: EnemyAssetManifest | undefined,
+  iconRoot = enemyIconRoot
+): Promise<EnemyAssetCacheValidation> {
+  if (!manifest) return invalidCache('manifest 缺失、损坏或 schema 不是 2');
+  const monsterEntries = Object.entries(manifest.monsters);
+  const unavailableEntries = Object.entries(manifest.unavailable);
+  const mapped = monsterEntries.length;
+  const unavailable = unavailableEntries.length;
+  const requiredIds = new Set(requirements.map((requirement) => requirement.id));
+  const coveredIds = new Set([...monsterEntries, ...unavailableEntries].map(([id]) => id));
+  if (coveredIds.size !== mapped + unavailable) {
+    return invalidCache('monsters 与 unavailable 存在重复 ID', mapped, unavailable);
+  }
+  if (
+    coveredIds.size !== requiredIds.size ||
+    [...requiredIds].some((id) => !coveredIds.has(id)) ||
+    [...coveredIds].some((id) => !requiredIds.has(id))
+  ) {
+    return invalidCache('manifest 未精确覆盖当前 enemy catalog', mapped, unavailable);
+  }
+  if (requirements.length > 0 && mapped === 0) {
+    return invalidCache('enemy catalog 非空但没有任何可用映射', mapped, unavailable);
+  }
+  const allowedMissingKinds = new Set([
+    'missing-monster-json',
+    'missing-image-path',
+    'missing-image-file'
+  ]);
+  for (const [id, entry] of unavailableEntries) {
+    if (
+      !entry ||
+      typeof entry.name !== 'string' ||
+      !entry.name.trim() ||
+      !allowedMissingKinds.has(entry.kind)
+    ) {
+      return invalidCache(`unavailable 条目无效：${id}`, mapped, unavailable);
+    }
+  }
+  let actualNames: Set<string>;
+  try {
+    actualNames = new Set(
+      (await readdir(iconRoot, { withFileTypes: true }))
+        .filter((entry) => entry.isFile())
+        .map((entry) => entry.name)
+    );
+  } catch {
+    return invalidCache('enemy icon 目录缺失', mapped, unavailable);
+  }
+  const uniqueImageIds = new Set<string>();
+  for (const [id, entry] of monsterEntries) {
+    if (
+      !entry ||
+      typeof entry.name !== 'string' ||
+      !entry.name.trim() ||
+      typeof entry.imageId !== 'string' ||
+      !/^\d+$/.test(entry.imageId)
+    ) {
+      return invalidCache(`monster 条目无效：${id}`, mapped, unavailable, uniqueImageIds.size);
+    }
+    const filename = `Monster_${entry.imageId}.webp`;
+    const canonicalUrl = `/generated-enemy-assets/icons/${filename}`;
+    if (entry.icon !== canonicalUrl || !actualNames.has(filename)) {
+      return invalidCache(
+        `enemy icon 路径或文件名大小写不匹配：${id}`,
+        mapped,
+        unavailable,
+        uniqueImageIds.size
+      );
+    }
+    uniqueImageIds.add(entry.imageId);
+  }
+  if (requirements.length > 0 && uniqueImageIds.size === 0) {
+    return invalidCache('enemy catalog 非空但没有任何有效图片', mapped, unavailable);
+  }
+  const imageErrors = await mapConcurrent(
+    [...uniqueImageIds],
+    DEFAULT_CONCURRENCY,
+    async (imageId) => {
+      try {
+        await validateWebpFile(path.join(iconRoot, `Monster_${imageId}.webp`));
+        return undefined;
+      } catch (error) {
+        return `enemy icon 无效：Monster_${imageId}.webp：${(error as Error).message}`;
+      }
+    }
+  );
+  const imageError = imageErrors.find((error) => error !== undefined);
+  if (imageError) {
+    return invalidCache(imageError, mapped, unavailable, uniqueImageIds.size);
+  }
+  for (const id of SANITY_CHECK_IDS) {
+    if (requiredIds.has(id) && !manifest.monsters[id]) {
+      return invalidCache(
+        `sanity-check enemy 缺失：${id}`,
+        mapped,
+        unavailable,
+        uniqueImageIds.size
+      );
+    }
+  }
+  return {
+    valid: true,
+    mappedMonsterTemplateIds: mapped,
+    unavailableMonsterTemplateIds: unavailable,
+    uniqueImageIds: uniqueImageIds.size
+  };
 }
 
 async function pathExists(file: string): Promise<boolean> {
