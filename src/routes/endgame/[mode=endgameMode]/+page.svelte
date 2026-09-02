@@ -3,13 +3,14 @@
   import EndgameModeNav from '$lib/components/endgame/EndgameModeNav.svelte';
   import EndgameSeasonCard from '$lib/components/endgame/EndgameSeasonCard.svelte';
   import { groupEndgamePeriods } from '$lib/domain/endgame-view';
+  import { formatDocumentTitle } from '$lib/site';
   export let data;
 
   $: periodGroups = groupEndgamePeriods(data.mode.periods);
 </script>
 
 <svelte:head>
-  <title>{data.mode.label}赛期｜星轨档案库</title>
+  <title>{formatDocumentTitle(`${data.mode.label}赛期`)}</title>
   <meta name="description" content={`浏览${data.mode.label}的当前、未来与历史赛期。`} />
 </svelte:head>
 

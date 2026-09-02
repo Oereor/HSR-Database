@@ -17,6 +17,7 @@
   } from '$lib/data/visual-assets';
   import { ENDGAME_MODES, ENDGAME_MODE_META } from '$lib/domain/endgame-view';
   import { createGlobalSearchService, endgameSearchSeasonsForMode } from '$lib/search/search';
+  import { formatDocumentTitle } from '$lib/site';
   import type { PageData } from './$types';
 
   export let data: PageData;
@@ -81,7 +82,7 @@
 </script>
 
 <svelte:head>
-  <title>全局搜索｜星轨档案库</title>
+  <title>{formatDocumentTitle('全局搜索')}</title>
   <meta name="description" content="跨角色、光锥、遗器和敌方单位的简体中文搜索。" />
 </svelte:head>
 

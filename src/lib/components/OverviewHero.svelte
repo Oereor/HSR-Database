@@ -53,7 +53,8 @@
 
   .overview-hero h1 {
     margin: 0 0 0.35rem;
-    font-size: clamp(2.1rem, 5vw, 3.25rem);
+    font-size: var(--font-hero-overview-title);
+    font-weight: var(--font-hero-title-weight);
     line-height: 1.05;
   }
 

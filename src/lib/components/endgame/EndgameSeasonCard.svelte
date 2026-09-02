@@ -12,7 +12,6 @@
   export let variant: EndgamePeriodStatus;
 
   $: metadata = ENDGAME_MODE_META[mode];
-  $: dateLabel = period.status === 'unknown' ? '-' : period.dateLabel;
 </script>
 
 <a
@@ -30,7 +29,7 @@
 
   <div class="endgame-season-card__content">
     <h3>{period.name}</h3>
-    <span class="endgame-season-card__date">{dateLabel}</span>
+    <span class="endgame-season-card__date">{period.dateLabel}</span>
   </div>
 
   <span class="endgame-season-card__footer">

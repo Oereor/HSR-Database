@@ -27,23 +27,23 @@
 
 ### 关键 config
 
-| Config | 角色 |
-| --- | --- |
-| `AvatarEquipRecommend.json` | 91 条普通来源光锥系统推荐记录；字段只有 `AvatarID`、`EquipmentList` |
-| `AvatarEquipRecommendLD.json` | 4 条追加光锥推荐记录；结构与主表完全相同 |
-| `AvatarRelicRecommend.json` | 91 条普通来源遗器系统推荐记录 |
-| `AvatarRelicRecommendLD.json` | 4 条追加遗器推荐记录；结构与主表完全相同 |
-| `AvatarConfig.json` / `AvatarConfigLD.json` | `AvatarID` 的角色实体与命途、稀有度、Release 等身份 |
-| `EquipmentConfig.json` | `EquipmentList[] -> EquipmentID`；具体光锥实体 |
-| `ItemConfigEquipment.json` | 光锥名称、描述和故事等 item localization 引用；当前网站已据此归一化光锥 |
-| `RelicSetConfig.json` | `Set4IDList[]`、`Set2IDList[] -> SetID`；套装名称、set skill、release version |
-| `RelicSetSkillConfig.json` | 套装 2 件/4 件效果；决定套装能力，而非 recommendation 自身语义 |
-| `RelicDataInfo.json` | `SetID -> pieces`；四部位 set 为 `HEAD/HAND/BODY/FOOT`，两部位 set 为 `NECK/OBJECT` |
-| `RelicBaseType.json` | 槽位代码、槽位名称与各槽允许的主词条类型 |
-| `AvatarPropertyConfig.json` | `PropertyType` 的名称、遗器显示名称、筛选编号和图标 |
-| `RelicMainAffixConfig.json` | 主词条 property 的具体 affix/value 配置；recommendation 只保存 property type，不保存 affix ID |
-| `RelicSubAffixConfig.json` | 副词条 property 的具体 affix/value 配置；recommendation 只保存 property type |
-| `TextMapCHS.json` | Character、Light Cone、Relic set、slot、stat 名称，以及“光锥建议/遗器建议”的产品说明 |
+| Config                                      | 角色                                                                                          |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `AvatarEquipRecommend.json`                 | 91 条普通来源光锥系统推荐记录；字段只有 `AvatarID`、`EquipmentList`                           |
+| `AvatarEquipRecommendLD.json`               | 4 条追加光锥推荐记录；结构与主表完全相同                                                      |
+| `AvatarRelicRecommend.json`                 | 91 条普通来源遗器系统推荐记录                                                                 |
+| `AvatarRelicRecommendLD.json`               | 4 条追加遗器推荐记录；结构与主表完全相同                                                      |
+| `AvatarConfig.json` / `AvatarConfigLD.json` | `AvatarID` 的角色实体与命途、稀有度、Release 等身份                                           |
+| `EquipmentConfig.json`                      | `EquipmentList[] -> EquipmentID`；具体光锥实体                                                |
+| `ItemConfigEquipment.json`                  | 光锥名称、描述和故事等 item localization 引用；当前网站已据此归一化光锥                       |
+| `RelicSetConfig.json`                       | `Set4IDList[]`、`Set2IDList[] -> SetID`；套装名称、set skill、release version                 |
+| `RelicSetSkillConfig.json`                  | 套装 2 件/4 件效果；决定套装能力，而非 recommendation 自身语义                                |
+| `RelicDataInfo.json`                        | `SetID -> pieces`；四部位 set 为 `HEAD/HAND/BODY/FOOT`，两部位 set 为 `NECK/OBJECT`           |
+| `RelicBaseType.json`                        | 槽位代码、槽位名称与各槽允许的主词条类型                                                      |
+| `AvatarPropertyConfig.json`                 | `PropertyType` 的名称、遗器显示名称、筛选编号和图标                                           |
+| `RelicMainAffixConfig.json`                 | 主词条 property 的具体 affix/value 配置；recommendation 只保存 property type，不保存 affix ID |
+| `RelicSubAffixConfig.json`                  | 副词条 property 的具体 affix/value 配置；recommendation 只保存 property type                  |
+| `TextMapCHS.json`                           | Character、Light Cone、Relic set、slot、stat 名称，以及“光锥建议/遗器建议”的产品说明          |
 
 `GridFightRoleRecommendEquip.json` 和 `GridFightEquipRecommendRole.json` 也包含 `RecommendEquip`，但它们引用 `3503xxxx` 的 GridFight mini-game 装备，并按 `FrontBackType` 区分。它们不是角色常规 Light Cone/Relic 推荐关系，不能并入本模型；它们反而证明搜索 `Equip` 关键字后必须按 entity namespace 和 explicit target 排除同名玩法表。
 
@@ -111,9 +111,9 @@ ownership 是直接且显式的：两类 recommendation row 都保存 `AvatarID`
 ### Cardinality
 
 | 每角色光锥数 | 角色数 |
-| ---: | ---: |
-| 2 | 23 |
-| 3 | 72 |
+| -----------: | -----: |
+|            2 |     23 |
+|            3 |     72 |
 
 没有空 list，没有单项或超过三项的记录，也没有同一 list 内重复 ID。
 
@@ -136,9 +136,9 @@ ownership 是直接且显式的：两类 recommendation row 都保存 `AvatarID`
 `Set4IDList` 直接引用 `RelicSetConfig.SetID`。所有被引用 set 都通过 `RelicDataInfo` 拥有 `HEAD/HAND/BODY/FOOT` 四个 pieces，并在 `RelicSetSkillConfig` 中提供 2 件与 4 件效果。因此它指向 **四部位 Cavern Relic set entity**，不是具体 relic item。
 
 | 每角色 `Set4IDList` 数量 | 角色数 |
-| ---: | ---: |
-| 2 | 2 |
-| 3 | 93 |
+| -----------------------: | -----: |
+|                        2 |      2 |
+|                        3 |     93 |
 
 只有 `1501`、`1502` 各有两个，其余角色均为三个。共引用 32 个不同 Cavern sets，所有 ID 均可解析。
 
@@ -153,8 +153,8 @@ ownership 是直接且显式的：两类 recommendation row 都保存 `AvatarID`
 `Set2IDList` 同样引用 `RelicSetConfig.SetID`，但所有目标 set 都通过 `RelicDataInfo` 只包含 `NECK` 和 `OBJECT` 两个 pieces。因此 Planar Ornament 与 Cavern Relic 共用同一个 Relic Set entity/config family，通过目标 set 的 piece types（同时也与 `Set2IDList` 字段 ownership 一致）区分。
 
 | 每角色 `Set2IDList` 数量 | 角色数 |
-| ---: | ---: |
-| 3 | 95 |
+| -----------------------: | -----: |
+|                        3 |     95 |
 
 共引用 28 个不同 Planar sets，全部解析成功。它不是与 Cavern 完全无关的第二种 entity，也不是同一无分类 list；在 recommendation row 中是独立字段关系：
 
@@ -178,22 +178,22 @@ Character -> Set2IDList -> Planar Ornament sets
 四个 variable-main-stat slots 的字段映射是：
 
 | Recommendation field | RelicType | 中文槽位 |
-| --- | --- | --- |
-| `PropertyList3` | `BODY` | 躯干 |
-| `PropertyList4` | `FOOT` | 脚部 |
-| `PropertyList5` | `NECK` | 位面球 |
-| `PropertyList6` | `OBJECT` | 连结绳 |
+| -------------------- | --------- | -------- |
+| `PropertyList3`      | `BODY`    | 躯干     |
+| `PropertyList4`      | `FOOT`    | 脚部     |
+| `PropertyList5`      | `NECK`    | 位面球   |
+| `PropertyList6`      | `OBJECT`  | 连结绳   |
 
 头部与手部没有 recommendation field，因为 `RelicBaseType` 显式限定其主词条分别只能是 `HPDelta`、`AttackDelta`。
 
 每个 slot 的 option 数量：
 
-| Slot | 1 option | 2 options |
-| --- | ---: | ---: |
-| BODY | 30 | 65 |
-| FOOT | 57 | 38 |
-| NECK | 54 | 41 |
-| OBJECT | 47 | 48 |
+| Slot   | 1 option | 2 options |
+| ------ | -------: | --------: |
+| BODY   |       30 |        65 |
+| FOOT   |       57 |        38 |
+| NECK   |       54 |        41 |
+| OBJECT |       47 |        48 |
 
 数据另有 `PropertyList`，95 个角色均固定包含四项，每项为 `{ RelicType, PropertyType }`，顺序固定为 BODY、FOOT、NECK、OBJECT。全量验证显示，其中每个 `PropertyType` 都恰好等于对应 option list 的第一项。
 
@@ -209,11 +209,11 @@ Character -> Set2IDList -> Planar Ornament sets
 `SubAffixPropertyList` 是 property type code 数组，长度分布为：
 
 | 副词条数 | 角色数 |
-| ---: | ---: |
-| 2 | 5 |
-| 3 | 33 |
-| 4 | 50 |
-| 5 | 7 |
+| -------: | -----: |
+|        2 |      5 |
+|        3 |     33 |
+|        4 |     50 |
+|        5 |      7 |
 
 没有重复 property，没有 weight、score、group 或 per-slot condition。TextMap 只把这些属性描述为“推荐副属性/有效副属性”，没有说明数组顺序是 priority。
 
@@ -372,35 +372,35 @@ Avatar 1508
 
 ### Coverage and identity
 
-| Metric | Result |
-| --- | ---: |
-| Avatar configs（main + LD） | 95 |
-| Light Cone recommendation records | 95 |
-| Relic recommendation records | 95 |
-| 有 recommendation 的 playable avatar 数量 | 95 |
-| 每具体 AvatarID 的 Light Cone records | 1（95/95） |
-| 每具体 AvatarID 的 Relic records | 1（95/95） |
-| EquipmentConfig entities | 165 |
-| 被推荐的不同 Light Cones | 113 |
-| RelicSetConfig entities | 60 |
-| 被 `Set4IDList` 引用的不同 sets | 32 |
-| 被 `Set2IDList` 引用的不同 sets | 28 |
-| recommendation 使用的不同 property codes | 19 |
+| Metric                                    |     Result |
+| ----------------------------------------- | ---------: |
+| Avatar configs（main + LD）               |         95 |
+| Light Cone recommendation records         |         95 |
+| Relic recommendation records              |         95 |
+| 有 recommendation 的 playable avatar 数量 |         95 |
+| 每具体 AvatarID 的 Light Cone records     | 1（95/95） |
+| 每具体 AvatarID 的 Relic records          | 1（95/95） |
+| EquipmentConfig entities                  |        165 |
+| 被推荐的不同 Light Cones                  |        113 |
+| RelicSetConfig entities                   |         60 |
+| 被 `Set4IDList` 引用的不同 sets           |         32 |
+| 被 `Set2IDList` 引用的不同 sets           |         28 |
+| recommendation 使用的不同 property codes  |         19 |
 
 ### Distribution
 
-| Dimension | Distribution |
-| --- | --- |
-| Light Cones per avatar | 2: 23；3: 72 |
-| Cavern sets per avatar | 2: 2；3: 93 |
-| Planar sets per avatar | 3: 95 |
-| BODY main options | 1: 30；2: 65 |
-| FOOT main options | 1: 57；2: 38 |
-| NECK main options | 1: 54；2: 41 |
-| OBJECT main options | 1: 47；2: 48 |
-| `PropertyList` entries | 4: 95 |
-| Substat options | 2: 5；3: 33；4: 50；5: 7 |
-| `ScoreRankList` entries | 2: 95 |
+| Dimension               | Distribution             |
+| ----------------------- | ------------------------ |
+| Light Cones per avatar  | 2: 23；3: 72             |
+| Cavern sets per avatar  | 2: 2；3: 93              |
+| Planar sets per avatar  | 3: 95                    |
+| BODY main options       | 1: 30；2: 65             |
+| FOOT main options       | 1: 57；2: 38             |
+| NECK main options       | 1: 54；2: 41             |
+| OBJECT main options     | 1: 47；2: 48             |
+| `PropertyList` entries  | 4: 95                    |
+| Substat options         | 2: 5；3: 33；4: 50；5: 7 |
+| `ScoreRankList` entries | 2: 95                    |
 
 ### Integrity checks
 

@@ -477,7 +477,7 @@ export function buildPeriodView(group: EndgameGroup, now = Date.now()): EndgameP
     return {
       groupId: group.groupId,
       name: group.name || `数据组 ${group.groupId}`,
-      dateLabel: '时间资料未提供',
+      dateLabel: '-',
       status: 'unknown',
       encounterCount: group.encounters.length
     };

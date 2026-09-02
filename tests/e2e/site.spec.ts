@@ -2,9 +2,14 @@ import { expect, test } from '@playwright/test';
 
 test('首页作为数据库入口展示品牌、分类与最近限定跃迁', async ({ page }) => {
   await page.goto('/');
+  await expect(page).toHaveTitle('《崩坏：星穹铁道》档案库');
   await expect(
-    page.getByRole('heading', { level: 1, name: '崩坏：星穹铁道 档案库' })
+    page.getByRole('heading', { level: 1, name: '《崩坏：星穹铁道》档案库' })
   ).toBeVisible();
+  await expect(page.locator('link[rel="icon"]')).toHaveAttribute(
+    'href',
+    /\/generated-assets\/branding\/train-party\.png$/
+  );
   await expect(page.getByText('HONKAI: STAR RAIL DATA ARCHIVE', { exact: true })).toBeVisible();
   await expect(page.locator('.home-hero__collage img')).toHaveCount(4);
   expect(
@@ -29,7 +34,8 @@ test('首页作为数据库入口展示品牌、分类与最近限定跃迁', as
   ] as const) {
     const row = page.locator(`.home-directory-row[href="${href}"]`);
     await expect(row).toContainText(label);
-    await expect(row).toContainText(/\d+ 条记录/);
+    await expect(row).not.toContainText(/\d+ 条记录/);
+    await expect(row.locator('.home-directory-row__arrow')).toHaveText('→');
   }
 
   await expect(page.locator('[data-homepage-recent="avatar"] .entity-overview-card')).toHaveCount(
@@ -76,10 +82,37 @@ test('首页作为数据库入口展示品牌、分类与最近限定跃迁', as
 
   await page.goto('/characters');
   await page.waitForLoadState('networkidle');
+  await expect(page).toHaveTitle('角色｜《崩坏：星穹铁道》档案库');
   await expect(page.getByRole('heading', { name: '角色' })).toBeVisible();
   await expect(page.locator('.entity-overview-card').first()).toBeVisible();
   await page.goto('/items');
+  await expect(page).toHaveTitle('404｜《崩坏：星穹铁道》档案库');
   await expect(page.getByRole('heading', { name: '这条星轨暂不存在' })).toBeVisible();
+});
+
+test('Footer 仅保留正式服说明、数据仓库与本地许可证', async ({ page }) => {
+  await page.goto('/');
+  const footer = page.locator('footer');
+  await expect(footer.locator('p')).toHaveCount(2);
+  await expect(footer.locator('p').first()).toHaveText(
+    '本站为非官方玩家制作的数据网站，与米哈游或 HoYoverse 无官方关联。游戏名称、角色及相关资产的权利归其权利人所有。'
+  );
+  await expect(footer.locator('p').nth(1)).toHaveText(
+    '数据来源：TurnBasedGameData；角色与光锥视觉资源来源：StarRailRes（AGPL-3.0 许可证）。数据仅涵盖正式服内容，并可能存在延迟或错误。'
+  );
+  await expect(footer.getByRole('link', { name: 'TurnBasedGameData' })).toHaveAttribute(
+    'href',
+    'https://github.com/DimbreathBot/TurnBasedGameData'
+  );
+  await expect(footer.getByRole('link', { name: 'StarRailRes', exact: true })).toHaveAttribute(
+    'href',
+    'https://github.com/Mar-7th/StarRailRes'
+  );
+  await expect(footer.getByRole('link', { name: 'AGPL-3.0 许可证' })).toHaveAttribute(
+    'href',
+    '/licenses/StarRailRes-AGPL-3.0.txt'
+  );
+  await expect(footer).not.toContainText('第三方资源与权利声明');
 });
 
 test('角色目录按 ID 加载 preview 并保留安全缺图降级', async ({ page }) => {
@@ -514,7 +547,7 @@ test('四名 LD 角色进入 Character Overview、Search、Detail 与本地资�
       `/generated-assets/characters/portrait/${id}.webp`
     );
     await expect(page.locator('#skills .skill-card')).toHaveCount(5);
-    await expect(page.locator('#traces')).toContainText('13 条记录');
+    await expect(page.locator('#traces')).not.toContainText('13 条记录');
     await expect(page.locator('#eidolons .rank-card')).toHaveCount(6);
   }
 });
@@ -573,6 +606,15 @@ test('Global Buff 作为正常 Talent Variant 展示且不泄漏配置术语', a
 
 test('敌人目录使用本地立绘、三类 Rank 和 default Monster 弱点', async ({ page }) => {
   await page.goto('/enemies?sort=id');
+  const heroArtwork = page.locator('.overview-hero__artwork img');
+  await expect(heroArtwork).toHaveCount(3);
+  expect(
+    await heroArtwork.evaluateAll((images) => images.map((image) => image.getAttribute('src')))
+  ).toEqual([
+    '/generated-enemy-assets/icons/Monster_1005010.webp',
+    '/generated-enemy-assets/icons/Monster_2004010.webp',
+    '/generated-enemy-assets/icons/Monster_4034010.webp'
+  ]);
   const card = page.locator('a[href="/enemies/1002015"]');
   await expect(card).toBeVisible();
   await expect(card.locator('.entity-overview-card__artwork img')).toHaveAttribute(
@@ -1222,6 +1264,20 @@ test('技能卡按语义类别合并变体并使用真实默认等级', async ({
   const hertaSkill = page.locator('[data-skill-category="skill"]');
   await expect(hertaSkill).toHaveCount(1);
   await expect(hertaSkill.locator('.skill-variant')).toHaveCount(2);
+});
+
+test('技能标题与首个等级控制之间只保留标题底边线', async ({ page }) => {
+  await page.goto('/characters/1001');
+  const card = page.locator('[data-skill-category="basic"]');
+  const dividerWidths = await card.evaluate((element) => {
+    const heading = element.querySelector<HTMLElement>('.skill-card__heading')!;
+    const levelControl = element.querySelector<HTMLElement>('.skill-level-control')!;
+    return [
+      getComputedStyle(heading).borderBottomWidth,
+      getComputedStyle(levelControl).borderTopWidth
+    ];
+  });
+  expect(dividerWidths).toEqual(['1px', '0px']);
 });
 
 test('每个 Skill Variant 独立展示技能类型与战斗元数据', async ({ page }) => {

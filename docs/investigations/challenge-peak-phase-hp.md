@@ -141,10 +141,10 @@ HardEventIDList = [30509022]      // 绝境/Hard
 
 两条 `StageConfig` 的关键字段：
 
-| 变体 | StageID | Level | HardLevelGroup | `_StageInfiniteGroup` | MonsterList |
-| --- | ---: | ---: | ---: | ---: | --- |
-| 普通 | 30509021 | 100 | 3 | 30509021 | [403501001] |
-| Hard | 30509022 | 120 | 3 | 30509022 | [403501001] |
+| 变体 |  StageID | Level | HardLevelGroup | `_StageInfiniteGroup` | MonsterList |
+| ---- | -------: | ----: | -------------: | --------------------: | ----------- |
+| 普通 | 30509021 |   100 |              3 |              30509021 | [403501001] |
+| Hard | 30509022 |   120 |              3 |              30509022 | [403501001] |
 
 `StageInfiniteGroup`：
 
@@ -331,11 +331,11 @@ H = 12,395,969.87140624950
 
 按静态阶段倍率直接乘：
 
-| Phase | Base HP（精确） | Phase modifier | 直接计算结果 | 当前网站半上取整 |
-| --- | ---: | ---: | ---: | ---: |
-| P1 | 12,395,969.87140624950 | 1.00 | 12,395,969.87140624950 | 12,395,970 |
-| P2 | 12,395,969.87140624950 | 1.25 | 15,494,962.3392578118750 | 15,494,962 |
-| P3 | 12,395,969.87140624950 | 1.00 | 12,395,969.87140624950 | 12,395,970 |
+| Phase |        Base HP（精确） | Phase modifier |             直接计算结果 | 当前网站半上取整 |
+| ----- | ---------------------: | -------------: | -----------------------: | ---------------: |
+| P1    | 12,395,969.87140624950 |           1.00 |   12,395,969.87140624950 |       12,395,970 |
+| P2    | 12,395,969.87140624950 |           1.25 | 15,494,962.3392578118750 |       15,494,962 |
+| P3    | 12,395,969.87140624950 |           1.00 |   12,395,969.87140624950 |       12,395,970 |
 
 外部参考目标为 `12,395,970 / 15,494,963 / 12,395,970`。若先把 P1 显示整数化，再乘 1.25：
 
@@ -393,7 +393,7 @@ phases: Array<{
   hp?: DecimalString;
   multiplier?: DecimalString;
   source: 'phase-metadata' | 'ability-modifier' | 'unknown';
-}>
+}>;
 ```
 
 同时保留 `baseHP`、`phaseCount`、原始配置路径和解析状态，避免把“未声明倍率”误报为“确定相同”。本节仅为设计建议，不改现有代码。
@@ -417,21 +417,20 @@ phases: Array<{
 
 ## 14. 关键证据索引
 
-| Purpose | File | Key / object | Finding |
-| --- | --- | --- | --- |
-| AA group identity | `TurnBasedGameData/ExcelOutput/ChallengePeakGroupConfig.json` | `ID=9` | `BossLevelID=904`, preliminary `[901,902,903]` |
-| AA normal boss | `TurnBasedGameData/ExcelOutput/ChallengePeakConfig.json` | `ID=904` | `EventIDList=[30509021]` |
-| AA hard boss | `TurnBasedGameData/ExcelOutput/ChallengePeakBossConfig.json` | `ID=904` | `HardEventIDList=[30509022]` |
-| Stage identity | `TurnBasedGameData/ExcelOutput/StageConfig.json` | `StageID=30509021/30509022` | Level 100/120, `_StageInfiniteGroup`, MonsterList |
-| Wave chain | `TurnBasedGameData/ExcelOutput/StageInfiniteGroup.json`, `StageInfiniteWaveConfig.json`, `StageInfiniteMonsterGroup.json` | `30509021* / 30509022*` | Both variants spawn MonsterID `403501001` |
-| Concrete Monster | `TurnBasedGameData/ExcelOutput/MonsterConfig.json` | `MonsterID=403501001` | Template `4035010`, HPModifyRatio `3.666667`, summons |
-| Template/base HP | `TurnBasedGameData/ExcelOutput/MonsterTemplateConfig.json` | `MonsterTemplateID=4035010` | `TemplateGroupID=4035010`, HPBase `6975`, Iron Tomb JSON path |
-| Level multiplier | `TurnBasedGameData/ExcelOutput/HardLevelGroup.json` | `(HardLevelGroup=3, Level=100)` | `HPRatio=484.69086` |
-| Elite multiplier | `TurnBasedGameData/ExcelOutput/EliteGroup.json` | `EliteGroup=1` | `HPRatio=1` |
-| Phase metadata | `TurnBasedGameData/Config/ConfigCharacter/Monster/Monster_W4_IronTombCore_00_Config.json` | `MaxMonsterPhase`, `PhaseList`, `DynamicValues.Floats` | P1/P2/P3 hashes map to PassiveSkill02 indices 2/3/4 |
-| Static phase ratios | `TurnBasedGameData/ExcelOutput/MonsterSkillConfig.json` | `SkillID=403501010` | `PassiveSkill02.ParamList=[0.5,0.35,1,1.25,1]` |
-| P1/P2 transition | `TurnBasedGameData/Config/ConfigAbility/Monster/Monster_W4_IronTombCore_00_Ability.json` | `PhaseController`, `SetMonsterPhase`, `Monster_ChangePhase` | Same entity increments phase and inserts transition ability |
-| P3 runtime HP change | same Ability file | `MMonster_*_Main_P3_HpRatioAdded` | `StackProperty(HPAddedRatio)` + `SetBossPluralityHP=99999` |
-| Current HP pipeline | `HSR-Database/scripts/data/endgame.ts` | `buildOccurrence`, `scanMechanics` | Computes one `baseEncounterMaxHpPerBar`; reads only `MaxMonsterPhase` |
-| Current UI projection | `HSR-Database/src/lib/domain/endgame-view.ts`, `src/lib/components/endgame/HpDisplay.svelte` | `buildOccurrenceView`, `formatHpWithPhases` | Renders `HP × phaseCount` |
-
+| Purpose               | File                                                                                                                      | Key / object                                                | Finding                                                               |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------- |
+| AA group identity     | `TurnBasedGameData/ExcelOutput/ChallengePeakGroupConfig.json`                                                             | `ID=9`                                                      | `BossLevelID=904`, preliminary `[901,902,903]`                        |
+| AA normal boss        | `TurnBasedGameData/ExcelOutput/ChallengePeakConfig.json`                                                                  | `ID=904`                                                    | `EventIDList=[30509021]`                                              |
+| AA hard boss          | `TurnBasedGameData/ExcelOutput/ChallengePeakBossConfig.json`                                                              | `ID=904`                                                    | `HardEventIDList=[30509022]`                                          |
+| Stage identity        | `TurnBasedGameData/ExcelOutput/StageConfig.json`                                                                          | `StageID=30509021/30509022`                                 | Level 100/120, `_StageInfiniteGroup`, MonsterList                     |
+| Wave chain            | `TurnBasedGameData/ExcelOutput/StageInfiniteGroup.json`, `StageInfiniteWaveConfig.json`, `StageInfiniteMonsterGroup.json` | `30509021* / 30509022*`                                     | Both variants spawn MonsterID `403501001`                             |
+| Concrete Monster      | `TurnBasedGameData/ExcelOutput/MonsterConfig.json`                                                                        | `MonsterID=403501001`                                       | Template `4035010`, HPModifyRatio `3.666667`, summons                 |
+| Template/base HP      | `TurnBasedGameData/ExcelOutput/MonsterTemplateConfig.json`                                                                | `MonsterTemplateID=4035010`                                 | `TemplateGroupID=4035010`, HPBase `6975`, Iron Tomb JSON path         |
+| Level multiplier      | `TurnBasedGameData/ExcelOutput/HardLevelGroup.json`                                                                       | `(HardLevelGroup=3, Level=100)`                             | `HPRatio=484.69086`                                                   |
+| Elite multiplier      | `TurnBasedGameData/ExcelOutput/EliteGroup.json`                                                                           | `EliteGroup=1`                                              | `HPRatio=1`                                                           |
+| Phase metadata        | `TurnBasedGameData/Config/ConfigCharacter/Monster/Monster_W4_IronTombCore_00_Config.json`                                 | `MaxMonsterPhase`, `PhaseList`, `DynamicValues.Floats`      | P1/P2/P3 hashes map to PassiveSkill02 indices 2/3/4                   |
+| Static phase ratios   | `TurnBasedGameData/ExcelOutput/MonsterSkillConfig.json`                                                                   | `SkillID=403501010`                                         | `PassiveSkill02.ParamList=[0.5,0.35,1,1.25,1]`                        |
+| P1/P2 transition      | `TurnBasedGameData/Config/ConfigAbility/Monster/Monster_W4_IronTombCore_00_Ability.json`                                  | `PhaseController`, `SetMonsterPhase`, `Monster_ChangePhase` | Same entity increments phase and inserts transition ability           |
+| P3 runtime HP change  | same Ability file                                                                                                         | `MMonster_*_Main_P3_HpRatioAdded`                           | `StackProperty(HPAddedRatio)` + `SetBossPluralityHP=99999`            |
+| Current HP pipeline   | `HSR-Database/scripts/data/endgame.ts`                                                                                    | `buildOccurrence`, `scanMechanics`                          | Computes one `baseEncounterMaxHpPerBar`; reads only `MaxMonsterPhase` |
+| Current UI projection | `HSR-Database/src/lib/domain/endgame-view.ts`, `src/lib/components/endgame/HpDisplay.svelte`                              | `buildOccurrenceView`, `formatHpWithPhases`                 | Renders `HP × phaseCount`                                             |

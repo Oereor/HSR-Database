@@ -10,6 +10,7 @@
     getNavigationIconUrl
   } from '$lib/data/visual-assets';
   import { NAVIGATION_ITEMS } from '$lib/navigation';
+  import { SITE_NAME } from '$lib/site';
 
   export let data: PageData;
 
@@ -18,26 +19,15 @@
   const thisIsMePreview = getLightConePreviewUrl('21030');
   const danHengPreview = getCharacterPreviewUrl('1002');
   const onlySilencePreview = getLightConePreviewUrl('21003');
-
-  function recordCount(id: (typeof directoryItems)[number]['id']): number {
-    if (id === 'characters') return data.manifest.counts.characters;
-    if (id === 'light-cones') return data.manifest.counts.lightCones;
-    if (id === 'relics') return data.manifest.counts.relics;
-    if (id === 'enemies') return data.manifest.counts.enemies;
-    return Object.values(data.manifest.endgame.modes).reduce(
-      (total, mode) => total + mode.encounters,
-      0
-    );
-  }
 </script>
 
 <svelte:head>
-  <title>崩坏：星穹铁道 档案库</title>
+  <title>{SITE_NAME}</title>
   <meta
     name="description"
     content="基于真实游戏配置构建的崩坏：星穹铁道角色、光锥、遗器、敌方单位与高难模式资料库。"
   />
-  <meta property="og:title" content="崩坏：星穹铁道 档案库" />
+  <meta property="og:title" content={SITE_NAME} />
   <meta
     property="og:description"
     content="可搜索的崩坏：星穹铁道角色、光锥、遗器、敌方单位与高难模式非官方资料库。"
@@ -47,7 +37,7 @@
 <div class="homepage">
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-hero__identity">
-      <h1 id="home-title">崩坏：星穹铁道 档案库</h1>
+      <h1 id="home-title">{SITE_NAME}</h1>
       <p>HONKAI: STAR RAIL DATA ARCHIVE</p>
     </div>
 
@@ -94,9 +84,7 @@
             </span>
             <strong>{item.label}</strong>
           </span>
-          <span class="home-directory-row__meta">
-            <span>{recordCount(item.id)} 条记录</span><span aria-hidden="true">→</span>
-          </span>
+          <span class="home-directory-row__arrow" aria-hidden="true">→</span>
         </a>
       {/each}
     </nav>
@@ -156,7 +144,8 @@
 
   .home-hero h1 {
     margin: 0;
-    font-size: clamp(2.45rem, 4.4vw, 4.25rem);
+    font-size: var(--font-hero-home-title);
+    font-weight: var(--font-hero-title-weight);
     line-height: 1.08;
     letter-spacing: -0.05em;
     white-space: nowrap;
@@ -272,8 +261,7 @@
     background: linear-gradient(105deg, rgb(25 35 53 / 86%), rgb(12 18 29 / 70%));
   }
 
-  .home-directory-row__identity,
-  .home-directory-row__meta {
+  .home-directory-row__identity {
     display: flex;
     align-items: center;
   }
@@ -313,20 +301,14 @@
     font-size: var(--font-internal);
   }
 
-  .home-directory-row__meta {
+  .home-directory-row__arrow {
     flex: 0 0 auto;
-    gap: var(--space-3);
-    color: var(--text-secondary);
-    font-size: var(--font-helper);
-  }
-
-  .home-directory-row__meta > span:last-child {
     color: var(--gold);
     font-size: 1.05rem;
     transition: transform var(--motion);
   }
 
-  .home-directory-row:hover .home-directory-row__meta > span:last-child {
+  .home-directory-row:hover .home-directory-row__arrow {
     transform: translateX(3px);
   }
 
@@ -386,7 +368,7 @@
 
   @media (max-width: 520px) {
     .home-hero h1 {
-      font-size: clamp(2.1rem, 11vw, 2.75rem);
+      font-size: var(--font-hero-home-title-mobile);
     }
 
     .home-hero__identity p {
@@ -419,10 +401,6 @@
     .home-directory-row {
       gap: var(--space-3);
       padding-inline: var(--space-3);
-    }
-
-    .home-directory-row__meta {
-      gap: var(--space-2);
     }
   }
 

@@ -76,6 +76,8 @@ test('共享 SectionNav 提供真实锚点、scroll spy、sticky offset 与窄�
 test('四类详情页消费同一标题视觉层级并保持语义 heading hierarchy', async ({ page }) => {
   await page.goto('/characters/1001');
   await expect(page.getByRole('heading', { name: '技能', level: 2 })).toBeVisible();
+  await expect(page.locator('#skills')).not.toContainText('5 类');
+  await expect(page.locator('#traces')).not.toContainText(/\d+ 条记录/);
   await expect(page.getByRole('heading', { name: '装备推荐', level: 2 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '光锥建议', level: 3 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '遗器建议', level: 3 })).toBeVisible();
@@ -87,9 +89,15 @@ test('四类详情页消费同一标题视觉层级并保持语义 heading hiera
 
   await page.goto('/enemies/1003010');
   await expect(page.getByRole('heading', { name: '派生个体', level: 2 })).toBeVisible();
+  await expect(page.locator('#monsters')).not.toContainText(/\d+ 个变种/);
   await expect(page.getByRole('heading', { name: '召唤单位', level: 3 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '技能组', level: 3 })).toBeVisible();
   await expect(page.getByRole('heading', { name: '技能', level: 2 })).toBeVisible();
+
+  for (const url of ['/characters/1001', '/light-cones/20000', '/relics/101', '/enemies/1003010']) {
+    await page.goto(url);
+    await expect(page.locator('.source-note')).toHaveCount(0);
+  }
 
   await page.goto('/endgame/moc/1034?encounter=5312');
   await expect(page.getByRole('heading', { name: '扫除风暴其十二', level: 2 })).toBeVisible();

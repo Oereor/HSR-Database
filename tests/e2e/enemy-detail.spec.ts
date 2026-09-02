@@ -6,6 +6,7 @@ test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', a
 
   const hero = page.locator('[data-enemy-hero]');
   await expect(hero).toBeVisible();
+  await expect(hero.getByText('敌方单位 / 模板 ID 1004014', { exact: true })).toBeVisible();
   await expect(hero.getByRole('heading', { level: 2, name: '基础数据' })).toBeVisible();
   await expect(hero.getByRole('slider')).toHaveCount(0);
   await expect(page.getByRole('slider', { name: '敌人等级' })).toHaveCount(1);

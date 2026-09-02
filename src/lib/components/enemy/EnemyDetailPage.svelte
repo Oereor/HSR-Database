@@ -105,7 +105,7 @@
     />
     <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
     <div class="hero-identity-copy">
-      <p class="kicker">ENEMY / TEMPLATE ID {detail.template.monsterTemplateId}</p>
+      <p class="kicker">敌方单位 / 模板 ID {detail.template.monsterTemplateId}</p>
       <h1><GameText text={detail.template.name} /></h1>
       <div class="hero-identity-metadata">
         <EnemyRankTag label={getEnemyRankLabel(detail.template.rank)} />
@@ -131,10 +131,7 @@
 <SectionNav items={sectionNavItems} />
 
 <section id="monsters" class="detail-section enemy-detail-section section-nav-target">
-  <SectionHeading level={1}>
-    派生个体
-    <svelte:fragment slot="meta">{detail.monsters.length} 个变种</svelte:fragment>
-  </SectionHeading>
+  <SectionHeading level={1}>派生个体</SectionHeading>
 
   <div class="skill-level-control enemy-level-control enemy-level-control--standalone">
     <div>
@@ -253,10 +250,7 @@
   </div>
 
   {#if selectedMonster.summons.length}<section id="summons" class="enemy-owned-section">
-      <SectionHeading level={2}>
-        召唤单位
-        <svelte:fragment slot="meta">{selectedMonster.summons.length} 个</svelte:fragment>
-      </SectionHeading>
+      <SectionHeading level={2}>召唤单位</SectionHeading>
       <div class="enemy-summon-list">
         {#each selectedMonster.summons as summon (summon.monsterId)}<CompactEntityCard
             href={summon.href}
@@ -330,10 +324,7 @@
 </section>
 
 <section id="skills" class="detail-section enemy-detail-section section-nav-target">
-  <SectionHeading level={1}>
-    技能
-    <svelte:fragment slot="meta">{detail.skillDefinitions.length} 项</svelte:fragment>
-  </SectionHeading>
+  <SectionHeading level={1}>技能</SectionHeading>
   {#if detail.skillDefinitions.length}<div class="enemy-skill-list">
       {#each detail.skillDefinitions as skill (skill.id)}<EnemySkillCard {skill} />{/each}
     </div>{:else}<p class="data-placeholder">上游未提供可展示的敌人技能。</p>{/if}

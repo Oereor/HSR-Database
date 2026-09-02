@@ -1,4 +1,4 @@
-# 星轨档案库
+# 《崩坏：星穹铁道》档案库
 
 《崩坏：星穹铁道》非官方静态数据资料库，使用 SvelteKit、TypeScript 和 Tailwind CSS 构建。
 
@@ -265,6 +265,6 @@ jobs:
 
 ## 数据来源与免责声明
 
-文本数据来源于 [DimbreathBot/TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData)，角色 preview、立绘、属性与命途图标等图像资源来源于 [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes)。StarRailRes 仓库附带 GNU AGPL v3；本项目保留其完整许可证副本与第三方声明。
+文本数据来源于 [DimbreathBot/TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData)，角色 preview、立绘、属性与命途图标等图像资源来源于 [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes)。StarRailRes 仓库附带 GNU AGPL v3；本项目保留其完整许可证副本。
 
 本站为非官方玩家项目，与米哈游或 HoYoverse 不存在官方关联。游戏名称、角色、图片和相关资产的权利归其权利人所有。仓库根目录 MIT 许可证仅适用于本站原创代码，不覆盖第三方数据、图片或游戏知识产权；许可分离说明不构成法律意见。

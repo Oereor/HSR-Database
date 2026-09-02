@@ -193,7 +193,7 @@ describe('Endgame 赛期回退与推荐', () => {
 
     expect(buildPeriodView(unnamedWithoutSchedule)).toMatchObject({
       name: '数据组 1035',
-      dateLabel: '时间资料未提供',
+      dateLabel: '-',
       status: 'unknown'
     });
     expect(recommendedGroupId([historical, namedWithoutSchedule, unnamedWithoutSchedule])).toBe(
@@ -270,7 +270,7 @@ describe('Endgame archive 赛期分组', () => {
       {
         groupId: 3,
         name: '未知',
-        dateLabel: '时间资料未提供',
+        dateLabel: '-',
         status: 'unknown',
         encounterCount: 4
       },

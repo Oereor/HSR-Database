@@ -47,24 +47,24 @@
 
 ## 3. Relevant Config Files
 
-| File | Relevant Fields | Purpose |
-|---|---|---|
-| `ExcelOutput/GachaBasicInfo.json` | `GachaID`, `GachaType`, `SortID`, `StartTime`/`EndTime`(全空), `PrefabPath`(内嵌实体 ID), `PoolName.Hash`, `TypeTitle.Hash` | 全部 286 条跃迁池配置：`Normal`(1001)、`Newbie`(4001)、`AvatarUp`(2001–2138)、`WeaponUp`(3001–3138)、`CollaborationAvatarUp`(5001–5004)、`CollaborationWeaponUp`(6001–6004)。核心 relation 文件 |
-| `ExcelOutput/GachaCeiling.json` | `GachaType`, `CeilingType`, `CeilingNum`, `CeilingItemList` | `Normal` 池 300 抽自选列表 = 7 名常驻五星角色 ID。常驻集合的明确来源 |
-| `ExcelOutput/GachaTypeBasicInfo.json` | `GachaTypeID`, `UpPropability`, `ItemCosume` | 跃迁类型枚举及 UP 概率：`Normal`/`Newbie`/`AvatarUp`/`WeaponUp`/`CollaborationAvatarUp`/`CollaborationWeaponUp` |
-| `ExcelOutput/GachaGroupData.json` | `GroupID`, `GachaIDList`, `GroupType`(`MultiAvatarUp`/`MultiWeaponUp`/`CollaborationMerge`), 图标路径(250/300/…/440 版本标签) | 2.5 起的复刻池组、联动合并池；图标编号锚定版本 |
-| `ExcelOutput/GachaShowToastData.json` | `GachaID`, `ShowVideoID`, `LoopBGMState` | 抽卡演出配置；交叉验证 GachaID↔角色（如 2067→Castorice） |
-| `ExcelOutput/AvatarConfig.json` | `AvatarID`, `AvatarName.Hash`, `Rarity`, `Release` | 角色主配置（93 条） |
-| `ExcelOutput/AvatarConfigLD.json` | 同上 | 仅含 4 名联动角色（1014/1015/1508/1509），被站点管线 merge 进角色目录 |
-| `ExcelOutput/EquipmentConfig.json` | `EquipmentID`, `EquipmentName.Hash`, `Rarity` | 光锥配置（含全部 71 张五星光锥） |
-| `TextMap/TextMapCHS.json` | hash → 文本 | `PoolName`/`TypeTitle`/实体名解析 |
-| `ExcelOutput/GachaNews.json` / `GachaPoolReward.json` | `NewsID`, `AvatarList` / `GachaID`, `ActivityID`, `QuestID` | 公告与赠礼活动（2 条 / 1 条），与分类无关 |
-| `ExcelOutput/PlayerReturnRecommendConfig.json` / `GrowthTargetTimeLimitTop.json` | `GachaID`(引用) | 回流推荐 / 成长目标，只是引用 GachaID，无时间/内容数据 |
-| `ExcelOutput/AvatarComefrom.json` | `ComefromID`, `GotoID` | 所有角色统一 `ComefromID=99`，**无法**用于区分限定/常驻 |
-| `ExcelOutput/ItemComefrom.json` | — | 仅物品，**不含**光锥条目 |
-| `ExcelOutput/ActivityBannerComMission.json` | `BannerID`, `AvatarIDList` | 同行任务 banner（如 1209 彦卿），与跃迁无关（易混淆文件名） |
-| `ScheduleData*.json` | `BeginTime`/`EndTime` | 活动面板/任务/全局日程；**不存在** ScheduleDataGacha，无跃迁日程 |
-| `Config/GachaCutsceneConfig.json` | 时间轴参数 | 抽卡过场动画配置，非 banner 数据 |
+| File                                                                             | Relevant Fields                                                                                                               | Purpose                                                                                                                                                                                         |
+| -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ExcelOutput/GachaBasicInfo.json`                                                | `GachaID`, `GachaType`, `SortID`, `StartTime`/`EndTime`(全空), `PrefabPath`(内嵌实体 ID), `PoolName.Hash`, `TypeTitle.Hash`   | 全部 286 条跃迁池配置：`Normal`(1001)、`Newbie`(4001)、`AvatarUp`(2001–2138)、`WeaponUp`(3001–3138)、`CollaborationAvatarUp`(5001–5004)、`CollaborationWeaponUp`(6001–6004)。核心 relation 文件 |
+| `ExcelOutput/GachaCeiling.json`                                                  | `GachaType`, `CeilingType`, `CeilingNum`, `CeilingItemList`                                                                   | `Normal` 池 300 抽自选列表 = 7 名常驻五星角色 ID。常驻集合的明确来源                                                                                                                            |
+| `ExcelOutput/GachaTypeBasicInfo.json`                                            | `GachaTypeID`, `UpPropability`, `ItemCosume`                                                                                  | 跃迁类型枚举及 UP 概率：`Normal`/`Newbie`/`AvatarUp`/`WeaponUp`/`CollaborationAvatarUp`/`CollaborationWeaponUp`                                                                                 |
+| `ExcelOutput/GachaGroupData.json`                                                | `GroupID`, `GachaIDList`, `GroupType`(`MultiAvatarUp`/`MultiWeaponUp`/`CollaborationMerge`), 图标路径(250/300/…/440 版本标签) | 2.5 起的复刻池组、联动合并池；图标编号锚定版本                                                                                                                                                  |
+| `ExcelOutput/GachaShowToastData.json`                                            | `GachaID`, `ShowVideoID`, `LoopBGMState`                                                                                      | 抽卡演出配置；交叉验证 GachaID↔角色（如 2067→Castorice）                                                                                                                                        |
+| `ExcelOutput/AvatarConfig.json`                                                  | `AvatarID`, `AvatarName.Hash`, `Rarity`, `Release`                                                                            | 角色主配置（93 条）                                                                                                                                                                             |
+| `ExcelOutput/AvatarConfigLD.json`                                                | 同上                                                                                                                          | 仅含 4 名联动角色（1014/1015/1508/1509），被站点管线 merge 进角色目录                                                                                                                           |
+| `ExcelOutput/EquipmentConfig.json`                                               | `EquipmentID`, `EquipmentName.Hash`, `Rarity`                                                                                 | 光锥配置（含全部 71 张五星光锥）                                                                                                                                                                |
+| `TextMap/TextMapCHS.json`                                                        | hash → 文本                                                                                                                   | `PoolName`/`TypeTitle`/实体名解析                                                                                                                                                               |
+| `ExcelOutput/GachaNews.json` / `GachaPoolReward.json`                            | `NewsID`, `AvatarList` / `GachaID`, `ActivityID`, `QuestID`                                                                   | 公告与赠礼活动（2 条 / 1 条），与分类无关                                                                                                                                                       |
+| `ExcelOutput/PlayerReturnRecommendConfig.json` / `GrowthTargetTimeLimitTop.json` | `GachaID`(引用)                                                                                                               | 回流推荐 / 成长目标，只是引用 GachaID，无时间/内容数据                                                                                                                                          |
+| `ExcelOutput/AvatarComefrom.json`                                                | `ComefromID`, `GotoID`                                                                                                        | 所有角色统一 `ComefromID=99`，**无法**用于区分限定/常驻                                                                                                                                         |
+| `ExcelOutput/ItemComefrom.json`                                                  | —                                                                                                                             | 仅物品，**不含**光锥条目                                                                                                                                                                        |
+| `ExcelOutput/ActivityBannerComMission.json`                                      | `BannerID`, `AvatarIDList`                                                                                                    | 同行任务 banner（如 1209 彦卿），与跃迁无关（易混淆文件名）                                                                                                                                     |
+| `ScheduleData*.json`                                                             | `BeginTime`/`EndTime`                                                                                                         | 活动面板/任务/全局日程；**不存在** ScheduleDataGacha，无跃迁日程                                                                                                                                |
+| `Config/GachaCutsceneConfig.json`                                                | 时间轴参数                                                                                                                    | 抽卡过场动画配置，非 banner 数据                                                                                                                                                                |
 
 反向搜索结论：`1513`、`1512`、`23063`、`23064` 在 ExcelOutput 中除 `AvatarConfig`/`EquipmentConfig` 与上述 gacha 家族文件外，**没有任何其他 config 引用**；不存在隐藏在 Activity/Schedule 里的第二条 banner relation。
 
@@ -99,15 +99,15 @@ ExcelOutput/AvatarConfig.json
 
 ### 4.3 样例验证
 
-| 样例 | 结果 |
-|---|---|
-| **1512 知更鸟•晴歌** | `AvatarUp` 仅 1 次：GachaID 2135 → 限定，debut = 2135。`PoolName` = "晴音和鸣" |
-| **1513 砂金•戏浪** | `AvatarUp` 仅 1 次：GachaID 2137 → 限定，debut = 2137。`PoolName` = "激浪跃金" |
-| 更早限定：1102 希儿 | 出现 3 次：[2001, 2003, 2013]，debut = 2001（1.0 首池，已知史实） |
-| 更早限定：1005 卡芙卡 | 出现 4 次：[2008, 2020, 2044, 2085]，debut = 2008（1.2，已知史实） |
-| 常驻：1003 姬子 / 1101 布洛妮娅 | 在 `CeilingItemList` 中；`AvatarUp` 出现 0 次 → 正确判为常驻 |
-| Trailblazer：8001–8010 | Rarity 五星、`Release=true`，但**任何** banner 类型中出现 0 次；显示名 `{NICKNAME}`。正确排除 |
-| 联动：1508 远坂凛 | 仅 `CollaborationAvatarUp`(5003)；不在 `AvatarUp` → 正确排除 |
+| 样例                            | 结果                                                                                          |
+| ------------------------------- | --------------------------------------------------------------------------------------------- |
+| **1512 知更鸟•晴歌**            | `AvatarUp` 仅 1 次：GachaID 2135 → 限定，debut = 2135。`PoolName` = "晴音和鸣"                |
+| **1513 砂金•戏浪**              | `AvatarUp` 仅 1 次：GachaID 2137 → 限定，debut = 2137。`PoolName` = "激浪跃金"                |
+| 更早限定：1102 希儿             | 出现 3 次：[2001, 2003, 2013]，debut = 2001（1.0 首池，已知史实）                             |
+| 更早限定：1005 卡芙卡           | 出现 4 次：[2008, 2020, 2044, 2085]，debut = 2008（1.2，已知史实）                            |
+| 常驻：1003 姬子 / 1101 布洛妮娅 | 在 `CeilingItemList` 中；`AvatarUp` 出现 0 次 → 正确判为常驻                                  |
+| Trailblazer：8001–8010          | Rarity 五星、`Release=true`，但**任何** banner 类型中出现 0 次；显示名 `{NICKNAME}`。正确排除 |
+| 联动：1508 远坂凛               | 仅 `CollaborationAvatarUp`(5003)；不在 `AvatarUp` → 正确排除                                  |
 
 ### 4.4 完整性核对
 
@@ -143,15 +143,15 @@ ExcelOutput/EquipmentConfig.json
 
 ### 5.3 样例验证
 
-| 样例 | 结果 |
-|---|---|
-| **23063 你将起身歌唱** | `WeaponUp` 仅 1 次：3135 → 限定，debut = 3135（与 1512 同版本） |
-| **23064 向浪花掷下盛夏** | `WeaponUp` 仅 1 次：3137 → 限定，debut = 3137（与 1513 同版本） |
-| 更早限定：23001 于夜色中 | debut = 3001（1.0 首池） |
-| 更早限定：23027 驶向第二次生命 | debut = 3031（知更鸟专武，2.2） |
-| 常驻：23000 银河铁道之夜 | `WeaponUp` 出现 0 次 → 常驻 |
-| 黑塔商店：24000 记一位星神的陨落 | 24xxx、`WeaponUp` 出现 0 次 → 正确排除 |
-| 联动：23062 所见即我 | 仅 `CollaborationWeaponUp`(6004) → 正确排除 |
+| 样例                             | 结果                                                            |
+| -------------------------------- | --------------------------------------------------------------- |
+| **23063 你将起身歌唱**           | `WeaponUp` 仅 1 次：3135 → 限定，debut = 3135（与 1512 同版本） |
+| **23064 向浪花掷下盛夏**         | `WeaponUp` 仅 1 次：3137 → 限定，debut = 3137（与 1513 同版本） |
+| 更早限定：23001 于夜色中         | debut = 3001（1.0 首池）                                        |
+| 更早限定：23027 驶向第二次生命   | debut = 3031（知更鸟专武，2.2）                                 |
+| 常驻：23000 银河铁道之夜         | `WeaponUp` 出现 0 次 → 常驻                                     |
+| 黑塔商店：24000 记一位星神的陨落 | 24xxx、`WeaponUp` 出现 0 次 → 正确排除                          |
+| 联动：23062 所见即我             | 仅 `CollaborationWeaponUp`(6004) → 正确排除                     |
 
 71 张五星光锥 = 53 限定 + 7 常驻 + 4 联动 + 7 商店，**精确划分，无一例外**。限定光锥与限定角色总数相等（53=53），且每个新角色版本对应 1 张新光锥 debut（1.0–3.2 已知史实全部吻合）。
 
@@ -244,35 +244,35 @@ debut = min(GachaID)     ← 首次出现
 
 不干扰。按 min(GachaID) 取 debut 后，旧角色复刻（如 2136 风堇复刻、2138 不死途复刻）不会进入"最新"序列。当前 dump 的最终答案：
 
-| 种类 | 最新 3 个（按 debut 降序） | debut GachaID |
-|---|---|---|
-| 角色 | 1513 砂金•戏浪, 1512 知更鸟•晴歌, 1510 姬子•启行 | 2137, 2135, 2128 |
+| 种类 | 最新 3 个（按 debut 降序）                                       | debut GachaID    |
+| ---- | ---------------------------------------------------------------- | ---------------- |
+| 角色 | 1513 砂金•戏浪, 1512 知更鸟•晴歌, 1510 姬子•启行                 | 2137, 2135, 2128 |
 | 光锥 | 23064 向浪花掷下盛夏, 23063 你将起身歌唱, 23060 当一颗星照亮夜空 | 3137, 3135, 3128 |
 
 ---
 
 ## 8. Validation Table
 
-| Entity | ID | Rarity | Expected | Config Result | Evidence |
-|---|---:|---:|---|---|---|
-| 知更鸟•晴歌 | 1512 | 5 | 限定(最新) | 限定, debut 2135 | A：AvatarUp×1, PrefabPath=AvatarGacha_1512, TypeTitle=角色活动跃迁 |
-| 砂金•戏浪 | 1513 | 5 | 限定(最新) | 限定, debut 2137 | A：AvatarUp×1, PrefabPath=AvatarGacha_1513 |
-| 希儿 | 1102 | 5 | 限定(1.0) | 限定, debut 2001 | A：AvatarUp×3 [2001,2003,2013] |
-| 卡芙卡 | 1005 | 5 | 限定(1.2) | 限定, debut 2008 | A：AvatarUp×4 |
-| 知更鸟 | 1309 | 5 | 限定(2.2) | 限定, debut 2029 | A：AvatarUp 复刻 2042 |
-| 布洛妮娅 | 1101 | 5 | 常驻 | 常驻 | A：GachaCeiling.Normal.CeilingItemList 命中; AvatarUp×0 |
-| 姬子 | 1003 | 5 | 常驻 | 常驻 | A：同上 |
-| 开拓者(记忆) | 8001 | 5 | 主角变体，非限定 | 未进任何池 | A：所有 banner 类型出现 0 次 |
-| 远坂凛 | 1508 | 5 | 联动 | 联动 | A：仅 CollaborationAvatarUp(5003)；AvatarUp×0 |
-| 银狼LV.999 | 1506 | 5 | 特殊变体 | 限定, debut 2116 | A：AvatarUp×1（是否计入首页属产品决策，见 §13） |
-| 你将起身歌唱 | 23063 | 5 | 限定(最新) | 限定, debut 3135 | A：WeaponUp×1, PrefabPath=LightConeGacha_23063, TypeTitle=光锥活动跃迁 |
-| 向浪花掷下盛夏 | 23064 | 5 | 限定(最新) | 限定, debut 3137 | A：WeaponUp×1 |
-| 于夜色中 | 23001 | 5 | 限定(1.0) | 限定, debut 3001 | A：WeaponUp 复刻 3003 |
-| 驶向第二次生命 | 23027 | 5 | 限定(2.2) | 限定, debut 3031 | A：WeaponUp 复刻 3115 |
-| 银河铁道之夜 | 23000 | 5 | 常驻 | 常驻 | B：23xxx 五星但 WeaponUp×0 且非联动 |
-| 记一位星神的陨落 | 24000 | 5 | 黑塔商店 | 商店 | A：24xxx, WeaponUp×0 |
-| 没有回报的加冕 | 23045 | 5 | 联动 | 联动 | A：仅 CollaborationWeaponUp(6001) |
-| 勿忘她的火焰 | 23050 | 5 | 限定(3.2) | 限定, debut 3099 | A：WeaponUp×2 [3099,3117]（注意：其 ID 小于 23051/23052 但 debut 更晚，是 ID 排序的反例） |
+| Entity           |    ID | Rarity | Expected         | Config Result    | Evidence                                                                                  |
+| ---------------- | ----: | -----: | ---------------- | ---------------- | ----------------------------------------------------------------------------------------- |
+| 知更鸟•晴歌      |  1512 |      5 | 限定(最新)       | 限定, debut 2135 | A：AvatarUp×1, PrefabPath=AvatarGacha_1512, TypeTitle=角色活动跃迁                        |
+| 砂金•戏浪        |  1513 |      5 | 限定(最新)       | 限定, debut 2137 | A：AvatarUp×1, PrefabPath=AvatarGacha_1513                                                |
+| 希儿             |  1102 |      5 | 限定(1.0)        | 限定, debut 2001 | A：AvatarUp×3 [2001,2003,2013]                                                            |
+| 卡芙卡           |  1005 |      5 | 限定(1.2)        | 限定, debut 2008 | A：AvatarUp×4                                                                             |
+| 知更鸟           |  1309 |      5 | 限定(2.2)        | 限定, debut 2029 | A：AvatarUp 复刻 2042                                                                     |
+| 布洛妮娅         |  1101 |      5 | 常驻             | 常驻             | A：GachaCeiling.Normal.CeilingItemList 命中; AvatarUp×0                                   |
+| 姬子             |  1003 |      5 | 常驻             | 常驻             | A：同上                                                                                   |
+| 开拓者(记忆)     |  8001 |      5 | 主角变体，非限定 | 未进任何池       | A：所有 banner 类型出现 0 次                                                              |
+| 远坂凛           |  1508 |      5 | 联动             | 联动             | A：仅 CollaborationAvatarUp(5003)；AvatarUp×0                                             |
+| 银狼LV.999       |  1506 |      5 | 特殊变体         | 限定, debut 2116 | A：AvatarUp×1（是否计入首页属产品决策，见 §13）                                           |
+| 你将起身歌唱     | 23063 |      5 | 限定(最新)       | 限定, debut 3135 | A：WeaponUp×1, PrefabPath=LightConeGacha_23063, TypeTitle=光锥活动跃迁                    |
+| 向浪花掷下盛夏   | 23064 |      5 | 限定(最新)       | 限定, debut 3137 | A：WeaponUp×1                                                                             |
+| 于夜色中         | 23001 |      5 | 限定(1.0)        | 限定, debut 3001 | A：WeaponUp 复刻 3003                                                                     |
+| 驶向第二次生命   | 23027 |      5 | 限定(2.2)        | 限定, debut 3031 | A：WeaponUp 复刻 3115                                                                     |
+| 银河铁道之夜     | 23000 |      5 | 常驻             | 常驻             | B：23xxx 五星但 WeaponUp×0 且非联动                                                       |
+| 记一位星神的陨落 | 24000 |      5 | 黑塔商店         | 商店             | A：24xxx, WeaponUp×0                                                                      |
+| 没有回报的加冕   | 23045 |      5 | 联动             | 联动             | A：仅 CollaborationWeaponUp(6001)                                                         |
+| 勿忘她的火焰     | 23050 |      5 | 限定(3.2)        | 限定, debut 3099 | A：WeaponUp×2 [3099,3117]（注意：其 ID 小于 23051/23052 但 debut 更晚，是 ID 排序的反例） |
 
 ---
 
@@ -346,12 +346,12 @@ explicit classification（A 的分类部分）+ ID/order fallback（C 的排序�
 
 ### 对比
 
-| 维度 | A | B | C |
-|---|---|---|---|
-| 维护成本 | 零 | 低 | 低（但含手工排除名单） |
-| 分类正确性 | 高（explicit relation） | 高 | 中（依赖排除名单完整性） |
-| 排序正确性 | 高（追加序列，史实验证） | 同 A（fallback 时降级） | 低（已有反例） |
-| 风险 | 命名格式变化需 build 断言 | 双路径复杂度 | 未来 ID 分配变化即失效 |
+| 维度       | A                         | B                       | C                        |
+| ---------- | ------------------------- | ----------------------- | ------------------------ |
+| 维护成本   | 零                        | 低                      | 低（但含手工排除名单）   |
+| 分类正确性 | 高（explicit relation）   | 高                      | 中（依赖排除名单完整性） |
+| 排序正确性 | 高（追加序列，史实验证）  | 同 A（fallback 时降级） | 低（已有反例）           |
+| 风险       | 命名格式变化需 build 断言 | 双路径复杂度            | 未来 ID 分配变化即失效   |
 
 ---
 
@@ -382,7 +382,7 @@ explicit classification（A 的分类部分）+ ID/order fallback（C 的排序�
 1. **build-time 派生，不进入 domain model**：
    - 新增 `scripts/data/gacha.ts`（只读 `GachaBasicInfo.json`、`GachaCeiling.json`），输出派生数据集，例如 `src/lib/generated/homepage-latest-limited.json`：
      ```json
-     { "characters": ["1513","1512","1510"], "lightCones": ["23064","23063","23060"] }
+     { "characters": ["1513", "1512", "1510"], "lightCones": ["23064", "23063", "23060"] }
      ```
      或并入 `manifest.json` 的一个 section。
    - `Character` / `LightCone` 的 domain interface（`src/lib/domain/types.ts`）**不加** `isLimited`/`debutOrder` 字段；`scripts/data/sync.ts` 的现有实体解析不动。

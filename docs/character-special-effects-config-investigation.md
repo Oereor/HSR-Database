@@ -71,55 +71,55 @@ Special Effect Builder
 
 #### Identity
 
-| Field | Value | Evidence |
-|---|---|---|
-| Avatar ID | `1415` | `AvatarConfig.json.AvatarID` |
-| Avatar name | 昔涟 | `AvatarName.Hash = 7809981386909966580` |
-| Path | `Memory` | `AvatarConfig.AvatarBaseType` |
-| Servant ID | `11415` | `AvatarServantConfig.ServantID` |
-| Servant name | 德谬歌 | `ServantName.Hash = 12853558968518270305` |
-| Special skill trace | `PointID = 1415301`, `PointType = 4` | `AvatarSkillTreeConfig.json` |
-| Shared skill icon | `SpriteOutput/SkillIcons/Avatar/1415/SkillIcon_11415_Servant.png` | all 14 skill records |
+| Field               | Value                                                             | Evidence                                  |
+| ------------------- | ----------------------------------------------------------------- | ----------------------------------------- |
+| Avatar ID           | `1415`                                                            | `AvatarConfig.json.AvatarID`              |
+| Avatar name         | 昔涟                                                              | `AvatarName.Hash = 7809981386909966580`   |
+| Path                | `Memory`                                                          | `AvatarConfig.AvatarBaseType`             |
+| Servant ID          | `11415`                                                           | `AvatarServantConfig.ServantID`           |
+| Servant name        | 德谬歌                                                            | `ServantName.Hash = 12853558968518270305` |
+| Special skill trace | `PointID = 1415301`, `PointType = 4`                              | `AvatarSkillTreeConfig.json`              |
+| Shared skill icon   | `SpriteOutput/SkillIcons/Avatar/1415/SkillIcon_11415_Servant.png` | all 14 skill records                      |
 
 #### Special-effect skills
 
 下表覆盖 `AvatarServantSkillLink.json` 的全部 14 条记录。所有技能均有 10 个等级，且各等级的 `HideInUI` 一致为 `true`；`AttackType = Servant`，`SkillEffect = Support`。
 
-| Order | SkillID | 名称 | HideInUI | Config Source | Referenced By |
-|---:|---:|---|---|---|---|
-| 1 | `1141526` | 献予「真我」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1415 昔涟` |
-| 2 | `1141521` | 献予「负世」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1408 白厄` |
-| 3 | `1141518` | 献予「理性」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1405 那刻夏` |
-| 4 | `1141514` | 献予「浪漫」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1402 阿格莱雅` |
-| 5 | `1141516` | 献予「纷争」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1404 万敌` |
-| 6 | `1141517` | 献予「生死」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1407 遐蝶` |
-| 7 | `1141520` | 献予「诡计」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1406 赛飞儿` |
-| 8 | `1141515` | 献予「门径」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1403 缇宝` |
-| 9 | `1141523` | 献予「律法」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1412 刻律德菈` |
-| 10 | `1141524` | 献予「岁月」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1413 长夜月` |
-| 11 | `1141519` | 献予「天空」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1409 风堇` |
-| 12 | `1141522` | 献予「海洋」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1410 海瑟音` |
-| 13 | `1141525` | 献予「大地」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1414 丹恒·腾荒` |
-| 14 | `1141513` | 献予「创世」之诗 | true | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 8007 开拓者·记忆` |
+| Order |   SkillID | 名称             | HideInUI | Config Source              | Referenced By                                       |
+| ----: | --------: | ---------------- | -------- | -------------------------- | --------------------------------------------------- |
+|     1 | `1141526` | 献予「真我」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1415 昔涟`        |
+|     2 | `1141521` | 献予「负世」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1408 白厄`        |
+|     3 | `1141518` | 献予「理性」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1405 那刻夏`      |
+|     4 | `1141514` | 献予「浪漫」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1402 阿格莱雅`    |
+|     5 | `1141516` | 献予「纷争」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1404 万敌`        |
+|     6 | `1141517` | 献予「生死」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1407 遐蝶`        |
+|     7 | `1141520` | 献予「诡计」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1406 赛飞儿`      |
+|     8 | `1141515` | 献予「门径」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1403 缇宝`        |
+|     9 | `1141523` | 献予「律法」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1412 刻律德菈`    |
+|    10 | `1141524` | 献予「岁月」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1413 长夜月`      |
+|    11 | `1141519` | 献予「天空」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1409 风堇`        |
+|    12 | `1141522` | 献予「海洋」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1410 海瑟音`      |
+|    13 | `1141525` | 献予「大地」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 1414 丹恒·腾荒`   |
+|    14 | `1141513` | 献予「创世」之诗 | true     | `AvatarServantSkillConfig` | `AvatarServantSkillLink -> Avatar 8007 开拓者·记忆` |
 
 #### Description identity
 
-| SkillID | Skill name hash | Skill description hash | Description summary |
-|---:|---:|---:|---|
-| `1141526` | `7988707773089394394` | `12807517861119419956` | 德谬歌根据昔涟从不同队友处获得追忆的情况强化“花与箭的舞曲”，并通过【故事】获得额外回合。 |
-| `1141521` | `2642572698205651895` | `12763518950885854967` | 对白厄整场生效，提供火种、变身持续、毁伤、暴击伤害与附加伤害相关强化。 |
-| `1141518` | `6679083897019156166` | `7566274673750517712` | 对那刻夏单次生效，恢复战技点、立即行动，并提供智识角色攻击力/战技伤害强化。 |
-| `1141514` | `1864075102823768366` | `3300036497874028010` | 对阿格莱雅单次生效，叠满衣匠速度效果，并提供能量、增伤与无视防御。 |
-| `1141516` | `13178204774019298337` | `2249689971101516988` | 对万敌单次生效，解除控制；按【血仇】状态触发强化攻击或行动提前。 |
-| `1141517` | `15093368059794720496` | `574135135909699753` | 对遐蝶整场生效，使【新蕊】溢出并强化召唤死龙时的伤害倍率。 |
-| `1141520` | `10422640405771706449` | `10186546058691031387` | 对赛飞儿整场生效，提高伤害并降低不同敌方目标的防御。 |
-| `1141515` | `12930045937820081577` | `4103936048075714836` | 对缇宝整场生效，无视防御并增加结界附加伤害次数。 |
-| `1141523` | `5000824477949082800` | `12346091978677735094` | 对刻律德菈整场生效，提高持有【军功】角色的暴击伤害并在奇袭后补充充能。 |
-| `1141524` | `2819207802308892371` | `16232850186444002090` | 对长夜月整场生效，强化忆灵技伤害、忆质获取和战技暴击伤害。 |
-| `1141519` | `12399410741650866922` | `3195157591843010775` | 对风堇提供能量及可消耗层数，强化小伊卡忆灵技计入的治疗值。 |
-| `1141522` | `996130028192310442` | `16414086226942662959` | 对海瑟音单次生效并提供整场增伤、能量恢复和持续伤害结算。 |
-| `1141525` | `12911689887938793265` | `5841568370071833020` | 对丹恒·腾荒与龙灵提供附加伤害、同袍增伤、行动提前和终结技强化。 |
-| `1141513` | `11275256214853616339` | `13831556487013363949` | 对开拓者·记忆整场生效，提高攻击/暴击率，并在强化普攻后令德谬歌获得额外回合。 |
+|   SkillID |        Skill name hash | Skill description hash | Description summary                                                                      |
+| --------: | ---------------------: | ---------------------: | ---------------------------------------------------------------------------------------- |
+| `1141526` |  `7988707773089394394` | `12807517861119419956` | 德谬歌根据昔涟从不同队友处获得追忆的情况强化“花与箭的舞曲”，并通过【故事】获得额外回合。 |
+| `1141521` |  `2642572698205651895` | `12763518950885854967` | 对白厄整场生效，提供火种、变身持续、毁伤、暴击伤害与附加伤害相关强化。                   |
+| `1141518` |  `6679083897019156166` |  `7566274673750517712` | 对那刻夏单次生效，恢复战技点、立即行动，并提供智识角色攻击力/战技伤害强化。              |
+| `1141514` |  `1864075102823768366` |  `3300036497874028010` | 对阿格莱雅单次生效，叠满衣匠速度效果，并提供能量、增伤与无视防御。                       |
+| `1141516` | `13178204774019298337` |  `2249689971101516988` | 对万敌单次生效，解除控制；按【血仇】状态触发强化攻击或行动提前。                         |
+| `1141517` | `15093368059794720496` |   `574135135909699753` | 对遐蝶整场生效，使【新蕊】溢出并强化召唤死龙时的伤害倍率。                               |
+| `1141520` | `10422640405771706449` | `10186546058691031387` | 对赛飞儿整场生效，提高伤害并降低不同敌方目标的防御。                                     |
+| `1141515` | `12930045937820081577` |  `4103936048075714836` | 对缇宝整场生效，无视防御并增加结界附加伤害次数。                                         |
+| `1141523` |  `5000824477949082800` | `12346091978677735094` | 对刻律德菈整场生效，提高持有【军功】角色的暴击伤害并在奇袭后补充充能。                   |
+| `1141524` |  `2819207802308892371` | `16232850186444002090` | 对长夜月整场生效，强化忆灵技伤害、忆质获取和战技暴击伤害。                               |
+| `1141519` | `12399410741650866922` |  `3195157591843010775` | 对风堇提供能量及可消耗层数，强化小伊卡忆灵技计入的治疗值。                               |
+| `1141522` |   `996130028192310442` | `16414086226942662959` | 对海瑟音单次生效并提供整场增伤、能量恢复和持续伤害结算。                                 |
+| `1141525` | `12911689887938793265` |  `5841568370071833020` | 对丹恒·腾荒与龙灵提供附加伤害、同袍增伤、行动提前和终结技强化。                          |
+| `1141513` | `11275256214853616339` | `13831556487013363949` | 对开拓者·记忆整场生效，提高攻击/暴击率，并在强化普攻后令德谬歌获得额外回合。             |
 
 每条 link 还带有独立的目标角色卡图，例如：
 
@@ -137,20 +137,20 @@ Order           4
 
 #### Identity
 
-| Field | Value | Evidence |
-|---|---|---|
-| Avatar ID | `1510` | `AvatarConfig.json.AvatarID` |
-| Avatar name | 姬子·启行 | `AvatarName.Hash = 12653203655511224443` |
-| Path | `Mage` | `AvatarConfig.AvatarBaseType` |
-| Special source skill | `151022` 开拓，与你同行 | visible `AvatarSkillConfig` record |
-| Special progression | `PointID = 1510004` | its `LevelUpSkillID` contains `151004`, `151022`, `151025`, `151026` |
+| Field                | Value                   | Evidence                                                             |
+| -------------------- | ----------------------- | -------------------------------------------------------------------- |
+| Avatar ID            | `1510`                  | `AvatarConfig.json.AvatarID`                                         |
+| Avatar name          | 姬子·启行               | `AvatarName.Hash = 12653203655511224443`                             |
+| Path                 | `Mage`                  | `AvatarConfig.AvatarBaseType`                                        |
+| Special source skill | `151022` 开拓，与你同行 | visible `AvatarSkillConfig` record                                   |
+| Special progression  | `PointID = 1510004`     | its `LevelUpSkillID` contains `151004`, `151022`, `151025`, `151026` |
 
 #### Special-effect skills
 
-| SkillID | 名称 | HideInUI | Type / effect | Icon | Referenced By |
-|---:|---|---|---|---|---|
-| `151025` | 同行协议：裁决 | true | `AttackType = Assist`, `SkillEffect = AoEAttack`, type text = 助战技 | `SkillIcon_1510_AssisSkill02.png` | `AvatarSkillLink` |
-| `151026` | 同行协议：歼破 | true | `AttackType = Assist`, `SkillEffect = AoEAttack`, type text = 助战技 | `SkillIcon_1510_AssisSkill03.png` | `AvatarSkillLink` |
+|  SkillID | 名称           | HideInUI | Type / effect                                                        | Icon                              | Referenced By     |
+| -------: | -------------- | -------- | -------------------------------------------------------------------- | --------------------------------- | ----------------- |
+| `151025` | 同行协议：裁决 | true     | `AttackType = Assist`, `SkillEffect = AoEAttack`, type text = 助战技 | `SkillIcon_1510_AssisSkill02.png` | `AvatarSkillLink` |
+| `151026` | 同行协议：歼破 | true     | `AttackType = Assist`, `SkillEffect = AoEAttack`, type text = 助战技 | `SkillIcon_1510_AssisSkill03.png` | `AvatarSkillLink` |
 
 `151025`：
 
@@ -168,10 +168,10 @@ Order           4
 
 `AvatarSkillLink` 的目标集合：
 
-| SkillID | Full list | Simplified list |
-|---:|---|---|
+|  SkillID | Full list                                                                     | Simplified list                           |
+| -------: | ----------------------------------------------------------------------------- | ----------------------------------------- |
 | `151025` | `8001` 开拓者、`1002` 丹恒、`1213` 丹恒·饮月、`1414` 丹恒·腾荒、`1313` 星期日 | `8001` 开拓者、`1002` 丹恒、`1313` 星期日 |
-| `151026` | `1001` 三月七、`1413` 长夜月、`1004` 瓦尔特、`1003` 姬子 | `1001` 三月七、`1004` 瓦尔特、`1003` 姬子 |
+| `151026` | `1001` 三月七、`1413` 长夜月、`1004` 瓦尔特、`1003` 姬子                      | `1001` 三月七、`1004` 瓦尔特、`1003` 姬子 |
 
 可见父技能 `151022` 的原文明确说明：若使用者是姬子·启行以外的“开拓同行”，姬子·启行按使用者获得其中一种特殊效果。该语义与 `AvatarSkillLink` 的两组角色列表完全吻合。
 
@@ -331,10 +331,10 @@ Markup 分析：
 
 解释来源：
 
-| Underlined term | Skill ExtraEffectID | ExtraEffect name hash | ExtraEffect desc hash | Explanation |
-|---|---:|---:|---:|---|
-| 增益效果 | `10000009` | `18157997645719654996` | `11900561702339978033` | 对战斗有增益效果的所有持续状态，若无特殊说明则可以被解除。 |
-| 黄金裔 | `10000025` | `10091091466095703957` | `8498977798639018880` | 昔涟、缇宝、刻律德菈、长夜月、丹恒·腾荒、海瑟音、风堇、白厄、那刻夏、阿格莱雅、万敌、遐蝶、赛飞儿、开拓者·记忆。 |
+| Underlined term | Skill ExtraEffectID |  ExtraEffect name hash |  ExtraEffect desc hash | Explanation                                                                                                      |
+| --------------- | ------------------: | ---------------------: | ---------------------: | ---------------------------------------------------------------------------------------------------------------- |
+| 增益效果        |          `10000009` | `18157997645719654996` | `11900561702339978033` | 对战斗有增益效果的所有持续状态，若无特殊说明则可以被解除。                                                       |
+| 黄金裔          |          `10000025` | `10091091466095703957` |  `8498977798639018880` | 昔涟、缇宝、刻律德菈、长夜月、丹恒·腾荒、海瑟音、风堇、白厄、那刻夏、阿格莱雅、万敌、遐蝶、赛飞儿、开拓者·记忆。 |
 
 结论：markup 只负责展示样式；tooltip identity 来自同一 skill record 的 ExtraEffect list。名称文本与下划线文本相同，使客户端可以把 ExtraEffect disclosure/tooltip 与对应术语呈现到一起。数据中没有 `golden-desc-id` 一类 inline reference。
 
@@ -491,40 +491,40 @@ explicitSpecialReference(skillId) > standard HideInUI exclusion
 
 ## 9. Files / Configs Investigated
 
-| File | Purpose | Relation status |
-|---|---|---|
-| `ExcelOutput/AvatarConfig.json` | Avatar identity and normal SkillList | Confirmed participant |
-| `ExcelOutput/AvatarConfigLD.json` | 吉尔伽美什 LD identity/SkillList | Confirmed comparison participant |
-| `ExcelOutput/AvatarSkillConfig.json` | 姬子·启行技能及标准昔涟 avatar skills | Confirmed participant |
-| `ExcelOutput/AvatarSkillConfigLD.json` | 吉尔伽美什 `150909` | Confirmed comparison participant |
-| `ExcelOutput/AvatarServantConfig.json` | 德谬歌 `11415` 及完整 SkillIDList | Confirmed participant |
-| `ExcelOutput/AvatarServantSkillConfig.json` | 昔涟 14 个特殊忆灵技及 `1141502` | Confirmed participant |
-| `ExcelOutput/AvatarSkillTreeConfig.json` | Avatar -> progression -> SkillID relation | Confirmed participant |
-| `ExcelOutput/AvatarSkillLink.json` | 同行协议 SkillID -> target avatar groups | Confirmed special relation |
-| `ExcelOutput/AvatarServantSkillLink.json` | 14 个献诗 SkillID -> target/avatar/card/order | Confirmed special relation |
-| `ExcelOutput/ExtraEffectConfig.json` | underlined terms and tooltip definitions | Confirmed tooltip source |
-| `TextMap/TextMapCHS.json` | raw names/descriptions/markup | Confirmed text source |
-| `ExcelOutput/NounAtlas.json` | noun archive candidate | Investigated; not involved |
-| `ExcelOutput/NounAtlasChangeInfo.json` | noun archive replacement relation | Investigated; not involved |
-| `Config/GameCoreUISetting.json` | skill type colors and common UI settings | Investigated; not the tooltip relation |
-| `Config/ConfigAbility/Servant/Servant_CyreneServant_00_Ability.json` | battle implementation | Spot-checked; not needed for UI identity chain |
-| `StarRailRes` | potential asset cross-check | Not required; link config already contains authoritative asset paths |
-| `HSR-Database/scripts/data/sync.ts` | current parser behavior | Confirms standard HideInUI filtering and ExtraEffect resolution |
-| `HSR-Database/scripts/data/validate.ts` | current visibility invariants | Confirms 14+2 skills are intentionally absent from standard cards |
-| `HSR-Database/src/lib/generated/details/characters/1415.json` | current generated Cyrene data | Confirms `1141502` already includes Golden Scion ExtraEffect |
-| `HSR-Database/src/lib/generated/details/characters/1510.json` | current generated Himeko data | Confirms `151022` already includes Trailblaze Companion/Assist Skill ExtraEffects |
+| File                                                                 | Purpose                                       | Relation status                                                                   |
+| -------------------------------------------------------------------- | --------------------------------------------- | --------------------------------------------------------------------------------- |
+| `ExcelOutput/AvatarConfig.json`                                      | Avatar identity and normal SkillList          | Confirmed participant                                                             |
+| `ExcelOutput/AvatarConfigLD.json`                                    | 吉尔伽美什 LD identity/SkillList              | Confirmed comparison participant                                                  |
+| `ExcelOutput/AvatarSkillConfig.json`                                 | 姬子·启行技能及标准昔涟 avatar skills         | Confirmed participant                                                             |
+| `ExcelOutput/AvatarSkillConfigLD.json`                               | 吉尔伽美什 `150909`                           | Confirmed comparison participant                                                  |
+| `ExcelOutput/AvatarServantConfig.json`                               | 德谬歌 `11415` 及完整 SkillIDList             | Confirmed participant                                                             |
+| `ExcelOutput/AvatarServantSkillConfig.json`                          | 昔涟 14 个特殊忆灵技及 `1141502`              | Confirmed participant                                                             |
+| `ExcelOutput/AvatarSkillTreeConfig.json`                             | Avatar -> progression -> SkillID relation     | Confirmed participant                                                             |
+| `ExcelOutput/AvatarSkillLink.json`                                   | 同行协议 SkillID -> target avatar groups      | Confirmed special relation                                                        |
+| `ExcelOutput/AvatarServantSkillLink.json`                            | 14 个献诗 SkillID -> target/avatar/card/order | Confirmed special relation                                                        |
+| `ExcelOutput/ExtraEffectConfig.json`                                 | underlined terms and tooltip definitions      | Confirmed tooltip source                                                          |
+| `TextMap/TextMapCHS.json`                                            | raw names/descriptions/markup                 | Confirmed text source                                                             |
+| `ExcelOutput/NounAtlas.json`                                         | noun archive candidate                        | Investigated; not involved                                                        |
+| `ExcelOutput/NounAtlasChangeInfo.json`                               | noun archive replacement relation             | Investigated; not involved                                                        |
+| `Config/GameCoreUISetting.json`                                      | skill type colors and common UI settings      | Investigated; not the tooltip relation                                            |
+| `Config/ConfigAbility/Servant/Servant_CyreneServant_00_Ability.json` | battle implementation                         | Spot-checked; not needed for UI identity chain                                    |
+| `StarRailRes`                                                        | potential asset cross-check                   | Not required; link config already contains authoritative asset paths              |
+| `HSR-Database/scripts/data/sync.ts`                                  | current parser behavior                       | Confirms standard HideInUI filtering and ExtraEffect resolution                   |
+| `HSR-Database/scripts/data/validate.ts`                              | current visibility invariants                 | Confirms 14+2 skills are intentionally absent from standard cards                 |
+| `HSR-Database/src/lib/generated/details/characters/1415.json`        | current generated Cyrene data                 | Confirms `1141502` already includes Golden Scion ExtraEffect                      |
+| `HSR-Database/src/lib/generated/details/characters/1510.json`        | current generated Himeko data                 | Confirms `151022` already includes Trailblaze Companion/Assist Skill ExtraEffects |
 
 ## 10. Evidence Appendix
 
 ### A. Key owner/progression IDs
 
-| Entity | ID | Important fields |
-|---|---:|---|
-| 昔涟 | `1415` | `AvatarBaseType = Memory` |
-| 德谬歌 | `11415` | `SkillIDList` includes `1141501`, `1141502`, `1141513`-`1141526` |
-| 昔涟忆灵技 progression | `1415301` | `PointType = 4`, `PointTriggerKey = PointServant1`, contains all 14 special IDs |
-| 姬子·启行 | `1510` | SkillList contains `151022`, `151025`, `151026` |
-| 姬子·启行天赋 progression | `1510004` | contains `151004`, `151022`, `151025`, `151026` |
+| Entity                    |        ID | Important fields                                                                |
+| ------------------------- | --------: | ------------------------------------------------------------------------------- |
+| 昔涟                      |    `1415` | `AvatarBaseType = Memory`                                                       |
+| 德谬歌                    |   `11415` | `SkillIDList` includes `1141501`, `1141502`, `1141513`-`1141526`                |
+| 昔涟忆灵技 progression    | `1415301` | `PointType = 4`, `PointTriggerKey = PointServant1`, contains all 14 special IDs |
+| 姬子·启行                 |    `1510` | SkillList contains `151022`, `151025`, `151026`                                 |
+| 姬子·启行天赋 progression | `1510004` | contains `151004`, `151022`, `151025`, `151026`                                 |
 
 ### B. Special SkillID sets
 
@@ -539,12 +539,12 @@ Himeko special effects:
 
 ### C. Tooltip IDs
 
-| ExtraEffectID | Name | Name hash | Desc hash |
-|---:|---|---:|---:|
-| `10000009` | 增益效果 | `18157997645719654996` | `11900561702339978033` |
-| `10000025` | 黄金裔 | `10091091466095703957` | `8498977798639018880` |
-| `10000031` | 开拓同行 | `5638119904684089463` | `9294130689424795237` |
-| `10000032` | 助战技 | `73511576447477049` | `4790548193254787042` |
+| ExtraEffectID | Name     |              Name hash |              Desc hash |
+| ------------: | -------- | ---------------------: | ---------------------: |
+|    `10000009` | 增益效果 | `18157997645719654996` | `11900561702339978033` |
+|    `10000025` | 黄金裔   | `10091091466095703957` |  `8498977798639018880` |
+|    `10000031` | 开拓同行 |  `5638119904684089463` |  `9294130689424795237` |
+|    `10000032` | 助战技   |    `73511576447477049` |  `4790548193254787042` |
 
 ### D. Exact-reference search result summary
 

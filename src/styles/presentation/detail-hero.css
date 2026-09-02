@@ -112,7 +112,8 @@
 
 .detail-profile-hero h1 {
   margin: 0.7rem 0 0.8rem;
-  font-size: clamp(2.2rem, 4vw, 3.35rem);
+  font-size: var(--font-hero-detail-title);
+  font-weight: var(--font-hero-title-weight);
   line-height: 1.08;
   letter-spacing: -0.04em;
   text-wrap: balance;

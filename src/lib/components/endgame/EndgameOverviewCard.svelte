@@ -8,7 +8,7 @@
 
   $: metadata = ENDGAME_MODE_META[mode.mode];
   $: period = mode.periods.find((candidate) => candidate.groupId === mode.recommendedGroupId);
-  $: dateLabel = period && period.status !== 'unknown' ? period.dateLabel : '-';
+  $: dateLabel = period?.dateLabel ?? '-';
   $: href = period ? `/endgame/${mode.mode}/${period.groupId}` : `/endgame/${mode.mode}`;
 </script>
 

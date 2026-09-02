@@ -52,10 +52,7 @@
 </header>
 
 <section class="detail-section relic-piece-section" data-relic-piece-count={detail.pieces.length}>
-  <SectionHeading level={1}>
-    套装部件
-    <svelte:fragment slot="meta">{detail.pieces.length} 件</svelte:fragment>
-  </SectionHeading>
+  <SectionHeading level={1}>套装部件</SectionHeading>
   {#if detail.pieces.length}
     <div class="relic-piece-grid">
       {#each detail.pieces as piece (piece.id)}

@@ -12,6 +12,7 @@
     type LightConeFilterState
   } from '$lib/domain/light-cone-filters';
   import type { CatalogEntry } from '$lib/domain/types';
+  import { formatDocumentTitle } from '$lib/site';
   import FilterGroup from './FilterGroup.svelte';
   import LightConeOverviewCard from './LightConeOverviewCard.svelte';
   import OverviewGrid from './OverviewGrid.svelte';
@@ -117,7 +118,7 @@
 </script>
 
 <svelte:head>
-  <title>{title}｜星轨档案库</title>
+  <title>{formatDocumentTitle(title)}</title>
   <meta name="description" content={description} />
 </svelte:head>
 

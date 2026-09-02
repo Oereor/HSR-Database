@@ -38,6 +38,11 @@ test('Endgame overview 四张模式卡片直达各自展示的推荐赛期', asy
   await expect(page.locator('.endgame-hero-artwork__icon')).toHaveCount(4);
   await expect(page.getByRole('navigation', { name: '高难模式切换' })).toHaveCount(0);
   await expect(page.getByText(/生命值来自关卡中实际 MonsterID/)).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: '常规高难' })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: '异相仲裁', exact: true })).toHaveCount(0);
+  await expect(page.getByText('混沌回忆、虚构叙事与末日幻影交替更新。')).toHaveCount(0);
+  await expect(page.getByText('独立高难模式。')).toHaveCount(0);
+  expect(await gridColumnCount(page.locator('.endgame-overview-grid'))).toBe(3);
 
   const cards = page.locator('[data-endgame-overview-card]');
   await expect(cards).toHaveCount(4);
@@ -270,13 +275,13 @@ test('MoC、PF、AS 与全部 AA 关卡使用共享 Hero', async ({ page }) => {
       url: '/endgame/aa/8?encounter=801%3Apreliminary',
       groupId: '8',
       title: '尘世卷中',
-      metadata: ['时间资料未提供']
+      metadata: ['-']
     },
     {
       url: '/endgame/aa/8?encounter=804%3Anormal',
       groupId: '8',
       title: '尘世卷中',
-      metadata: ['时间资料未提供']
+      metadata: ['-']
     }
   ] as const) {
     await page.goto(scenario.url);
@@ -305,6 +310,7 @@ test('MoC 相同记忆紊流只展示一次并保留 GameText 格式', async ({ 
 
 test('PF 战意机制复用 segmented MechanicSectionCard，荒腔走板保持静态中性', async ({ page }) => {
   await page.goto('/endgame/pf/2025?encounter=20254');
+  await expect(page.getByText(/本页按波次展示可能出现的敌人类型/)).toHaveCount(0);
   const battleWill = page.locator('[data-endgame-mechanics="battle-will"]');
   const fixedSurface = battleWill.locator('.season-mechanic-card');
   await expect(fixedSurface).toHaveCount(1);
@@ -749,7 +755,7 @@ test('AA 单波单敌人自然使用共享 WaveLayout，不产生王棋专属布
 
 test('PF 只显示波内唯一敌人类型', async ({ page }) => {
   await page.goto('/endgame/pf/2025?encounter=20254');
-  await expect(page.getByText(/重复生成、生成次数与先后顺序已省略/)).toBeVisible();
+  await expect(page.getByText(/重复生成、生成次数与先后顺序已省略/)).toHaveCount(0);
   const firstBattle = page.locator('[data-battle-slot="1"]');
   await expect(page.getByRole('heading', { name: '构事生意其四', level: 2 })).toBeVisible();
   await expect(firstBattle.getByRole('heading', { name: '节点一', level: 3 })).toBeVisible();

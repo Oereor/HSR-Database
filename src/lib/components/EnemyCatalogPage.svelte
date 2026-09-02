@@ -14,6 +14,7 @@
   } from '$lib/domain/enemy-overview';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import type { CatalogEntry, EnemyCatalogEntry } from '$lib/domain/types';
+  import { formatDocumentTitle } from '$lib/site';
   import EnemyOverviewCard from './EnemyOverviewCard.svelte';
   import FilterGroup from './FilterGroup.svelte';
   import OverviewGrid from './OverviewGrid.svelte';
@@ -27,6 +28,8 @@
   export let description = '浏览、搜索并筛选敌方单位资料。';
   export let enemyPortraits: Record<string, string> = {};
 
+  const heroEnemyIds = ['1005010', '2004010', '4034010'] as const;
+
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
   let clientReady = false;
@@ -39,7 +42,9 @@
   $: filterState = readEnemyOverviewFilterState(params);
   $: sort = params.get('sort') ?? 'rarity';
   $: requestedPage = Number(params.get('page') ?? 1);
-  $: heroArtwork = resolveHeroArtwork(enemies, enemyPortraits);
+  $: heroArtwork = heroEnemyIds.flatMap((id) =>
+    enemyPortraits[id] ? [{ id, url: enemyPortraits[id] }] : []
+  );
   $: filtered = enemies
     .filter((entry) => {
       const query = appliedQuery.trim().toLocaleLowerCase();
@@ -70,22 +75,6 @@
   function enemyEntry(entry: CatalogEntry): EnemyCatalogEntry {
     if (!isEnemyCatalogEntry(entry)) throw new Error(`敌方单位目录 ${entry.id} 缺少弱点投影`);
     return entry;
-  }
-
-  function resolveHeroArtwork(
-    catalog: EnemyCatalogEntry[],
-    portraits: Record<string, string>
-  ): Array<{ id: string; url: string }> {
-    const seen = new Set<string>();
-    const artwork: Array<{ id: string; url: string }> = [];
-    for (const entry of catalog) {
-      const url = portraits[entry.id];
-      if (!url || seen.has(url)) continue;
-      artwork.push({ id: entry.id, url });
-      seen.add(url);
-      if (artwork.length === 3) break;
-    }
-    return artwork;
   }
 
   function synchronizeDraft(query: string) {
@@ -135,7 +124,7 @@
 </script>
 
 <svelte:head>
-  <title>{title}｜星轨档案库</title>
+  <title>{formatDocumentTitle(title)}</title>
   <meta name="description" content={description} />
 </svelte:head>
 

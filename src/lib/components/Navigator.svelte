@@ -4,6 +4,7 @@
   import { onDestroy } from 'svelte';
   import { getBrandIconUrl } from '$lib/data/visual-assets';
   import type { DataManifest } from '$lib/domain/types';
+  import { SITE_NAME } from '$lib/site';
   import PrimaryNavigation from './PrimaryNavigation.svelte';
   import SearchBar from './SearchBar.svelte';
 
@@ -56,9 +57,9 @@
 </script>
 
 <aside class="navigator-rail" aria-label="紧凑导航栏">
-  <a class="brand navigator-rail__brand" href="/" aria-label="星轨档案库首页">
-    <span class="brand-mark brand-mark--train-party" aria-hidden="true">
-      {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{:else}轨{/if}
+  <a class="brand navigator-rail__brand" href="/" aria-label={`${SITE_NAME}首页`}>
+    <span class="brand-icon" aria-hidden="true">
+      {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
     </span>
   </a>
   <button
@@ -80,7 +81,9 @@
 
 <header class="mobile-header">
   <a class="brand" href="/">
-    <span class="brand-mark" aria-hidden="true">轨</span><strong>星轨档案库</strong>
+    <span class="brand-icon" aria-hidden="true">
+      {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
+    </span><strong>{SITE_NAME}</strong>
   </a>
   <button
     class="navigator-toggle"
@@ -106,10 +109,10 @@
   <div class="navigator-pane__surface">
     <div class="navigator-pane__heading">
       <a class="brand navigator-pane__brand" href="/" on:click={closeNavigator}>
-        <span class="brand-mark brand-mark--train-party" aria-hidden="true">
-          {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{:else}轨{/if}
+        <span class="brand-icon" aria-hidden="true">
+          {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
         </span>
-        <span><strong>崩坏：星穹铁道 档案库</strong><small>HSR Data Archive</small></span>
+        <span><strong>{SITE_NAME}</strong><small>HSR Data Archive</small></span>
       </a>
       <button
         class="navigator-toggle"

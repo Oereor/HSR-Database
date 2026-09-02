@@ -7,7 +7,7 @@
 
   let failedSource: string | undefined;
   $: visibleSource = imageUrl && imageUrl !== failedSource ? imageUrl : undefined;
-  $: fallbackMark = fallbackLabel.trim().slice(0, 1) || '轨';
+  $: fallbackMark = fallbackLabel.trim().slice(0, 1) || '?';
   $: elementProps = href ? { href } : {};
 </script>
 

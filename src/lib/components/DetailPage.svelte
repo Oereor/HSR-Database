@@ -27,6 +27,7 @@
   } from '$lib/data/visual-assets';
   import type { CatalogEntry } from '$lib/domain/types';
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
+  import { formatDocumentTitle } from '$lib/site';
   export let detail: any;
   export let category: string;
   export let singular: string;
@@ -100,7 +101,7 @@
 </script>
 
 <svelte:head>
-  <title>{plainName}｜{singular}｜星轨档案库</title>
+  <title>{formatDocumentTitle(plainName, singular)}</title>
   <meta name="description" content={metaDescription} />
 </svelte:head>
 
@@ -215,44 +216,13 @@
   </header>
 {:else if category === 'relics'}
   <RelicDetailPage {detail} {singular} />
-{:else if category !== 'enemies'}<header class="detail-hero">
-    <div class="detail-hero__content">
-      <p class="kicker">{singular.toUpperCase()} / ID {detail.id}</p>
-      <h1><GameText text={detail.name} /></h1>
-      {#if detail.fullName && detail.fullName !== detail.name}<p class="detail-subtitle">
-          <GameText text={detail.fullName} />
-        </p>{/if}
-      <div class="tag-row">
-        {#if detail.rarity}<span class="tone-rarity">{'★'.repeat(detail.rarity)}</span>{/if}
-        {#if detail.pathName}<SemanticIconLabel
-            kind="path"
-            code={detail.path}
-            label={detail.pathName}
-          />{/if}
-        {#if detail.elementName}<SemanticIconLabel
-            kind="element"
-            code={detail.element}
-            label={detail.elementName}
-            color={getElementColor(detail.element)}
-          />{/if}
-        {#if detail.typeName}<span>{detail.typeName}</span>{/if}
-        {#if detail.version}<span>版本 {detail.version}</span>{/if}
-        {#if detail.rank}<span>{detail.rank}</span>{/if}
-      </div>
-      {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p class="muted">
-          上游数据未提供可用简介。
-        </p>{/if}
-    </div>
-  </header>{/if}
+{/if}
 
 {#if category === 'characters'}
   <SectionNav items={characterSectionNavItems} />
   {#key profileMode}
     <section id="skills" class="detail-section section-nav-target">
-      <SectionHeading level={1}>
-        技能
-        <svelte:fragment slot="meta">{activeProfile.skillCards.length} 类</svelte:fragment>
-      </SectionHeading>
+      <SectionHeading level={1}>技能</SectionHeading>
       {#if activeProfile.skillCards.length}<div class="stack-list skill-card-grid">
           {#each activeProfile.skillCards as card (card.category)}<SkillCardPanel
               {card}
@@ -263,10 +233,7 @@
         </div>{:else}<p class="data-placeholder">上游未提供可展示的技能记录。</p>{/if}
     </section>
     <section id="traces" class="detail-section section-nav-target">
-      <SectionHeading level={1}>
-        行迹
-        <svelte:fragment slot="meta">{activeProfile.traces.length} 条记录</svelte:fragment>
-      </SectionHeading>
+      <SectionHeading level={1}>行迹</SectionHeading>
       {#if activeProfile.traces.length}<TraceCardPanel traces={activeProfile.traces} />{:else}<p
           class="data-placeholder"
         >
@@ -312,16 +279,3 @@
 {:else if category === 'enemies'}
   {#key detail.id}<EnemyDetailPage {detail} />{/key}
 {/if}
-
-<aside class="source-note">
-  <strong>数据来源</strong>
-  <p>
-    TurnBasedGameData 提供结构化数据；{category === 'enemies'
-      ? '敌人立绘由现有静态资源管线按 MonsterTemplateID 同步到网站本地。'
-      : category === 'characters'
-        ? '角色预览图、详情立绘与装备推荐所需图标由 StarRailRes 在构建时按稳定 ID 同步。'
-        : category === 'relics'
-          ? '遗器套装预览与各部件图标由 StarRailRes 在构建时按稳定 ID 同步到网站本地。'
-          : '相关视觉资源在构建时同步到网站本地。'}
-  </p>
-</aside>

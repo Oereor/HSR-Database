@@ -39,8 +39,8 @@ test('隧洞遗器详情使用双栏 Hero、唯一套装效果和四张部件卡
   ]);
   await expect(page.getByRole('heading', { name: '获取来源' })).toHaveCount(0);
   await expect(page.getByText('侵蚀隧洞【残响回廊】')).toHaveCount(0);
-  await expect(page.locator('.source-note')).toContainText('数据来源');
-  await expect(page.locator('.source-note')).toContainText('套装预览与各部件图标');
+  await expect(page.locator('.source-note')).toHaveCount(0);
+  await expect(page.getByText('数据来源', { exact: true })).toHaveCount(0);
 });
 
 test('位面饰品只展示真实的 2 件套效果与两个部件', async ({ page }) => {

@@ -30,10 +30,6 @@
   </div>
 {/if}
 
-<p class="endgame-mode-note">
-  本页按波次展示可能出现的敌人类型；运行时重复生成、生成次数与先后顺序已省略。
-</p>
-
 <div class="pf-node-list">
   {#each encounter.battles as battle (battle.slot)}
     <EndgameNodeSection {battle} waveLayout="stacked" enemyVariant="compact" />

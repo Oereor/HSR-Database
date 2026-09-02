@@ -12,13 +12,13 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
   expect((await rail.boundingBox())?.width).toBe(72);
   await expect(rail.locator('.primary-navigation a')).toHaveCount(6);
   await expect(rail.locator('a[aria-current="page"]')).toHaveAttribute('href', '/');
-  const railBrandMark = rail.locator('.navigator-rail__brand .brand-mark--train-party');
-  await expect(railBrandMark.locator('img')).toHaveAttribute(
+  const railBrandIcon = rail.locator('.navigator-rail__brand .brand-icon');
+  await expect(railBrandIcon.locator('img')).toHaveAttribute(
     'src',
     '/generated-assets/branding/train-party.png'
   );
-  await expect(railBrandMark).toHaveCSS('border-radius', '0px');
-  await expect(railBrandMark).toHaveCSS('overflow', 'visible');
+  await expect(railBrandIcon).toHaveCSS('border-radius', '0px');
+  await expect(railBrandIcon).toHaveCSS('overflow', 'visible');
 
   const iconSources = await rail
     .locator('.primary-navigation__icon img')
@@ -38,9 +38,9 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
   await page.getByRole('button', { name: '打开导航' }).click();
   const dialog = page.getByRole('dialog', { name: '完整导航' });
   await expect(dialog).toBeVisible();
-  await expect(dialog.getByText('崩坏：星穹铁道 档案库', { exact: true })).toBeVisible();
+  await expect(dialog.getByText('《崩坏：星穹铁道》档案库', { exact: true })).toBeVisible();
   await expect(dialog.getByText('HSR Data Archive', { exact: true })).toBeVisible();
-  await expect(dialog.locator('.brand-mark--train-party img')).toHaveAttribute(
+  await expect(dialog.locator('.brand-icon img')).toHaveAttribute(
     'src',
     '/generated-assets/branding/train-party.png'
   );

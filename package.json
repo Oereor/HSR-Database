@@ -18,6 +18,7 @@
     "investigate:enemy-variants": "tsx scripts/investigations/enemy-variants.ts",
     "predev": "pnpm data:ensure && pnpm assets:ensure",
     "dev": "vite dev",
+    "deploy:build": "tsx scripts/deployment/build.ts",
     "prebuild": "pnpm data:ensure && pnpm assets:ensure",
     "build": "vite build",
     "preview": "vite preview",

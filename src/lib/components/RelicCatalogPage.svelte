@@ -12,6 +12,7 @@
     writeRelicFilterState
   } from '$lib/domain/relic-filters';
   import type { CatalogEntry, RelicCatalogEntry, RelicSetCategory } from '$lib/domain/types';
+  import { formatDocumentTitle } from '$lib/site';
   import FilterGroup from './FilterGroup.svelte';
   import OverviewGrid from './OverviewGrid.svelte';
   import OverviewHero from './OverviewHero.svelte';
@@ -129,7 +130,7 @@
 </script>
 
 <svelte:head>
-  <title>{title}｜星轨档案库</title>
+  <title>{formatDocumentTitle(title)}</title>
   <meta name="description" content={description} />
 </svelte:head>
 

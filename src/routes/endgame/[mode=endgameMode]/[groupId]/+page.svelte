@@ -17,6 +17,7 @@
     buildPureFictionLocalNavigation
   } from '$lib/domain/endgame-navigation';
   import type { EndgameGroupView } from '$lib/domain/endgame-view';
+  import { formatDocumentTitle } from '$lib/site';
   export let data;
 
   function buildLocalNavigation(group: EndgameGroupView, selectedId: string) {
@@ -47,7 +48,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.group.period.name} · {data.group.modeLabel}｜星轨档案库</title>
+  <title>{formatDocumentTitle(`${data.group.period.name} · ${data.group.modeLabel}`)}</title>
   <meta
     name="description"
     content={`${data.group.modeLabel}「${data.group.period.name}」的关卡敌方实例、弱点与配置生命值。`}
@@ -96,11 +97,6 @@
           {/each}
         </div>
       {/if}
-
-      <p class="source-note">
-        生命值、速度和韧性均来自当前关卡实际 MonsterID
-        的静态配置与关卡倍率，显示时四舍五入到整数。阶段与运行时机制不会被换算为未经验证的总值。
-      </p>
     </div>
   </div>
 {:else}

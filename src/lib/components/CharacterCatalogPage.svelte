@@ -19,6 +19,7 @@
     type CharacterFilterState
   } from '$lib/domain/character-filters';
   import { getCharacterPreviewUrl } from '$lib/data/visual-assets';
+  import { formatDocumentTitle } from '$lib/site';
 
   export let entries: CatalogEntry[] = [];
   export let title = '角色';
@@ -124,7 +125,7 @@
 </script>
 
 <svelte:head>
-  <title>{title}｜星轨档案库</title>
+  <title>{formatDocumentTitle(title)}</title>
   <meta name="description" content={description} />
 </svelte:head>
 

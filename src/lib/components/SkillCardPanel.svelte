@@ -16,7 +16,6 @@
 <article class="info-card skill-card" data-skill-category={card.category}>
   <div class="info-card__heading skill-card__heading">
     <h3>{card.displayLabel}</h3>
-    <span>{card.variants.length} 个重载</span>
   </div>
   {#each card.progressions as progression (progression.id)}
     <SkillProgressionPanel
