@@ -2,7 +2,7 @@ export const CATEGORY_CONFIG = {
   characters: { label: '角色', singular: '角色', kind: 'character', href: '/characters' },
   'light-cones': { label: '光锥', singular: '光锥', kind: 'light-cone', href: '/light-cones' },
   relics: { label: '遗器', singular: '遗器套装', kind: 'relic', href: '/relics' },
-  enemies: { label: '敌人', singular: '敌人', kind: 'enemy', href: '/enemies' }
+  enemies: { label: '敌方单位', singular: '敌方单位', kind: 'enemy', href: '/enemies' }
 } as const;
 
 export type CategorySlug = keyof typeof CATEGORY_CONFIG;

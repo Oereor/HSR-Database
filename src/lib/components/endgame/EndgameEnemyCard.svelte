@@ -11,10 +11,14 @@
   export let level: number | undefined = undefined;
 
   let portraitFailed = false;
+  $: elementProps = occurrence.enemyHref ? { href: occurrence.enemyHref } : {};
 </script>
 
-<article
+<svelte:element
+  this={occurrence.enemyHref ? 'a' : 'article'}
+  {...elementProps}
   class:endgame-enemy--compact={variant === 'compact'}
+  class:endgame-enemy--link={!!occurrence.enemyHref}
   class:endgame-enemy--with-art={occurrence.portraitUrl && !portraitFailed}
   class="endgame-enemy"
   data-endgame-enemy-card
@@ -53,11 +57,7 @@
   <div class="endgame-enemy__content">
     <header class="endgame-enemy__identity">
       <h5 class="endgame-enemy__name">
-        {#if occurrence.enemyHref}
-          <a href={occurrence.enemyHref}><GameText text={occurrence.name} /></a>
-        {:else}
-          <GameText text={occurrence.name} />
-        {/if}
+        <GameText text={occurrence.name} />
       </h5>
     </header>
 
@@ -105,4 +105,4 @@
       </div>
     </dl>
   </div>
-</article>
+</svelte:element>

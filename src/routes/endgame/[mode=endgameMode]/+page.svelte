@@ -15,7 +15,7 @@
 </svelte:head>
 
 <header class="endgame-page-header">
-  <a class="back-link endgame-breadcrumb" href="/endgame">← Endgame</a>
+  <a class="back-link endgame-breadcrumb" href="/endgame">← 高难模式总览</a>
 </header>
 
 <EndgameModeNav activeMode={data.mode.mode} />
