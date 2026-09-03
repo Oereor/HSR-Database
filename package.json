@@ -20,6 +20,7 @@
     "predev": "pnpm data:ensure && pnpm assets:ensure",
     "dev": "vite dev",
     "deploy:build": "tsx scripts/deployment/build.ts",
+    "upstreams:update": "tsx scripts/update-upstream-lock.ts",
     "prebuild": "pnpm data:ensure && pnpm assets:ensure",
     "build": "vite build",
     "preview": "vite preview",

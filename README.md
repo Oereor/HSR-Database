@@ -133,6 +133,7 @@ pnpm.cmd dev -- --open
 | `pnpm assets:validate`     | `assets:verify` 的兼容命令                        |
 | `pnpm assets:clean`        | 仅清理网站仓库内的生成视觉资源                    |
 | `pnpm dev`                 | 启动开发服务器，必要时自动同步                    |
+| `pnpm upstreams:update`    | 检查两个上游默认分支并更新本地 lock               |
 | `pnpm check`               | Svelte 与 TypeScript 检查                         |
 | `pnpm lint`                | Prettier 和 ESLint 检查                           |
 | `pnpm test`                | 运行 Vitest 单元测试                              |
@@ -183,7 +184,15 @@ schema 16 的敌人详情只使用 `MonsterID == MonsterTemplateID` 的 canonica
 
 ## 构建与部署
 
-`pnpm build` 生成纯静态站点。CI 必须把两个上游仓库作为独立兄弟目录检出到固定 commit，设置 `HSR_DATA_ROOT` 与 `HSR_ASSET_ROOT`，依次运行数据/资源同步、验证和构建。生产环境应把 `PUBLIC_SITE_URL` 设置为正式域名。
+`pnpm build` 生成纯静态站点。`upstream.lock.json` 是 TurnBasedGameData 与 StarRailRes 的唯一版本 pin；`pnpm deploy:build` 会按其中的完整 commit SHA 准备精简 upstream checkout，再执行数据、资源和静态站点构建。生产环境应把 `PUBLIC_SITE_URL` 设置为正式域名。
+
+### Upstream 自动更新
+
+`Update upstreams` GitHub Actions workflow 每日检查两个公开 upstream 的 symbolic `HEAD`，也支持手动触发。updater 只修改 `upstream.lock.json`：发现变化后先通过 frozen install 与完整 `pnpm deploy:build`，再更新固定的 `automation/update-upstreams` branch，并创建或更新目标为 `develop` 的 PR。它不会直接写入 `develop` 或 `main`。
+
+PR merge 到 `develop` 后由 Vercel Preview 验证；Production 仍只由 `main` 及该分支中的 lock 控制。网站浏览器运行时不访问 upstream，只有 GitHub Actions 或部署平台执行 pinned deployment build 时才会按 lock 准备 upstream checkout。
+
+GitHub 的 scheduled workflow 只从 repository default branch 加载，因此 workflow 文件需要最终进入 default branch `main` 后，定时触发才会正式激活。workflow 启动后仍明确 checkout 最新 `develop`，并只向 `develop` 提出 PR。仓库还需在 Settings → Actions → General → Workflow permissions 中启用 **Allow GitHub Actions to create and approve pull requests**，否则 `GITHUB_TOKEN` 无法创建 automation PR。
 
 资源同步只处理当前数据目录实际引用的角色、光锥、遗器、7 种属性、9 种命途与 7 张导航图标，不复制完整资源仓库。Overview preview 按中文 index 的稳定 ID 路径选择并保留原始透明 PNG；原始立绘生成最大 960px、quality 84 的透明 WebP；属性、命途与导航图标生成 64px PNG，导航图标会先去除纯透明外边缘再等比居中。若 StarRailRes 已新增 index 记录、但路径为 `null` 或对应文件尚未提交，同步会将该 ID 明确写入 manifest 的 `missing` 并输出 fallback warning，其余实际存在的资源仍正常发布；Overview 使用中性占位，详情立绘自动恢复无图 Hero，图标保留中文文字。非法或越界路径、identity 不一致、损坏图片及转换错误仍会中止同步。上游后续提交资源并产生新 commit 后，`assets:ensure` 会自动重同步并解除对应 fallback，无需修改管线。
 
@@ -261,7 +270,7 @@ jobs:
           pnpm build
 ```
 
-实际部署时，把 `PUBLIC_SITE_URL` 换成正式域名，并由所选平台发布 `build/`。本项目不会自动联网 clone 上游的数据。
+实际部署时，把 `PUBLIC_SITE_URL` 换成正式域名，并由所选平台发布 `build/`。浏览器运行时不会联网访问 upstream；正式 deployment build 会按 `upstream.lock.json` 中的固定 SHA 准备所需的精简 checkout，不会追踪未固定的最新提交。
 
 ## 数据来源与免责声明
 
