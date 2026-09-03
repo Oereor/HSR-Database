@@ -40,6 +40,14 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
   await expect(dialog).toBeVisible();
   await expect(dialog.getByText('《崩坏：星穹铁道》档案库', { exact: true })).toBeVisible();
   await expect(dialog.getByText('HSR Data Archive', { exact: true })).toBeVisible();
+  const brandTitle = dialog.locator('.navigator-pane__brand strong');
+  await expect(brandTitle).toHaveText('《崩坏：星穹铁道》档案库');
+  expect(
+    await brandTitle.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return element.getBoundingClientRect().height <= Number.parseFloat(style.lineHeight) + 1;
+    })
+  ).toBe(true);
   await expect(dialog.locator('.brand-icon img')).toHaveAttribute(
     'src',
     '/generated-assets/branding/train-party.png'

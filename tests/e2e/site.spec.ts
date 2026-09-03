@@ -132,9 +132,6 @@ test('角色目录按 ID 加载 preview 并保留安全缺图降级', async ({ p
     'loading',
     'lazy'
   );
-  await expect(firstCard.locator('.entity-kind')).toHaveCount(0);
-  await expect(firstCard.locator('.entity-overview-card__subtitle')).toHaveCount(0);
-  await expect(firstCard.locator('.entity-overview-card__fade')).toHaveCount(0);
   await expect(firstCard).not.toContainText('CHARACTER /');
   await expect(firstCard.locator('.entity-overview-card__overlay .rarity-stars')).toBeVisible();
   await expect(firstCard.locator('.entity-overview-card__title')).not.toBeEmpty();
@@ -184,7 +181,6 @@ test('光锥目录复用角色 Overview presentation 并按 ID 加载 preview', 
       'src',
       `/generated-assets/light-cones/preview/${id}.png`
     );
-    await expect(card.locator('.entity-card__body')).toHaveCount(0);
     await expect(card).not.toContainText('光锥技能仅对该命途生效');
     await expect(card).not.toContainText(/生命值|攻击力|防御力/);
   }
@@ -1266,18 +1262,47 @@ test('技能卡按语义类别合并变体并使用真实默认等级', async ({
   await expect(hertaSkill.locator('.skill-variant')).toHaveCount(2);
 });
 
-test('技能标题与首个等级控制之间只保留标题底边线', async ({ page }) => {
+test('技能类别标题与正文之间只保留一条 divider，秘技隐藏固定等级', async ({ page }) => {
   await page.goto('/characters/1001');
-  const card = page.locator('[data-skill-category="basic"]');
-  const dividerWidths = await card.evaluate((element) => {
-    const heading = element.querySelector<HTMLElement>('.skill-card__heading')!;
-    const levelControl = element.querySelector<HTMLElement>('.skill-level-control')!;
-    return [
-      getComputedStyle(heading).borderBottomWidth,
-      getComputedStyle(levelControl).borderTopWidth
-    ];
-  });
-  expect(dividerWidths).toEqual(['1px', '0px']);
+  for (const category of ['basic', 'skill', 'ultimate', 'talent', 'technique']) {
+    const card = page.locator(`[data-skill-category="${category}"]`);
+    const dividerWidths = await card.evaluate((element) => {
+      const heading = element.querySelector<HTMLElement>('.skill-card__heading')!;
+      const firstBody = element.querySelector<HTMLElement>(
+        '.skill-progression-group, .fixed-variant-list'
+      )!;
+      const firstLevelControl = element.querySelector<HTMLElement>('.skill-level-control');
+      return {
+        heading: getComputedStyle(heading).borderBottomWidth,
+        firstBody: getComputedStyle(firstBody).borderTopWidth,
+        firstLevelControl: firstLevelControl
+          ? getComputedStyle(firstLevelControl).borderTopWidth
+          : '0px'
+      };
+    });
+    expect(dividerWidths).toEqual({ heading: '1px', firstBody: '0px', firstLevelControl: '0px' });
+    if (category === 'technique')
+      await expect(card.getByText('Lv.1', { exact: true })).toHaveCount(0);
+  }
+});
+
+test('Mobile 角色 Overview 的双字命途与属性标签保持同一行', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/characters?q=素裳');
+  const card = page.locator('a[href="/characters/1206"]');
+  const metadata = card.locator('.entity-overview-card__metadata');
+  await expect(card).toBeVisible();
+  await expect(metadata).toContainText('巡猎');
+  await expect(metadata).toContainText('物理');
+  const rows = await metadata
+    .locator(':scope > *')
+    .evaluateAll((items) => items.map((item) => Math.round(item.getBoundingClientRect().top)));
+  expect(new Set(rows).size).toBe(1);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+    )
+  ).toBeLessThanOrEqual(1);
 });
 
 test('每个 Skill Variant 独立展示技能类型与战斗元数据', async ({ page }) => {

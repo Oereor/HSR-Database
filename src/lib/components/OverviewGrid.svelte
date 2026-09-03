@@ -1,8 +1,14 @@
 <script lang="ts">
-  export let variant: 'default' | 'compact' = 'default';
+  export let variant: 'default' | 'compact' | 'character' = 'default';
 </script>
 
-<div class:overview-grid--compact={variant === 'compact'} class="overview-grid"><slot /></div>
+<div
+  class:overview-grid--compact={variant === 'compact'}
+  class:overview-grid--character={variant === 'character'}
+  class="overview-grid"
+>
+  <slot />
+</div>
 
 <style>
   .overview-grid {
@@ -33,6 +39,11 @@
     .overview-grid--compact {
       grid-template-columns: 1fr;
       gap: 1rem;
+    }
+
+    .overview-grid--character {
+      width: calc(100% + 1rem);
+      margin-inline: -0.5rem;
     }
   }
 

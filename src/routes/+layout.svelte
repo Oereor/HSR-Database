@@ -4,8 +4,11 @@
   import '../styles/presentation/detail-inspection.css';
   import { page } from '$app/stores';
   import Navigator from '$lib/components/Navigator.svelte';
+  import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { getBrandIconUrl } from '$lib/data/visual-assets';
   import { SITE_NAME } from '$lib/site';
+
+  injectAnalytics();
 
   export let data;
   const faviconUrl = getBrandIconUrl('train-party');
