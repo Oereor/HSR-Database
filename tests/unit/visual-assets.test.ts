@@ -15,6 +15,7 @@ import {
   resolvePathIconAsset,
   resolveNavigationIconAsset,
   resolveBrandIconAsset,
+  resolveUtilityIconAsset,
   resolveEndgameModeIconAsset
 } from '../../src/lib/data/visual-assets';
 import type { AssetAvailability, VisualAssetManifest } from '../../src/lib/domain/visual-assets';
@@ -27,6 +28,7 @@ import {
   manifestCoversRequirements,
   NAVIGATION_ICON_SOURCE_NAMES,
   BRAND_ICON_SOURCE_NAMES,
+  UTILITY_ICON_SOURCE_NAMES,
   PATH_SOURCE_NAMES,
   readCharacterPreviewSources,
   readLightConePreviewSources,
@@ -60,6 +62,7 @@ const manifest = (options?: {
   paths?: string[];
   navigationIcons?: string[];
   brandIcons?: string[];
+  utilityIcons?: string[];
   endgameModeIcons?: string[];
 }): VisualAssetManifest => ({
   schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
@@ -83,6 +86,7 @@ const manifest = (options?: {
   paths: available(options?.paths ?? []),
   navigation: { icons: available(options?.navigationIcons ?? []) },
   branding: { icons: available(options?.brandIcons ?? []) },
+  utility: { icons: available(options?.utilityIcons ?? []) },
   endgame: { modeIcons: available(options?.endgameModeIcons ?? []) }
 });
 
@@ -148,7 +152,8 @@ describe('视觉资源管线', () => {
       elements: ['Lightning'],
       paths: ['Memory'],
       navigationIcons: ['overview'],
-      brandIcons: ['train-party']
+      brandIcons: ['train-party'],
+      utilityIcons: ['changelog']
     });
     expect(resolveCharacterPreviewAsset('1001', source)).toBe(
       '/generated-assets/characters/preview/1001.png'
@@ -178,6 +183,9 @@ describe('视觉资源管线', () => {
     );
     expect(resolveBrandIconAsset('train-party', source)).toBe(
       '/generated-assets/branding/train-party.png'
+    );
+    expect(resolveUtilityIconAsset('changelog', source)).toBe(
+      '/generated-assets/utility/changelog.png'
     );
     expect(resolveNavigationIconAsset('characters', source)).toBeUndefined();
     expect(resolveCharacterPreviewAsset('1002', source)).toBeUndefined();
@@ -217,6 +225,7 @@ describe('视觉资源管线', () => {
       endgame: 'AbyssIcon01'
     });
     expect(BRAND_ICON_SOURCE_NAMES).toEqual({ 'train-party': 'TrainPartyIcon' });
+    expect(UTILITY_ICON_SOURCE_NAMES).toEqual({ changelog: 'SettingsPushIcon' });
   });
 
   it('manifest 必须覆盖角色、属性与命途的完整需求集合', () => {
@@ -229,6 +238,7 @@ describe('视觉资源管线', () => {
       paths: ['Warrior'],
       navigationIcons: ['overview'],
       brandIcons: ['train-party'],
+      utilityIcons: ['changelog'],
       endgameModeIcons: ['AbyssThemeTabIcon']
     });
     expect(
@@ -242,6 +252,7 @@ describe('视觉资源管线', () => {
         paths: ['Warrior'],
         navigationIcons: ['overview'],
         brandIcons: ['train-party'],
+        utilityIcons: ['changelog'],
         endgameModeIcons: ['AbyssThemeTabIcon']
       })
     ).toBe(true);
@@ -256,6 +267,7 @@ describe('视觉资源管线', () => {
         paths: ['Warrior'],
         navigationIcons: ['overview'],
         brandIcons: ['train-party'],
+        utilityIcons: ['changelog'],
         endgameModeIcons: ['AbyssThemeTabIcon']
       })
     ).toBe(false);
@@ -604,6 +616,7 @@ describe('视觉资源管线', () => {
         paths: [],
         navigationIcons: [],
         brandIcons: [],
+        utilityIcons: [],
         endgameModeIcons: []
       },
       outputRoot
@@ -667,6 +680,7 @@ describe('视觉资源管线', () => {
         paths: [],
         navigationIcons: [],
         brandIcons: [],
+        utilityIcons: [],
         endgameModeIcons: []
       },
       outputRoot
@@ -722,6 +736,7 @@ describe('视觉资源管线', () => {
           paths: [],
           navigationIcons: [],
           brandIcons: [],
+          utilityIcons: [],
           endgameModeIcons: []
         },
         outputRoot

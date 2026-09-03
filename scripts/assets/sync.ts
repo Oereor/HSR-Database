@@ -149,6 +149,9 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
     `  品牌图标 ${manifest.branding.icons.available.length}，缺失 ${manifest.branding.icons.missing.length}，${mb(sizes.branding)}`
   );
   console.log(
+    `  工具图标 ${manifest.utility.icons.available.length}，缺失 ${manifest.utility.icons.missing.length}，${mb(sizes.utility)}`
+  );
+  console.log(
     `  高难模式图标 ${manifest.endgame.modeIcons.available.length}，缺失 ${manifest.endgame.modeIcons.missing.length}，${mb(sizes.endgameModeIcons)}`
   );
   console.log(`  输出总计 ${mb(sizes.total)}`);

@@ -92,7 +92,7 @@ test('首页作为数据库入口展示品牌、分类与最近限定跃迁', as
 
 test('Footer 仅保留正式服说明、数据仓库与本地许可证', async ({ page }) => {
   await page.goto('/');
-  const footer = page.locator('footer');
+  const footer = page.locator('main > footer');
   await expect(footer.locator('p')).toHaveCount(2);
   await expect(footer.locator('p').first()).toHaveText(
     '本站为非官方玩家制作的数据网站，与米哈游或 HoYoverse 无官方关联。游戏名称、角色及相关资产的权利归其权利人所有。'

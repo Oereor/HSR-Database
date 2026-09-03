@@ -3,11 +3,14 @@ export interface AssetAvailability {
   missing: string[];
 }
 
+export const UTILITY_ICON_KEYS = ['changelog'] as const;
+export type UtilityIconKey = (typeof UTILITY_ICON_KEYS)[number];
+
 export const BRAND_ICON_KEYS = ['train-party'] as const;
 export type BrandIconKey = (typeof BRAND_ICON_KEYS)[number];
 
 export interface VisualAssetManifest {
-  schemaVersion: 11;
+  schemaVersion: 12;
   sourceCommit?: string;
   generatedAt: string;
   characters: {
@@ -31,6 +34,9 @@ export interface VisualAssetManifest {
     icons: AssetAvailability;
   };
   branding: {
+    icons: AssetAvailability;
+  };
+  utility: {
     icons: AssetAvailability;
   };
   endgame: {

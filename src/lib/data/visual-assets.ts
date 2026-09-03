@@ -2,6 +2,7 @@ import manifestJson from '$lib/generated-assets/manifest.json';
 import type {
   AssetAvailability,
   BrandIconKey,
+  UtilityIconKey,
   VisualAssetManifest
 } from '$lib/domain/visual-assets';
 import type { EndgameModeIconKey } from '$lib/domain/endgame-view';
@@ -20,6 +21,7 @@ const sets = {
   path: new Set(manifest.paths.available),
   navigation: new Set(manifest.navigation.icons.available),
   branding: new Set(manifest.branding.icons.available),
+  utility: new Set(manifest.utility.icons.available),
   endgameModeIcon: new Set(manifest.endgame.modeIcons.available)
 };
 
@@ -180,6 +182,19 @@ export function resolveBrandIconAsset(
   );
 }
 
+export function resolveUtilityIconAsset(
+  iconKey: UtilityIconKey,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  return resolveAsset(
+    iconKey,
+    source.utility.icons,
+    'utility',
+    'png',
+    source === manifest ? sets.utility : undefined
+  );
+}
+
 export function resolveEndgameModeIconAsset(
   iconKey: EndgameModeIconKey,
   source: VisualAssetManifest = manifest
@@ -214,5 +229,7 @@ export const getNavigationIconUrl = (iconKey: NavigationIconKey): string | undef
   resolveNavigationIconAsset(iconKey);
 export const getBrandIconUrl = (iconKey: BrandIconKey): string | undefined =>
   resolveBrandIconAsset(iconKey);
+export const getUtilityIconUrl = (iconKey: UtilityIconKey): string | undefined =>
+  resolveUtilityIconAsset(iconKey);
 export const getEndgameModeIconUrl = (iconKey: EndgameModeIconKey): string | undefined =>
   resolveEndgameModeIconAsset(iconKey);

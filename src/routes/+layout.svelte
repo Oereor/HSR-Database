@@ -7,11 +7,13 @@
   import { injectAnalytics } from '@vercel/analytics/sveltekit';
   import { getBrandIconUrl } from '$lib/data/visual-assets';
   import { SITE_NAME } from '$lib/site';
+  import ChangelogModal from '$lib/components/ChangelogModal.svelte';
 
   injectAnalytics();
 
   export let data;
   const faviconUrl = getBrandIconUrl('train-party');
+  let changelogModal: ChangelogModal;
 </script>
 
 <svelte:head>
@@ -22,7 +24,8 @@
 </svelte:head>
 
 <div class="site-shell">
-  <Navigator manifest={data.manifest} />
+  <Navigator manifest={data.manifest} onOpenChangelog={() => changelogModal?.open()} />
+  <ChangelogModal bind:this={changelogModal} />
 
   <main>
     <div class="content"><slot /></div>
