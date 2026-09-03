@@ -107,7 +107,7 @@
     {#if results.characters.length}
       <section class="search-result-section" aria-labelledby="search-results-characters">
         <SectionHeading level={1} id="search-results-characters">角色</SectionHeading>
-        <OverviewGrid>
+        <OverviewGrid variant="character">
           {#each results.characters as result (result.id)}
             <CharacterOverviewCard
               entry={result}

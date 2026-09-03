@@ -60,5 +60,8 @@
   "engines": {
     "node": ">=22",
     "pnpm": ">=10"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
   }
 }

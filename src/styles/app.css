@@ -50,7 +50,7 @@
   --font-internal: 0.75rem;
   --motion: 180ms ease;
   --navigator-rail-width: 72px;
-  --navigator-pane-width: 288px;
+  --navigator-pane-width: 304px;
   --site-header-height: 0px;
   --section-nav-height: 3.25rem;
   font-family:
@@ -808,8 +808,10 @@ footer a {
 .skill-progression-group + .skill-progression-group,
 .fixed-variant-list {
   margin-top: 1rem;
-  border-top: 1px solid var(--border);
   padding-top: 1rem;
+}
+.fixed-variant-list--separated {
+  border-top: 1px solid var(--border);
 }
 .progression-group-label {
   color: var(--gold-soft);
@@ -1124,6 +1126,7 @@ footer a {
   border: 1px solid var(--border-strong);
   border-radius: 50%;
   color: var(--gold);
+  font-weight: 600;
 }
 .data-placeholder {
   margin: 0;

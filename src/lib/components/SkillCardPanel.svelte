@@ -10,6 +10,7 @@
     ((trigger: HTMLButtonElement, level: number) => void) | undefined = undefined;
 
   $: fixedVariants = card.variants.filter((variant) => !variant.progressionId);
+  $: fixedVariantsNeedDivider = card.progressions.length > 0;
   const fixedLevel = (variant: SkillVariant) => variant.levels[0];
 </script>
 
@@ -28,12 +29,15 @@
       {onOpenSpecialEffects}
     />
   {/each}
-  {#if fixedVariants.length}<div class="skill-variant-list fixed-variant-list">
+  {#if fixedVariants.length}<div
+      class:fixed-variant-list--separated={fixedVariantsNeedDivider}
+      class="skill-variant-list fixed-variant-list"
+    >
       {#each fixedVariants as variant (variant.id)}
         <SkillVariantView
           {variant}
           selectedLevel={fixedLevel(variant)?.level ?? 1}
-          showLevel
+          showLevel={card.category !== 'technique'}
           {specialEffectsAvailable}
           {specialEffectIconUrl}
           {onOpenSpecialEffects}

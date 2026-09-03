@@ -186,7 +186,7 @@
 </section>
 
 {#if visible.length}
-  <OverviewGrid>
+  <OverviewGrid variant="character">
     {#each visible as entry (entry.id)}
       <CharacterOverviewCard
         {entry}
