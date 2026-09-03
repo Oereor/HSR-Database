@@ -10,6 +10,7 @@ import {
 } from './paths.js';
 import {
   assetSizeSummary,
+  assetRequirementsFingerprint,
   emptyAssetManifest,
   generateVisualAssets,
   manifestCoversRequirements,
@@ -79,8 +80,12 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
     root = assertAssetRoot(resolveAssetRoot());
     sourceCommit = assetSourceCommit(root);
   } catch (error) {
+    if (process.env.HSR_DEPLOYMENT_BUILD === '1') throw error;
     const validCache =
       !!cached &&
+      (!process.env.HSR_EXPECTED_ASSET_COMMIT ||
+        cached.sourceCommit === process.env.HSR_EXPECTED_ASSET_COMMIT) &&
+      cached.requirementsFingerprint === assetRequirementsFingerprint(requirements) &&
       manifestCoversRequirements(cached, requirements) &&
       (await manifestFilesExist(cached));
     if (validCache) {
@@ -101,6 +106,7 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
     const generated = await generateVisualAssets(root, requirements, stagingRoot);
     manifest = {
       schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
+      requirementsFingerprint: assetRequirementsFingerprint(requirements),
       sourceCommit,
       generatedAt: new Date().toISOString(),
       ...generated
@@ -129,6 +135,9 @@ export async function syncAssets(): Promise<VisualAssetManifest> {
   );
   console.log(
     `  角色立绘 ${manifest.characters.portraits.available.length}，缺失 ${manifest.characters.portraits.missing.length}，${mb(sizes.portraits)}`
+  );
+  console.log(
+    `  角色详情 icon ${Object.keys(manifest.characterDetails.icons.resolved).length}，缺失 ${manifest.characterDetails.icons.missing.length}，去重文件 ${new Set(Object.values(manifest.characterDetails.icons.resolved)).size}，${mb(sizes.characterDetailIcons)}`
   );
   console.log(
     `  光锥预览图 ${manifest.lightCones.previews.available.length}，缺失 ${manifest.lightCones.previews.missing.length}，${mb(sizes.lightConePreviews)}`

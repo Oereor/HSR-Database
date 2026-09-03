@@ -1,7 +1,11 @@
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { runDeploymentBuild } from '../../scripts/deployment/build';
-import { siteRoot } from '../../scripts/deployment/prepare';
+import {
+  siteRoot,
+  starRailAssetDirectories,
+  starRailIndexPaths
+} from '../../scripts/deployment/prepare';
 
 const lock = {
   schemaVersion: 1 as const,
@@ -16,8 +20,22 @@ const lock = {
 };
 
 describe('deployment build orchestration', () => {
+  it('includes all StarRailRes indexes required by character detail icon resolution', () => {
+    expect(starRailIndexPaths).toEqual(
+      expect.arrayContaining([
+        'index_new/cn/character_skills.json',
+        'index_new/cn/character_skill_trees.json',
+        'index_new/cn/character_ranks.json'
+      ])
+    );
+    expect(starRailAssetDirectories).toEqual(
+      expect.arrayContaining(['icon/skill/', 'icon/property/', 'icon/sign/'])
+    );
+  });
+
   it('runs enemy ensure after data and before StarRailRes assets/build', async () => {
     const events: string[] = [];
+    const environments: NodeJS.ProcessEnv[] = [];
     await runDeploymentBuild({
       loadLock: async () => {
         events.push('lock');
@@ -31,8 +49,9 @@ describe('deployment build orchestration', () => {
         events.push('prepare-star-rail');
         return path.join(siteRoot, '.upstream', 'StarRailRes');
       },
-      commandRunner: async (args) => {
+      commandRunner: async (args, env) => {
         events.push(args.join(' '));
+        environments.push(env);
       }
     });
     expect(events).toEqual([
@@ -42,8 +61,14 @@ describe('deployment build orchestration', () => {
       'assets:ensure:enemies',
       'prepare-star-rail',
       'assets:ensure',
+      'assets:verify',
       'exec svelte-kit sync',
-      'exec vite build'
+      'exec vite build',
+      'deploy:verify'
     ]);
+    expect(environments.every((env) => env.HSR_DEPLOYMENT_BUILD === '1')).toBe(true);
+    expect(
+      environments.every((env) => env.HSR_EXPECTED_ASSET_COMMIT === lock.starRailRes.commit)
+    ).toBe(true);
   });
 });

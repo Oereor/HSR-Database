@@ -5,6 +5,7 @@ import type {
   UtilityIconKey,
   VisualAssetManifest
 } from '$lib/domain/visual-assets';
+import type { CharacterDetailIconKey } from '$lib/domain/character-detail-icons';
 import type { EndgameModeIconKey } from '$lib/domain/endgame-view';
 import type { NavigationIconKey } from '$lib/navigation';
 
@@ -63,6 +64,20 @@ export function resolveCharacterPortraitAsset(
     'webp',
     source === manifest ? sets.portrait : undefined
   );
+}
+
+export function resolveCharacterDetailIconAsset(
+  iconKey: CharacterDetailIconKey | undefined,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  if (!iconKey) return undefined;
+  const resolved = source.characterDetails.icons.resolved[iconKey];
+  return typeof resolved === 'string' &&
+    /^\/generated-assets\/character-details\/icons\/(?:skill|property)\/[A-Za-z0-9_-]+\.png$/.test(
+      resolved
+    )
+    ? resolved
+    : undefined;
 }
 
 export function resolveLightConePreviewAsset(
@@ -212,6 +227,9 @@ export const getCharacterPreviewUrl = (id: string): string | undefined =>
   resolveCharacterPreviewAsset(id);
 export const getCharacterPortraitUrl = (id: string): string | undefined =>
   resolveCharacterPortraitAsset(id);
+export const getCharacterDetailIconUrl = (
+  iconKey: CharacterDetailIconKey | undefined
+): string | undefined => resolveCharacterDetailIconAsset(iconKey);
 export const getLightConePreviewUrl = (id: string): string | undefined =>
   resolveLightConePreviewAsset(id);
 export const getLightConePortraitUrl = (id: string): string | undefined =>

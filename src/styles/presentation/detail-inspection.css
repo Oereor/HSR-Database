@@ -23,6 +23,19 @@
   font-size: var(--font-meta-key);
 }
 
+.inspection-stat-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.inspection-stat-label img {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
 .inspection-stat-row dd {
   margin: 0;
   text-align: right;

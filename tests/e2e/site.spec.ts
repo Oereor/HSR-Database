@@ -2066,6 +2066,71 @@ test('记忆开拓者按真实前置链归组并将第四项能力独占底部�
   }
 });
 
+test('角色详情 icon 增强保持 canonical 技能、紧凑卡片与无破图布局', async ({ page, isMobile }) => {
+  await page.goto('/characters/1407');
+  await expect(page.locator('#stats .inspection-stat-label img')).toHaveCount(5);
+  const skillCards = page.locator('#skills .skill-card');
+  await expect(skillCards).toHaveCount(7);
+  await expect(skillCards.locator('.skill-card__heading img')).toHaveCount(7);
+  await expect(
+    page.locator('[data-skill-category="skill"] .skill-card__heading img')
+  ).toHaveAttribute('src', '/generated-assets/character-details/icons/skill/1407_skill.png');
+  await expect(page.locator('[data-skill-category="skill"] [data-skill-id]')).toHaveCount(2);
+  await expect(
+    page.locator(
+      '[data-skill-category="skill"] .skill-variant img[src^="/generated-assets/character-details/"]'
+    )
+  ).toHaveCount(0);
+
+  await expect(
+    page.locator('#traces .trace-card--ability .trace-card__identity > img')
+  ).toHaveCount(3);
+  await expect(page.locator('#traces .trace-card--stat .trace-card__title--icon img')).toHaveCount(
+    10
+  );
+  await expect(page.locator('#eidolons .rank-icon')).toHaveCount(6);
+  await expect(page.locator('#eidolons .rank-label')).toHaveText([
+    '星魂 1',
+    '星魂 2',
+    '星魂 3',
+    '星魂 4',
+    '星魂 5',
+    '星魂 6'
+  ]);
+  await expect(page.locator('#eidolons .rank-number')).toHaveCount(0);
+
+  const presentation = await page.evaluate(() => {
+    const detailImages = [
+      ...document.querySelectorAll<HTMLImageElement>(
+        'img[src^="/generated-assets/character-details/"]'
+      )
+    ];
+    const skillHeading = document
+      .querySelector<HTMLElement>('[data-skill-category="skill"] .skill-card__heading')!
+      .getBoundingClientRect();
+    return {
+      loaded: detailImages.every((image) => image.complete && image.naturalWidth > 0),
+      count: detailImages.length,
+      skillHeadingHeight: skillHeading.height,
+      overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth
+    };
+  });
+  expect(presentation.loaded).toBe(true);
+  expect(presentation.count).toBeGreaterThan(20);
+  expect(presentation.skillHeadingHeight).toBeLessThan(60);
+  expect(presentation.overflow).toBeLessThanOrEqual(isMobile ? 1 : 0);
+
+  for (const id of ['8007', '8008']) {
+    await page.goto(`/characters/${id}`);
+    await expect(
+      page.locator(`[data-trace-id="${id}501"] .trace-card__identity > img`)
+    ).toHaveAttribute(
+      'src',
+      `/generated-assets/character-details/icons/skill/${id}_basic_atk2.png`
+    );
+  }
+});
+
 test('角色与敌人属性文字使用统一颜色', async ({ page }) => {
   await page.goto('/characters/1005');
   await expect(page.locator('.hero-identity-metadata').getByText('雷', { exact: true })).toHaveCSS(

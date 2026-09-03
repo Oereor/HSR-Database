@@ -3,6 +3,11 @@ export interface AssetAvailability {
   missing: string[];
 }
 
+export interface AssetResolutionMap {
+  resolved: Record<string, string>;
+  missing: string[];
+}
+
 export const UTILITY_ICON_KEYS = ['changelog'] as const;
 export type UtilityIconKey = (typeof UTILITY_ICON_KEYS)[number];
 
@@ -10,12 +15,16 @@ export const BRAND_ICON_KEYS = ['train-party'] as const;
 export type BrandIconKey = (typeof BRAND_ICON_KEYS)[number];
 
 export interface VisualAssetManifest {
-  schemaVersion: 12;
+  schemaVersion: 14;
+  requirementsFingerprint?: string;
   sourceCommit?: string;
   generatedAt: string;
   characters: {
     previews: AssetAvailability;
     portraits: AssetAvailability;
+  };
+  characterDetails: {
+    icons: AssetResolutionMap;
   };
   lightCones: {
     previews: AssetAvailability;

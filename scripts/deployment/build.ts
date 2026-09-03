@@ -57,6 +57,9 @@ export async function runDeploymentBuild(
   const turnBasedRoot = await timed('TurnBasedGameData preparation', () => prepareTurnBased(lock));
   const env = {
     ...process.env,
+    HSR_DEPLOYMENT_BUILD: '1',
+    HSR_EXPECTED_ASSET_COMMIT: lock.starRailRes.commit,
+    HSR_EXPECTED_DATA_COMMIT: lock.turnBasedGameData.commit,
     HSR_DATA_ROOT: path.relative(siteRoot, turnBasedRoot).replaceAll('\\', '/'),
     HSR_ASSET_ROOT: path
       .relative(siteRoot, path.join(siteRoot, '.upstream', 'StarRailRes'))
@@ -73,12 +76,14 @@ export async function runDeploymentBuild(
   env.HSR_ASSET_ROOT = path.relative(siteRoot, starRailRoot).replaceAll('\\', '/');
   console.log(`[assets] HSR_ASSET_ROOT=${env.HSR_ASSET_ROOT}`);
   await timed('asset ensure/generation', () => commandRunner(['assets:ensure'], env));
+  await timed('asset verification', () => commandRunner(['assets:verify'], env));
 
   console.log('[build] vite build');
   await timed('SvelteKit build', async () => {
     await commandRunner(['exec', 'svelte-kit', 'sync'], env);
     await commandRunner(['exec', 'vite', 'build'], env);
   });
+  await timed('final build asset verification', () => commandRunner(['deploy:verify'], env));
   console.log(`[timing] overall: ${((performance.now() - overallStarted) / 1000).toFixed(3)}s`);
 }
 

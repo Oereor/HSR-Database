@@ -9,6 +9,16 @@ export const generatedAssetRoot = path.join(siteRoot, 'static', 'generated-asset
 export const generatedCharacterRoot = path.join(generatedAssetRoot, 'characters');
 export const generatedPreviewRoot = path.join(generatedCharacterRoot, 'preview');
 export const generatedPortraitRoot = path.join(generatedCharacterRoot, 'portrait');
+export const generatedCharacterDetailRoot = path.join(generatedAssetRoot, 'character-details');
+export const generatedCharacterDetailIconRoot = path.join(generatedCharacterDetailRoot, 'icons');
+export const generatedCharacterDetailSkillIconRoot = path.join(
+  generatedCharacterDetailIconRoot,
+  'skill'
+);
+export const generatedCharacterDetailPropertyIconRoot = path.join(
+  generatedCharacterDetailIconRoot,
+  'property'
+);
 export const generatedLightConeRoot = path.join(generatedAssetRoot, 'light-cones');
 export const generatedLightConePreviewRoot = path.join(generatedLightConeRoot, 'preview');
 export const generatedLightConePortraitRoot = path.join(generatedLightConeRoot, 'portrait');
@@ -30,12 +40,16 @@ const requiredDirectories = [
   ['index_new', 'cn', 'relic_sets.json'],
   ['index_new', 'cn', 'relics.json'],
   ['index_new', 'cn', 'properties.json'],
+  ['index_new', 'cn', 'character_skills.json'],
+  ['index_new', 'cn', 'character_skill_trees.json'],
+  ['index_new', 'cn', 'character_ranks.json'],
   ['image', 'character_preview'],
   ['image', 'character_portrait'],
   ['image', 'light_cone_preview'],
   ['image', 'light_cone_portrait'],
   ['icon', 'relic'],
   ['icon', 'property'],
+  ['icon', 'skill'],
   ['icon', 'element'],
   ['icon', 'path'],
   ['icon', 'sign']
@@ -77,6 +91,10 @@ export function assertAssetOutputPaths(): void {
     generatedAssetRoot,
     generatedPreviewRoot,
     generatedPortraitRoot,
+    generatedCharacterDetailRoot,
+    generatedCharacterDetailIconRoot,
+    generatedCharacterDetailSkillIconRoot,
+    generatedCharacterDetailPropertyIconRoot,
     generatedLightConeRoot,
     generatedLightConePreviewRoot,
     generatedLightConePortraitRoot,

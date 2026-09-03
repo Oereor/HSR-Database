@@ -11,6 +11,7 @@
     "assets:validate": "tsx scripts/assets/validate.ts",
     "assets:verify": "tsx scripts/assets/verify.ts",
     "assets:clean": "tsx scripts/assets/clean.ts",
+    "deploy:verify": "tsx scripts/deployment/verify-build.ts",
     "data:audit": "tsx scripts/data/audit.ts",
     "data:sync": "tsx scripts/data/sync.ts",
     "data:validate": "tsx scripts/data/validate.ts",

@@ -70,7 +70,7 @@ import {
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 33)
+if (manifest.schemaVersion !== 34)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 const parsedGameVersion = parseGameVersion(manifest.sourceVersion);

@@ -2,22 +2,6 @@ import path from 'node:path';
 import { readdir, rm } from 'node:fs/promises';
 import { readUpstreamLock, type UpstreamLock } from './lock.js';
 import { prepareCheckout, setSparseCheckout } from './git.js';
-import {
-  readAssetRequirements,
-  readCharacterPreviewSources,
-  readLightConePortraitSources,
-  readLightConePreviewSources,
-  readRelicPieceIconSources,
-  readRelicPropertyIconSources,
-  readRelicSetIconSources,
-  ELEMENT_SOURCE_NAMES,
-  PATH_SOURCE_NAMES,
-  NAVIGATION_ICON_SOURCE_NAMES,
-  BRAND_ICON_SOURCE_NAMES
-} from '../assets/shared.js';
-import { ENDGAME_MODE_META, ENDGAME_MODES } from '../../src/lib/domain/endgame-view.js';
-import { NAVIGATION_ITEMS } from '../../src/lib/navigation.js';
-import { BRAND_ICON_KEYS } from '../../src/lib/domain/visual-assets.js';
 
 export const siteRoot = path.resolve(import.meta.dirname, '..', '..');
 export const resolveUpstreamRoot = (root: string): string => path.resolve(root, '.upstream');
@@ -31,24 +15,29 @@ const turnBasedSparsePaths = [
   'Config/ConfigAbility/BattleEvent/'
 ];
 
-const indexPaths = [
+export const starRailIndexPaths = [
   'index_new/cn/characters.json',
   'index_new/cn/light_cones.json',
   'index_new/cn/relic_sets.json',
   'index_new/cn/relics.json',
-  'index_new/cn/properties.json'
+  'index_new/cn/properties.json',
+  'index_new/cn/character_skills.json',
+  'index_new/cn/character_skill_trees.json',
+  'index_new/cn/character_ranks.json'
 ];
 
-const relative = (root: string, file: string): string =>
-  path.relative(root, file).replaceAll('\\', '/');
-
-function addSourcePaths(
-  set: Set<string>,
-  root: string,
-  sources: ReadonlyMap<string, string>
-): void {
-  for (const source of sources.values()) set.add(relative(root, source));
-}
+export const starRailAssetDirectories = [
+  'image/character_preview/',
+  'image/character_portrait/',
+  'image/light_cone_preview/',
+  'image/light_cone_portrait/',
+  'icon/relic/',
+  'icon/property/',
+  'icon/skill/',
+  'icon/element/',
+  'icon/path/',
+  'icon/sign/'
+];
 
 export async function prepareTurnBasedGameData(lock: UpstreamLock): Promise<string> {
   const directory = path.join(upstreamRoot, 'TurnBasedGameData');
@@ -60,48 +49,9 @@ export async function prepareTurnBasedGameData(lock: UpstreamLock): Promise<stri
 export async function prepareStarRailRes(lock: UpstreamLock): Promise<string> {
   const directory = path.join(upstreamRoot, 'StarRailRes');
   console.log(`[upstream] StarRailRes @ ${lock.starRailRes.commit}`);
-  await prepareCheckout(directory, lock.starRailRes, indexPaths, upstreamRoot);
+  await prepareCheckout(directory, lock.starRailRes, starRailIndexPaths, upstreamRoot);
 
-  const requirements = await readAssetRequirements();
-  const paths = new Set(indexPaths);
-  addSourcePaths(
-    paths,
-    directory,
-    await readCharacterPreviewSources(directory, requirements.characterIds)
-  );
-  for (const id of requirements.characterIds) paths.add(`image/character_portrait/${id}.png`);
-  addSourcePaths(
-    paths,
-    directory,
-    await readLightConePreviewSources(directory, requirements.lightConeIds)
-  );
-  addSourcePaths(
-    paths,
-    directory,
-    await readLightConePortraitSources(directory, requirements.lightConeIds)
-  );
-  addSourcePaths(
-    paths,
-    directory,
-    await readRelicSetIconSources(directory, requirements.relicSetIds)
-  );
-  addSourcePaths(
-    paths,
-    directory,
-    await readRelicPieceIconSources(directory, requirements.relicPieces)
-  );
-  addSourcePaths(
-    paths,
-    directory,
-    await readRelicPropertyIconSources(directory, requirements.relicPropertyIcons)
-  );
-  for (const code of requirements.elements)
-    paths.add(`icon/element/${ELEMENT_SOURCE_NAMES[code]}.png`);
-  for (const code of requirements.paths) paths.add(`icon/path/${PATH_SOURCE_NAMES[code]}.png`);
-  for (const item of NAVIGATION_ITEMS)
-    paths.add(`icon/sign/${NAVIGATION_ICON_SOURCE_NAMES[item.iconKey]}.png`);
-  for (const key of BRAND_ICON_KEYS) paths.add(`icon/sign/${BRAND_ICON_SOURCE_NAMES[key]}.png`);
-  for (const mode of ENDGAME_MODES) paths.add(`icon/sign/${ENDGAME_MODE_META[mode].iconKey}.png`);
+  const paths = new Set([...starRailIndexPaths, ...starRailAssetDirectories]);
 
   await setSparseCheckout(directory, paths);
   for (const required of paths) {

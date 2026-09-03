@@ -1,8 +1,10 @@
 import { copyFile, mkdir, readFile, readdir, rename, rm, stat, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import sharp from 'sharp';
 import type {
   CatalogEntry,
+  Character,
   RelicCatalogEntry,
   RelicProperty,
   RelicSet,
@@ -12,10 +14,15 @@ import {
   BRAND_ICON_KEYS,
   UTILITY_ICON_KEYS,
   type AssetAvailability,
+  type AssetResolutionMap,
   type BrandIconKey,
   type UtilityIconKey,
   type VisualAssetManifest
 } from '../../src/lib/domain/visual-assets.js';
+import {
+  parseCharacterDetailIconKey,
+  type CharacterDetailIconKey
+} from '../../src/lib/domain/character-detail-icons.js';
 import {
   ENDGAME_MODES,
   ENDGAME_MODE_META,
@@ -28,6 +35,8 @@ import {
   assetManifestRoot,
   assertAssetOutputPaths,
   generatedAssetRoot,
+  generatedCharacterDetailPropertyIconRoot,
+  generatedCharacterDetailSkillIconRoot,
   generatedPreviewRoot,
   generatedLightConePreviewRoot,
   generatedLightConePortraitRoot,
@@ -45,7 +54,7 @@ import {
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 12 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 14 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -88,6 +97,7 @@ export const UTILITY_ICON_SOURCE_NAMES: Readonly<Record<UtilityIconKey, string>>
 
 export interface AssetRequirements {
   characterIds: string[];
+  characterDetailIconKeys: CharacterDetailIconKey[];
   lightConeIds: string[];
   relicSetIds: string[];
   relicPieces: Array<{ id: string; setId: string; slot: RelicSlot }>;
@@ -103,6 +113,7 @@ export interface AssetRequirements {
 export interface AssetSizeSummary {
   previews: number;
   portraits: number;
+  characterDetailIcons: number;
   lightConePreviews: number;
   lightConePortraits: number;
   relicIcons: number;
@@ -121,6 +132,9 @@ export interface AssetOutputPaths {
   root: string;
   previews: string;
   portraits: string;
+  characterDetailIcons: string;
+  characterDetailSkillIcons: string;
+  characterDetailPropertyIcons: string;
   lightConePreviews: string;
   lightConePortraits: string;
   relicIcons: string;
@@ -139,6 +153,31 @@ export interface AssetFallbackEntry {
   missing: string[];
 }
 
+/** Stable cache key for the complete, normalized asset requirement set. */
+export function assetRequirementsFingerprint(requirements: AssetRequirements): string {
+  const canonical = {
+    characterIds: [...requirements.characterIds].sort(),
+    characterDetailIconKeys: [...requirements.characterDetailIconKeys].sort(),
+    lightConeIds: [...requirements.lightConeIds].sort(),
+    relicSetIds: [...requirements.relicSetIds].sort(),
+    relicPieces: [...requirements.relicPieces]
+      .map((piece) => ({ id: piece.id, setId: piece.setId, slot: piece.slot }))
+      .sort((a, b) => a.id.localeCompare(b.id)),
+    relicPropertyIcons: [...requirements.relicPropertyIcons]
+      .map((entry) => ({ propertyType: entry.propertyType, iconKey: entry.iconKey }))
+      .sort((a, b) =>
+        `${a.propertyType}:${a.iconKey}`.localeCompare(`${b.propertyType}:${b.iconKey}`)
+      ),
+    elements: [...requirements.elements].sort(),
+    paths: [...requirements.paths].sort(),
+    navigationIcons: [...requirements.navigationIcons].sort(),
+    brandIcons: [...requirements.brandIcons].sort(),
+    utilityIcons: [...requirements.utilityIcons].sort(),
+    endgameModeIcons: [...requirements.endgameModeIcons].sort()
+  };
+  return createHash('sha256').update(JSON.stringify(canonical)).digest('hex');
+}
+
 const uniqueSorted = (values: Array<string | undefined>): string[] =>
   [...new Set(values.filter((value): value is string => !!value))].sort((a, b) =>
     a.localeCompare(b)
@@ -150,6 +189,7 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
   const relicCatalogPath = path.join(generatedRoot, 'catalogs', 'relics.json');
   const relicPropertyCatalogPath = path.join(generatedRoot, 'catalogs', 'relic-properties.json');
   let characterCatalog: CatalogEntry[];
+  let characterDetails: Character[];
   let lightConeCatalog: CatalogEntry[];
   let relicCatalog: RelicCatalogEntry[];
   let relicDetails: RelicSet[];
@@ -167,6 +207,16 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
         )
       )
     );
+    characterDetails = await Promise.all(
+      characterCatalog.map(async (character) =>
+        JSON.parse(
+          await readFile(
+            path.join(generatedRoot, 'details', 'characters', `${character.id}.json`),
+            'utf8'
+          )
+        )
+      )
+    );
   } catch (error) {
     throw new Error(`无法读取角色、光锥或遗器目录；请先运行 pnpm data:ensure。`, {
       cause: error
@@ -174,6 +224,21 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
   }
   return {
     characterIds: uniqueSorted(characterCatalog.map((entry) => entry.id)),
+    characterDetailIconKeys: uniqueSorted(
+      characterDetails.flatMap((character) => [
+        ...Object.values(character.baseStats.iconKeys ?? {}),
+        ...Object.values(character.profiles).flatMap((profile) =>
+          profile
+            ? [
+                profile.energy.iconKey,
+                ...profile.skillCards.map((card) => card.iconKey),
+                ...profile.traces.map((trace) => trace.iconKey),
+                ...profile.eidolons.map((eidolon) => eidolon.iconKey)
+              ]
+            : []
+        )
+      ])
+    ) as CharacterDetailIconKey[],
     lightConeIds: uniqueSorted(lightConeCatalog.map((entry) => entry.id)),
     relicSetIds: uniqueSorted(relicCatalog.map((entry) => entry.id)),
     relicPieces: relicDetails
@@ -236,6 +301,7 @@ export function assetFallbackEntries(manifest: VisualAssetManifest): AssetFallba
   return [
     { label: '角色预览图', missing: manifest.characters.previews.missing },
     { label: '角色立绘', missing: manifest.characters.portraits.missing },
+    { label: '角色详情图标', missing: manifest.characterDetails.icons.missing },
     { label: '光锥预览图', missing: manifest.lightCones.previews.missing },
     { label: '光锥立绘', missing: manifest.lightCones.portraits.missing },
     { label: '遗器套装图标', missing: manifest.relics.icons.missing },
@@ -264,10 +330,14 @@ export function emptyAssetManifest(requirements: AssetRequirements): VisualAsset
   const unavailable = (values: string[]): AssetAvailability => ({ available: [], missing: values });
   return {
     schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
+    requirementsFingerprint: assetRequirementsFingerprint(requirements),
     generatedAt: new Date().toISOString(),
     characters: {
       previews: unavailable(requirements.characterIds),
       portraits: unavailable(requirements.characterIds)
+    },
+    characterDetails: {
+      icons: { resolved: {}, missing: requirements.characterDetailIconKeys }
     },
     lightCones: {
       previews: unavailable(requirements.lightConeIds),
@@ -315,6 +385,9 @@ export function assetOutputPaths(root = generatedAssetRoot): AssetOutputPaths {
     root,
     previews: path.join(root, 'characters', 'preview'),
     portraits: path.join(root, 'characters', 'portrait'),
+    characterDetailIcons: path.join(root, 'character-details', 'icons'),
+    characterDetailSkillIcons: path.join(root, 'character-details', 'icons', 'skill'),
+    characterDetailPropertyIcons: path.join(root, 'character-details', 'icons', 'property'),
     lightConePreviews: path.join(root, 'light-cones', 'preview'),
     lightConePortraits: path.join(root, 'light-cones', 'portrait'),
     relicIcons: path.join(root, 'relics', 'icons'),
@@ -335,6 +408,8 @@ async function prepareOutputDirectories(output: AssetOutputPaths): Promise<void>
     [
       output.previews,
       output.portraits,
+      output.characterDetailSkillIcons,
+      output.characterDetailPropertyIcons,
       output.lightConePreviews,
       output.lightConePortraits,
       output.relicIcons,
@@ -406,6 +481,12 @@ interface RelicResourceIndexEntry {
 }
 
 interface PropertyResourceIndexEntry {
+  type?: unknown;
+  icon?: unknown;
+}
+
+interface CharacterDetailResourceIndexEntry {
+  id?: unknown;
   type?: unknown;
   icon?: unknown;
 }
@@ -592,6 +673,104 @@ export async function readRelicPropertyIconSources(
   return sources;
 }
 
+export async function readCharacterDetailIconSources(
+  sourceRoot: string,
+  iconKeys: CharacterDetailIconKey[]
+): Promise<ReadonlyMap<CharacterDetailIconKey, string>> {
+  if (!iconKeys.length) return new Map();
+  const indexRoot = path.join(sourceRoot, 'index_new', 'cn');
+  const [properties, skills, skillTrees, ranks] = (await Promise.all(
+    ['properties', 'character_skills', 'character_skill_trees', 'character_ranks'].map(
+      async (name) => JSON.parse(await readFile(path.join(indexRoot, `${name}.json`), 'utf8'))
+    )
+  )) as Array<Record<string, CharacterDetailResourceIndexEntry>>;
+  const indexes = { property: properties, skill: skills, 'skill-tree': skillTrees, rank: ranks };
+  for (const [name, index] of Object.entries(indexes))
+    if (!index || typeof index !== 'object' || Array.isArray(index))
+      throw new Error(`StarRailRes 角色详情 ${name} index 格式异常`);
+
+  const sources = new Map<CharacterDetailIconKey, string>();
+  for (const iconKey of iconKeys) {
+    const parsed = parseCharacterDetailIconKey(iconKey);
+    if (!parsed) throw new Error(`角色详情 icon key 非法：${iconKey}`);
+    const entry = indexes[parsed.kind][parsed.identity];
+    if (!entry) continue;
+    const indexedIdentity = parsed.kind === 'property' ? entry.type : entry.id;
+    if (indexedIdentity !== parsed.identity)
+      throw new Error(
+        `角色详情 icon ${iconKey} 的 index identity 不一致：${String(indexedIdentity)}`
+      );
+    const source = resolveOptionalIndexedAssetPath(sourceRoot, entry.icon);
+    if (!source) continue;
+    const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
+    const expectedDirectory = parsed.kind === 'property' ? 'property' : 'skill';
+    if (!new RegExp(`^icon/${expectedDirectory}/[A-Za-z0-9_-]+\\.png$`, 'i').test(relative))
+      throw new Error(
+        `角色详情 icon ${iconKey} 的路径不属于 icon/${expectedDirectory}：${relative}`
+      );
+    sources.set(iconKey, source);
+  }
+  return sources;
+}
+
+function characterDetailAssetLocation(
+  sourceRoot: string,
+  source: string,
+  output: AssetOutputPaths
+): { outputPath: string; publicUrl: string } {
+  const relative = path.relative(sourceRoot, source).replaceAll('\\', '/');
+  const match = /^icon\/(skill|property)\/([A-Za-z0-9_-]+\.png)$/i.exec(relative);
+  if (!match) throw new Error(`角色详情 icon 来源路径异常：${relative}`);
+  const [, kind, filename] = match;
+  const outputDirectory =
+    kind.toLowerCase() === 'property'
+      ? output.characterDetailPropertyIcons
+      : output.characterDetailSkillIcons;
+  return {
+    outputPath: path.join(outputDirectory, filename),
+    publicUrl: `/generated-assets/character-details/icons/${kind.toLowerCase()}/${filename}`
+  };
+}
+
+export async function generateCharacterDetailIcons(
+  sourceRoot: string,
+  iconKeys: CharacterDetailIconKey[],
+  output: AssetOutputPaths,
+  indexedSources?: ReadonlyMap<CharacterDetailIconKey, string>
+): Promise<AssetResolutionMap> {
+  const sources = indexedSources ?? (await readCharacterDetailIconSources(sourceRoot, iconKeys));
+  const resolved: Record<string, string> = {};
+  const missing: string[] = [];
+  const generatedSources = new Set<string>();
+  for (const iconKey of iconKeys) {
+    const source = sources.get(iconKey);
+    if (!source) {
+      missing.push(iconKey);
+      continue;
+    }
+    try {
+      await stat(source);
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        missing.push(iconKey);
+        continue;
+      }
+      throw new Error(`无法读取角色详情 icon ${iconKey}：${source}`, { cause: error });
+    }
+    const location = characterDetailAssetLocation(sourceRoot, source, output);
+    if (!generatedSources.has(source)) {
+      try {
+        await writeSemanticIconAsset(source, location.outputPath);
+      } catch (error) {
+        throw new Error(`无法生成角色详情 icon ${iconKey}：${source}`, { cause: error });
+      }
+      generatedSources.add(source);
+    }
+    resolved[iconKey] = location.publicUrl;
+  }
+  return { resolved, missing };
+}
+
 export async function writePortraitAsset(source: string, output: string): Promise<void> {
   await sharp(source)
     .resize({ width: 960, height: 960, fit: 'inside', withoutEnlargement: true })
@@ -647,6 +826,10 @@ export async function generateVisualAssets(
 ): Promise<Omit<VisualAssetManifest, 'schemaVersion' | 'sourceCommit' | 'generatedAt'>> {
   // Validate every index before touching output so malformed upstream data cannot erase a cache.
   const previewSources = await readCharacterPreviewSources(sourceRoot, requirements.characterIds);
+  const characterDetailIconSources = await readCharacterDetailIconSources(
+    sourceRoot,
+    requirements.characterDetailIconKeys
+  );
   const lightConePreviewSources = await readLightConePreviewSources(
     sourceRoot,
     requirements.lightConeIds
@@ -677,6 +860,12 @@ export async function generateVisualAssets(
     (id) => path.join(sourceRoot, 'image', 'character_portrait', `${id}.png`),
     (id) => path.join(output.portraits, `${id}.webp`),
     writePortraitAsset
+  );
+  const characterDetailIcons = await generateCharacterDetailIcons(
+    sourceRoot,
+    requirements.characterDetailIconKeys,
+    output,
+    characterDetailIconSources
   );
   const lightConePreviews = await processRequested(
     requirements.lightConeIds,
@@ -750,6 +939,7 @@ export async function generateVisualAssets(
   );
   return {
     characters: { previews, portraits },
+    characterDetails: { icons: characterDetailIcons },
     lightCones: { previews: lightConePreviews, portraits: lightConePortraits },
     relics: { icons: relicIcons, pieces: relicPieces },
     relicProperties: { icons: relicPropertyIcons },
@@ -773,14 +963,23 @@ const collectionCovers = (collection: AssetAvailability, required: string[]): bo
   );
 };
 
+const resolutionCovers = (collection: AssetResolutionMap, required: string[]): boolean =>
+  collectionCovers(
+    { available: Object.keys(collection.resolved), missing: collection.missing },
+    required
+  );
+
 export function manifestCoversRequirements(
   manifest: VisualAssetManifest,
   requirements: AssetRequirements
 ): boolean {
   return (
     manifest.schemaVersion === VISUAL_ASSET_SCHEMA_VERSION &&
+    (!manifest.requirementsFingerprint ||
+      manifest.requirementsFingerprint === assetRequirementsFingerprint(requirements)) &&
     collectionCovers(manifest.characters.previews, requirements.characterIds) &&
     collectionCovers(manifest.characters.portraits, requirements.characterIds) &&
+    resolutionCovers(manifest.characterDetails.icons, requirements.characterDetailIconKeys) &&
     collectionCovers(manifest.lightCones.previews, requirements.lightConeIds) &&
     collectionCovers(manifest.lightCones.portraits, requirements.lightConeIds) &&
     collectionCovers(manifest.relics.icons, requirements.relicSetIds) &&
@@ -818,6 +1017,28 @@ const expectedFiles = (
 ): Array<[string, string[]]> => [
   [output.previews, manifest.characters.previews.available.map((id) => `${id}.png`)],
   [output.portraits, manifest.characters.portraits.available.map((id) => `${id}.webp`)],
+  [
+    output.characterDetailSkillIcons,
+    uniqueSorted(
+      Object.values(manifest.characterDetails.icons.resolved).flatMap((url) => {
+        const match =
+          /^\/generated-assets\/character-details\/icons\/skill\/([A-Za-z0-9_-]+\.png)$/.exec(url);
+        return match ? [match[1]] : [];
+      })
+    )
+  ],
+  [
+    output.characterDetailPropertyIcons,
+    uniqueSorted(
+      Object.values(manifest.characterDetails.icons.resolved).flatMap((url) => {
+        const match =
+          /^\/generated-assets\/character-details\/icons\/property\/([A-Za-z0-9_-]+\.png)$/.exec(
+            url
+          );
+        return match ? [match[1]] : [];
+      })
+    )
+  ],
   [output.lightConePreviews, manifest.lightCones.previews.available.map((id) => `${id}.png`)],
   [output.lightConePortraits, manifest.lightCones.portraits.available.map((id) => `${id}.webp`)],
   [output.relicIcons, manifest.relics.icons.available.map((id) => `${id}.png`)],
@@ -874,6 +1095,32 @@ export async function validateGeneratedAssetFiles(
       metadata.height > 960
     )
       throw new Error(`生成立绘格式或尺寸异常：${id}`);
+  }
+  for (const [iconKey, url] of Object.entries(manifest.characterDetails.icons.resolved)) {
+    const parsedKey = parseCharacterDetailIconKey(iconKey);
+    const match =
+      /^\/generated-assets\/character-details\/icons\/(skill|property)\/([A-Za-z0-9_-]+\.png)$/.exec(
+        url
+      );
+    if (!parsedKey || !match)
+      throw new Error(`角色详情 icon manifest 映射异常：${iconKey} -> ${url}`);
+    const expectedKind = parsedKey.kind === 'property' ? 'property' : 'skill';
+    if (match[1] !== expectedKind)
+      throw new Error(`角色详情 icon manifest 目录不一致：${iconKey} -> ${url}`);
+    const iconPath = path.join(
+      expectedKind === 'property'
+        ? output.characterDetailPropertyIcons
+        : output.characterDetailSkillIcons,
+      match[2]
+    );
+    const metadata = await sharp(iconPath).metadata();
+    if (
+      metadata.format !== 'png' ||
+      metadata.width !== 64 ||
+      metadata.height !== 64 ||
+      !metadata.hasAlpha
+    )
+      throw new Error(`角色详情 icon 格式或尺寸异常：${iconKey}`);
   }
   for (const id of manifest.lightCones.previews.available) {
     const metadata = await sharp(path.join(output.lightConePreviews, `${id}.png`)).metadata();
@@ -974,6 +1221,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
   const [
     previews,
     portraits,
+    characterDetailIcons,
     lightConePreviews,
     lightConePortraits,
     relicIcons,
@@ -988,6 +1236,10 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
   ] = await Promise.all([
     directorySize(generatedPreviewRoot),
     directorySize(generatedPortraitRoot),
+    Promise.all([
+      directorySize(generatedCharacterDetailSkillIconRoot),
+      directorySize(generatedCharacterDetailPropertyIconRoot)
+    ]).then((sizes) => sizes.reduce((sum, size) => sum + size, 0)),
     directorySize(generatedLightConePreviewRoot),
     directorySize(generatedLightConePortraitRoot),
     directorySize(generatedRelicIconRoot),
@@ -1003,6 +1255,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
   return {
     previews,
     portraits,
+    characterDetailIcons,
     lightConePreviews,
     lightConePortraits,
     relicIcons,
@@ -1017,6 +1270,7 @@ export async function assetSizeSummary(): Promise<AssetSizeSummary> {
     total:
       previews +
       portraits +
+      characterDetailIcons +
       lightConePreviews +
       lightConePortraits +
       relicIcons +

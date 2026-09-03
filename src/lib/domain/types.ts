@@ -143,6 +143,7 @@ export interface SkillCard {
   category: SkillCategory;
   displayLabel: string;
   order: number;
+  iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
   progressions: SkillProgression[];
   variants: SkillVariant[];
 }
@@ -165,6 +166,8 @@ export interface Trace {
   name: string;
   description: string;
   type: TraceType;
+  iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
+  propertyType?: string;
   sourcePointType: number;
   prerequisiteIds: string[];
   promotionLimit?: number;
@@ -190,6 +193,12 @@ export interface BaseStatProgression {
   maxLevel: number;
   defaultLevel: number;
   stages: PromotionStage[];
+  iconKeys?: Partial<
+    Record<
+      'hp' | 'attack' | 'defence' | 'speed',
+      import('./character-detail-icons.js').CharacterDetailIconKey
+    >
+  >;
   fixed?: {
     speed?: number;
     criticalChance?: number;
@@ -198,13 +207,16 @@ export interface BaseStatProgression {
   };
 }
 
-export type CharacterEnergy = { kind: 'standard'; max: number } | { kind: 'special'; max: 0 };
+export type CharacterEnergy = ({ kind: 'standard'; max: number } | { kind: 'special'; max: 0 }) & {
+  iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
+};
 
 export interface Eidolon {
   id: string;
   rank: number;
   name: string;
   description: string;
+  iconKey?: import('./character-detail-icons.js').CharacterDetailIconKey;
   extraEffects?: SkillExtraEffect[];
 }
 

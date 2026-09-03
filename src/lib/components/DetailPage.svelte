@@ -9,7 +9,6 @@
   import SpecialEffectDialog from '$lib/components/SpecialEffectDialog.svelte';
   import SuperimpositionPanel from '$lib/components/SuperimpositionPanel.svelte';
   import TraceCardPanel from '$lib/components/TraceCardPanel.svelte';
-  import SkillExtraEffects from '$lib/components/SkillExtraEffects.svelte';
   import DetailArtwork from '$lib/components/DetailArtwork.svelte';
   import RarityStars from '$lib/components/RarityStars.svelte';
   import SemanticIconLabel from '$lib/components/SemanticIconLabel.svelte';
@@ -18,6 +17,7 @@
   import EnemyDetailPage from '$lib/components/enemy/EnemyDetailPage.svelte';
   import RelicDetailPage from '$lib/components/relic/RelicDetailPage.svelte';
   import EquipmentRecommendationSection from '$lib/components/EquipmentRecommendationSection.svelte';
+  import EidolonCard from '$lib/components/EidolonCard.svelte';
   import { getElementColor } from '$lib/domain/elements';
   import { gameTextToPlain } from '$lib/domain/game-text';
   import {
@@ -243,17 +243,7 @@
     <section id="eidolons" class="detail-section section-nav-target">
       <SectionHeading level={1}>星魂</SectionHeading>
       {#if activeProfile.eidolons.length}<div class="stack-list">
-          {#each activeProfile.eidolons as rank (rank.id)}<article
-              class="info-card rank-card"
-              data-eidolon-id={rank.id}
-            >
-              <span class="rank-number">{rank.rank}</span>
-              <div>
-                <h3><GameText text={rank.name} /></h3>
-                <p><GameText text={rank.description || '上游未提供本地化描述。'} /></p>
-                <SkillExtraEffects effects={rank.extraEffects ?? []} />
-              </div>
-            </article>{/each}
+          {#each activeProfile.eidolons as rank (rank.id)}<EidolonCard eidolon={rank} />{/each}
         </div>{:else}<p class="data-placeholder">上游未提供可展示的星魂记录。</p>{/if}
     </section>
   {/key}

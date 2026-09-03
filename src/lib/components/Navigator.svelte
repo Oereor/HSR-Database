@@ -93,27 +93,29 @@
       {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
     </span><strong>{SITE_NAME}</strong>
   </a>
-  <button
-    class="navigator-toggle"
-    type="button"
-    aria-label="打开导航"
-    aria-expanded={expanded}
-    aria-controls="primary-navigator-pane"
-    on:click={openNavigator}
-  >
-    <span aria-hidden="true"><i></i><i></i><i></i></span>
-  </button>
-  <button
-    class="changelog-trigger mobile-header__changelog"
-    type="button"
-    aria-label="更新日志"
-    on:click={onOpenChangelog}
-  >
-    {#if changelogIconUrl}<img src={changelogIconUrl} alt="" />{:else}<span aria-hidden="true"
-        >更</span
-      >{/if}
-    <span class="changelog-trigger__tooltip" role="tooltip">更新日志</span>
-  </button>
+  <div class="mobile-header__actions">
+    <button
+      class="changelog-trigger mobile-header__changelog"
+      type="button"
+      aria-label="更新日志"
+      on:click={onOpenChangelog}
+    >
+      {#if changelogIconUrl}<img src={changelogIconUrl} alt="" />{:else}<span aria-hidden="true"
+          >更</span
+        >{/if}
+      <span class="changelog-trigger__tooltip" role="tooltip">更新日志</span>
+    </button>
+    <button
+      class="navigator-toggle"
+      type="button"
+      aria-label="打开导航"
+      aria-expanded={expanded}
+      aria-controls="primary-navigator-pane"
+      on:click={openNavigator}
+    >
+      <span aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
 </header>
 
 <dialog
