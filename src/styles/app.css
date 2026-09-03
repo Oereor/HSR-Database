@@ -1364,10 +1364,24 @@ footer a {
     radial-gradient(circle at 50% 14%, rgb(52 68 94 / 32%), transparent 58%), var(--surface);
   transition:
     border-color 180ms ease,
-    background-color 180ms ease;
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
-.endgame-enemy:hover {
+.endgame-enemy--link {
+  cursor: pointer;
+}
+.endgame-enemy--link:hover {
+  transform: translateY(-1px);
   border-color: var(--surface-border-strong);
+  background:
+    radial-gradient(circle at 50% 14%, rgb(52 68 94 / 40%), transparent 58%),
+    linear-gradient(155deg, rgb(255 255 255 / 3%), transparent 48%), var(--surface);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 20%);
+}
+.endgame-enemy--link:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
 }
 .endgame-enemy__artwork {
   position: relative;
@@ -1466,8 +1480,9 @@ footer a {
   font-weight: 700;
   line-height: 1.45;
   overflow-wrap: anywhere;
+  transition: color var(--motion);
 }
-.endgame-enemy__name a:hover {
+.endgame-enemy--link:hover .endgame-enemy__name {
   color: var(--gold-soft);
 }
 .endgame-enemy__stats {

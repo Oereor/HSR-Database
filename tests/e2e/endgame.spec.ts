@@ -18,6 +18,14 @@ test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
   await expect(page.getByRole('heading', { name: '高难模式', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: /混沌回忆/ }).first()).toBeVisible();
 
+  for (const mode of ['moc', 'pf', 'as', 'aa']) {
+    await page.goto(`/endgame/${mode}`);
+    await expect(page.getByRole('link', { name: '← 高难模式总览', exact: true })).toHaveAttribute(
+      'href',
+      '/endgame'
+    );
+  }
+
   await page.goto('/endgame/moc');
   await expect(page.getByRole('heading', { name: '混沌回忆赛期', level: 1 })).toHaveClass(
     /sr-only/
@@ -25,6 +33,10 @@ test('Endgame 首页、模式和赛期可以直接访问', async ({ page }) => {
   await expect(page.getByRole('link', { name: /扫除风暴/ })).toBeVisible();
 
   await page.goto('/endgame/moc/1034?encounter=5312');
+  await expect(page.getByRole('link', { name: '← 混沌回忆赛期', exact: true })).toHaveAttribute(
+    'href',
+    '/endgame/moc'
+  );
   await expect(page.getByRole('heading', { name: '扫除风暴', exact: true })).toBeVisible();
   await expect(page.locator('[data-battle-slot]')).toHaveCount(3);
 });
@@ -901,7 +913,7 @@ test('PF 非 canonical Monster 展示具体实例弱点', async ({ page }) => {
   await expect(enemy.locator('[data-endgame-toughness]')).toHaveText('30');
 });
 
-test('四种 Endgame 模式的统一敌方卡只显示可访问的弱点图标', async ({ page }) => {
+test('四种 Endgame 模式的统一敌方卡使用整卡链接并显示可访问的弱点图标', async ({ page }) => {
   for (const url of [
     '/endgame/moc/1034?encounter=5312',
     '/endgame/pf/2025?encounter=20254',
@@ -909,6 +921,12 @@ test('四种 Endgame 模式的统一敌方卡只显示可访问的弱点图标',
     '/endgame/aa/8?encounter=804%3Ahard'
   ]) {
     await page.goto(url);
+    const card = page.locator('[data-endgame-enemy-card]').first();
+    const templateId = await card.getAttribute('data-template-id');
+    expect(templateId).not.toBeNull();
+    expect(await card.evaluate((element) => element.tagName)).toBe('A');
+    await expect(card).toHaveAttribute('href', `/enemies/${templateId}`);
+    await expect(card.locator('a')).toHaveCount(0);
     const weaknesses = page.locator(
       '[data-endgame-enemy-card] .endgame-weaknesses [data-icon-kind="element"]'
     );
@@ -922,6 +940,36 @@ test('四种 Endgame 模式的统一敌方卡只显示可访问的弱点图标',
       )
     ).toBe(true);
   }
+});
+
+test('Endgame 敌方卡保留原生链接的点击、键盘与新标签页行为', async ({ page, context }) => {
+  const sourceUrl = '/endgame/moc/1034?encounter=5312';
+  await page.goto(sourceUrl);
+  let card = page.locator('[data-endgame-enemy-card]').first();
+  const href = await card.getAttribute('href');
+  expect(href).toMatch(/^\/enemies\/\d+$/);
+  await expect(card).toHaveCSS('cursor', 'pointer');
+  expect(await card.evaluate((element) => (element as HTMLElement).tabIndex)).toBe(0);
+
+  await card.focus();
+  await expect(card).toBeFocused();
+  expect(await card.evaluate((element) => getComputedStyle(element).outlineStyle)).not.toBe('none');
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(new RegExp(`${href}$`));
+
+  await page.goto(sourceUrl);
+  card = page.locator('[data-endgame-enemy-card]').first();
+  await card.click();
+  await expect(page).toHaveURL(new RegExp(`${href}$`));
+
+  await page.goto(sourceUrl);
+  card = page.locator('[data-endgame-enemy-card]').first();
+  const newPagePromise = context.waitForEvent('page');
+  await card.click({ modifiers: ['ControlOrMeta'] });
+  const newPage = await newPagePromise;
+  await newPage.waitForLoadState('domcontentloaded');
+  await expect(newPage).toHaveURL(new RegExp(`${href}$`));
+  await newPage.close();
 });
 
 test('AS 多阶段生命值显示完整整数、阶段数和属性图标', async ({ page }) => {

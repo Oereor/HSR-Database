@@ -4,6 +4,8 @@ test('Enemy Detail Hero 复用统一分栏并仅展示 Template 基础数据', a
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/enemies/1004014');
 
+  const backLink = page.getByRole('link', { name: '← 返回敌方单位列表', exact: true });
+  await expect(backLink).toHaveAttribute('href', '/enemies');
   const hero = page.locator('[data-enemy-hero]');
   await expect(hero).toBeVisible();
   await expect(hero.getByText('敌方单位 / 模板 ID 1004014', { exact: true })).toBeVisible();

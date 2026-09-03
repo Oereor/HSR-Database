@@ -15,14 +15,14 @@
 
 证据：`package.json`、`svelte.config.js`、`vite.config.ts`、`src/routes/+layout.ts`。
 
-| 项目 | 实测结论 |
-|---|---|
-| Framework/bundler | SvelteKit 2.70.2、Svelte 5.56.8、Vite 7.2.4 |
-| Adapter/output | `@sveltejs/adapter-static`，`fallback: '404.html'`，输出 `build/` |
-| Package manager | pnpm 11.9.0（`packageManager`）；Node `>=22`，pnpm `>=10`；TypeScript 5.9.3 |
-| App model | 静态预渲染（SPA fallback + prerendered HTML/data），不是生产 SSR server |
-| Server runtime | 无持久 server runtime；源码中的 `+page.server.ts`/`+server.ts` 在 build/prerender 阶段读取已生成文件 |
-| External runtime | 无 GitHub、上游仓库或外部 API；唯一浏览器 fetch 是本地 `/generated/endgame-occurrences/...` |
+| 项目              | 实测结论                                                                                             |
+| ----------------- | ---------------------------------------------------------------------------------------------------- |
+| Framework/bundler | SvelteKit 2.70.2、Svelte 5.56.8、Vite 7.2.4                                                          |
+| Adapter/output    | `@sveltejs/adapter-static`，`fallback: '404.html'`，输出 `build/`                                    |
+| Package manager   | pnpm 11.9.0（`packageManager`）；Node `>=22`，pnpm `>=10`；TypeScript 5.9.3                          |
+| App model         | 静态预渲染（SPA fallback + prerendered HTML/data），不是生产 SSR server                              |
+| Server runtime    | 无持久 server runtime；源码中的 `+page.server.ts`/`+server.ts` 在 build/prerender 阶段读取已生成文件 |
+| External runtime  | 无 GitHub、上游仓库或外部 API；唯一浏览器 fetch 是本地 `/generated/endgame-occurrences/...`          |
 
 实际 scripts：`dev`、`predev`、`build`、`prebuild`、`preview`、`check`、`lint`、`test`、`test:e2e`，以及 `data:{audit,sync,validate,ensure}`、`assets:{sync,ensure,validate,verify,clean}` 等；没有独立 `generate` script，生成由 `data:sync`/`assets:sync` 完成。
 
@@ -46,15 +46,15 @@ HSR_DATA_ROOT=../TurnBasedGameData       HSR_ASSET_ROOT=../StarRailRes
 
 ### 4.1 访问点
 
-| 文件 | function/script | 用途 |
-|---|---|---|
-| `scripts/data/paths.ts` | `resolveDataRoot`, `assertDataRoot`, `sourceCommit` | 解析 `HSR_DATA_ROOT`，检查输入，读取 `git rev-parse HEAD` |
-| `scripts/data/raw.ts` | `readRaw`, `readTable` | 以 lossless JSON 读取 `ExcelOutput/*.json` |
-| `scripts/data/localization.ts` | `loadTextMap` | 读取 `TextMap/TextMapCHS.json` |
-| `scripts/data/sync.ts` | `syncData` | 合并角色 LD 表、解析角色/光锥/遗器/敌人/文本并生成站点 JSON、manifest、审计 |
-| `scripts/data/endgame.ts` | `loadTables`, `findAbilityBody`, `scanMechanics` | 读取 Endgame Excel 表及敌人 Config/Ability；扫描 BattleEvent layout/body |
-| `scripts/data/ensure.ts` | top-level ensure | 按生成 manifest 的 `sourceCommit` 决定是否重生成 |
-| `tests/unit/*`、investigation scripts | fixtures/checks | 测试和调查也可读取 sibling；不属于 production runtime |
+| 文件                                  | function/script                                     | 用途                                                                        |
+| ------------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------- |
+| `scripts/data/paths.ts`               | `resolveDataRoot`, `assertDataRoot`, `sourceCommit` | 解析 `HSR_DATA_ROOT`，检查输入，读取 `git rev-parse HEAD`                   |
+| `scripts/data/raw.ts`                 | `readRaw`, `readTable`                              | 以 lossless JSON 读取 `ExcelOutput/*.json`                                  |
+| `scripts/data/localization.ts`        | `loadTextMap`                                       | 读取 `TextMap/TextMapCHS.json`                                              |
+| `scripts/data/sync.ts`                | `syncData`                                          | 合并角色 LD 表、解析角色/光锥/遗器/敌人/文本并生成站点 JSON、manifest、审计 |
+| `scripts/data/endgame.ts`             | `loadTables`, `findAbilityBody`, `scanMechanics`    | 读取 Endgame Excel 表及敌人 Config/Ability；扫描 BattleEvent layout/body    |
+| `scripts/data/ensure.ts`              | top-level ensure                                    | 按生成 manifest 的 `sourceCommit` 决定是否重生成                            |
+| `tests/unit/*`、investigation scripts | fixtures/checks                                     | 测试和调查也可读取 sibling；不属于 production runtime                       |
 
 ### 4.2 实际读取范围
 
@@ -105,17 +105,17 @@ HSR_DATA_ROOT=../TurnBasedGameData       HSR_ASSET_ROOT=../StarRailRes
 
 ### Table 1 — Repository Size
 
-| Repository | Working Tree Size | .git Size | File Count |
-|---|---:|---:|---:|
-| TurnBasedGameData | 2,596,506,270 bytes (2.42 GiB) | 4,316,341,423 bytes (4.02 GiB) | 137,845 |
-| StarRailRes | 1,220,652,116 bytes (1.14 GiB) | 2,817,936,257 bytes (2.62 GiB) | 5,642 |
+| Repository        |              Working Tree Size |                      .git Size | File Count |
+| ----------------- | -----------------------------: | -----------------------------: | ---------: |
+| TurnBasedGameData | 2,596,506,270 bytes (2.42 GiB) | 4,316,341,423 bytes (4.02 GiB) |    137,845 |
+| StarRailRes       | 1,220,652,116 bytes (1.14 GiB) | 2,817,936,257 bytes (2.62 GiB) |      5,642 |
 
 ### Table 2 — Actual Dependency Scope
 
-| Upstream | Required Paths | Required Size | Required File Count |
-|---|---|---:|---:|
-| TurnBasedGameData | 72 Excel tables + `TextMap/TextMapCHS.json` + traced Monster Character/Ability + BattleEvent | minimum measured ~189.9 MB (dynamic Config set; may expand) | 72 + 1 + 538 + 330 + 254 = 1,195 (overlap/optional references possible) |
-| StarRailRes | five CN indexes + referenced image/icon paths | 111,148,316 bytes generated output | 821 generated files; source exact set can be derived from manifest/index |
+| Upstream          | Required Paths                                                                               |                                               Required Size |                                                      Required File Count |
+| ----------------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------: | -----------------------------------------------------------------------: |
+| TurnBasedGameData | 72 Excel tables + `TextMap/TextMapCHS.json` + traced Monster Character/Ability + BattleEvent | minimum measured ~189.9 MB (dynamic Config set; may expand) |  72 + 1 + 538 + 330 + 254 = 1,195 (overlap/optional references possible) |
+| StarRailRes       | five CN indexes + referenced image/icon paths                                                |                          111,148,316 bytes generated output | 821 generated files; source exact set can be derived from manifest/index |
 
 “Required” here means files read or generated for the current checkout, not the complete upstream working tree.
 
@@ -123,16 +123,16 @@ HSR_DATA_ROOT=../TurnBasedGameData       HSR_ASSET_ROOT=../StarRailRes
 
 ### Table 3 — Production Build
 
-| Metric | Value |
-|---|---|
-| Build command | `pnpm build` (`prebuild`: `pnpm data:ensure && pnpm assets:ensure`; then `vite build`) |
-| Build duration | **28.725 s** (esbuild/Vite run outside restricted sandbox) |
-| Output directory | `build/` |
-| Output size | 424,898,752 bytes (405.2 MiB) |
-| Output file count | 3,420 |
-| Static generated assets | 111,148,316 bytes / 821 files |
+| Metric                               | Value                                                                                                         |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| Build command                        | `pnpm build` (`prebuild`: `pnpm data:ensure && pnpm assets:ensure`; then `vite build`)                        |
+| Build duration                       | **28.725 s** (esbuild/Vite run outside restricted sandbox)                                                    |
+| Output directory                     | `build/`                                                                                                      |
+| Output size                          | 424,898,752 bytes (405.2 MiB)                                                                                 |
+| Output file count                    | 3,420                                                                                                         |
+| Static generated assets              | 111,148,316 bytes / 821 files                                                                                 |
 | Generated data (`src/lib/generated`) | 180,714,729 bytes / 965 files (build’s `generated/` subtree 11,578,005 bytes / 175 files plus per-route data) |
-| Largest output classes | enemies 220,613,772 bytes / 1,257 files; generated-assets 111,148,316 / 821; endgame 27,625,810 / 231 |
+| Largest output classes               | enemies 220,613,772 bytes / 1,257 files; generated-assets 111,148,316 / 821; endgame 27,625,810 / 231         |
 
 第一次在受限沙箱执行同一命令时，`vite` 因 esbuild 访问父级路径得到 `Access is denied`；允许后重跑成功。该失败是执行环境权限问题，不是项目输入缺失。
 
@@ -140,10 +140,10 @@ HSR_DATA_ROOT=../TurnBasedGameData       HSR_ASSET_ROOT=../StarRailRes
 
 ### Table 4 — Build / Runtime Dependency
 
-| Dependency | Build Time | Runtime | Can Be Removed After Build? |
-|---|---|---|---|
-| TurnBasedGameData | `data:ensure`/`data:sync` 读取 Excel、TextMap、Config，并记录 SHA/version | 不需要；运行时读取 `src/lib/generated`/`static/generated` | Yes |
-| StarRailRes | `assets:ensure`/`assets:sync` 读取 index 与源图片，生成 `static/generated-assets` 并记录 manifest | 不需要；浏览器只取 `/generated-assets/*` | Yes |
+| Dependency        | Build Time                                                                                        | Runtime                                                   | Can Be Removed After Build? |
+| ----------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | --------------------------- |
+| TurnBasedGameData | `data:ensure`/`data:sync` 读取 Excel、TextMap、Config，并记录 SHA/version                         | 不需要；运行时读取 `src/lib/generated`/`static/generated` | Yes                         |
+| StarRailRes       | `assets:ensure`/`assets:sync` 读取 index 与源图片，生成 `static/generated-assets` 并记录 manifest | 不需要；浏览器只取 `/generated-assets/*`                  | Yes                         |
 
 ## 10. Reproducibility Audit
 
@@ -153,12 +153,12 @@ HSR_DATA_ROOT=../TurnBasedGameData       HSR_ASSET_ROOT=../StarRailRes
 
 ### Upstream removal scenarios
 
-| Scenario | install | generate | build | runtime |
-|---|---|---|---|---|
-| A. 只有 HSR-Database | 不受影响（依赖均为 devDependencies） | 失败：`data:ensure` 找不到 `HSR_DATA_ROOT`，`assets:ensure` 找不到 `HSR_ASSET_ROOT`；除非已有匹配的生成缓存且 ensure 能继续 | 在当前干净、无生成物 checkout 通常失败；已有完整匹配缓存时可能继续 | 已有 `build/` 可运行；新构建不能依赖运行时补救 |
-| B. build 时有两个 upstream，build 后删除 | 不受影响 | 成功 | 成功 | 成功；静态产物自包含 |
-| C. 只有 TurnBasedGameData | 不受影响 | 数据生成可做；资源 ensure/sync 失败或只能使用已有匹配缓存/缺失 fallback | 可能成功但视觉资源取决于缓存；在无 StarRailRes 的全新环境不能保证完整资产 | 已生成且发布的资源可运行；无新运行时上游访问 |
-| D. 只有 StarRailRes | 不受影响 | `data:ensure` 失败，无法生成/验证数据；assets 可能独立成功 | 全新环境失败于数据阶段 | 仅已有 build 可运行 |
+| Scenario                                 | install                              | generate                                                                                                                    | build                                                                     | runtime                                        |
+| ---------------------------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------- |
+| A. 只有 HSR-Database                     | 不受影响（依赖均为 devDependencies） | 失败：`data:ensure` 找不到 `HSR_DATA_ROOT`，`assets:ensure` 找不到 `HSR_ASSET_ROOT`；除非已有匹配的生成缓存且 ensure 能继续 | 在当前干净、无生成物 checkout 通常失败；已有完整匹配缓存时可能继续        | 已有 `build/` 可运行；新构建不能依赖运行时补救 |
+| B. build 时有两个 upstream，build 后删除 | 不受影响                             | 成功                                                                                                                        | 成功                                                                      | 成功；静态产物自包含                           |
+| C. 只有 TurnBasedGameData                | 不受影响                             | 数据生成可做；资源 ensure/sync 失败或只能使用已有匹配缓存/缺失 fallback                                                     | 可能成功但视觉资源取决于缓存；在无 StarRailRes 的全新环境不能保证完整资产 | 已生成且发布的资源可运行；无新运行时上游访问   |
+| D. 只有 StarRailRes                      | 不受影响                             | `data:ensure` 失败，无法生成/验证数据；assets 可能独立成功                                                                  | 全新环境失败于数据阶段                                                    | 仅已有 build 可运行                            |
 
 `data:ensure` 在发现已有 schema/commit 匹配的生成数据时，对暂时不可用的上游有容错；这不改变首次 build 仍需要上游的事实。
 
@@ -174,15 +174,15 @@ HSR_DATA_ROOT=../TurnBasedGameData       HSR_ASSET_ROOT=../StarRailRes
 
 ### Table 5 — Deployment Strategy Comparison
 
-| Strategy | Reproducibility | Build traffic/time | Complexity | Maintenance | Suitability |
-|---|---|---|---|---|---|
-| Public Git submodule | High (SHA pinned) | full selected checkout; `.git`/large assets risk | Low–medium | submodule UX/update friction | Technically compatible with Vercel, but weak for 1.22 GB StarRailRes |
-| Pinned full clone | High | highest; unnecessary 3.8 GB working trees + history | Low | Medium | Acceptable fallback, not preferred |
-| Pinned sparse/partial checkout | High | TurnBased ~190 MB measured direct scope; StarRailRes indexes + dirs | Medium | Medium | **Best baseline for both** |
-| Manifest selective fetch | High if SHA + file list pinned | Lowest StarRailRes payload; many HTTP requests/API failure modes | High | Medium–high | Strong StarRailRes second stage; needs robust downloader/cache |
-| Vendored subset | Very high | No upstream network at build | Low build complexity | Large update/license noise | Good if accepting ~111 MB asset duplication; data vendoring less attractive |
-| External asset CDN | High with versioned URLs | Fast deploy, shifts transfer outside build | High (storage/CORS/cache) | High | Not necessary at current 111 MB generated asset scale |
-| Build from latest HEAD | None | variable | Low | deceptively low | **Do not use**; same HSR commit can produce different site/data |
+| Strategy                       | Reproducibility                | Build traffic/time                                                  | Complexity                | Maintenance                  | Suitability                                                                 |
+| ------------------------------ | ------------------------------ | ------------------------------------------------------------------- | ------------------------- | ---------------------------- | --------------------------------------------------------------------------- |
+| Public Git submodule           | High (SHA pinned)              | full selected checkout; `.git`/large assets risk                    | Low–medium                | submodule UX/update friction | Technically compatible with Vercel, but weak for 1.22 GB StarRailRes        |
+| Pinned full clone              | High                           | highest; unnecessary 3.8 GB working trees + history                 | Low                       | Medium                       | Acceptable fallback, not preferred                                          |
+| Pinned sparse/partial checkout | High                           | TurnBased ~190 MB measured direct scope; StarRailRes indexes + dirs | Medium                    | Medium                       | **Best baseline for both**                                                  |
+| Manifest selective fetch       | High if SHA + file list pinned | Lowest StarRailRes payload; many HTTP requests/API failure modes    | High                      | Medium–high                  | Strong StarRailRes second stage; needs robust downloader/cache              |
+| Vendored subset                | Very high                      | No upstream network at build                                        | Low build complexity      | Large update/license noise   | Good if accepting ~111 MB asset duplication; data vendoring less attractive |
+| External asset CDN             | High with versioned URLs       | Fast deploy, shifts transfer outside build                          | High (storage/CORS/cache) | High                         | Not necessary at current 111 MB generated asset scale                       |
+| Build from latest HEAD         | None                           | variable                                                            | Low                       | deceptively low              | **Do not use**; same HSR commit can produce different site/data             |
 
 TurnBased is not a good per-file API-fetch target because table and Config cross-references are broad. StarRailRes has stable ID/index mapping and a small generated allowlist, so manifest selective fetch is realistic.
 

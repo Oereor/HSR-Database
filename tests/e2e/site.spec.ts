@@ -1127,7 +1127,9 @@ test('全局搜索按模式与赛期展示真实 Endgame enemy occurrences', asy
   await expect(cards.locator('[data-endgame-speed]')).toHaveCount(4);
   await expect(cards.locator('[data-endgame-toughness]')).toHaveCount(4);
   await expect(cards.locator('.endgame-weaknesses')).toHaveCount(4);
-  await expect(cards.locator('a[href="/enemies/4064012"]')).toHaveCount(4);
+  await expect(endgame.locator('[data-endgame-enemy-card][href="/enemies/4064012"]')).toHaveCount(
+    4
+  );
   await expect(page.locator('a.entity-overview-card[href="/enemies/4064012"]')).toBeVisible();
 
   await page.goto(`/search?q=${encodeURIComponent('末日歧途的盗火者')}`);
