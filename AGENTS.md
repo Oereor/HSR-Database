@@ -1,5 +1,9 @@
 # AGENTS.md
 
+## Internet connectivity
+
+Due to special network environment, all Internet-related operations must go through proxy; By default the port is `7890`, but you should verify first.
+
 ## Repository boundaries
 
 - This repository contains the HSR database website.
@@ -10,6 +14,7 @@
   - `../StarRailRes/`: visual asset source; read-only.
 
 - Only create or modify files inside `HSR-Database/`.
+- `main` branch of `HSR-Database/` is protected; all edits must be performed on `develop` branch. If the current branch is not `develop`, check out to `develop` before making any changes. Any operation that could change the state of `main` branch must get approved before performed.
 - Never edit, format, move, delete, stage, commit, reset, clean, or switch branches in `../TurnBasedGameData/` or `../StarRailRes/`.
 - Never initialize a Git repository in the shared parent directory.
 - Do not convert either external repository into a submodule or subtree unless explicitly requested.

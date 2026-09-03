@@ -49,7 +49,7 @@ try {
   const commit = sourceCommit(root);
   if (
     !manifest ||
-    manifest.schemaVersion !== 33 ||
+    manifest.schemaVersion !== 34 ||
     manifest.sourceCommit !== commit ||
     endgameFilesPresent.includes(false) ||
     !homepageFilesValid
@@ -57,8 +57,11 @@ try {
     await syncData();
   else console.log(`生成数据已是最新版本：${commit.slice(0, 12)}`);
 } catch (error) {
+  if (process.env.HSR_DEPLOYMENT_BUILD === '1') throw error;
   if (
-    manifest?.schemaVersion === 33 &&
+    manifest?.schemaVersion === 34 &&
+    (!process.env.HSR_EXPECTED_DATA_COMMIT ||
+      manifest.sourceCommit === process.env.HSR_EXPECTED_DATA_COMMIT) &&
     !endgameFilesPresent.includes(false) &&
     homepageFilesValid
   ) {

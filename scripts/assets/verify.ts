@@ -1,7 +1,8 @@
 import path from 'node:path';
-import { assertAssetRoot, resolveAssetRoot } from './paths.js';
+import { assertAssetRoot, assetSourceCommit, resolveAssetRoot } from './paths.js';
 import {
   ELEMENT_SOURCE_NAMES,
+  assetRequirementsFingerprint,
   manifestCoversRequirements,
   PATH_SOURCE_NAMES,
   readAssetManifest,
@@ -19,6 +20,13 @@ export async function verifyAssets(): Promise<void> {
   if (manifest.schemaVersion !== VISUAL_ASSET_SCHEMA_VERSION) {
     throw new Error(`视觉资源 schema 不匹配：${manifest.schemaVersion}`);
   }
+  const commit = assetSourceCommit(resolveAssetRoot());
+  if (manifest.sourceCommit !== commit)
+    throw new Error(
+      `视觉资源 source commit 不匹配：${manifest.sourceCommit ?? 'unknown'} != ${commit}`
+    );
+  if (manifest.requirementsFingerprint !== assetRequirementsFingerprint(requirements))
+    throw new Error('视觉资源 requirement fingerprint 不匹配，请重新同步。');
   if (!manifestCoversRequirements(manifest, requirements)) {
     throw new Error('视觉资源 manifest 未覆盖当前角色、属性和命途需求。');
   }
@@ -30,7 +38,7 @@ export async function verifyAssets(): Promise<void> {
     if (!PATH_SOURCE_NAMES[code]) throw new Error(`缺少命途图标映射：${code}`);
   }
   console.log(
-    `视觉资源验证通过：${manifest.characters.previews.available.length} 角色预览图、${manifest.characters.portraits.available.length} 角色立绘、${manifest.lightCones.previews.available.length} 光锥预览图、${manifest.lightCones.portraits.available.length} 光锥立绘、${manifest.relics.icons.available.length} 遗器套装图标、${manifest.relics.pieces.available.length} 遗器部件图标、${manifest.relicProperties.icons.available.length} 遗器属性图标、${manifest.elements.available.length} 属性图标、${manifest.paths.available.length} 命途图标、${manifest.navigation.icons.available.length} 导航图标、${manifest.branding.icons.available.length} 品牌图标、${manifest.endgame.modeIcons.available.length} 高难模式图标。`
+    `视觉资源验证通过：${manifest.characters.previews.available.length} 角色预览图、${manifest.characters.portraits.available.length} 角色立绘、${Object.keys(manifest.characterDetails.icons.resolved).length} 角色详情图标引用、${manifest.lightCones.previews.available.length} 光锥预览图、${manifest.lightCones.portraits.available.length} 光锥立绘、${manifest.relics.icons.available.length} 遗器套装图标、${manifest.relics.pieces.available.length} 遗器部件图标、${manifest.relicProperties.icons.available.length} 遗器属性图标、${manifest.elements.available.length} 属性图标、${manifest.paths.available.length} 命途图标、${manifest.navigation.icons.available.length} 导航图标、${manifest.branding.icons.available.length} 品牌图标、${manifest.utility.icons.available.length} 工具图标、${manifest.endgame.modeIcons.available.length} 高难模式图标。`
   );
   warnAssetFallback(
     manifest,

@@ -79,6 +79,8 @@ import { buildEndgameData } from './endgame.js';
 import { createExtraEffectResolver } from './extra-effects.js';
 import { buildHomepageRecentWarpData } from './homepage.js';
 import { parseGameVersion } from './source-metadata.js';
+import type { CharacterDetailIconKey } from '../../src/lib/domain/character-detail-icons.js';
+import { configuredCharacterDetailIconKey } from './character-detail-icons.js';
 import {
   buildEnemySkillPhases,
   normalizeEnemyPhases,
@@ -266,6 +268,22 @@ export async function syncData(): Promise<DataManifest> {
       spec.identityOf
     );
 
+  const avatarProperties = by(tables.AvatarPropertyConfig, 'PropertyType');
+  const propertyIconKey = (propertyType: string): CharacterDetailIconKey | undefined =>
+    configuredCharacterDetailIconKey(
+      'property',
+      propertyType,
+      avatarProperties.get(propertyType)?.IconPath,
+      `AvatarPropertyConfig.${propertyType}`
+    );
+  const baseStatIconKeys = (entries: ReadonlyArray<readonly [string, string]>) =>
+    Object.fromEntries(
+      entries.flatMap(([field, propertyType]) => {
+        const iconKey = propertyIconKey(propertyType);
+        return iconKey ? [[field, iconKey]] : [];
+      })
+    );
+
   const specialEnergyAvatarIds = new Set(
     tables.AvatarUltraSkillConfig.filter((row) => row.UltraSkillType === 'SpecialSP').map((row) =>
       String(row.AvatarID)
@@ -289,12 +307,22 @@ export async function syncData(): Promise<DataManifest> {
         })
       )
         throw new Error(`角色 ${avatarId} 的特殊能量上限配置无效`);
-      return { kind: 'special', max: 0 };
+      const iconKey = propertyIconKey('SpecialMaxSP');
+      return {
+        kind: 'special',
+        max: 0,
+        ...(iconKey ? { iconKey } : {})
+      };
     }
     const maximum = numberOf(avatar.SPNeed);
     if (!Number.isFinite(maximum) || maximum <= 0)
       throw new Error(`角色 ${avatarId} 的普通能量上限配置无效`);
-    return { kind: 'standard', max: maximum };
+    const iconKey = propertyIconKey('MaxSP');
+    return {
+      kind: 'standard',
+      max: maximum,
+      ...(iconKey ? { iconKey } : {})
+    };
   };
 
   const isEmptyTextSource = (value: unknown): boolean =>
@@ -340,7 +368,6 @@ export async function syncData(): Promise<DataManifest> {
   const avatarTraces = grouped(tables.AvatarSkillTreeConfig, 'AvatarID');
   const avatarRanks = by(tables.AvatarRankConfig, 'RankID');
   const avatarPromotions = grouped(tables.AvatarPromotionConfig, 'AvatarID');
-  const avatarProperties = by(tables.AvatarPropertyConfig, 'PropertyType');
   const equipmentSkills = grouped(tables.EquipmentSkillConfig, 'SkillID');
   const equipmentPromotions = grouped(tables.EquipmentPromotionConfig, 'EquipmentID');
   const relicSkills = grouped(tables.RelicSetSkillConfig, 'SetID');
@@ -1081,7 +1108,71 @@ export async function syncData(): Promise<DataManifest> {
       servantOrder += (servant.SkillIDList ?? []).length;
     }
 
-    const skillCards = buildSkillCards(skillVariants);
+    const traceRowsByPoint = grouped(traceRows, 'PointID');
+    const rowsForSkill = (skillId: string): Raw[] =>
+      avatarSkillById.get(skillId) ?? servantSkillById.get(skillId) ?? [];
+    const categoryForSkill = (skillId: string) => {
+      const rows = rowsForSkill(skillId);
+      return avatarSkillById.has(skillId)
+        ? classifyAvatarSkill(rows[0] ?? {})
+        : classifyMemospriteSkill(rows[0] ?? {});
+    };
+    const configuredSkillIconPath = (skillId: string): string | undefined => {
+      const paths = new Set(
+        rowsForSkill(skillId)
+          .map((row) => row.SkillIcon)
+          .filter((value): value is string => typeof value === 'string' && !!value.trim())
+      );
+      if (paths.size > 1) throw new Error(`技能 ${skillId} 的 SkillIcon 在等级记录之间不一致`);
+      return [...paths][0];
+    };
+    const canonicalSkillIconKey = (
+      card: ReturnType<typeof buildSkillCards>[number]
+    ): CharacterDetailIconKey | undefined => {
+      const progressionId = card.progressions[0]?.id;
+      if (progressionId) {
+        const progressionRows = traceRowsByPoint.get(progressionId) ?? [];
+        const representative = progressionRows[0];
+        const progressionIcon = representative?.IconPath;
+        const memberCategories = new Set(
+          (representative?.LevelUpSkillID ?? [])
+            .map(String)
+            .filter((skillId) => {
+              const rows = rowsForSkill(skillId);
+              return rows.length && isPlayerFacingSkillConfig(rows, `SkillConfig.${skillId}`);
+            })
+            .map(categoryForSkill)
+            .filter(defined)
+        );
+        const progressionMatchesVisibleVariant = card.variants.some(
+          (variant) => configuredSkillIconPath(variant.id) === progressionIcon
+        );
+        if (
+          progressionIcon &&
+          ((memberCategories.size === 1 && memberCategories.has(card.category)) ||
+            progressionMatchesVisibleVariant)
+        )
+          return configuredCharacterDetailIconKey(
+            'skill-tree',
+            progressionId,
+            progressionIcon,
+            `AvatarSkillTreeConfig.${progressionId}`
+          );
+      }
+      const canonicalVariant = card.variants.find((variant) => configuredSkillIconPath(variant.id));
+      return canonicalVariant
+        ? configuredCharacterDetailIconKey(
+            'skill',
+            canonicalVariant.id,
+            configuredSkillIconPath(canonicalVariant.id),
+            `SkillConfig.${canonicalVariant.id}`
+          )
+        : undefined;
+    };
+    const skillCards = buildSkillCards(skillVariants).map((card) => {
+      const iconKey = canonicalSkillIconKey(card);
+      return iconKey ? { ...card, iconKey } : card;
+    });
     const displayedSkillIds = new Set(skillVariants.map((variant) => variant.id));
     const consumedSkillPointIds = new Set(
       [...grouped(traceRows, 'PointID').entries()]
@@ -1094,7 +1185,7 @@ export async function syncData(): Promise<DataManifest> {
         .map(([pointId]) => pointId)
     );
     for (const pointId of servantPointIds) consumedSkillPointIds.add(pointId);
-    const traces = [...grouped(traceRows, 'PointID').entries()]
+    const traces = [...traceRowsByPoint.entries()]
       .filter(([pointId]) => !consumedSkillPointIds.has(pointId))
       .filter(([, rows]) => rows.some((trace) => trace.PointName || trace.PointDesc))
       .filter(([, rows]) => [1, 3, 5].includes(Number(rows[0]?.PointType)))
@@ -1106,6 +1197,23 @@ export async function syncData(): Promise<DataManifest> {
           throw new Error(`行迹 ${pointId} 不是预期的单级可展示节点`);
         const sourcePointType = Number(representative.PointType);
         const type = sourcePointType === 1 ? 'stat' : 'ability';
+        const propertyTypes = unique(
+          (representative.StatusAddList ?? [])
+            .map((status: Raw) => String(status.PropertyType ?? ''))
+            .filter(Boolean)
+        );
+        if (type === 'stat' && propertyTypes.length !== 1)
+          throw new Error(`属性行迹 ${pointId} 应唯一关联一个 PropertyType`);
+        const propertyType = propertyTypes[0];
+        const iconKey =
+          type === 'stat'
+            ? propertyIconKey(propertyType)
+            : configuredCharacterDetailIconKey(
+                'skill-tree',
+                pointId,
+                representative.IconPath,
+                `AvatarSkillTreeConfig.${pointId}`
+              );
         const anchorMatch = /^Point(\d+)$/.exec(String(representative.AnchorType ?? ''));
         if (!anchorMatch) throw new Error(`行迹 ${pointId} 缺少有效 AnchorType`);
         const params = values(representative.ParamList);
@@ -1132,6 +1240,8 @@ export async function syncData(): Promise<DataManifest> {
           ),
           description: localizedDescription.text || traceStatDescription(representative, pointId),
           type,
+          ...(iconKey ? { iconKey } : {}),
+          ...(propertyType ? { propertyType } : {}),
           sourcePointType,
           prerequisiteIds: (representative.PrePoint ?? []).map((id: number) => String(id)),
           ...(representative.AvatarPromotionLimit !== undefined
@@ -1146,6 +1256,12 @@ export async function syncData(): Promise<DataManifest> {
       .filter(Boolean)
       .map((rank) => {
         const id = String(rank.RankID);
+        const iconKey = configuredCharacterDetailIconKey(
+          'rank',
+          id,
+          rank.IconPath,
+          `AvatarRankConfig.${id}`
+        );
         const description = formatGameMarkup(
           trSymbolic(rank.Desc, source('character-eidolon', id, 'Desc')),
           values(rank.Param)
@@ -1161,6 +1277,7 @@ export async function syncData(): Promise<DataManifest> {
           rank: Number(rank.Rank),
           name: trSymbolic(rank.Name, source('character-eidolon', id, 'Name'), `星魂 ${rank.Rank}`),
           description: description.text,
+          ...(iconKey ? { iconKey } : {}),
           ...(extraEffects.length ? { extraEffects } : {})
         };
       });
@@ -1227,12 +1344,20 @@ export async function syncData(): Promise<DataManifest> {
       fullName,
       profiles,
       equipmentRecommendation: recommendationFor(id),
-      baseStats: normalizeStatProgression(promotionRows, characterStatFields, {
-        speed: numberOf(promotionRows[0]?.SpeedBase),
-        criticalChance: numberOf(promotionRows[0]?.CriticalChance),
-        criticalDamage: numberOf(promotionRows[0]?.CriticalDamage),
-        aggro: numberOf(promotionRows[0]?.BaseAggro)
-      })
+      baseStats: {
+        ...normalizeStatProgression(promotionRows, characterStatFields, {
+          speed: numberOf(promotionRows[0]?.SpeedBase),
+          criticalChance: numberOf(promotionRows[0]?.CriticalChance),
+          criticalDamage: numberOf(promotionRows[0]?.CriticalDamage),
+          aggro: numberOf(promotionRows[0]?.BaseAggro)
+        }),
+        iconKeys: baseStatIconKeys([
+          ['hp', 'MaxHP'],
+          ['attack', 'Attack'],
+          ['defence', 'Defence'],
+          ['speed', 'Speed']
+        ])
+      }
     });
     searchSeeds.push({
       entry: {
@@ -1339,7 +1464,14 @@ export async function syncData(): Promise<DataManifest> {
           levels: normalizedSuperimposition.levels
         }
       },
-      baseStats: normalizeStatProgression(promotionRows, lightConeStatFields)
+      baseStats: {
+        ...normalizeStatProgression(promotionRows, lightConeStatFields),
+        iconKeys: baseStatIconKeys([
+          ['hp', 'MaxHP'],
+          ['attack', 'Attack'],
+          ['defence', 'Defence']
+        ])
+      }
     });
     searchSeeds.push({
       entry: {
@@ -1830,7 +1962,7 @@ export async function syncData(): Promise<DataManifest> {
   await writeJson(path.join(generatedRoot, 'homepage.json'), homepage);
 
   const manifest: DataManifest = {
-    schemaVersion: 33,
+    schemaVersion: 34,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,

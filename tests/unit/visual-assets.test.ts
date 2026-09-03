@@ -6,6 +6,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   resolveCharacterPreviewAsset,
   resolveCharacterPortraitAsset,
+  resolveCharacterDetailIconAsset,
   resolveLightConePreviewAsset,
   resolveLightConePortraitAsset,
   resolveRelicPieceIconAsset,
@@ -15,20 +16,25 @@ import {
   resolvePathIconAsset,
   resolveNavigationIconAsset,
   resolveBrandIconAsset,
+  resolveUtilityIconAsset,
   resolveEndgameModeIconAsset
 } from '../../src/lib/data/visual-assets';
 import type { AssetAvailability, VisualAssetManifest } from '../../src/lib/domain/visual-assets';
+import type { CharacterDetailIconKey } from '../../src/lib/domain/character-detail-icons';
 import { assertAssetRoot, resolveAssetRoot } from '../../scripts/assets/paths';
 import {
   ELEMENT_SOURCE_NAMES,
   assertAssetCleanTarget,
   generateLightConePortraitAssets,
+  generateCharacterDetailIcons,
   generateVisualAssets,
   manifestCoversRequirements,
   NAVIGATION_ICON_SOURCE_NAMES,
   BRAND_ICON_SOURCE_NAMES,
+  UTILITY_ICON_SOURCE_NAMES,
   PATH_SOURCE_NAMES,
   readCharacterPreviewSources,
+  readCharacterDetailIconSources,
   readLightConePreviewSources,
   readLightConePortraitSources,
   readRelicPropertyIconSources,
@@ -38,6 +44,8 @@ import {
   readAssetRequirements,
   VISUAL_ASSET_SCHEMA_VERSION,
   resolveIndexedAssetPath,
+  assetOutputPaths,
+  assetRequirementsFingerprint,
   validateGeneratedAssetFiles,
   writePortraitAsset,
   writeSemanticIconAsset,
@@ -60,13 +68,18 @@ const manifest = (options?: {
   paths?: string[];
   navigationIcons?: string[];
   brandIcons?: string[];
+  utilityIcons?: string[];
   endgameModeIcons?: string[];
+  characterDetailIcons?: Record<string, string>;
 }): VisualAssetManifest => ({
   schemaVersion: VISUAL_ASSET_SCHEMA_VERSION,
   generatedAt: '2026-01-01T00:00:00.000Z',
   characters: {
     previews: available(options?.previews ?? []),
     portraits: available(options?.portraits ?? [])
+  },
+  characterDetails: {
+    icons: { resolved: options?.characterDetailIcons ?? {}, missing: [] }
   },
   lightCones: {
     previews: available(options?.lightConePreviews ?? []),
@@ -83,6 +96,7 @@ const manifest = (options?: {
   paths: available(options?.paths ?? []),
   navigation: { icons: available(options?.navigationIcons ?? []) },
   branding: { icons: available(options?.brandIcons ?? []) },
+  utility: { icons: available(options?.utilityIcons ?? []) },
   endgame: { modeIcons: available(options?.endgameModeIcons ?? []) }
 });
 
@@ -113,6 +127,7 @@ describe('视觉资源管线', () => {
       'image/light_cone_portrait',
       'icon/relic',
       'icon/property',
+      'icon/skill',
       'icon/element',
       'icon/path',
       'icon/sign'
@@ -125,6 +140,9 @@ describe('视觉资源管线', () => {
     await writeFile(path.join(root, 'index_new', 'cn', 'relic_sets.json'), '{}');
     await writeFile(path.join(root, 'index_new', 'cn', 'relics.json'), '{}');
     await writeFile(path.join(root, 'index_new', 'cn', 'properties.json'), '{}');
+    await writeFile(path.join(root, 'index_new', 'cn', 'character_skills.json'), '{}');
+    await writeFile(path.join(root, 'index_new', 'cn', 'character_skill_trees.json'), '{}');
+    await writeFile(path.join(root, 'index_new', 'cn', 'character_ranks.json'), '{}');
     expect(assertAssetRoot(root)).toBe(root);
     await rm(path.join(root, 'image'), { recursive: true });
     expect(() => assertAssetRoot(root)).toThrow(/character_portrait/);
@@ -148,13 +166,20 @@ describe('视觉资源管线', () => {
       elements: ['Lightning'],
       paths: ['Memory'],
       navigationIcons: ['overview'],
-      brandIcons: ['train-party']
+      brandIcons: ['train-party'],
+      utilityIcons: ['changelog'],
+      characterDetailIcons: {
+        'skill-tree--1407002': '/generated-assets/character-details/icons/skill/1407_skill.png'
+      }
     });
     expect(resolveCharacterPreviewAsset('1001', source)).toBe(
       '/generated-assets/characters/preview/1001.png'
     );
     expect(resolveCharacterPortraitAsset('1001', source)).toBe(
       '/generated-assets/characters/portrait/1001.webp'
+    );
+    expect(resolveCharacterDetailIconAsset('skill-tree--1407002', source)).toBe(
+      '/generated-assets/character-details/icons/skill/1407_skill.png'
     );
     expect(resolveLightConePreviewAsset('20000', source)).toBe(
       '/generated-assets/light-cones/preview/20000.png'
@@ -179,8 +204,12 @@ describe('视觉资源管线', () => {
     expect(resolveBrandIconAsset('train-party', source)).toBe(
       '/generated-assets/branding/train-party.png'
     );
+    expect(resolveUtilityIconAsset('changelog', source)).toBe(
+      '/generated-assets/utility/changelog.png'
+    );
     expect(resolveNavigationIconAsset('characters', source)).toBeUndefined();
     expect(resolveCharacterPreviewAsset('1002', source)).toBeUndefined();
+    expect(resolveCharacterDetailIconAsset('skill--140709', source)).toBeUndefined();
     expect(resolveLightConePreviewAsset('20001', source)).toBeUndefined();
     expect(resolveLightConePortraitAsset('20001', source)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('../1001', source)).toBeUndefined();
@@ -217,6 +246,7 @@ describe('视觉资源管线', () => {
       endgame: 'AbyssIcon01'
     });
     expect(BRAND_ICON_SOURCE_NAMES).toEqual({ 'train-party': 'TrainPartyIcon' });
+    expect(UTILITY_ICON_SOURCE_NAMES).toEqual({ changelog: 'SettingsPushIcon' });
   });
 
   it('manifest 必须覆盖角色、属性与命途的完整需求集合', () => {
@@ -229,11 +259,13 @@ describe('视觉资源管线', () => {
       paths: ['Warrior'],
       navigationIcons: ['overview'],
       brandIcons: ['train-party'],
+      utilityIcons: ['changelog'],
       endgameModeIcons: ['AbyssThemeTabIcon']
     });
     expect(
       manifestCoversRequirements(source, {
         characterIds: ['1001'],
+        characterDetailIconKeys: [],
         lightConeIds: ['20000'],
         relicSetIds: [],
         relicPieces: [],
@@ -242,12 +274,14 @@ describe('视觉资源管线', () => {
         paths: ['Warrior'],
         navigationIcons: ['overview'],
         brandIcons: ['train-party'],
+        utilityIcons: ['changelog'],
         endgameModeIcons: ['AbyssThemeTabIcon']
       })
     ).toBe(true);
     expect(
       manifestCoversRequirements(source, {
         characterIds: ['1001', '1002'],
+        characterDetailIconKeys: [],
         lightConeIds: ['20000'],
         relicSetIds: [],
         relicPieces: [],
@@ -256,8 +290,32 @@ describe('视觉资源管线', () => {
         paths: ['Warrior'],
         navigationIcons: ['overview'],
         brandIcons: ['train-party'],
+        utilityIcons: ['changelog'],
         endgameModeIcons: ['AbyssThemeTabIcon']
       })
+    ).toBe(false);
+  });
+
+  it('requirement fingerprint 会使同一 upstream SHA 下的新增需求使缓存失效', () => {
+    const requirements = {
+      characterIds: ['1001'],
+      characterDetailIconKeys: [],
+      lightConeIds: [],
+      relicSetIds: [],
+      relicPieces: [],
+      relicPropertyIcons: [],
+      elements: [],
+      paths: [],
+      navigationIcons: [],
+      brandIcons: [],
+      utilityIcons: [],
+      endgameModeIcons: []
+    };
+    const source = manifest({ previews: ['1001'], portraits: ['1001'] });
+    source.requirementsFingerprint = assetRequirementsFingerprint(requirements);
+    expect(manifestCoversRequirements(source, requirements)).toBe(true);
+    expect(
+      manifestCoversRequirements(source, { ...requirements, characterIds: ['1001', '1002'] })
     ).toBe(false);
   });
 
@@ -331,6 +389,7 @@ describe('视觉资源管线', () => {
     const requirements = await readAssetRequirements();
     const generated = await readAssetManifest();
     expect(requirements.characterIds).toHaveLength(97);
+    expect(requirements.characterDetailIconKeys).toHaveLength(1547);
     expect(requirements.lightConeIds).toHaveLength(169);
     expect(requirements.relicSetIds).toHaveLength(60);
     expect(requirements.relicPieces).toHaveLength(184);
@@ -355,6 +414,11 @@ describe('视觉资源管线', () => {
     }
     expect(generated!.characters.previews.missing).toEqual([]);
     expect(generated!.characters.portraits.missing).toEqual([]);
+    expect(Object.keys(generated!.characterDetails.icons.resolved)).toHaveLength(1547);
+    expect(generated!.characterDetails.icons.missing).toEqual([]);
+    expect(resolveCharacterDetailIconAsset('skill-tree--1407002', generated)).toBe(
+      '/generated-assets/character-details/icons/skill/1407_skill.png'
+    );
     for (const id of ['20000', '21015', '23000']) {
       expect(requirements.lightConeIds).toContain(id);
       expect(generated!.lightCones.previews.available).toContain(id);
@@ -385,6 +449,7 @@ describe('视觉资源管线', () => {
     const parsed = JSON.parse(await readFile(file, 'utf8')) as VisualAssetManifest;
     expect(resolveCharacterPreviewAsset('1001', parsed)).toBeUndefined();
     expect(resolveCharacterPortraitAsset('1001', parsed)).toBeUndefined();
+    expect(resolveCharacterDetailIconAsset('skill-tree--1407002', parsed)).toBeUndefined();
     expect(resolveLightConePreviewAsset('20000', parsed)).toBeUndefined();
     expect(resolveLightConePortraitAsset('20000', parsed)).toBeUndefined();
     expect(resolveRelicSetIconAsset('101', parsed)).toBeUndefined();
@@ -545,6 +610,95 @@ describe('视觉资源管线', () => {
     ).rejects.toThrow(/套装或槽位/);
   });
 
+  it('角色详情 icon 按语义 identity 解析、去重生成并保留缺图 fallback', async () => {
+    const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-character-detail-icons-'));
+    temporaryDirectories.push(root);
+    const indexDirectory = path.join(root, 'index_new', 'cn');
+    const skillDirectory = path.join(root, 'icon', 'skill');
+    const propertyDirectory = path.join(root, 'icon', 'property');
+    const outputRoot = path.join(root, 'output');
+    const output = assetOutputPaths(outputRoot);
+    await Promise.all([
+      mkdir(indexDirectory, { recursive: true }),
+      mkdir(skillDirectory, { recursive: true }),
+      mkdir(propertyDirectory, { recursive: true }),
+      mkdir(output.characterDetailSkillIcons, { recursive: true }),
+      mkdir(output.characterDetailPropertyIcons, { recursive: true })
+    ]);
+    await Promise.all([
+      writeFile(
+        path.join(indexDirectory, 'properties.json'),
+        JSON.stringify({
+          MaxHP: { type: 'MaxHP', icon: 'icon/property/IconMaxHP.png' }
+        })
+      ),
+      writeFile(
+        path.join(indexDirectory, 'character_skills.json'),
+        JSON.stringify({
+          140702: { id: '140702', icon: 'icon/skill/1407_skill.png' }
+        })
+      ),
+      writeFile(
+        path.join(indexDirectory, 'character_skill_trees.json'),
+        JSON.stringify({
+          1407002: { id: '1407002', icon: 'icon/skill/1407_skill.png' }
+        })
+      ),
+      writeFile(
+        path.join(indexDirectory, 'character_ranks.json'),
+        JSON.stringify({
+          140703: { id: '140703', icon: 'icon/skill/1407_skill.png' }
+        })
+      ),
+      sharp({
+        create: {
+          width: 128,
+          height: 128,
+          channels: 4,
+          background: { r: 120, g: 80, b: 40, alpha: 0.75 }
+        }
+      })
+        .png()
+        .toFile(path.join(skillDirectory, '1407_skill.png')),
+      sharp({
+        create: {
+          width: 128,
+          height: 128,
+          channels: 4,
+          background: { r: 40, g: 80, b: 120, alpha: 0.75 }
+        }
+      })
+        .png()
+        .toFile(path.join(propertyDirectory, 'IconMaxHP.png'))
+    ]);
+    const iconKeys: CharacterDetailIconKey[] = [
+      'skill--140702',
+      'skill-tree--1407002',
+      'rank--140703',
+      'property--MaxHP',
+      'skill--999999'
+    ];
+    const sources = await readCharacterDetailIconSources(root, iconKeys);
+    expect(sources.size).toBe(4);
+    const generated = await generateCharacterDetailIcons(root, iconKeys, output, sources);
+    expect(generated.missing).toEqual(['skill--999999']);
+    expect(generated.resolved['skill--140702']).toBe(
+      '/generated-assets/character-details/icons/skill/1407_skill.png'
+    );
+    expect(generated.resolved['skill-tree--1407002']).toBe(generated.resolved['skill--140702']);
+    expect(generated.resolved['rank--140703']).toBe(generated.resolved['skill--140702']);
+    expect(await readdir(output.characterDetailSkillIcons)).toEqual(['1407_skill.png']);
+    expect(await readdir(output.characterDetailPropertyIcons)).toEqual(['IconMaxHP.png']);
+
+    await writeFile(
+      path.join(indexDirectory, 'character_skills.json'),
+      JSON.stringify({ 140702: { id: '140703', icon: '../outside.png' } })
+    );
+    await expect(readCharacterDetailIconSources(root, ['skill--140702'])).rejects.toThrow(
+      /identity/
+    );
+  });
+
   it('生成器继续同步实际存在的资源，并只将 null 与 ENOENT 记为 missing', async () => {
     const root = await mkdtemp(path.join(os.tmpdir(), 'hsr-partial-assets-'));
     temporaryDirectories.push(root);
@@ -596,6 +750,7 @@ describe('视觉资源管线', () => {
       root,
       {
         characterIds: ['1001', '1002', '1003'],
+        characterDetailIconKeys: [],
         lightConeIds: [],
         relicSetIds: [],
         relicPieces: [],
@@ -604,6 +759,7 @@ describe('视觉资源管线', () => {
         paths: [],
         navigationIcons: [],
         brandIcons: [],
+        utilityIcons: [],
         endgameModeIcons: []
       },
       outputRoot
@@ -659,6 +815,7 @@ describe('视觉资源管线', () => {
       root,
       {
         characterIds: ['1001', '1002', '1003'],
+        characterDetailIconKeys: [],
         lightConeIds: [],
         relicSetIds: [],
         relicPieces: [],
@@ -667,6 +824,7 @@ describe('视觉资源管线', () => {
         paths: [],
         navigationIcons: [],
         brandIcons: [],
+        utilityIcons: [],
         endgameModeIcons: []
       },
       outputRoot
@@ -714,6 +872,7 @@ describe('视觉资源管线', () => {
         root,
         {
           characterIds: ['1001'],
+          characterDetailIconKeys: [],
           lightConeIds: [],
           relicSetIds: [],
           relicPieces: [],
@@ -722,6 +881,7 @@ describe('视觉资源管线', () => {
           paths: [],
           navigationIcons: [],
           brandIcons: [],
+          utilityIcons: [],
           endgameModeIcons: []
         },
         outputRoot

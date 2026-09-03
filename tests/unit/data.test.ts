@@ -54,6 +54,7 @@ import {
   resolveAvatarSpecialSkillRelations
 } from '../../scripts/data/avatar-special-skills';
 import { formatDescription, formatGameMarkup, formatGameText } from '../../scripts/data/text';
+import { configuredCharacterDetailIconKey } from '../../scripts/data/character-detail-icons';
 
 const baseProfile = (character: Character): CharacterProfile => character.profiles.base;
 const variantOf = (
@@ -64,6 +65,22 @@ const variantOf = (
   profile.skillCards.flatMap((card) => card.variants).find((variant) => variant.id === id);
 
 describe('真实数据管线', () => {
+  it('只有 config 明确提供 icon path 时才生成角色详情 icon key', () => {
+    expect(
+      configuredCharacterDetailIconKey(
+        'skill',
+        '140702',
+        'SpriteOutput/SkillIcons/Avatar/1407/SkillIcon_1407_BP.png',
+        'test'
+      )
+    ).toBe('skill--140702');
+    expect(configuredCharacterDetailIconKey('skill', '140702', '', 'test')).toBeUndefined();
+    expect(configuredCharacterDetailIconKey('skill', '140702', undefined, 'test')).toBeUndefined();
+    expect(() =>
+      configuredCharacterDetailIconKey('skill', '../140702', 'icon.png', 'test')
+    ).toThrow(/非法 icon identity/);
+  });
+
   it('只使用 HideInUI 判定玩家侧技能可见性并保留可见空描述形态', () => {
     expect(isPlayerFacingSkillConfig([{}, { HideInUI: false }], 'visible')).toBe(true);
     expect(isPlayerFacingSkillConfig([{ HideInUI: true }, { HideInUI: true }], 'hidden')).toBe(
@@ -628,11 +645,27 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(97);
-    expect(manifest.schemaVersion).toBe(33);
+    expect(manifest.schemaVersion).toBe(34);
     expect(manifest.gameVersionFull).toBe('4.5.0');
     expect(manifest.gameVersion).toBe('4.5');
     expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
+    expect(character.baseStats.iconKeys).toEqual({
+      hp: 'property--MaxHP',
+      attack: 'property--Attack',
+      defence: 'property--Defence',
+      speed: 'property--Speed'
+    });
+    expect(lightCone.baseStats.iconKeys).toEqual({
+      hp: 'property--MaxHP',
+      attack: 'property--Attack',
+      defence: 'property--Defence'
+    });
+    expect(baseProfile(character).energy).toEqual({
+      kind: 'standard',
+      max: 120,
+      iconKey: 'property--MaxSP'
+    });
     const basicAttack = variantOf(character, '100101');
     expect(basicAttack?.levels.map((level) => level.level)).toEqual([
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10
@@ -644,6 +677,7 @@ describe('真实数据管线', () => {
     expect(purity).toMatchObject({
       name: '纯洁',
       type: 'ability',
+      iconKey: 'skill-tree--1001101',
       sourcePointType: 3,
       promotionLimit: 2,
       prerequisiteIds: ['1001201'],
@@ -660,6 +694,8 @@ describe('真实数据管线', () => {
     expect(purity).not.toHaveProperty('levels');
     expect(baseProfile(character).traces.find((trace) => trace.id === '1001201')).toMatchObject({
       type: 'stat',
+      propertyType: 'IceAddedRatio',
+      iconKey: 'property--IceAddedRatio',
       sourcePointType: 1,
       prerequisiteIds: [],
       anchorOrder: 9
@@ -671,6 +707,7 @@ describe('真实数据管线', () => {
       '防御力提高5.0%'
     );
     expect(baseProfile(character).eidolons[0].name).toBe('记忆中的你');
+    expect(baseProfile(character).eidolons[0].iconKey).toBe('rank--100101');
     expect(baseProfile(character).eidolons[0]).not.toHaveProperty('extraEffects');
     expect(
       baseProfile(character).eidolons.find((eidolon) => eidolon.id === '100104')
@@ -691,9 +728,41 @@ describe('真实数据管线', () => {
       const abilities = baseProfile(character).traces.filter((trace) => trace.type === 'ability');
       expect(abilities).toHaveLength(4);
       expect(abilities.filter((trace) => trace.name === '未完的尾声')).toEqual([
-        expect.objectContaining({ sourcePointType: 5, anchorOrder: 21 })
+        expect.objectContaining({
+          sourcePointType: 5,
+          anchorOrder: 21,
+          iconKey: `skill-tree--${id === '8007' ? '8007501' : '8008501'}`
+        })
       ]);
     }
+  });
+
+  it('为合并技能卡选择 owner-aware canonical icon 且不向 variant 重复下发', async () => {
+    const readCharacter = async (id: string) =>
+      JSON.parse(
+        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+      ) as Character;
+    const [castorice, evernight, cyrene, departingHimeko, maleTrailblazer, femaleTrailblazer] =
+      await Promise.all(['1407', '1413', '1415', '1510', '8007', '8008'].map(readCharacter));
+    const card = (character: Character, category: string) =>
+      baseProfile(character).skillCards.find((entry) => entry.category === category)!;
+
+    expect(card(castorice, 'skill')).toMatchObject({
+      iconKey: 'skill-tree--1407002',
+      variants: [
+        expect.objectContaining({ id: '140702' }),
+        expect.objectContaining({ id: '140709' })
+      ]
+    });
+    expect(card(castorice, 'skill').variants.every((variant) => !('iconKey' in variant))).toBe(
+      true
+    );
+    expect(card(evernight, 'memosprite-skill').iconKey).toBe('skill-tree--1413301');
+    expect(card(cyrene, 'memosprite-skill').iconKey).toBe('skill-tree--1415301');
+    expect(card(departingHimeko, 'talent').iconKey).toBe('skill-tree--1510004');
+    expect(card(departingHimeko, 'assist').iconKey).toBe('skill--151022');
+    expect(card(maleTrailblazer, 'memosprite-skill').iconKey).toBe('skill-tree--8007301');
+    expect(card(femaleTrailblazer, 'memosprite-skill').iconKey).toBe('skill-tree--8008301');
   });
 
   it('将四名 LD 角色完整纳入同一 Character domain 与搜索索引', async () => {
@@ -1294,7 +1363,11 @@ describe('真实数据管线', () => {
       const detail = JSON.parse(
         await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
-      expect(baseProfile(detail).energy).toEqual({ kind: 'special', max: 0 });
+      expect(baseProfile(detail).energy).toEqual({
+        kind: 'special',
+        max: 0,
+        iconKey: 'property--SpecialMaxSP'
+      });
       expect(
         specialRows.some((row) => {
           const roleId = String(row.RoleID);
@@ -1311,8 +1384,16 @@ describe('真实数据管线', () => {
     const silverWolf = JSON.parse(
       await readFile(path.join(generatedRoot, 'details', 'characters', '1006.json'), 'utf8')
     ) as Character;
-    expect(baseProfile(march).energy).toEqual({ kind: 'standard', max: 120 });
-    expect(baseProfile(silverWolf).energy).toEqual({ kind: 'standard', max: 110 });
+    expect(baseProfile(march).energy).toEqual({
+      kind: 'standard',
+      max: 120,
+      iconKey: 'property--MaxSP'
+    });
+    expect(baseProfile(silverWolf).energy).toEqual({
+      kind: 'standard',
+      max: 110,
+      iconKey: 'property--MaxSP'
+    });
   });
 
   it('为官方加强角色生成互不混合的完整双 Profile', async () => {

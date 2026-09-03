@@ -2,8 +2,10 @@ import manifestJson from '$lib/generated-assets/manifest.json';
 import type {
   AssetAvailability,
   BrandIconKey,
+  UtilityIconKey,
   VisualAssetManifest
 } from '$lib/domain/visual-assets';
+import type { CharacterDetailIconKey } from '$lib/domain/character-detail-icons';
 import type { EndgameModeIconKey } from '$lib/domain/endgame-view';
 import type { NavigationIconKey } from '$lib/navigation';
 
@@ -20,6 +22,7 @@ const sets = {
   path: new Set(manifest.paths.available),
   navigation: new Set(manifest.navigation.icons.available),
   branding: new Set(manifest.branding.icons.available),
+  utility: new Set(manifest.utility.icons.available),
   endgameModeIcon: new Set(manifest.endgame.modeIcons.available)
 };
 
@@ -61,6 +64,20 @@ export function resolveCharacterPortraitAsset(
     'webp',
     source === manifest ? sets.portrait : undefined
   );
+}
+
+export function resolveCharacterDetailIconAsset(
+  iconKey: CharacterDetailIconKey | undefined,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  if (!iconKey) return undefined;
+  const resolved = source.characterDetails.icons.resolved[iconKey];
+  return typeof resolved === 'string' &&
+    /^\/generated-assets\/character-details\/icons\/(?:skill|property)\/[A-Za-z0-9_-]+\.png$/.test(
+      resolved
+    )
+    ? resolved
+    : undefined;
 }
 
 export function resolveLightConePreviewAsset(
@@ -180,6 +197,19 @@ export function resolveBrandIconAsset(
   );
 }
 
+export function resolveUtilityIconAsset(
+  iconKey: UtilityIconKey,
+  source: VisualAssetManifest = manifest
+): string | undefined {
+  return resolveAsset(
+    iconKey,
+    source.utility.icons,
+    'utility',
+    'png',
+    source === manifest ? sets.utility : undefined
+  );
+}
+
 export function resolveEndgameModeIconAsset(
   iconKey: EndgameModeIconKey,
   source: VisualAssetManifest = manifest
@@ -197,6 +227,9 @@ export const getCharacterPreviewUrl = (id: string): string | undefined =>
   resolveCharacterPreviewAsset(id);
 export const getCharacterPortraitUrl = (id: string): string | undefined =>
   resolveCharacterPortraitAsset(id);
+export const getCharacterDetailIconUrl = (
+  iconKey: CharacterDetailIconKey | undefined
+): string | undefined => resolveCharacterDetailIconAsset(iconKey);
 export const getLightConePreviewUrl = (id: string): string | undefined =>
   resolveLightConePreviewAsset(id);
 export const getLightConePortraitUrl = (id: string): string | undefined =>
@@ -214,5 +247,7 @@ export const getNavigationIconUrl = (iconKey: NavigationIconKey): string | undef
   resolveNavigationIconAsset(iconKey);
 export const getBrandIconUrl = (iconKey: BrandIconKey): string | undefined =>
   resolveBrandIconAsset(iconKey);
+export const getUtilityIconUrl = (iconKey: UtilityIconKey): string | undefined =>
+  resolveUtilityIconAsset(iconKey);
 export const getEndgameModeIconUrl = (iconKey: EndgameModeIconKey): string | undefined =>
   resolveEndgameModeIconAsset(iconKey);

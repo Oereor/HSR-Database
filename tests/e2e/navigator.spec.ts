@@ -73,9 +73,25 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
 
 test('移动端仅保留顶部触发器并使用完整抽屉', async ({ page, isMobile }) => {
   test.skip(!isMobile, '仅移动项目执行');
+  await page.setViewportSize({ width: 320, height: 720 });
   await page.goto('/endgame');
   await expect(page.locator('.navigator-rail')).toBeHidden();
   await expect(page.locator('.mobile-header')).toBeVisible();
+
+  const actions = page.locator('.mobile-header__actions');
+  await expect(actions).toBeVisible();
+  await expect(actions.locator('button')).toHaveCount(2);
+  expect(
+    await actions
+      .locator('button')
+      .evaluateAll((buttons) => buttons.map((button) => button.getAttribute('aria-label')))
+  ).toEqual(['更新日志', '打开导航']);
+  expect(
+    await actions.evaluate((element) => {
+      const box = element.getBoundingClientRect();
+      return box.right <= document.documentElement.clientWidth && box.left >= 0;
+    })
+  ).toBe(true);
 
   await page.getByRole('button', { name: '打开导航' }).click();
   const dialog = page.getByRole('dialog', { name: '完整导航' });

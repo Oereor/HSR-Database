@@ -8,21 +8,21 @@
 
 ## 功能
 
-* 角色：基础属性、技能、行迹、星魂数据，并支持逐等级查看；同时还有光锥和遗器推荐信息。
-* 光锥：基础属性、光锥效果，同样支持逐等级查看。
-* 遗器：套装、部件信息与套装效果。
-* 敌方单位：基础属性、弱点、抗性、技能及其他战斗信息。
-* 高难模式：三路深渊（混沌回忆、虚构叙事、末日幻影），以及异相仲裁的赛期、关卡、波次与敌方实例数据。
-* ……
+- 角色：基础属性、技能、行迹、星魂数据，并支持逐等级查看；同时还有光锥和遗器推荐信息。
+- 光锥：基础属性、光锥效果，同样支持逐等级查看。
+- 遗器：套装、部件信息与套装效果。
+- 敌方单位：基础属性、弱点、抗性、技能及其他战斗信息。
+- 高难模式：三路深渊（混沌回忆、虚构叙事、末日幻影），以及异相仲裁的赛期、关卡、波次与敌方实例数据。
+- ……
 
 项目仍在持续完善中。
 
 ## 技术栈
 
-* SvelteKit
-* TypeScript
-* Tailwind CSS
-* pnpm
+- SvelteKit
+- TypeScript
+- Tailwind CSS
+- pnpm
 
 网站使用静态构建，运行时不依赖其他数据仓库。
 
@@ -30,8 +30,8 @@
 
 项目主要使用以下两个公开仓库：
 
-* [DimbreathBot/TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData)：游戏配置与文本数据
-* [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes)：角色立绘、预览图、图标等视觉资源
+- [DimbreathBot/TurnBasedGameData](https://github.com/DimbreathBot/TurnBasedGameData)：游戏配置与文本数据
+- [Mar-7th/StarRailRes](https://github.com/Mar-7th/StarRailRes)：角色立绘、预览图、图标等视觉资源
 
 它们与本项目保持为相互独立的 Git 仓库。本地开发时推荐使用如下目录结构：
 
@@ -48,9 +48,9 @@ workspace/
 
 环境要求：
 
-* Node.js 22+
-* pnpm 10+
-* Git
+- Node.js 22+
+- pnpm 10+
+- Git
 
 准备两个上游仓库：
 
@@ -78,20 +78,20 @@ PUBLIC_SITE_URL=http://127.0.0.1:5273
 
 ## 常用命令
 
-| 命令                      | 用途                       |
-| ----------------------- | ------------------------ |
-| `pnpm dev`              | 启动开发服务器                  |
-| `pnpm data:sync`        | 生成网站使用的数据                |
-| `pnpm data:validate`    | 验证生成数据                   |
-| `pnpm assets:sync`      | 同步页面所需视觉资源               |
-| `pnpm assets:verify`    | 验证生成的视觉资源                |
-| `pnpm check`            | Svelte / TypeScript 检查   |
-| `pnpm lint`             | Prettier / ESLint 检查     |
-| `pnpm test`             | 运行 Vitest 测试             |
-| `pnpm test:e2e`         | 运行 Playwright 测试         |
-| `pnpm build`            | 生成静态生产构建                 |
+| 命令                    | 用途                                   |
+| ----------------------- | -------------------------------------- |
+| `pnpm dev`              | 启动开发服务器                         |
+| `pnpm data:sync`        | 生成网站使用的数据                     |
+| `pnpm data:validate`    | 验证生成数据                           |
+| `pnpm assets:sync`      | 同步页面所需视觉资源                   |
+| `pnpm assets:verify`    | 验证生成的视觉资源                     |
+| `pnpm check`            | Svelte / TypeScript 检查               |
+| `pnpm lint`             | Prettier / ESLint 检查                 |
+| `pnpm test`             | 运行 Vitest 测试                       |
+| `pnpm test:e2e`         | 运行 Playwright 测试                   |
+| `pnpm build`            | 生成静态生产构建                       |
 | `pnpm deploy:build`     | 使用固定 upstream 版本执行完整部署构建 |
-| `pnpm upstreams:update` | 检查并更新 upstream lock      |
+| `pnpm upstreams:update` | 检查并更新 upstream lock               |
 
 ## 项目结构
 
@@ -136,6 +136,23 @@ develop
 ```
 
 GitHub Actions 会定期检查两个 upstream 是否有更新。发现新版本后，自动更新 `upstream.lock.json`、执行完整构建验证，并创建目标为 `develop` 的 Pull Request，交由人工审核与 Vercel Preview 验证。
+
+### 如何添加更新日志
+
+更新日志 Markdown 放在 `src/lib/content/changelog/`，新建 `.svx` 文件即可自动发现：
+
+```markdown
+---
+title: 更新标题
+date: '2026-09-03'
+---
+
+这里写更新内容。
+
+可以使用 **Markdown**、`inline code`、列表和链接。
+```
+
+不需要手动维护 index、manifest 或 JSON，也不需要额外生成命令；`pnpm dev`、`pnpm build` 和 `pnpm deploy:build` 都会自动编译新增日志。
 
 ## License 与免责声明
 

@@ -2,6 +2,7 @@
   import SkillProgressionPanel from '$lib/components/SkillProgressionPanel.svelte';
   import SkillVariantView from '$lib/components/SkillVariantView.svelte';
   import type { SkillCard, SkillVariant } from '$lib/domain/types';
+  import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
 
   export let card: SkillCard;
   export let specialEffectsAvailable = false;
@@ -12,11 +13,16 @@
   $: fixedVariants = card.variants.filter((variant) => !variant.progressionId);
   $: fixedVariantsNeedDivider = card.progressions.length > 0;
   const fixedLevel = (variant: SkillVariant) => variant.levels[0];
+  $: iconUrl = getCharacterDetailIconUrl(card.iconKey);
 </script>
 
 <article class="info-card skill-card" data-skill-category={card.category}>
   <div class="info-card__heading skill-card__heading">
-    <h3>{card.displayLabel}</h3>
+    <h3 class:skill-card__title--icon={!!iconUrl}>
+      {#if iconUrl}<img src={iconUrl} alt="" aria-hidden="true" />{/if}<span
+        >{card.displayLabel}</span
+      >
+    </h3>
   </div>
   {#each card.progressions as progression (progression.id)}
     <SkillProgressionPanel
