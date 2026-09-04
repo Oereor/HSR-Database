@@ -67,6 +67,7 @@ export async function runDeploymentBuild(
   };
 
   console.log(`[data] HSR_DATA_ROOT=${env.HSR_DATA_ROOT}`);
+  await timed('script type checking', () => commandRunner(['check:scripts'], env));
   await timed('official search names validation', () =>
     commandRunner(['data:search-names:check'], env)
   );

@@ -106,7 +106,12 @@ const resolved = rows.filter(
   ): row is DiagnosticRow & { final: Extract<DiagnosticRow['final'], { status: 'resolved' }> } =>
     row.final.status === 'resolved'
 );
-const unresolved = rows.filter((row) => row.final.status === 'unresolved');
+const unresolved = rows.filter(
+  (
+    row
+  ): row is DiagnosticRow & { final: Extract<DiagnosticRow['final'], { status: 'unresolved' }> } =>
+    row.final.status === 'unresolved'
+);
 const nonPositive = resolved.filter(
   (row) => compareDecimals(row.final.maxHpPerBar, parseDecimal('0')) <= 0
 );

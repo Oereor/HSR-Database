@@ -21,7 +21,8 @@ import type {
   RelicSetCategory,
   RelicSlot,
   SkillExtraEffect,
-  SkillVariant
+  SkillVariant,
+  Trace
 } from '../../src/lib/domain/types.js';
 import { parseTextHash } from '../../src/lib/domain/types.js';
 import { rarityFromCode, relicTypeNames } from '../../src/lib/domain/constants.js';
@@ -134,6 +135,10 @@ async function writeJson(file: string, value: unknown): Promise<void> {
 
 function unique<T>(items: T[]): T[] {
   return [...new Set(items)];
+}
+
+function defined<T>(value: T | undefined): value is T {
+  return value !== undefined;
 }
 
 export async function syncData(): Promise<DataManifest> {
@@ -1131,7 +1136,7 @@ export async function syncData(): Promise<DataManifest> {
         const memberCategories = new Set(
           (representative?.LevelUpSkillID ?? [])
             .map(String)
-            .filter((skillId) => {
+            .filter((skillId: string) => {
               const rows = rowsForSkill(skillId);
               return rows.length && isPlayerFacingSkillConfig(rows, `SkillConfig.${skillId}`);
             })
@@ -1183,7 +1188,7 @@ export async function syncData(): Promise<DataManifest> {
       .filter(([pointId]) => !consumedSkillPointIds.has(pointId))
       .filter(([, rows]) => rows.some((trace) => trace.PointName || trace.PointDesc))
       .filter(([, rows]) => [1, 3, 5].includes(Number(rows[0]?.PointType)))
-      .map(([pointId, rows]) => {
+      .map(([pointId, rows]): Trace => {
         const ordered = [...rows].sort((a, b) => Number(a.Level ?? 1) - Number(b.Level ?? 1));
         const representative =
           ordered.find((trace) => trace.PointName || trace.PointDesc) ?? ordered[0];
@@ -1191,7 +1196,7 @@ export async function syncData(): Promise<DataManifest> {
           throw new Error(`行迹 ${pointId} 不是预期的单级可展示节点`);
         const sourcePointType = Number(representative.PointType);
         const type = sourcePointType === 1 ? 'stat' : 'ability';
-        const propertyTypes = unique(
+        const propertyTypes = unique<string>(
           (representative.StatusAddList ?? [])
             .map((status: Raw) => String(status.PropertyType ?? ''))
             .filter(Boolean)
@@ -1248,7 +1253,7 @@ export async function syncData(): Promise<DataManifest> {
     const eidolons = (config.RankIDList ?? [])
       .map((rankId: number) => avatarRanks.get(String(rankId)))
       .filter(Boolean)
-      .map((rank) => {
+      .map((rank: Raw) => {
         const id = String(rank.RankID);
         const iconKey = configuredCharacterDetailIconKey(
           'rank',
@@ -1649,7 +1654,7 @@ export async function syncData(): Promise<DataManifest> {
         return [];
       }
       if (value === 0) return [];
-      if (weaknesses.some((weakness) => weakness.element === element))
+      if (weaknesses.some((weakness: { element: string }) => weakness.element === element))
         enemyAudit.weaknessResistanceConflicts.push({ enemyId: id, element, value });
       return [{ element, name: elementName(sourceElement), value }];
     });

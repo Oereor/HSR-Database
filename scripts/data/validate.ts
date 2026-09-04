@@ -1730,6 +1730,7 @@ for (const [profile, id] of [
 
 const castoriceSkillMeta = skillVariant(baseProfile(castorice), '140702')?.combatMeta;
 if (
+  !castoriceSkillMeta ||
   gameTextToPlain(castoriceSkillMeta?.specialResource).trim() !== '30%我方全体当前生命值' ||
   castoriceSkillMeta?.battlePointDelta !== undefined ||
   castoriceSkillMeta.energyGain !== undefined ||

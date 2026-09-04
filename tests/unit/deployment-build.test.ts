@@ -32,11 +32,12 @@ describe('deployment build orchestration', () => {
         },
         commandRunner: async (args) => {
           events.push(args.join(' '));
+          if (args[0] === 'check:scripts') return;
           throw new Error('Official name snapshot is stale: pnpm data:search-names:update');
         }
       })
     ).rejects.toThrow('pnpm data:search-names:update');
-    expect(events).toEqual(['data:search-names:check']);
+    expect(events).toEqual(['check:scripts', 'data:search-names:check']);
   });
 
   it('includes all StarRailRes indexes required by character detail icon resolution', () => {
@@ -76,6 +77,7 @@ describe('deployment build orchestration', () => {
     expect(events).toEqual([
       'lock',
       'prepare-turn-based',
+      'check:scripts',
       'data:search-names:check',
       'data:ensure',
       'assets:ensure:enemies',

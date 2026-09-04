@@ -4,6 +4,15 @@ import type { GlobalSearchIndex } from '../../src/lib/domain/search-index';
 import { normalizeSearchLabel } from '../../src/lib/search/normalization';
 
 const index = JSON.parse(readFileSync('static/generated/search.json', 'utf8')) as GlobalSearchIndex;
+// Human aliases can legitimately add characters to the two official March forms.
+const marchMatches = index.documents.flatMap((doc) =>
+  doc.target.kind === 'character' &&
+  [doc.canonicalName, ...doc.officialAliases, ...doc.playerAliases].some((name) =>
+    normalizeSearchLabel(name).includes('三月七')
+  )
+    ? [{ id: doc.target.id, name: doc.canonicalName }]
+    : []
+);
 
 test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可重新搜索', async ({ page }) => {
   await page.goto('/search?q=丹恒');
@@ -14,8 +23,13 @@ test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可�
   const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
   await input.fill('三月七');
   await input.press('Enter');
-  await expect(cards).toHaveCount(2);
+  await expect(cards).toHaveCount(marchMatches.length);
   await expect(cards).toContainText(['三月七·存护', '三月七·巡猎']);
+  for (const match of marchMatches) {
+    const card = page.locator(`a.entity-overview-card[href="/characters/${match.id}"]`);
+    await expect(card).toContainText(match.name);
+    if (!match.name.includes('三月七')) await expect(card).not.toContainText('三月七');
+  }
   await input.fill('');
   await input.press('Enter');
   await expect(page.getByRole('heading', { name: '开始探索' })).toBeVisible();
@@ -137,7 +151,7 @@ test('Search V2 普通类别窗口保留第 101 条之后的结果，换查询�
   const input = page.getByPlaceholder('搜索角色、光锥、遗器、敌方单位…');
   await input.fill('三月七');
   await input.press('Enter');
-  await expect(page.locator('a.entity-overview-card')).toHaveCount(2);
+  await expect(page.locator('a.entity-overview-card')).toHaveCount(marchMatches.length);
   await page.goBack();
   await expect(section.locator('a.entity-overview-card')).toHaveCount(100);
 });
