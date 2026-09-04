@@ -15,9 +15,9 @@ test('更新日志首次自动打开、今日关闭与手动打开', async ({ pa
   const dialog = page.getByRole('dialog', { name: '更新日志' });
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('heading', { name: '更新日志' })).toBeVisible();
-  await expect(dialog.getByText('上游数据自动更新', { exact: true })).toBeVisible();
+  await expect(dialog.getByText('增加了一些 icon', { exact: true })).toBeVisible();
   await expect(dialog.getByText('2026-09-03', { exact: true }).first()).toBeVisible();
-  await expect(dialog.getByText('TurnBasedGameData', { exact: true })).toBeVisible();
+  await expect(dialog.getByText('光锥部分包括：', { exact: true })).toBeVisible();
 
   await dialog.getByRole('button', { name: '关闭更新日志' }).click();
   await expect(dialog).not.toBeVisible();

@@ -99,7 +99,22 @@ Warm enemy ensure 仅验证 Nanoka version 与本地 cache，完整 warm deploym
 
 将 `.upstream/` 临时重命名后，以未设置 `HSR_DATA_ROOT`/`HSR_ASSET_ROOT` 的环境启动静态 preview，首页请求返回 HTTP 200；随后已恢复 `.upstream/`。因此运行时不需要 upstream checkout、Git 或 GitHub。
 
-## Remaining Work
+## Search V2 Upstream Metadata Automation
+
+当前 `.github/workflows/update-upstreams.yml` 在 lock 确有变化时执行：
+
+```text
+upstreams:update → data:search-names:update → data:player-aliases:sync → deploy:build
+→ commit → automation/update-upstreams → PR to develop → 人工审核
+```
+
+官方名称刷新命令内部准备并验证 pinned checkout；随后的 skeleton sync 只读取该 tracked 快照，为新 AvatarID 插入空 `playerAliases: []`，保留已有人工内容、数组顺序及原始 JSON 字节。无新 ID 时不写入。stale/非法 ID 或 aliases 在写入前报错，由维护者处理，不自动删除或迁移。
+
+自动 commit 的显式文件集合为 `upstream.lock.json`、`data/search/character-official-names.generated.json`、`data/search/character-player-aliases.json`，只产生实际变化的 diff。权限维持 `contents: write` 和 `pull-requests: write`；只更新 automation 分支并创建/更新至 develop 的 PR，不直接推 main/develop，不自动审核或合并。
+
+普通 `deploy:build` 仍是校验与可重现构建，不运行 skeleton sync、不修改 tracked 输入。维护者只编辑 alias 时，运行 `pnpm data:ensure`、`pnpm test`、`pnpm data:validate`；metadata digest 会触发搜索产物增量重建。手工更新 upstream 时先刷新官方名称、显式同步 skeleton、审阅 diff，再运行 `pnpm deploy:build`。详情见 [Search V2 维护文档](search-v2.md)。
+
+## Remaining Work（初次部署基础阶段的历史范围）
 
 以下内容不属于本阶段：
 

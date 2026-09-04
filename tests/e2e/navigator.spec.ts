@@ -1,6 +1,10 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
 
 const expectedIcons = ['overview', 'characters', 'light-cones', 'relics', 'enemies', 'endgame'];
+const sourceCommit = (
+  JSON.parse(readFileSync('src/lib/generated/manifest.json', 'utf8')) as { sourceCommit: string }
+).sourceCommit;
 
 test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', async ({ page, isMobile }) => {
   test.skip(isMobile, '仅桌面项目执行');
@@ -53,7 +57,7 @@ test('桌面 compact rail 与 overlay pane 共享导航且不重排主内容', a
     '/generated-assets/branding/train-party.png'
   );
   await expect(dialog.getByText('数据版本 4.5')).toBeVisible();
-  await expect(dialog.getByText('014e33e2')).toBeVisible();
+  await expect(dialog.getByText(sourceCommit.slice(0, 8))).toBeVisible();
   await expect(dialog.getByRole('navigation').getByRole('link')).toHaveCount(6);
   const after = await main.boundingBox();
   expect(after?.x).toBe(before?.x);

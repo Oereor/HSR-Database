@@ -8,6 +8,7 @@
   import OverviewHero from '$lib/components/OverviewHero.svelte';
   import RelicOverviewCard from '$lib/components/RelicOverviewCard.svelte';
   import SearchBar from '$lib/components/SearchBar.svelte';
+  import SearchResultWindow from '$lib/components/SearchResultWindow.svelte';
   import SectionHeading from '$lib/components/SectionHeading.svelte';
   import EndgameEnemyGrid from '$lib/components/endgame/EndgameEnemyGrid.svelte';
   import {
@@ -17,6 +18,7 @@
   } from '$lib/data/visual-assets';
   import { ENDGAME_MODES, ENDGAME_MODE_META } from '$lib/domain/endgame-view';
   import { createGlobalSearchService, endgameSearchSeasonsForMode } from '$lib/search/search';
+  import { SEARCH_DISPLAY_BATCH, windowEndgameSeasons } from '$lib/search/presentation';
   import { formatDocumentTitle } from '$lib/site';
   import type { PageData } from './$types';
 
@@ -33,23 +35,34 @@
   let results = searchService.search('').results;
   let endgamePending = false;
   let endgameUnavailable = false;
+  let searchUnavailable = false;
   let requestSequence = 0;
-  $: endgameModes = ENDGAME_MODES.map((mode) => ({
-    mode,
-    label: ENDGAME_MODE_META[mode].label,
-    seasons: endgameSearchSeasonsForMode(results.endgame, mode)
-  })).filter(({ seasons }) => seasons.length);
+  const initialLimits = () => ({
+    characters: 100,
+    lightCones: 100,
+    relics: 100,
+    enemies: 100,
+    moc: 100,
+    pf: 100,
+    as: 100,
+    aa: 100
+  });
+  let limits = initialLimits();
+  $: endgameModes = ENDGAME_MODES.map((mode) => {
+    const seasons = endgameSearchSeasonsForMode(results.endgame, mode);
+    return {
+      mode,
+      label: ENDGAME_MODE_META[mode].label,
+      total: seasons.reduce((sum, season) => sum + season.enemies.length, 0),
+      seasons: windowEndgameSeasons(seasons, limits[mode])
+    };
+  }).filter(({ total }) => total);
   $: resultCount =
     results.characters.length +
     results.lightCones.length +
     results.relics.length +
     results.enemies.length +
-    endgameModes.reduce(
-      (modeTotal, mode) =>
-        modeTotal +
-        mode.seasons.reduce((seasonTotal, season) => seasonTotal + season.enemies.length, 0),
-      0
-    );
+    endgameModes.reduce((modeTotal, mode) => modeTotal + mode.total, 0);
 
   afterNavigate(({ to }) => {
     const nextQuery = to?.url.searchParams.get('q')?.trim() ?? '';
@@ -60,8 +73,10 @@
 
   async function applyQuery(query: string) {
     const request = ++requestSequence;
+    limits = initialLimits();
     const snapshot = searchService.search(query);
     results = snapshot.results;
+    searchUnavailable = snapshot.unavailable;
     endgameUnavailable = false;
     endgamePending = snapshot.endgameMatches.length > 0;
     if (!snapshot.endgameMatches.length) return;
@@ -102,13 +117,13 @@
   />
 </div>
 
-{#if appliedQuery && (resultCount || endgameUnavailable)}
+{#if appliedQuery && (resultCount || endgameUnavailable || searchUnavailable)}
   <div class="search-result-groups" aria-live="polite">
     {#if results.characters.length}
       <section class="search-result-section" aria-labelledby="search-results-characters">
         <SectionHeading level={1} id="search-results-characters">角色</SectionHeading>
         <OverviewGrid variant="character">
-          {#each results.characters as result (result.id)}
+          {#each results.characters.slice(0, limits.characters) as result (result.id)}
             <CharacterOverviewCard
               entry={result}
               href={`/characters/${result.id}`}
@@ -117,6 +132,11 @@
             />
           {/each}
         </OverviewGrid>
+        <SearchResultWindow
+          shown={limits.characters}
+          total={results.characters.length}
+          onLoadMore={() => (limits.characters += SEARCH_DISPLAY_BATCH)}
+        />
       </section>
     {/if}
 
@@ -124,7 +144,7 @@
       <section class="search-result-section" aria-labelledby="search-results-light-cones">
         <SectionHeading level={1} id="search-results-light-cones">光锥</SectionHeading>
         <OverviewGrid>
-          {#each results.lightCones as result (result.id)}
+          {#each results.lightCones.slice(0, limits.lightCones) as result (result.id)}
             <LightConeOverviewCard
               entry={result}
               href={`/light-cones/${result.id}`}
@@ -132,6 +152,11 @@
             />
           {/each}
         </OverviewGrid>
+        <SearchResultWindow
+          shown={limits.lightCones}
+          total={results.lightCones.length}
+          onLoadMore={() => (limits.lightCones += SEARCH_DISPLAY_BATCH)}
+        />
       </section>
     {/if}
 
@@ -139,7 +164,7 @@
       <section class="search-result-section" aria-labelledby="search-results-relics">
         <SectionHeading level={1} id="search-results-relics">遗器</SectionHeading>
         <OverviewGrid variant="compact">
-          {#each results.relics as result (result.id)}
+          {#each results.relics.slice(0, limits.relics) as result (result.id)}
             <RelicOverviewCard
               entry={result}
               href={`/relics/${result.id}`}
@@ -147,6 +172,11 @@
             />
           {/each}
         </OverviewGrid>
+        <SearchResultWindow
+          shown={limits.relics}
+          total={results.relics.length}
+          onLoadMore={() => (limits.relics += SEARCH_DISPLAY_BATCH)}
+        />
       </section>
     {/if}
 
@@ -154,7 +184,7 @@
       <section class="search-result-section" aria-labelledby="search-results-enemies">
         <SectionHeading level={1} id="search-results-enemies">敌方单位</SectionHeading>
         <OverviewGrid>
-          {#each results.enemies as result (result.id)}
+          {#each results.enemies.slice(0, limits.enemies) as result (result.id)}
             <EnemyOverviewCard
               entry={result}
               href={`/enemies/${result.id}`}
@@ -162,6 +192,11 @@
             />
           {/each}
         </OverviewGrid>
+        <SearchResultWindow
+          shown={limits.enemies}
+          total={results.enemies.length}
+          onLoadMore={() => (limits.enemies += SEARCH_DISPLAY_BATCH)}
+        />
       </section>
     {/if}
 
@@ -193,10 +228,18 @@
                   </section>
                 {/each}
               </div>
+              <SearchResultWindow
+                shown={limits[mode.mode]}
+                total={mode.total}
+                onLoadMore={() => (limits[mode.mode] += SEARCH_DISPLAY_BATCH)}
+              />
             </section>
           {/each}
         </div>
       </section>
+    {/if}
+    {#if searchUnavailable}
+      <p class="search-data-unavailable" role="status">部分搜索资料暂时无法载入，请刷新后重试。</p>
     {/if}
     {#if endgameUnavailable}
       <p class="search-data-unavailable" role="status">

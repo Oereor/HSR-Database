@@ -67,6 +67,9 @@ export async function runDeploymentBuild(
   };
 
   console.log(`[data] HSR_DATA_ROOT=${env.HSR_DATA_ROOT}`);
+  await timed('official search names validation', () =>
+    commandRunner(['data:search-names:check'], env)
+  );
   await timed('data ensure/generation', () => commandRunner(['data:ensure'], env));
 
   console.log('[enemy-assets] ensuring Nanoka enemy images');

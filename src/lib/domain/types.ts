@@ -424,15 +424,6 @@ export interface EnemySkill {
   extraEffects: EnemyExtraEffect[];
 }
 
-export interface SearchEntry {
-  id: string;
-  kind: EntityKind;
-  name: string;
-  href: string;
-  aliases: string[];
-  meta?: string;
-}
-
 export interface HomepageRecentWarpData {
   schemaVersion: 1;
   avatarUps: Array<{ gachaId: number; avatarId: string }>;

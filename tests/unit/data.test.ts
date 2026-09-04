@@ -645,7 +645,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(97);
-    expect(manifest.schemaVersion).toBe(34);
+    expect(manifest.schemaVersion).toBe(35);
     expect(manifest.gameVersionFull).toBe('4.5.0');
     expect(manifest.gameVersion).toBe('4.5');
     expect(manifest.language).toBe('CHS');
@@ -768,7 +768,7 @@ describe('真实数据管线', () => {
   it('将四名 LD 角色完整纳入同一 Character domain 与搜索索引', async () => {
     const search = JSON.parse(
       await readFile(path.join(process.cwd(), 'static', 'generated', 'search.json'), 'utf8')
-    ) as { entities: Array<{ id: string; kind: string; name: string }> };
+    ) as { documents: Array<{ target: { id: string; kind: string }; canonicalName: string }> };
     for (const [id, name, pathName, elementName] of [
       ['1014', 'Saber', '毁灭', '风'],
       ['1015', 'Archer', '巡猎', '量子'],
@@ -783,8 +783,8 @@ describe('真实数据管线', () => {
       expect(baseProfile(character).skillCards).toHaveLength(5);
       expect(baseProfile(character).traces).toHaveLength(13);
       expect(baseProfile(character).eidolons).toHaveLength(6);
-      expect(search.entities).toContainEqual(
-        expect.objectContaining({ id, kind: 'character', name })
+      expect(search.documents).toContainEqual(
+        expect.objectContaining({ target: { id, kind: 'character' }, canonicalName: name })
       );
     }
   });
@@ -835,7 +835,9 @@ describe('真实数据管线', () => {
     };
     const missing = audit.missingTextAudit;
     expect(missing.D.count).toBe(0);
-    expect(missing.A.count).toBe(1711);
+    // Search V2 no longer probes 97 missing AvatarFullName hashes as search aliases.
+    expect(missing.A.count).toBe(1614);
+    expect(missing.A.groups.some((group) => group.field === 'searchAlias')).toBe(false);
     expect(missing.A.groups).toContainEqual({
       reason: 'missing-source-field',
       entity: 'character-trace',
