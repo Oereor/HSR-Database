@@ -40,6 +40,15 @@ const completeManual = (
 });
 
 describe('Character search metadata', () => {
+  it('keeps only identity and name in generated search catalogs without changing the bundle', () => {
+    for (const catalog of Object.values(inputs.catalogs))
+      for (const entry of catalog) expect(Object.keys(entry).sort()).toEqual(['id', 'name']);
+    const aliases = JSON.parse(readFileSync('data/search/character-player-aliases.json', 'utf8'));
+    expect(buildSearchDocuments(inputs, aliases)).toEqual(
+      JSON.parse(readFileSync('static/generated/search.json', 'utf8'))
+    );
+  });
+
   it('derives the tracked snapshot deterministically from the same pinned data', async () => {
     const root = path.resolve(process.env.HSR_DATA_ROOT ?? '../TurnBasedGameData');
     const derived = await deriveCharacterNames(root, snapshot.sourceCommit);

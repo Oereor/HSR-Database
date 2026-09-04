@@ -97,7 +97,7 @@ describe('真实数据管线', () => {
       source: 'avatar',
       progressionId: 'synthetic-progression',
       scalingParamIndexes: [],
-      levels: [{ level: 1, params: [], description: '', descriptionTokens: [] }],
+      levels: [{ level: 1, description: '', descriptionTokens: [] }],
       combatMetaLevels: [{ level: 1, combatMeta: {} }],
       category: 'skill'
     };
@@ -505,6 +505,7 @@ describe('真实数据管线', () => {
       }
     ]);
     expect(normalized.scalingParamIndexes).toEqual([0]);
+    expect(normalized.levels.every((level) => !('params' in level))).toBe(true);
     expect(normalized.levels[0].descriptionTokens).toEqual([
       { type: 'text', value: '战斗开始时，使装备者的暴击率提高' },
       { type: 'scaling-value', value: '12%' },
@@ -645,7 +646,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(97);
-    expect(manifest.schemaVersion).toBe(35);
+    expect(manifest.schemaVersion).toBe(36);
     expect(manifest.gameVersionFull).toBe('4.5.0');
     expect(manifest.gameVersion).toBe('4.5');
     expect(manifest.language).toBe('CHS');

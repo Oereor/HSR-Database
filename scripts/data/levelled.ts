@@ -78,7 +78,6 @@ export function normalizeLevelledDescriptions(
     );
     return {
       level: input.level,
-      params: input.params,
       description: formatted.description,
       descriptionTokens: formatted.descriptionTokens
     };

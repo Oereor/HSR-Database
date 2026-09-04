@@ -258,10 +258,6 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
   };
 }
 
-export async function readCharacterIds(): Promise<string[]> {
-  return (await readAssetRequirements()).characterIds;
-}
-
 export async function readAssetManifest(): Promise<VisualAssetManifest | undefined> {
   try {
     return JSON.parse(await readFile(assetManifestPath, 'utf8')) as VisualAssetManifest;
@@ -997,17 +993,6 @@ export function manifestCoversRequirements(
     collectionCovers(manifest.branding.icons, requirements.brandIcons) &&
     collectionCovers(manifest.utility.icons, requirements.utilityIcons) &&
     collectionCovers(manifest.endgame.modeIcons, requirements.endgameModeIcons)
-  );
-}
-
-export function manifestCoversCharacters(
-  manifest: VisualAssetManifest,
-  characterIds: string[]
-): boolean {
-  return (
-    manifest.schemaVersion === VISUAL_ASSET_SCHEMA_VERSION &&
-    collectionCovers(manifest.characters.previews, characterIds) &&
-    collectionCovers(manifest.characters.portraits, characterIds)
   );
 }
 

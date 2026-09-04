@@ -65,7 +65,7 @@ try {
 } catch (error) {
   if (process.env.HSR_DEPLOYMENT_BUILD === '1') throw error;
   if (
-    manifest?.schemaVersion === 35 &&
+    manifest?.schemaVersion === 36 &&
     (!process.env.HSR_EXPECTED_DATA_COMMIT ||
       manifest.sourceCommit === process.env.HSR_EXPECTED_DATA_COMMIT) &&
     !endgameFilesPresent.includes(false) &&
@@ -82,7 +82,7 @@ try {
 if (availableCommit) {
   if (
     !manifest ||
-    manifest.schemaVersion !== 35 ||
+    manifest.schemaVersion !== 36 ||
     manifest.sourceCommit !== availableCommit ||
     endgameFilesPresent.includes(false) ||
     !homepageFilesValid ||

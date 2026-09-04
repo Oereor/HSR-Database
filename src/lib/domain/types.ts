@@ -34,15 +34,6 @@ export interface LevelledDescription {
   level: number;
   description: string;
   descriptionTokens: DescriptionToken[];
-  params: number[];
-}
-
-export interface Skill {
-  id: string;
-  name: string;
-  type?: string;
-  scalingParamIndexes: number[];
-  levels: LevelledDescription[];
 }
 
 export type SkillCategory =

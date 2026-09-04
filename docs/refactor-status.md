@@ -1,5 +1,7 @@
 # 重构状态
 
+> 本文按阶段保留历史完成记录，其中 schema 编号、数量和“后续”事项描述的是当时状态，不代表当前待办。当前功能与部署入口见 README，搜索架构见 docs/search-v2.md；本轮技术债审计见 docs/investigations/technical-debt-generated-data-audit.md。
+
 ## 第一次重构
 
 - 使用 `lossless-json` 和 branded `TextHash` 无损保存 64 位文本 Hash。

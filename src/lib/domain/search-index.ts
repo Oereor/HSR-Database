@@ -7,7 +7,6 @@ import {
 } from './endgame-view';
 import type { SearchDocumentBundle } from '../search/documents.js';
 export { SEARCH_DOCUMENT_SCHEMA_VERSION as GLOBAL_SEARCH_SCHEMA_VERSION } from '../search/documents.js';
-export { normalizeSearch, normalizeSearchLabel } from '../search/normalization.js';
 
 export interface EndgameOccurrenceLocator {
   mode: EndgameMode;

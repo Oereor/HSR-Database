@@ -54,7 +54,7 @@ pnpm test
 pnpm data:validate
 ```
 
-`src/lib/generated/search-inputs.json` 缓存已生成的官方名称、catalog 和 Endgame 名称桶；alias-only 更新只重建 `static/generated/search.json`，复用缓存，不重新解析整个上游。搜索 bundle 含 schema 2、normalization 1、naming policy 1、sourceCommit 和 metadata SHA-256 digest。数据 manifest 为 schema 35。缓存版本或来源不匹配必须重新生成；非法人工 metadata 不能进入离线 fallback。fallback 只处理上游访问失败，生成错误直接向外抛出。
+`src/lib/generated/search-inputs.json` 缓存已生成的官方名称、仅含 `id/name` 的 catalog 投影和 Endgame 名称桶；alias-only 更新只重建 `static/generated/search.json`，复用缓存，不重新解析整个上游。搜索 bundle 含 schema 2、normalization 1、naming policy 1、sourceCommit 和 metadata SHA-256 digest。数据 manifest 为 schema 36。缓存版本或来源不匹配必须重新生成；非法人工 metadata 不能进入离线 fallback。fallback 只处理上游访问失败，生成错误直接向外抛出。
 
 ## 查询架构
 

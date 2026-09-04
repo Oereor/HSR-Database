@@ -1881,10 +1881,10 @@ export async function syncData(): Promise<DataManifest> {
   const searchInputs: SearchBuildInputs = {
     official: characterNames.snapshot,
     catalogs: {
-      character: characterCatalog,
-      'light-cone': lightConeCatalog,
-      relic: relicCatalog,
-      enemy: enemyCatalog
+      character: characterCatalog.map(({ id, name }) => ({ id, name })),
+      'light-cone': lightConeCatalog.map(({ id, name }) => ({ id, name })),
+      relic: relicCatalog.map(({ id, name }) => ({ id, name })),
+      enemy: enemyCatalog.map(({ id, name }) => ({ id, name }))
     },
     endgameEnemies: collectEndgameSearchNames(endgame.datasets, (name) =>
       createHash('sha256').update(name).digest('hex').slice(0, 16)
@@ -1920,7 +1920,7 @@ export async function syncData(): Promise<DataManifest> {
   await writeJson(path.join(generatedRoot, 'homepage.json'), homepage);
 
   const manifest: DataManifest = {
-    schemaVersion: 35,
+    schemaVersion: 36,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,
