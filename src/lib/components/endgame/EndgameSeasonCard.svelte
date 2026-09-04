@@ -202,7 +202,7 @@
   @media (max-width: 520px) {
     .endgame-season-card--current {
       min-height: 190px;
-      padding: var(--space-5);
+      padding: var(--space-4);
     }
 
     .endgame-season-card--upcoming {
