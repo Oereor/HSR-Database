@@ -1,3 +1,9 @@
+import {
+  buildSearchDocuments,
+  loadPlayerAliases,
+  searchInputsPath,
+  type SearchBuildInputs
+} from './search-documents.js';
 import { createHash } from 'node:crypto';
 import { access, readFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -18,7 +24,6 @@ import {
   collectEndgameSearchNames,
   endgameOccurrenceLocatorKey,
   GLOBAL_SEARCH_SCHEMA_VERSION,
-  normalizeSearchLabel,
   type GlobalSearchIndex
 } from '../../src/lib/domain/search-index.js';
 import type {
@@ -70,7 +75,7 @@ import {
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 34)
+if (manifest.schemaVersion !== 35)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
 const parsedGameVersion = parseGameVersion(manifest.sourceVersion);
@@ -861,18 +866,15 @@ const search = JSON.parse(
   await readFile(path.join(staticGeneratedRoot, 'search.json'), 'utf8')
 ) as GlobalSearchIndex;
 if (search.schemaVersion !== GLOBAL_SEARCH_SCHEMA_VERSION) throw new Error('搜索索引 schema 异常');
-if (search.entities.length !== Object.values(expected).reduce((sum, value) => sum + value, 0)) {
-  throw new Error('搜索索引数量与目录数量不一致');
-}
-for (const entry of search.entities) {
-  if (
-    !entry.normalizedLabels.length ||
-    entry.normalizedLabels.some((label) => label !== normalizeSearchLabel(label))
-  )
-    throw new Error(`搜索索引 ${entry.kind}:${entry.id} 包含未规范化标签`);
-  if (new Set(entry.normalizedLabels).size !== entry.normalizedLabels.length)
-    throw new Error(`搜索索引 ${entry.kind}:${entry.id} 包含重复标签`);
-}
+const searchInputs = JSON.parse(await readFile(searchInputsPath, 'utf8')) as SearchBuildInputs;
+const expectedSearch = buildSearchDocuments(searchInputs, await loadPlayerAliases());
+if (JSON.stringify(search) !== JSON.stringify(expectedSearch))
+  throw new Error('搜索文档与当前 metadata/catalog 不一致');
+if (
+  search.documents.filter((doc) => doc.target.kind !== 'endgame-name').length !==
+  Object.values(expected).reduce((sum, value) => sum + value, 0)
+)
+  throw new Error('搜索文档数量与目录数量不一致');
 const expectedEndgameSearch = collectEndgameSearchNames(endgame, (name) =>
   createHash('sha256').update(name).digest('hex').slice(0, 16)
 );
@@ -882,11 +884,9 @@ if (
   new Set(search.endgameEnemies.map(({ entryId }) => entryId)).size !== search.endgameEnemies.length
 )
   throw new Error('Endgame 搜索 entryId 冲突');
-const indexedLocatorKeys = search.endgameEnemies.flatMap(({ name, normalizedName, locators }) => {
-  if (normalizedName !== normalizeSearchLabel(name))
-    throw new Error(`Endgame 搜索名称未规范化：${name}`);
-  return locators.map(endgameOccurrenceLocatorKey);
-});
+const indexedLocatorKeys = search.endgameEnemies.flatMap(({ locators }) =>
+  locators.map(endgameOccurrenceLocatorKey)
+);
 const expectedLocatorKeys = expectedEndgameSearch.flatMap(({ locators }) =>
   locators.map(endgameOccurrenceLocatorKey)
 );
@@ -1430,8 +1430,9 @@ for (const [id, name, pathName, elementName] of [
   )
     throw new Error(`LD 角色 ${id} 的 Character domain 不完整`);
   if (
-    !search.entities.some(
-      (entry) => entry.kind === 'character' && entry.id === id && entry.name === name
+    !search.documents.some(
+      (entry) =>
+        entry.target.kind === 'character' && entry.target.id === id && entry.canonicalName === name
     )
   )
     throw new Error(`LD 角色 ${id} 未进入搜索索引`);
@@ -1729,6 +1730,7 @@ for (const [profile, id] of [
 
 const castoriceSkillMeta = skillVariant(baseProfile(castorice), '140702')?.combatMeta;
 if (
+  !castoriceSkillMeta ||
   gameTextToPlain(castoriceSkillMeta?.specialResource).trim() !== '30%我方全体当前生命值' ||
   castoriceSkillMeta?.battlePointDelta !== undefined ||
   castoriceSkillMeta.energyGain !== undefined ||
@@ -1793,5 +1795,5 @@ if (audit.avatarSpecialSkillTreeAudit.diagnostics.length)
     `AvatarSpecialSkillTree relation 警告：${audit.avatarSpecialSkillTreeAudit.diagnostics.length} 条诊断，详见 data/audit/latest.json。`
   );
 console.log(
-  `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，${search.entities.length} 条简中搜索记录。`
+  `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，${search.documents.length} 条简中搜索记录。`
 );

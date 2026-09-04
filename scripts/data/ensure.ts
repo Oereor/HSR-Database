@@ -8,6 +8,9 @@ import type {
 import { assertDataRoot, generatedRoot, resolveDataRoot, sourceCommit } from './paths.js';
 import { assertHomepageRecentWarpData } from './homepage.js';
 import { syncData } from './sync.js';
+import { ensureSearchDocuments, searchInputsPath } from './search-documents.js';
+import { CHARACTER_NAMING_POLICY_VERSION } from '../../src/lib/search/name-metadata.js';
+import { SEARCH_NORMALIZATION_VERSION } from '../../src/lib/search/normalization.js';
 
 const manifestPath = path.join(generatedRoot, 'manifest.json');
 let manifest: DataManifest | undefined;
@@ -44,29 +47,51 @@ try {
 } catch {
   homepageFilesValid = false;
 }
+let namingCacheValid = false;
+try {
+  const { official } = JSON.parse(await readFile(searchInputsPath, 'utf8'));
+  namingCacheValid =
+    official.schemaVersion === 1 &&
+    official.sourceCommit === manifest?.sourceCommit &&
+    official.normalizationVersion === SEARCH_NORMALIZATION_VERSION &&
+    official.namingPolicyVersion === CHARACTER_NAMING_POLICY_VERSION;
+} catch {
+  /* A missing cache requires domain regeneration. */
+}
+let availableCommit: string | undefined;
 try {
   const root = assertDataRoot(resolveDataRoot());
-  const commit = sourceCommit(root);
-  if (
-    !manifest ||
-    manifest.schemaVersion !== 34 ||
-    manifest.sourceCommit !== commit ||
-    endgameFilesPresent.includes(false) ||
-    !homepageFilesValid
-  )
-    await syncData();
-  else console.log(`生成数据已是最新版本：${commit.slice(0, 12)}`);
+  availableCommit = sourceCommit(root);
 } catch (error) {
   if (process.env.HSR_DEPLOYMENT_BUILD === '1') throw error;
   if (
-    manifest?.schemaVersion === 34 &&
+    manifest?.schemaVersion === 35 &&
     (!process.env.HSR_EXPECTED_DATA_COMMIT ||
       manifest.sourceCommit === process.env.HSR_EXPECTED_DATA_COMMIT) &&
     !endgameFilesPresent.includes(false) &&
-    homepageFilesValid
+    homepageFilesValid &&
+    namingCacheValid
   ) {
     console.warn(`上游暂不可用，继续使用已有生成数据：${(error as Error).message}`);
   } else {
     throw error;
   }
 }
+
+// Only unavailable upstream access may fall back. Generation/metadata errors must fail.
+if (availableCommit) {
+  if (
+    !manifest ||
+    manifest.schemaVersion !== 35 ||
+    manifest.sourceCommit !== availableCommit ||
+    endgameFilesPresent.includes(false) ||
+    !homepageFilesValid ||
+    !namingCacheValid
+  )
+    await syncData();
+  else console.log(`生成数据已是最新版本：${availableCommit.slice(0, 12)}`);
+}
+
+// Validation errors here must never be swallowed by the upstream-offline fallback.
+const currentManifest = JSON.parse(await readFile(manifestPath, 'utf8')) as DataManifest;
+await ensureSearchDocuments(currentManifest.sourceCommit);

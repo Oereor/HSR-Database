@@ -41,11 +41,11 @@ await writeFile(path.join(auditRoot, 'audit.json'), `${JSON.stringify(report, nu
 console.log(
   JSON.stringify(
     {
-      sourceCommit: report.sourceCommit,
-      counts: report.counts,
-      endgame: report.endgameAudit,
+      sourceCommit: auditData.sourceCommit,
+      counts: auditData.counts,
+      endgame: auditData.endgameAudit,
       missingTextAudit: Object.fromEntries(
-        Object.entries(report.missingTextAudit as Record<string, { count: number }>).map(
+        Object.entries(auditData.missingTextAudit as Record<string, { count: number }>).map(
           ([category, summary]) => [category, summary.count]
         )
       ),

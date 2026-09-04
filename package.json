@@ -21,15 +21,20 @@
     "predev": "pnpm data:ensure && pnpm assets:ensure",
     "dev": "vite dev",
     "deploy:build": "tsx scripts/deployment/build.ts",
+    "deploy:build:clean": "tsx scripts/deployment/clean.ts",
     "upstreams:update": "tsx scripts/update-upstream-lock.ts",
     "prebuild": "pnpm data:ensure && pnpm assets:ensure",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json && pnpm check:scripts",
+    "check:scripts": "tsc -p tsconfig.scripts.json --noEmit",
     "lint": "prettier --check . && eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "data:search-names:update": "tsx scripts/data/search-names.ts update",
+    "data:search-names:check": "tsx scripts/data/search-names.ts check",
+    "data:player-aliases:sync": "tsx scripts/data/player-aliases.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -65,6 +70,7 @@
     "pnpm": ">=10"
   },
   "dependencies": {
-    "@vercel/analytics": "^2.0.1"
+    "@vercel/analytics": "^2.0.1",
+    "flexsearch": "0.8.212"
   }
 }

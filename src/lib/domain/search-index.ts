@@ -5,26 +5,9 @@ import {
   type EndgameEnemyGridItem,
   type EndgamePeriodView
 } from './endgame-view';
-import { gameTextToPlain } from './game-text';
-import type { EntityKind, SearchEntry } from './types';
-
-export const GLOBAL_SEARCH_SCHEMA_VERSION = 1 as const;
-
-export const normalizeSearch = (value: string): string =>
-  value
-    .normalize('NFKC')
-    .toLocaleLowerCase()
-    .replace(/[\s·•・—_\-/]+/g, '');
-
-export const normalizeSearchLabel = (value: string): string =>
-  normalizeSearch(gameTextToPlain(value));
-
-export interface GlobalSearchEntityEntry {
-  kind: EntityKind;
-  id: string;
-  name: string;
-  normalizedLabels: string[];
-}
+import type { SearchDocumentBundle } from '../search/documents.js';
+export { SEARCH_DOCUMENT_SCHEMA_VERSION as GLOBAL_SEARCH_SCHEMA_VERSION } from '../search/documents.js';
+export { normalizeSearch, normalizeSearchLabel } from '../search/normalization.js';
 
 export interface EndgameOccurrenceLocator {
   mode: EndgameMode;
@@ -39,13 +22,10 @@ export interface EndgameOccurrenceLocator {
 export interface EndgameSearchNameEntry {
   entryId: string;
   name: string;
-  normalizedName: string;
   locators: EndgameOccurrenceLocator[];
 }
 
-export interface GlobalSearchIndex {
-  schemaVersion: typeof GLOBAL_SEARCH_SCHEMA_VERSION;
-  entities: GlobalSearchEntityEntry[];
+export interface GlobalSearchIndex extends SearchDocumentBundle {
   endgameEnemies: EndgameSearchNameEntry[];
 }
 
@@ -73,15 +53,6 @@ export function endgameOccurrenceLocatorKey(locator: EndgameOccurrenceLocator): 
   ].join(':');
 }
 
-export function buildSearchEntityEntries(entries: SearchEntry[]): GlobalSearchEntityEntry[] {
-  return entries.map(({ kind, id, name, aliases }) => ({
-    kind,
-    id,
-    name,
-    normalizedLabels: [...new Set([name, ...aliases].map(normalizeSearchLabel).filter(Boolean))]
-  }));
-}
-
 export function collectEndgameSearchNames(
   datasets: Record<EndgameMode, EndgameModeDataset>,
   entryIdForName: (name: string) => string
@@ -101,7 +72,6 @@ export function collectEndgameSearchNames(
                   entry = {
                     entryId: entryIdForName(name),
                     name,
-                    normalizedName: normalizeSearchLabel(name),
                     locators: []
                   };
                   byName.set(name, entry);

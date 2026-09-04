@@ -144,7 +144,7 @@ GitHub Actions 会定期检查两个 upstream 是否有更新。发现新版本�
 ```markdown
 ---
 title: 更新标题
-date: '2026-09-03'
+date: 'yyyy-mm-dd'
 ---
 
 这里写更新内容。

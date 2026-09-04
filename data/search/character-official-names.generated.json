@@ -1,0 +1,1177 @@
+{
+  "schemaVersion": 1,
+  "normalizationVersion": 1,
+  "namingPolicyVersion": 1,
+  "sourceCommit": "8cdb905dc2f8e6fffa9be4eb07af3e34435d6091",
+  "characters": {
+    "1001": {
+      "canonicalName": "三月七·存护",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1001",
+        "field": "AvatarName",
+        "textHash": "6186714091647966180",
+        "policy": "multiple-path",
+        "baseAvatarId": "1001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Knight",
+          "field": "BaseTypeText",
+          "textHash": "4258030345548324088"
+        }
+      },
+      "officialAliases": [
+        {
+          "value": "三月七",
+          "sourceKind": "official-base-name",
+          "table": "AvatarConfig",
+          "recordId": "1001",
+          "field": "AvatarName",
+          "textHash": "6186714091647966180"
+        }
+      ]
+    },
+    "1002": {
+      "canonicalName": "丹恒",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1002",
+        "field": "AvatarName",
+        "textHash": "10239807114774791393",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1003": {
+      "canonicalName": "姬子",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1003",
+        "field": "AvatarName",
+        "textHash": "17590286599225097191",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1004": {
+      "canonicalName": "瓦尔特",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1004",
+        "field": "AvatarName",
+        "textHash": "2178816269909174781",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1005": {
+      "canonicalName": "卡芙卡",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1005",
+        "field": "AvatarName",
+        "textHash": "831482934451783913",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1006": {
+      "canonicalName": "银狼",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1006",
+        "field": "AvatarName",
+        "textHash": "12437709666645057337",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1008": {
+      "canonicalName": "阿兰",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1008",
+        "field": "AvatarName",
+        "textHash": "4959846561380667115",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1009": {
+      "canonicalName": "艾丝妲",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1009",
+        "field": "AvatarName",
+        "textHash": "1893706111363255403",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1013": {
+      "canonicalName": "黑塔",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1013",
+        "field": "AvatarName",
+        "textHash": "6548832256366079839",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1014": {
+      "canonicalName": "Saber",
+      "canonicalSource": {
+        "table": "AvatarConfigLD",
+        "recordId": "1014",
+        "field": "AvatarName",
+        "textHash": "11292532298779825003",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1015": {
+      "canonicalName": "Archer",
+      "canonicalSource": {
+        "table": "AvatarConfigLD",
+        "recordId": "1015",
+        "field": "AvatarName",
+        "textHash": "18287682968624271100",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1101": {
+      "canonicalName": "布洛妮娅",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1101",
+        "field": "AvatarName",
+        "textHash": "12577335996298259768",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1102": {
+      "canonicalName": "希儿",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1102",
+        "field": "AvatarName",
+        "textHash": "11512502346378460564",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1103": {
+      "canonicalName": "希露瓦",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1103",
+        "field": "AvatarName",
+        "textHash": "5848201789834711118",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1104": {
+      "canonicalName": "杰帕德",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1104",
+        "field": "AvatarName",
+        "textHash": "4662720147964902997",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1105": {
+      "canonicalName": "娜塔莎",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1105",
+        "field": "AvatarName",
+        "textHash": "12514207603391426951",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1106": {
+      "canonicalName": "佩拉",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1106",
+        "field": "AvatarName",
+        "textHash": "3030343134428618721",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1107": {
+      "canonicalName": "克拉拉",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1107",
+        "field": "AvatarName",
+        "textHash": "4657497849737059681",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1108": {
+      "canonicalName": "桑博",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1108",
+        "field": "AvatarName",
+        "textHash": "3797624834743983017",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1109": {
+      "canonicalName": "虎克",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1109",
+        "field": "AvatarName",
+        "textHash": "8885814719909498250",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1110": {
+      "canonicalName": "玲可",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1110",
+        "field": "AvatarName",
+        "textHash": "6300665444027651453",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1111": {
+      "canonicalName": "卢卡",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1111",
+        "field": "AvatarName",
+        "textHash": "5638032823797991781",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1112": {
+      "canonicalName": "托帕&账账",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1112",
+        "field": "AvatarName",
+        "textHash": "11869199815763640258",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1201": {
+      "canonicalName": "青雀",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1201",
+        "field": "AvatarName",
+        "textHash": "16637763514010100144",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1202": {
+      "canonicalName": "停云",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1202",
+        "field": "AvatarName",
+        "textHash": "8701250082145497679",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1203": {
+      "canonicalName": "罗刹",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1203",
+        "field": "AvatarName",
+        "textHash": "2482429559561780479",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1204": {
+      "canonicalName": "景元",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1204",
+        "field": "AvatarName",
+        "textHash": "330404745587936068",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1205": {
+      "canonicalName": "刃",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1205",
+        "field": "AvatarName",
+        "textHash": "4951589951007146550",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1206": {
+      "canonicalName": "素裳",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1206",
+        "field": "AvatarName",
+        "textHash": "4806955196389400116",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1207": {
+      "canonicalName": "驭空",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1207",
+        "field": "AvatarName",
+        "textHash": "1140041957738323619",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1208": {
+      "canonicalName": "符玄",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1208",
+        "field": "AvatarName",
+        "textHash": "10351737015595052238",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1209": {
+      "canonicalName": "彦卿",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1209",
+        "field": "AvatarName",
+        "textHash": "1960800194395687973",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1210": {
+      "canonicalName": "桂乃芬",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1210",
+        "field": "AvatarName",
+        "textHash": "13845204571586703663",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1211": {
+      "canonicalName": "白露",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1211",
+        "field": "AvatarName",
+        "textHash": "13619135324463789256",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1212": {
+      "canonicalName": "镜流",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1212",
+        "field": "AvatarName",
+        "textHash": "940795027444042330",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1213": {
+      "canonicalName": "丹恒•饮月",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1213",
+        "field": "AvatarName",
+        "textHash": "12834585016341721411",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1214": {
+      "canonicalName": "雪衣",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1214",
+        "field": "AvatarName",
+        "textHash": "11495763016926788582",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1215": {
+      "canonicalName": "寒鸦",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1215",
+        "field": "AvatarName",
+        "textHash": "8944718300027499818",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1217": {
+      "canonicalName": "藿藿",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1217",
+        "field": "AvatarName",
+        "textHash": "12871454551122846403",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1218": {
+      "canonicalName": "椒丘",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1218",
+        "field": "AvatarName",
+        "textHash": "8300000119407817972",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1220": {
+      "canonicalName": "飞霄",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1220",
+        "field": "AvatarName",
+        "textHash": "640945362161159110",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1221": {
+      "canonicalName": "云璃",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1221",
+        "field": "AvatarName",
+        "textHash": "15084362025105138520",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1222": {
+      "canonicalName": "灵砂",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1222",
+        "field": "AvatarName",
+        "textHash": "1890772581194122354",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1223": {
+      "canonicalName": "貊泽",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1223",
+        "field": "AvatarName",
+        "textHash": "581825062468630609",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1224": {
+      "canonicalName": "三月七·巡猎",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1224",
+        "field": "AvatarName",
+        "textHash": "16417870574330506928",
+        "policy": "multiple-path",
+        "baseAvatarId": "1001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Rogue",
+          "field": "BaseTypeText",
+          "textHash": "4367365179576232430"
+        }
+      },
+      "officialAliases": [
+        {
+          "value": "三月七",
+          "sourceKind": "official-base-name",
+          "table": "AvatarConfig",
+          "recordId": "1224",
+          "field": "AvatarName",
+          "textHash": "16417870574330506928"
+        }
+      ]
+    },
+    "1225": {
+      "canonicalName": "忘归人",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1225",
+        "field": "AvatarName",
+        "textHash": "3056810111125476882",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1301": {
+      "canonicalName": "加拉赫",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1301",
+        "field": "AvatarName",
+        "textHash": "6816343973270607908",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1302": {
+      "canonicalName": "银枝",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1302",
+        "field": "AvatarName",
+        "textHash": "16607369145002760691",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1303": {
+      "canonicalName": "阮•梅",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1303",
+        "field": "AvatarName",
+        "textHash": "6427183216833446662",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1304": {
+      "canonicalName": "砂金",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1304",
+        "field": "AvatarName",
+        "textHash": "1512189965928596940",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1305": {
+      "canonicalName": "真理医生",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1305",
+        "field": "AvatarName",
+        "textHash": "5574869376996182732",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1306": {
+      "canonicalName": "花火",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1306",
+        "field": "AvatarName",
+        "textHash": "1154772689835031402",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1307": {
+      "canonicalName": "黑天鹅",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1307",
+        "field": "AvatarName",
+        "textHash": "5006907115971129934",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1308": {
+      "canonicalName": "黄泉",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1308",
+        "field": "AvatarName",
+        "textHash": "15302882570557665677",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1309": {
+      "canonicalName": "知更鸟",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1309",
+        "field": "AvatarName",
+        "textHash": "16319070348582555665",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1310": {
+      "canonicalName": "流萤",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1310",
+        "field": "AvatarName",
+        "textHash": "17277451216686117891",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1312": {
+      "canonicalName": "米沙",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1312",
+        "field": "AvatarName",
+        "textHash": "15577682837980439839",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1313": {
+      "canonicalName": "星期日",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1313",
+        "field": "AvatarName",
+        "textHash": "7913253176711977067",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1314": {
+      "canonicalName": "翡翠",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1314",
+        "field": "AvatarName",
+        "textHash": "2887610941167968962",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1315": {
+      "canonicalName": "波提欧",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1315",
+        "field": "AvatarName",
+        "textHash": "6424512602058263868",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1317": {
+      "canonicalName": "乱破",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1317",
+        "field": "AvatarName",
+        "textHash": "9807064938372011036",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1321": {
+      "canonicalName": "大丽花",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1321",
+        "field": "AvatarName",
+        "textHash": "16283352174817039417",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1401": {
+      "canonicalName": "大黑塔",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1401",
+        "field": "AvatarName",
+        "textHash": "4559632095226063367",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1402": {
+      "canonicalName": "阿格莱雅",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1402",
+        "field": "AvatarName",
+        "textHash": "764283421684818925",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1403": {
+      "canonicalName": "缇宝",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1403",
+        "field": "AvatarName",
+        "textHash": "15410848306228341212",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1404": {
+      "canonicalName": "万敌",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1404",
+        "field": "AvatarName",
+        "textHash": "13777984539817850592",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1405": {
+      "canonicalName": "那刻夏",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1405",
+        "field": "AvatarName",
+        "textHash": "14399225845844956184",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1406": {
+      "canonicalName": "赛飞儿",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1406",
+        "field": "AvatarName",
+        "textHash": "1283986297634256167",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1407": {
+      "canonicalName": "遐蝶",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1407",
+        "field": "AvatarName",
+        "textHash": "6284038990417808171",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1408": {
+      "canonicalName": "白厄",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1408",
+        "field": "AvatarName",
+        "textHash": "2073865627579588830",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1409": {
+      "canonicalName": "风堇",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1409",
+        "field": "AvatarName",
+        "textHash": "14193361837482662840",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1410": {
+      "canonicalName": "海瑟音",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1410",
+        "field": "AvatarName",
+        "textHash": "11044358311620332259",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1412": {
+      "canonicalName": "刻律德菈",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1412",
+        "field": "AvatarName",
+        "textHash": "3528626799663072375",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1413": {
+      "canonicalName": "长夜月",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1413",
+        "field": "AvatarName",
+        "textHash": "14327888430982372557",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1414": {
+      "canonicalName": "丹恒•腾荒",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1414",
+        "field": "AvatarName",
+        "textHash": "12485086905499638965",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1415": {
+      "canonicalName": "昔涟",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1415",
+        "field": "AvatarName",
+        "textHash": "7809981386909966580",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1501": {
+      "canonicalName": "火花",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1501",
+        "field": "AvatarName",
+        "textHash": "17862078353219696025",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1502": {
+      "canonicalName": "爻光",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1502",
+        "field": "AvatarName",
+        "textHash": "5676363387127417629",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1504": {
+      "canonicalName": "不死途",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1504",
+        "field": "AvatarName",
+        "textHash": "16507315893888115872",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1505": {
+      "canonicalName": "绯英",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1505",
+        "field": "AvatarName",
+        "textHash": "9927439444416271873",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1506": {
+      "canonicalName": "银狼LV.999",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1506",
+        "field": "AvatarName",
+        "textHash": "11557317042334401025",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1507": {
+      "canonicalName": "千冶•刃",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1507",
+        "field": "AvatarName",
+        "textHash": "13319237045724646398",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1508": {
+      "canonicalName": "远坂凛",
+      "canonicalSource": {
+        "table": "AvatarConfigLD",
+        "recordId": "1508",
+        "field": "AvatarName",
+        "textHash": "15249535273064221797",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1509": {
+      "canonicalName": "吉尔伽美什",
+      "canonicalSource": {
+        "table": "AvatarConfigLD",
+        "recordId": "1509",
+        "field": "AvatarName",
+        "textHash": "195746835239934719",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1510": {
+      "canonicalName": "姬子•启行",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1510",
+        "field": "AvatarName",
+        "textHash": "12653203655511224443",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1512": {
+      "canonicalName": "知更鸟•晴歌",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1512",
+        "field": "AvatarName",
+        "textHash": "9781128254395420869",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "1513": {
+      "canonicalName": "砂金•戏浪",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "1513",
+        "field": "AvatarName",
+        "textHash": "5591079138023962224",
+        "policy": "avatar-name"
+      },
+      "officialAliases": []
+    },
+    "8001": {
+      "canonicalName": "开拓者·毁灭",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "8001",
+        "field": "AvatarName",
+        "textHash": "15351791685587679468",
+        "policy": "multiple-path",
+        "baseAvatarId": "8001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Warrior",
+          "field": "BaseTypeText",
+          "textHash": "10116566940563878966"
+        }
+      },
+      "officialAliases": []
+    },
+    "8002": {
+      "canonicalName": "开拓者·毁灭",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "8002",
+        "field": "AvatarName",
+        "textHash": "915414112326692585",
+        "policy": "multiple-path",
+        "baseAvatarId": "8001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Warrior",
+          "field": "BaseTypeText",
+          "textHash": "10116566940563878966"
+        }
+      },
+      "officialAliases": []
+    },
+    "8003": {
+      "canonicalName": "开拓者·存护",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "8003",
+        "field": "AvatarName",
+        "textHash": "1401066943349888144",
+        "policy": "multiple-path",
+        "baseAvatarId": "8001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Knight",
+          "field": "BaseTypeText",
+          "textHash": "4258030345548324088"
+        }
+      },
+      "officialAliases": []
+    },
+    "8004": {
+      "canonicalName": "开拓者·存护",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "8004",
+        "field": "AvatarName",
+        "textHash": "12002536695852490847",
+        "policy": "multiple-path",
+        "baseAvatarId": "8001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Knight",
+          "field": "BaseTypeText",
+          "textHash": "4258030345548324088"
+        }
+      },
+      "officialAliases": []
+    },
+    "8005": {
+      "canonicalName": "开拓者·同谐",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "8005",
+        "field": "AvatarName",
+        "textHash": "10447948767909792082",
+        "policy": "multiple-path",
+        "baseAvatarId": "8001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Shaman",
+          "field": "BaseTypeText",
+          "textHash": "232967775503330328"
+        }
+      },
+      "officialAliases": []
+    },
+    "8006": {
+      "canonicalName": "开拓者·同谐",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "8006",
+        "field": "AvatarName",
+        "textHash": "10393121115260878389",
+        "policy": "multiple-path",
+        "baseAvatarId": "8001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Shaman",
+          "field": "BaseTypeText",
+          "textHash": "232967775503330328"
+        }
+      },
+      "officialAliases": []
+    },
+    "8007": {
+      "canonicalName": "开拓者·记忆",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "8007",
+        "field": "AvatarName",
+        "textHash": "16176654588635246657",
+        "policy": "multiple-path",
+        "baseAvatarId": "8001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Memory",
+          "field": "BaseTypeText",
+          "textHash": "119435972213994950"
+        }
+      },
+      "officialAliases": []
+    },
+    "8008": {
+      "canonicalName": "开拓者·记忆",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "8008",
+        "field": "AvatarName",
+        "textHash": "4088185837206355760",
+        "policy": "multiple-path",
+        "baseAvatarId": "8001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Memory",
+          "field": "BaseTypeText",
+          "textHash": "119435972213994950"
+        }
+      },
+      "officialAliases": []
+    },
+    "8009": {
+      "canonicalName": "开拓者·欢愉",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "8009",
+        "field": "AvatarName",
+        "textHash": "7663307095624772319",
+        "policy": "multiple-path",
+        "baseAvatarId": "8001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Elation",
+          "field": "BaseTypeText",
+          "textHash": "224536443460975011"
+        }
+      },
+      "officialAliases": []
+    },
+    "8010": {
+      "canonicalName": "开拓者·欢愉",
+      "canonicalSource": {
+        "table": "AvatarConfig",
+        "recordId": "8010",
+        "field": "AvatarName",
+        "textHash": "11669351296701672101",
+        "policy": "multiple-path",
+        "baseAvatarId": "8001",
+        "path": {
+          "table": "AvatarBaseType",
+          "recordId": "Elation",
+          "field": "BaseTypeText",
+          "textHash": "224536443460975011"
+        }
+      },
+      "officialAliases": []
+    }
+  }
+}

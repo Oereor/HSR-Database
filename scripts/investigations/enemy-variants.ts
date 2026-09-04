@@ -135,12 +135,12 @@ let unrestrictedSkillEnemies = 0;
 let unrestrictedDisplayableSkillEnemies = 0;
 for (const template of templates) {
   const config = canonicalConfigByTemplate.get(templateIdOf(template));
-  const skillRows = (config?.SkillList ?? []).flatMap((id: unknown) => {
+  const skillRows: Raw[] = (config?.SkillList ?? []).flatMap((id: unknown) => {
     const skill = skillById.get(String(id));
     return skill ? [skill] : [];
   });
   const phases = [
-    ...new Set(
+    ...new Set<number>(
       skillRows.flatMap((skill) =>
         Array.isArray(skill.PhaseList)
           ? skill.PhaseList.map(Number).filter(

@@ -20,6 +20,26 @@ const lock = {
 };
 
 describe('deployment build orchestration', () => {
+  it('stops before data generation when the tracked name snapshot is stale', async () => {
+    const events: string[] = [];
+    await expect(
+      runDeploymentBuild({
+        loadLock: async () => lock,
+        prepareTurnBased: async () => path.join(siteRoot, '.upstream', 'TurnBasedGameData'),
+        prepareStarRail: async () => {
+          events.push('prepare-star-rail');
+          return '';
+        },
+        commandRunner: async (args) => {
+          events.push(args.join(' '));
+          if (args[0] === 'check:scripts') return;
+          throw new Error('Official name snapshot is stale: pnpm data:search-names:update');
+        }
+      })
+    ).rejects.toThrow('pnpm data:search-names:update');
+    expect(events).toEqual(['check:scripts', 'data:search-names:check']);
+  });
+
   it('includes all StarRailRes indexes required by character detail icon resolution', () => {
     expect(starRailIndexPaths).toEqual(
       expect.arrayContaining([
@@ -57,6 +77,8 @@ describe('deployment build orchestration', () => {
     expect(events).toEqual([
       'lock',
       'prepare-turn-based',
+      'check:scripts',
+      'data:search-names:check',
       'data:ensure',
       'assets:ensure:enemies',
       'prepare-star-rail',
