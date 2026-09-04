@@ -166,6 +166,66 @@ test('Endgame mode archive 按真实状态共享 Current、Upcoming、Unknown �
   expect(mobileUpcomingSpacing.leftInset).toBeGreaterThan(16);
   expect(mobileUpcomingSpacing.bottomInset).toBeGreaterThan(16);
   expect(mobileUpcomingSpacing.rightInset).toBeGreaterThan(16);
+  for (const width of [320, 375, 390, 430, 520, 521, 768, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    for (const card of [current, upcoming, history.first()]) {
+      const spacing = await card.evaluate((element) => {
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        const title = element.querySelector('h3')!.getBoundingClientRect();
+        const date = element.querySelector('.endgame-season-card__date')!.getBoundingClientRect();
+        const footer = element.querySelector('.endgame-season-card__footer')!;
+        const footerRect = footer.getBoundingClientRect();
+        const count = footer.firstElementChild!.getBoundingClientRect();
+        const arrow = footer.lastElementChild!.getBoundingClientRect();
+        return {
+          padding: [style.paddingTop, style.paddingRight, style.paddingBottom, style.paddingLeft],
+          minHeight: style.minHeight,
+          topInset: title.top - rect.top,
+          leftInset: title.left - rect.left,
+          dateLeftInset: date.left - rect.left,
+          dateGap: date.top - title.bottom,
+          countLeftInset: count.left - rect.left,
+          arrowRightInset: rect.right - arrow.right,
+          footerLeftInset: footerRect.left - rect.left,
+          footerRightInset: rect.right - footerRect.right,
+          divider: getComputedStyle(footer).borderTopWidth
+        };
+      });
+      const horizontal = width <= 520 ? 16 : 24;
+      const isCurrent = card === current;
+      const isHistory = card !== current && card !== upcoming;
+      const inset = isHistory ? 16 : horizontal;
+      const vertical = isCurrent ? inset : 16;
+      expect(spacing.padding).toEqual([
+        `${vertical}px`,
+        `${inset}px`,
+        `${vertical}px`,
+        `${inset}px`
+      ]);
+      expect(spacing.minHeight).toBe(
+        isCurrent ? (width <= 520 ? '190px' : '210px') : isHistory ? '124px' : '156px'
+      );
+      expect(spacing.topInset).toBeCloseTo(vertical + 1, 0);
+      for (const measured of [
+        spacing.leftInset,
+        spacing.dateLeftInset,
+        spacing.countLeftInset,
+        spacing.arrowRightInset,
+        spacing.footerLeftInset,
+        spacing.footerRightInset
+      ]) {
+        expect(measured).toBeCloseTo(inset + 1, 0);
+      }
+      expect(spacing.dateGap).toBeCloseTo(8, 0);
+      expect(spacing.divider).toBe('1px');
+    }
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth - document.documentElement.clientWidth
+      )
+    ).toBeLessThanOrEqual(1);
+  }
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth
