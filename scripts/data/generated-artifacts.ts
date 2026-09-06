@@ -4,7 +4,7 @@ import path from 'node:path';
 import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/domain/types.js';
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 
-export const DATA_MANIFEST_SCHEMA_VERSION = 41 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 42 as const;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value);
@@ -14,10 +14,10 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
   if (!isRecord(value) || value.schemaVersion !== DATA_MANIFEST_SCHEMA_VERSION)
     throw new Error('Unsupported generated data manifest schema');
   if (
-    value.locale !== 'zh-CN' ||
-    value.textMapCode !== 'CHS' ||
     typeof value.sourceCommit !== 'string' ||
-    typeof value.textMapDigest !== 'string' ||
+    value.publicLocale !== 'zh-CN' ||
+    JSON.stringify(value.generatedLocales) !== '["zh-CN","en"]' ||
+    !isRecord(value.locales) ||
     typeof value.dataRevision !== 'string' ||
     !isRecord(value.artifacts) ||
     !isRecord(value.counts) ||
@@ -25,6 +25,54 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
     !isRecord(value.endgame)
   )
     throw new Error('Generated data manifest is incomplete');
+  for (const [locale, textMapCode] of [
+    ['zh-CN', 'CHS'],
+    ['en', 'EN']
+  ] as const) {
+    const entry = value.locales[locale];
+    if (
+      !isRecord(entry) ||
+      entry.textMapCode !== textMapCode ||
+      typeof entry.textMapDigest !== 'string' ||
+      !isRecord(entry.counts) ||
+      !isRecord(entry.endgame) ||
+      !isRecord(entry.search) ||
+      !isRecord(entry.localization) ||
+      !isRecord(entry.artifacts)
+    )
+      throw new Error(`Generated data manifest locale is incomplete: ${locale}`);
+    const health = entry.localization;
+    if (
+      !isRecord(health.statuses) ||
+      !isRecord(health.requirements) ||
+      !isRecord(health.visibility) ||
+      !isRecord(health.fallbackUse) ||
+      !isRecord(health.routeReachability) ||
+      health.unclassified !== 0 ||
+      health.invalidProgramStateErrors !== 0
+    )
+      throw new Error(`Generated data manifest localization health is invalid: ${locale}`);
+    for (const requiredPath of [
+      `views/${locale}/catalogs/characters.json`,
+      `views/${locale}/catalogs/light-cones.json`,
+      `views/${locale}/catalogs/relics.json`,
+      `views/${locale}/catalogs/enemies.json`,
+      `views/${locale}/homepage.json`,
+      `views/${locale}/search-inputs.json`,
+      `static/generated/${locale}/search.json`
+    ])
+      if (!(requiredPath in value.artifacts))
+        throw new Error(`Generated data manifest is missing ${requiredPath}`);
+  }
+  const englishShardCount = Object.keys(value.artifacts).filter((logicalPath) =>
+    logicalPath.startsWith('static/generated/en/endgame-occurrences/')
+  ).length;
+  const englishSearch = (value.locales.en as Record<string, unknown>).search as Record<
+    string,
+    unknown
+  >;
+  if (englishShardCount === 0 || englishShardCount !== Number(englishSearch.occurrenceShards))
+    throw new Error('Generated data manifest English occurrence shards are incomplete');
 }
 
 export async function readDataManifest(root = generatedRoot): Promise<DataManifest> {
@@ -52,20 +100,20 @@ function assertArtifactMetadata(
     Number(value.bytes) < 0 ||
     typeof value.sha256 !== 'string' ||
     !/^[0-9a-f]{64}$/.test(value.sha256) ||
-    (value.locale !== undefined && value.locale !== 'zh-CN') ||
+    (value.locale !== undefined && value.locale !== 'zh-CN' && value.locale !== 'en') ||
     (value.schemaVersion !== undefined && !Number.isSafeInteger(value.schemaVersion))
   )
     throw new Error(`Invalid generated artifact metadata: ${logicalPath}`);
 }
 
-async function jsonFiles(root: string, prefix = ''): Promise<string[]> {
+async function artifactFiles(root: string, prefix = ''): Promise<string[]> {
   const entries = await readdir(root, { withFileTypes: true });
   const result: string[] = [];
   for (const entry of entries) {
     const relative = prefix ? `${prefix}/${entry.name}` : entry.name;
     if (entry.isDirectory())
-      result.push(...(await jsonFiles(path.join(root, entry.name), relative)));
-    else if (entry.isFile() && entry.name.endsWith('.json')) result.push(relative);
+      result.push(...(await artifactFiles(path.join(root, entry.name), relative)));
+    else if (entry.isFile()) result.push(relative);
   }
   return result;
 }
@@ -92,10 +140,10 @@ export async function validateGeneratedArtifacts(
       throw new Error(`Generated artifact schema mismatch: ${logicalPath}`);
   }
   const actual = [
-    ...(await jsonFiles(roots.generated))
+    ...(await artifactFiles(roots.generated))
       .filter((relative) => relative !== 'manifest.json')
       .map((relative) => relative.replaceAll('\\', '/')),
-    ...(await jsonFiles(roots.staticGenerated)).map(
+    ...(await artifactFiles(roots.staticGenerated)).map(
       (relative) => `static/generated/${relative.replaceAll('\\', '/')}`
     )
   ].sort();
@@ -120,7 +168,7 @@ export async function refreshArtifactMetadata(
     [logicalPath]: {
       bytes: serialized.byteLength,
       sha256: createHash('sha256').update(serialized).digest('hex'),
-      locale: 'zh-CN' as const,
+      locale: logicalPath.includes('/en/') ? ('en' as const) : ('zh-CN' as const),
       ...(schemaVersion !== undefined ? { schemaVersion } : {})
     }
   };
@@ -128,12 +176,32 @@ export async function refreshArtifactMetadata(
     .update(
       JSON.stringify({
         sourceCommit: manifest.sourceCommit,
-        textMapDigest: manifest.textMapDigest,
+        textMapDigests: Object.fromEntries(
+          manifest.generatedLocales.map((locale) => [
+            locale,
+            manifest.locales[locale].textMapDigest
+          ])
+        ),
         artifacts
       })
     )
     .digest('hex');
-  const next = { ...manifest, artifacts, dataRevision };
+  const locale = artifacts[logicalPath].locale;
+  const locales = locale
+    ? {
+        ...manifest.locales,
+        [locale]: {
+          ...manifest.locales[locale],
+          artifacts: {
+            files: Object.values(artifacts).filter((entry) => entry.locale === locale).length,
+            bytes: Object.values(artifacts)
+              .filter((entry) => entry.locale === locale)
+              .reduce((sum, entry) => sum + entry.bytes, 0)
+          }
+        }
+      }
+    : manifest.locales;
+  const next = { ...manifest, locales, artifacts, dataRevision };
   await writeFile(path.join(roots.generated, 'manifest.json'), `${JSON.stringify(next)}\n`, 'utf8');
   return next;
 }

@@ -16,8 +16,18 @@ export function projectRelic(domain: RelicSetDomain, context: RelicProjectionCon
   const field = (name: string) => ({ domain: 'relic', entityId: domain.id, field: name });
   const name = requiredText(context.resolver, domain.nameSource, field('name'));
   const effects = domain.effects.map((effect) => {
-    if (!effect.descriptionSource)
+    if (!effect.descriptionSource) {
+      context.resolver.recordAbsent(
+        { entity: 'relic', id: domain.id, field: `effect.${effect.required}.description` },
+        {
+          requirement: 'required',
+          visibility: 'emitted',
+          fallbackUsed: false,
+          productRouteReachability: 'reachable'
+        }
+      );
       throw new Error(`[relic.${domain.id}.effect.${effect.required}] localization absent`);
+    }
     const result = context.resolver.projectGameText(effect.descriptionSource, {
       provenance: {
         entity: 'relic',

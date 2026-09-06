@@ -25,7 +25,18 @@ export function requiredText(
   source: NeutralTextSource | undefined,
   field: ProjectionField
 ): string {
-  if (!source) throw failure({ status: 'absent' }, field);
+  if (!source) {
+    resolver.recordAbsent(
+      { entity: field.domain, id: field.entityId, field: field.field },
+      {
+        requirement: 'required',
+        visibility: 'emitted',
+        fallbackUsed: false,
+        productRouteReachability: 'reachable'
+      }
+    );
+    throw failure({ status: 'absent' }, field);
+  }
   const result = resolver.resolve(source, {
     provenance: { entity: field.domain, id: field.entityId, field: field.field },
     diagnosticDisposition: {
@@ -44,7 +55,18 @@ export function optionalText(
   source: NeutralTextSource | undefined,
   field: ProjectionField
 ): string {
-  if (!source) return '';
+  if (!source) {
+    resolver.recordAbsent(
+      { entity: field.domain, id: field.entityId, field: field.field },
+      {
+        requirement: 'optional',
+        visibility: 'hidden',
+        fallbackUsed: true,
+        productRouteReachability: 'reachable'
+      }
+    );
+    return '';
+  }
   const result = resolver.resolve(source, {
     provenance: { entity: field.domain, id: field.entityId, field: field.field },
     diagnosticDisposition: {
@@ -80,11 +102,21 @@ export function projectLevels(
     levels: [...levels]
       .sort((a, b) => a.level - b.level)
       .map((level) => {
-        if (!level.descriptionSource)
+        if (!level.descriptionSource) {
+          resolver.recordAbsent(
+            { entity: field.domain, id: field.entityId, field: `level.${level.level}.description` },
+            {
+              requirement: 'required',
+              visibility: 'emitted',
+              fallbackUsed: false,
+              productRouteReachability: 'reachable'
+            }
+          );
           throw failure(
             { status: 'absent' },
             { ...field, field: `level.${level.level}.description` }
           );
+        }
         const result = resolver.projectGameText(level.descriptionSource, {
           ...textContext,
           scalingParamIndexes: scaling,

@@ -8,10 +8,11 @@ import {
 } from '../../scripts/data/generated-artifacts';
 import { publishGeneratedDirectories } from '../../scripts/data/sync';
 
-it('accepts the current schema-41 generated tree and validates every emitted artifact', async () => {
+it('accepts the schema-42 dual-locale generated tree and validates every emitted artifact', async () => {
   const manifest = await readDataManifest();
-  expect(manifest.schemaVersion).toBe(41);
-  expect(manifest.locale).toBe('zh-CN');
+  expect(manifest.schemaVersion).toBe(42);
+  expect(manifest.publicLocale).toBe('zh-CN');
+  expect(manifest.generatedLocales).toEqual(['zh-CN', 'en']);
   expect(manifest).not.toHaveProperty('generatorVersion');
   expect(manifest).not.toHaveProperty('generatedAt');
   expect(manifest).not.toHaveProperty('neutral');

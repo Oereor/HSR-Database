@@ -433,7 +433,7 @@ export interface HomepageRecentWarpData {
 export interface GeneratedArtifactMetadata {
   bytes: number;
   sha256: string;
-  locale?: 'zh-CN';
+  locale?: 'zh-CN' | 'en';
   schemaVersion?: number;
 }
 
@@ -443,14 +443,45 @@ export interface PublicSiteVersion {
 }
 
 export interface DataManifest {
-  schemaVersion: 41;
+  schemaVersion: 42;
   sourceCommit: string;
   sourceVersion: string;
   gameVersionFull: string | null;
   gameVersion: string | null;
-  locale: 'zh-CN';
-  textMapCode: 'CHS';
-  textMapDigest: string;
+  generatedLocales: Array<'zh-CN' | 'en'>;
+  publicLocale: 'zh-CN';
+  locales: Record<
+    'zh-CN' | 'en',
+    {
+      textMapCode: 'CHS' | 'EN';
+      textMapDigest: string;
+      counts: Record<
+        'characters' | 'lightCones' | 'relics' | 'relicProperties' | 'enemies',
+        number
+      >;
+      endgame: import('./endgame.js').EndgameManifestSummary;
+      search: {
+        documents: number;
+        endgameTargets: number;
+        occurrenceReferences: number;
+        occurrenceShards: number;
+      };
+      localization: {
+        total: number;
+        statuses: Record<
+          'available' | 'absent' | 'missing' | 'empty' | 'invalid' | 'unsupported',
+          number
+        >;
+        requirements: Record<'required' | 'optional', number>;
+        visibility: Record<'emitted' | 'hidden', number>;
+        fallbackUse: Record<'used' | 'notUsed', number>;
+        routeReachability: Record<'reachable' | 'unreachable', number>;
+        unclassified: number;
+        invalidProgramStateErrors: number;
+      };
+      artifacts: { files: number; bytes: number };
+    }
+  >;
   dataRevision: string;
   artifacts: Record<string, GeneratedArtifactMetadata>;
   counts: Record<'characters' | 'lightCones' | 'relics' | 'relicProperties' | 'enemies', number>;

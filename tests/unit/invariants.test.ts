@@ -28,12 +28,13 @@ describe('重构 invariants', () => {
     acceptHash('6186714091647966180');
   });
 
-  it('运行时代码只声明唯一简中 TextMap 路径', async () => {
+  it('生成器只声明受支持的 CHS/EN TextMap，浏览器不读取 TextMap', async () => {
     const files = await sourceFiles(path.join(root, 'scripts'));
     const sources = await Promise.all(files.map((file) => readFile(file, 'utf8')));
     const combined = sources.join('\n');
     expect(combined).toContain("path.join(root, 'TextMap', 'TextMapCHS.json')");
-    expect(combined).not.toMatch(/TextMapMain|TextMap(?:EN|JP|KR|CHT)|locale state/i);
+    expect(combined).toContain('TextMapEN.json');
+    expect(combined).not.toMatch(/TextMapMain|TextMap(?:JP|KR|CHT)|locale state/i);
   });
 
   it('属性色与技能橙色各自只有一个运行时定义位置', async () => {
@@ -57,7 +58,7 @@ describe('重构 invariants', () => {
     const files = await sourceFiles(path.join(root, 'src'));
     const sources = await Promise.all(files.map((file) => readFile(file, 'utf8')));
     expect(sources.join('\n')).not.toMatch(
-      /AvatarSkillConfig|EquipmentSkillConfig|TextMapCHS\.json/
+      /AvatarSkillConfig|EquipmentSkillConfig|TextMap(?:CHS|EN)\.json/
     );
   });
 

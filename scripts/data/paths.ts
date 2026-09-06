@@ -40,7 +40,8 @@ const requiredFiles = [
   'ExcelOutput/RelicSetConfig.json',
   'ExcelOutput/ItemConfig.json',
   'ExcelOutput/MonsterTemplateConfig.json',
-  'TextMap/TextMapCHS.json'
+  'TextMap/TextMapCHS.json',
+  'TextMap/TextMapEN.json'
 ];
 
 export function resolveDataRoot(value = process.env.HSR_DATA_ROOT): string {

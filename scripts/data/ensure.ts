@@ -15,34 +15,38 @@ import {
 } from './generated-artifacts.js';
 import { assertHomepageRecentWarpData } from './homepage.js';
 import { assertDataRoot, generatedRoot, resolveDataRoot, sourceCommit } from './paths.js';
-import { ensureSearchDocuments, searchInputsPath } from './search-documents.js';
+import { ensureSearchDocuments, searchArtifactPaths } from './search-documents.js';
+import { getGeneratedLocales } from './locale-registry.js';
 import { syncData } from './sync.js';
-
-const productRoot = path.join(generatedRoot, 'views', 'zh-CN');
 
 async function cacheValid(candidate: DataManifest | undefined): Promise<boolean> {
   if (!candidate) return false;
   try {
     await validateGeneratedArtifacts(candidate);
-    const [homepage, characterCatalog, lightConeCatalog, searchInputs] = await Promise.all([
-      readFile(path.join(productRoot, 'homepage.json'), 'utf8').then(
-        (value) => JSON.parse(value) as HomepageRecentWarpData
-      ),
-      readFile(path.join(productRoot, 'catalogs', 'characters.json'), 'utf8').then(
-        (value) => JSON.parse(value) as CatalogEntry[]
-      ),
-      readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
-        (value) => JSON.parse(value) as CatalogEntry[]
-      ),
-      readFile(searchInputsPath, 'utf8').then((value) => JSON.parse(value))
-    ]);
-    assertHomepageRecentWarpData(homepage, characterCatalog, lightConeCatalog);
-    return (
-      searchInputs.official?.schemaVersion === 1 &&
-      searchInputs.official?.sourceCommit === candidate.sourceCommit &&
-      searchInputs.official?.normalizationVersion === SEARCH_NORMALIZATION_VERSION &&
-      searchInputs.official?.namingPolicyVersion === CHARACTER_NAMING_POLICY_VERSION
-    );
+    for (const { locale } of getGeneratedLocales()) {
+      const productRoot = path.join(generatedRoot, 'views', locale);
+      const [homepage, characterCatalog, lightConeCatalog, searchInputs] = await Promise.all([
+        readFile(path.join(productRoot, 'homepage.json'), 'utf8').then(
+          (value) => JSON.parse(value) as HomepageRecentWarpData
+        ),
+        readFile(path.join(productRoot, 'catalogs', 'characters.json'), 'utf8').then(
+          (value) => JSON.parse(value) as CatalogEntry[]
+        ),
+        readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
+          (value) => JSON.parse(value) as CatalogEntry[]
+        ),
+        readFile(searchArtifactPaths(locale).inputs, 'utf8').then((value) => JSON.parse(value))
+      ]);
+      assertHomepageRecentWarpData(homepage, characterCatalog, lightConeCatalog);
+      if (
+        searchInputs.official?.schemaVersion !== 1 ||
+        searchInputs.official?.sourceCommit !== candidate.sourceCommit ||
+        searchInputs.official?.normalizationVersion !== SEARCH_NORMALIZATION_VERSION ||
+        searchInputs.official?.namingPolicyVersion !== CHARACTER_NAMING_POLICY_VERSION
+      )
+        return false;
+    }
+    return true;
   } catch {
     return false;
   }
@@ -75,18 +79,29 @@ try {
 }
 
 if (availableRoot && availableCommit) {
-  const currentTextMap = await readFile(
-    path.join(availableRoot, 'TextMap', 'TextMapCHS.json'),
-    'utf8'
+  const currentTextMapDigests = Object.fromEntries(
+    await Promise.all(
+      getGeneratedLocales().map(async ({ locale, textMapCode }) => {
+        const currentTextMap = await readFile(
+          path.join(availableRoot!, 'TextMap', `TextMap${textMapCode}.json`),
+          'utf8'
+        );
+        return [
+          locale,
+          createHash('sha256')
+            .update(JSON.stringify(JSON.parse(currentTextMap)))
+            .digest('hex')
+        ];
+      })
+    )
   );
-  const currentTextMapDigest = createHash('sha256')
-    .update(JSON.stringify(JSON.parse(currentTextMap)))
-    .digest('hex');
   if (
     !valid ||
     !manifest ||
     manifest.sourceCommit !== availableCommit ||
-    manifest.textMapDigest !== currentTextMapDigest
+    getGeneratedLocales().some(
+      ({ locale }) => manifest!.locales[locale].textMapDigest !== currentTextMapDigests[locale]
+    )
   ) {
     manifest = await syncData();
     valid = true;

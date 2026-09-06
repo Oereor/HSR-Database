@@ -11,7 +11,6 @@ import type { TextDiagnosticDisposition, TextSource } from '../localization.js';
 import type { LevelledDescriptionDiagnostic } from '../levelled.js';
 import type { DescriptionDiagnostic } from '../text.js';
 import { gameTextToPlain, normalizeGameText } from '../../../src/lib/domain/game-text.js';
-import { enemySpecialResistanceLabels } from '../enemy-detail.js';
 import { buildEnemySkillPhases } from '../enemy-detail.js';
 
 export interface EnemyProjectionContext {
@@ -22,6 +21,9 @@ export interface EnemyProjectionContext {
     import('../../../src/lib/domain/neutral.js').NeutralExtraEffect
   >;
   elementNameFallbacks?: Partial<Record<string, string>>;
+  specialResistanceLabels?: Partial<Record<string, string>>;
+  enemyNameFallback?: (id: string) => string;
+  skillNameFallback?: (id: string) => string;
   onDescriptionDiagnostics?: (
     entity: string,
     id: string,
@@ -41,7 +43,10 @@ function projectText(
   fallback: string,
   disposition: TextDiagnosticDisposition
 ): string {
-  if (!value) return fallback;
+  if (!value) {
+    resolver.recordAbsent(field, disposition);
+    return fallback;
+  }
   const result = resolver.resolve(value, {
     provenance: field,
     diagnosticDisposition: disposition
@@ -60,7 +65,10 @@ function projectGameText(
   disposition: TextDiagnosticDisposition,
   onDiagnostics?: (diagnostics: DescriptionDiagnostic[]) => void
 ): { text: string; status: 'available' | 'missing' } {
-  if (!value) return { text: fallback, status: fallback ? 'available' : 'missing' };
+  if (!value) {
+    resolver.recordAbsent(field, disposition);
+    return { text: fallback, status: fallback ? 'available' : 'missing' };
+  }
   const result = resolver.projectGameText(value, {
     provenance: field,
     diagnosticDisposition: disposition
@@ -199,7 +207,7 @@ function projectSkill(
     context.resolver,
     skill.nameSource,
     source('enemy-skill', skill.id, 'SkillName'),
-    `技能 ${skill.id}`,
+    context.skillNameFallback?.(skill.id) ?? `Skill ${skill.id}`,
     {
       requirement: 'required',
       visibility: 'emitted',
@@ -268,7 +276,7 @@ function projectEnemy(domain: EnemyDomain, context: EnemyProjectionContext): Ene
       })),
       specialResistances: monster.specialResistances.map(({ code, value }) => ({
         code,
-        label: enemySpecialResistanceLabels[code] ?? code,
+        label: context.specialResistanceLabels?.[code] ?? code,
         value
       })),
       summons: monster.summons.map((summon) => {
@@ -278,7 +286,7 @@ function projectEnemy(domain: EnemyDomain, context: EnemyProjectionContext): Ene
               context.resolver,
               target.nameSource ?? target.template.nameSource,
               source('enemy', target.id, 'MonsterName'),
-              `敌人 ${target.id}`,
+              context.enemyNameFallback?.(target.id) ?? `Enemy ${target.id}`,
               {
                 requirement: 'required',
                 visibility: 'emitted',
@@ -286,7 +294,8 @@ function projectEnemy(domain: EnemyDomain, context: EnemyProjectionContext): Ene
                 productRouteReachability: 'reachable'
               }
             )
-          : `敌人 ${summon.monsterTemplateId}`;
+          : (context.enemyNameFallback?.(summon.monsterTemplateId) ??
+            `Enemy ${summon.monsterTemplateId}`);
         return {
           monsterId: summon.monsterId,
           monsterTemplateId: summon.monsterTemplateId,
@@ -310,7 +319,7 @@ function projectEnemy(domain: EnemyDomain, context: EnemyProjectionContext): Ene
     context.resolver,
     domain.nameSource ?? domain.template.nameSource,
     source('enemy', domain.id, 'MonsterTemplateConfig.MonsterName'),
-    `敌人 ${domain.id}`,
+    context.enemyNameFallback?.(domain.id) ?? `Enemy ${domain.id}`,
     {
       requirement: 'required',
       visibility: 'emitted',

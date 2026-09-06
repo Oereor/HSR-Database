@@ -61,6 +61,7 @@ function projectText(
   diagnosticDisposition: TextDiagnosticDisposition = disposition(required)
 ): string | undefined {
   if (!source) {
+    resolver.recordAbsent(field, diagnosticDisposition);
     if (required) throw new Error(`[${field.entity}.${field.id}.${field.field}] missing TextRef`);
     return undefined;
   }
@@ -85,6 +86,7 @@ function projectGameText(
   inspect?: (projection: GameTextProjection) => void
 ): string | undefined {
   if (!source) {
+    resolver.recordAbsent(field, diagnosticDisposition);
     if (required) throw new Error(`[${field.entity}.${field.id}.${field.field}] missing TextRef`);
     return undefined;
   }

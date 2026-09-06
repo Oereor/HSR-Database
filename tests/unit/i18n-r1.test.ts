@@ -2,8 +2,9 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { expect, it } from 'vitest';
 import {
+  getGeneratedLocales,
+  getPublicLocale,
   getLocaleConfig,
-  getProductionLocale,
   LOCALE_REGISTRY
 } from '../../scripts/data/locale-registry';
 import { parseRelicPieceId } from '../../scripts/data/domain/relic';
@@ -12,13 +13,19 @@ import { loadCharacterDomainTables } from '../../scripts/data/character-sources'
 import { generatedRoot, resolveDataRoot } from '../../scripts/data/paths';
 import type { RelicSet } from '../../src/lib/domain/types';
 
-it('uses one explicit production locale registry and keeps English disabled', () => {
-  expect(getProductionLocale()).toMatchObject({
+it('separates generated locales from the single public locale', () => {
+  expect(getPublicLocale()).toMatchObject({
     locale: 'zh-CN',
     textMapCode: 'CHS',
-    enabled: true
+    projectionEnabled: true,
+    publicRoutingEnabled: true
   });
-  expect(LOCALE_REGISTRY.en).toMatchObject({ textMapCode: 'EN', enabled: false });
+  expect(getGeneratedLocales().map(({ locale }) => locale)).toEqual(['zh-CN', 'en']);
+  expect(LOCALE_REGISTRY.en).toMatchObject({
+    textMapCode: 'EN',
+    projectionEnabled: true,
+    publicRoutingEnabled: false
+  });
   expect(() => getLocaleConfig('fr')).toThrow('Unsupported locale');
 });
 

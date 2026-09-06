@@ -25,6 +25,7 @@ import {
 } from '../../src/lib/search/normalization.js';
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 import { assertCompletePlayerAliasSkeleton, playerAliasesPath } from './player-aliases.js';
+import type { Locale } from './locale-registry.js';
 export { playerAliasesPath } from './player-aliases.js';
 
 export type SearchCatalogs = Record<EntityKind, Array<{ id: string; name: string }>>;
@@ -33,15 +34,30 @@ export interface SearchBuildInputs {
   catalogs: SearchCatalogs;
   endgameTargets: EndgameSearchTargetEntry[];
 }
-export const searchInputsPath = path.join(generatedRoot, 'views', 'zh-CN', 'search-inputs.json');
-export const searchBundlePath = path.join(staticGeneratedRoot, 'zh-CN', 'search.json');
+export type SearchAliasSource = { kind: 'maintained'; value: unknown } | { kind: 'none' };
+export const searchArtifactPaths = (locale: Locale) => ({
+  inputs: path.join(generatedRoot, 'views', locale, 'search-inputs.json'),
+  bundle: path.join(staticGeneratedRoot, locale, 'search.json')
+});
+export const searchInputsPath = searchArtifactPaths('zh-CN').inputs;
+export const searchBundlePath = searchArtifactPaths('zh-CN').bundle;
 
 export function buildSearchDocuments(
   inputs: SearchBuildInputs,
-  manual: unknown
+  locale: Locale,
+  aliasSource: SearchAliasSource
 ): GlobalSearchIndex {
-  const aliases = validatePlayerAliases(manual, inputs.official);
-  assertCompletePlayerAliasSkeleton(aliases, inputs.official);
+  const aliases =
+    aliasSource.kind === 'maintained'
+      ? validatePlayerAliases(aliasSource.value, inputs.official)
+      : {
+          schemaVersion: 1 as const,
+          characters: Object.fromEntries(
+            Object.keys(inputs.official.characters).map((id) => [id, { playerAliases: [] }])
+          )
+        };
+  if (aliasSource.kind === 'maintained')
+    assertCompletePlayerAliasSkeleton(aliases, inputs.official);
   const documents: SearchDocument[] = [];
   for (const kind of ['character', 'light-cone', 'relic', 'enemy'] as const) {
     for (const catalog of inputs.catalogs[kind]) {
@@ -79,7 +95,8 @@ export function buildSearchDocuments(
         normalizationVersion: SEARCH_NORMALIZATION_VERSION,
         namingPolicyVersion: CHARACTER_NAMING_POLICY_VERSION,
         official: inputs.official,
-        aliases
+        aliases,
+        aliasSource: aliasSource.kind
       })
     )
     .digest('hex');
@@ -90,15 +107,19 @@ export function buildSearchDocuments(
     sourceCommit: inputs.official.sourceCommit,
     metadataDigest,
     documents,
-    locale: 'zh-CN',
+    locale,
     endgameTargets: inputs.endgameTargets
   };
-  validateSearchTargets(bundle, inputs.catalogs);
+  validateSearchTargets(bundle, inputs.catalogs, locale);
   return bundle;
 }
 
-export function validateSearchTargets(bundle: GlobalSearchIndex, catalogs: SearchCatalogs): void {
-  if (bundle.locale !== 'zh-CN') throw new Error(`无效 Search locale：${bundle.locale}`);
+export function validateSearchTargets(
+  bundle: GlobalSearchIndex,
+  catalogs: SearchCatalogs,
+  locale: Locale = bundle.locale
+): void {
+  if (bundle.locale !== locale) throw new Error(`无效 Search locale：${bundle.locale}`);
   const targets = new Set(
     Object.entries(catalogs).flatMap(([kind, entries]) => entries.map(({ id }) => `${kind}:${id}`))
   );
@@ -150,7 +171,8 @@ export async function loadPlayerAliases(file = playerAliasesPath): Promise<unkno
 /** Alias-only edits rebuild search artifacts, never full domain data or tracked snapshots. */
 export async function ensureSearchDocuments(
   expectedSourceCommit: string,
-  files = { inputs: searchInputsPath, bundle: searchBundlePath, aliases: playerAliasesPath }
+  files = { inputs: searchInputsPath, bundle: searchBundlePath, aliases: playerAliasesPath },
+  locale: Locale = 'zh-CN'
 ): Promise<boolean> {
   const inputs = JSON.parse(await readFile(files.inputs, 'utf8')) as SearchBuildInputs;
   if (
@@ -160,7 +182,10 @@ export async function ensureSearchDocuments(
     inputs.official.namingPolicyVersion !== CHARACTER_NAMING_POLICY_VERSION
   )
     throw new Error('名称生成缓存已过期；请运行 pnpm data:sync');
-  const next = buildSearchDocuments(inputs, await loadPlayerAliases(files.aliases));
+  const next = buildSearchDocuments(inputs, locale, {
+    kind: 'maintained',
+    value: await loadPlayerAliases(files.aliases)
+  });
   const serialized = `${JSON.stringify(next)}\n`;
   if ((await readFile(files.bundle, 'utf8').catch(() => '')) === serialized) return false;
   await mkdir(path.dirname(files.bundle), { recursive: true });

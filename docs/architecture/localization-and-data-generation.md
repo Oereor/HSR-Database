@@ -1,83 +1,93 @@
 # Localization and Data Generation Architecture
 
-> CURRENT / NORMATIVE — this document describes the post-R4 architecture.
+> CURRENT / NORMATIVE — this document describes the post-R5 architecture.
 
 ## Scope
 
-Production currently publishes `zh-CN` only. English remains disabled in the locale registry for future offline projection work.
+The build generates complete `zh-CN` and `en` product data. Public routes, server loaders, navigation, SEO, and browser requests remain explicitly `zh-CN`-only until a separate R6 product decision.
 
-## Inputs
+## Inputs and ownership
 
-- pinned `TurnBasedGameData` checkout and `upstream.lock.json`;
-- pinned `StarRailRes` assets through the existing asset pipeline;
-- losslessly parsed Excel tables and `TextMapCHS.json`;
-- site-owned UI messages from `messages/zh-CN.json` through Paraglide.
+- `upstream.lock.json` pins the read-only `TurnBasedGameData` and `StarRailRes` checkouts.
+- Locale-neutral semantics come from losslessly parsed upstream tables.
+- Game-owned text comes only from the matching pinned TextMap: `TextMapCHS.json` for `zh-CN`, `TextMapEN.json` for `en`.
+- Site-owned UI text comes from manually maintained `messages/zh-CN.json` and `messages/en.json` through Paraglide.
+- The maintained player-alias catalog is zh-CN-only. English canonical names and official aliases are derived from TextMapEN and stable naming provenance; English has no player aliases.
+
+TextMaps are never copied into Paraglide and one locale's TextMap is never used as another locale's fallback.
 
 ## LocaleRegistry
 
-`scripts/data/locale-registry.ts` is the single value-level mapping from site locale to TextMap code and site-message locale. Unsupported locales fail explicitly.
+`scripts/data/locale-registry.ts` is the single value-level mapping from site locale to TextMap code and site-message locale. It distinguishes `projectionEnabled` from `publicRoutingEnabled`.
 
-## Game Text vs Site Messages
+Both `zh-CN` and `en` are projected. Only `zh-CN` is public. Unsupported locales fail explicitly.
 
-Game text is resolved from upstream TextMaps through the result-based `TextResolver`. Site UI text is owned by Paraglide messages. The two sources are not combined.
-
-## Build Pipeline
+## Build pipeline
 
 ```text
 pinned upstream
-  → lossless readers
-  → in-memory semantic domains
-  → locale projection
-  → locale-qualified product/Search JSON
-  → private manifest validation
-  → SvelteKit prerender
+  → one raw-table load
+  → one construction pass for shared semantic domains
+  → one isolated projection context per generated locale
+  → localized views, Search, and occurrence shards in staging
+  → localization-health, CJK, structural, digest, and inventory validation
+  → atomic publication of both generated roots
+  → zh-CN-only SvelteKit prerender
 ```
 
-Character, Light Cone, Relic, Enemy, and Endgame builders retain stable IDs, relationships, numeric structure, and text references without persisted semantic-domain authority.
+Character, Light Cone, Relic, Enemy, and Endgame domains retain stable IDs, relationships, numeric structure, and text references. Projection policy owns locale-specific labels, composition rules, and synthetic fallbacks.
 
-## Generated Artifact Layout
+## Localization results and health
+
+The resolver records every attempted resolution as `available`, `absent`, `missing`, `empty`, `invalid`, or `unsupported`, together with domain/entity/field provenance and the field policy: required/optional, emitted/hidden, fallback use, and route reachability.
+
+Required visible localization fails projection. Optional localization follows its explicit omission or locale-owned fallback policy. Every generated locale must report zero unclassified entries and zero invalid program-state errors.
+
+English output is scanned for CJK after staging. A hit must be attributable to TextMapEN; Site Message, projection-policy, CHS-fallback, and unexplained hits fail publication.
+
+## Structural parity
+
+Before publication, the two projections are reduced to locale-neutral structure and compared. The comparison covers Character profiles/skills/traces/eidolons, Light Cones, Relic sets/pieces, Enemy templates/monsters/included skills/summons, Endgame groups/stages/waves/occurrences, Search targets, occurrence shards, Homepage identities, and route-neutral links. Localized strings and locale discriminators are excluded.
+
+## Generated artifact layout
 
 ```text
 src/lib/generated/
-├── views/zh-CN/
-│   ├── catalogs/
-│   ├── details/
-│   ├── endgame/
-│   ├── homepage.json
-│   └── search-inputs.json
-└── manifest.json              # private build metadata
+├── views/
+│   ├── zh-CN/
+│   │   ├── catalogs/
+│   │   ├── details/
+│   │   ├── endgame/
+│   │   ├── homepage.json
+│   │   └── search-inputs.json
+│   └── en/
+│       └── same complete view layout
+└── manifest.json
 
-static/generated/zh-CN/search.json
+static/generated/
+├── zh-CN/search.json
+└── en/
+    ├── search.json
+    └── endgame-occurrences/{targetId}
 ```
 
-There is no root compatibility product tree and no mandatory neutral/source staging tree.
+The existing `generated/zh-CN/endgame-occurrences/[targetId]` prerender endpoint remains unchanged. R5 adds no English route; EN shards are static build artifacts for validation and future use.
 
-## Search Identity / Locale Ownership
+## Manifest and cache validity
 
-Search documents and Endgame occurrences use stable domain IDs. Localization changes searchable labels only; it does not change entity, route, shard, or cache identity. Search output is locale-qualified.
+Schema 42 retains stable top-level source/game version, `dataRevision`, public counts/routes, and Endgame summary. It adds generated/public locale metadata, per-locale TextMap digests, counts, Endgame/Search summaries, localization health, artifact totals, and byte/SHA-256 metadata for every artifact.
 
-## Build Manifest / Cache Validity
+`dataRevision` includes both TextMap digests and the complete artifact map. Freshness checks reject missing, extra, partial, stale, or digest-mismatched locale trees. Alias-only Search refresh remains zh-CN-only and updates only zh-CN metadata; it does not modify English Search.
 
-The schema-41 private manifest records upstream provenance, locale/TextMap digest, route/count summaries, a data revision, and byte/SHA-256 metadata for every emitted JSON artifact. `ensure` and `validate` reject stale, mixed, missing, or structurally invalid product trees.
+## Browser and public-product boundary
 
-## Browser Boundary
+Browser-facing product loaders remain rooted at `views/zh-CN`. No locale selection API, `/en` route, switcher, detection, redirects, English SEO, or bilingual public Search is present. Raw TextMaps, upstream tables, semantic domains, audits, and the private manifest remain server/build inputs.
 
-TextMaps, raw upstream tables, semantic domain objects, and private build metadata remain server/build inputs. Browser payloads contain only the localized route/search data required by the page plus the small public site-version object.
+## Product baseline and validation
 
-## Product Baseline
+`pnpm product:baseline:check` remains the authoritative zh-CN semantic regression gate. English correctness is protected by message parity, required-field completeness, structural identity, localization health, focused GameText/Search tests, CJK provenance, artifact integrity, and browser-boundary tests rather than a giant English wording snapshot.
 
-`pnpm product:baseline:check` is the authoritative zh-CN semantic regression gate. Baseline fixtures are not updated as part of cleanup.
-
-The test authority is deliberately split into independent contracts:
-
-- **Product behavior** protects observable zh-CN text, formatting, ordering, grouping, routes, fallbacks, and displayed assets.
-- **Data/domain integrity** protects locale-neutral IDs, relationships, ownership, Enemy policy, Endgame identity, and referential integrity through focused tests.
-- **Architecture invariants** protect build/runtime boundaries such as locale-qualified caches, unsupported-locale failures, and the browser boundary.
-- **Upstream health** records version-scoped counts, missing hashes, and asset inventories as diagnostics rather than timeless product behavior.
-
-Migration-era captures, before/after trees, compatibility layouts, and raw registry snapshots are forensic history, not normative test authority.
-
-## Standard Validation Commands
+Standard gates:
 
 ```text
 pnpm data:sync
@@ -90,8 +100,9 @@ pnpm lint
 pnpm test
 pnpm build
 pnpm test:e2e
+git diff --check
 ```
 
-## Adding a New Locale — architectural requirements only
+## Adding or publishing another locale
 
-Add a LocaleRegistry entry and site-message catalog, project the same semantic domains through the result-based resolver, emit locale-qualified artifacts and Search, keep stable IDs locale-independent, validate missing/unsupported states explicitly, and verify that the browser still receives no raw TextMaps or upstream tables. Enabling a new production locale requires a separate product decision.
+To generate another locale, add its registry entry, TextMap requirement, and complete manually maintained Site Message catalog, then pass the same domains through an isolated projection context and all parity/health/integrity checks. Making any generated locale publicly routable is a separate product change.

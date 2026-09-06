@@ -18,6 +18,7 @@ import {
   type TextResolver
 } from './localization.js';
 import { getProductionLocale } from './locale-registry.js';
+import { getLocaleProjectionPolicy } from './projection/policy.js';
 import { hashOf, mergeConfigSources, readTable } from './raw.js';
 
 interface AvatarNameRow {
@@ -99,6 +100,7 @@ export function buildCharacterNames(
   };
   const displayNames: Record<string, string> = {};
   const baseNames: Record<string, string> = {};
+  const projectionPolicy = getLocaleProjectionPolicy(text.locale);
   for (const avatar of [...merged].sort((a, b) =>
     compareSearchText(String(a.AvatarID), String(b.AvatarID))
   )) {
@@ -125,7 +127,10 @@ export function buildCharacterNames(
     const baseName =
       baseAvatarId === '8001' ? resolveTrailblazerBaseName(namingOwners, text) : rawName;
     baseNames[id] = gameTextToPlain(baseName);
-    const displayName = isMultiplePath ? `${baseName}·${pathName}` : rawName;
+    const normalizedBaseName = projectionPolicy.normalizeCharacterBaseName(baseName);
+    const displayName = isMultiplePath
+      ? projectionPolicy.composeCharacterPathName(normalizedBaseName, pathName)
+      : rawName;
     const canonicalName = gameTextToPlain(displayName);
     if (!normalizeSearch(canonicalName) || hasNamePlaceholder(canonicalName))
       throw new Error(`角色 ${id} canonicalName 无效`);

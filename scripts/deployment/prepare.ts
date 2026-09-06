@@ -10,6 +10,7 @@ export const upstreamRoot = resolveUpstreamRoot(siteRoot);
 const turnBasedSparsePaths = [
   'ExcelOutput/',
   'TextMap/TextMapCHS.json',
+  'TextMap/TextMapEN.json',
   'Config/ConfigCharacter/Monster/',
   'Config/ConfigAbility/Monster/',
   'Config/ConfigAbility/BattleEvent/'

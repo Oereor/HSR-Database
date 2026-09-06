@@ -30,8 +30,8 @@ Due to special network environment, all Internet-related operations must go thro
 - Use only real game data discovered in `../TurnBasedGameData/`.
 - Do not use StarRailRes index files as a replacement source for character, skill, trace, light-cone, enemy, stat, or relationship data unless explicitly requested.
 - Do not invent characters, items, skills, statistics, IDs, descriptions, translations, or relationships.
-- The website supports Simplified Chinese only and normally reads only `TextMap/TextMapCHS.json`.
-- Phase 1 permits pinned Paraglide message compilation for zh-CN website UI only. Use explicit locale message calls. Do not add mutable locale state, language switching, localized routing, or fallback TextMaps.
+- Data generation supports `zh-CN` and `en` from their matching pinned TextMaps; public website routes and loaders remain Simplified-Chinese-only until an explicit product change.
+- Paraglide compiles manually maintained `zh-CN` and `en` Site Messages. Use explicit locale message calls. Do not add mutable locale state, language switching, localized routing, cross-locale TextMap fallback, or locale detection/redirects.
 - Keep TextMap hashes as decimal strings throughout the data pipeline; never pass them through JavaScript `number`.
 - Keep raw-data parsing separate from UI components.
 - Use the shared TextMap resolver instead of accessing TextMap records from business code.

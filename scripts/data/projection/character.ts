@@ -31,7 +31,18 @@ function projectDescription(
   field: { domain: string; entityId: string; field: string },
   gender?: 'female' | 'male'
 ): string {
-  if (!source) return '';
+  if (!source) {
+    context.resolver.recordAbsent(
+      { entity: field.domain, id: field.entityId, field: field.field },
+      {
+        requirement: 'optional',
+        visibility: 'hidden',
+        fallbackUsed: true,
+        productRouteReachability: 'reachable'
+      }
+    );
+    return '';
+  }
   const projected = context.resolver.projectGameText(source, {
     gender,
     nickname: context.nickname,
@@ -57,6 +68,9 @@ export interface CharacterProjectionContext {
   extraEffectsById: ReadonlyMap<string, NeutralExtraEffect>;
   nickname?: string;
   skillCategoryLabels?: Partial<typeof SKILL_CATEGORY_LABELS>;
+  skillEffectLabels?: Parameters<typeof normalizeSkillCombatMeta>[1];
+  composePathName?: (baseName: string, pathName: string) => string;
+  normalizeBaseName?: (name: string) => string;
   presentationPolicy?: {
     optionalText?: 'empty' | 'throw';
     nickname?: 'replace' | 'preserve-placeholder';
@@ -104,15 +118,23 @@ function projectSkillVariant(
     field: `skill.${variant.id}.${name}`
   });
   const combatMetaLevels = (variant.combatLevels ?? []).map((combat) => {
+    const resourceSource = {
+      entity: 'character',
+      id: domain.id,
+      field: `skill.${variant.id}.combat.${combat.level}.specialResource`
+    };
+    if (!combat.specialResourceSource)
+      context.resolver.recordAbsent(resourceSource, {
+        requirement: 'optional',
+        visibility: 'hidden',
+        fallbackUsed: true,
+        productRouteReachability: 'reachable'
+      });
     const resourceResult = combat.specialResourceSource
       ? context.resolver.resolve(combat.specialResourceSource, {
           gender: domain.gender,
           nickname: context.nickname,
-          provenance: {
-            entity: 'character',
-            id: domain.id,
-            field: `skill.${variant.id}.combat.${combat.level}.specialResource`
-          },
+          provenance: resourceSource,
           diagnosticDisposition: {
             requirement: 'optional',
             visibility: 'hidden',
@@ -133,16 +155,19 @@ function projectSkillVariant(
     const extraEffects = projectExtraEffects(domain, context, variant.extraEffectIds);
     return {
       level: combat.level,
-      combatMeta: normalizeSkillCombatMeta({
-        skillEffect: combat.effectCode,
-        specialResource: resource,
-        bpNeed: combat.bpNeed,
-        bpAdd: combat.bpAdd,
-        spBase: combat.spBase,
-        stanceDamageDisplay: combat.stanceDamageDisplay,
-        showStanceList: combat.showStanceList,
-        extraEffects
-      })
+      combatMeta: normalizeSkillCombatMeta(
+        {
+          skillEffect: combat.effectCode,
+          specialResource: resource,
+          bpNeed: combat.bpNeed,
+          bpAdd: combat.bpAdd,
+          spBase: combat.spBase,
+          stanceDamageDisplay: combat.stanceDamageDisplay,
+          showStanceList: combat.showStanceList,
+          extraEffects
+        },
+        context.skillEffectLabels
+      )
     };
   });
   const name = requiredText(context.resolver, variant.nameSource, field('name'));
@@ -414,21 +439,33 @@ export function projectCharacterView(
         field: 'baseName'
       })
     : undefined;
+  const resolvedBaseName = sourceBaseName || rawName;
   const baseName = isMultiplePath
-    ? (sourceBaseName || rawName).replace(/·.*$/, '').replace('{NICKNAME}', context.nickname ?? '')
+    ? (context.normalizeBaseName?.(resolvedBaseName) ?? resolvedBaseName).replace(
+        '{NICKNAME}',
+        context.nickname ?? ''
+      )
     : rawName;
-  const name = isMultiplePath ? `${baseName}·${pathName}` : rawName;
+  const name = isMultiplePath
+    ? (context.composePathName?.(baseName, pathName) ?? `${baseName}·${pathName}`)
+    : rawName;
+  const fullNameDisposition = {
+    requirement: 'optional' as const,
+    visibility: 'hidden' as const,
+    fallbackUsed: true,
+    productRouteReachability: 'reachable' as const
+  };
+  if (!domain.naming.fullName)
+    context.resolver.recordAbsent(
+      { entity: 'character', id: domain.id, field: 'fullName' },
+      fullNameDisposition
+    );
   const fullNameResult = domain.naming.fullName
     ? context.resolver.resolve(domain.naming.fullName, {
         gender: domain.gender,
         nickname: context.nickname,
         provenance: { entity: 'character', id: domain.id, field: 'fullName' },
-        diagnosticDisposition: {
-          requirement: 'optional',
-          visibility: 'hidden',
-          fallbackUsed: true,
-          productRouteReachability: 'reachable'
-        }
+        diagnosticDisposition: fullNameDisposition
       })
     : { status: 'absent' as const };
   const fullName =

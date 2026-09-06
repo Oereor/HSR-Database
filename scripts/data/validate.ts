@@ -70,6 +70,9 @@ import type { EndgameAudit } from './endgame.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
 import { parseGameVersion } from './source-metadata.js';
 import { readDataManifest, validateGeneratedArtifacts } from './generated-artifacts.js';
+import { getGeneratedLocales, type Locale } from './locale-registry.js';
+import { assertCrossLocaleStructuralParity } from './structural-parity.js';
+import { assertEnglishCjkReport, auditEnglishCjk } from './english-cjk.js';
 import {
   assertHomepageRecentWarpData,
   buildHomepageRecentWarpData,
@@ -78,8 +81,13 @@ import {
 
 const manifest: DataManifest = await readDataManifest();
 await validateGeneratedArtifacts(manifest);
-if (manifest.locale !== 'zh-CN' || manifest.textMapCode !== 'CHS')
-  throw new Error(`生成数据 locale/TextMap 错误：${manifest.locale}/${manifest.textMapCode}`);
+if (
+  manifest.publicLocale !== 'zh-CN' ||
+  JSON.stringify(manifest.generatedLocales) !== '["zh-CN","en"]' ||
+  manifest.locales['zh-CN'].textMapCode !== 'CHS' ||
+  manifest.locales.en.textMapCode !== 'EN'
+)
+  throw new Error('生成数据 locale/TextMap 配置错误');
 const parsedGameVersion = parseGameVersion(manifest.sourceVersion);
 if (
   manifest.gameVersionFull !== parsedGameVersion.gameVersionFull ||
@@ -89,14 +97,19 @@ if (
 
 const rawRoot = assertDataRoot();
 const productRoot = path.join(generatedRoot, 'views', 'zh-CN');
-const currentTextMap = JSON.parse(
-  await readFile(path.join(rawRoot, 'TextMap', 'TextMapCHS.json'), 'utf8')
-);
-if (
-  manifest.textMapDigest !==
-  createHash('sha256').update(JSON.stringify(currentTextMap)).digest('hex')
-)
-  throw new Error('zh-CN view TextMap digest 已过期');
+const currentTextMaps = Object.fromEntries(
+  await Promise.all(
+    getGeneratedLocales().map(async ({ locale, textMapCode }) => {
+      const textMap = JSON.parse(
+        await readFile(path.join(rawRoot, 'TextMap', `TextMap${textMapCode}.json`), 'utf8')
+      ) as Record<string, string>;
+      const digest = createHash('sha256').update(JSON.stringify(textMap)).digest('hex');
+      if (manifest.locales[locale].textMapDigest !== digest)
+        throw new Error(`${locale} view TextMap digest 已过期`);
+      return [locale, textMap] as const;
+    })
+  )
+) as Record<Locale, Record<string, string>>;
 const [homepage, homepageCharacterCatalog, homepageLightConeCatalog, homepageGachaRows] =
   await Promise.all([
     readFile(path.join(productRoot, 'homepage.json'), 'utf8').then(
@@ -908,7 +921,10 @@ const search = JSON.parse(
 ) as GlobalSearchIndex;
 if (search.schemaVersion !== GLOBAL_SEARCH_SCHEMA_VERSION) throw new Error('搜索索引 schema 异常');
 const searchInputs = JSON.parse(await readFile(searchInputsPath, 'utf8')) as SearchBuildInputs;
-const expectedSearch = buildSearchDocuments(searchInputs, await loadPlayerAliases());
+const expectedSearch = buildSearchDocuments(searchInputs, 'zh-CN', {
+  kind: 'maintained',
+  value: await loadPlayerAliases()
+});
 if (JSON.stringify(search) !== JSON.stringify(expectedSearch))
   throw new Error('搜索文档与当前 metadata/catalog 不一致');
 if (
@@ -1811,6 +1827,118 @@ if (skillVariant(baseProfile(huntMarch), '122401')?.combatMeta.extraEffects !== 
 if (skillVariant(baseProfile(huntMarch), '122408')?.combatMeta.extraEffects?.[0]?.id !== '30000002')
   throw new Error('技能 ExtraEffect 归属失败：三月七·巡猎强化普攻');
 
+async function readLocaleProjection(locale: Locale) {
+  const root = path.join(generatedRoot, 'views', locale);
+  const [catalogs, details, properties, datasets, localeHomepage, localeSearch] = await Promise.all(
+    [
+      Promise.all(
+        ['characters', 'light-cones', 'relics', 'enemies'].map(async (category) => [
+          category,
+          JSON.parse(await readFile(path.join(root, 'catalogs', `${category}.json`), 'utf8'))
+        ])
+      ).then(Object.fromEntries),
+      Promise.all(
+        Object.entries(manifest.routes).map(async ([category, ids]) => [
+          category,
+          await Promise.all(
+            ids.map((id) =>
+              readFile(path.join(root, 'details', category, `${id}.json`), 'utf8').then(JSON.parse)
+            )
+          )
+        ])
+      ).then(Object.fromEntries),
+      readFile(path.join(root, 'catalogs', 'relic-properties.json'), 'utf8').then(JSON.parse),
+      Promise.all(
+        endgameModes.map(async (mode) => [
+          mode,
+          JSON.parse(await readFile(path.join(root, 'endgame', `${mode}.json`), 'utf8'))
+        ])
+      ).then(Object.fromEntries),
+      readFile(path.join(root, 'homepage.json'), 'utf8').then(JSON.parse),
+      readFile(path.join(staticGeneratedRoot, locale, 'search.json'), 'utf8').then(
+        (value) => JSON.parse(value) as GlobalSearchIndex
+      )
+    ]
+  );
+  return {
+    catalogs,
+    details,
+    relicProperties: properties,
+    endgame: { datasets },
+    globalSearchIndex: localeSearch,
+    homepage: localeHomepage,
+    occurrenceShards: Object.fromEntries(
+      localeSearch.endgameTargets.map(({ id, occurrences }) => [id, { id, occurrences }])
+    )
+  };
+}
+
+const [zhProjection, enProjection, enSearchInputs] = await Promise.all([
+  readLocaleProjection('zh-CN'),
+  readLocaleProjection('en'),
+  readFile(path.join(generatedRoot, 'views', 'en', 'search-inputs.json'), 'utf8').then(
+    (value) => JSON.parse(value) as SearchBuildInputs
+  )
+]);
+assertCrossLocaleStructuralParity(zhProjection, enProjection);
+
+const enSearch = enProjection.globalSearchIndex;
+const expectedEnSearch = buildSearchDocuments(enSearchInputs, 'en', { kind: 'none' });
+if (JSON.stringify(enSearch) !== JSON.stringify(expectedEnSearch))
+  throw new Error('English Search documents do not match the current projected catalogs');
+if (
+  enSearch.locale !== 'en' ||
+  enSearch.documents.some(({ playerAliases }) => playerAliases.length > 0)
+)
+  throw new Error(
+    'English Search must be locale-qualified and contain no maintained player aliases'
+  );
+
+const expectedShardIds = enSearch.endgameTargets.map(({ id }) => id).sort();
+const manifestShardIds = Object.keys(manifest.artifacts)
+  .filter((logicalPath) => logicalPath.startsWith('static/generated/en/endgame-occurrences/'))
+  .map((logicalPath) => logicalPath.split('/').at(-1)!)
+  .sort();
+if (JSON.stringify(expectedShardIds) !== JSON.stringify(manifestShardIds))
+  throw new Error('English Endgame occurrence shard target inventory is incomplete');
+for (const target of enSearch.endgameTargets) {
+  const shard = JSON.parse(
+    await readFile(path.join(staticGeneratedRoot, 'en', 'endgame-occurrences', target.id), 'utf8')
+  ) as {
+    schemaVersion: number;
+    locale: string;
+    target: { kind: string; id: string };
+    occurrences: Record<string, { key: string; occurrence: { monsterId: number } }>;
+  };
+  const expectedKeys = target.occurrences.map(({ locator }) =>
+    endgameOccurrenceLocatorKey(locator)
+  );
+  if (
+    shard.schemaVersion !== 2 ||
+    shard.locale !== 'en' ||
+    shard.target.kind !== 'endgame' ||
+    shard.target.id !== target.id ||
+    JSON.stringify(Object.keys(shard.occurrences)) !== JSON.stringify(expectedKeys)
+  )
+    throw new Error(`English Endgame occurrence shard is invalid: ${target.id}`);
+  for (const { locator } of target.occurrences) {
+    const key = endgameOccurrenceLocatorKey(locator);
+    if (
+      shard.occurrences[key]?.key !== key ||
+      shard.occurrences[key]?.occurrence.monsterId !== locator.monsterId
+    )
+      throw new Error(`English Endgame occurrence shard locator is invalid: ${key}`);
+  }
+}
+
+const englishCjk = await auditEnglishCjk({
+  generatedViewRoot: path.join(generatedRoot, 'views', 'en'),
+  staticLocaleRoot: path.join(staticGeneratedRoot, 'en'),
+  siteMessages: JSON.parse(await readFile(path.resolve('messages', 'en.json'), 'utf8')),
+  textMap: currentTextMaps.en
+});
+assertEnglishCjkReport(englishCjk);
+
 if (emptySkillDescriptions)
   console.warn(`数据警告：${emptySkillDescriptions} 条技能等级的原始描述为空，已保留明确降级。`);
 if (textDiagnostics['unresolved-hash'].count)
@@ -1839,5 +1967,5 @@ if (audit.avatarSpecialSkillTreeAudit.diagnostics.length)
     `AvatarSpecialSkillTree relation 警告：${audit.avatarSpecialSkillTreeAudit.diagnostics.length} 条诊断，详见 data/audit/latest.json。`
   );
 console.log(
-  `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，${search.documents.length} 条简中搜索记录。`
+  `数据验证通过：${manifest.sourceCommit.slice(0, 12)}，zh-CN/en 各 ${search.documents.length} 条搜索记录，${expectedShardIds.length} 个 English Endgame shards。`
 );

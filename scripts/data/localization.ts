@@ -81,6 +81,33 @@ export interface TextDiagnosticDisposition {
   productRouteReachability: 'reachable' | 'unreachable';
 }
 
+export type LocalizationStatus = LocalizationResult<unknown>['status'];
+
+export interface LocalizationHealthEntry {
+  status: LocalizationStatus;
+  identifier: string;
+  source: BuildTextProvenance;
+  locale: Locale;
+  textMapCode: TextMapCode;
+  disposition?: TextDiagnosticDisposition;
+  reason?: string;
+}
+
+export interface LocalizationHealthTotals {
+  total: number;
+  statuses: Record<LocalizationStatus, number>;
+  requirements: Record<'required' | 'optional', number>;
+  visibility: Record<'emitted' | 'hidden', number>;
+  fallbackUse: Record<'used' | 'notUsed', number>;
+  routeReachability: Record<'reachable' | 'unreachable', number>;
+  unclassified: number;
+  invalidProgramStateErrors: number;
+}
+
+export interface LocalizationHealthSummary extends LocalizationHealthTotals {
+  entries: LocalizationHealthEntry[];
+}
+
 export type TextDiagnosticSummary = Record<
   TextDiagnosticKind,
   { count: number; samples: TextDiagnosticSample[]; entries: TextDiagnosticSample[] }
@@ -107,12 +134,14 @@ export interface TextResolver {
     source: RuntimeTextSource,
     context?: GameTextProjectionContext
   ): LocalizationResult<GameTextProjection>;
+  recordAbsent(source: BuildTextProvenance, disposition: TextDiagnosticDisposition): void;
   getDiagnostics(): TextDiagnosticSummary;
+  getLocalizationHealth(): LocalizationHealthSummary;
 }
 
 const MAX_DIAGNOSTIC_SAMPLES = 20;
 
-/** Load a TextMap using an explicit upstream code. Production currently enables CHS only. */
+/** Load a TextMap using an explicit configured upstream code. */
 export async function loadTextMap(
   root: string,
   textMapCode: TextMapCode = getLocaleConfig('zh-CN').textMapCode
@@ -166,6 +195,48 @@ export async function createTextResolver(
     'unsupported-template': { count: 0, samples: [], entries: [] }
   };
   const seenDiagnostics = new Set<string>();
+  const health: LocalizationHealthSummary = {
+    total: 0,
+    statuses: { available: 0, absent: 0, missing: 0, empty: 0, invalid: 0, unsupported: 0 },
+    requirements: { required: 0, optional: 0 },
+    visibility: { emitted: 0, hidden: 0 },
+    fallbackUse: { used: 0, notUsed: 0 },
+    routeReachability: { reachable: 0, unreachable: 0 },
+    unclassified: 0,
+    invalidProgramStateErrors: 0,
+    entries: []
+  };
+
+  const recordHealth = (
+    status: LocalizationStatus,
+    identifier: string,
+    source: BuildTextProvenance,
+    disposition?: TextDiagnosticDisposition,
+    reason?: string
+  ): void => {
+    const actualDisposition = disposition
+      ? { ...disposition, fallbackUsed: status === 'available' ? false : disposition.fallbackUsed }
+      : undefined;
+    health.total += 1;
+    health.statuses[status] += 1;
+    if (!actualDisposition) health.unclassified += 1;
+    else {
+      health.requirements[actualDisposition.requirement] += 1;
+      health.visibility[actualDisposition.visibility] += 1;
+      health.fallbackUse[actualDisposition.fallbackUsed ? 'used' : 'notUsed'] += 1;
+      health.routeReachability[actualDisposition.productRouteReachability] += 1;
+    }
+    if (status === 'invalid') health.invalidProgramStateErrors += 1;
+    health.entries.push({
+      status,
+      identifier,
+      source: { ...source },
+      locale: resolverConfig.locale,
+      textMapCode: resolverConfig.textMapCode,
+      ...(actualDisposition ? { disposition: actualDisposition } : {}),
+      ...(reason ? { reason } : {})
+    });
+  };
 
   const record = (
     kind: TextDiagnosticKind,
@@ -194,9 +265,10 @@ export async function createTextResolver(
     onDiagnostic?.(kind, identifier, { ...source }, reason, disposition);
   };
 
-  const resolve = (
+  const resolveInternal = (
     source: RuntimeTextSource,
-    context: TextProjectionContext = {}
+    context: TextProjectionContext,
+    trackHealth: boolean
   ): LocalizationResult<string> => {
     const provenance = sourceOf(source, context);
     const ref = source.ref;
@@ -212,7 +284,19 @@ export async function createTextResolver(
         undefined,
         context.diagnosticDisposition
       );
-      return { status: 'invalid', reason: 'TextMap reference is not a valid decimal hash' };
+      const result = {
+        status: 'invalid' as const,
+        reason: 'TextMap reference is not a valid decimal hash'
+      };
+      if (trackHealth)
+        recordHealth(
+          result.status,
+          String(ref.kind === 'hash' ? ref.hash : ref.key),
+          provenance,
+          context.diagnosticDisposition,
+          result.reason
+        );
+      return result;
     }
     const resolvedRef: RuntimeTextRef =
       ref.kind === 'hash' ? ref : { kind: 'symbolic', key: ref.key, hash };
@@ -225,29 +309,79 @@ export async function createTextResolver(
         undefined,
         context.diagnosticDisposition
       );
-      return { status: 'missing', ref: resolvedRef };
+      const result = { status: 'missing' as const, ref: resolvedRef };
+      if (trackHealth)
+        recordHealth(
+          result.status,
+          ref.kind === 'hash' ? hash : ref.key,
+          provenance,
+          context.diagnosticDisposition
+        );
+      return result;
     }
     if (value === '') {
       record('empty-locale-value', hash, provenance, undefined, context.diagnosticDisposition);
-      return { status: 'empty', ref: resolvedRef };
+      const result = { status: 'empty' as const, ref: resolvedRef };
+      if (trackHealth)
+        recordHealth(
+          result.status,
+          ref.kind === 'hash' ? hash : ref.key,
+          provenance,
+          context.diagnosticDisposition
+        );
+      return result;
     }
     let rendered = value;
     if (context.gender) {
       rendered = rendered.replace(/\{F#([^{}]*)\}\{M#([^{}]*)\}/g, (_m, female, male) =>
         context.gender === 'female' ? female : male
       );
+      rendered = rendered.replace(/\{M#([^{}]*)\}\{F#([^{}]*)\}/g, (_m, male, female) =>
+        context.gender === 'female' ? female : male
+      );
     }
     if (context.nickname !== undefined)
       rendered = rendered.replaceAll('{NICKNAME}', context.nickname);
-    return { status: 'available', value: rendered, ref: resolvedRef };
+    const result = { status: 'available' as const, value: rendered, ref: resolvedRef };
+    if (trackHealth)
+      recordHealth(
+        result.status,
+        ref.kind === 'hash' ? hash : ref.key,
+        provenance,
+        context.diagnosticDisposition
+      );
+    return result;
   };
+
+  const resolve = (
+    source: RuntimeTextSource,
+    context: TextProjectionContext = {}
+  ): LocalizationResult<string> => resolveInternal(source, context, true);
 
   const projectGameText = (
     source: RuntimeTextSource,
     context: GameTextProjectionContext = {}
   ): LocalizationResult<GameTextProjection> => {
-    const resolved = resolve(source, context);
-    if (resolved.status !== 'available') return resolved;
+    const provenance = sourceOf(source, context);
+    const resolved = resolveInternal(source, context, false);
+    const identifier =
+      resolved.status !== 'absent' && 'ref' in resolved && resolved.ref
+        ? resolved.ref.kind === 'hash'
+          ? resolved.ref.hash
+          : resolved.ref.key
+        : source.ref.kind === 'hash'
+          ? String(source.ref.hash)
+          : source.ref.key;
+    if (resolved.status !== 'available') {
+      recordHealth(
+        resolved.status,
+        identifier,
+        provenance,
+        context.diagnosticDisposition,
+        'reason' in resolved ? resolved.reason : undefined
+      );
+      return resolved;
+    }
     const formatted = formatDescription(
       resolved.value,
       paramsOf(source),
@@ -263,10 +397,11 @@ export async function createTextResolver(
         reason,
         context.diagnosticDisposition
       );
+      recordHealth('unsupported', identifier, provenance, context.diagnosticDisposition, reason);
       return { status: 'unsupported', reason, ref: resolved.ref };
     }
     const markup = formatGameMarkup(resolved.value, paramsOf(source));
-    return {
+    const result = {
       status: 'available',
       ref: resolved.ref,
       value: {
@@ -276,7 +411,9 @@ export async function createTextResolver(
         diagnostics: formatted.diagnostics,
         usedParameterIndexes: markup.usedParameterIndexes
       }
-    };
+    } as const;
+    recordHealth('available', identifier, provenance, context.diagnosticDisposition);
+    return result;
   };
 
   return {
@@ -284,6 +421,16 @@ export async function createTextResolver(
     textMapCode: resolverConfig.textMapCode,
     resolve,
     projectGameText,
-    getDiagnostics: () => structuredClone(diagnostics)
+    recordAbsent: (source, disposition) => recordHealth('absent', '', source, disposition),
+    getDiagnostics: () => structuredClone(diagnostics),
+    getLocalizationHealth: () => structuredClone(health)
   };
+}
+
+export function localizationHealthTotals(
+  summary: LocalizationHealthSummary
+): LocalizationHealthTotals {
+  const { entries: _entries, ...totals } = summary;
+  void _entries;
+  return totals;
 }

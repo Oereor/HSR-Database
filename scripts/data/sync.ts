@@ -17,6 +17,7 @@ import {
   createTextResolver,
   loadTextMap,
   runtimeTextSourceFromRef,
+  localizationHealthTotals,
   type TextDiagnosticDisposition,
   type TextSource
 } from './localization.js';
@@ -60,7 +61,11 @@ import { projectRelic } from './projection/relic.js';
 import { buildEnemyDomain } from './domain/enemy.js';
 import { projectEnemies } from './projection/enemy.js';
 import { validateSiteMessageFiles } from '../messages.js';
-import { getProductionLocale } from './locale-registry.js';
+import { getGeneratedLocales, getProductionLocale, type LocaleConfig } from './locale-registry.js';
+import { getLocaleProjectionPolicy } from './projection/policy.js';
+import { buildEndgameOccurrenceShards } from './endgame-occurrence-shards.js';
+import { assertCrossLocaleStructuralParity } from './structural-parity.js';
+import { assertEnglishCjkReport, auditEnglishCjk } from './english-cjk.js';
 
 type Raw = Record<string, any>;
 
@@ -176,6 +181,7 @@ function unique<T>(items: T[]): T[] {
 export async function syncData(): Promise<DataManifest> {
   const root = assertDataRoot();
   const locale = getProductionLocale();
+  const generatedLocales = getGeneratedLocales();
   const commit = sourceCommit(root);
   const sourceVersion = execFileSync(
     'git',
@@ -183,29 +189,44 @@ export async function syncData(): Promise<DataManifest> {
     { encoding: 'utf8', windowsHide: true }
   ).trim();
   const gameVersion = parseGameVersion(sourceVersion);
-  const siteMessages = await validateSiteMessageFiles();
+  const siteMessageCatalogs = await validateSiteMessageFiles();
 
   console.log(`读取上游数据：${root}`);
   console.log(`上游版本：${commit.slice(0, 12)} · ${sourceVersion}`);
   if (!gameVersion.gameVersionFull)
     console.warn('数据版本解析失败：TurnBasedGameData HEAD subject 不符合 OSPRODWin 版本格式。');
 
-  const missingText = createMissingTextAuditCollector();
-  const textMap = await loadTextMap(root, locale.textMapCode);
-  const textMapDigest = createHash('sha256').update(JSON.stringify(textMap)).digest('hex');
-  const text = await createTextResolver(
-    { locale: locale.locale, textMapCode: locale.textMapCode },
-    textMap,
-    (kind, identifier, textSource) => {
-      missingText.record(
-        kind === 'invalid-reference' ? 'D' : 'A',
-        kind === 'invalid-reference' ? 'invalid-reference' : 'missing-chs-text',
-        textSource,
-        identifier
+  const localeRuntimes = await Promise.all(
+    generatedLocales.map(async (config) => {
+      const missingText = createMissingTextAuditCollector();
+      const textMap = await loadTextMap(root, config.textMapCode);
+      const textMapDigest = createHash('sha256').update(JSON.stringify(textMap)).digest('hex');
+      const text = await createTextResolver(
+        { locale: config.locale, textMapCode: config.textMapCode },
+        textMap,
+        (kind, identifier, textSource) => {
+          missingText.record(
+            kind === 'invalid-reference' ? 'D' : 'A',
+            kind === 'invalid-reference'
+              ? 'invalid-reference'
+              : `missing-${config.locale.toLowerCase()}-text`,
+            textSource,
+            identifier
+          );
+        }
       );
-    }
+      return {
+        config,
+        textMap,
+        textMapDigest,
+        text,
+        missingText,
+        descriptionDiagnostics: createDescriptionDiagnosticSummary()
+      };
+    })
   );
-  const descriptionDiagnostics = createDescriptionDiagnosticSummary();
+  const baseRuntime = localeRuntimes.find(({ config }) => config.locale === locale.locale)!;
+  const { text, missingText } = baseRuntime;
   const unknownSkillEffects = new Set<string>();
   const source = (entity: string, id: string | number, field: string): TextSource => ({
     entity,
@@ -213,13 +234,14 @@ export async function syncData(): Promise<DataManifest> {
     field
   });
   const collectDescriptionDiagnostics = (
+    runtime: (typeof localeRuntimes)[number],
     entity: string,
     id: string,
     diagnostics: Parameters<typeof addDescriptionDiagnostics>[3]
   ): void => {
-    addDescriptionDiagnostics(descriptionDiagnostics, entity, id, diagnostics);
+    addDescriptionDiagnostics(runtime.descriptionDiagnostics, entity, id, diagnostics);
     for (const diagnostic of diagnostics)
-      missingText.record(
+      runtime.missingText.record(
         diagnostic.code === 'invalid-param' ? 'D' : 'B',
         diagnostic.code === 'invalid-param'
           ? 'invalid-description-parameter'
@@ -228,16 +250,28 @@ export async function syncData(): Promise<DataManifest> {
         diagnostic.placeholder
       );
   };
-  const symbolicResult = text.resolve({
-    kind: 'direct',
-    ref: { kind: 'symbolic', key: 'RelicDesc_1012' },
-    provenance: source('relic-set', '101', 'RelicSetSkillConfig.SkillDesc')
-  });
-  const hashResult = text.resolve({
-    kind: 'direct',
-    ref: { kind: 'hash', hash: parseTextHash('12720770977431568614')! },
-    provenance: source('regression', 'RelicDesc_1012', 'expectedHash')
-  });
+  const regressionDisposition: TextDiagnosticDisposition = {
+    requirement: 'required',
+    visibility: 'hidden',
+    fallbackUsed: false,
+    productRouteReachability: 'unreachable'
+  };
+  const symbolicResult = text.resolve(
+    {
+      kind: 'direct',
+      ref: { kind: 'symbolic', key: 'RelicDesc_1012' },
+      provenance: source('relic-set', '101', 'RelicSetSkillConfig.SkillDesc')
+    },
+    { diagnosticDisposition: regressionDisposition }
+  );
+  const hashResult = text.resolve(
+    {
+      kind: 'direct',
+      ref: { kind: 'hash', hash: parseTextHash('12720770977431568614')! },
+      provenance: source('regression', 'RelicDesc_1012', 'expectedHash')
+    },
+    { diagnosticDisposition: regressionDisposition }
+  );
   if (
     symbolicResult.status !== 'available' ||
     hashResult.status !== 'available' ||
@@ -319,11 +353,16 @@ export async function syncData(): Promise<DataManifest> {
     value === null ||
     value === '' ||
     (typeof value === 'object' && Object.keys(value).length === 0);
-  const auditResolvedText = (value: string, textSource: TextSource): void => {
+  const auditResolvedText = (
+    runtime: (typeof localeRuntimes)[number],
+    value: string,
+    textSource: TextSource
+  ): void => {
     if (/<icon\b/i.test(value))
-      missingText.record('B', 'unsupported-icon-markup', textSource, '<icon>');
+      runtime.missingText.record('B', 'unsupported-icon-markup', textSource, '<icon>');
   };
   const tr = (
+    runtime: (typeof localeRuntimes)[number],
     value: unknown,
     textSource: TextSource,
     fallback = '',
@@ -334,13 +373,15 @@ export async function syncData(): Promise<DataManifest> {
       productRouteReachability: 'reachable'
     }
   ): string => {
-    if (isEmptyTextSource(value)) missingText.record('A', 'missing-source-field', textSource);
+    if (isEmptyTextSource(value))
+      runtime.missingText.record('A', 'missing-source-field', textSource);
     const runtimeSource = runtimeTextSourceFromRef(value, textSource);
+    if (!runtimeSource) runtime.text.recordAbsent(textSource, disposition);
     const result = runtimeSource
-      ? text.resolve(runtimeSource, { diagnosticDisposition: disposition })
+      ? runtime.text.resolve(runtimeSource, { diagnosticDisposition: disposition })
       : { status: 'absent' as const };
     const resolved = result.status === 'available' ? result.value : '';
-    auditResolvedText(resolved, textSource);
+    auditResolvedText(runtime, resolved, textSource);
     return normalizeGameText(resolved || fallback);
   };
   // These are complete raw indexes. HideInUI is a standard-presentation rule and must
@@ -535,7 +576,7 @@ export async function syncData(): Promise<DataManifest> {
   const relicPropertyTypes = unique([...mainAffixPropertyTypes, ...subAffixPropertyTypes]).sort(
     (a, b) => a.localeCompare(b)
   );
-  const relicProperties: RelicProperty[] = relicPropertyTypes.map((propertyType) => {
+  const relicPropertyDefinitions = relicPropertyTypes.map((propertyType) => {
     const property = avatarProperties.get(propertyType);
     if (!property) throw new Error(`遗器属性 ${propertyType} 无法关联 AvatarPropertyConfig`);
     const allowedMainSlots = relicSlots.filter((slot) =>
@@ -549,19 +590,12 @@ export async function syncData(): Promise<DataManifest> {
       : undefined;
     return {
       propertyType,
-      name: tr(
-        property.PropertyNameRelic ?? property.PropertyName,
-        source('relic-property', propertyType, 'PropertyNameRelic'),
-        propertyType
-      ),
+      nameSource: property.PropertyNameRelic ?? property.PropertyName,
       ...(iconKey ? { iconKey } : {}),
       allowedMainSlots,
       canBeSubStat: subAffixPropertyTypes.has(propertyType)
     };
   });
-  const characterCatalog: CatalogEntry[] = [];
-  const characters: Character[] = [];
-  const characterNames = await deriveCharacterNames(root, commit, text);
 
   const allTables = tables as Record<string, Raw[]>;
   const tableSubset = (names: readonly string[]): Record<string, Raw[]> =>
@@ -576,17 +610,6 @@ export async function syncData(): Promise<DataManifest> {
       'AvatarPropertyConfig'
     ])
   });
-  const lightCones = lightConeDomains.map((domain) =>
-    projectLightCone(domain, { locale: locale.locale, resolver: text })
-  );
-  const lightConeCatalog: CatalogEntry[] = lightCones.map((lightCone) => {
-    const catalog: Partial<typeof lightCone> = { ...lightCone };
-    delete catalog.kind;
-    delete catalog.story;
-    delete catalog.passive;
-    delete catalog.baseStats;
-    return catalog as CatalogEntry;
-  });
   const relicDomains = buildRelicDomain({
     tables: tableSubset([
       'RelicSetConfig',
@@ -598,29 +621,6 @@ export async function syncData(): Promise<DataManifest> {
       'ItemComefrom'
     ])
   });
-  const relics = relicDomains.map((domain) =>
-    projectRelic(domain, {
-      locale: locale.locale,
-      resolver: text,
-      categoryLabels: {
-        cavern: siteMessages.relic_category_cavern,
-        planar: siteMessages.relic_category_planar
-      },
-      formatEffectSummary: (required, description) =>
-        siteMessages.relic_effect_summary
-          .replace('{required}', String(required))
-          .replace('{description}', description)
-    })
-  );
-  const relicCatalog: RelicCatalogEntry[] = relics.map((relic) => {
-    const catalog: Partial<typeof relic> = { ...relic };
-    delete catalog.kind;
-    delete catalog.effects;
-    delete catalog.pieces;
-    delete catalog.sources;
-    return catalog as RelicCatalogEntry;
-  });
-
   const characterDomainSource = tableSubset([
     'AvatarConfig',
     'AvatarConfigEnhanced',
@@ -678,47 +678,6 @@ export async function syncData(): Promise<DataManifest> {
       if (!extraEffectsById.has(id))
         throw new Error(`角色 ${domain.id} 引用了未知 ExtraEffect ${id}`);
   }
-  const projectedCharacters = characterDomains.map((domain) =>
-    projectCharacter(domain, { locale: 'zh-CN', resolver: text, extraEffectsById })
-  );
-  const projectedCharacterNames = new Map(
-    projectedCharacters.map((character) => [character.id, character])
-  );
-  for (const [id, names] of Object.entries(characterNames.snapshot.characters)) {
-    const projected = projectedCharacterNames.get(id);
-    if (!projected || names.canonicalName !== gameTextToPlain(projected.name))
-      throw new Error(
-        `角色 ${id} canonical name 与 Character projection 不一致: ${names.canonicalName} != ${projected ? gameTextToPlain(projected.name) : '<missing>'}`
-      );
-  }
-  const officialCharacterNames = {
-    ...characterNames.snapshot,
-    characters: Object.fromEntries(
-      Object.entries(characterNames.snapshot.characters).map(([id, names]) => [
-        id,
-        { ...names, canonicalName: gameTextToPlain(projectedCharacterNames.get(id)!.name) }
-      ])
-    )
-  };
-  characters.splice(0, characters.length, ...projectedCharacters);
-  characterCatalog.splice(
-    0,
-    characterCatalog.length,
-    ...projectedCharacters.map(
-      ({ id, name, baseName, description, rarity, path, pathName, element, elementName }) => ({
-        id,
-        name,
-        baseName,
-        description,
-        rarity,
-        path,
-        pathName,
-        element,
-        elementName
-      })
-    )
-  );
-
   const enemyDomainBuild = buildEnemyDomain({
     tables: tableSubset([
       'MonsterTemplateConfig',
@@ -731,55 +690,195 @@ export async function syncData(): Promise<DataManifest> {
     inclusionPolicy: await loadEnemySkillInclusionPolicy()
   });
   const enemyDomainsById = new Map(enemyDomainBuild.enemies.map((enemy) => [enemy.id, enemy]));
-  const projectedEnemies = projectEnemies(enemyDomainBuild.enemies, {
-    resolver: text,
-    enemiesById: enemyDomainsById,
-    extraEffectsById,
-    elementNameFallbacks: {
-      Physical: '物理',
-      Fire: '火',
-      Ice: '冰',
-      Lightning: '雷',
-      Wind: '风',
-      Quantum: '量子',
-      Imaginary: '虚数'
-    },
-    onDescriptionDiagnostics: (entity, id, diagnostics) =>
-      collectDescriptionDiagnostics(entity, id, diagnostics),
-    onUnresolvedExtraEffect: (enemyId, skillId, extraEffectId) =>
-      enemyDomainBuild.audit.unresolvedExtraEffects.push({ enemyId, skillId, extraEffectId })
-  });
-  const enemies = projectedEnemies.enemies;
-  const enemyCatalog = projectedEnemies.catalog;
-  const enemyAudit = enemyDomainBuild.audit;
-
   console.log('构建 Endgame 敌方实例与精确 HP…');
   // Normalize and validate every required relation before replacing the last known-good output.
   const endgameDomain = await buildEndgameDomain(root);
-  const endgame = projectEndgame(endgameDomain, {
-    resolver: text,
-    enemyNamesByTemplateId: new Map(enemies.map((enemy) => [enemy.id, enemy.name])),
-    extraEffectsById
-  });
-  const searchInputs: SearchBuildInputs = {
-    official: officialCharacterNames,
-    catalogs: {
-      character: characterCatalog.map(({ id, name }) => ({ id, name })),
-      'light-cone': lightConeCatalog.map(({ id, name }) => ({ id, name })),
-      relic: relicCatalog.map(({ id, name }) => ({ id, name })),
-      enemy: enemyCatalog.map(({ id, name }) => ({ id, name }))
-    },
-    endgameTargets: collectEndgameSearchTargets(
-      endgameDomain.datasets,
-      new Map(enemies.map((enemy) => [enemy.id, enemy.name]))
-    )
+  const maintainedPlayerAliases = await loadPlayerAliases();
+  const shardProjectionTime = Date.now();
+
+  const projectLocale = async (runtime: (typeof localeRuntimes)[number]) => {
+    const config: LocaleConfig = runtime.config;
+    const siteMessages = siteMessageCatalogs[config.siteMessageLocale];
+    const projectionPolicy = getLocaleProjectionPolicy(config.locale);
+    const relicProperties: RelicProperty[] = relicPropertyDefinitions.map(
+      ({ nameSource, ...definition }) => ({
+        ...definition,
+        name: tr(
+          runtime,
+          nameSource,
+          source('relic-property', definition.propertyType, 'PropertyNameRelic'),
+          definition.propertyType
+        )
+      })
+    );
+    const lightCones = lightConeDomains.map((domain) =>
+      projectLightCone(domain, { locale: config.locale, resolver: runtime.text })
+    );
+    const lightConeCatalog: CatalogEntry[] = lightCones.map((lightCone) => {
+      const catalog: Partial<typeof lightCone> = { ...lightCone };
+      delete catalog.kind;
+      delete catalog.story;
+      delete catalog.passive;
+      delete catalog.baseStats;
+      return catalog as CatalogEntry;
+    });
+    const relics = relicDomains.map((domain) =>
+      projectRelic(domain, {
+        locale: config.locale,
+        resolver: runtime.text,
+        categoryLabels: {
+          cavern: siteMessages.relic_category_cavern,
+          planar: siteMessages.relic_category_planar
+        },
+        formatEffectSummary: (required, description) =>
+          siteMessages.relic_effect_summary
+            .replace('{required}', String(required))
+            .replace('{description}', description)
+      })
+    );
+    const relicCatalog: RelicCatalogEntry[] = relics.map((relic) => {
+      const catalog: Partial<typeof relic> = { ...relic };
+      delete catalog.kind;
+      delete catalog.effects;
+      delete catalog.pieces;
+      delete catalog.sources;
+      return catalog as RelicCatalogEntry;
+    });
+    const characters: Character[] = characterDomains.map((domain) =>
+      projectCharacter(domain, {
+        locale: config.locale,
+        resolver: runtime.text,
+        extraEffectsById,
+        skillCategoryLabels: projectionPolicy.skillCategoryLabels,
+        skillEffectLabels: projectionPolicy.skillEffectLabels,
+        composePathName: projectionPolicy.composeCharacterPathName,
+        normalizeBaseName: projectionPolicy.normalizeCharacterBaseName
+      })
+    );
+    const characterCatalog: CatalogEntry[] = characters.map(
+      ({ id, name, baseName, description, rarity, path, pathName, element, elementName }) => ({
+        id,
+        name,
+        baseName,
+        description,
+        rarity,
+        path,
+        pathName,
+        element,
+        elementName
+      })
+    );
+    const characterNames = await deriveCharacterNames(root, commit, runtime.text);
+    const projectedCharacterNames = new Map(
+      characters.map((character) => [character.id, character])
+    );
+    for (const [id, names] of Object.entries(characterNames.snapshot.characters)) {
+      const projected = projectedCharacterNames.get(id);
+      if (!projected || names.canonicalName !== gameTextToPlain(projected.name))
+        throw new Error(
+          `[${config.locale}] Character ${id} canonical name mismatch: ${names.canonicalName} != ${projected ? gameTextToPlain(projected.name) : '<missing>'}`
+        );
+    }
+    const officialCharacterNames = {
+      ...characterNames.snapshot,
+      characters: Object.fromEntries(
+        Object.entries(characterNames.snapshot.characters).map(([id, names]) => [
+          id,
+          { ...names, canonicalName: gameTextToPlain(projectedCharacterNames.get(id)!.name) }
+        ])
+      )
+    };
+    const enemyAudit = structuredClone(enemyDomainBuild.audit);
+    const projectedEnemies = projectEnemies(enemyDomainBuild.enemies, {
+      resolver: runtime.text,
+      enemiesById: enemyDomainsById,
+      extraEffectsById,
+      elementNameFallbacks: projectionPolicy.elementLabels,
+      specialResistanceLabels: projectionPolicy.specialResistanceLabels,
+      enemyNameFallback: projectionPolicy.enemyName,
+      skillNameFallback: projectionPolicy.skillName,
+      onDescriptionDiagnostics: (entity, id, diagnostics) =>
+        collectDescriptionDiagnostics(runtime, entity, id, diagnostics),
+      onUnresolvedExtraEffect: (enemyId, skillId, extraEffectId) =>
+        enemyAudit.unresolvedExtraEffects.push({ enemyId, skillId, extraEffectId })
+    });
+    const enemies = projectedEnemies.enemies;
+    const enemyCatalog = projectedEnemies.catalog;
+    const endgame = projectEndgame(endgameDomain, {
+      resolver: runtime.text,
+      enemyNamesByTemplateId: new Map(enemies.map((enemy) => [enemy.id, enemy.name])),
+      extraEffectsById
+    });
+    const searchInputs: SearchBuildInputs = {
+      official: officialCharacterNames,
+      catalogs: {
+        character: characterCatalog.map(({ id, name }) => ({ id, name })),
+        'light-cone': lightConeCatalog.map(({ id, name }) => ({ id, name })),
+        relic: relicCatalog.map(({ id, name }) => ({ id, name })),
+        enemy: enemyCatalog.map(({ id, name }) => ({ id, name }))
+      },
+      endgameTargets: collectEndgameSearchTargets(
+        endgame.datasets,
+        new Map(enemies.map((enemy) => [enemy.id, enemy.name]))
+      )
+    };
+    const globalSearchIndex = buildSearchDocuments(
+      searchInputs,
+      config.locale,
+      config.locale === 'zh-CN'
+        ? { kind: 'maintained', value: maintainedPlayerAliases }
+        : { kind: 'none' }
+    );
+    const homepage = buildHomepageRecentWarpData(
+      tables.GachaBasicInfo,
+      characterCatalog,
+      lightConeCatalog
+    );
+    const occurrenceShards = buildEndgameOccurrenceShards({
+      locale: config.locale,
+      datasets: endgame.datasets,
+      enemies,
+      targets: globalSearchIndex.endgameTargets,
+      presentation: projectionPolicy.endgameView,
+      now: shardProjectionTime
+    });
+    return {
+      config,
+      runtime,
+      catalogs: {
+        characters: characterCatalog,
+        'light-cones': lightConeCatalog,
+        relics: relicCatalog,
+        enemies: enemyCatalog
+      },
+      details: { characters, 'light-cones': lightCones, relics, enemies },
+      relicProperties,
+      endgame,
+      searchInputs,
+      globalSearchIndex,
+      occurrenceShards,
+      homepage,
+      enemyAudit
+    };
   };
-  const globalSearchIndex = buildSearchDocuments(searchInputs, await loadPlayerAliases());
-  const homepage = buildHomepageRecentWarpData(
-    tables.GachaBasicInfo,
-    characterCatalog,
-    lightConeCatalog
+  const projections = await Promise.all(localeRuntimes.map(projectLocale));
+  const baseProjection = projections.find(({ config }) => config.locale === locale.locale)!;
+  const structuralParity = Object.fromEntries(
+    projections
+      .filter(({ config }) => config.locale !== locale.locale)
+      .map((projection) => [
+        projection.config.locale,
+        assertCrossLocaleStructuralParity(baseProjection, projection)
+      ])
   );
+  for (const projection of projections) {
+    const health = projection.runtime.text.getLocalizationHealth();
+    if (health.unclassified || health.invalidProgramStateErrors)
+      throw new Error(
+        `[${projection.config.locale}] localization health is invalid: ` +
+          `${health.unclassified} unclassified, ${health.invalidProgramStateErrors} invalid program-state errors`
+      );
+  }
 
   const nextGeneratedRoot = `${generatedRoot}.next`;
   const nextStaticGeneratedRoot = `${staticGeneratedRoot}.next`;
@@ -787,13 +886,6 @@ export async function syncData(): Promise<DataManifest> {
   await resetDirectory(nextStaticGeneratedRoot);
   await mkdir(auditRoot, { recursive: true });
 
-  const catalogs = {
-    characters: characterCatalog,
-    'light-cones': lightConeCatalog,
-    relics: relicCatalog,
-    enemies: enemyCatalog
-  };
-  const details = { characters, 'light-cones': lightCones, relics, enemies };
   const artifacts: Record<string, GeneratedArtifactMetadata> = {};
   const writeArtifact = async (
     root: string,
@@ -815,75 +907,151 @@ export async function syncData(): Promise<DataManifest> {
       ...(Number.isSafeInteger(schemaVersion) ? { schemaVersion } : {})
     };
   };
-  const writeViewArtifacts = async (): Promise<void> => {
-    for (const category of Object.keys(catalogs)) {
-      const catalog = catalogs[category as keyof typeof catalogs];
-      await writeArtifact(nextGeneratedRoot, `views/zh-CN/catalogs/${category}.json`, catalog, {
-        locale: 'zh-CN'
-      });
-      for (const detail of details[category as keyof typeof details])
+  const writeViewArtifacts = async (projection: (typeof projections)[number]): Promise<void> => {
+    const projectedLocale = projection.config.locale;
+    for (const category of Object.keys(projection.catalogs)) {
+      const catalog = projection.catalogs[category as keyof typeof projection.catalogs];
+      await writeArtifact(
+        nextGeneratedRoot,
+        `views/${projectedLocale}/catalogs/${category}.json`,
+        catalog,
+        {
+          locale: projectedLocale
+        }
+      );
+      for (const detail of projection.details[category as keyof typeof projection.details])
         await writeArtifact(
           nextGeneratedRoot,
-          `views/zh-CN/details/${category}/${detail.id}.json`,
+          `views/${projectedLocale}/details/${category}/${detail.id}.json`,
           detail,
-          { locale: 'zh-CN' }
+          { locale: projectedLocale }
         );
     }
     await writeArtifact(
       nextGeneratedRoot,
-      'views/zh-CN/catalogs/relic-properties.json',
-      relicProperties,
-      { locale: 'zh-CN' }
+      `views/${projectedLocale}/catalogs/relic-properties.json`,
+      projection.relicProperties,
+      { locale: projectedLocale }
     );
-    for (const [mode, dataset] of Object.entries(endgame.datasets))
-      await writeArtifact(nextGeneratedRoot, `views/zh-CN/endgame/${mode}.json`, dataset, {
-        locale: 'zh-CN'
-      });
-    await writeArtifact(nextGeneratedRoot, 'views/zh-CN/homepage.json', homepage, {
-      locale: 'zh-CN'
-    });
+    for (const [mode, dataset] of Object.entries(projection.endgame.datasets))
+      await writeArtifact(
+        nextGeneratedRoot,
+        `views/${projectedLocale}/endgame/${mode}.json`,
+        dataset,
+        {
+          locale: projectedLocale
+        }
+      );
+    await writeArtifact(
+      nextGeneratedRoot,
+      `views/${projectedLocale}/homepage.json`,
+      projection.homepage,
+      {
+        locale: projectedLocale
+      }
+    );
+    await writeArtifact(
+      nextGeneratedRoot,
+      `views/${projectedLocale}/search-inputs.json`,
+      projection.searchInputs,
+      { locale: projectedLocale }
+    );
+    await writeArtifact(
+      nextStaticGeneratedRoot,
+      `${projectedLocale}/search.json`,
+      projection.globalSearchIndex,
+      { locale: projectedLocale },
+      `static/generated/${projectedLocale}/search.json`
+    );
+    if (projectedLocale === 'en')
+      for (const [targetId, shard] of Object.entries(projection.occurrenceShards))
+        await writeArtifact(
+          nextStaticGeneratedRoot,
+          `${projectedLocale}/endgame-occurrences/${targetId}`,
+          shard,
+          { locale: projectedLocale },
+          `static/generated/${projectedLocale}/endgame-occurrences/${targetId}`
+        );
   };
-  await writeViewArtifacts();
-  await writeArtifact(nextGeneratedRoot, 'views/zh-CN/search-inputs.json', searchInputs, {
-    locale: 'zh-CN'
-  });
-  await writeArtifact(
-    nextStaticGeneratedRoot,
-    'zh-CN/search.json',
-    globalSearchIndex,
-    { locale: 'zh-CN' },
-    'static/generated/zh-CN/search.json'
-  );
+  for (const projection of projections) await writeViewArtifacts(projection);
   const dataRevision = createHash('sha256')
-    .update(JSON.stringify({ sourceCommit: commit, textMapDigest, artifacts }))
+    .update(
+      JSON.stringify({
+        sourceCommit: commit,
+        textMapDigests: Object.fromEntries(
+          projections.map(({ config, runtime }) => [config.locale, runtime.textMapDigest])
+        ),
+        artifacts
+      })
+    )
     .digest('hex');
 
+  const countsOf = (projection: (typeof projections)[number]) => ({
+    characters: projection.details.characters.length,
+    lightCones: projection.details['light-cones'].length,
+    relics: projection.details.relics.length,
+    relicProperties: projection.relicProperties.length,
+    enemies: projection.details.enemies.length
+  });
+  const localeManifest = Object.fromEntries(
+    projections.map((projection) => {
+      const localeArtifacts = Object.values(artifacts).filter(
+        ({ locale: artifactLocale }) => artifactLocale === projection.config.locale
+      );
+      return [
+        projection.config.locale,
+        {
+          textMapCode: projection.config.textMapCode,
+          textMapDigest: projection.runtime.textMapDigest,
+          counts: countsOf(projection),
+          endgame: projection.endgame.audit.summary,
+          search: {
+            documents: projection.globalSearchIndex.documents.length,
+            endgameTargets: projection.globalSearchIndex.endgameTargets.length,
+            occurrenceReferences: projection.globalSearchIndex.endgameTargets.reduce(
+              (sum, entry) => sum + entry.occurrences.length,
+              0
+            ),
+            occurrenceShards: Object.keys(projection.occurrenceShards).length
+          },
+          localization: localizationHealthTotals(projection.runtime.text.getLocalizationHealth()),
+          artifacts: {
+            files: localeArtifacts.length,
+            bytes: localeArtifacts.reduce((sum, entry) => sum + entry.bytes, 0)
+          }
+        }
+      ];
+    })
+  ) as DataManifest['locales'];
+
   const manifest: DataManifest = {
-    schemaVersion: 41,
+    schemaVersion: 42,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,
-    locale: locale.locale,
-    textMapCode: locale.textMapCode,
-    textMapDigest,
+    generatedLocales: generatedLocales.map(({ locale }) => locale),
+    publicLocale: locale.locale,
+    locales: localeManifest,
     dataRevision,
     artifacts,
-    counts: {
-      characters: characters.length,
-      lightCones: lightCones.length,
-      relics: relics.length,
-      relicProperties: relicProperties.length,
-      enemies: enemies.length
-    },
+    counts: countsOf(baseProjection),
     routes: {
-      characters: characters.map((item) => item.id),
-      'light-cones': lightCones.map((item) => item.id),
-      relics: relics.map((item) => item.id),
-      enemies: enemies.map((item) => item.id)
+      characters: baseProjection.details.characters.map((item) => item.id),
+      'light-cones': baseProjection.details['light-cones'].map((item) => item.id),
+      relics: baseProjection.details.relics.map((item) => item.id),
+      enemies: baseProjection.details.enemies.map((item) => item.id)
     },
-    endgame: endgame.audit.summary
+    endgame: baseProjection.endgame.audit.summary
   };
   await verifyGeneratedArtifacts(artifacts, nextGeneratedRoot, nextStaticGeneratedRoot);
+  const englishProjection = projections.find(({ config }) => config.locale === 'en')!;
+  const englishCjk = await auditEnglishCjk({
+    generatedViewRoot: path.join(nextGeneratedRoot, 'views', 'en'),
+    staticLocaleRoot: path.join(nextStaticGeneratedRoot, 'en'),
+    siteMessages: siteMessageCatalogs.en,
+    textMap: englishProjection.runtime.textMap
+  });
+  assertEnglishCjkReport(englishCjk);
   await writeJson(path.join(nextGeneratedRoot, 'manifest.json'), manifest);
   await publishGeneratedTrees(nextGeneratedRoot, nextStaticGeneratedRoot);
   await writeJson(path.join(auditRoot, 'latest.json'), {
@@ -893,16 +1061,31 @@ export async function syncData(): Promise<DataManifest> {
       ...tableNames.map((name) => [name, regularTables[name].length] as const),
       ...ldTableNames.map((name) => [name, ldTables[name].length] as const)
     ]),
-    textDiagnostics: text.getDiagnostics(),
-    descriptionDiagnostics,
+    textDiagnostics: baseRuntime.text.getDiagnostics(),
+    descriptionDiagnostics: baseRuntime.descriptionDiagnostics,
     skillCombatAudit: {
       unknownEffects: [...unknownSkillEffects].sort()
     },
     avatarSpecialSkillTreeAudit,
     specialEffectAudit: specialEffectLinks.audit,
-    enemyAudit,
-    endgameAudit: endgame.audit,
-    missingTextAudit: missingText.getSummary(),
+    enemyAudit: baseProjection.enemyAudit,
+    endgameAudit: baseProjection.endgame.audit,
+    missingTextAudit: baseRuntime.missingText.getSummary(),
+    localeAudits: Object.fromEntries(
+      projections.map((projection) => [
+        projection.config.locale,
+        {
+          textDiagnostics: projection.runtime.text.getDiagnostics(),
+          descriptionDiagnostics: projection.runtime.descriptionDiagnostics,
+          missingTextAudit: projection.runtime.missingText.getSummary(),
+          enemyAudit: projection.enemyAudit,
+          endgameAudit: projection.endgame.audit,
+          localizationHealth: projection.runtime.text.getLocalizationHealth()
+        }
+      ])
+    ),
+    structuralParity,
+    englishCjk,
     notes: {
       images: '上游仅包含 SpriteOutput 路径，不包含图片二进制文件。',
       license: '上游仓库未检测到 LICENSE 或 NOTICE，生成数据不提交。'
