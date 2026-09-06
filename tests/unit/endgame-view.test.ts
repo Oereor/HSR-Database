@@ -465,7 +465,10 @@ describe('Endgame occurrence 投影', () => {
     const pf = await dataset('pf');
     const group = pf.groups.find((candidate) => candidate.groupId === 2001)!;
     const detail = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'enemies', '8002050.json'), 'utf8')
+      await readFile(
+        path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies', '8002050.json'),
+        'utf8'
+      )
     ) as EndgameEnemyDetailSource;
     const canonical = resolveEndgameEnemyReference(detail, 8002050);
     const concrete = resolveEndgameEnemyReference(detail, 800205005);
@@ -520,7 +523,14 @@ describe('Endgame occurrence 投影', () => {
       if (!detail) {
         detail = JSON.parse(
           await readFile(
-            path.join(generatedRoot, 'details', 'enemies', `${monsterTemplateId}.json`),
+            path.join(
+              generatedRoot,
+              'views',
+              'zh-CN',
+              'details',
+              'enemies',
+              `${monsterTemplateId}.json`
+            ),
             'utf8'
           )
         ) as EndgameEnemyDetailSource;

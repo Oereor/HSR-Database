@@ -42,7 +42,7 @@ downstream migration is completed.
   it is not stored in the neutral artifact and does not define config existence,
   semantic identity, phase, or kind/tag.
 - Root migration metadata records `neutral-domain-1` for Character, Light Cone,
-  and Relic, and `compatibility-projector` for Enemy and Endgame.
+  and Relic, `localized-view` for Enemy, and `compatibility-projector` for Endgame.
 
 ## Artifact and cache boundary
 

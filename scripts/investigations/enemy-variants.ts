@@ -52,7 +52,10 @@ const generatedEnemies = new Map(
     templates.map(async (template) => {
       const id = String(template.MonsterTemplateID);
       const enemy = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'enemies', `${id}.json`), 'utf8')
+        await readFile(
+          path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies', `${id}.json`),
+          'utf8'
+        )
       ) as Enemy;
       return [id, enemy] as const;
     })

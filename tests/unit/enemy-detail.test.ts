@@ -17,7 +17,10 @@ import { generatedRoot, auditRoot, assertDataRoot } from '../../scripts/data/pat
 const wrapped = (value: string) => ({ Value: value });
 const enemy = async (id: string): Promise<Enemy> =>
   JSON.parse(
-    await readFile(path.join(generatedRoot, 'details', 'enemies', `${id}.json`), 'utf8')
+    await readFile(
+      path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies', `${id}.json`),
+      'utf8'
+    )
   ) as Enemy;
 
 describe('Enemy Detail parser/resolver', () => {
@@ -168,12 +171,15 @@ describe('Enemy Detail 真实数据回归', () => {
   });
 
   it('所有生成 Template 均以显式关系连接 concrete Monster，ID 编码仅作 validation', async () => {
-    const files = (await readdir(path.join(generatedRoot, 'details', 'enemies'))).filter((file) =>
-      file.endsWith('.json')
-    );
+    const files = (
+      await readdir(path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies'))
+    ).filter((file) => file.endsWith('.json'));
     for (const file of files) {
       const detail = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'enemies', file), 'utf8')
+        await readFile(
+          path.join(generatedRoot, 'views', 'zh-CN', 'details', 'enemies', file),
+          'utf8'
+        )
       ) as Enemy;
       expect(detail.template.monsterTemplateId).toBe(detail.id);
       expect(detail.monsters.length).toBeGreaterThan(0);

@@ -114,6 +114,23 @@ export function isIncludedEnemySkill(
   return entry.included;
 }
 
+/**
+ * Resolve only locale-neutral Enemy skill semantics.  This function must not
+ * consult TextMap or translated labels; the returned refs are projected later.
+ */
+export function classifyEnemySkillSource(
+  row: Record<string, unknown>,
+  context: EnemySkillSourceContext,
+  policy: EnemySkillInclusionPolicy
+) {
+  const visible = isIncludedEnemySkill(row, policy);
+  return {
+    visible,
+    kind: normalizeEnemySkillKind(row.SkillTypeDesc, '', context),
+    tag: normalizeEnemySkillTag(row.SkillTag, '', context)
+  };
+}
+
 export function resolveEnemySkillSource(
   row: Record<string, unknown>,
   context: EnemySkillSourceContext,

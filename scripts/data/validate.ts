@@ -685,7 +685,7 @@ const expected: Record<string, number> = {
   enemies: manifest.counts.enemies
 };
 for (const [category, count] of Object.entries(expected)) {
-  const categoryRoot = category === 'enemies' ? generatedRoot : productRoot;
+  const categoryRoot = productRoot;
   const catalog = JSON.parse(
     await readFile(path.join(categoryRoot, 'catalogs', `${category}.json`), 'utf8')
   ) as CatalogEntry[];
@@ -751,7 +751,7 @@ const enemyDetails = await Promise.all(
   manifest.routes.enemies.map(
     async (id) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'enemies', `${id}.json`), 'utf8')
+        await readFile(path.join(productRoot, 'details', 'enemies', `${id}.json`), 'utf8')
       ) as Enemy
   )
 );
@@ -1471,12 +1471,12 @@ const enemies = await Promise.all(
   manifest.routes.enemies.map(
     async (id) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'enemies', `${id}.json`), 'utf8')
+        await readFile(path.join(productRoot, 'details', 'enemies', `${id}.json`), 'utf8')
       ) as Enemy
   )
 );
 const enemyCatalog = JSON.parse(
-  await readFile(path.join(generatedRoot, 'catalogs', 'enemies.json'), 'utf8')
+  await readFile(path.join(productRoot, 'catalogs', 'enemies.json'), 'utf8')
 ) as import('../../src/lib/domain/types.js').EnemyCatalogEntry[];
 for (const enemy of enemies) {
   const catalogEntry = enemyCatalog.find((entry) => entry.id === enemy.id);

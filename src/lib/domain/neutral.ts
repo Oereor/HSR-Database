@@ -1,6 +1,7 @@
 import type { TextHash } from './types.js';
 import type { DecimalString } from './endgame.js';
 import type { CharacterDetailIconKey } from './character-detail-icons.js';
+import type { ElementType } from './elements.js';
 
 export type NeutralTextSource =
   | {
@@ -221,4 +222,69 @@ export interface RelicSetDomain {
   assetKeys: Record<string, string>;
   nameSource?: NeutralTextSource;
   sourceLabelSources: NeutralTextSource[];
+}
+
+export interface EnemySkillDomain {
+  id: string;
+  nameSource?: NeutralTextSource;
+  descriptionSource?: NeutralTextSource;
+  kindSource?: NeutralTextSource;
+  tagSource?: NeutralTextSource;
+  kind: 'skill' | 'talent';
+  tagCode: string;
+  damageType?: ElementType;
+  phases: number[];
+  included: boolean;
+  extraEffectIds: string[];
+}
+
+export interface EnemySummonDomain {
+  monsterId: string;
+  monsterTemplateId: string;
+  rank: string;
+  weaknesses: ElementType[];
+}
+
+export interface EnemySpecialResistanceDomain {
+  code: string;
+  value: DecimalString;
+}
+
+export interface EnemyMonsterDomain {
+  monsterId: string;
+  monsterTemplateId: string;
+  hardLevelGroup: string;
+  eliteGroup?: string;
+  modifiers: {
+    hp: { ratio: DecimalString; value?: DecimalString };
+    attack: { ratio: DecimalString; value?: DecimalString };
+    defence: { ratio: DecimalString; value?: DecimalString };
+    speed: { ratio: DecimalString; value?: DecimalString };
+    stance: { ratio: DecimalString; value?: DecimalString };
+  };
+  stats: import('./types.js').EnemyStatProgression;
+  weaknesses: ElementType[];
+  resistances: Array<{ element: ElementType; value: number }>;
+  specialResistances: EnemySpecialResistanceDomain[];
+  summons: EnemySummonDomain[];
+  skills: EnemySkillDomain[];
+  skillPhases: Array<{ index: number; skillIds: string[] }>;
+}
+
+export interface EnemyTemplateDomain {
+  monsterTemplateId: string;
+  nameSource?: NeutralTextSource;
+  rank: string;
+  baseStats: import('./types.js').EnemyTemplateBaseStats;
+}
+
+export interface EnemyDomain {
+  id: string;
+  nameSource?: NeutralTextSource;
+  descriptionSource?: NeutralTextSource;
+  rank: string;
+  elementNameSources: Partial<Record<ElementType, NeutralTextSource>>;
+  template: EnemyTemplateDomain;
+  monsters: EnemyMonsterDomain[];
+  defaultMonsterId: string;
 }

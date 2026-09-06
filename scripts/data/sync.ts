@@ -1,4 +1,4 @@
-import { resolveEnemySkillSource, loadEnemySkillInclusionPolicy } from './enemy-skill-policy.js';
+import { loadEnemySkillInclusionPolicy } from './enemy-skill-policy.js';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdir, rm, writeFile } from 'node:fs/promises';
@@ -8,14 +8,10 @@ import type {
   CatalogEntry,
   Character,
   DataManifest,
-  Enemy,
-  EnemySkill,
   RelicCatalogEntry,
-  RelicProperty,
-  SkillExtraEffect
+  RelicProperty
 } from '../../src/lib/domain/types.js';
 import { parseTextHash } from '../../src/lib/domain/types.js';
-import { isElementType, normalizeElementType } from '../../src/lib/domain/elements.js';
 import {
   createTextResolver,
   loadTextMap,
@@ -32,8 +28,7 @@ import {
   sourceCommit,
   staticGeneratedRoot
 } from './paths.js';
-import { mergeConfigSources, numberOf, readTable } from './raw.js';
-import { decimalOf } from './decimal.js';
+import { mergeConfigSources, readTable } from './raw.js';
 import { classifyAvatarSkill } from './skills.js';
 import { normalizeSpecialEffectLinks } from './special-effects.js';
 import {
@@ -51,22 +46,16 @@ import {
   type SearchBuildInputs
 } from './search-documents.js';
 import { buildEndgameData } from './endgame.js';
-import { createExtraEffectResolver } from './extra-effects.js';
 import { buildHomepageRecentWarpData } from './homepage.js';
 import { parseGameVersion } from './source-metadata.js';
-import {
-  buildEnemySkillPhases,
-  normalizeEnemyPhases,
-  normalizeSpecialResistances,
-  normalizedElementLabel,
-  resolveCanonicalEnemyStats
-} from './enemy-detail.js';
 import { buildCharacterDomain } from './domain/character.js';
 import { buildLightConeDomain } from './domain/light-cone.js';
 import { buildRelicDomain } from './domain/relic.js';
 import { projectCharacter } from './projection/character.js';
 import { projectLightCone } from './projection/light-cone.js';
 import { projectRelic } from './projection/relic.js';
+import { buildEnemyDomain } from './domain/enemy.js';
+import { projectEnemies } from './projection/enemy.js';
 import { validateSiteMessageFiles } from '../messages.js';
 import { getProductionLocale } from './locale-registry.js';
 
@@ -83,20 +72,6 @@ const grouped = <T extends Raw>(rows: T[], key: string): Map<string, T[]> => {
   }
   return result;
 };
-
-function modifierOf(config: Raw, field: string) {
-  const ratio = config[`${field}ModifyRatio`];
-  const value = config[`${field}ModifyValue`];
-  return {
-    ratio: decimalOf(
-      ratio ?? { Value: '1' },
-      `MonsterConfig.${config.MonsterID}.${field}ModifyRatio`
-    ),
-    ...(value !== undefined && value !== null
-      ? { value: decimalOf(value, `MonsterConfig.${config.MonsterID}.${field}ModifyValue`) }
-      : {})
-  };
-}
 
 async function resetDirectory(directory: string): Promise<void> {
   assertInsideSite(directory);
@@ -275,7 +250,6 @@ export async function syncData(): Promise<DataManifest> {
     auditResolvedText(resolved, textSource);
     return normalizeGameText(resolved || fallback);
   };
-  const damageRows = by(tables.DamageType, 'ID');
   // These are complete raw indexes. HideInUI is a standard-presentation rule and must
   // never be applied while building either lookup.
   const avatarSkillById = grouped(tables.AvatarSkillConfig, 'SkillID');
@@ -289,11 +263,7 @@ export async function syncData(): Promise<DataManifest> {
     tables.RelicBaseType.filter((row) => row.Type),
     'Type'
   );
-  const monsterRows = by(tables.MonsterConfig, 'MonsterID');
-  const monsterTemplates = by(tables.MonsterTemplateConfig, 'MonsterTemplateID');
   const monsterSkillRows = by(tables.MonsterSkillConfig, 'SkillID');
-  const hardLevelRows = grouped(tables.HardLevelGroup, 'HardLevelGroup');
-  const eliteRows = by(tables.EliteGroup, 'EliteGroup');
   const avatarSpecialSkillTreeAudit = createAvatarSpecialSkillTreeAudit();
   resolveAvatarSpecialSkillRelations(
     normalizeAvatarSpecialSkillRelations(
@@ -312,50 +282,6 @@ export async function syncData(): Promise<DataManifest> {
     tables.AvatarServantSkillLink
   );
 
-  const extraEffectIdsOf = (row: Raw): string[] =>
-    unique(
-      [
-        ...(Array.isArray(row.ExtraEffectIDList) ? row.ExtraEffectIDList : []),
-        ...(Array.isArray(row.SimpleExtraEffectIDList) ? row.SimpleExtraEffectIDList : [])
-      ].map(String)
-    );
-
-  const extraEffectResolver = createExtraEffectResolver(tables.ExtraEffectConfig, tr, {
-    onUnresolved: (extraEffectId, textSource) =>
-      missingText.record('C', 'unresolved-relation', textSource, `extra-effect:${extraEffectId}`),
-    onDescriptionDiagnostics: (extraEffectId, diagnostics, textSource) => {
-      collectDescriptionDiagnostics(
-        textSource.entity,
-        extraEffectId,
-        diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
-      );
-    }
-  });
-
-  const resolveExtraEffects = (
-    rawIds: unknown[],
-    ownerEntity: string,
-    ownerId: string,
-    onUnresolved?: (extraEffectId: string) => void
-  ): SkillExtraEffect[] => {
-    const ids = unique(rawIds.map(String));
-    if (!onUnresolved)
-      return extraEffectResolver.resolve(ids, {
-        ownerEntity,
-        ownerId,
-        field: 'ExtraEffectIDList'
-      });
-    const resolvable = ids.filter((extraEffectId) => {
-      if (extraEffectResolver.has(extraEffectId)) return true;
-      onUnresolved(extraEffectId);
-      return false;
-    });
-    return extraEffectResolver.resolve(resolvable, {
-      ownerEntity,
-      ownerId,
-      field: 'ExtraEffectIDList'
-    });
-  };
   const enhancedAvatars = by(tables.AvatarConfigEnhanced, 'AvatarID');
 
   if (enhancedAvatars.size !== tables.AvatarConfigEnhanced.length)
@@ -506,9 +432,6 @@ export async function syncData(): Promise<DataManifest> {
         skillId,
         monsterSkillRows.has(String(skillId))
       );
-  const elementName = (id: string): string =>
-    tr(damageRows.get(id)?.DamageTypeName, source('element', id, 'DamageTypeName'), id);
-
   const relicSlots = ['HEAD', 'HAND', 'BODY', 'FOOT', 'NECK', 'OBJECT'] as const;
   const mainAffixPropertyTypes = new Set(
     tables.RelicMainAffixConfig.map((row) => String(row.Property ?? '')).filter(Boolean)
@@ -703,381 +626,39 @@ export async function syncData(): Promise<DataManifest> {
     )
   );
 
-  const enemyCatalog: import('../../src/lib/domain/types.js').EnemyCatalogEntry[] = [];
-  const enemies: Enemy[] = [];
-  const enemyAudit = {
-    canonicalJoin: { resolved: 0, missing: [] as string[] },
-    unknownSkillKinds: [] as Array<{ enemyId: string; skillId: string; value: string }>,
-    unknownSkillTags: [] as Array<{ enemyId: string; skillId: string; value: string }>,
-    unknownElements: [] as Array<{ enemyId: string; field: string; value: string }>,
-    weaknessResistanceConflicts: [] as Array<{ enemyId: string; element: string; value: number }>,
-    unknownDebuffResist: [] as Array<{ enemyId: string; key: string }>,
-    unresolvedSummons: [] as Array<{ enemyId: string; monsterId: string }>,
-    unresolvedSkills: [] as Array<{ enemyId: string; skillId: string }>,
-    unresolvedExtraEffects: [] as Array<{
-      enemyId: string;
-      skillId: string;
-      extraEffectId: string;
-    }>,
-    missingAttributes: {
-      speedBase: [] as string[],
-      stanceBase: [] as string[],
-      statusResistanceBase: [] as string[]
-    }
-  };
-
-  const inclusionPolicy = await loadEnemySkillInclusionPolicy();
-  const enemyText = {
-    ...text,
-    resolveRef: (ref: unknown, textSource: TextSource, disposition?: TextDiagnosticDisposition) =>
-      tr(ref, textSource, '', disposition)
-  };
-  // Classification and inclusion are identical for canonical and concrete variants.
-  const resolveEnemySkill = (skill: Raw, enemyId: string) =>
-    resolveEnemySkillSource(
-      skill,
-      { enemyId, skillId: String(skill.SkillID) },
-      enemyText,
-      inclusionPolicy
-    );
-
-  const canonicalEnemyName = (templateId: string): string => {
-    const targetTemplate = monsterTemplates.get(templateId);
-    const targetConfig = monsterRows.get(templateId);
-    return tr(
-      targetTemplate?.MonsterName,
-      source('enemy', templateId, 'MonsterTemplateConfig.MonsterName'),
-      tr(
-        targetConfig?.MonsterName,
-        source('enemy', templateId, 'MonsterConfig.MonsterName'),
-        `敌人 ${templateId}`
-      )
-    );
-  };
-
-  for (const template of tables.MonsterTemplateConfig) {
-    const id = String(template.MonsterTemplateID);
-    const config = monsterRows.get(id);
-    if (!config || String(config.MonsterTemplateID) !== id) {
-      enemyAudit.canonicalJoin.missing.push(id);
-      throw new Error(`敌人 ${id} 缺少 MonsterID == MonsterTemplateID 的 canonical MonsterConfig`);
-    }
-    enemyAudit.canonicalJoin.resolved += 1;
-    const configName = tr(
-      config.MonsterName,
-      source('enemy', id, 'MonsterConfig.MonsterName'),
-      `敌人 ${id}`
-    );
-    const name = tr(
-      template.MonsterName,
-      source('enemy', id, 'MonsterTemplateConfig.MonsterName'),
-      configName
-    );
-    const skills: EnemySkill[] = [];
-    const phaseInputs: Array<{ id: string; phases: number[]; visible: boolean }> = [];
-    const seenSkillIds = new Set<string>();
-    for (const rawSkillId of config.SkillList ?? []) {
-      const skillId = String(rawSkillId);
-      const skill = monsterSkillRows.get(skillId);
-      if (!skill) {
-        enemyAudit.unresolvedSkills.push({ enemyId: id, skillId });
-        continue;
-      }
-      if (seenSkillIds.has(skillId)) continue;
-      seenSkillIds.add(skillId);
-      const phases = normalizeEnemyPhases(skill.PhaseList);
-      const { kindLabel, kind, tag, visible, formattedDescription, localizedTextStatus } =
-        resolveEnemySkill(skill, id);
-      collectDescriptionDiagnostics(
-        'enemy-skill',
-        skillId,
-        formattedDescription.diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
-      );
-      phaseInputs.push({ id: skillId, phases, visible });
-      if (!visible) continue;
-      let damageType;
-      if (skill.DamageType !== undefined) {
-        const rawElement = String(skill.DamageType);
-        const element = normalizeElementType(rawElement);
-        if (!isElementType(element))
-          enemyAudit.unknownElements.push({
-            enemyId: id,
-            field: `skill:${skillId}`,
-            value: rawElement
-          });
-        else damageType = { element, name: elementName(rawElement) };
-      }
-
-      const extraEffects = resolveExtraEffects(
-        extraEffectIdsOf(skill),
-        'enemy-skill',
-        skillId,
-        (extraEffectId) =>
-          enemyAudit.unresolvedExtraEffects.push({ enemyId: id, skillId, extraEffectId })
-      );
-      skills.push({
-        id: skillId,
-        name: tr(skill.SkillName, source('enemy-skill', skillId, 'SkillName'), `技能 ${skillId}`),
-        description: formattedDescription.text,
-        kind,
-        kindLabel,
-        localizedTextStatus,
-        tag,
-        ...(damageType ? { damageType } : {}),
-        phases,
-        extraEffects
-      });
-    }
-    const skillPhases = buildEnemySkillPhases(phaseInputs);
-
-    const weaknesses = (config.StanceWeakList ?? []).flatMap((rawElement: unknown) => {
-      const sourceElement = String(rawElement);
-      const element = normalizeElementType(sourceElement);
-      if (!isElementType(element)) {
-        enemyAudit.unknownElements.push({
-          enemyId: id,
-          field: 'StanceWeakList',
-          value: sourceElement
-        });
-        return [];
-      }
-      return [{ element, name: elementName(sourceElement) }];
-    });
-    const resistances = (config.DamageTypeResistance ?? []).flatMap((resistance: Raw) => {
-      const sourceElement = String(resistance.DamageType);
-      const element = normalizeElementType(sourceElement);
-      const value = numberOf(resistance.Value);
-      if (!isElementType(element)) {
-        enemyAudit.unknownElements.push({
-          enemyId: id,
-          field: 'DamageTypeResistance',
-          value: sourceElement
-        });
-        return [];
-      }
-      if (value === 0) return [];
-      if (weaknesses.some((weakness: { element: string }) => weakness.element === element))
-        enemyAudit.weaknessResistanceConflicts.push({ enemyId: id, element, value });
-      return [{ element, name: elementName(sourceElement), value }];
-    });
-    const special = normalizeSpecialResistances(config.DebuffResist);
-    for (const key of special.unknownKeys)
-      enemyAudit.unknownDebuffResist.push({ enemyId: id, key });
-
-    const summons = [];
-    const seenSummonTemplates = new Set<string>();
-    for (const rawSummonId of config.SummonIDList ?? []) {
-      const monsterId = String(rawSummonId);
-      const summonConfig = monsterRows.get(monsterId);
-      const monsterTemplateId = String(summonConfig?.MonsterTemplateID ?? '');
-      const summonTemplate = monsterTemplates.get(monsterTemplateId);
-      if (!summonConfig || !summonTemplate) {
-        enemyAudit.unresolvedSummons.push({ enemyId: id, monsterId });
-        continue;
-      }
-      if (seenSummonTemplates.has(monsterTemplateId)) continue;
-      seenSummonTemplates.add(monsterTemplateId);
-      summons.push({
-        monsterId,
-        monsterTemplateId,
-        name: canonicalEnemyName(monsterTemplateId),
-        rank: String(summonTemplate.Rank ?? ''),
-        weaknesses: (summonConfig.StanceWeakList ?? []).flatMap((rawElement: unknown) => {
-          const sourceElement = String(rawElement);
-          const element = normalizeElementType(sourceElement);
-          return isElementType(element) ? [{ element, name: elementName(sourceElement) }] : [];
-        }),
-        href: `/enemies/${monsterTemplateId}`
-      });
-    }
-
-    const hardLevels = hardLevelRows.get(String(config.HardLevelGroup)) ?? [];
-    const elite = eliteRows.get(String(config.EliteGroup));
-    if (!hardLevels.length || !elite)
-      throw new Error(
-        `敌人 ${id} 缺少等级属性配置：HardLevelGroup=${config.HardLevelGroup}, EliteGroup=${config.EliteGroup}`
-      );
-    if (template.SpeedBase === undefined) enemyAudit.missingAttributes.speedBase.push(id);
-    if (template.StanceBase === undefined) enemyAudit.missingAttributes.stanceBase.push(id);
-    if (template.StatusResistanceBase === undefined)
-      enemyAudit.missingAttributes.statusResistanceBase.push(id);
-    const catalog: import('../../src/lib/domain/types.js').EnemyCatalogEntry = {
-      id,
-      name,
-      description: tr(config.MonsterIntroduction, source('enemy', id, 'MonsterIntroduction'), '', {
-        requirement: 'optional',
-        visibility: 'emitted',
-        fallbackUsed: true,
-        productRouteReachability: 'reachable'
-      }),
-      type: template.Rank,
-      typeName: template.Rank,
-      weaknesses
-    };
-    const canonicalMonster = {
-      monsterId: id,
-      monsterTemplateId: id,
-      hardLevelGroup: String(config.HardLevelGroup),
-      eliteGroup: String(config.EliteGroup),
-      modifiers: {
-        hp: modifierOf(config, 'HP'),
-        attack: modifierOf(config, 'Attack'),
-        defence: modifierOf(config, 'Defence'),
-        speed: modifierOf(config, 'Speed'),
-        stance: modifierOf(config, 'Stance')
-      },
-      stats: resolveCanonicalEnemyStats(template, config, hardLevels, elite),
-      weaknesses,
-      resistances,
-      specialResistances: special.values,
-      summons,
-      skills,
-      skillPhases
-    };
-    enemyCatalog.push(catalog);
-    enemies.push({
-      ...catalog,
-      kind: 'enemy',
-      rank: template.Rank,
-      template: {
-        monsterTemplateId: id,
-        name,
-        rank: template.Rank,
-        baseStats: {
-          hp: decimalOf(template.HPBase, `MonsterTemplate.${id}.HPBase`),
-          attack: decimalOf(template.AttackBase, `MonsterTemplate.${id}.AttackBase`),
-          defence: decimalOf(template.DefenceBase, `MonsterTemplate.${id}.DefenceBase`),
-          criticalDamage: decimalOf(
-            template.CriticalDamageBase,
-            `MonsterTemplate.${id}.CriticalDamageBase`
-          ),
-          ...(template.SpeedBase !== undefined
-            ? { speed: decimalOf(template.SpeedBase, `MonsterTemplate.${id}.SpeedBase`) }
-            : {}),
-          ...(template.StanceBase !== undefined
-            ? { stance: decimalOf(template.StanceBase, `MonsterTemplate.${id}.StanceBase`) }
-            : {}),
-          ...(template.StatusResistanceBase !== undefined
-            ? {
-                effectResistance: decimalOf(
-                  template.StatusResistanceBase,
-                  `MonsterTemplate.${id}.StatusResistanceBase`
-                )
-              }
-            : {})
-        }
-      },
-      monsters: [canonicalMonster],
-      defaultMonsterId: id,
-      defaultMonster: canonicalMonster,
-      // Kept only for the Endgame reference view until that consumer is migrated.
-      weaknesses: canonicalMonster.weaknesses
-    });
-  }
-
-  // Build the explicit Template -> Monster relation.
-  for (const enemy of enemies) {
-    const templateId = enemy.id;
-    const template = monsterTemplates.get(templateId);
-    if (!template) continue;
-    const configs = tables.MonsterConfig.filter(
-      (row) => String(row.MonsterTemplateID) === templateId
-    );
-    enemy.monsters = configs.map((config) => {
-      if (String(config.MonsterID) === templateId) return enemy.defaultMonster;
-      const levels = hardLevelRows.get(String(config.HardLevelGroup)) ?? [];
-      const elite = eliteRows.get(String(config.EliteGroup));
-      const stats = elite
-        ? resolveCanonicalEnemyStats(template, config, levels, elite)
-        : { ...enemy.defaultMonster.stats };
-      const weaknesses = (config.StanceWeakList ?? []).flatMap((rawElement: unknown) => {
-        const sourceElement = String(rawElement);
-        const element = normalizeElementType(sourceElement);
-        return isElementType(element) ? [{ element, name: elementName(sourceElement) }] : [];
-      });
-      const resistances = (config.DamageTypeResistance ?? []).flatMap((resistance: Raw) => {
-        const sourceElement = String(resistance.DamageType);
-        const element = normalizeElementType(sourceElement);
-        const value = numberOf(resistance.Value);
-        return isElementType(element) && value !== 0
-          ? [{ element, name: elementName(sourceElement), value }]
-          : [];
-      });
-      const specialResistances = normalizeSpecialResistances(config.DebuffResist).values;
-      const variantSkills: EnemySkill[] = [];
-      const variantPhaseInputs: Array<{ id: string; phases: number[]; visible: boolean }> = [];
-      for (const rawSkillId of config.SkillList ?? []) {
-        const skillId = String(rawSkillId);
-        const skill = monsterSkillRows.get(skillId);
-        if (!skill) continue;
-        const phases = normalizeEnemyPhases(skill.PhaseList);
-        const { kindLabel, kind, tag, visible, formattedDescription, localizedTextStatus } =
-          resolveEnemySkill(skill, String(config.MonsterID));
-        variantPhaseInputs.push({ id: skillId, phases, visible });
-        if (!visible) continue;
-        const damageType =
-          skill.DamageType === undefined
-            ? undefined
-            : normalizedElementLabel(skill.DamageType, normalizeElementType, elementName);
-        variantSkills.push({
-          id: skillId,
-          name: tr(skill.SkillName, source('enemy-skill', skillId, 'SkillName'), `技能 ${skillId}`),
-          description: formattedDescription.text,
-          kind,
-          kindLabel,
-          localizedTextStatus,
-          tag,
-          ...(damageType ? { damageType } : {}),
-          phases,
-          extraEffects: resolveExtraEffects(extraEffectIdsOf(skill), 'enemy-skill', skillId)
-        });
-      }
-      const variantSummons = (config.SummonIDList ?? []).flatMap((rawSummonId: unknown) => {
-        const monsterId = String(rawSummonId);
-        const summonConfig = monsterRows.get(monsterId);
-        const summonTemplateId = String(summonConfig?.MonsterTemplateID ?? '');
-        const summonTemplate = monsterTemplates.get(summonTemplateId);
-        return summonConfig && summonTemplate
-          ? [
-              {
-                monsterId,
-                monsterTemplateId: summonTemplateId,
-                name: canonicalEnemyName(summonTemplateId),
-                rank: String(summonTemplate.Rank ?? ''),
-                weaknesses: (summonConfig.StanceWeakList ?? []).flatMap((rawElement: unknown) => {
-                  const sourceElement = String(rawElement);
-                  const element = normalizeElementType(sourceElement);
-                  return isElementType(element)
-                    ? [{ element, name: elementName(sourceElement) }]
-                    : [];
-                }),
-                href: `/enemies/${summonTemplateId}`
-              }
-            ]
-          : [];
-      });
-      return {
-        monsterId: String(config.MonsterID),
-        monsterTemplateId: templateId,
-        hardLevelGroup: String(config.HardLevelGroup ?? ''),
-        ...(config.EliteGroup !== undefined ? { eliteGroup: String(config.EliteGroup) } : {}),
-        modifiers: {
-          hp: modifierOf(config, 'HP'),
-          attack: modifierOf(config, 'Attack'),
-          defence: modifierOf(config, 'Defence'),
-          speed: modifierOf(config, 'Speed'),
-          stance: modifierOf(config, 'Stance')
-        },
-        stats,
-        weaknesses,
-        resistances,
-        specialResistances,
-        summons: variantSummons,
-        skills: variantSkills,
-        skillPhases: buildEnemySkillPhases(variantPhaseInputs)
-      };
-    });
-  }
+  const enemyDomainBuild = buildEnemyDomain({
+    tables: tableSubset([
+      'MonsterTemplateConfig',
+      'MonsterConfig',
+      'MonsterSkillConfig',
+      'DamageType',
+      'HardLevelGroup',
+      'EliteGroup'
+    ]),
+    inclusionPolicy: await loadEnemySkillInclusionPolicy()
+  });
+  const enemyDomainsById = new Map(enemyDomainBuild.enemies.map((enemy) => [enemy.id, enemy]));
+  const projectedEnemies = projectEnemies(enemyDomainBuild.enemies, {
+    resolver: text,
+    enemiesById: enemyDomainsById,
+    extraEffectsById,
+    elementNameFallbacks: {
+      Physical: '物理',
+      Fire: '火',
+      Ice: '冰',
+      Lightning: '雷',
+      Wind: '风',
+      Quantum: '量子',
+      Imaginary: '虚数'
+    },
+    onDescriptionDiagnostics: (entity, id, diagnostics) =>
+      collectDescriptionDiagnostics(entity, id, diagnostics),
+    onUnresolvedExtraEffect: (enemyId, skillId, extraEffectId) =>
+      enemyDomainBuild.audit.unresolvedExtraEffects.push({ enemyId, skillId, extraEffectId })
+  });
+  const enemies = projectedEnemies.enemies;
+  const enemyCatalog = projectedEnemies.catalog;
+  const enemyAudit = enemyDomainBuild.audit;
 
   console.log('构建 Endgame 敌方实例与精确 HP…');
   // Normalize and validate every required relation before replacing the last known-good output.
@@ -1222,16 +803,14 @@ export async function syncData(): Promise<DataManifest> {
       relics: createHash('sha256').update(JSON.stringify(sourceShards.relics)).digest('hex')
     }
   };
-  const writeViewArtifacts = async (base: string, compatibility = false): Promise<void> => {
-    const categories = compatibility ? ['enemies'] : Object.keys(catalogs);
-    for (const category of categories) {
+  const writeViewArtifacts = async (base: string): Promise<void> => {
+    for (const category of Object.keys(catalogs)) {
       const catalog = catalogs[category as keyof typeof catalogs];
       await writeJson(path.join(base, 'catalogs', `${category}.json`), catalog);
       for (const detail of details[category as keyof typeof details])
         await writeJson(path.join(base, 'details', category, `${detail.id}.json`), detail);
     }
-    if (!compatibility)
-      await writeJson(path.join(base, 'catalogs', 'relic-properties.json'), relicProperties);
+    await writeJson(path.join(base, 'catalogs', 'relic-properties.json'), relicProperties);
     for (const [mode, dataset] of Object.entries(endgame.datasets))
       await writeJson(path.join(base, 'endgame', `${mode}.json`), dataset);
     await writeJson(path.join(base, 'homepage.json'), homepage);
@@ -1239,9 +818,12 @@ export async function syncData(): Promise<DataManifest> {
   await writeJson(path.join(generatedRoot, 'neutral', 'source.json'), neutralPayload);
   for (const [name, shard] of Object.entries(sourceShards))
     await writeJson(path.join(generatedRoot, 'neutral', 'source', `${name}.json`), shard);
-  // Keep only the untouched Enemy compatibility paths while remaining domains migrate.
-  await writeViewArtifacts(generatedRoot, true);
   await writeViewArtifacts(path.join(generatedRoot, 'views', 'zh-CN'));
+  // Endgame remains a compatibility consumer until R3B; retain only its
+  // root datasets and the shared homepage at the compatibility root.
+  for (const [mode, dataset] of Object.entries(endgame.datasets))
+    await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
+  await writeJson(path.join(generatedRoot, 'homepage.json'), homepage);
 
   const manifest: DataManifest = {
     schemaVersion: 40,
@@ -1255,7 +837,7 @@ export async function syncData(): Promise<DataManifest> {
     migration: {
       lightCones: { domain: 'neutral-domain-3', productionView: 'neutral-projector-3' },
       relics: { domain: 'neutral-domain-3', productionView: 'neutral-projector-3' },
-      enemies: { productionView: 'compatibility-projector' },
+      enemies: { productionView: 'localized-view' },
       endgame: { productionView: 'compatibility-projector' }
     },
     counts: {
