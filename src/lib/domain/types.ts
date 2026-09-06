@@ -430,59 +430,29 @@ export interface HomepageRecentWarpData {
   weaponUps: Array<{ gachaId: number; equipmentId: string }>;
 }
 
-export interface NeutralArtifactManifest {
-  schemaVersion: 1;
-  parserVersion: string;
-  sourceCommit: string;
-  contentDigest: string;
-  artifacts: Record<string, { bytes: number; sha256: string }>;
-  sourceShards?: Record<
-    string,
-    { bytes: number; sha256: string; contentDigest: string; sourceCommit?: string }
-  >;
-  domains?: Record<
-    string,
-    {
-      schemaVersion: 1 | 2 | 3 | 4;
-      builderVersion: string;
-      sourceDigest: string;
-      contentDigest: string;
-      bytes: number;
-      sha256: string;
-      recordCount: number;
-    }
-  >;
+export interface GeneratedArtifactMetadata {
+  bytes: number;
+  sha256: string;
+  locale?: 'zh-CN';
+  schemaVersion?: number;
 }
 
-export interface LocalizedViewManifest {
-  schemaVersion: 2;
-  locale: 'zh-CN';
-  textMapCode: 'CHS';
-  projectionVersion: string;
-  neutralDigest: string;
-  contentDigest: string;
-  textMapDigest: string;
-  domainDigests?: Partial<Record<'characters' | 'lightCones' | 'relics', string>>;
-  neutralSourceDigests?: Partial<Record<'characters' | 'lightCones' | 'relics', string>>;
+export interface PublicSiteVersion {
+  gameVersion: string | null;
+  dataRevision: string;
 }
 
 export interface DataManifest {
-  schemaVersion: 40;
+  schemaVersion: 41;
   sourceCommit: string;
   sourceVersion: string;
   gameVersionFull: string | null;
   gameVersion: string | null;
-  generatedAt: string;
-  language: 'CHS';
-  neutral: NeutralArtifactManifest;
-  view: LocalizedViewManifest;
-  migration?: {
-    characters?: { domain: string; productionView: string } | string;
-    lightCones: { domain: string; productionView: string } | string;
-    relics: { domain: string; productionView: string } | string;
-    enemies: { productionView: string } | string;
-    endgame: { productionView: string } | string;
-  };
+  locale: 'zh-CN';
+  textMapCode: 'CHS';
+  textMapDigest: string;
+  dataRevision: string;
+  artifacts: Record<string, GeneratedArtifactMetadata>;
   counts: Record<'characters' | 'lightCones' | 'relics' | 'relicProperties' | 'enemies', number>;
   routes: Record<'characters' | 'light-cones' | 'relics' | 'enemies', string[]>;
   endgame: import('./endgame.js').EndgameManifestSummary;

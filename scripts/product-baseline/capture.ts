@@ -28,6 +28,7 @@ import type {
 } from '../../src/lib/domain/types.js';
 import type { VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
 import { buildCharacterDomain } from '../../scripts/data/domain/character.js';
+import { loadCharacterDomainTables } from '../../scripts/data/character-sources.js';
 import {
   createGlobalSearchService,
   type GlobalSearchCatalogs
@@ -42,7 +43,13 @@ import {
   readCharacterDetailIconSources
 } from '../assets/shared.js';
 import { assertAssetRoot, resolveAssetRoot } from '../assets/paths.js';
-import { auditRoot, generatedRoot, siteRoot, staticGeneratedRoot } from '../data/paths.js';
+import {
+  assertDataRoot,
+  auditRoot,
+  generatedRoot,
+  siteRoot,
+  staticGeneratedRoot
+} from '../data/paths.js';
 import type { TextDiagnosticKind, TextDiagnosticSummary } from '../data/localization.js';
 import { canonicalize, ContentRegistry, withoutObjectKeys } from './canonical.js';
 import {
@@ -630,9 +637,7 @@ async function captureCharacterIcons(
     assetRoot,
     requirements.characterDetailIconKeys
   );
-  const characterSource = await json<Record<string, unknown>>(
-    path.join(generatedRoot, 'neutral', 'source', 'characters.json')
-  );
+  const characterSource = await loadCharacterDomainTables(assertDataRoot());
   const neutralCharacters = buildCharacterDomain({ tables: characterSource }).characters;
   const owners = collectCharacterIconOwners(
     characters,

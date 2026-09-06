@@ -1,3 +1,5 @@
+# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md) for the current system.
+
 # i18n / l10n Architecture Audit
 
 调查日期：2026-09-04。任务依据：`Refactor-15/I18n-L10n-Investigation-01.md`。这是清理后基线上的只读调查与未来实施建议，不是 i18n 实施记录。所有 MB 均为十进制 MB，所有文件体积均为未压缩 UTF-8 / 文件系统字节；没有把字符数、网络传输量和发布体积混为一谈。
@@ -676,3 +678,5 @@ locale core join 必须靠稳定 IDs，而不是 CHS 字符串或数组“碰巧
 18. Tooltip/focus：所有实际截断的识别名；hover/focus/Escape，并有合法的独立触屏入口。
 19. Blockers：中文 name hash identity、命名断言、enemy 中文 kind/tag 反查、“特殊效果”短语触发、文本存在性控制 membership、未解析 gender/NICKNAME。
 20. 顺序：冻结 CHS 契约 → 去语言业务依赖 → Endgame identity → locale/UI spike → hybrid generator/manifests → 全站消息与搜索 → SEO/响应式/完整静态部署回归。
+
+> HISTORICAL / NON-NORMATIVE — for the current architecture, see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md).

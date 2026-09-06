@@ -10,7 +10,14 @@ import {
   normalizeSearch,
   SEARCH_NORMALIZATION_VERSION
 } from '../../src/lib/search/normalization.js';
-import { createTextResolver, loadTextMap, type TextResolver } from './localization.js';
+import {
+  createTextResolver,
+  loadTextMap,
+  runtimeTextSourceFromRef,
+  type BuildTextProvenance,
+  type TextResolver
+} from './localization.js';
+import { getProductionLocale } from './locale-registry.js';
 import { hashOf, mergeConfigSources, readTable } from './raw.js';
 
 interface AvatarNameRow {
@@ -32,12 +39,28 @@ interface NamingOwnerRow {
   OENAMINOLLF: unknown;
 }
 
+function requiredName(text: TextResolver, ref: unknown, provenance: BuildTextProvenance): string {
+  const source = runtimeTextSourceFromRef(ref, provenance);
+  if (!source) throw new Error(`${provenance.field} has no valid TextHash`);
+  const result = text.resolve(source, {
+    diagnosticDisposition: {
+      requirement: 'required',
+      visibility: 'emitted',
+      fallbackUsed: false,
+      productRouteReachability: 'reachable'
+    }
+  });
+  if (result.status !== 'available')
+    throw new Error(`${provenance.field} localization is ${result.status}`);
+  return result.value;
+}
+
 export function resolveTrailblazerBaseName(rows: NamingOwnerRow[], text: TextResolver): string {
   const matches = rows.filter((row) => row.PHFMCACHFIJ === 'Trailblazer');
   if (matches.length !== 1 || hashOf(matches[0].OENAMINOLLF) !== '4036035618718239522')
     throw new Error('FateRinOwner.Trailblazer.OENAMINOLLF provenance requires review');
   const name = normalizeGameText(
-    text.resolveRef(matches[0].OENAMINOLLF, {
+    requiredName(text, matches[0].OENAMINOLLF, {
       entity: 'character-base-name',
       id: '8001',
       field: 'FateRinOwner.Trailblazer.OENAMINOLLF'
@@ -82,7 +105,7 @@ export function buildCharacterNames(
     const id = String(avatar.AvatarID);
     const table = ordinaryIds.has(id) ? 'AvatarConfig' : 'AvatarConfigLD';
     const rawName = normalizeGameText(
-      text.resolveRef(avatar.AvatarName, { entity: 'character', id, field: 'AvatarName' })
+      requiredName(text, avatar.AvatarName, { entity: 'character', id, field: 'AvatarName' })
     );
     const textHash = hashOf(avatar.AvatarName);
     if (!textHash || !rawName) throw new Error(`角色 ${id} 缺少 canonical AvatarName/CHS`);
@@ -92,7 +115,7 @@ export function buildCharacterNames(
     const path = pathsById.get(avatar.AvatarBaseType);
     const pathHash = hashOf(path?.BaseTypeText);
     const pathName = isMultiplePath
-      ? text.resolveRef(path?.BaseTypeText, {
+      ? requiredName(text, path?.BaseTypeText, {
           entity: 'path',
           id: avatar.AvatarBaseType,
           field: 'BaseTypeText'
@@ -141,12 +164,16 @@ export function buildCharacterNames(
 }
 
 export async function deriveCharacterNames(root: string, commit: string, resolver?: TextResolver) {
+  const locale = getProductionLocale();
   const [avatars, ldAvatars, paths, multiplePaths, text, namingOwners] = await Promise.all([
     readTable<AvatarNameRow>(root, 'AvatarConfig'),
     readTable<AvatarNameRow>(root, 'AvatarConfigLD'),
     readTable<PathRow>(root, 'AvatarBaseType'),
     readTable<MultiplePathRow>(root, 'MultiplePathAvatarConfig'),
-    resolver ?? loadTextMap(root).then(createTextResolver),
+    resolver ??
+      loadTextMap(root, locale.textMapCode).then((map) =>
+        createTextResolver({ locale: locale.locale, textMapCode: locale.textMapCode }, map)
+      ),
     readTable<NamingOwnerRow>(root, 'FateRinOwner')
   ]);
   return buildCharacterNames(avatars, ldAvatars, paths, multiplePaths, text, commit, namingOwners);

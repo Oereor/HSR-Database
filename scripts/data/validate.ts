@@ -69,78 +69,17 @@ import {
 import type { EndgameAudit } from './endgame.js';
 import { resolvePureFictionFinalHp, resolvePureFictionHpModifier } from './pure-fiction-hp.js';
 import { parseGameVersion } from './source-metadata.js';
+import { readDataManifest, validateGeneratedArtifacts } from './generated-artifacts.js';
 import {
   assertHomepageRecentWarpData,
   buildHomepageRecentWarpData,
   type HomepageGachaRow
 } from './homepage.js';
 
-const manifest = JSON.parse(
-  await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
-) as DataManifest;
-if (manifest.schemaVersion !== 40)
-  throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
-if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
-
-// Neutral and localized artifacts are independently versioned. Refuse mixed or
-// partially published trees before validating the compatibility projection.
-const neutralManifest = JSON.parse(
-  await readFile(path.join(generatedRoot, 'neutral', 'manifest.json'), 'utf8')
-) as DataManifest['neutral'];
-const viewManifest = JSON.parse(
-  await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'manifest.json'), 'utf8')
-) as DataManifest['view'];
-if (
-  neutralManifest.schemaVersion !== 1 ||
-  viewManifest.schemaVersion !== 2 ||
-  viewManifest.projectionVersion !== 'chs-view-4' ||
-  !viewManifest.textMapDigest ||
-  viewManifest.locale !== 'zh-CN' ||
-  viewManifest.textMapCode !== 'CHS' ||
-  neutralManifest.sourceCommit !== manifest.sourceCommit ||
-  viewManifest.neutralDigest !== neutralManifest.contentDigest ||
-  manifest.neutral.contentDigest !== neutralManifest.contentDigest ||
-  manifest.view.neutralDigest !== neutralManifest.contentDigest
-)
-  throw new Error('neutral 与 zh-CN view manifest 不一致，拒绝混用生成产物');
-const neutralSourcePath = path.join(generatedRoot, 'neutral', 'source.json');
-const neutralSource = await readFile(neutralSourcePath, 'utf8');
-const neutralParsed = JSON.parse(neutralSource) as {
-  schemaVersion?: number;
-  parserVersion?: string;
-  sourceCommit?: string;
-  domains?: Record<string, unknown>;
-};
-const neutralDigest = createHash('sha256').update(JSON.stringify(neutralParsed)).digest('hex');
-const neutralMeta = neutralManifest.artifacts?.['neutral/source.json'];
-if (
-  neutralParsed.schemaVersion !== 1 ||
-  neutralParsed.sourceCommit !== manifest.sourceCommit ||
-  neutralDigest !== neutralManifest.contentDigest ||
-  !neutralMeta ||
-  neutralMeta.bytes !== Buffer.byteLength(neutralSource) ||
-  neutralMeta.sha256 !== createHash('sha256').update(neutralSource).digest('hex') ||
-  !neutralParsed.domains ||
-  !['characters', 'light-cones', 'relics', 'enemies', 'endgame'].every(
-    (key) => key in neutralParsed.domains!
-  )
-)
-  throw new Error('neutral artifact 缺失、损坏或 digest 不匹配');
-for (const shardName of ['characters', 'light-cones', 'relics', 'enemies', 'endgame'] as const) {
-  const file = path.join(generatedRoot, 'neutral', 'source', `${shardName}.json`);
-  const serialized = await readFile(file, 'utf8');
-  const value = JSON.parse(serialized) as unknown;
-  const meta = neutralManifest.sourceShards?.[shardName];
-  if (!meta || !value || typeof value !== 'object')
-    throw new Error(`neutral source shard ${shardName} 缺失`);
-  if (
-    meta.bytes !== Buffer.byteLength(serialized) ||
-    meta.sha256 !== createHash('sha256').update(serialized).digest('hex') ||
-    meta.contentDigest !== createHash('sha256').update(JSON.stringify(value)).digest('hex') ||
-    (meta.sourceCommit && meta.sourceCommit !== neutralManifest.sourceCommit)
-  )
-    throw new Error(`neutral source shard ${shardName} digest 或 source commit 不一致`);
-}
+const manifest: DataManifest = await readDataManifest();
+await validateGeneratedArtifacts(manifest);
+if (manifest.locale !== 'zh-CN' || manifest.textMapCode !== 'CHS')
+  throw new Error(`生成数据 locale/TextMap 错误：${manifest.locale}/${manifest.textMapCode}`);
 const parsedGameVersion = parseGameVersion(manifest.sourceVersion);
 if (
   manifest.gameVersionFull !== parsedGameVersion.gameVersionFull ||
@@ -154,13 +93,13 @@ const currentTextMap = JSON.parse(
   await readFile(path.join(rawRoot, 'TextMap', 'TextMapCHS.json'), 'utf8')
 );
 if (
-  viewManifest.textMapDigest !==
+  manifest.textMapDigest !==
   createHash('sha256').update(JSON.stringify(currentTextMap)).digest('hex')
 )
   throw new Error('zh-CN view TextMap digest 已过期');
 const [homepage, homepageCharacterCatalog, homepageLightConeCatalog, homepageGachaRows] =
   await Promise.all([
-    readFile(path.join(generatedRoot, 'homepage.json'), 'utf8').then(
+    readFile(path.join(productRoot, 'homepage.json'), 'utf8').then(
       (value) => JSON.parse(value) as HomepageRecentWarpData
     ),
     readFile(

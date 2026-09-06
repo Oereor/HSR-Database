@@ -24,7 +24,7 @@
 </svelte:head>
 
 <div class="site-shell">
-  <Navigator manifest={data.manifest} onOpenChangelog={() => changelogModal?.open()} />
+  <Navigator siteVersion={data.siteVersion} onOpenChangelog={() => changelogModal?.open()} />
   <ChangelogModal bind:this={changelogModal} />
 
   <main>

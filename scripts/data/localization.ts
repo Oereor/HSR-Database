@@ -108,17 +108,6 @@ export interface TextResolver {
     context?: GameTextProjectionContext
   ): LocalizationResult<GameTextProjection>;
   getDiagnostics(): TextDiagnosticSummary;
-
-  /** @deprecated Migration adapter. New code must retain TextSource. */
-  resolveHash(hash: TextHash, source: BuildTextProvenance): string;
-  /** @deprecated Migration adapter. New code must retain TextSource. */
-  resolveRef(
-    ref: unknown,
-    source: BuildTextProvenance,
-    disposition?: TextDiagnosticDisposition
-  ): string;
-  /** @deprecated Migration adapter. New code must retain TextSource. */
-  resolveSymbolic(key: string, source: BuildTextProvenance): string;
 }
 
 const MAX_DIAGNOSTIC_SAMPLES = 20;
@@ -150,35 +139,24 @@ function paramsOf(source: RuntimeTextSource): number[] {
   return source.params.map((value) => Number(value));
 }
 
-function sourceFromRef(
+export function runtimeTextSourceFromRef(
   ref: unknown,
   provenance: BuildTextProvenance
 ): RuntimeTextSource | undefined {
   if (ref === undefined || ref === null || ref === '') return undefined;
+  if (typeof ref === 'string' && ref.trim())
+    return { kind: 'direct', ref: { kind: 'symbolic', key: ref }, provenance };
   if (!ref || typeof ref !== 'object' || !('Hash' in ref)) return undefined;
   const hash = parseTextHash((ref as { Hash: unknown }).Hash);
   return hash ? { kind: 'direct', ref: { kind: 'hash', hash }, provenance } : undefined;
 }
 
-/**
- * Create a locale-aware resolver. The two-argument legacy form is intentionally retained only
- * while producers migrate: createTextResolver(textMap, listener).
- */
 export async function createTextResolver(
-  config: TextResolverConfig | TextMap,
-  mapOrListener?: TextMap | TextDiagnosticListener,
-  maybeListener?: TextDiagnosticListener
+  config: TextResolverConfig,
+  textMap: TextMap,
+  onDiagnostic?: TextDiagnosticListener
 ): Promise<TextResolver> {
-  const legacy = !('locale' in config);
-  const resolverConfig: TextResolverConfig = legacy
-    ? { locale: 'zh-CN', textMapCode: getLocaleConfig('zh-CN').textMapCode }
-    : (config as TextResolverConfig);
-  const textMap: TextMap = legacy
-    ? (config as TextMap)
-    : ((mapOrListener as TextMap | undefined) ?? {});
-  const onDiagnostic = legacy
-    ? (mapOrListener as TextDiagnosticListener | undefined)
-    : maybeListener;
+  const resolverConfig = config;
   const hasher = await xxhash();
   const diagnostics: TextDiagnosticSummary = {
     'invalid-reference': { count: 0, samples: [], entries: [] },
@@ -301,39 +279,11 @@ export async function createTextResolver(
     };
   };
 
-  const resolveHash = (hash: TextHash, source: BuildTextProvenance): string => {
-    const result = resolve({ kind: 'direct', ref: { kind: 'hash', hash }, provenance: source });
-    return result.status === 'available' ? result.value : '';
-  };
-
-  const resolveRef = (
-    ref: unknown,
-    source: BuildTextProvenance,
-    disposition?: TextDiagnosticDisposition
-  ): string => {
-    const sourceRef = sourceFromRef(ref, source);
-    if (!sourceRef) {
-      if (ref !== undefined && ref !== null && ref !== '')
-        record('invalid-reference', JSON.stringify(ref), source);
-      return '';
-    }
-    const result = resolve(sourceRef, { diagnosticDisposition: disposition });
-    return result.status === 'available' ? result.value : '';
-  };
-
-  const resolveSymbolic = (key: string, source: BuildTextProvenance): string => {
-    const result = resolve({ kind: 'direct', ref: { kind: 'symbolic', key }, provenance: source });
-    return result.status === 'available' ? result.value : '';
-  };
-
   return {
     locale: resolverConfig.locale,
     textMapCode: resolverConfig.textMapCode,
     resolve,
     projectGameText,
-    getDiagnostics: () => structuredClone(diagnostics),
-    resolveHash,
-    resolveRef,
-    resolveSymbolic
+    getDiagnostics: () => structuredClone(diagnostics)
   };
 }

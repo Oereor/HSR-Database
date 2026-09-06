@@ -333,3 +333,5 @@ No new skips, todos, expected-failure markers, or weakened assertions were intro
 Proceed to R1 only from this ratified baseline. Treat `product:baseline:check` as the semantic gate for each architecture slice, migrate one domain at a time, and require explicit review for any field-level fixture change. Start with a bounded locale-neutral/view boundary whose route and presentation semantics are already captured; do not combine the first English locale, localized routing, Enemy/Endgame migration, or compatibility-tree deletion into the same change.
 
 R1 should preserve the reason-gated fixture workflow, resolver provenance, source/resolved icon ownership checks, and fixed-time Endgame/Search cases. Any proposed normalization must demonstrate that it does not erase text, token, ordering, grouping, route, fallback, or interaction semantics already protected here.
+
+> HISTORICAL / NON-NORMATIVE — for the current architecture, see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md).

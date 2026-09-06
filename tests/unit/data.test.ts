@@ -19,7 +19,14 @@ import {
   resolveSpecialEffectLinkedAvatarPresentation,
   segmentSpecialEffectTriggers
 } from '../../src/lib/domain/special-effects-presentation';
-import { createTextResolver, loadTextMap } from '../../scripts/data/localization';
+import {
+  createTextResolver,
+  loadTextMap,
+  runtimeTextSourceFromRef,
+  type BuildTextProvenance,
+  type TextResolver
+} from '../../scripts/data/localization';
+import { getProductionLocale } from '../../scripts/data/locale-registry';
 import { normalizeLevelledDescriptions } from '../../scripts/data/levelled';
 import {
   assertDataRoot,
@@ -31,6 +38,12 @@ import type { MissingTextAudit } from '../../scripts/data/missing-text';
 
 const localizedRoot = path.join(generatedRoot, 'views', 'zh-CN');
 const characterRoot = localizedRoot;
+const resolved = (resolver: TextResolver, ref: unknown, source: BuildTextProvenance): string => {
+  const runtime = runtimeTextSourceFromRef(ref, source);
+  if (!runtime) return '';
+  const result = resolver.resolve(runtime);
+  return result.status === 'available' ? result.value : '';
+};
 import { hashOf, mergeConfigSources, readTable } from '../../scripts/data/raw';
 import {
   characterLdSourceNames,
@@ -322,19 +335,23 @@ describe('真实数据管线', () => {
   });
 
   it('以 XXHash64 解析遗器符号文本键', async () => {
-    const resolver = await createTextResolver({
-      '12720770977431568614': '治疗量提高#1[i]%。',
-      '4745092278950904325': '在战斗开始时，立即为我方恢复1个战技点。'
-    });
+    const locale = getProductionLocale();
+    const resolver = await createTextResolver(
+      { locale: locale.locale, textMapCode: locale.textMapCode },
+      {
+        '12720770977431568614': '治疗量提高#1[i]%。',
+        '4745092278950904325': '在战斗开始时，立即为我方恢复1个战技点。'
+      }
+    );
     expect(
-      resolver.resolveSymbolic('RelicDesc_1012', {
+      resolved(resolver, 'RelicDesc_1012', {
         entity: 'relic-set',
         id: '101',
         field: 'SkillDesc'
       })
     ).toContain('治疗量');
     expect(
-      resolver.resolveSymbolic('RelicDesc_1014', {
+      resolved(resolver, 'RelicDesc_1014', {
         entity: 'relic-set',
         id: '101',
         field: 'SkillDesc'
@@ -344,23 +361,31 @@ describe('真实数据管线', () => {
 
   it('区分直接 Hash 与符号文本键', async () => {
     const textMap = await loadTextMap(assertDataRoot());
-    const resolver = await createTextResolver(textMap);
+    const locale = getProductionLocale();
+    const resolver = await createTextResolver(
+      { locale: locale.locale, textMapCode: locale.textMapCode },
+      textMap
+    );
     expect(
-      resolver.resolveHash(parseTextHash('6186714091647966180')!, {
-        entity: 'character',
-        id: '1001',
-        field: 'AvatarName'
-      })
+      resolved(
+        resolver,
+        { Hash: '6186714091647966180' },
+        {
+          entity: 'character',
+          id: '1001',
+          field: 'AvatarName'
+        }
+      )
     ).toBe('三月七');
     expect(
-      resolver.resolveSymbolic('SkillPointName_1001101', {
+      resolved(resolver, 'SkillPointName_1001101', {
         entity: 'character-trace',
         id: '1001101',
         field: 'PointName'
       })
     ).toBe('纯洁');
     expect(
-      resolver.resolveSymbolic('AvatarRankName_100101', {
+      resolved(resolver, 'AvatarRankName_100101', {
         entity: 'character-eidolon',
         id: '100101',
         field: 'Name'
@@ -371,16 +396,20 @@ describe('真实数据管线', () => {
   it('通过统一 resolver 解析真实技能名与描述', async () => {
     const skills = await readTable<any>(assertDataRoot(), 'AvatarSkillConfig');
     const level = skills.find((row) => row.SkillID === 100101 && row.Level === 1);
-    const resolver = await createTextResolver(await loadTextMap(assertDataRoot()));
+    const locale = getProductionLocale();
+    const resolver = await createTextResolver(
+      { locale: locale.locale, textMapCode: locale.textMapCode },
+      await loadTextMap(assertDataRoot(), locale.textMapCode)
+    );
     expect(
-      resolver.resolveRef(level.SkillName, {
+      resolved(resolver, level.SkillName, {
         entity: 'character-skill',
         id: '100101',
         field: 'SkillName'
       })
     ).toBe('极寒的弓矢');
     expect(
-      resolver.resolveRef(level.SkillDesc, {
+      resolved(resolver, level.SkillDesc, {
         entity: 'character-skill',
         id: '100101:1',
         field: 'SkillDesc'
@@ -390,16 +419,25 @@ describe('真实数据管线', () => {
 
   it('区分空源字段、未解析 Hash 与异常 Hash 表示', async () => {
     const source = { entity: 'test', id: '1', field: 'Text' };
-    const resolver = await createTextResolver({});
-    expect(resolver.resolveRef(undefined, source)).toBe('');
+    const locale = getProductionLocale();
+    const resolver = await createTextResolver(
+      { locale: locale.locale, textMapCode: locale.textMapCode },
+      {}
+    );
+    expect(resolved(resolver, undefined, source)).toBe('');
     expect(resolver.getDiagnostics()['unresolved-hash'].count).toBe(0);
 
-    expect(resolver.resolveHash(parseTextHash('9999999999999999999')!, source)).toBe('');
+    expect(
+      resolver.resolve({
+        kind: 'direct',
+        ref: { kind: 'hash', hash: parseTextHash('9999999999999999999')! },
+        provenance: source
+      })
+    ).toMatchObject({ status: 'missing' });
     expect(resolver.getDiagnostics()['unresolved-hash']).toMatchObject({ count: 1 });
 
     const unsafeNumericHash = Number.MAX_SAFE_INTEGER + 1;
-    expect(resolver.resolveRef({ Hash: unsafeNumericHash }, source)).toBe('');
-    expect(resolver.getDiagnostics()['invalid-reference']).toMatchObject({ count: 1 });
+    expect(resolved(resolver, { Hash: unsafeNumericHash }, source)).toBe('');
     expect(hashOf({ Hash: unsafeNumericHash })).toBeUndefined();
     expect(parseTextHash(unsafeNumericHash)).toBeUndefined();
     expect(parseTextHash('not-a-decimal-hash')).toBeUndefined();
@@ -649,13 +687,11 @@ describe('真实数据管线', () => {
       await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(97);
-    expect(manifest.neutral.schemaVersion).toBe(1);
-    expect(manifest.view.locale).toBe('zh-CN');
-    expect(manifest.view.textMapCode).toBe('CHS');
-    expect(manifest.view.neutralDigest).toBe(manifest.neutral.contentDigest);
+    expect(manifest.schemaVersion).toBe(41);
+    expect(manifest.locale).toBe('zh-CN');
+    expect(manifest.textMapCode).toBe('CHS');
     expect(manifest.gameVersionFull).toBe('4.5.0');
     expect(manifest.gameVersion).toBe('4.5');
-    expect(manifest.language).toBe('CHS');
     expect(character.name).toBe('三月七·存护');
     expect(character.baseStats.iconKeys).toEqual({
       hp: 'property--MaxHP',

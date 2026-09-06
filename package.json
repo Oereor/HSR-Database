@@ -15,6 +15,7 @@
     "data:audit": "tsx scripts/data/audit.ts",
     "data:sync": "tsx scripts/data/sync.ts",
     "data:validate": "tsx scripts/data/validate.ts",
+    "data:measure": "tsx scripts/data/measure-generated.ts",
     "data:ensure": "tsx scripts/data/ensure.ts",
     "debug:pf-hp": "tsx scripts/data/debug-pf-hp.ts",
     "investigate:enemy-variants": "tsx scripts/investigations/enemy-variants.ts",

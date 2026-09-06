@@ -1,3 +1,5 @@
+# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](architecture/localization-and-data-generation.md) for the current system.
+
 # i18n/l10n 第一阶段实施报告
 
 实施日期：2026-09-05。网站仓库 `develop`，基线 commit `3e713d1a096134374c80271f9c36b3258a1c9fa0`。
@@ -101,3 +103,5 @@ contract 仍为 968 artifacts、173 buckets、8,167 locators。未发现 hydrati
 - `data/search/character-player-aliases.json`：`09f600fa13d6108b4c95628d5c13fb0a3f62a8bf9492d7b82d630bec533b51e7`
 
 TurnBasedGameData pin：`8cdb905dc2f8e6fffa9be4eb07af3e34435d6091`；StarRailRes pin：`d226befe3db13f2ec15f4161d5f34b1b607643fe`。最终状态复核后记录在此。
+
+> HISTORICAL / NON-NORMATIVE — for the current architecture, see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md).

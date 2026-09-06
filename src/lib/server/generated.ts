@@ -5,6 +5,7 @@ import type {
   DataManifest,
   EnemyCatalogEntry,
   HomepageRecentWarpData,
+  PublicSiteVersion,
   RelicCatalogEntry,
   RelicProperty
 } from '$lib/domain/types';
@@ -24,6 +25,10 @@ async function readRootJson<T>(...segments: string[]): Promise<T> {
 }
 
 export const getManifest = () => readRootJson<DataManifest>('manifest.json');
+export const getPublicSiteVersion = async (): Promise<PublicSiteVersion> => {
+  const manifest = await getManifest();
+  return { gameVersion: manifest.gameVersion, dataRevision: manifest.dataRevision.slice(0, 8) };
+};
 export const getHomepageRecentWarps = () => readJson<HomepageRecentWarpData>('homepage.json');
 export const getCatalog = (category: CategorySlug) =>
   readJson<CatalogEntry[]>('catalogs', `${category}.json`);

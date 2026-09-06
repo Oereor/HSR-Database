@@ -1,3 +1,5 @@
+# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md) for the current system.
+
 # R3B Endgame Structural Domain + Locale Projection
 
 ## 1. Executive Summary
@@ -230,3 +232,5 @@ Protected upstream pins, player aliases, Enemy policy, and sibling repositories 
 ## 19. Recommendation for R4
 
 Remove the remaining global migration scaffolding as one coherent cleanup: migrate the remaining shared resolver consumers to result-based APIs, retire neutral/source compatibility staging and root Homepage output when their final consumers move, and simplify manifest ownership metadata without changing the now-stable domain/projector boundaries.
+
+> HISTORICAL / NON-NORMATIVE — for the current architecture, see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md).

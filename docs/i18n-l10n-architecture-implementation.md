@@ -1,3 +1,5 @@
+# HISTORICAL / NON-NORMATIVE — see [Localization and Data Generation Architecture](architecture/localization-and-data-generation.md) for the current system.
+
 # Locale-neutral i18n/l10n architecture implementation
 
 ## Status
@@ -123,3 +125,5 @@ Gender and `{NICKNAME}` are resolved from explicit projection context.
 Character views. The full Vitest suite still contains pre-B3 assertions for
 root schema 39 and frozen CHS artifact digests; those expected failures are
 not used as a legacy oracle for the new Character projector.
+
+> HISTORICAL / NON-NORMATIVE — for the current architecture, see [Localization and Data Generation Architecture](../architecture/localization-and-data-generation.md).

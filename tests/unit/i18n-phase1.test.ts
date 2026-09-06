@@ -4,8 +4,10 @@ import { describe, expect, it } from 'vitest';
 import {
   createTextResolver,
   loadTextMap,
+  type LocalizationResult,
   type TextResolver
 } from '../../scripts/data/localization';
+import { getProductionLocale } from '../../scripts/data/locale-registry';
 import { readTable } from '../../scripts/data/raw';
 import {
   deriveCharacterNames,
@@ -35,12 +37,19 @@ import compilerOptions from '../../paraglide.config';
 const root = path.resolve(process.env.HSR_DATA_ROOT ?? '../TurnBasedGameData');
 const json = async (file: string) => JSON.parse(await readFile(file, 'utf8'));
 const synthetic = async (): Promise<TextResolver> => {
-  const resolver = await createTextResolver({});
+  const locale = getProductionLocale();
+  const resolver = await createTextResolver(
+    { locale: locale.locale, textMapCode: locale.textMapCode },
+    {}
+  );
   return {
     ...resolver,
-    resolveHash: (hash) => `Synthetic ${hash}`,
-    resolveRef: (ref) => `Synthetic ${(ref as { Hash?: string })?.Hash ?? 'absent'}`,
-    resolveSymbolic: (key) => `Synthetic ${key}`
+    resolve: (source): LocalizationResult<string> => ({
+      status: 'available',
+      value:
+        source.ref.kind === 'hash' ? `Synthetic ${source.ref.hash}` : `Synthetic ${source.ref.key}`,
+      ref: source.ref
+    })
   };
 };
 describe('Phase 1 localization boundaries', () => {
@@ -95,7 +104,11 @@ describe('Phase 1 localization boundaries', () => {
   it('keeps kind/tag, inclusion and phases for every source skill under synthetic and missing descriptions', async () => {
     const rows = await readTable<Record<string, unknown>>(root, 'MonsterSkillConfig');
     const policy = await loadEnemySkillInclusionPolicy();
-    const chs = await createTextResolver(await loadTextMap(root));
+    const locale = getProductionLocale();
+    const chs = await createTextResolver(
+      { locale: locale.locale, textMapCode: locale.textMapCode },
+      await loadTextMap(root, locale.textMapCode)
+    );
     const other = await synthetic();
     for (const row of rows) {
       const context = { enemyId: 'source-contract', skillId: String(row.SkillID) };
@@ -113,8 +126,13 @@ describe('Phase 1 localization boundaries', () => {
     const row = rows.find((row) => isIncludedEnemySkill(row, policy))!;
     const missing = {
       ...other,
-      resolveRef: (ref: unknown, source: Parameters<TextResolver['resolveRef']>[1]) =>
-        source.field === 'SkillDesc' ? '' : other.resolveRef(ref, source)
+      resolve: (
+        source: Parameters<TextResolver['resolve']>[0],
+        context?: Parameters<TextResolver['resolve']>[1]
+      ) =>
+        source.provenance?.field === 'SkillDesc'
+          ? ({ status: 'missing', ref: source.ref } as const)
+          : other.resolve(source, context)
     };
     const result = resolveEnemySkillSource(
       row,

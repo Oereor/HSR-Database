@@ -1,13 +1,14 @@
 import { loadEnemySkillInclusionPolicy } from './enemy-skill-policy.js';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { mkdir, rm, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type {
   CatalogEntry,
   Character,
   DataManifest,
+  GeneratedArtifactMetadata,
   RelicCatalogEntry,
   RelicProperty
 } from '../../src/lib/domain/types.js';
@@ -15,6 +16,7 @@ import { parseTextHash } from '../../src/lib/domain/types.js';
 import {
   createTextResolver,
   loadTextMap,
+  runtimeTextSourceFromRef,
   type TextDiagnosticDisposition,
   type TextSource
 } from './localization.js';
@@ -78,6 +80,87 @@ async function resetDirectory(directory: string): Promise<void> {
   assertInsideSite(directory);
   await rm(directory, { recursive: true, force: true });
   await mkdir(directory, { recursive: true });
+}
+
+async function pathExists(target: string): Promise<boolean> {
+  return access(target).then(
+    () => true,
+    () => false
+  );
+}
+
+interface DirectoryPublication {
+  target: string;
+  next: string;
+  previous: string;
+}
+
+export async function publishGeneratedDirectories(
+  publications: DirectoryPublication[]
+): Promise<void> {
+  for (const publication of publications) {
+    assertInsideSite(publication.target);
+    assertInsideSite(publication.next);
+    assertInsideSite(publication.previous);
+  }
+  for (const publication of publications) {
+    await rm(publication.previous, { recursive: true, force: true });
+  }
+  const backedUp: DirectoryPublication[] = [];
+  const published: DirectoryPublication[] = [];
+  try {
+    for (const publication of publications) {
+      if (await pathExists(publication.target)) {
+        await rename(publication.target, publication.previous);
+        backedUp.push(publication);
+      }
+      await rename(publication.next, publication.target);
+      published.push(publication);
+    }
+  } catch (error) {
+    for (const publication of [...publications].reverse()) {
+      if (published.includes(publication) && (await pathExists(publication.target)))
+        await rm(publication.target, { recursive: true, force: true });
+      if (backedUp.includes(publication) && (await pathExists(publication.previous)))
+        await rename(publication.previous, publication.target);
+    }
+    throw error;
+  }
+  for (const publication of publications)
+    await rm(publication.previous, { recursive: true, force: true });
+}
+
+async function publishGeneratedTrees(
+  nextGeneratedRoot: string,
+  nextStaticGeneratedRoot: string
+): Promise<void> {
+  await publishGeneratedDirectories([
+    { target: generatedRoot, next: nextGeneratedRoot, previous: `${generatedRoot}.previous` },
+    {
+      target: staticGeneratedRoot,
+      next: nextStaticGeneratedRoot,
+      previous: `${staticGeneratedRoot}.previous`
+    }
+  ]);
+}
+
+async function verifyGeneratedArtifacts(
+  artifacts: Record<string, GeneratedArtifactMetadata>,
+  nextGeneratedRoot: string,
+  nextStaticGeneratedRoot: string
+): Promise<void> {
+  for (const [logicalPath, metadata] of Object.entries(artifacts)) {
+    const file = logicalPath.startsWith('static/generated/')
+      ? path.join(nextStaticGeneratedRoot, logicalPath.slice('static/generated/'.length))
+      : path.join(nextGeneratedRoot, logicalPath);
+    const serialized = await readFile(file);
+    if (
+      serialized.byteLength !== metadata.bytes ||
+      createHash('sha256').update(serialized).digest('hex') !== metadata.sha256
+    )
+      throw new Error(`Generated artifact failed pre-publication validation: ${logicalPath}`);
+    JSON.parse(serialized.toString('utf8'));
+  }
 }
 
 async function writeJson(file: string, value: unknown): Promise<void> {
@@ -145,15 +228,20 @@ export async function syncData(): Promise<DataManifest> {
         diagnostic.placeholder
       );
   };
+  const symbolicResult = text.resolve({
+    kind: 'direct',
+    ref: { kind: 'symbolic', key: 'RelicDesc_1012' },
+    provenance: source('relic-set', '101', 'RelicSetSkillConfig.SkillDesc')
+  });
+  const hashResult = text.resolve({
+    kind: 'direct',
+    ref: { kind: 'hash', hash: parseTextHash('12720770977431568614')! },
+    provenance: source('regression', 'RelicDesc_1012', 'expectedHash')
+  });
   if (
-    text.resolveSymbolic(
-      'RelicDesc_1012',
-      source('relic-set', '101', 'RelicSetSkillConfig.SkillDesc')
-    ) !==
-    text.resolveHash(
-      parseTextHash('12720770977431568614')!,
-      source('regression', 'RelicDesc_1012', 'expectedHash')
-    )
+    symbolicResult.status !== 'available' ||
+    hashResult.status !== 'available' ||
+    symbolicResult.value !== hashResult.value
   ) {
     throw new Error('XXHash64 文本键校验失败：RelicDesc_1012');
   }
@@ -247,7 +335,11 @@ export async function syncData(): Promise<DataManifest> {
     }
   ): string => {
     if (isEmptyTextSource(value)) missingText.record('A', 'missing-source-field', textSource);
-    const resolved = text.resolveRef(value, textSource, disposition);
+    const runtimeSource = runtimeTextSourceFromRef(value, textSource);
+    const result = runtimeSource
+      ? text.resolve(runtimeSource, { diagnosticDisposition: disposition })
+      : { status: 'absent' as const };
+    const resolved = result.status === 'available' ? result.value : '';
     auditResolvedText(resolved, textSource);
     return normalizeGameText(resolved || fallback);
   };
@@ -689,8 +781,10 @@ export async function syncData(): Promise<DataManifest> {
     lightConeCatalog
   );
 
-  await resetDirectory(generatedRoot);
-  await resetDirectory(staticGeneratedRoot);
+  const nextGeneratedRoot = `${generatedRoot}.next`;
+  const nextStaticGeneratedRoot = `${staticGeneratedRoot}.next`;
+  await resetDirectory(nextGeneratedRoot);
+  await resetDirectory(nextStaticGeneratedRoot);
   await mkdir(auditRoot, { recursive: true });
 
   const catalogs = {
@@ -700,150 +794,80 @@ export async function syncData(): Promise<DataManifest> {
     enemies: enemyCatalog
   };
   const details = { characters, 'light-cones': lightCones, relics, enemies };
-  const viewPayload = { catalogs, details, relicProperties, endgame: endgame.datasets, homepage };
-  const viewSerialized = JSON.stringify(viewPayload);
-  const viewDigest = createHash('sha256').update(viewSerialized).digest('hex');
-  const neutralPayload = {
-    schemaVersion: 1,
-    parserVersion: 'neutral-domain-1',
-    sourceCommit: commit,
-    domains: {
-      characters: characterDomainSource,
-      'light-cones': tableSubset([
-        'EquipmentConfig',
-        'EquipmentSkillConfig',
-        'EquipmentPromotionConfig',
-        'ItemConfigEquipment',
-        'AvatarBaseType',
-        'AvatarPropertyConfig'
-      ]),
-      relics: tableSubset([
-        'RelicSetConfig',
-        'RelicSetSkillConfig',
-        'RelicDataInfo',
-        'RelicBaseType',
-        'RelicMainAffixConfig',
-        'RelicSubAffixConfig',
-        'ItemComefrom'
-      ]),
-      enemies: tableSubset([
-        'MonsterTemplateConfig',
-        'MonsterConfig',
-        'MonsterSkillConfig',
-        'MonsterGuideConfig',
-        'MonsterGuideTag',
-        'HardLevelGroup',
-        'EliteGroup',
-        'ExtraEffectConfig'
-      ]),
-      endgame: tableSubset([
-        'ChallengeGroupConfig',
-        'ChallengeMazeConfig',
-        'ChallengeStoryGroupConfig',
-        'ChallengeStoryMazeConfig',
-        'ChallengeStoryGroupExtra',
-        'ChallengeBossGroupConfig',
-        'ChallengeBossMazeConfig',
-        'ChallengeBossGroupExtra',
-        'ChallengeBossMazeExtra',
-        'ChallengePeakConfig',
-        'ChallengePeakBossConfig',
-        'MazeBuff',
-        'MonsterGuideConfig',
-        'MonsterGuideTag'
-      ])
-    }
-  };
-  const sourceShards = {
-    characters: neutralPayload.domains.characters,
-    'light-cones': neutralPayload.domains['light-cones'],
-    relics: neutralPayload.domains.relics,
-    enemies: neutralPayload.domains.enemies,
-    endgame: neutralPayload.domains.endgame
-  };
-  const sourceShardMeta = Object.fromEntries(
-    Object.entries(sourceShards).map(([name, shard]) => {
-      const serialized = `${JSON.stringify(shard)}\n`;
-      return [
-        name,
-        {
-          bytes: Buffer.byteLength(serialized),
-          sha256: createHash('sha256').update(serialized).digest('hex'),
-          contentDigest: createHash('sha256').update(JSON.stringify(shard)).digest('hex'),
-          sourceCommit: commit
-        }
-      ];
-    })
-  );
-  const neutralSerialized = JSON.stringify(neutralPayload);
-  const neutralDigest = createHash('sha256').update(neutralSerialized).digest('hex');
-  const artifactMeta = (relative: string, serialized: string) => ({
-    [relative]: {
+  const artifacts: Record<string, GeneratedArtifactMetadata> = {};
+  const writeArtifact = async (
+    root: string,
+    relative: string,
+    value: unknown,
+    metadata: Pick<GeneratedArtifactMetadata, 'locale'> = {},
+    logicalPath = relative
+  ): Promise<void> => {
+    const serialized = `${JSON.stringify(value)}\n`;
+    await writeJson(path.join(root, ...relative.split('/')), value);
+    const schemaVersion =
+      value && typeof value === 'object' && 'schemaVersion' in value
+        ? Number((value as { schemaVersion: unknown }).schemaVersion)
+        : undefined;
+    artifacts[logicalPath] = {
       bytes: Buffer.byteLength(serialized),
-      sha256: createHash('sha256').update(serialized).digest('hex')
-    }
-  });
-  const neutralArtifactManifest = {
-    schemaVersion: 1 as const,
-    parserVersion: 'neutral-domain-1',
-    sourceCommit: commit,
-    contentDigest: neutralDigest,
-    artifacts: {
-      ...artifactMeta('neutral/source.json', `${neutralSerialized}\n`)
-    },
-    sourceShards: sourceShardMeta
+      sha256: createHash('sha256').update(serialized).digest('hex'),
+      ...metadata,
+      ...(Number.isSafeInteger(schemaVersion) ? { schemaVersion } : {})
+    };
   };
-  const viewManifest = {
-    schemaVersion: 2 as const,
-    locale: locale.locale,
-    textMapCode: locale.textMapCode,
-    projectionVersion: 'chs-view-4',
-    neutralDigest,
-    contentDigest: viewDigest,
-    textMapDigest,
-    domainDigests: {},
-    neutralSourceDigests: {
-      characters: sourceShardMeta.characters.contentDigest,
-      lightCones: createHash('sha256')
-        .update(JSON.stringify(sourceShards['light-cones']))
-        .digest('hex'),
-      relics: createHash('sha256').update(JSON.stringify(sourceShards.relics)).digest('hex')
-    }
-  };
-  const writeViewArtifacts = async (base: string): Promise<void> => {
+  const writeViewArtifacts = async (): Promise<void> => {
     for (const category of Object.keys(catalogs)) {
       const catalog = catalogs[category as keyof typeof catalogs];
-      await writeJson(path.join(base, 'catalogs', `${category}.json`), catalog);
+      await writeArtifact(nextGeneratedRoot, `views/zh-CN/catalogs/${category}.json`, catalog, {
+        locale: 'zh-CN'
+      });
       for (const detail of details[category as keyof typeof details])
-        await writeJson(path.join(base, 'details', category, `${detail.id}.json`), detail);
+        await writeArtifact(
+          nextGeneratedRoot,
+          `views/zh-CN/details/${category}/${detail.id}.json`,
+          detail,
+          { locale: 'zh-CN' }
+        );
     }
-    await writeJson(path.join(base, 'catalogs', 'relic-properties.json'), relicProperties);
+    await writeArtifact(
+      nextGeneratedRoot,
+      'views/zh-CN/catalogs/relic-properties.json',
+      relicProperties,
+      { locale: 'zh-CN' }
+    );
     for (const [mode, dataset] of Object.entries(endgame.datasets))
-      await writeJson(path.join(base, 'endgame', `${mode}.json`), dataset);
-    await writeJson(path.join(base, 'homepage.json'), homepage);
+      await writeArtifact(nextGeneratedRoot, `views/zh-CN/endgame/${mode}.json`, dataset, {
+        locale: 'zh-CN'
+      });
+    await writeArtifact(nextGeneratedRoot, 'views/zh-CN/homepage.json', homepage, {
+      locale: 'zh-CN'
+    });
   };
-  await writeJson(path.join(generatedRoot, 'neutral', 'source.json'), neutralPayload);
-  for (const [name, shard] of Object.entries(sourceShards))
-    await writeJson(path.join(generatedRoot, 'neutral', 'source', `${name}.json`), shard);
-  await writeViewArtifacts(path.join(generatedRoot, 'views', 'zh-CN'));
-  // Homepage remains at the compatibility root until the R4 cleanup.
-  await writeJson(path.join(generatedRoot, 'homepage.json'), homepage);
+  await writeViewArtifacts();
+  await writeArtifact(nextGeneratedRoot, 'views/zh-CN/search-inputs.json', searchInputs, {
+    locale: 'zh-CN'
+  });
+  await writeArtifact(
+    nextStaticGeneratedRoot,
+    'zh-CN/search.json',
+    globalSearchIndex,
+    { locale: 'zh-CN' },
+    'static/generated/zh-CN/search.json'
+  );
+  const dataRevision = createHash('sha256')
+    .update(JSON.stringify({ sourceCommit: commit, textMapDigest, artifacts }))
+    .digest('hex');
 
   const manifest: DataManifest = {
-    schemaVersion: 40,
+    schemaVersion: 41,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,
-    generatedAt: new Date().toISOString(),
-    language: 'CHS',
-    neutral: neutralArtifactManifest,
-    view: viewManifest,
-    migration: {
-      lightCones: { domain: 'neutral-domain-3', productionView: 'neutral-projector-3' },
-      relics: { domain: 'neutral-domain-3', productionView: 'neutral-projector-3' },
-      enemies: { productionView: 'localized-view' },
-      endgame: { productionView: 'localized-view' }
-    },
+    locale: locale.locale,
+    textMapCode: locale.textMapCode,
+    textMapDigest,
+    dataRevision,
+    artifacts,
     counts: {
       characters: characters.length,
       lightCones: lightCones.length,
@@ -859,14 +883,12 @@ export async function syncData(): Promise<DataManifest> {
     },
     endgame: endgame.audit.summary
   };
-  await writeJson(path.join(generatedRoot, 'manifest.json'), manifest);
-  await writeJson(path.join(generatedRoot, 'neutral', 'manifest.json'), neutralArtifactManifest);
-  await writeJson(path.join(generatedRoot, 'views', 'zh-CN', 'manifest.json'), viewManifest);
-  await writeJson(path.join(generatedRoot, 'views', 'zh-CN', 'search-inputs.json'), searchInputs);
-  await writeJson(path.join(staticGeneratedRoot, 'zh-CN', 'search.json'), globalSearchIndex);
-  await writeJson(path.join(staticGeneratedRoot, 'meta.json'), manifest);
+  await verifyGeneratedArtifacts(artifacts, nextGeneratedRoot, nextStaticGeneratedRoot);
+  await writeJson(path.join(nextGeneratedRoot, 'manifest.json'), manifest);
+  await publishGeneratedTrees(nextGeneratedRoot, nextStaticGeneratedRoot);
   await writeJson(path.join(auditRoot, 'latest.json'), {
     ...manifest,
+    generatedAt: new Date().toISOString(),
     upstreamTables: Object.fromEntries([
       ...tableNames.map((name) => [name, regularTables[name].length] as const),
       ...ldTableNames.map((name) => [name, ldTables[name].length] as const)

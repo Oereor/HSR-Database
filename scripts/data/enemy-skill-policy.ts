@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import type { SemanticTag } from '../../src/lib/domain/types.js';
 import { hashOf, numberOf } from './raw.js';
-import type { TextResolver } from './localization.js';
+import { runtimeTextSourceFromRef, type TextResolver } from './localization.js';
 import { formatGameMarkup } from './text.js';
 import { gameTextToPlain } from '../../src/lib/domain/game-text.js';
 
@@ -138,17 +138,22 @@ export function resolveEnemySkillSource(
   policy: EnemySkillInclusionPolicy
 ) {
   const visible = isIncludedEnemySkill(row, policy);
-  const resolve = (field: string) =>
-    text.resolveRef(
-      row[field],
-      { entity: 'enemy-skill', id: context.skillId, field },
-      {
+  const resolve = (field: string) => {
+    const provenance = { entity: 'enemy-skill', id: context.skillId, field };
+    const source = runtimeTextSourceFromRef(row[field], provenance);
+    if (!source) return '';
+    const result = text.resolve(source, {
+      diagnosticDisposition: {
         requirement: field === 'SkillDesc' ? 'optional' : 'required',
         visibility: visible ? 'emitted' : 'hidden',
         fallbackUsed: visible && (field === 'SkillName' || field === 'SkillDesc'),
         productRouteReachability: visible ? 'reachable' : 'unreachable'
       }
-    );
+    });
+    if (result.status === 'available') return result.value;
+    if (result.status === 'missing' || result.status === 'empty') return '';
+    throw new Error(`Enemy skill ${context.skillId} ${field} localization is ${result.status}`);
+  };
   const kindLabel = resolve('SkillTypeDesc');
   const tagLabel = resolve('SkillTag');
   const kind = normalizeEnemySkillKind(row.SkillTypeDesc, kindLabel, context);

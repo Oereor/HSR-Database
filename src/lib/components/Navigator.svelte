@@ -4,12 +4,12 @@
   import { page } from '$app/stores';
   import { onDestroy } from 'svelte';
   import { getBrandIconUrl, getUtilityIconUrl } from '$lib/data/visual-assets';
-  import type { DataManifest } from '$lib/domain/types';
+  import type { PublicSiteVersion } from '$lib/domain/types';
   import { SITE_NAME } from '$lib/site';
   import PrimaryNavigation from './PrimaryNavigation.svelte';
   import SearchBar from './SearchBar.svelte';
 
-  export let manifest: DataManifest;
+  export let siteVersion: PublicSiteVersion;
   export let onOpenChangelog: () => void = () => undefined;
 
   let navigatorPane: HTMLDialogElement;
@@ -17,9 +17,9 @@
   const trainPartyIconUrl = getBrandIconUrl('train-party');
   const changelogIconUrl = getUtilityIconUrl('changelog');
 
-  $: revision = manifest.sourceCommit.slice(0, 8);
-  $: versionLabel = manifest.gameVersion
-    ? m.navigation_data_version({ version: manifest.gameVersion }, { locale: 'zh-CN' })
+  $: revision = siteVersion.dataRevision;
+  $: versionLabel = siteVersion.gameVersion
+    ? m.navigation_data_version({ version: siteVersion.gameVersion }, { locale: 'zh-CN' })
     : m.navigation_unknown_version({}, { locale: 'zh-CN' });
   $: snapshotLabel = m.navigation_snapshot({ versionLabel, revision }, { locale: 'zh-CN' });
 

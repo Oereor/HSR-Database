@@ -8,7 +8,8 @@ import {
 } from '../../scripts/data/locale-registry';
 import { parseRelicPieceId } from '../../scripts/data/domain/relic';
 import { buildCharacterDomain } from '../../scripts/data/domain/character';
-import { generatedRoot } from '../../scripts/data/paths';
+import { loadCharacterDomainTables } from '../../scripts/data/character-sources';
+import { generatedRoot, resolveDataRoot } from '../../scripts/data/paths';
 import type { RelicSet } from '../../src/lib/domain/types';
 
 it('uses one explicit production locale registry and keeps English disabled', () => {
@@ -82,9 +83,7 @@ it('keeps Character product artifacts under the locale view root and removes mig
 });
 
 it('keeps Character domains lean and shares one ExtraEffect registry', async () => {
-  const source = JSON.parse(
-    await readFile(path.join(generatedRoot, 'neutral', 'source', 'characters.json'), 'utf8')
-  ) as Record<string, unknown>;
+  const source = await loadCharacterDomainTables(resolveDataRoot());
   const build = buildCharacterDomain({ tables: source });
   expect(build.characters).toHaveLength(97);
   expect(build.extraEffects.length).toBeGreaterThan(0);

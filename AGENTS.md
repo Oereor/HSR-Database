@@ -67,6 +67,8 @@ Due to special network environment, all Internet-related operations must go thro
 
 ## Required checks
 
+Current architecture source of truth: [docs/architecture/localization-and-data-generation.md](docs/architecture/localization-and-data-generation.md). Phase and audit reports are historical/non-normative.
+
 After changing data-processing code, run the data validation and synchronization checks.
 
 After changing visual-asset processing, verify both successful asset resolution and missing-asset fallback behavior.

@@ -1,3 +1,5 @@
+import { mergeConfigSources, readTable } from './raw.js';
+
 type RawRecord = Record<string, any>;
 
 export const characterLdSourceSpecs = [
@@ -54,3 +56,62 @@ export const characterLdSourceNames = [
   'AvatarEquipRecommendLD',
   'AvatarRelicRecommendLD'
 ] as const;
+
+export const characterDomainTableNames = [
+  'AvatarConfig',
+  'AvatarConfigEnhanced',
+  'AvatarEnhancedSkill',
+  'AvatarEnhancedSkillTree',
+  'AvatarEnhancedRank',
+  'AvatarUltraSkillConfig',
+  'GridFightFrontSpecialSP',
+  'MultiplePathAvatarConfig',
+  'FateRinOwner',
+  'ItemConfigAvatar',
+  'AvatarBaseType',
+  'DamageType',
+  'AvatarSkillConfig',
+  'AvatarSkillLink',
+  'AvatarSpecialSkillTree',
+  'AvatarSkillTreeConfig',
+  'AvatarRankConfig',
+  'AvatarPromotionConfig',
+  'AvatarPropertyConfig',
+  'AvatarServantConfig',
+  'AvatarServantSkillConfig',
+  'AvatarServantSkillLink',
+  'AvatarGlobalBuffConfig',
+  'AvatarEquipRecommend',
+  'AvatarRelicRecommend',
+  'EquipmentConfig',
+  'RelicSetConfig',
+  'RelicDataInfo',
+  'ExtraEffectConfig'
+] as const;
+
+export async function loadCharacterDomainTables(
+  root: string
+): Promise<Record<string, RawRecord[]>> {
+  const [regular, additional] = await Promise.all([
+    Promise.all(characterDomainTableNames.map((name) => readTable<RawRecord>(root, name))),
+    Promise.all(characterLdSourceNames.map((name) => readTable<RawRecord>(root, name)))
+  ]);
+  const tables = Object.fromEntries(
+    characterDomainTableNames.map((name, index) => [name, regular[index]])
+  ) as Record<string, RawRecord[]>;
+  const additionalByName = new Map(
+    characterLdSourceNames.map((name, index) => [name, additional[index]] as const)
+  );
+  for (const spec of characterLdSourceSpecs) {
+    const extra = additionalByName.get(spec.additionalName) ?? [];
+    tables[spec.tableName] = mergeConfigSources(
+      spec.tableName,
+      [
+        { name: `${spec.tableName}.json`, rows: tables[spec.tableName] ?? [] },
+        { name: `${spec.additionalName}.json`, rows: extra }
+      ],
+      spec.identityOf
+    );
+  }
+  return tables;
+}
