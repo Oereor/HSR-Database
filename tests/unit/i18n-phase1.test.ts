@@ -52,7 +52,7 @@ describe('Phase 1 localization boundaries', () => {
       profiles: { base: { traces: [{ id: '2', prerequisiteIds: ['1'], type: 'stat' }] } }
     };
     const project = (value: unknown) =>
-      neutralArtifactProjection('src/lib/generated/details/characters/1.json', value);
+      neutralArtifactProjection('src/lib/generated/views/zh-CN/details/characters/1.json', value);
     expect(
       project({ ...sample, name: 'Other language', description: 'Other description' })
     ).toEqual(project(sample));
@@ -134,8 +134,10 @@ describe('Phase 1 localization boundaries', () => {
 
   it('keeps explicit special-effect triggers when visible words change', async () => {
     let triggers = 0;
-    for (const file of await readdir('src/lib/generated/details/characters')) {
-      const character = (await json(`src/lib/generated/details/characters/${file}`)) as Character;
+    for (const file of await readdir('src/lib/generated/views/zh-CN/details/characters')) {
+      const character = (await json(
+        `src/lib/generated/views/zh-CN/details/characters/${file}`
+      )) as Character;
       for (const profile of Object.values(character.profiles)) {
         for (const card of profile.skillCards)
           for (const variant of card.variants)

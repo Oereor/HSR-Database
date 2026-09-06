@@ -5,6 +5,7 @@ import { groupTracesForDisplay } from '../../src/lib/domain/trace-groups';
 import type { Character, Trace } from '../../src/lib/domain/types';
 
 const generatedRoot = path.join(process.cwd(), 'src', 'lib', 'generated');
+const characterRoot = path.join(generatedRoot, 'views', 'zh-CN');
 const trace = (
   id: string,
   anchorOrder: number,
@@ -55,7 +56,7 @@ describe('行迹卡片展示分组', () => {
   it('按真实关系分组记忆开拓者并单独保留第四项能力', async () => {
     for (const id of ['8007', '8008']) {
       const character = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
       const groups = groupTracesForDisplay(character.profiles.base.traces);
       expect(groups.abilityGroups).toHaveLength(3);
@@ -83,7 +84,7 @@ describe('行迹卡片展示分组', () => {
     let standaloneStats = 0;
     for (const id of manifest.routes.characters) {
       const character = JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(characterRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character;
       for (const profile of [character.profiles.base, character.profiles.enhanced].filter(
         Boolean

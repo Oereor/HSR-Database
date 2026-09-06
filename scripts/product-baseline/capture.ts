@@ -27,6 +27,7 @@ import type {
   RelicSet
 } from '../../src/lib/domain/types.js';
 import type { VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
+import { buildCharacterDomain } from '../../scripts/data/domain/character.js';
 import {
   createGlobalSearchService,
   type GlobalSearchCatalogs
@@ -622,10 +623,14 @@ async function captureCharacterIcons(
     assetRoot,
     requirements.characterDetailIconKeys
   );
-  const neutralCharacters = await json<Array<Record<string, any>>>(
-    path.join(generatedRoot, 'neutral', 'domains', 'characters.json')
+  const characterSource = await json<Record<string, unknown>>(
+    path.join(generatedRoot, 'neutral', 'source', 'characters.json')
   );
-  const owners = collectCharacterIconOwners(characters, neutralCharacters);
+  const neutralCharacters = buildCharacterDomain({ tables: characterSource }).characters;
+  const owners = collectCharacterIconOwners(
+    characters,
+    neutralCharacters as Array<Record<string, any>>
+  );
   const entries = Object.fromEntries(
     await Promise.all(
       requirements.characterDetailIconKeys.map(async (key: CharacterDetailIconKey) => {

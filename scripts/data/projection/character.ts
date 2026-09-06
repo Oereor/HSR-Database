@@ -1,5 +1,6 @@
 import type {
   CharacterDomain,
+  NeutralExtraEffect,
   NeutralSkillVariant,
   NeutralSpecialEffectRelation
 } from '../../../src/lib/domain/neutral.js';
@@ -43,32 +44,17 @@ function projectDescription(
     }
   });
   if (projected.status !== 'available') return '';
-  const resolved = context.resolver.resolve(source, {
-    gender,
-    nickname: context.nickname,
-    provenance: { entity: field.domain, id: field.entityId, field: field.field },
-    diagnosticDisposition: {
-      requirement: 'optional',
-      visibility: 'hidden',
-      fallbackUsed: true,
-      productRouteReachability: 'reachable'
-    }
-  });
-  if (resolved.status !== 'available') return '';
-  const markup = formatGameMarkup(
-    resolved.value,
-    source.kind === 'parameterized' ? source.params.map(Number) : []
-  );
-  if (markup.diagnostics.some(({ code }) => code === 'invalid-param'))
+  if (projected.value.diagnostics.some(({ code }) => code === 'invalid-param'))
     throw new Error(
       `[${field.domain}.${field.entityId}.${field.field}] invalid GameText parameter`
     );
-  return markup.text;
+  return projected.value.markup;
 }
 
 export interface CharacterProjectionContext {
   locale: 'zh-CN' | 'en';
   resolver: TextResolver;
+  extraEffectsById: ReadonlyMap<string, NeutralExtraEffect>;
   nickname?: string;
   skillCategoryLabels?: Partial<typeof SKILL_CATEGORY_LABELS>;
   presentationPolicy?: {
@@ -88,7 +74,7 @@ function projectExtraEffects(
   ids: string[]
 ) {
   return ids.flatMap((id) => {
-    const source = domain.extraEffects.find((effect) => effect.id === id);
+    const source = context.extraEffectsById.get(id);
     if (!source) return [];
     const name = source.nameSource
       ? optionalText(context.resolver, source.nameSource, {

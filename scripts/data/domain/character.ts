@@ -338,7 +338,12 @@ function buildProfile(
   };
 }
 
-export function buildCharacterDomain(source: CharacterSource): CharacterDomain[] {
+export interface CharacterDomainBuild {
+  characters: CharacterDomain[];
+  extraEffects: NeutralExtraEffect[];
+}
+
+export function buildCharacterDomain(source: CharacterSource): CharacterDomainBuild {
   const tables = source.tables;
   const avatars = [
     ...rows(tables, 'AvatarConfig'),
@@ -384,7 +389,7 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomain[]
     params: params(row.DescParamList),
     iconPath: typeof row.ExtraEffectIconPath === 'string' ? row.ExtraEffectIconPath : undefined
   }));
-  return avatars.map((avatar) => {
+  const characters = avatars.map((avatar) => {
     const id = String(avatar.AvatarID);
     const traceRows = tracesByAvatar.get(id) ?? [];
     const enhancedConfig = enhanced.get(id);
@@ -422,7 +427,6 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomain[]
     const recommendation = equipment.get(id);
     const relicRecommendation = relic.get(id);
     return {
-      schemaVersion: 4,
       id,
       baseAvatarId,
       gender:
@@ -458,14 +462,7 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomain[]
           })
         )
       },
-      energy: baseProfile.energy,
-      skills: baseProfile.skills,
-      skillProgressions: [],
-      traces: baseProfile.traces,
-      eidolons: baseProfile.eidolons,
-      specialEffects: baseProfile.specialEffects,
       profiles: { base: baseProfile, ...(enhancedProfile ? { enhanced: enhancedProfile } : {}) },
-      extraEffects,
       equipmentRecommendation: {
         lightConeIds: ids(recommendation?.EquipmentList),
         cavernSetIds: ids(relicRecommendation?.Set4IDList),
@@ -493,10 +490,10 @@ export function buildCharacterDomain(source: CharacterSource): CharacterDomain[]
             : {})
       },
       assetKeys: { avatarId: id },
-      profileIntroSource: textSource(avatar.AvatarIntroText),
       descriptionSource: textSource(items.get(id)?.ItemBGDesc),
       pathNameSource: textSource(paths.get(String(avatar.AvatarBaseType))?.BaseTypeText),
       elementNameSource: textSource(elements.get(String(avatar.DamageType))?.DamageTypeName)
     } satisfies CharacterDomain;
   });
+  return { characters, extraEffects };
 }

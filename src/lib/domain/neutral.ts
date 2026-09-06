@@ -155,14 +155,10 @@ export interface NeutralEquipmentRecommendation {
 export interface CharacterNamingEvidence {
   avatarName?: NeutralTextSource;
   fullName?: NeutralTextSource;
-  baseName?: NeutralTextSource;
-  pathName?: NeutralTextSource;
-  officialBaseName?: boolean;
   baseNameSource?: NeutralTextSource;
 }
 
 export interface CharacterDomain {
-  schemaVersion: 4;
   id: string;
   baseAvatarId?: string;
   gender?: 'female' | 'male';
@@ -170,21 +166,13 @@ export interface CharacterDomain {
   elementCode: string;
   rarity: number;
   stats: NeutralStatProgression;
-  energy: NeutralEnergy;
-  skills: NeutralSkillVariant[];
-  skillProgressions: NeutralSkillProgression[];
-  traces: NeutralTrace[];
-  eidolons: NeutralEidolon[];
-  specialEffects: NeutralSpecialEffectRelation[];
   equipmentRecommendation: NeutralEquipmentRecommendation;
   naming: CharacterNamingEvidence;
   assetKeys: Record<string, string>;
-  profileIntroSource?: NeutralTextSource;
   descriptionSource?: NeutralTextSource;
   pathNameSource?: NeutralTextSource;
   elementNameSource?: NeutralTextSource;
   profiles: { base: NeutralCharacterProfile; enhanced?: NeutralCharacterProfile };
-  extraEffects: NeutralExtraEffect[];
 }
 
 export interface LightConeDomain {

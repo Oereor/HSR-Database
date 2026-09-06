@@ -7,6 +7,7 @@ import {
   LOCALE_REGISTRY
 } from '../../scripts/data/locale-registry';
 import { parseRelicPieceId } from '../../scripts/data/domain/relic';
+import { buildCharacterDomain } from '../../scripts/data/domain/character';
 import { generatedRoot } from '../../scripts/data/paths';
 import type { RelicSet } from '../../src/lib/domain/types';
 
@@ -60,4 +61,47 @@ it('keeps Light Cone and Relic product artifacts authoritative under the locale 
   await expect(
     readFile(path.join(generatedRoot, 'views', 'zh-CN', 'catalogs', 'light-cones.json'), 'utf8')
   ).resolves.toBeTruthy();
+});
+
+it('keeps Character product artifacts under the locale view root and removes migration copies', async () => {
+  await expect(
+    readFile(path.join(generatedRoot, 'neutral', 'domains', 'characters.json'), 'utf8')
+  ).rejects.toMatchObject({ code: 'ENOENT' });
+  await expect(
+    readFile(path.join(generatedRoot, 'catalogs', 'characters.json'), 'utf8')
+  ).rejects.toMatchObject({ code: 'ENOENT' });
+  await expect(
+    readFile(path.join(generatedRoot, 'details', 'characters', '1001.json'), 'utf8')
+  ).rejects.toMatchObject({ code: 'ENOENT' });
+  await expect(
+    readFile(
+      path.join(generatedRoot, 'views', 'zh-CN', 'details', 'characters', '1001.json'),
+      'utf8'
+    )
+  ).resolves.toBeTruthy();
+});
+
+it('keeps Character domains lean and shares one ExtraEffect registry', async () => {
+  const source = JSON.parse(
+    await readFile(path.join(generatedRoot, 'neutral', 'source', 'characters.json'), 'utf8')
+  ) as Record<string, unknown>;
+  const build = buildCharacterDomain({ tables: source });
+  expect(build.characters).toHaveLength(97);
+  expect(build.extraEffects.length).toBeGreaterThan(0);
+  for (const character of build.characters) {
+    expect(character).not.toHaveProperty('energy');
+    expect(character).not.toHaveProperty('skills');
+    expect(character).not.toHaveProperty('skillProgressions');
+    expect(character).not.toHaveProperty('extraEffects');
+    expect(character.profiles.base).toHaveProperty('skills');
+  }
+  const registry = new Map(build.extraEffects.map((effect) => [effect.id, effect]));
+  for (const character of build.characters)
+    for (const profile of [character.profiles.base, character.profiles.enhanced].filter(Boolean))
+      for (const id of [
+        ...profile!.skills.flatMap((skill) => skill.extraEffectIds),
+        ...profile!.traces.flatMap((trace) => trace.extraEffectIds ?? []),
+        ...profile!.eidolons.flatMap((eidolon) => eidolon.extraEffectIds)
+      ])
+        expect(registry.has(id)).toBe(true);
 });

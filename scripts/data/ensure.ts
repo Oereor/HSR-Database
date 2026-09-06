@@ -68,30 +68,6 @@ async function localeArtifactsValid(candidate: DataManifest | undefined): Promis
         candidate.view.neutralDigest === neutral.contentDigest
       );
     }
-    for (const domainName of ['characters'] as const) {
-      const domainFile = await readFile(
-        path.join(neutralRoot, 'domains', `${domainName}.json`),
-        'utf8'
-      );
-      const domainMeta = neutral.artifacts[`neutral/domains/${domainName}.json`];
-      const domainInfo = neutral.domains?.[domainName];
-      if (
-        !domainMeta ||
-        !domainInfo ||
-        domainInfo.schemaVersion !== 4 ||
-        !Array.isArray(JSON.parse(domainFile))
-      )
-        return false;
-      if (
-        domainMeta.bytes !== Buffer.byteLength(domainFile) ||
-        domainMeta.sha256 !== createHash('sha256').update(domainFile).digest('hex') ||
-        domainInfo.contentDigest !==
-          createHash('sha256')
-            .update(JSON.stringify(JSON.parse(domainFile)))
-            .digest('hex')
-      )
-        return false;
-    }
     for (const shardName of [
       'characters',
       'light-cones',
@@ -162,7 +138,7 @@ try {
     readFile(path.join(generatedRoot, 'homepage.json'), 'utf8').then(
       (value) => JSON.parse(value) as HomepageRecentWarpData
     ),
-    readFile(path.join(generatedRoot, 'catalogs', 'characters.json'), 'utf8').then(
+    readFile(path.join(viewRoot, 'catalogs', 'characters.json'), 'utf8').then(
       (value) => JSON.parse(value) as CatalogEntry[]
     ),
     readFile(path.join(viewRoot, 'catalogs', 'light-cones.json'), 'utf8').then(

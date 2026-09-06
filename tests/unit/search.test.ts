@@ -10,7 +10,7 @@ import { createGlobalSearchService, type GlobalSearchCatalogs } from '../../src/
 import { createEndgameSearchExpander } from '../../src/lib/search/endgame';
 import { bestSearchEvidence, searchRankClass } from '../../src/lib/search/ranking';
 
-const generated = path.resolve('src/lib/generated/catalogs');
+const generated = path.resolve('src/lib/generated/views/zh-CN/catalogs');
 const index = JSON.parse(readFileSync('static/generated/search.json', 'utf8')) as GlobalSearchIndex;
 const catalogs: GlobalSearchCatalogs = {
   characters: JSON.parse(readFileSync(path.join(generated, 'characters.json'), 'utf8')),

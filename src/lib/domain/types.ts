@@ -477,7 +477,7 @@ export interface DataManifest {
   neutral: NeutralArtifactManifest;
   view: LocalizedViewManifest;
   migration?: {
-    characters: { domain: string; productionView: string } | string;
+    characters?: { domain: string; productionView: string } | string;
     lightCones: { domain: string; productionView: string } | string;
     relics: { domain: string; productionView: string } | string;
     enemies: { productionView: string } | string;

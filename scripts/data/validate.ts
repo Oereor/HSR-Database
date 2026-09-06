@@ -125,22 +125,6 @@ if (
   )
 )
   throw new Error('neutral artifact 缺失、损坏或 digest 不匹配');
-for (const domainName of ['characters'] as const) {
-  const file = path.join(generatedRoot, 'neutral', 'domains', `${domainName}.json`);
-  const serialized = await readFile(file, 'utf8');
-  const value = JSON.parse(serialized) as unknown;
-  const meta = neutralManifest.artifacts?.[`neutral/domains/${domainName}.json`];
-  const domainInfo = neutralManifest.domains?.[domainName];
-  if (!Array.isArray(value) || !meta || !domainInfo || domainInfo.schemaVersion !== 4)
-    throw new Error(`neutral ${domainName} domain artifact 缺失`);
-  if (
-    meta.bytes !== Buffer.byteLength(serialized) ||
-    meta.sha256 !== createHash('sha256').update(serialized).digest('hex') ||
-    domainInfo.contentDigest !== createHash('sha256').update(JSON.stringify(value)).digest('hex') ||
-    domainInfo.recordCount !== value.length
-  )
-    throw new Error(`neutral ${domainName} domain artifact digest 或计数不一致`);
-}
 for (const shardName of ['characters', 'light-cones', 'relics', 'enemies', 'endgame'] as const) {
   const file = path.join(generatedRoot, 'neutral', 'source', `${shardName}.json`);
   const serialized = await readFile(file, 'utf8');
@@ -178,9 +162,10 @@ const [homepage, homepageCharacterCatalog, homepageLightConeCatalog, homepageGac
     readFile(path.join(generatedRoot, 'homepage.json'), 'utf8').then(
       (value) => JSON.parse(value) as HomepageRecentWarpData
     ),
-    readFile(path.join(generatedRoot, 'catalogs', 'characters.json'), 'utf8').then(
-      (value) => JSON.parse(value) as CatalogEntry[]
-    ),
+    readFile(
+      path.join(generatedRoot, 'views', 'zh-CN', 'catalogs', 'characters.json'),
+      'utf8'
+    ).then((value) => JSON.parse(value) as CatalogEntry[]),
     readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
       (value) => JSON.parse(value) as CatalogEntry[]
     ),
@@ -700,8 +685,7 @@ const expected: Record<string, number> = {
   enemies: manifest.counts.enemies
 };
 for (const [category, count] of Object.entries(expected)) {
-  const categoryRoot =
-    category === 'characters' || category === 'enemies' ? generatedRoot : productRoot;
+  const categoryRoot = category === 'enemies' ? generatedRoot : productRoot;
   const catalog = JSON.parse(
     await readFile(path.join(categoryRoot, 'catalogs', `${category}.json`), 'utf8')
   ) as CatalogEntry[];
@@ -1022,7 +1006,7 @@ const characters = await Promise.all(
   manifest.routes.characters.map(
     async (id) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'characters', `${id}.json`), 'utf8')
+        await readFile(path.join(productRoot, 'details', 'characters', `${id}.json`), 'utf8')
       ) as Character
   )
 );

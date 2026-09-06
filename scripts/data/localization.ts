@@ -3,7 +3,7 @@ import path from 'node:path';
 import xxhash from 'xxhash-wasm';
 import { parseTextHash, type TextHash } from '../../src/lib/domain/types.js';
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
-import { formatDescription, type FormattedDescription } from './text.js';
+import { formatDescription, formatGameMarkup, type FormattedDescription } from './text.js';
 import { getLocaleConfig, type Locale, type TextMapCode } from './locale-registry.js';
 export type { Locale, TextMapCode } from './locale-registry.js';
 export type TextMap = Record<string, string>;
@@ -44,6 +44,7 @@ export interface GameTextProjectionContext extends TextProjectionContext {
 
 export interface GameTextProjection {
   text: string;
+  markup: string;
   tokens: FormattedDescription['descriptionTokens'];
   diagnostics: FormattedDescription['diagnostics'];
 }
@@ -290,6 +291,7 @@ export async function createTextResolver(
       ref: resolved.ref,
       value: {
         text: formatted.description,
+        markup: formatGameMarkup(resolved.value, paramsOf(source)).text,
         tokens: formatted.descriptionTokens,
         diagnostics: formatted.diagnostics
       }
