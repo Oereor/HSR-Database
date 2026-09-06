@@ -1,7 +1,6 @@
 import type { DecimalString, EnemyOccurrence } from '../../src/lib/domain/endgame.js';
 import { compareDecimals, parseDecimal } from './decimal.js';
-import { buildEndgameData } from './endgame.js';
-import { createTextResolver, loadTextMap } from './localization.js';
+import { buildEndgameDomain } from './endgame.js';
 import { assertDataRoot } from './paths.js';
 import { resolvePureFictionFinalHp } from './pure-fiction-hp.js';
 
@@ -34,8 +33,7 @@ interface DiagnosticRow {
 }
 
 const root = assertDataRoot();
-const text = await createTextResolver(await loadTextMap(root));
-const { datasets } = await buildEndgameData(root, text);
+const { datasets } = await buildEndgameDomain(root);
 const rows: DiagnosticRow[] = [];
 
 for (const group of datasets.pf.groups)
@@ -71,7 +69,6 @@ for (const group of datasets.pf.groups)
                 position: position + 1,
                 monsterId: occurrence.monsterId,
                 monsterTemplateId: occurrence.monsterTemplateId,
-                ...(occurrence.name ? { name: occurrence.name } : {}),
                 commonFactors: {
                   hpBase: occurrence.hp.hpBase,
                   instanceRatio: occurrence.hp.instanceRatio,

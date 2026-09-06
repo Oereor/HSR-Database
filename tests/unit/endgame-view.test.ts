@@ -53,7 +53,7 @@ describe('Endgame 模式视觉 metadata', () => {
 
 async function dataset(mode: EndgameMode): Promise<EndgameModeDataset> {
   return JSON.parse(
-    await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8')
+    await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'endgame', `${mode}.json`), 'utf8')
   ) as EndgameModeDataset;
 }
 

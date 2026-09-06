@@ -421,7 +421,7 @@ function compactSearchResult(
     lightCones: result.results.lightCones.map(({ id }) => ({ id, href: `/light-cones/${id}` })),
     relics: result.results.relics.map(({ id }) => ({ id, href: `/relics/${id}` })),
     enemies: result.results.enemies.map(({ id }) => ({ id, href: `/enemies/${id}` })),
-    endgame: result.endgameMatches.map(({ entryId }) => ({ entryId })),
+    endgame: result.endgameMatches.map(({ id }) => ({ id })),
     evidence: result.evidence
   };
 }
@@ -445,20 +445,27 @@ function systematicQueries(index: GlobalSearchIndex): string[] {
 }
 
 async function captureSearch(catalogs: GlobalSearchCatalogs) {
-  const index = await json<GlobalSearchIndex>(path.join(staticGeneratedRoot, 'search.json'));
+  const index = await json<GlobalSearchIndex>(
+    path.join(staticGeneratedRoot, 'zh-CN', 'search.json')
+  );
   const search = createGlobalSearchService(index, catalogs);
   return canonicalize({
     documents: index.documents,
-    endgameNames: index.endgameEnemies,
+    locale: index.locale,
+    endgameTargets: index.endgameTargets,
     queries: Object.fromEntries(
       systematicQueries(index).map((query) => [query, compactSearchResult(search.search(query))])
     ),
     shardMembership: Object.fromEntries(
-      index.endgameEnemies.map((entry) => [
-        entry.entryId,
+      index.endgameTargets.map((entry) => [
+        entry.id,
         {
-          groupKeys: [...new Set(entry.locators.map(({ mode, groupId }) => `${mode}:${groupId}`))],
-          locatorCount: entry.locators.length
+          groupKeys: [
+            ...new Set(
+              entry.occurrences.map(({ locator: { mode, groupId } }) => `${mode}:${groupId}`)
+            )
+          ],
+          locatorCount: entry.occurrences.length
         }
       ])
     )

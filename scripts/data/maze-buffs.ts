@@ -1,8 +1,7 @@
 import type { EndgameMode, ResolvedMazeBuff } from '../../src/lib/domain/endgame.js';
-import type { TextResolver, TextSource } from './localization.js';
 import { decimalOf } from './decimal.js';
 import { hashOf } from './raw.js';
-import { formatGameMarkup } from './text.js';
+import { parameterized, textSource } from './domain/shared.js';
 
 export interface MazeBuffRow {
   ID: number;
@@ -56,13 +55,8 @@ function groupRows(rows: readonly MazeBuffRow[]): Map<number, MazeBuffRow[]> {
   return result;
 }
 
-function textSource(id: number, field: string): TextSource {
-  return { entity: 'MazeBuff', id: String(id), field };
-}
-
 export function createMazeBuffResolver(
   rows: readonly MazeBuffRow[],
-  text: TextResolver,
   issues: MazeBuffIssueSink
 ): MazeBuffResolver {
   const rowsById = groupRows(rows);
@@ -97,45 +91,11 @@ export function createMazeBuffResolver(
         );
       }
     });
-    const disposition = {
-      requirement: 'optional' as const,
-      visibility: 'hidden' as const,
-      fallbackUsed: false,
-      productRouteReachability: 'reachable' as const
-    };
-    const name =
-      text.resolveRef(row.BuffName, textSource(id, 'BuffName'), disposition) || undefined;
-    const rawDescription =
-      text.resolveRef(row.BuffDesc, textSource(id, 'BuffDesc'), disposition) || undefined;
-    const formatted = rawDescription
-      ? formatGameMarkup(
-          rawDescription,
-          params.map((value) => Number(value))
-        )
-      : undefined;
-    if (formatted?.diagnostics.length) {
-      missingParamIds.add(id);
-      const diagnostic = formatted.diagnostics[0];
-      issues.fail('invalid-maze-buff-placeholder', 'MazeBuff 描述参数无法完整插值', {
-        ...context,
-        mazeBuffId: id,
-        placeholder: diagnostic.placeholder,
-        parameterIndex: diagnostic.parameterIndex
-      });
-    }
-    if (formatted) {
-      const used = new Set(formatted.usedParameterIndexes);
-      if (params.some((_, index) => !used.has(index))) {
-        unusedParamIds.add(id);
-        issues.warn('unused-maze-buff-param', 'MazeBuff 存在未被描述使用的尾随参数', {
-          ...context,
-          mazeBuffId: id
-        });
-      }
-    }
-    if (!name || !formatted?.text) {
+    const nameSource = textSource(row.BuffName);
+    const descriptionSource = parameterized(row.BuffDesc, row.ParamList);
+    if (!nameSource || !descriptionSource) {
       missingLocalizationIds.add(id);
-      issues.warn('missing-maze-buff-localization', 'MazeBuff 缺少可解析的名称或描述', {
+      issues.warn('missing-maze-buff-text-reference', 'MazeBuff 缺少可解析的名称或描述 TextRef', {
         ...context,
         mazeBuffId: id
       });
@@ -151,9 +111,9 @@ export function createMazeBuffResolver(
     const descriptionHash = hashOf(row.BuffDesc);
     const result: ResolvedMazeBuff = {
       id,
-      ...(name ? { name } : {}),
+      ...(nameSource ? { nameSource } : {}),
+      ...(descriptionSource ? { descriptionSource } : {}),
       ...(nameHash ? { nameHash } : {}),
-      ...(formatted?.text ? { description: formatted.text } : {}),
       ...(descriptionHash ? { descriptionHash } : {}),
       params,
       ...(row.BuffIcon ? { upstreamIconPath: row.BuffIcon } : {}),
@@ -168,8 +128,8 @@ export function createMazeBuffResolver(
       referencedIds.add(id);
       const resolved = cache.get(id) ?? build(id, request.context);
       cache.set(id, resolved);
-      if (request.requireDisplay && (!resolved.name || !resolved.description))
-        issues.fail('maze-buff-not-display-ready', '玩家展示关系缺少完整 MazeBuff 文本', {
+      if (request.requireDisplay && (!resolved.nameSource || !resolved.descriptionSource))
+        issues.fail('maze-buff-text-reference-missing', '玩家展示关系缺少完整 MazeBuff TextRef', {
           ...request.context,
           mazeBuffId: id
         });

@@ -1,9 +1,8 @@
 import type { EntityKind } from '../domain/types.js';
 import { normalizeSearchLabel } from './normalization.js';
 
-export const SEARCH_DOCUMENT_SCHEMA_VERSION = 2 as const;
-export type SearchTarget =
-  { kind: EntityKind; id: string } | { kind: 'endgame-name'; entryId: string };
+export const SEARCH_DOCUMENT_SCHEMA_VERSION = 3 as const;
+export type SearchTarget = { kind: EntityKind | 'endgame'; id: string };
 
 export interface SearchDocument {
   key: string;
@@ -36,8 +35,7 @@ export interface NormalizedSearchDocument {
   labels: { nameKind: NameKind; value: string; normalized: string }[];
 }
 
-export const searchTargetKey = (target: SearchTarget): string =>
-  `${target.kind}:${target.kind === 'endgame-name' ? target.entryId : target.id}`;
+export const searchTargetKey = (target: SearchTarget): string => `${target.kind}:${target.id}`;
 
 export function normalizeSearchDocument(document: SearchDocument): NormalizedSearchDocument {
   return {

@@ -1,7 +1,13 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
-import type { EndgameOccurrenceShard, GlobalSearchIndex } from '../../src/lib/domain/search-index';
+import {
+  endgameOccurrenceLocatorKey,
+  type EndgameOccurrenceLocator,
+  type EndgameOccurrenceOrder,
+  type EndgameOccurrenceShard,
+  type GlobalSearchIndex
+} from '../../src/lib/domain/search-index';
 import type { SearchDocument } from '../../src/lib/search/documents';
 import { normalizeSearchDocument } from '../../src/lib/search/documents';
 import { createFlexSearchAdapter } from '../../src/lib/search/flexsearch-adapter';
@@ -11,7 +17,9 @@ import { createEndgameSearchExpander } from '../../src/lib/search/endgame';
 import { bestSearchEvidence, searchRankClass } from '../../src/lib/search/ranking';
 
 const generated = path.resolve('src/lib/generated/views/zh-CN/catalogs');
-const index = JSON.parse(readFileSync('static/generated/search.json', 'utf8')) as GlobalSearchIndex;
+const index = JSON.parse(
+  readFileSync('static/generated/zh-CN/search.json', 'utf8')
+) as GlobalSearchIndex;
 const catalogs: GlobalSearchCatalogs = {
   characters: JSON.parse(readFileSync(path.join(generated, 'characters.json'), 'utf8')),
   lightCones: JSON.parse(readFileSync(path.join(generated, 'light-cones.json'), 'utf8')),
@@ -37,13 +45,14 @@ const document = (
   playerAliases
 });
 const bundle = (documents: SearchDocument[]): GlobalSearchIndex => ({
-  schemaVersion: 2,
+  schemaVersion: 3,
   normalizationVersion: 1,
   namingPolicyVersion: 1,
   sourceCommit: 'fixture',
   metadataDigest: 'fixture',
   documents,
-  endgameEnemies: []
+  locale: 'zh-CN',
+  endgameTargets: []
 });
 const oracle = (docs: SearchDocument[], query: string) =>
   new Set(
@@ -67,6 +76,23 @@ const occurrence = (name: string) => ({
   speed: { rounded: '1' },
   toughness: { roundedPerBar: '1' }
 });
+const locator = (overrides: Partial<EndgameOccurrenceLocator> = {}): EndgameOccurrenceLocator => ({
+  mode: 'moc',
+  groupId: 1,
+  encounterId: '1',
+  battleSlot: 1,
+  stageId: 10,
+  wave: { kind: 'fixed', number: 1 },
+  monsterId: 1,
+  ...overrides
+});
+const reference = (
+  value: EndgameOccurrenceLocator,
+  order: Partial<EndgameOccurrenceOrder> = {}
+) => ({
+  locator: value,
+  order: { encounter: 0, battle: 0, stage: 0, wave: 0, card: 0, ...order }
+});
 
 describe('Search V2', () => {
   it('normalizes only explicit separators and preserves significant punctuation', () => {
@@ -83,10 +109,13 @@ describe('Search V2', () => {
   });
 
   it('preserves domain counts and directly returns original catalog models', () => {
-    expect(index.schemaVersion).toBe(2);
-    expect(index.documents).toHaveLength(1127);
-    expect(index.endgameEnemies).toHaveLength(173);
-    expect(index.endgameEnemies.reduce((sum, entry) => sum + entry.locators.length, 0)).toBe(8167);
+    expect(index.schemaVersion).toBe(3);
+    expect(index.locale).toBe('zh-CN');
+    expect(index.documents).toHaveLength(1144);
+    expect(index.endgameTargets).toHaveLength(190);
+    expect(index.endgameTargets.reduce((sum, entry) => sum + entry.occurrences.length, 0)).toBe(
+      8167
+    );
     const service = createGlobalSearchService(index, catalogs);
     const kafka = service.search('卡芙卡').results.characters[0];
     expect(kafka).toBe(catalogs.characters.find(({ id }) => id === kafka.id));
@@ -233,46 +262,40 @@ describe('Search V2', () => {
     }
   });
 
-  it('Endgame exact and partial buckets coexist; normalized collision buckets stay distinct', () => {
+  it('Endgame exact and partial targets coexist; duplicate localized labels keep stable identities', () => {
     const b = bundle([]);
-    b.endgameEnemies = ['敌人', '敌人甲', '前敌人', '敌 人'].map((name, i) => ({
-      entryId: String(i),
+    b.endgameTargets = ['敌人', '敌人甲', '前敌人', '敌 人'].map((name, i) => ({
+      id: String(i),
       name,
-      locators: []
+      occurrences: []
     }));
-    b.documents = b.endgameEnemies.map((entry) => ({
-      key: `endgame-name:${entry.entryId}`,
-      target: { kind: 'endgame-name', entryId: entry.entryId },
+    b.documents = b.endgameTargets.map((entry) => ({
+      key: `endgame:${entry.id}`,
+      target: { kind: 'endgame', id: entry.id },
       canonicalName: entry.name,
       officialAliases: [],
       playerAliases: []
     }));
     const fetch = vi.fn();
     const result = createGlobalSearchService(b, emptyCatalogs(), fetch).search('敌人');
-    expect(new Set(result.endgameMatches.map(({ entryId }) => entryId))).toEqual(
+    expect(new Set(result.endgameMatches.map(({ id }) => id))).toEqual(
       new Set(['0', '1', '2', '3'])
     );
     expect(fetch).not.toHaveBeenCalled();
   });
 
   it('retries failed shards, shares pending requests and dedupes by locator, not MonsterID', async () => {
-    const locator = {
-      mode: 'moc' as const,
-      groupId: 1,
-      encounterIndex: 0,
-      battleIndex: 0,
-      stageIndex: 0,
-      waveIndex: 0,
-      occurrenceIndex: 0
-    };
+    const firstLocator = locator();
+    const secondLocator = locator({ stageId: 11 });
     const entry = {
-      entryId: 'a',
+      id: 'a',
       name: '敌人',
-      locators: [locator, { ...locator, stageIndex: 1 }]
+      occurrences: [reference(firstLocator), reference(secondLocator, { stage: 1 })]
     };
     const shard: EndgameOccurrenceShard = {
-      schemaVersion: 1,
-      entryId: 'a',
+      schemaVersion: 2,
+      locale: 'zh-CN',
+      target: { kind: 'endgame', id: 'a' },
       periods: [
         {
           mode: 'moc',
@@ -286,8 +309,16 @@ describe('Search V2', () => {
         }
       ],
       occurrences: {
-        'moc:1:0:0:0:0:0': { key: 'moc:1:0:0:0:0:0', occurrence: occurrence('敌人'), level: 80 },
-        'moc:1:0:0:1:0:0': { key: 'moc:1:0:0:1:0:0', occurrence: occurrence('敌人'), level: 90 }
+        [endgameOccurrenceLocatorKey(firstLocator)]: {
+          key: endgameOccurrenceLocatorKey(firstLocator),
+          occurrence: occurrence('敌人'),
+          level: 80
+        },
+        [endgameOccurrenceLocatorKey(secondLocator)]: {
+          key: endgameOccurrenceLocatorKey(secondLocator),
+          occurrence: occurrence('敌人'),
+          level: 90
+        }
       }
     };
     const fetch = vi.fn().mockRejectedValueOnce(new Error('transient')).mockResolvedValue(shard);
@@ -300,48 +331,52 @@ describe('Search V2', () => {
     expect(b.results).toEqual(a.results);
   });
 
+  it('keeps locator identity independent from display order and browser shard caches locale-scoped', async () => {
+    const stable = locator();
+    expect(endgameOccurrenceLocatorKey(reference(stable).locator)).toBe(
+      endgameOccurrenceLocatorKey(reference(stable, { encounter: 99, card: 42 }).locator)
+    );
+    const entry = { id: '2', name: '敌人', occurrences: [] };
+    const fetchShard = vi.fn(async (targetId: string, locale: 'zh-CN' | 'en') => ({
+      schemaVersion: 2 as const,
+      locale,
+      target: { kind: 'endgame' as const, id: targetId },
+      periods: [],
+      occurrences: {}
+    }));
+    const zh = createEndgameSearchExpander(fetchShard, 'zh-CN');
+    const en = createEndgameSearchExpander(fetchShard, 'en');
+    await zh([entry]);
+    await zh([entry]);
+    await en([entry]);
+    await en([entry]);
+    expect(fetchShard.mock.calls).toEqual([
+      ['2', 'zh-CN'],
+      ['2', 'en']
+    ]);
+  });
+
   it('Endgame 只匹配敌人名，按模式/赛期/occurrence 排序且缓存分片', async () => {
     const endgameIndex: GlobalSearchIndex = {
       ...bundle([]),
-      endgameEnemies: [
+      endgameTargets: [
         {
-          entryId: 'boss',
+          id: 'boss',
           name: '迷惘之渊的裁定者',
-          locators: [
-            {
-              mode: 'as',
-              groupId: 3010,
-              encounterIndex: 0,
-              battleIndex: 0,
-              stageIndex: 0,
-              waveIndex: 0,
-              occurrenceIndex: 0
-            },
-            {
-              mode: 'as',
-              groupId: 3018,
-              encounterIndex: 1,
-              battleIndex: 0,
-              stageIndex: 0,
-              waveIndex: 0,
-              occurrenceIndex: 1
-            },
-            {
-              mode: 'as',
-              groupId: 3018,
-              encounterIndex: 0,
-              battleIndex: 0,
-              stageIndex: 0,
-              waveIndex: 0,
-              occurrenceIndex: 0
-            }
+          occurrences: [
+            reference(locator({ mode: 'as', groupId: 3010, encounterId: 'old' })),
+            reference(locator({ mode: 'as', groupId: 3018, encounterId: 'second', monsterId: 2 }), {
+              encounter: 1,
+              card: 1
+            }),
+            reference(locator({ mode: 'as', groupId: 3018, encounterId: 'first' }))
           ]
         }
       ]
     };
-    endgameIndex.documents = endgameIndex.endgameEnemies.map((entry) => ({
-      key: `endgame-name:${entry.entryId}`,
-      target: { kind: 'endgame-name', entryId: entry.entryId },
+    endgameIndex.documents = endgameIndex.endgameTargets.map((entry) => ({
+      key: `endgame:${entry.id}`,
+      target: { kind: 'endgame', id: entry.id },
       canonicalName: entry.name,
       officialAliases: [],
       playerAliases: []
@@ -353,21 +388,31 @@ describe('Search V2', () => {
       status: 'historical' as const,
       encounterCount: 2
     });
+    const [oldRef, secondRef, firstRef] = endgameIndex.endgameTargets[0].occurrences;
     const shard: EndgameOccurrenceShard = {
-      schemaVersion: 1,
-      entryId: 'boss',
+      schemaVersion: 2,
+      locale: 'zh-CN',
+      target: { kind: 'endgame', id: 'boss' },
       periods: [
         { mode: 'as', period: period(3018) },
         { mode: 'as', period: period(3010) }
       ],
       occurrences: {
-        'as:3010:0:0:0:0:0': { key: 'old', occurrence: occurrence('迷惘之渊的裁定者'), level: 90 },
-        'as:3018:1:0:0:0:1': {
+        [endgameOccurrenceLocatorKey(oldRef.locator)]: {
+          key: 'old',
+          occurrence: occurrence('迷惘之渊的裁定者'),
+          level: 90
+        },
+        [endgameOccurrenceLocatorKey(secondRef.locator)]: {
           key: 'second',
           occurrence: occurrence('迷惘之渊的裁定者'),
           level: 90
         },
-        'as:3018:0:0:0:0:0': { key: 'first', occurrence: occurrence('迷惘之渊的裁定者'), level: 60 }
+        [endgameOccurrenceLocatorKey(firstRef.locator)]: {
+          key: 'first',
+          occurrence: occurrence('迷惘之渊的裁定者'),
+          level: 60
+        }
       }
     };
     const fetchShard = vi.fn(async () => shard);

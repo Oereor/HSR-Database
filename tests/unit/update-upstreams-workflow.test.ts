@@ -131,7 +131,7 @@ describe('update upstreams workflow', () => {
               relic: [],
               enemy: []
             },
-            endgameEnemies: []
+            endgameTargets: []
           };
           const beforeValidation = await readFile(files.aliases, 'utf8');
           const result = buildSearchDocuments(inputs, JSON.parse(beforeValidation));

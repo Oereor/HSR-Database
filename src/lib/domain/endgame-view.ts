@@ -687,15 +687,19 @@ export function buildGroupView(
         battles: encounter.battles.map((battle) => {
           const battleView = buildBattleSlotView(battle, enemyReferences);
           const guide = encounter.bossGuides.find((candidate) => candidate.slot === battle.slot);
-          const traits = (guide?.traits ?? [])
-            .filter((trait) => trait.name.trim() && trait.description.trim())
-            .map((trait) => ({
-              id: trait.tagId,
-              order: trait.order,
-              name: trait.name,
-              description: trait.description,
-              linkedEffects: trait.linkedEffects
-            }));
+          const traits = (guide?.traits ?? []).flatMap((trait) =>
+            trait.name?.trim() && trait.description?.trim()
+              ? [
+                  {
+                    id: trait.tagId,
+                    order: trait.order,
+                    name: trait.name,
+                    description: trait.description,
+                    linkedEffects: trait.linkedEffects ?? []
+                  }
+                ]
+              : []
+          );
           return {
             ...battleView,
             ...(axiomSets.has(battle.slot) ? { axiomSet: axiomSets.get(battle.slot) } : {}),

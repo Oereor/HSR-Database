@@ -5,14 +5,19 @@ import type {
   EndgameBattleSlot,
   EndgameConfigProvenance
 } from '../../src/lib/domain/endgame.js';
-import type { TextResolver, TextSource } from './localization.js';
 import { decimalOf, parseDecimal } from './decimal.js';
 import { hashOf } from './raw.js';
-import { formatGameMarkup } from './text.js';
-import { createExtraEffectResolver, type ExtraEffectRow } from './extra-effects.js';
+import { parameterized, textSource } from './domain/shared.js';
 
 interface HashRef {
   Hash: string;
+}
+
+export interface ExtraEffectRow {
+  ExtraEffectID?: unknown;
+  ExtraEffectName?: HashRef;
+  ExtraEffectDesc?: HashRef;
+  DescParamList?: unknown[];
 }
 
 export interface ChallengeBossMazeExtraRow {
@@ -122,10 +127,6 @@ function occurrencesOf(battle: EndgameBattleSlot): number[] {
   );
 }
 
-function source(entity: string, id: number, field: string): TextSource {
-  return { entity, id: String(id), field };
-}
-
 function provenance(
   table: EndgameConfigProvenance['table'],
   ownerId: number,
@@ -142,49 +143,12 @@ export function createAsBossGuideResolver(
     tags: readonly MonsterGuideTagRow[];
     extraEffects: readonly ExtraEffectRow[];
   },
-  text: TextResolver,
   issues: AsBossGuideIssueSink
 ): AsBossGuideResolver {
   const extras = uniqueIndex(rows.mazeExtras, (row) => row.ID, 'ChallengeBossMazeExtra.ID');
   const guides = uniqueIndex(rows.guides, (row) => row.MonsterID, 'MonsterGuideConfig.MonsterID');
   const tags = uniqueIndex(rows.tags, (row) => row.TagID, 'MonsterGuideTag.TagID');
-  const malformedExtraEffects = new Set<string>();
-  const extraEffectResolver = createExtraEffectResolver(
-    rows.extraEffects,
-    (ref, textSource) => text.resolveRef(ref, textSource),
-    {
-      onUnresolved: (extraEffectId, textSource) =>
-        issues.warn(
-          'unresolved-as-stage-effect-extra-effect',
-          '关卡效果引用的 ExtraEffect 无法解析',
-          {
-            tagId: Number(textSource.id),
-            field: textSource.field,
-            extraEffectId
-          }
-        ),
-      onNotDisplayReady: (extraEffectId, textSource) =>
-        issues.warn(
-          'missing-as-stage-effect-extra-effect-localization',
-          '关卡效果引用的 ExtraEffect 缺少可展示文本',
-          { tagId: Number(textSource.id), field: textSource.field, extraEffectId }
-        ),
-      onDescriptionDiagnostics: (extraEffectId, diagnostics, textSource) => {
-        if (!diagnostics.length) return;
-        malformedExtraEffects.add(extraEffectId);
-        issues.warn(
-          'invalid-as-stage-effect-extra-effect-description',
-          '关卡效果引用的 ExtraEffect 描述参数无法完整插值',
-          {
-            tagId: Number(textSource.id),
-            field: textSource.field,
-            extraEffectId,
-            placeholder: diagnostics[0]?.placeholder
-          }
-        );
-      }
-    }
-  );
+  const extraEffectIds = new Set(rows.extraEffects.map((row) => String(row.ExtraEffectID)));
   const malformedTags = new Set<number>();
   const unusedParamTags = new Set<number>();
   const audit: Omit<AsBossGuideAudit, 'distinctMalformedTags' | 'distinctUnusedParamTags'> = {
@@ -378,14 +342,11 @@ export function createAsBossGuideResolver(
             });
             return;
           }
-          const name = text.resolveRef(tag.TagName, source('MonsterGuideTag', tagId, 'TagName'));
-          const rawDescription = text.resolveRef(
-            tag.TagBriefDescription,
-            source('MonsterGuideTag', tagId, 'TagBriefDescription')
-          );
-          if (!name || !rawDescription) {
+          const nameSource = textSource(tag.TagName);
+          const descriptionSource = parameterized(tag.TagBriefDescription, tag.ParameterList);
+          if (!nameSource || !descriptionSource) {
             audit.missingLocalization += 1;
-            omit('missing-as-boss-trait-localization', '首领特性缺少名称或描述本地化', {
+            omit('missing-as-boss-trait-text-reference', '首领特性缺少名称或描述 TextRef', {
               groupId,
               configId,
               slot,
@@ -395,57 +356,31 @@ export function createAsBossGuideResolver(
             });
             return;
           }
-          const formatted = formatGameMarkup(
-            rawDescription,
-            params.map((value) => Number(value))
-          );
-          const used = new Set(formatted.usedParameterIndexes);
-          if (params.some((_, paramIndex) => !used.has(paramIndex))) {
-            unusedParamTags.add(tagId);
-            issues.warn('unused-as-boss-trait-param', '首领特性存在未使用的尾随参数', {
-              groupId,
-              configId,
-              slot,
-              guideMonsterId,
-              tagId
-            });
-          }
-          if (formatted.diagnostics.length) {
-            malformedTags.add(tagId);
-            omit('invalid-as-boss-trait-placeholder', '首领特性描述参数无法完整插值', {
-              groupId,
-              configId,
-              slot,
-              guideMonsterId,
-              tagId,
-              arrayIndex,
-              placeholder: formatted.diagnostics[0]?.placeholder
-            });
-            return;
-          }
           const nameHash = hashOf(tag.TagName);
           const descriptionHash = hashOf(tag.TagBriefDescription);
-          const rawEffectIds = tag.EffectID ?? [];
+          const rawEffectIds = (tag.EffectID ?? []).map(String);
           audit.linkedEffectRelations += rawEffectIds.length;
-          const linkedEffects = extraEffectResolver
-            .resolve(rawEffectIds, {
-              ownerEntity: 'as-stage-effect',
-              ownerId: String(tagId),
-              field: 'EffectID'
-            })
-            .filter((effect) => !malformedExtraEffects.has(effect.id));
-          audit.displayReadyLinkedEffects += linkedEffects.length;
-          audit.omittedLinkedEffects += rawEffectIds.length - linkedEffects.length;
+          const linkedEffectIds = rawEffectIds.filter((id) => {
+            if (extraEffectIds.has(id)) return true;
+            issues.warn(
+              'unresolved-as-stage-effect-extra-effect',
+              '关卡效果引用的 ExtraEffect 无法解析',
+              { tagId, field: 'EffectID', extraEffectId: id }
+            );
+            return false;
+          });
+          audit.displayReadyLinkedEffects += linkedEffectIds.length;
+          audit.omittedLinkedEffects += rawEffectIds.length - linkedEffectIds.length;
           traits.push({
             tagId,
             order: arrayIndex + 1,
             requiredDifficulty,
-            name,
+            nameSource,
+            descriptionSource,
+            extraEffectIds: linkedEffectIds,
             ...(nameHash ? { nameHash } : {}),
-            description: formatted.text,
             ...(descriptionHash ? { descriptionHash } : {}),
             params,
-            linkedEffects,
             provenance: provenance('MonsterGuideConfig', guideMonsterId, 'TagList', arrayIndex)
           });
           audit.displayReadyTraits += 1;

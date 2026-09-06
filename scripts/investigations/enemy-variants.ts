@@ -186,7 +186,9 @@ const collectMonsterIds = (value: unknown): void => {
 };
 for (const mode of ['moc', 'pf', 'as', 'aa'])
   collectMonsterIds(
-    JSON.parse(await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8'))
+    JSON.parse(
+      await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'endgame', `${mode}.json`), 'utf8')
+    )
   );
 
 const output = {

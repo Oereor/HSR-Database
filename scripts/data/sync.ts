@@ -38,14 +38,15 @@ import {
 } from './avatar-special-skills.js';
 import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
 import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
-import { collectEndgameSearchNames } from '../../src/lib/domain/search-index.js';
+import { collectEndgameSearchTargets } from '../../src/lib/domain/search-index.js';
 import { deriveCharacterNames } from './character-names.js';
 import {
   buildSearchDocuments,
   loadPlayerAliases,
   type SearchBuildInputs
 } from './search-documents.js';
-import { buildEndgameData } from './endgame.js';
+import { buildEndgameDomain } from './endgame.js';
+import { projectEndgame } from './projection/endgame.js';
 import { buildHomepageRecentWarpData } from './homepage.js';
 import { parseGameVersion } from './source-metadata.js';
 import { buildCharacterDomain } from './domain/character.js';
@@ -662,7 +663,12 @@ export async function syncData(): Promise<DataManifest> {
 
   console.log('构建 Endgame 敌方实例与精确 HP…');
   // Normalize and validate every required relation before replacing the last known-good output.
-  const endgame = await buildEndgameData(root, text);
+  const endgameDomain = await buildEndgameDomain(root);
+  const endgame = projectEndgame(endgameDomain, {
+    resolver: text,
+    enemyNamesByTemplateId: new Map(enemies.map((enemy) => [enemy.id, enemy.name])),
+    extraEffectsById
+  });
   const searchInputs: SearchBuildInputs = {
     official: officialCharacterNames,
     catalogs: {
@@ -671,8 +677,9 @@ export async function syncData(): Promise<DataManifest> {
       relic: relicCatalog.map(({ id, name }) => ({ id, name })),
       enemy: enemyCatalog.map(({ id, name }) => ({ id, name }))
     },
-    endgameEnemies: collectEndgameSearchNames(endgame.datasets, (name) =>
-      createHash('sha256').update(name).digest('hex').slice(0, 16)
+    endgameTargets: collectEndgameSearchTargets(
+      endgameDomain.datasets,
+      new Map(enemies.map((enemy) => [enemy.id, enemy.name]))
     )
   };
   const globalSearchIndex = buildSearchDocuments(searchInputs, await loadPlayerAliases());
@@ -819,10 +826,7 @@ export async function syncData(): Promise<DataManifest> {
   for (const [name, shard] of Object.entries(sourceShards))
     await writeJson(path.join(generatedRoot, 'neutral', 'source', `${name}.json`), shard);
   await writeViewArtifacts(path.join(generatedRoot, 'views', 'zh-CN'));
-  // Endgame remains a compatibility consumer until R3B; retain only its
-  // root datasets and the shared homepage at the compatibility root.
-  for (const [mode, dataset] of Object.entries(endgame.datasets))
-    await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
+  // Homepage remains at the compatibility root until the R4 cleanup.
   await writeJson(path.join(generatedRoot, 'homepage.json'), homepage);
 
   const manifest: DataManifest = {
@@ -838,7 +842,7 @@ export async function syncData(): Promise<DataManifest> {
       lightCones: { domain: 'neutral-domain-3', productionView: 'neutral-projector-3' },
       relics: { domain: 'neutral-domain-3', productionView: 'neutral-projector-3' },
       enemies: { productionView: 'localized-view' },
-      endgame: { productionView: 'compatibility-projector' }
+      endgame: { productionView: 'localized-view' }
     },
     counts: {
       characters: characters.length,
@@ -858,8 +862,8 @@ export async function syncData(): Promise<DataManifest> {
   await writeJson(path.join(generatedRoot, 'manifest.json'), manifest);
   await writeJson(path.join(generatedRoot, 'neutral', 'manifest.json'), neutralArtifactManifest);
   await writeJson(path.join(generatedRoot, 'views', 'zh-CN', 'manifest.json'), viewManifest);
-  await writeJson(path.join(generatedRoot, 'search-inputs.json'), searchInputs);
-  await writeJson(path.join(staticGeneratedRoot, 'search.json'), globalSearchIndex);
+  await writeJson(path.join(generatedRoot, 'views', 'zh-CN', 'search-inputs.json'), searchInputs);
+  await writeJson(path.join(staticGeneratedRoot, 'zh-CN', 'search.json'), globalSearchIndex);
   await writeJson(path.join(staticGeneratedRoot, 'meta.json'), manifest);
   await writeJson(path.join(auditRoot, 'latest.json'), {
     ...manifest,

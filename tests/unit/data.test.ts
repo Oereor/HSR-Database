@@ -774,7 +774,10 @@ describe('真实数据管线', () => {
 
   it('将四名 LD 角色完整纳入同一 Character domain 与搜索索引', async () => {
     const search = JSON.parse(
-      await readFile(path.join(process.cwd(), 'static', 'generated', 'search.json'), 'utf8')
+      await readFile(
+        path.join(process.cwd(), 'static', 'generated', 'zh-CN', 'search.json'),
+        'utf8'
+      )
     ) as { documents: Array<{ target: { id: string; kind: string }; canonicalName: string }> };
     for (const [id, name, pathName, elementName] of [
       ['1014', 'Saber', '毁灭', '风'],

@@ -83,6 +83,17 @@ export async function writeProductBaselineFixtures(
   await writeJson(capture.characterIcons, 'character-icons.json');
 }
 
+export async function writeSearchProductBaselineFixture(
+  capture: ProductBaselineCapture,
+  approvalReason: string
+): Promise<void> {
+  if (!approvalReason.trim()) throw new Error('Product baseline approval reason must not be empty');
+  if (!productBaselineFixtureRoot.startsWith(path.join(siteRoot, 'tests', 'fixtures') + path.sep))
+    throw new Error('Refusing to update a product baseline outside tests/fixtures');
+  await writeJson({ ...capture.metadata, approvalReason: approvalReason.trim() }, 'metadata.json');
+  await writeCompactJson(capture.search, 'search.json');
+}
+
 export async function readProductBaselineFixtures(): Promise<ProductBaselineCapture> {
   const metadata = await readJson<ProductBaselineCapture['metadata']>('metadata.json');
   const characters = await readStableArea('characters');

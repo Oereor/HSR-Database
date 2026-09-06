@@ -8,16 +8,15 @@ import type {
   RelicCatalogEntry,
   RelicProperty
 } from '$lib/domain/types';
-import type { GlobalSearchIndex } from '$lib/domain/search-index';
+import type { GlobalSearchIndex, SearchLocale } from '$lib/domain/search-index';
 import type { CategorySlug } from '$lib/domain/constants';
 
 const root = path.resolve('src', 'lib', 'generated');
-const viewRoot = path.resolve('src', 'lib', 'generated', 'views', 'zh-CN');
 const staticGeneratedRoot = path.resolve('static', 'generated');
-let searchIndexCache: Promise<GlobalSearchIndex> | undefined;
+const searchIndexCache = new Map<string, Promise<GlobalSearchIndex>>();
 
 async function readJson<T>(...segments: string[]): Promise<T> {
-  return JSON.parse(await readFile(path.join(viewRoot, ...segments), 'utf8')) as T;
+  return JSON.parse(await readFile(path.join(root, 'views', 'zh-CN', ...segments), 'utf8')) as T;
 }
 
 async function readRootJson<T>(...segments: string[]): Promise<T> {
@@ -34,9 +33,13 @@ export const getRelicProperties = () =>
   readJson<RelicProperty[]>('catalogs', 'relic-properties.json');
 export const getDetail = (category: CategorySlug, id: string) =>
   readJson<Record<string, unknown>>('details', category, `${id}.json`);
-export const getSearchIndex = () => {
-  searchIndexCache ??= readFile(path.join(staticGeneratedRoot, 'search.json'), 'utf8').then(
-    (contents) => JSON.parse(contents) as GlobalSearchIndex
-  );
-  return searchIndexCache;
+export const getSearchIndex = (locale: SearchLocale = 'zh-CN') => {
+  let cached = searchIndexCache.get(locale);
+  if (!cached) {
+    cached = readFile(path.join(staticGeneratedRoot, locale, 'search.json'), 'utf8').then(
+      (contents) => JSON.parse(contents) as GlobalSearchIndex
+    );
+    searchIndexCache.set(locale, cached);
+  }
+  return cached;
 };

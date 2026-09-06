@@ -4,7 +4,11 @@ import path from 'node:path';
 import { auditRoot, siteRoot } from '../data/paths.js';
 import { captureProductBaseline } from './capture.js';
 import { compareProductBaseline } from './compare.js';
-import { readProductBaselineFixtures, writeProductBaselineFixtures } from './fixtures.js';
+import {
+  readProductBaselineFixtures,
+  writeProductBaselineFixtures,
+  writeSearchProductBaselineFixture
+} from './fixtures.js';
 import type { ProductBaselineDifference } from './model.js';
 
 const diagnosticRoot = path.join(auditRoot, 'product-baseline');
@@ -95,7 +99,37 @@ async function update(): Promise<void> {
   );
 }
 
+async function updateSearch(): Promise<void> {
+  const reason = argument('--reason')?.trim();
+  if (!reason) throw new Error('Use --reason "<maintainer-approved reason>" to update Search');
+  runFreshGeneration();
+  const [expected, actual] = await Promise.all([
+    readProductBaselineFixtures(),
+    captureProductBaseline()
+  ]);
+  assertR0Capture(actual);
+  const differences = compareProductBaseline(expected, actual);
+  await writeDiagnostics(differences);
+  const forbidden = differences.filter(({ domain }) => domain !== 'search');
+  if (forbidden.length) {
+    console.error(
+      `Search-only baseline update refused: ${forbidden.length} non-Search differences.`
+    );
+    for (const difference of forbidden.slice(0, 25))
+      console.error(
+        `${difference.domain}/${difference.entityId} ${difference.path}: ${JSON.stringify(difference.expected)} -> ${JSON.stringify(difference.actual)}`
+      );
+    throw new Error('Search-only baseline update requires zero non-Search product differences');
+  }
+  await writeSearchProductBaselineFixture(actual, reason);
+  await writeDiagnostics([]);
+  console.log(
+    `zh-CN Search baseline updated: ${differences.length} authorized field differences; reason: ${reason}`
+  );
+}
+
 const command = process.argv[2];
 if (command === 'check') await check();
 else if (command === 'update') await update();
+else if (command === 'update-search') await updateSearch();
 else throw new Error(`Unknown product baseline command: ${command ?? '<missing>'}`);

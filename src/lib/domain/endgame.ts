@@ -1,4 +1,5 @@
 import type { ExtraEffect } from './types';
+import type { NeutralTextSource } from './neutral';
 
 export type DecimalString = string & { readonly __decimalString: unique symbol };
 
@@ -9,6 +10,8 @@ export type EliteContextSource = 'stage' | 'spawn-group' | 'monster-fallback';
 /** Low-level parsed MazeBuff data. Gameplay ownership stays in each mode model below. */
 export interface ResolvedMazeBuff {
   id: number;
+  nameSource?: NeutralTextSource;
+  descriptionSource?: NeutralTextSource;
   name?: string;
   nameHash?: string;
   description?: string;
@@ -181,6 +184,7 @@ export interface EnemyMechanics {
 }
 
 export interface EnemyOccurrence {
+  occurrenceId?: string;
   monsterId: number;
   monsterTemplateId: number;
   name?: string;
@@ -247,6 +251,7 @@ export type EndgameEncounterVariant = 'floor' | 'preliminary' | 'boss-normal' | 
 export interface EndgameEncounter {
   id: string;
   configId: number;
+  nameSource?: NeutralTextSource;
   name?: string;
   ordinal?: number;
   variant: EndgameEncounterVariant;
@@ -330,12 +335,15 @@ export interface ApocalypticShadowBossTrait {
   tagId: number;
   order: number;
   requiredDifficulty: number;
-  name: string;
+  nameSource?: NeutralTextSource;
+  descriptionSource?: NeutralTextSource;
+  extraEffectIds?: string[];
+  name?: string;
   nameHash?: string;
-  description: string;
+  description?: string;
   descriptionHash?: string;
   params: DecimalString[];
-  linkedEffects: ExtraEffect[];
+  linkedEffects?: ExtraEffect[];
   provenance: EndgameConfigProvenance;
 }
 
@@ -380,6 +388,7 @@ export interface AnomalyArbitrationEncounter extends EndgameEncounter {
 interface EndgameGroupBase<TMode extends EndgameMode, TEncounter extends EndgameEncounter> {
   mode: TMode;
   groupId: number;
+  nameSource?: NeutralTextSource;
   name?: string;
   recommendationEligible: boolean;
   schedule?: { begin: string; end: string };

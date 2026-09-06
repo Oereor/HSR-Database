@@ -10,7 +10,7 @@ import type { GlobalSearchCatalogs } from '../../src/lib/search/search.js';
 // Run against a production preview, with no other browser tests competing for CPU.
 const origin = process.env.SEARCH_BENCHMARK_URL ?? 'http://127.0.0.1:4173';
 const queries = ['三月七', '丹恒', '丹恒饮月', '银鬃尉官', '的', '者'];
-const bundleBytes = await readFile(path.join(siteRoot, 'static/generated/search.json'));
+const bundleBytes = await readFile(path.join(siteRoot, 'static/generated/zh-CN/search.json'));
 const index = JSON.parse(bundleBytes.toString()) as GlobalSearchIndex;
 const catalogs = Object.fromEntries(
   await Promise.all(
@@ -80,7 +80,7 @@ try {
                 .filter(([key]) => key !== 'endgame')
                 .reduce((total, [, entries]) => total + (entries as unknown[]).length, 0),
               endgameCount: result.endgameMatches.reduce(
-                (total, entry) => total + entry.locators.length,
+                (total, entry) => total + entry.occurrences.length,
                 0
               ),
               buckets: result.endgameMatches.length

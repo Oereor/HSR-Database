@@ -3,7 +3,9 @@ import { expect, test } from '@playwright/test';
 import type { GlobalSearchIndex } from '../../src/lib/domain/search-index';
 import { normalizeSearchLabel } from '../../src/lib/search/normalization';
 
-const index = JSON.parse(readFileSync('static/generated/search.json', 'utf8')) as GlobalSearchIndex;
+const index = JSON.parse(
+  readFileSync('static/generated/zh-CN/search.json', 'utf8')
+) as GlobalSearchIndex;
 // Human aliases can legitimately add characters to the two official March forms.
 const marchMatches = index.documents.flatMap((doc) =>
   doc.target.kind === 'character' &&
@@ -41,7 +43,7 @@ test('Search V2 exact 和 partial 共存，别名不进入 cards，清空后可�
 
 test('Search V2 分片失败保留普通结果并可在下一次提交重试', async ({ page }) => {
   let requests = 0;
-  await page.route('**/generated/endgame-occurrences/**', async (route) => {
+  await page.route('**/generated/zh-CN/endgame-occurrences/**', async (route) => {
     requests += 1;
     if (requests === 1) await route.fulfill({ status: 503, body: 'unavailable' });
     else await route.continue();
@@ -69,11 +71,11 @@ test('Search V2 初始化异常显示资料不可用，不误报无结果', asyn
   await page.route('**/search?*', async (route) => {
     const response = await route.fetch();
     const body = await response.text();
-    expect(body).toContain('searchIndex:{schemaVersion:2,normalizationVersion:1');
+    expect(body).toContain('searchIndex:{schemaVersion:3,normalizationVersion:1');
     await route.fulfill({
       response,
       body: body.replace(
-        'searchIndex:{schemaVersion:2,normalizationVersion:1',
+        'searchIndex:{schemaVersion:3,normalizationVersion:1',
         'searchIndex:{schemaVersion:999,normalizationVersion:1'
       )
     });
@@ -89,24 +91,24 @@ test('Search V2 长结果全部可访问且保留模式和赛期顺序', async (
   const query = '者';
   const ordinary = index.documents.filter(
     (doc) =>
-      doc.target.kind !== 'endgame-name' &&
+      doc.target.kind !== 'endgame' &&
       [doc.canonicalName, ...doc.officialAliases, ...doc.playerAliases].some((name) =>
         normalizeSearchLabel(name).includes(query)
       )
   );
-  const buckets = index.endgameEnemies.filter((entry) =>
+  const buckets = index.endgameTargets.filter((entry) =>
     normalizeSearchLabel(entry.name).includes(query)
   );
   await page.goto(`/search?q=${query}`);
   const modes = page.locator('.search-endgame-mode');
   await expect(modes).toHaveCount(
-    new Set(buckets.flatMap((entry) => entry.locators.map((locator) => locator.mode))).size
+    new Set(buckets.flatMap((entry) => entry.occurrences.map(({ locator }) => locator.mode))).size
   );
   for (const mode of await modes.all()) {
     const id = (await mode.getAttribute('aria-labelledby'))!.replace('search-results-endgame-', '');
     const expected = buckets
-      .flatMap((entry) => entry.locators)
-      .filter((locator) => locator.mode === id);
+      .flatMap((entry) => entry.occurrences)
+      .filter(({ locator }) => locator.mode === id);
     await expect(mode.locator('[data-endgame-enemy-card]')).toHaveCount(
       Math.min(100, expected.length)
     );
@@ -122,7 +124,7 @@ test('Search V2 长结果全部可访问且保留模式和赛期顺序', async (
         seasons.map((season) => Number(season.getAttribute('aria-labelledby')!.split('-').at(-1)))
       );
     expect(groupIds).toEqual(
-      [...new Set(expected.map((locator) => locator.groupId))].sort((a, b) => b - a)
+      [...new Set(expected.map(({ locator }) => locator.groupId))].sort((a, b) => b - a)
     );
   }
   for (const section of await page.locator('.search-result-section').all()) {
@@ -131,7 +133,7 @@ test('Search V2 长结果全部可访问且保留模式和赛期顺序', async (
   }
   await expect(page.locator('a.entity-overview-card')).toHaveCount(ordinary.length);
   await expect(page.locator('[data-endgame-enemy-card]')).toHaveCount(
-    buckets.reduce((total, entry) => total + entry.locators.length, 0)
+    buckets.reduce((total, entry) => total + entry.occurrences.length, 0)
   );
   expect(
     await page.evaluate(

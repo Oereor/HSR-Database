@@ -38,6 +38,7 @@
     "messages:compile": "tsx scripts/messages.ts",
     "messages:check": "tsx scripts/messages.ts",
     "product:baseline:check": "tsx scripts/product-baseline/cli.ts check",
+    "product:baseline:search:update": "tsx scripts/product-baseline/cli.ts update-search",
     "product:baseline:update": "tsx scripts/product-baseline/cli.ts update"
   },
   "devDependencies": {

@@ -14,7 +14,7 @@ const generatedRoot = path.resolve('src', 'lib', 'generated');
 
 async function groupView(mode: EndgameMode, groupId: number) {
   const dataset = JSON.parse(
-    await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8')
+    await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'endgame', `${mode}.json`), 'utf8')
   ) as EndgameModeDataset;
   const group = dataset.groups.find((candidate) => candidate.groupId === groupId)!;
   return buildGroupView(group, [buildPeriodView(group)], new Map());

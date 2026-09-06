@@ -27,7 +27,8 @@ import type {
   RelicSlot
 } from '../../src/lib/domain/types.js';
 import {
-  collectEndgameSearchNames,
+  collectEndgameSearchOccurrences,
+  collectEndgameSearchTargets,
   endgameOccurrenceLocatorKey,
   GLOBAL_SEARCH_SCHEMA_VERSION,
   type GlobalSearchIndex
@@ -252,7 +253,7 @@ const endgame = Object.fromEntries(
   await Promise.all(
     endgameModes.map(async (mode) => [
       mode,
-      JSON.parse(await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8'))
+      JSON.parse(await readFile(path.join(productRoot, 'endgame', `${mode}.json`), 'utf8'))
     ])
   )
 ) as EndgameDatasetByMode;
@@ -513,9 +514,10 @@ if (
     '坚防守备,丰亨豫大,如鹿添翼,仙光夺目' ||
   !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('50%') ||
   !gameTextToPlain(asSlotOneGuide.traits[0]?.description).includes('100%') ||
-  asSlotOneGuide.traits[0]?.linkedEffects.length !== 0 ||
-  asSlotOneGuide.traits[3]?.linkedEffects.map((effect) => effect.id).join(',') !== '220240163' ||
-  asSlotThreeGuide?.traits[1]?.linkedEffects.map((effect) => effect.id).join(',') !==
+  (asSlotOneGuide.traits[0]?.linkedEffects ?? []).length !== 0 ||
+  (asSlotOneGuide.traits[3]?.linkedEffects ?? []).map((effect) => effect.id).join(',') !==
+    '220240163' ||
+  (asSlotThreeGuide?.traits[1]?.linkedEffects ?? []).map((effect) => effect.id).join(',') !==
     '501401001,70000318'
 )
   throw new Error('AS 3020/30204 关卡效果 relation、参数插值或 EffectID 解析异常');
@@ -963,7 +965,7 @@ for (const [label, unresolved] of [
 ] as const)
   if (unresolved.length) console.warn(`Enemy 警告：${unresolved.length} 个 unresolved ${label}`);
 const search = JSON.parse(
-  await readFile(path.join(staticGeneratedRoot, 'search.json'), 'utf8')
+  await readFile(path.join(staticGeneratedRoot, 'zh-CN', 'search.json'), 'utf8')
 ) as GlobalSearchIndex;
 if (search.schemaVersion !== GLOBAL_SEARCH_SCHEMA_VERSION) throw new Error('搜索索引 schema 异常');
 const searchInputs = JSON.parse(await readFile(searchInputsPath, 'utf8')) as SearchBuildInputs;
@@ -971,24 +973,27 @@ const expectedSearch = buildSearchDocuments(searchInputs, await loadPlayerAliase
 if (JSON.stringify(search) !== JSON.stringify(expectedSearch))
   throw new Error('搜索文档与当前 metadata/catalog 不一致');
 if (
-  search.documents.filter((doc) => doc.target.kind !== 'endgame-name').length !==
+  search.documents.filter((doc) => doc.target.kind !== 'endgame').length !==
   Object.values(expected).reduce((sum, value) => sum + value, 0)
 )
   throw new Error('搜索文档数量与目录数量不一致');
-const expectedEndgameSearch = collectEndgameSearchNames(endgame, (name) =>
-  createHash('sha256').update(name).digest('hex').slice(0, 16)
+const projectedEndgameNames = new Map(
+  collectEndgameSearchOccurrences(endgame).map(({ occurrence }) => [
+    String(occurrence.monsterTemplateId),
+    occurrence.name ?? ''
+  ])
 );
-if (search.endgameEnemies.length !== expectedEndgameSearch.length)
-  throw new Error('Endgame 搜索名称索引数量异常');
-if (
-  new Set(search.endgameEnemies.map(({ entryId }) => entryId)).size !== search.endgameEnemies.length
-)
-  throw new Error('Endgame 搜索 entryId 冲突');
-const indexedLocatorKeys = search.endgameEnemies.flatMap(({ locators }) =>
-  locators.map(endgameOccurrenceLocatorKey)
+const expectedEndgameSearch = collectEndgameSearchTargets(endgame, projectedEndgameNames);
+if (search.locale !== 'zh-CN') throw new Error('搜索索引 locale 异常');
+if (search.endgameTargets.length !== expectedEndgameSearch.length)
+  throw new Error('Endgame 搜索 template target 数量异常');
+if (new Set(search.endgameTargets.map(({ id }) => id)).size !== search.endgameTargets.length)
+  throw new Error('Endgame 搜索 target ID 冲突');
+const indexedLocatorKeys = search.endgameTargets.flatMap(({ occurrences }) =>
+  occurrences.map(({ locator }) => endgameOccurrenceLocatorKey(locator))
 );
-const expectedLocatorKeys = expectedEndgameSearch.flatMap(({ locators }) =>
-  locators.map(endgameOccurrenceLocatorKey)
+const expectedLocatorKeys = expectedEndgameSearch.flatMap(({ occurrences }) =>
+  occurrences.map(({ locator }) => endgameOccurrenceLocatorKey(locator))
 );
 if (JSON.stringify(indexedLocatorKeys) !== JSON.stringify(expectedLocatorKeys))
   throw new Error('Endgame 搜索 locator 无法按展示模型解析');

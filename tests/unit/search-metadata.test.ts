@@ -24,7 +24,7 @@ const snapshot = JSON.parse(
   readFileSync('data/search/character-official-names.generated.json', 'utf8')
 ) as CharacterNameSnapshot;
 const inputs = JSON.parse(
-  readFileSync('src/lib/generated/search-inputs.json', 'utf8')
+  readFileSync('src/lib/generated/views/zh-CN/search-inputs.json', 'utf8')
 ) as SearchBuildInputs;
 const manual = (characters: unknown) => ({ schemaVersion: 1, characters });
 const completeManual = (
@@ -45,7 +45,7 @@ describe('Character search metadata', () => {
       for (const entry of catalog) expect(Object.keys(entry).sort()).toEqual(['id', 'name']);
     const aliases = JSON.parse(readFileSync('data/search/character-player-aliases.json', 'utf8'));
     expect(buildSearchDocuments(inputs, aliases)).toEqual(
-      JSON.parse(readFileSync('static/generated/search.json', 'utf8'))
+      JSON.parse(readFileSync('static/generated/zh-CN/search.json', 'utf8'))
     );
   });
 
@@ -204,9 +204,9 @@ describe('Character search metadata', () => {
     expect(Object.keys(value.characters).sort()).toEqual(Object.keys(snapshot.characters).sort());
     const validated = validatePlayerAliases(value, snapshot);
     const generated = buildSearchDocuments(inputs, value);
-    const baseline = JSON.parse(readFileSync('static/generated/search.json', 'utf8'));
+    const baseline = JSON.parse(readFileSync('static/generated/zh-CN/search.json', 'utf8'));
     expect(generated.documents).toEqual(baseline.documents);
-    expect(generated.endgameEnemies).toEqual(baseline.endgameEnemies);
+    expect(generated.endgameTargets).toEqual(baseline.endgameTargets);
     const service = createGlobalSearchService(generated, {
       characters: inputs.catalogs.character.map((row) => ({ ...row, rarity: 4 })),
       lightCones: [],

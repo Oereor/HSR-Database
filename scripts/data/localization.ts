@@ -47,6 +47,7 @@ export interface GameTextProjection {
   markup: string;
   tokens: FormattedDescription['descriptionTokens'];
   diagnostics: FormattedDescription['diagnostics'];
+  usedParameterIndexes: number[];
 }
 
 export type LocalizationResult<T> =
@@ -286,14 +287,16 @@ export async function createTextResolver(
       );
       return { status: 'unsupported', reason, ref: resolved.ref };
     }
+    const markup = formatGameMarkup(resolved.value, paramsOf(source));
     return {
       status: 'available',
       ref: resolved.ref,
       value: {
         text: formatted.description,
-        markup: formatGameMarkup(resolved.value, paramsOf(source)).text,
+        markup: markup.text,
         tokens: formatted.descriptionTokens,
-        diagnostics: formatted.diagnostics
+        diagnostics: formatted.diagnostics,
+        usedParameterIndexes: markup.usedParameterIndexes
       }
     };
   };

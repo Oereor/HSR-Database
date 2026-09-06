@@ -5,10 +5,10 @@ recordCount count counts routes route target href schemaVersion normalizationVer
 source table field recordId textHash policy baseAvatarId required variantIds prerequisiteIds linkedAvatarIds
 simplifiedLinkedAvatarIds linkedAvatarId avatarId characterId lightConeId relicId setId pieceId monsterId
 monsterTemplateId skillId traceId eidolonId groupId encounterId stageId eventId waveId waveGroupId
-monsterGroupId entryId configId gachaId equipmentId propertyType element path rarity rank slot level minLevel
+monsterGroupId entryId targetId occurrenceId configId gachaId equipmentId propertyType element path rarity rank slot battleSlot level minLevel
 maxLevel defaultLevel fromLevel toLevel promotionLimit anchorOrder sourcePointType pointType attackType effectCode
 bpNeed bpAdd spBase stanceDamageDisplay showStanceList order availableLevels scalingParamIndexes params
-extraEffectIds skillIds phases arrayIndex ordinal recommendationEligible begin end`;
+extraEffectIds skillIds phases arrayIndex ordinal recommendationEligible begin end infiniteWaveId card encounter battle stage wave`;
 const statFields = `base perLevel fixed stages hp attack defence speed toughness effectHit effectResistance
 criticalChance criticalDamage aggro max ratio value status reason resolvedInternal baseInternal instanceRatio
 instanceValue instanceValueInternal levelRatio hardLevelRatio eliteRatio configuredValue internalStance display

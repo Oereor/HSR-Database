@@ -111,11 +111,11 @@ async function localeArtifactsValid(candidate: DataManifest | undefined): Promis
   }
 }
 
-const endgameFilesPresent = await Promise.all(
+const endgameViewFilesPresent = await Promise.all(
   ['moc', 'pf', 'as', 'aa'].map(async (mode) => {
     try {
       const dataset = JSON.parse(
-        await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8')
+        await readFile(path.join(viewRoot, 'endgame', `${mode}.json`), 'utf8')
       );
       return (
         dataset.schemaVersion === 23 &&
@@ -170,7 +170,7 @@ try {
     manifest?.schemaVersion === 40 &&
     (!process.env.HSR_EXPECTED_DATA_COMMIT ||
       manifest.sourceCommit === process.env.HSR_EXPECTED_DATA_COMMIT) &&
-    !endgameFilesPresent.includes(false) &&
+    !endgameViewFilesPresent.includes(false) &&
     localeArtifactsPresent &&
     homepageFilesValid &&
     namingCacheValid
@@ -187,7 +187,7 @@ if (availableCommit) {
     !manifest ||
     manifest.schemaVersion !== 40 ||
     manifest.sourceCommit !== availableCommit ||
-    endgameFilesPresent.includes(false) ||
+    endgameViewFilesPresent.includes(false) ||
     !localeArtifactsPresent ||
     !homepageFilesValid ||
     !namingCacheValid

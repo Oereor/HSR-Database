@@ -35,7 +35,7 @@ import type {
   SpawnWave,
   SpawnWaveParam
 } from '../../src/lib/domain/endgame.js';
-import type { TextResolver, TextSource } from './localization.js';
+import { textSource as neutralTextSource } from './domain/shared.js';
 import {
   compareDecimals,
   decimalEquals,
@@ -57,10 +57,10 @@ import {
   createAsBossGuideResolver,
   type AsBossGuideAudit,
   type ChallengeBossMazeExtraRow,
+  type ExtraEffectRow,
   type MonsterGuideConfigRow,
   type MonsterGuideTagRow
 } from './as-boss-guides.js';
-import type { ExtraEffectRow } from './extra-effects.js';
 
 type Id = number;
 
@@ -279,7 +279,8 @@ export interface EndgameAudit {
   summary: EndgameManifestSummary;
 }
 
-export interface EndgameBuildResult {
+/** Locale-neutral, in-memory Endgame semantic domain. Never persisted directly. */
+export interface EndgameDomain {
   datasets: EndgameDatasetByMode;
   audit: EndgameAudit;
 }
@@ -537,33 +538,13 @@ async function fileExists(file: string): Promise<boolean> {
   }
 }
 
-export async function buildEndgameData(
-  root: string,
-  text: TextResolver
-): Promise<EndgameBuildResult> {
+export async function buildEndgameDomain(root: string): Promise<EndgameDomain> {
   const tables = await loadTables(root);
   const diagnostics = new Diagnostics();
   const context = (mode: EndgameMode, extra: Record<string, string | number | undefined>) => ({
     mode,
     ...extra
   });
-  const localized = (
-    ref: unknown,
-    entity: string,
-    id: number,
-    field: string
-  ): string | undefined => {
-    const source: TextSource = { entity, id: String(id), field };
-    return (
-      text.resolveRef(ref, source, {
-        requirement: 'optional',
-        visibility: 'emitted',
-        fallbackUsed: true,
-        productRouteReachability: 'reachable'
-      }) || undefined
-    );
-  };
-
   const resolveConfiguredStat = (
     label: 'Speed' | 'Stance',
     baseSource: unknown,
@@ -699,7 +680,7 @@ export async function buildEndgameData(
     as: { aftertastes: 0, axiomSets: 0, axiomOptions: 0, stageBindingMismatches: 0 },
     aa: { traits: 0, judgmentQuadrants: 0, quadrantOptions: 0, battleEventReferences: 0 }
   };
-  const mazeBuffResolver = createMazeBuffResolver(tables.mazeBuffs, text, {
+  const mazeBuffResolver = createMazeBuffResolver(tables.mazeBuffs, {
     fail: (code, message, diagnosticContext) => diagnostics.fail(code, message, diagnosticContext),
     warn: (code, message, diagnosticContext) => diagnostics.warn(code, message, diagnosticContext)
   });
@@ -710,7 +691,6 @@ export async function buildEndgameData(
       tags: tables.monsterGuideTags,
       extraEffects: tables.extraEffects
     },
-    text,
     {
       warn: (code, message, diagnosticContext) =>
         diagnostics.warn(code, message, { mode: 'as', ...diagnosticContext })
@@ -1153,15 +1133,15 @@ export async function buildEndgameData(
       effectiveTotalHpStatus:
         unclear || finalHp.status === 'unresolved' ? 'runtime-unclear' : 'static'
     };
+    const occurrenceScope = `${mode}:group:${String(contextData.groupId)}:encounter:${String(contextData.configId)}:variant:${String(contextData.variant ?? '')}:slot:${String(contextData.slot)}:stage:${stage.StageID}`;
+    const occurrenceId =
+      contextSource === 'stage'
+        ? `${occurrenceScope}:fixed:${String(contextData.wave)}:position:${String(contextData.position)}:monster:${monsterId}`
+        : `${occurrenceScope}:spawn:${String(contextData.waveId)}:group:${String(contextData.monsterGroupId)}:position:${String(contextData.position)}:monster:${monsterId}`;
     return {
+      occurrenceId,
       monsterId,
       monsterTemplateId: monster.MonsterTemplateID,
-      name: localized(
-        template.MonsterName,
-        'endgame-enemy',
-        monster.MonsterTemplateID,
-        'MonsterName'
-      ),
       hp: {
         hpBase,
         instanceRatio,
@@ -1545,7 +1525,7 @@ export async function buildEndgameData(
         encounters.push({
           id: String(config.ID),
           configId: config.ID,
-          name: localized(config.Name, 'moc-encounter', config.ID, 'Name'),
+          nameSource: neutralTextSource(config.Name),
           ...(config.Floor === undefined ? {} : { ordinal: config.Floor }),
           variant: 'floor',
           battles: await buildSlots(mode, eventListsFor(config, tierce), {
@@ -1560,7 +1540,7 @@ export async function buildEndgameData(
         mode,
         groupId: group.GroupID,
         recommendationEligible: Boolean(group.GroupName?.Hash),
-        name: localized(group.GroupName, 'moc-group', group.GroupID, 'GroupName'),
+        nameSource: neutralTextSource(group.GroupName),
         ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
         encounters
       });
@@ -1597,7 +1577,7 @@ export async function buildEndgameData(
             modifierRelations.pf.groupBaseMechanics += 1;
             return {
               mazeBuffId: group.MazeBuffID!,
-              ...(buff.name && buff.description ? { display: buff } : {}),
+              ...(buff.nameSource && buff.descriptionSource ? { display: buff } : {}),
               provenance: provenance('ChallengeStoryGroupConfig', group.GroupID, 'MazeBuffID')
             } satisfies PureFictionBaseMechanic;
           })()
@@ -1674,7 +1654,7 @@ export async function buildEndgameData(
               modifierRelations.pf.encounterBaseMechanics += 1;
               return {
                 mazeBuffId: config.MazeBuffID!,
-                ...(buff.name && buff.description ? { display: buff } : {}),
+                ...(buff.nameSource && buff.descriptionSource ? { display: buff } : {}),
                 provenance: provenance('ChallengeStoryMazeConfig', config.ID, 'MazeBuffID')
               } satisfies PureFictionBaseMechanic;
             })()
@@ -1682,7 +1662,7 @@ export async function buildEndgameData(
         encounters.push({
           id: String(config.ID),
           configId: config.ID,
-          name: localized(config.Name, 'pf-encounter', config.ID, 'Name'),
+          nameSource: neutralTextSource(config.Name),
           ...(config.Floor === undefined ? {} : { ordinal: config.Floor }),
           variant: 'floor',
           battles: await buildSlots(mode, eventListsFor(config, tierce), {
@@ -1697,7 +1677,7 @@ export async function buildEndgameData(
         mode,
         groupId: group.GroupID,
         recommendationEligible: Boolean(group.GroupName?.Hash),
-        name: localized(group.GroupName, 'pf-group', group.GroupID, 'GroupName'),
+        nameSource: neutralTextSource(group.GroupName),
         ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
         encounters,
         ...(groupBaseMechanic ? { groupBaseMechanic } : {}),
@@ -1894,7 +1874,7 @@ export async function buildEndgameData(
         encounters.push({
           id: String(config.ID),
           configId: config.ID,
-          name: localized(config.Name, 'as-encounter', config.ID, 'Name'),
+          nameSource: neutralTextSource(config.Name),
           ...(config.Floor === undefined ? {} : { ordinal: config.Floor }),
           variant: 'floor',
           battles,
@@ -1907,7 +1887,7 @@ export async function buildEndgameData(
         mode,
         groupId: group.GroupID,
         recommendationEligible: Boolean(group.GroupName?.Hash),
-        name: localized(group.GroupName, 'as-group', group.GroupID, 'GroupName'),
+        nameSource: neutralTextSource(group.GroupName),
         ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
         encounters,
         axiomSets
@@ -2002,7 +1982,7 @@ export async function buildEndgameData(
       encounters.push({
         id: `${configId}:preliminary`,
         configId,
-        name: localized(config.Title, 'aa-encounter', configId, 'Title'),
+        nameSource: neutralTextSource(config.Title),
         ordinal: index + 1,
         variant: 'preliminary',
         battles,
@@ -2082,7 +2062,7 @@ export async function buildEndgameData(
     encounters.push({
       id: `${group.BossLevelID}:normal`,
       configId: group.BossLevelID,
-      name: localized(bossConfig.Title, 'aa-encounter', group.BossLevelID, 'Title'),
+      nameSource: neutralTextSource(bossConfig.Title),
       variant: 'boss-normal',
       battles: normalBattles,
       traits: normalTraits,
@@ -2105,7 +2085,7 @@ export async function buildEndgameData(
     encounters.push({
       id: `${group.BossLevelID}:hard`,
       configId: group.BossLevelID,
-      name: localized(hard.HardTitle, 'aa-encounter', group.BossLevelID, 'HardTitle'),
+      nameSource: neutralTextSource(hard.HardTitle),
       variant: 'boss-hard',
       battles: hardBattles,
       traits: hardTraits,
@@ -2115,7 +2095,7 @@ export async function buildEndgameData(
       mode: 'aa',
       groupId: group.ID,
       recommendationEligible: Boolean(group.Title?.Hash),
-      name: localized(group.Title, 'aa-group', group.ID, 'Title'),
+      nameSource: neutralTextSource(group.Title),
       encounters,
       judgmentQuadrant
     });

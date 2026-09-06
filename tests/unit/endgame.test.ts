@@ -5,18 +5,19 @@ import { describe, expect, it } from 'vitest';
 import type {
   EndgameDatasetByMode,
   EndgameBattleSlot,
+  EndgameGroup,
   EndgameMode,
   EndgameStage,
   EnemyOccurrence
 } from '../../src/lib/domain/endgame';
 import {
+  buildEndgameDomain,
   buildUniqueIndex,
   resolveEndgameSchedule,
   type EndgameAudit
 } from '../../scripts/data/endgame';
 import { createMazeBuffResolver, type MazeBuffRow } from '../../scripts/data/maze-buffs';
 import { createAsBossGuideResolver } from '../../scripts/data/as-boss-guides';
-import type { TextResolver } from '../../scripts/data/localization';
 import { gameTextToPlain } from '../../src/lib/domain/game-text';
 import {
   addDecimals,
@@ -39,7 +40,7 @@ async function dataset<TMode extends EndgameMode>(
   mode: TMode
 ): Promise<EndgameDatasetByMode[TMode]> {
   return JSON.parse(
-    await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8')
+    await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'endgame', `${mode}.json`), 'utf8')
   ) as EndgameDatasetByMode[TMode];
 }
 
@@ -116,24 +117,6 @@ describe('Endgame 精确十进制', () => {
 });
 
 describe('MazeBuff 共享配置解析', () => {
-  const fakeText = (values: Record<string, string>): TextResolver =>
-    ({
-      resolveHash: (hash: string) => values[hash] ?? '',
-      resolveRef: (ref: unknown) => {
-        const hash =
-          ref && typeof ref === 'object' && 'Hash' in ref
-            ? String((ref as { Hash: unknown }).Hash)
-            : '';
-        return values[hash] ?? '';
-      },
-      resolveSymbolic: () => '',
-      getDiagnostics: () => ({
-        'invalid-reference': { count: 0, samples: [] },
-        'unresolved-hash': { count: 0, samples: [] },
-        'unresolved-symbolic-key': { count: 0, samples: [] }
-      })
-    }) as unknown as TextResolver;
-
   const issueSink = (warnings: string[]) => ({
     fail(code: string, message: string): never {
       throw new Error(`${code}: ${message}`);
@@ -143,7 +126,7 @@ describe('MazeBuff 共享配置解析', () => {
     }
   });
 
-  it('保留无损参数、markup、hash 与未使用参数审计', () => {
+  it('保留无损参数、TextRef、hash 与稳定配置关系', () => {
     const warnings: string[] = [];
     const rows: MazeBuffRow[] = [
       {
@@ -156,25 +139,22 @@ describe('MazeBuff 共享配置解析', () => {
         InBattleBindingKey: 'Fixture_Binding'
       }
     ];
-    const resolver = createMazeBuffResolver(
-      rows,
-      fakeText({
-        '11': '记忆紊流',
-        '12': '<color=#f29e38ff>伤害提高#1[i]%</color>，持续#2[i]回合。'
-      }),
-      issueSink(warnings)
-    );
+    const resolver = createMazeBuffResolver(rows, issueSink(warnings));
     expect(resolver.resolve(1, { requireDisplay: true, context: { mode: 'moc' } })).toEqual({
       id: 1,
-      name: '记忆紊流',
+      nameSource: { kind: 'direct', ref: { kind: 'hash', hash: '11' } },
       nameHash: '11',
-      description: '<color=#f29e38ff>伤害提高80%</color>，持续1回合。',
+      descriptionSource: {
+        kind: 'parameterized',
+        ref: { kind: 'hash', hash: '12' },
+        params: ['0.8', '1', '7']
+      },
       descriptionHash: '12',
       params: ['0.8', '1', '7'],
       upstreamIconPath: 'SpriteOutput/BuffIcon/Test.png',
       bindingKey: 'Fixture_Binding'
     });
-    expect(warnings).toEqual(['unused-maze-buff-param']);
+    expect(warnings).toEqual([]);
     expect(resolver.getAudit()).toMatchObject({
       distinctReferenced: 1,
       resolved: 1,
@@ -182,21 +162,17 @@ describe('MazeBuff 共享配置解析', () => {
       missingLocalization: 0,
       missingIconPath: 0,
       missingDescriptionParams: 0,
-      unusedParams: 1
+      unusedParams: 0
     });
   });
 
-  it('拒绝 unresolved、重复 Lv=1、缺参和 display-required 缺文本', () => {
-    const missing = createMazeBuffResolver(
-      [{ ID: 1, Lv: 1, BuffName: { Hash: '11' }, BuffDesc: { Hash: '12' } }],
-      fakeText({}),
-      issueSink([])
-    );
+  it('拒绝 unresolved、重复 Lv=1、非法参数和 display-required 缺 TextRef', () => {
+    const missing = createMazeBuffResolver([{ ID: 1, Lv: 1 }], issueSink([]));
     expect(() => missing.resolve(999, { requireDisplay: true, context: { mode: 'moc' } })).toThrow(
       /unresolved-maze-buff/
     );
     expect(() => missing.resolve(1, { requireDisplay: true, context: { mode: 'moc' } })).toThrow(
-      /maze-buff-not-display-ready/
+      /maze-buff-text-reference-missing/
     );
 
     const duplicate = createMazeBuffResolver(
@@ -204,7 +180,6 @@ describe('MazeBuff 共享配置解析', () => {
         { ID: 2, Lv: 1 },
         { ID: 2, Lv: 1 }
       ],
-      fakeText({}),
       issueSink([])
     );
     expect(() => duplicate.resolve(2, { requireDisplay: false, context: { mode: 'pf' } })).toThrow(
@@ -218,37 +193,18 @@ describe('MazeBuff 共享配置解析', () => {
           Lv: 1,
           BuffName: { Hash: '31' },
           BuffDesc: { Hash: '32' },
-          ParamList: [{ Value: '1' }]
+          ParamList: [{ Value: 'invalid' }]
         }
       ],
-      fakeText({ '31': '测试', '32': '#2[i]%' }),
       issueSink([])
     );
     expect(() =>
       missingParam.resolve(3, { requireDisplay: true, context: { mode: 'aa' } })
-    ).toThrow(/invalid-maze-buff-placeholder/);
+    ).toThrow(/invalid-maze-buff-param/);
   });
 });
 
 describe('AS 首领特性配置解析', () => {
-  const fakeText = (values: Record<string, string>): TextResolver =>
-    ({
-      resolveHash: (hash: string) => values[hash] ?? '',
-      resolveRef: (ref: unknown) => {
-        const hash =
-          ref && typeof ref === 'object' && 'Hash' in ref
-            ? String((ref as { Hash: unknown }).Hash)
-            : '';
-        return values[hash] ?? '';
-      },
-      resolveSymbolic: () => '',
-      getDiagnostics: () => ({
-        'invalid-reference': { count: 0, samples: [] },
-        'unresolved-hash': { count: 0, samples: [] },
-        'unresolved-symbolic-key': { count: 0, samples: [] }
-      })
-    }) as unknown as TextResolver;
-
   const battle = {
     slot: 1,
     stages: [
@@ -258,7 +214,7 @@ describe('AS 首领特性配置解析', () => {
     ]
   } as unknown as EndgameBattleSlot;
 
-  it('按 difficulty、源顺序和显式 slot binding 解析并保留 markup', () => {
+  it('按 difficulty、源顺序和显式 slot binding 构建中立关系', () => {
     const warnings: string[] = [];
     const resolver = createAsBossGuideResolver(
       {
@@ -298,18 +254,6 @@ describe('AS 首领特性配置解析', () => {
           }
         ]
       },
-      fakeText({
-        '11': '特性一',
-        '12': '<color=#fff>#1%</color>',
-        '21': '特性二',
-        '22': '描述二',
-        '1011': '效果一',
-        '1012': '效果描述一',
-        '1021': '效果二',
-        '1022': '效果描述二',
-        '1031': '效果三',
-        '1032': '<color=#fff>效果描述三</color>'
-      }),
       { warn: (code) => warnings.push(code) }
     );
     const guides = resolver.resolveEncounter({
@@ -323,17 +267,20 @@ describe('AS 首领特性配置解析', () => {
     expect(guides[0]?.traits[0]).toMatchObject({
       order: 1,
       requiredDifficulty: 1,
-      description: '<color=#fff>60%</color>',
+      nameSource: { kind: 'direct', ref: { kind: 'hash', hash: '11' } },
+      descriptionSource: {
+        kind: 'parameterized',
+        ref: { kind: 'hash', hash: '12' },
+        params: ['0.6', '9']
+      },
       params: ['0.6', '9'],
       provenance: { table: 'MonsterGuideConfig', ownerId: 10, arrayIndex: 0 }
     });
-    expect(warnings).toContain('unused-as-boss-trait-param');
-    expect(
-      guides[0]?.traits.map((trait) => trait.linkedEffects.map((effect) => effect.id))
-    ).toEqual([['101'], ['102', '103']]);
-    expect(guides[0]?.traits[1]?.linkedEffects[1]?.description).toBe(
-      '<color=#fff>效果描述三</color>'
-    );
+    expect(warnings).toEqual([]);
+    expect(guides[0]?.traits.map((trait) => trait.extraEffectIds)).toEqual([
+      ['101'],
+      ['102', '103']
+    ]);
   });
 
   it('对缺关系、重复 Tag、缺本地化和缺参安全省略，并拒绝重复核心主键', () => {
@@ -348,7 +295,6 @@ describe('AS 首领特性配置解析', () => {
           tags: [],
           extraEffects: []
         },
-        fakeText({}),
         { warn: () => undefined }
       )
     ).toThrow(/重复主键/);
@@ -366,10 +312,9 @@ describe('AS 首领特性配置解析', () => {
           }
         ],
         tags: [
-          { TagID: 1, TagName: { Hash: '11' }, TagBriefDescription: { Hash: '12' } },
+          { TagID: 1, TagBriefDescription: { Hash: '12' } },
           {
             TagID: 2,
-            TagName: { Hash: '21' },
             TagBriefDescription: { Hash: '22' },
             ParameterList: ['1']
           },
@@ -377,14 +322,6 @@ describe('AS 首领特性配置解析', () => {
         ],
         extraEffects: []
       },
-      fakeText({
-        '11': '',
-        '12': '缺名称',
-        '21': '缺参',
-        '22': '#2%',
-        '31': '不应采用后出现的重复项',
-        '32': '描述'
-      }),
       { warn: (code) => warnings.push(code) }
     );
     expect(
@@ -392,11 +329,7 @@ describe('AS 首领特性配置解析', () => {
         ?.traits
     ).toEqual([]);
     expect(warnings).toEqual(
-      expect.arrayContaining([
-        'missing-as-boss-trait-localization',
-        'duplicate-as-boss-trait',
-        'invalid-as-boss-trait-placeholder'
-      ])
+      expect.arrayContaining(['missing-as-boss-trait-text-reference', 'duplicate-as-boss-trait'])
     );
     expect(
       resolver.resolveEncounter({ groupId: 1, configId: 999, difficulty: 4, battles: [battle] })
@@ -420,7 +353,6 @@ describe('AS 首领特性配置解析', () => {
         ],
         extraEffects: []
       },
-      fakeText({ '11': '关卡效果', '12': '原始描述' }),
       { warn: (code) => warnings.push(code) }
     );
     const trait = resolver.resolveEncounter({
@@ -429,7 +361,7 @@ describe('AS 首领特性配置解析', () => {
       difficulty: 4,
       battles: [battle]
     })[0]?.traits[0];
-    expect(trait?.linkedEffects).toEqual([]);
+    expect(trait?.extraEffectIds).toEqual([]);
     expect(JSON.stringify(trait)).not.toContain('999');
     expect(warnings).toContain('unresolved-as-stage-effect-extra-effect');
     expect(resolver.getAudit()).toMatchObject({
@@ -545,7 +477,49 @@ describe('Endgame schedule 容错', () => {
 });
 
 describe('Endgame 真实数据管线', () => {
-  it('四个模式使用 schema 21 且 fixed/spawn 模型分离', async () => {
+  it('构建仅驻内存的中立结构、TextRef 与唯一 raw occurrence identity', async () => {
+    const domain = await buildEndgameDomain(
+      path.resolve(process.env.HSR_DATA_ROOT ?? '../TurnBasedGameData')
+    );
+    const groups = modes.flatMap((mode) => domain.datasets[mode].groups as EndgameGroup[]);
+    const encounters = groups.flatMap((group) => group.encounters);
+    const allOccurrences = encounters
+      .flatMap((encounter) => encounter.battles)
+      .flatMap((battle) => battle.stages)
+      .flatMap(occurrences);
+    expect(groups.every((group) => group.name === undefined)).toBe(true);
+    expect(encounters.every((encounter) => encounter.name === undefined)).toBe(true);
+    expect(allOccurrences.every((occurrence) => occurrence.name === undefined)).toBe(true);
+    const identities = allOccurrences.map(({ occurrenceId }) => occurrenceId);
+    expect(identities.every(Boolean)).toBe(true);
+    expect(new Set(identities).size).toBe(identities.length);
+    const turbulence = domain.datasets.moc.groups
+      .find(({ groupId }) => groupId === 1034)
+      ?.encounters.find(({ configId }) => configId === 5312)?.memoryTurbulence?.buff;
+    expect(turbulence?.nameSource?.kind).toBe('direct');
+    expect(turbulence?.descriptionSource?.kind).toBe('parameterized');
+    expect(turbulence?.name).toBeUndefined();
+    expect(turbulence?.description).toBeUndefined();
+  }, 120_000);
+
+  it('所有 occurrence 名称均通过稳定 MonsterTemplateID join projected Enemy view', async () => {
+    const enemyCatalog = JSON.parse(
+      await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'catalogs', 'enemies.json'), 'utf8')
+    ) as Array<{ id: string; name: string }>;
+    const names = new Map(enemyCatalog.map(({ id, name }) => [id, name]));
+    for (const mode of modes) {
+      const data = await dataset(mode);
+      const allOccurrences = data.groups
+        .flatMap((group) => group.encounters)
+        .flatMap((encounter) => encounter.battles)
+        .flatMap((battle) => battle.stages)
+        .flatMap(occurrences);
+      for (const occurrence of allOccurrences)
+        expect(occurrence.name).toBe(names.get(String(occurrence.monsterTemplateId)));
+    }
+  });
+
+  it('四个模式保留 schema 23 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
     expect(all.every((item) => item.schemaVersion === 23)).toBe(true);
     expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
@@ -634,13 +608,13 @@ describe('Endgame 真实数据管线', () => {
     );
     expect(
       shadowEncounter.bossGuides[0]?.traits.map((trait) =>
-        trait.linkedEffects.map((effect) => effect.id)
+        (trait.linkedEffects ?? []).map((effect) => effect.id)
       )
     ).toEqual([[], [], [], ['220240163']]);
     expect(
       shadowEncounter.bossGuides[2]?.traits
         .find((trait) => trait.tagId === 101602)
-        ?.linkedEffects.map((effect) => [effect.id, effect.name])
+        ?.linkedEffects?.map((effect) => [effect.id, effect.name])
     ).toEqual([
       ['501401001', '连麦PK'],
       ['70000318', '韧性锁止']

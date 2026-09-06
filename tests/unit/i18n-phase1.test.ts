@@ -1,5 +1,4 @@
 import { readFile, readdir } from 'node:fs/promises';
-import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
@@ -21,8 +20,9 @@ import { normalizeEnemyPhases } from '../../scripts/data/enemy-detail';
 import { annotateSpecialEffectTokens } from '../../scripts/data/special-effect-triggers';
 import { segmentSpecialEffectTriggers } from '../../src/lib/domain/special-effects-presentation';
 import {
-  collectEndgameSearchNames,
-  collectEndgameSearchOccurrences
+  collectEndgameSearchOccurrences,
+  collectEndgameSearchTargets,
+  endgameOccurrenceLocatorKey
 } from '../../src/lib/domain/search-index';
 import { recommendedGroupId } from '../../src/lib/domain/endgame-view';
 import type { EndgameDatasetByMode } from '../../src/lib/domain/endgame';
@@ -180,11 +180,14 @@ describe('Phase 1 localization boundaries', () => {
   }, 30_000);
 
   it('preserves Endgame membership and recommendations when names are missing', async () => {
+    await expect(readFile('src/lib/generated/endgame/moc.json', 'utf8')).rejects.toMatchObject({
+      code: 'ENOENT'
+    });
     const datasets = Object.fromEntries(
       await Promise.all(
         ['moc', 'pf', 'as', 'aa'].map(async (mode) => [
           mode,
-          await json(`src/lib/generated/endgame/${mode}.json`)
+          await json(`src/lib/generated/views/zh-CN/endgame/${mode}.json`)
         ])
       )
     ) as EndgameDatasetByMode;
@@ -192,8 +195,8 @@ describe('Phase 1 localization boundaries', () => {
     for (const data of Object.values(changed)) for (const group of data.groups) group.name = '';
     for (const { occurrence } of collectEndgameSearchOccurrences(changed)) occurrence.name = '';
     const locators = (data: EndgameDatasetByMode) =>
-      collectEndgameSearchOccurrences(data).map(({ locator, occurrence }) => ({
-        locator,
+      collectEndgameSearchOccurrences(data).map(({ reference, occurrence }) => ({
+        locator: reference.locator,
         monsterId: occurrence.monsterId,
         templateId: occurrence.monsterTemplateId,
         hp: occurrence.hp,
@@ -208,11 +211,19 @@ describe('Phase 1 localization boundaries', () => {
       expect(recommendedGroupId(changed[mode].groups, now)).toBe(
         recommendedGroupId(datasets[mode].groups, now)
       );
-    expect(() =>
-      collectEndgameSearchNames(changed, (name) =>
-        createHash('sha256').update(name).digest('hex').slice(0, 16)
-      )
-    ).toThrow('Missing required Endgame search name');
+    const names = new Map(
+      collectEndgameSearchOccurrences(datasets).map(({ occurrence }) => [
+        String(occurrence.monsterTemplateId),
+        occurrence.name ?? ''
+      ])
+    );
+    const translated = new Map([...names].map(([id]) => [id, `Translated ${id}`]));
+    const identity = (data: EndgameDatasetByMode, labels: ReadonlyMap<string, string>) =>
+      collectEndgameSearchTargets(data, labels).map((target) => ({
+        id: target.id,
+        locators: target.occurrences.map(({ locator }) => endgameOccurrenceLocatorKey(locator))
+      }));
+    expect(identity(changed, translated)).toEqual(identity(datasets, names));
   }, 30_000);
 });
 

@@ -1181,7 +1181,7 @@ test('全局搜索 Endgame grid 与展开导航在各断点不横向溢出', asy
 
 test('全局搜索丢弃迟到分片，并在 Back/Forward 中复用分片缓存', async ({ page }) => {
   let shardRequests = 0;
-  await page.route('**/generated/endgame-occurrences/**', async (route) => {
+  await page.route('**/generated/zh-CN/endgame-occurrences/**', async (route) => {
     shardRequests += 1;
     await new Promise((resolve) => setTimeout(resolve, 250));
     await route.continue();

@@ -1,11 +1,12 @@
 import { createHash } from 'node:crypto';
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { gameTextToPlain } from '../../src/lib/domain/game-text.js';
 import type {
-  EndgameSearchNameEntry,
+  EndgameSearchTargetEntry,
   GlobalSearchIndex
 } from '../../src/lib/domain/search-index.js';
+import { endgameOccurrenceLocatorKey } from '../../src/lib/domain/search-index.js';
 import type { EntityKind } from '../../src/lib/domain/types.js';
 import {
   SEARCH_DOCUMENT_SCHEMA_VERSION,
@@ -30,10 +31,10 @@ export type SearchCatalogs = Record<EntityKind, Array<{ id: string; name: string
 export interface SearchBuildInputs {
   official: CharacterNameSnapshot;
   catalogs: SearchCatalogs;
-  endgameEnemies: EndgameSearchNameEntry[];
+  endgameTargets: EndgameSearchTargetEntry[];
 }
-export const searchInputsPath = path.join(generatedRoot, 'search-inputs.json');
-export const searchBundlePath = path.join(staticGeneratedRoot, 'search.json');
+export const searchInputsPath = path.join(generatedRoot, 'views', 'zh-CN', 'search-inputs.json');
+export const searchBundlePath = path.join(staticGeneratedRoot, 'zh-CN', 'search.json');
 
 export function buildSearchDocuments(
   inputs: SearchBuildInputs,
@@ -60,8 +61,8 @@ export function buildSearchDocuments(
   }
   if (inputs.catalogs.character.length !== Object.keys(inputs.official.characters).length)
     throw new Error('官方角色 metadata 与 catalog 数量不一致');
-  for (const entry of inputs.endgameEnemies) {
-    const target = { kind: 'endgame-name' as const, entryId: entry.entryId };
+  for (const entry of inputs.endgameTargets) {
+    const target = { kind: 'endgame' as const, id: entry.id };
     documents.push({
       key: searchTargetKey(target),
       target,
@@ -89,17 +90,40 @@ export function buildSearchDocuments(
     sourceCommit: inputs.official.sourceCommit,
     metadataDigest,
     documents,
-    endgameEnemies: inputs.endgameEnemies
+    locale: 'zh-CN',
+    endgameTargets: inputs.endgameTargets
   };
   validateSearchTargets(bundle, inputs.catalogs);
   return bundle;
 }
 
 export function validateSearchTargets(bundle: GlobalSearchIndex, catalogs: SearchCatalogs): void {
+  if (bundle.locale !== 'zh-CN') throw new Error(`无效 Search locale：${bundle.locale}`);
   const targets = new Set(
     Object.entries(catalogs).flatMap(([kind, entries]) => entries.map(({ id }) => `${kind}:${id}`))
   );
-  for (const entry of bundle.endgameEnemies) targets.add(`endgame-name:${entry.entryId}`);
+  const endgameTargetIds = new Set<string>();
+  const occurrenceKeys = new Set<string>();
+  for (const entry of bundle.endgameTargets) {
+    if (
+      !/^\d+$/.test(entry.id) ||
+      endgameTargetIds.has(entry.id) ||
+      !normalizeSearchLabel(entry.name) ||
+      !entry.occurrences.length
+    )
+      throw new Error(`无效 Endgame Search target：${entry.id}`);
+    endgameTargetIds.add(entry.id);
+    targets.add(`endgame:${entry.id}`);
+    for (const { locator, order } of entry.occurrences) {
+      const locatorKey = endgameOccurrenceLocatorKey(locator);
+      if (
+        occurrenceKeys.has(locatorKey) ||
+        !Object.values(order).every((value) => Number.isSafeInteger(value) && value >= 0)
+      )
+        throw new Error(`无效或重复 Endgame Search locator：${locatorKey}`);
+      occurrenceKeys.add(locatorKey);
+    }
+  }
   const seen = new Set<string>();
   for (const doc of bundle.documents) {
     if (
@@ -110,6 +134,11 @@ export function validateSearchTargets(bundle: GlobalSearchIndex, catalogs: Searc
     )
       throw new Error(`无效 SearchDocument target：${doc.key}`);
     seen.add(doc.key);
+    if (doc.target.kind === 'endgame') {
+      const entry = bundle.endgameTargets.find(({ id }) => id === doc.target.id);
+      if (!entry || gameTextToPlain(entry.name) !== doc.canonicalName)
+        throw new Error(`Endgame Search label 与 projected Enemy 不一致：${doc.key}`);
+    }
   }
   if (seen.size !== targets.size) throw new Error('SearchDocument 未覆盖全部 targets');
 }
@@ -134,6 +163,7 @@ export async function ensureSearchDocuments(
   const next = buildSearchDocuments(inputs, await loadPlayerAliases(files.aliases));
   const serialized = `${JSON.stringify(next)}\n`;
   if ((await readFile(files.bundle, 'utf8').catch(() => '')) === serialized) return false;
+  await mkdir(path.dirname(files.bundle), { recursive: true });
   await writeFile(files.bundle, serialized, 'utf8');
   console.log(
     `搜索数据已更新：${next.documents.length} documents，metadata ${next.metadataDigest.slice(0, 12)}`
