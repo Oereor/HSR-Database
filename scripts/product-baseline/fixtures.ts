@@ -64,8 +64,6 @@ export async function writeProductBaselineFixtures(
   await writeStableArea('relics', capture.relics);
   await writeJson(capture.relics.properties, 'relics', 'properties.json');
   await writeStableArea('enemies', capture.enemies);
-  for (const [name, registry] of Object.entries(capture.enemies.registries))
-    await writeCompactJson(registry, 'enemies', 'registries', `${name}.json`);
   for (const [mode, value] of Object.entries(capture.endgame.modes)) {
     await writeJson(value.order, 'endgame', 'modes', mode, 'group-order.json');
     await writeJson(value.recommendations, 'endgame', 'modes', mode, 'recommendations.json');
@@ -75,12 +73,9 @@ export async function writeProductBaselineFixtures(
       )
     );
   }
-  for (const [name, registry] of Object.entries(capture.endgame.registries))
-    await writeCompactJson(registry, 'endgame', 'registries', `${name}.json`);
   await writeJson(capture.homepage, 'homepage.json');
   await writeCompactJson(capture.search, 'search.json');
   await writeJson(capture.unresolvedLocalization, 'unresolved-localization.json');
-  await writeJson(capture.characterIcons, 'character-icons.json');
 }
 
 export async function writeSearchProductBaselineFixture(
@@ -128,26 +123,13 @@ export async function readProductBaselineFixtures(): Promise<ProductBaselineCapt
     lightCones,
     relics: { ...relicArea, properties: await readJson('relics', 'properties.json') },
     enemies: {
-      ...enemyArea,
-      registries: {
-        templates: await readJson('enemies', 'registries', 'templates.json'),
-        monsters: await readJson('enemies', 'registries', 'monsters.json'),
-        skills: await readJson('enemies', 'registries', 'skills.json'),
-        summons: await readJson('enemies', 'registries', 'summons.json'),
-        statSeries: await readJson('enemies', 'registries', 'statSeries.json')
-      }
+      ...enemyArea
     },
     endgame: {
-      modes,
-      registries: {
-        occurrences: await readJson('endgame', 'registries', 'occurrences.json'),
-        mechanics: await readJson('endgame', 'registries', 'mechanics.json'),
-        presentedOccurrences: await readJson('endgame', 'registries', 'presentedOccurrences.json')
-      }
+      modes
     },
     homepage: await readJson('homepage.json'),
     search: await readJson('search.json'),
-    unresolvedLocalization: await readJson('unresolved-localization.json'),
-    characterIcons: await readJson('character-icons.json')
+    unresolvedLocalization: await readJson('unresolved-localization.json')
   };
 }

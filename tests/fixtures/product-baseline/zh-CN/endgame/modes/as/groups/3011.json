@@ -4,7 +4,9 @@
     "encounters": [
       {
         "aftertaste": {
-          "mechanicRef": "84d1161b29726086c3588619d74c1c241744edb831e17aeb19ff553ef0bb0f16"
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、恢复战技点并激活终结技。\n敌方全体受到的持续伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，战技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110011,
+          "name": "末法余烬"
         },
         "battles": [
           {
@@ -12,13 +14,22 @@
               "key": "as:3011:BuffList1",
               "options": [
                 {
-                  "mechanicRef": "85ca747ef5cd3aef63bc1ef55e992876e93c24a803d5fc5d120203ae7a446588"
+                  "description": "我方目标每消耗1个战技点时，使我方全体造成的伤害提高<color=#f29e38ff><unbreak>6%</unbreak></color>，该效果最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层。",
+                  "id": 3111062,
+                  "name": "戮力同心",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "865471c5ae21f939294c19c16a218a789d38a3a95c4359ac85c36b9d571f98e8"
+                  "description": "消灭敌方目标后，敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>4</unbreak></color>层，该效果对所有新上场的敌人也生效。",
+                  "id": 3111063,
+                  "name": "牵丝攀藤",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "3eacd012e1da760e99e86eaf841c2030c0e66a1a95082c9dc6f7380e3b0072a0"
+                  "description": "我方目标消耗自身生命值后，暴击伤害提高<color=#f29e38ff><unbreak>55%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111061,
+                  "name": "破釜沉舟",
+                  "order": 3
                 }
               ]
             },
@@ -26,10 +37,18 @@
               "key": "as:30111:MonsterID1",
               "traits": [
                 {
-                  "mechanicRef": "b55cb1c21592d124d616fcfa0562b36a9020a9293584eae31a12e38f840d8ce8"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101001,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "48c263acf1954b4da24872675c9f7eb7ad14ef98014f5d314f81b60652966222"
+                  "description": "首领幻影在施放【裂地三舍，寸草不留】时，将会消灭其他所有狼卒。",
+                  "id": 101002,
+                  "linkedEffects": [],
+                  "name": "宁枉勿纵",
+                  "order": 2
                 }
               ]
             },
@@ -43,7 +62,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "5faa6f83909b67501ce285be1cbb7c02ff3b4a8a2d4e3e92603602c77aeea218"
+                        "enemyHref": "/enemies/2034014",
+                        "hp": {
+                          "exactPerBar": "134842.00851000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "134,842"
+                        },
+                        "identity": "[203401401,2034014,\"10230\",\"1\",\"52.724148\",\"0.25\",\"134842.00851000\",\"resolved\",\"134842.00851000\",701,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"160\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"160\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1140\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1140\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"380\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[2032011,2032022],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 203401401,
+                        "monsterTemplateId": 2034014,
+                        "name": "雷奔云谲的恶狼主",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2034010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "160",
+                          "rounded": "160"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "380",
+                          "roundedPerBar": "380"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -58,13 +115,22 @@
               "key": "as:3011:BuffList2",
               "options": [
                 {
-                  "mechanicRef": "2e63728253561035591100281a89a44e09975925669a3279630824740f12d9a8"
+                  "description": "我方全体造成的终结技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，对处于弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+                  "id": 3111059,
+                  "name": "抵瑕陷隙",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "032cf099b8eb8dc3a66655c699bb5f0ea89e98012f466b021ec00b2d0b885c72"
+                  "description": "我方全体施放普攻或战技攻击处于弱点击破状态下的敌人后，使其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>15%</unbreak></color>的伤害。",
+                  "id": 3111060,
+                  "name": "蔓草难除",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "74c3f90397d9f6d18d32a7040d4eb6a5e34913135cdb6bb97b29002a07f25a18"
+                  "description": "队伍中的第1位角色施放终结技后，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，持续<color=#f29e38ff><unbreak>1</unbreak></color>回合。",
+                  "id": 3111064,
+                  "name": "登锋陷阵",
+                  "order": 3
                 }
               ]
             },
@@ -72,10 +138,18 @@
               "key": "as:30111:MonsterID2",
               "traits": [
                 {
-                  "mechanicRef": "e52b3d7e207d24644f9b2082777d5aff3b7b9e81987336679e2d42eda655c6d0"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101201,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "e213c4489d1eda7c025eb699315d959230c615b6064cb3d581688ec974eabe5f"
+                  "description": "部位受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。当首领幻影被<color=#f29e38ff>弱点击破</color>后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>",
+                  "id": 101202,
+                  "linkedEffects": [],
+                  "name": "铁骨峥嵘",
+                  "order": 2
                 }
               ]
             },
@@ -89,7 +163,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "22506af41870e8c6dfda5c263fd02f87a652f243ab10682d54758406cc027e2a"
+                        "enemyHref": "/enemies/2035012",
+                        "hp": {
+                          "exactPerBar": "471947.02978500",
+                          "phaseCount": 2,
+                          "roundedPerBar": "471,947"
+                        },
+                        "identity": "[203501201,2035012,\"35805\",\"1\",\"52.724148\",\"0.25\",\"471947.02978500\",\"resolved\",\"471947.02978500\",701,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"144\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"840\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"840\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"280\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[2033022],true,true,false,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 203501201,
+                        "monsterTemplateId": 2035012,
+                        "name": "业火焚心的影将军",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2033020.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "144",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "280",
+                          "roundedPerBar": "280"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -108,7 +220,9 @@
       },
       {
         "aftertaste": {
-          "mechanicRef": "84d1161b29726086c3588619d74c1c241744edb831e17aeb19ff553ef0bb0f16"
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、恢复战技点并激活终结技。\n敌方全体受到的持续伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，战技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110011,
+          "name": "末法余烬"
         },
         "battles": [
           {
@@ -116,13 +230,22 @@
               "key": "as:3011:BuffList1",
               "options": [
                 {
-                  "mechanicRef": "85ca747ef5cd3aef63bc1ef55e992876e93c24a803d5fc5d120203ae7a446588"
+                  "description": "我方目标每消耗1个战技点时，使我方全体造成的伤害提高<color=#f29e38ff><unbreak>6%</unbreak></color>，该效果最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层。",
+                  "id": 3111062,
+                  "name": "戮力同心",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "865471c5ae21f939294c19c16a218a789d38a3a95c4359ac85c36b9d571f98e8"
+                  "description": "消灭敌方目标后，敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>4</unbreak></color>层，该效果对所有新上场的敌人也生效。",
+                  "id": 3111063,
+                  "name": "牵丝攀藤",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "3eacd012e1da760e99e86eaf841c2030c0e66a1a95082c9dc6f7380e3b0072a0"
+                  "description": "我方目标消耗自身生命值后，暴击伤害提高<color=#f29e38ff><unbreak>55%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111061,
+                  "name": "破釜沉舟",
+                  "order": 3
                 }
               ]
             },
@@ -130,10 +253,18 @@
               "key": "as:30112:MonsterID1",
               "traits": [
                 {
-                  "mechanicRef": "b55cb1c21592d124d616fcfa0562b36a9020a9293584eae31a12e38f840d8ce8"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101001,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "48c263acf1954b4da24872675c9f7eb7ad14ef98014f5d314f81b60652966222"
+                  "description": "首领幻影在施放【裂地三舍，寸草不留】时，将会消灭其他所有狼卒。",
+                  "id": 101002,
+                  "linkedEffects": [],
+                  "name": "宁枉勿纵",
+                  "order": 2
                 }
               ]
             },
@@ -147,7 +278,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "bcbd7285ed34806e1a5672a076d7c1e81283a6c12dbb253ad0804db21d2292b1"
+                        "enemyHref": "/enemies/2034014",
+                        "hp": {
+                          "exactPerBar": "485859.374550",
+                          "phaseCount": 2,
+                          "roundedPerBar": "485,859"
+                        },
+                        "identity": "[203401402,2034014,\"10230\",\"1\",\"94.98717\",\"0.5\",\"485859.374550\",\"resolved\",\"485859.374550\",702,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"160\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"176.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1140\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1140\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"380\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[2032011,2032022],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 203401402,
+                        "monsterTemplateId": 2034014,
+                        "name": "雷奔云谲的恶狼主",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2034010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "176.0",
+                          "rounded": "176"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "380",
+                          "roundedPerBar": "380"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -162,13 +331,22 @@
               "key": "as:3011:BuffList2",
               "options": [
                 {
-                  "mechanicRef": "2e63728253561035591100281a89a44e09975925669a3279630824740f12d9a8"
+                  "description": "我方全体造成的终结技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，对处于弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+                  "id": 3111059,
+                  "name": "抵瑕陷隙",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "032cf099b8eb8dc3a66655c699bb5f0ea89e98012f466b021ec00b2d0b885c72"
+                  "description": "我方全体施放普攻或战技攻击处于弱点击破状态下的敌人后，使其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>15%</unbreak></color>的伤害。",
+                  "id": 3111060,
+                  "name": "蔓草难除",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "74c3f90397d9f6d18d32a7040d4eb6a5e34913135cdb6bb97b29002a07f25a18"
+                  "description": "队伍中的第1位角色施放终结技后，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，持续<color=#f29e38ff><unbreak>1</unbreak></color>回合。",
+                  "id": 3111064,
+                  "name": "登锋陷阵",
+                  "order": 3
                 }
               ]
             },
@@ -176,10 +354,18 @@
               "key": "as:30112:MonsterID2",
               "traits": [
                 {
-                  "mechanicRef": "e52b3d7e207d24644f9b2082777d5aff3b7b9e81987336679e2d42eda655c6d0"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101201,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "e213c4489d1eda7c025eb699315d959230c615b6064cb3d581688ec974eabe5f"
+                  "description": "部位受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。当首领幻影被<color=#f29e38ff>弱点击破</color>后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>",
+                  "id": 101202,
+                  "linkedEffects": [],
+                  "name": "铁骨峥嵘",
+                  "order": 2
                 }
               ]
             },
@@ -193,7 +379,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "44b9fdfcb71b58095114171f9ba16cb060075e93d33a2de13a3b2108c134b15a"
+                        "enemyHref": "/enemies/2035012",
+                        "hp": {
+                          "exactPerBar": "1700507.810925",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,700,508"
+                        },
+                        "identity": "[203501202,2035012,\"35805\",\"1\",\"94.98717\",\"0.5\",\"1700507.810925\",\"resolved\",\"1700507.810925\",702,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.4\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"840\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"840\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"280\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[2033022],true,true,false,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 203501202,
+                        "monsterTemplateId": 2035012,
+                        "name": "业火焚心的影将军",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2033020.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "158.4",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "280",
+                          "roundedPerBar": "280"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -212,7 +436,9 @@
       },
       {
         "aftertaste": {
-          "mechanicRef": "84d1161b29726086c3588619d74c1c241744edb831e17aeb19ff553ef0bb0f16"
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、恢复战技点并激活终结技。\n敌方全体受到的持续伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，战技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110011,
+          "name": "末法余烬"
         },
         "battles": [
           {
@@ -220,13 +446,22 @@
               "key": "as:3011:BuffList1",
               "options": [
                 {
-                  "mechanicRef": "85ca747ef5cd3aef63bc1ef55e992876e93c24a803d5fc5d120203ae7a446588"
+                  "description": "我方目标每消耗1个战技点时，使我方全体造成的伤害提高<color=#f29e38ff><unbreak>6%</unbreak></color>，该效果最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层。",
+                  "id": 3111062,
+                  "name": "戮力同心",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "865471c5ae21f939294c19c16a218a789d38a3a95c4359ac85c36b9d571f98e8"
+                  "description": "消灭敌方目标后，敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>4</unbreak></color>层，该效果对所有新上场的敌人也生效。",
+                  "id": 3111063,
+                  "name": "牵丝攀藤",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "3eacd012e1da760e99e86eaf841c2030c0e66a1a95082c9dc6f7380e3b0072a0"
+                  "description": "我方目标消耗自身生命值后，暴击伤害提高<color=#f29e38ff><unbreak>55%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111061,
+                  "name": "破釜沉舟",
+                  "order": 3
                 }
               ]
             },
@@ -234,13 +469,25 @@
               "key": "as:30113:MonsterID1",
               "traits": [
                 {
-                  "mechanicRef": "b55cb1c21592d124d616fcfa0562b36a9020a9293584eae31a12e38f840d8ce8"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101001,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "48c263acf1954b4da24872675c9f7eb7ad14ef98014f5d314f81b60652966222"
+                  "description": "首领幻影在施放【裂地三舍，寸草不留】时，将会消灭其他所有狼卒。",
+                  "id": 101002,
+                  "linkedEffects": [],
+                  "name": "宁枉勿纵",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "cc3c6733aae858746cb1f725bf770117541a6cf20c717d22d3ea0785be7ae657"
+                  "description": "首领幻影在进入第二阶段后，【孤战】期间每回合可再次行动。",
+                  "id": 101003,
+                  "linkedEffects": [],
+                  "name": "狼顾鸱张",
+                  "order": 3
                 }
               ]
             },
@@ -254,7 +501,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "4597beee6b2be002c9e6d30f0e05a0ef63795e82ad110b98365d9b2d1ddd33a7"
+                        "enemyHref": "/enemies/2034014",
+                        "hp": {
+                          "exactPerBar": "1362737.461140",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,362,737"
+                        },
+                        "identity": "[203401403,2034014,\"10230\",\"1\",\"148.01102\",\"0.9\",\"1362737.461140\",\"resolved\",\"1362737.461140\",703,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"160\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"192.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1140\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1140\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"380\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[2032011,2032022],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 203401403,
+                        "monsterTemplateId": 2034014,
+                        "name": "雷奔云谲的恶狼主",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2034010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "192.0",
+                          "rounded": "192"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "380",
+                          "roundedPerBar": "380"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -269,13 +554,22 @@
               "key": "as:3011:BuffList2",
               "options": [
                 {
-                  "mechanicRef": "2e63728253561035591100281a89a44e09975925669a3279630824740f12d9a8"
+                  "description": "我方全体造成的终结技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，对处于弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+                  "id": 3111059,
+                  "name": "抵瑕陷隙",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "032cf099b8eb8dc3a66655c699bb5f0ea89e98012f466b021ec00b2d0b885c72"
+                  "description": "我方全体施放普攻或战技攻击处于弱点击破状态下的敌人后，使其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>15%</unbreak></color>的伤害。",
+                  "id": 3111060,
+                  "name": "蔓草难除",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "74c3f90397d9f6d18d32a7040d4eb6a5e34913135cdb6bb97b29002a07f25a18"
+                  "description": "队伍中的第1位角色施放终结技后，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，持续<color=#f29e38ff><unbreak>1</unbreak></color>回合。",
+                  "id": 3111064,
+                  "name": "登锋陷阵",
+                  "order": 3
                 }
               ]
             },
@@ -283,13 +577,25 @@
               "key": "as:30113:MonsterID2",
               "traits": [
                 {
-                  "mechanicRef": "e52b3d7e207d24644f9b2082777d5aff3b7b9e81987336679e2d42eda655c6d0"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101201,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "e213c4489d1eda7c025eb699315d959230c615b6064cb3d581688ec974eabe5f"
+                  "description": "部位受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。当首领幻影被<color=#f29e38ff>弱点击破</color>后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>",
+                  "id": 101202,
+                  "linkedEffects": [],
+                  "name": "铁骨峥嵘",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "ffdc4906dc4f29456f0ebdc4e5a3286bfdf2f636ba706be4012c035ede8359c7"
+                  "description": "首领幻影的韧性提高<color=#f29e38ff><unbreak>40</unbreak></color>点。",
+                  "id": 101203,
+                  "linkedEffects": [],
+                  "name": "钩爪锯牙",
+                  "order": 3
                 }
               ]
             },
@@ -303,7 +609,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "4d7d8f5eb1b1ed3628a430f143f9f10d8b8273765d2d44730e35adbb8c315682"
+                        "enemyHref": "/enemies/2035012",
+                        "hp": {
+                          "exactPerBar": "4769581.113990",
+                          "phaseCount": 2,
+                          "roundedPerBar": "4,769,581"
+                        },
+                        "identity": "[203501203,2035012,\"35805\",\"1\",\"148.01102\",\"0.9\",\"4769581.113990\",\"resolved\",\"4769581.113990\",703,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"172.8\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"840\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"840\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"280\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[2033022],true,true,false,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 203501203,
+                        "monsterTemplateId": 2035012,
+                        "name": "业火焚心的影将军",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2033020.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "172.8",
+                          "rounded": "173"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "280",
+                          "roundedPerBar": "280"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -322,7 +666,9 @@
       },
       {
         "aftertaste": {
-          "mechanicRef": "84d1161b29726086c3588619d74c1c241744edb831e17aeb19ff553ef0bb0f16"
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体解除控制状态、恢复战技点并激活终结技。\n敌方全体受到的持续伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，战技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110011,
+          "name": "末法余烬"
         },
         "battles": [
           {
@@ -330,13 +676,22 @@
               "key": "as:3011:BuffList1",
               "options": [
                 {
-                  "mechanicRef": "85ca747ef5cd3aef63bc1ef55e992876e93c24a803d5fc5d120203ae7a446588"
+                  "description": "我方目标每消耗1个战技点时，使我方全体造成的伤害提高<color=#f29e38ff><unbreak>6%</unbreak></color>，该效果最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层。",
+                  "id": 3111062,
+                  "name": "戮力同心",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "865471c5ae21f939294c19c16a218a789d38a3a95c4359ac85c36b9d571f98e8"
+                  "description": "消灭敌方目标后，敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>4</unbreak></color>层，该效果对所有新上场的敌人也生效。",
+                  "id": 3111063,
+                  "name": "牵丝攀藤",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "3eacd012e1da760e99e86eaf841c2030c0e66a1a95082c9dc6f7380e3b0072a0"
+                  "description": "我方目标消耗自身生命值后，暴击伤害提高<color=#f29e38ff><unbreak>55%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+                  "id": 3111061,
+                  "name": "破釜沉舟",
+                  "order": 3
                 }
               ]
             },
@@ -344,16 +699,32 @@
               "key": "as:30114:MonsterID1",
               "traits": [
                 {
-                  "mechanicRef": "b55cb1c21592d124d616fcfa0562b36a9020a9293584eae31a12e38f840d8ce8"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101001,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "48c263acf1954b4da24872675c9f7eb7ad14ef98014f5d314f81b60652966222"
+                  "description": "首领幻影在施放【裂地三舍，寸草不留】时，将会消灭其他所有狼卒。",
+                  "id": 101002,
+                  "linkedEffects": [],
+                  "name": "宁枉勿纵",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "cc3c6733aae858746cb1f725bf770117541a6cf20c717d22d3ea0785be7ae657"
+                  "description": "首领幻影在进入第二阶段后，【孤战】期间每回合可再次行动。",
+                  "id": 101003,
+                  "linkedEffects": [],
+                  "name": "狼顾鸱张",
+                  "order": 3
                 },
                 {
-                  "mechanicRef": "0c65e102fe3dd4a3bfff7ffbe74c82ef7144a36c82467061ed47739addd744b1"
+                  "description": "首领幻影在进入【孤战】后，受到的伤害额外降低<color=#f29e38ff><unbreak>60%</unbreak></color>。",
+                  "id": 101004,
+                  "linkedEffects": [],
+                  "name": "至死方休",
+                  "order": 4
                 }
               ]
             },
@@ -367,7 +738,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "592e26ad2d2b3b6b6cca04b996867ff0f8fd438feb201355c3e8a5bdc9e0b614"
+                        "enemyHref": "/enemies/2034014",
+                        "hp": {
+                          "exactPerBar": "3387650.116620",
+                          "phaseCount": 2,
+                          "roundedPerBar": "3,387,650"
+                        },
+                        "identity": "[203401404,2034014,\"10230\",\"1\",\"236.53471\",\"1.4\",\"3387650.116620\",\"resolved\",\"3387650.116620\",84,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"160\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"211.20\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1140\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1140\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"380\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[2032011,2032022],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 203401404,
+                        "monsterTemplateId": 2034014,
+                        "name": "雷奔云谲的恶狼主",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2034010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "211.20",
+                          "rounded": "211"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "380",
+                          "roundedPerBar": "380"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -382,13 +791,22 @@
               "key": "as:3011:BuffList2",
               "options": [
                 {
-                  "mechanicRef": "2e63728253561035591100281a89a44e09975925669a3279630824740f12d9a8"
+                  "description": "我方全体造成的终结技伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，对处于弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+                  "id": 3111059,
+                  "name": "抵瑕陷隙",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "032cf099b8eb8dc3a66655c699bb5f0ea89e98012f466b021ec00b2d0b885c72"
+                  "description": "我方全体施放普攻或战技攻击处于弱点击破状态下的敌人后，使其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>15%</unbreak></color>的伤害。",
+                  "id": 3111060,
+                  "name": "蔓草难除",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "74c3f90397d9f6d18d32a7040d4eb6a5e34913135cdb6bb97b29002a07f25a18"
+                  "description": "队伍中的第1位角色施放终结技后，使自身的弱点击破效率提高<color=#f29e38ff><unbreak>50%</unbreak></color>，暴击伤害提高<color=#f29e38ff><unbreak>50%</unbreak></color>，持续<color=#f29e38ff><unbreak>1</unbreak></color>回合。",
+                  "id": 3111064,
+                  "name": "登锋陷阵",
+                  "order": 3
                 }
               ]
             },
@@ -396,16 +814,32 @@
               "key": "as:30114:MonsterID2",
               "traits": [
                 {
-                  "mechanicRef": "e52b3d7e207d24644f9b2082777d5aff3b7b9e81987336679e2d42eda655c6d0"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 101201,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "e213c4489d1eda7c025eb699315d959230c615b6064cb3d581688ec974eabe5f"
+                  "description": "部位受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。当首领幻影被<color=#f29e38ff>弱点击破</color>后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>",
+                  "id": 101202,
+                  "linkedEffects": [],
+                  "name": "铁骨峥嵘",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "ffdc4906dc4f29456f0ebdc4e5a3286bfdf2f636ba706be4012c035ede8359c7"
+                  "description": "首领幻影的韧性提高<color=#f29e38ff><unbreak>40</unbreak></color>点。",
+                  "id": 101203,
+                  "linkedEffects": [],
+                  "name": "钩爪锯牙",
+                  "order": 3
                 },
                 {
-                  "mechanicRef": "e7d31b54aaff34648316dea6cc7f0511d6aa8d841cd34c6e666fd8b78ea46225"
+                  "description": "<color=#f29e38ff>【厉咒】</color>状态的持续时间延长<color=#f29e38ff><unbreak>1</unbreak></color>回合。",
+                  "id": 101204,
+                  "linkedEffects": [],
+                  "name": "兽血沸腾",
+                  "order": 4
                 }
               ]
             },
@@ -419,7 +853,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "5dad3d936d84cff8ad81c2a653cab6bfbf364068550d36bb93e50161ecf9e434"
+                        "enemyHref": "/enemies/2035012",
+                        "hp": {
+                          "exactPerBar": "8469125.29155",
+                          "phaseCount": 2,
+                          "roundedPerBar": "8,469,125"
+                        },
+                        "identity": "[203501204,2035012,\"35805\",\"1\",\"236.53471\",\"1\",\"8469125.29155\",\"resolved\",\"8469125.29155\",704,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"190.08\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"840\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"840\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"280\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[2033022],true,true,false,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 203501204,
+                        "monsterTemplateId": 2035012,
+                        "name": "业火焚心的影将军",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_2033020.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "190.08",
+                          "rounded": "190"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "280",
+                          "roundedPerBar": "280"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -589,1093 +1061,5 @@
       }
     ]
   },
-  "route": "/endgame/as/3011",
-  "source": {
-    "axiomSets": [
-      {
-        "key": "as:3011:BuffList1",
-        "options": [
-          {
-            "buff": {
-              "mechanicRef": "5b0f70f957981900e01e8112d8c9483289056ef20826af33b6544724764624a7"
-            },
-            "order": 1,
-            "provenance": {
-              "arrayIndex": 0,
-              "field": "BuffList1",
-              "ownerId": 3011,
-              "table": "ChallengeBossGroupExtra"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "e82bb1c7aeff8e8aed2d40de0aa846002713fb48fe2c522df583ba24bf9aa48f"
-            },
-            "order": 2,
-            "provenance": {
-              "arrayIndex": 1,
-              "field": "BuffList1",
-              "ownerId": 3011,
-              "table": "ChallengeBossGroupExtra"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "0ae76ba623c4e2244a866fcd51100f580c033c9f3a8ed3684542ee3eacedcc32"
-            },
-            "order": 3,
-            "provenance": {
-              "arrayIndex": 2,
-              "field": "BuffList1",
-              "ownerId": 3011,
-              "table": "ChallengeBossGroupExtra"
-            }
-          }
-        ],
-        "provenance": {
-          "field": "BuffList1",
-          "ownerId": 3011,
-          "table": "ChallengeBossGroupExtra"
-        },
-        "selectCount": 1,
-        "slot": 1
-      },
-      {
-        "key": "as:3011:BuffList2",
-        "options": [
-          {
-            "buff": {
-              "mechanicRef": "908fa1c6cd2a8a68324a2fa6cd68df1434e62709942cae944827a57032bb9b16"
-            },
-            "order": 1,
-            "provenance": {
-              "arrayIndex": 0,
-              "field": "BuffList2",
-              "ownerId": 3011,
-              "table": "ChallengeBossGroupExtra"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "bac6b8bf139209c573e03ace7fb84fc7f9286e84a835997cbf9b27bad161f536"
-            },
-            "order": 2,
-            "provenance": {
-              "arrayIndex": 1,
-              "field": "BuffList2",
-              "ownerId": 3011,
-              "table": "ChallengeBossGroupExtra"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "7fa0e116f8ca63a4c75f1472a38ec6406830ea4d6aa74420d5cb8a02674628fd"
-            },
-            "order": 3,
-            "provenance": {
-              "arrayIndex": 2,
-              "field": "BuffList2",
-              "ownerId": 3011,
-              "table": "ChallengeBossGroupExtra"
-            }
-          }
-        ],
-        "provenance": {
-          "field": "BuffList2",
-          "ownerId": 3011,
-          "table": "ChallengeBossGroupExtra"
-        },
-        "selectCount": 1,
-        "slot": 2
-      }
-    ],
-    "encounters": [
-      {
-        "aftertaste": {
-          "buff": {
-            "mechanicRef": "b5f15a85d959ef7f7c2187b19c1f45bde123c4236acae8a62a08cf4ad89b4db1"
-          },
-          "groupReference": {
-            "mazeBuffId": 3031001,
-            "provenance": {
-              "field": "MazeBuffID",
-              "ownerId": 3011,
-              "table": "ChallengeBossGroupConfig"
-            }
-          },
-          "provenance": {
-            "field": "MazeBuffID",
-            "ownerId": 30111,
-            "table": "ChallengeBossMazeConfig"
-          },
-          "stageBindings": [
-            {
-              "eventId": 420311,
-              "mazeBuffId": 3110011,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420311,
-                "table": "StageConfig"
-              },
-              "slot": 1,
-              "stageId": 420311
-            },
-            {
-              "eventId": 420301,
-              "mazeBuffId": 3110011,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420301,
-                "table": "StageConfig"
-              },
-              "slot": 2,
-              "stageId": 420301
-            }
-          ]
-        },
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 420311,
-                "hardLevelGroup": 1,
-                "level": 60,
-                "previewMonsterIds": [
-                  203401401
-                ],
-                "stageAbilities": [],
-                "stageId": 420311,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "1e30b950a264cd214447b35959af2b73456256d7da40bb57f4e6994ce58604a5"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "slot": 2,
-            "stages": [
-              {
-                "eventId": 420301,
-                "hardLevelGroup": 1,
-                "level": 60,
-                "previewMonsterIds": [
-                  203501201
-                ],
-                "stageAbilities": [],
-                "stageId": 420301,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "c1e11df6644235f3e6efadc560ea06792edaea360efc6b7eece5c943a2a20507"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "bossGuides": [
-          {
-            "difficulty": 1,
-            "guideMonsterId": 203401401,
-            "key": "as:30111:MonsterID1",
-            "provenance": {
-              "field": "MonsterID1",
-              "ownerId": 30111,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 1,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "11143411360107452753",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "18036736500639073953",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 203401401,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101001
-              },
-              {
-                "description": "首领幻影在施放【裂地三舍，寸草不留】时，将会消灭其他所有狼卒。",
-                "descriptionHash": "6534561741073401417",
-                "linkedEffects": [],
-                "name": "宁枉勿纵",
-                "nameHash": "4409825344027423772",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 203401401,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101002
-              }
-            ]
-          },
-          {
-            "difficulty": 1,
-            "guideMonsterId": 203302201,
-            "key": "as:30111:MonsterID2",
-            "provenance": {
-              "field": "MonsterID2",
-              "ownerId": 30111,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 2,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "16983361069869646035",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "2324318804734109750",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 203302201,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101201
-              },
-              {
-                "description": "部位受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。当首领幻影被<color=#f29e38ff>弱点击破</color>后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>",
-                "descriptionHash": "2853893152849158741",
-                "linkedEffects": [],
-                "name": "铁骨峥嵘",
-                "nameHash": "11179343786989829370",
-                "order": 2,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 203302201,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101202
-              }
-            ]
-          }
-        ],
-        "configId": 30111,
-        "id": "30111",
-        "name": "天狼战首·难度<unbreak>01</unbreak>",
-        "ordinal": 1,
-        "variant": "floor"
-      },
-      {
-        "aftertaste": {
-          "buff": {
-            "mechanicRef": "b5f15a85d959ef7f7c2187b19c1f45bde123c4236acae8a62a08cf4ad89b4db1"
-          },
-          "groupReference": {
-            "mazeBuffId": 3031001,
-            "provenance": {
-              "field": "MazeBuffID",
-              "ownerId": 3011,
-              "table": "ChallengeBossGroupConfig"
-            }
-          },
-          "provenance": {
-            "field": "MazeBuffID",
-            "ownerId": 30112,
-            "table": "ChallengeBossMazeConfig"
-          },
-          "stageBindings": [
-            {
-              "eventId": 420312,
-              "mazeBuffId": 3110011,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420312,
-                "table": "StageConfig"
-              },
-              "slot": 1,
-              "stageId": 420312
-            },
-            {
-              "eventId": 420302,
-              "mazeBuffId": 3110011,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420302,
-                "table": "StageConfig"
-              },
-              "slot": 2,
-              "stageId": 420302
-            }
-          ]
-        },
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 420312,
-                "hardLevelGroup": 1,
-                "level": 70,
-                "previewMonsterIds": [
-                  203401402
-                ],
-                "stageAbilities": [],
-                "stageId": 420312,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "1afabb1777d8f433ede1e243245d4cfe0f80cb0910739b73813d5e8f7b797330"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "slot": 2,
-            "stages": [
-              {
-                "eventId": 420302,
-                "hardLevelGroup": 1,
-                "level": 70,
-                "previewMonsterIds": [
-                  203501202
-                ],
-                "stageAbilities": [],
-                "stageId": 420302,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "9e9f3d58178c1bc233b612e648368d99af648cd9e2d06f1f0ae7c232afdd80aa"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "bossGuides": [
-          {
-            "difficulty": 2,
-            "guideMonsterId": 203401402,
-            "key": "as:30112:MonsterID1",
-            "provenance": {
-              "field": "MonsterID1",
-              "ownerId": 30112,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 1,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "11143411360107452753",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "18036736500639073953",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 203401402,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101001
-              },
-              {
-                "description": "首领幻影在施放【裂地三舍，寸草不留】时，将会消灭其他所有狼卒。",
-                "descriptionHash": "6534561741073401417",
-                "linkedEffects": [],
-                "name": "宁枉勿纵",
-                "nameHash": "4409825344027423772",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 203401402,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101002
-              }
-            ]
-          },
-          {
-            "difficulty": 2,
-            "guideMonsterId": 203302202,
-            "key": "as:30112:MonsterID2",
-            "provenance": {
-              "field": "MonsterID2",
-              "ownerId": 30112,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 2,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "16983361069869646035",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "2324318804734109750",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 203302202,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101201
-              },
-              {
-                "description": "部位受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。当首领幻影被<color=#f29e38ff>弱点击破</color>后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>",
-                "descriptionHash": "2853893152849158741",
-                "linkedEffects": [],
-                "name": "铁骨峥嵘",
-                "nameHash": "11179343786989829370",
-                "order": 2,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 203302202,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101202
-              }
-            ]
-          }
-        ],
-        "configId": 30112,
-        "id": "30112",
-        "name": "天狼战首·难度<unbreak>02</unbreak>",
-        "ordinal": 2,
-        "variant": "floor"
-      },
-      {
-        "aftertaste": {
-          "buff": {
-            "mechanicRef": "b5f15a85d959ef7f7c2187b19c1f45bde123c4236acae8a62a08cf4ad89b4db1"
-          },
-          "groupReference": {
-            "mazeBuffId": 3031001,
-            "provenance": {
-              "field": "MazeBuffID",
-              "ownerId": 3011,
-              "table": "ChallengeBossGroupConfig"
-            }
-          },
-          "provenance": {
-            "field": "MazeBuffID",
-            "ownerId": 30113,
-            "table": "ChallengeBossMazeConfig"
-          },
-          "stageBindings": [
-            {
-              "eventId": 420313,
-              "mazeBuffId": 3110011,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420313,
-                "table": "StageConfig"
-              },
-              "slot": 1,
-              "stageId": 420313
-            },
-            {
-              "eventId": 420303,
-              "mazeBuffId": 3110011,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420303,
-                "table": "StageConfig"
-              },
-              "slot": 2,
-              "stageId": 420303
-            }
-          ]
-        },
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 420313,
-                "hardLevelGroup": 1,
-                "level": 80,
-                "previewMonsterIds": [
-                  203401403
-                ],
-                "stageAbilities": [],
-                "stageId": 420313,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "dd134779d53c747d0aff0fe3bf3d79fc280009bb27aac964796b993e51b90744"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "slot": 2,
-            "stages": [
-              {
-                "eventId": 420303,
-                "hardLevelGroup": 1,
-                "level": 80,
-                "previewMonsterIds": [
-                  203501203
-                ],
-                "stageAbilities": [],
-                "stageId": 420303,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "180f2f2504624e8c37cd0742e0c4f07ebe3e6b35df1bc29213dde8a6024e2fa1"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "bossGuides": [
-          {
-            "difficulty": 3,
-            "guideMonsterId": 203401403,
-            "key": "as:30113:MonsterID1",
-            "provenance": {
-              "field": "MonsterID1",
-              "ownerId": 30113,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 1,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "11143411360107452753",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "18036736500639073953",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 203401403,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101001
-              },
-              {
-                "description": "首领幻影在施放【裂地三舍，寸草不留】时，将会消灭其他所有狼卒。",
-                "descriptionHash": "6534561741073401417",
-                "linkedEffects": [],
-                "name": "宁枉勿纵",
-                "nameHash": "4409825344027423772",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 203401403,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101002
-              },
-              {
-                "description": "首领幻影在进入第二阶段后，【孤战】期间每回合可再次行动。",
-                "descriptionHash": "1681368725544574385",
-                "linkedEffects": [],
-                "name": "狼顾鸱张",
-                "nameHash": "7601134478702254487",
-                "order": 3,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 2,
-                  "field": "TagList",
-                  "ownerId": 203401403,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 3,
-                "tagId": 101003
-              }
-            ]
-          },
-          {
-            "difficulty": 3,
-            "guideMonsterId": 203302203,
-            "key": "as:30113:MonsterID2",
-            "provenance": {
-              "field": "MonsterID2",
-              "ownerId": 30113,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 2,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "16983361069869646035",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "2324318804734109750",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 203302203,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101201
-              },
-              {
-                "description": "部位受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。当首领幻影被<color=#f29e38ff>弱点击破</color>后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>",
-                "descriptionHash": "2853893152849158741",
-                "linkedEffects": [],
-                "name": "铁骨峥嵘",
-                "nameHash": "11179343786989829370",
-                "order": 2,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 203302203,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101202
-              },
-              {
-                "description": "首领幻影的韧性提高<color=#f29e38ff><unbreak>40</unbreak></color>点。",
-                "descriptionHash": "10704424853870703465",
-                "linkedEffects": [],
-                "name": "钩爪锯牙",
-                "nameHash": "11996522570271017298",
-                "order": 3,
-                "params": [
-                  "40"
-                ],
-                "provenance": {
-                  "arrayIndex": 2,
-                  "field": "TagList",
-                  "ownerId": 203302203,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 3,
-                "tagId": 101203
-              }
-            ]
-          }
-        ],
-        "configId": 30113,
-        "id": "30113",
-        "name": "天狼战首·难度<unbreak>03</unbreak>",
-        "ordinal": 3,
-        "variant": "floor"
-      },
-      {
-        "aftertaste": {
-          "buff": {
-            "mechanicRef": "b5f15a85d959ef7f7c2187b19c1f45bde123c4236acae8a62a08cf4ad89b4db1"
-          },
-          "groupReference": {
-            "mazeBuffId": 3031001,
-            "provenance": {
-              "field": "MazeBuffID",
-              "ownerId": 3011,
-              "table": "ChallengeBossGroupConfig"
-            }
-          },
-          "provenance": {
-            "field": "MazeBuffID",
-            "ownerId": 30114,
-            "table": "ChallengeBossMazeConfig"
-          },
-          "stageBindings": [
-            {
-              "eventId": 420314,
-              "mazeBuffId": 3110011,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420314,
-                "table": "StageConfig"
-              },
-              "slot": 1,
-              "stageId": 420314
-            },
-            {
-              "eventId": 420304,
-              "mazeBuffId": 3110011,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420304,
-                "table": "StageConfig"
-              },
-              "slot": 2,
-              "stageId": 420304
-            }
-          ]
-        },
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 420314,
-                "hardLevelGroup": 1,
-                "level": 90,
-                "previewMonsterIds": [
-                  203401404
-                ],
-                "stageAbilities": [],
-                "stageId": 420314,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "a72b7348f1a3c94f948da3fe37048361418a24399cf59faeb80b58d4794e7f9a"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "slot": 2,
-            "stages": [
-              {
-                "eventId": 420304,
-                "hardLevelGroup": 1,
-                "level": 90,
-                "previewMonsterIds": [
-                  203501204
-                ],
-                "stageAbilities": [],
-                "stageId": 420304,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "7d64eb70ed8518cfbb5a01ffe4738f7feb1ddf5210d2c756adc6e7b1ac38e523"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "bossGuides": [
-          {
-            "difficulty": 4,
-            "guideMonsterId": 203401404,
-            "key": "as:30114:MonsterID1",
-            "provenance": {
-              "field": "MonsterID1",
-              "ownerId": 30114,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 1,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "11143411360107452753",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "18036736500639073953",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 203401404,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101001
-              },
-              {
-                "description": "首领幻影在施放【裂地三舍，寸草不留】时，将会消灭其他所有狼卒。",
-                "descriptionHash": "6534561741073401417",
-                "linkedEffects": [],
-                "name": "宁枉勿纵",
-                "nameHash": "4409825344027423772",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 203401404,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101002
-              },
-              {
-                "description": "首领幻影在进入第二阶段后，【孤战】期间每回合可再次行动。",
-                "descriptionHash": "1681368725544574385",
-                "linkedEffects": [],
-                "name": "狼顾鸱张",
-                "nameHash": "7601134478702254487",
-                "order": 3,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 2,
-                  "field": "TagList",
-                  "ownerId": 203401404,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 3,
-                "tagId": 101003
-              },
-              {
-                "description": "首领幻影在进入【孤战】后，受到的伤害额外降低<color=#f29e38ff><unbreak>60%</unbreak></color>。",
-                "descriptionHash": "5956050250187019445",
-                "linkedEffects": [],
-                "name": "至死方休",
-                "nameHash": "17761644089502925569",
-                "order": 4,
-                "params": [
-                  "0.6"
-                ],
-                "provenance": {
-                  "arrayIndex": 3,
-                  "field": "TagList",
-                  "ownerId": 203401404,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 4,
-                "tagId": 101004
-              }
-            ]
-          },
-          {
-            "difficulty": 4,
-            "guideMonsterId": 203302204,
-            "key": "as:30114:MonsterID2",
-            "provenance": {
-              "field": "MonsterID2",
-              "ownerId": 30114,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 2,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "16983361069869646035",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "2324318804734109750",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 203302204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101201
-              },
-              {
-                "description": "部位受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。当首领幻影被<color=#f29e38ff>弱点击破</color>后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>",
-                "descriptionHash": "2853893152849158741",
-                "linkedEffects": [],
-                "name": "铁骨峥嵘",
-                "nameHash": "11179343786989829370",
-                "order": 2,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 203302204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 101202
-              },
-              {
-                "description": "首领幻影的韧性提高<color=#f29e38ff><unbreak>40</unbreak></color>点。",
-                "descriptionHash": "10704424853870703465",
-                "linkedEffects": [],
-                "name": "钩爪锯牙",
-                "nameHash": "11996522570271017298",
-                "order": 3,
-                "params": [
-                  "40"
-                ],
-                "provenance": {
-                  "arrayIndex": 2,
-                  "field": "TagList",
-                  "ownerId": 203302204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 3,
-                "tagId": 101203
-              },
-              {
-                "description": "<color=#f29e38ff>【厉咒】</color>状态的持续时间延长<color=#f29e38ff><unbreak>1</unbreak></color>回合。",
-                "descriptionHash": "5213706157039050559",
-                "linkedEffects": [],
-                "name": "兽血沸腾",
-                "nameHash": "6441027699307318818",
-                "order": 4,
-                "params": [
-                  "1"
-                ],
-                "provenance": {
-                  "arrayIndex": 3,
-                  "field": "TagList",
-                  "ownerId": 203302204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 4,
-                "tagId": 101204
-              }
-            ]
-          }
-        ],
-        "configId": 30114,
-        "id": "30114",
-        "name": "天狼战首·难度<unbreak>04</unbreak>",
-        "ordinal": 4,
-        "variant": "floor"
-      }
-    ],
-    "groupId": 3011,
-    "mode": "as",
-    "name": "天狼战首",
-    "recommendationEligible": true,
-    "schedule": {
-      "begin": "2025-08-18 04:00:00",
-      "end": "2025-09-29 04:00:00"
-    }
-  }
+  "route": "/endgame/as/3011"
 }

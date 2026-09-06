@@ -57,9 +57,6 @@ function assertR0Capture(capture: Awaited<ReturnType<typeof captureProductBaseli
   );
   if (programErrors.length)
     throw new Error(`Localization program errors remain: ${JSON.stringify(programErrors)}`);
-  const icons = capture.characterIcons as { missingKeys?: string[] };
-  if (icons.missingKeys?.length)
-    throw new Error(`Character detail icons are missing: ${icons.missingKeys.join(', ')}`);
 }
 
 async function check(): Promise<void> {

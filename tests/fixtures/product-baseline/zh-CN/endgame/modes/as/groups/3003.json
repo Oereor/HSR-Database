@@ -4,7 +4,9 @@
     "encounters": [
       {
         "aftertaste": {
-          "mechanicRef": "ae61676b9dd17dbab5d2ae88ee421959ef5ff44c019b8e9923bc979e37d5585e"
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体行动提前并恢复战技点。\n敌方全体受到的追加攻击伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，终结技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110003,
+          "name": "末法余烬"
         },
         "battles": [
           {
@@ -12,13 +14,22 @@
               "key": "as:3003:BuffList1",
               "options": [
                 {
-                  "mechanicRef": "4dae9312853d5a2dec865d5372825592e8629320f74d0a7fc95a97f21d9d0382"
+                  "description": "角色造成的追加攻击伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的全属性抗性，同时对非弱点目标也能削减韧性，效果等同于原技能削韧值的<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111021,
+                  "name": "时来运转",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "f5a8f796cedce282910a673a2e435effeefd1b02559a512d940f86dff61d1342"
+                  "description": "角色造成的冰属性伤害提高<color=#f29e38ff><unbreak>55%</unbreak></color>。",
+                  "id": 3111022,
+                  "name": "千金一掷",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "770f2bb90f225de77e4f4573a7fac1bc91bfe1feab2a42fcb41990c8ecfa2455"
+                  "description": "角色击破敌方目标弱点时，行动提前<color=#f29e38ff><unbreak>15%</unbreak></color>，该效果每回合最多触发<color=#f29e38ff><unbreak>1</unbreak></color>次。",
+                  "id": 3111023,
+                  "name": "追亡逐北",
+                  "order": 3
                 }
               ]
             },
@@ -26,10 +37,24 @@
               "key": "as:30031:MonsterID1",
               "traits": [
                 {
-                  "mechanicRef": "c035faf2a5f0e008853929d3bfe12c55d0ba9b34b531a099133f9d432a7a92eb"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 100501,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "ea64ffa519b6b8563dbf75a73961c2c3cab125f7ecf82f9e86f2896b9268efea"
+                  "description": "首领幻影的技能会赋予所有我方和敌方单位<color=#f29e38ff><u>点数</u></color>",
+                  "id": 100502,
+                  "linkedEffects": [
+                    {
+                      "description": "敌方目标点数大于我方时，受到的伤害大幅降低，并获得韧性保护。我方角色攻击【点数】比自身低的敌方目标时，我方【点数】越高，敌方目标受到的伤害越高。点数的上限为<unbreak>100</unbreak>。",
+                      "id": "70000311",
+                      "name": "点数"
+                    }
+                  ],
+                  "name": "点数竞赛",
+                  "order": 2
                 }
               ]
             },
@@ -43,7 +68,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "c2e9ba748f74810c09a9e96dae24637e40ee45038b21f72926c596727e143547"
+                        "enemyHref": "/enemies/8034012",
+                        "hp": {
+                          "exactPerBar": "107260.688587500",
+                          "phaseCount": 2,
+                          "roundedPerBar": "107,261"
+                        },
+                        "identity": "[803401201,8034012,\"8137.5\",\"1\",\"52.724148\",\"0.25\",\"107260.688587500\",\"resolved\",\"107260.688587500\",701,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"570\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-60\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"510\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"170\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[803203301,803203401],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 803401201,
+                        "monsterTemplateId": 8034012,
+                        "name": "孤注一掷的掷骰者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8034010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "170",
+                          "roundedPerBar": "170"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -58,13 +121,22 @@
               "key": "as:3003:BuffList2",
               "options": [
                 {
-                  "mechanicRef": "9bc50b5e93a102eaea1f6a08fc182548c8bd3c5109f8c0438f6b3ae8ae499a52"
+                  "description": "角色攻击处于弱点击破状态下的敌人后，其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>80%</unbreak></color>的伤害，该效果单个回合内每个角色各自最多触发<color=#f29e38ff><unbreak>2</unbreak></color>次。",
+                  "id": 3111018,
+                  "name": "寸草不生",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "9f86c1f3f7dcd320a5912677c5089cfb2822eabed8e7cbc74cfd31635fe69bdb"
+                  "description": "消灭敌方目标后，敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>5%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>5</unbreak></color>层，该效果对所有新上场的敌人也生效。",
+                  "id": 3111019,
+                  "name": "牵丝攀藤",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "3fa8df76e8eb16f567de228cf3c28a9d899d512ffedc37800be0e7c4ab57fbe9"
+                  "description": "造成的终结技伤害的暴击伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，对处于弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+                  "id": 3111020,
+                  "name": "势如破竹",
+                  "order": 3
                 }
               ]
             },
@@ -72,10 +144,24 @@
               "key": "as:30031:MonsterID2",
               "traits": [
                 {
-                  "mechanicRef": "7003e97de04a2df22b9791ae25eab642058f73e2ab9154d35447b87229006ac0"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100601,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "87ed1916346b2faa976b130c9686034e2fa9676eecda8dfba3e316ba7e457fd2"
+                  "description": "召唤新的【玄莲】时，首领幻影会进入<color=#f29e38ff><u>韧性保护</u></color>状态。消灭任意召唤物会使首领幻影的韧性保护解除，并且对首领幻影造成额外韧性削减。",
+                  "id": 100602,
+                  "linkedEffects": [
+                    {
+                      "description": "韧性值无法受到削减。",
+                      "id": "70000305",
+                      "name": "韧性保护"
+                    }
+                  ],
+                  "name": "移花接木",
+                  "order": 2
                 }
               ]
             },
@@ -89,7 +175,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "c6609a2af7d094b65ac3a14a4354ce9b121a062f475389283bbf362203a09655"
+                        "enemyHref": "/enemies/8015022",
+                        "hp": {
+                          "exactPerBar": "98066.91528000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "98,067"
+                        },
+                        "identity": "[801502201,8015022,\"7440\",\"1\",\"52.724148\",\"0.25\",\"98066.91528000\",\"resolved\",\"98066.91528000\",701,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1\",\"eliteRatio\":\"1\",\"configuredValue\":\"120\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1140\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1140\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"380\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[8012204,8012214],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 801502201,
+                        "monsterTemplateId": 8015022,
+                        "name": "乘间抵隙的煽动者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8015020.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "120",
+                          "rounded": "120"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "380",
+                          "roundedPerBar": "380"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -108,7 +232,9 @@
       },
       {
         "aftertaste": {
-          "mechanicRef": "ae61676b9dd17dbab5d2ae88ee421959ef5ff44c019b8e9923bc979e37d5585e"
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体行动提前并恢复战技点。\n敌方全体受到的追加攻击伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，终结技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110003,
+          "name": "末法余烬"
         },
         "battles": [
           {
@@ -116,13 +242,22 @@
               "key": "as:3003:BuffList1",
               "options": [
                 {
-                  "mechanicRef": "4dae9312853d5a2dec865d5372825592e8629320f74d0a7fc95a97f21d9d0382"
+                  "description": "角色造成的追加攻击伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的全属性抗性，同时对非弱点目标也能削减韧性，效果等同于原技能削韧值的<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111021,
+                  "name": "时来运转",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "f5a8f796cedce282910a673a2e435effeefd1b02559a512d940f86dff61d1342"
+                  "description": "角色造成的冰属性伤害提高<color=#f29e38ff><unbreak>55%</unbreak></color>。",
+                  "id": 3111022,
+                  "name": "千金一掷",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "770f2bb90f225de77e4f4573a7fac1bc91bfe1feab2a42fcb41990c8ecfa2455"
+                  "description": "角色击破敌方目标弱点时，行动提前<color=#f29e38ff><unbreak>15%</unbreak></color>，该效果每回合最多触发<color=#f29e38ff><unbreak>1</unbreak></color>次。",
+                  "id": 3111023,
+                  "name": "追亡逐北",
+                  "order": 3
                 }
               ]
             },
@@ -130,10 +265,24 @@
               "key": "as:30032:MonsterID1",
               "traits": [
                 {
-                  "mechanicRef": "c035faf2a5f0e008853929d3bfe12c55d0ba9b34b531a099133f9d432a7a92eb"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 100501,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "ea64ffa519b6b8563dbf75a73961c2c3cab125f7ecf82f9e86f2896b9268efea"
+                  "description": "首领幻影的技能会赋予所有我方和敌方单位<color=#f29e38ff><u>点数</u></color>",
+                  "id": 100502,
+                  "linkedEffects": [
+                    {
+                      "description": "敌方目标点数大于我方时，受到的伤害大幅降低，并获得韧性保护。我方角色攻击【点数】比自身低的敌方目标时，我方【点数】越高，敌方目标受到的伤害越高。点数的上限为<unbreak>100</unbreak>。",
+                      "id": "70000311",
+                      "name": "点数"
+                    }
+                  ],
+                  "name": "点数竞赛",
+                  "order": 2
                 }
               ]
             },
@@ -147,7 +296,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "9eda0b5f7ce810d0ae390044efc30a7be07c99dffe745f158c92b79a36a168e2"
+                        "enemyHref": "/enemies/8034012",
+                        "hp": {
+                          "exactPerBar": "386479.0479375",
+                          "phaseCount": 2,
+                          "roundedPerBar": "386,479"
+                        },
+                        "identity": "[803401202,8034012,\"8137.5\",\"1\",\"94.98717\",\"0.5\",\"386479.0479375\",\"resolved\",\"386479.0479375\",702,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"570\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-60\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"510\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"170\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[803203302,803203402],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 803401202,
+                        "monsterTemplateId": 8034012,
+                        "name": "孤注一掷的掷骰者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8034010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "132.0",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "170",
+                          "roundedPerBar": "170"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -162,13 +349,22 @@
               "key": "as:3003:BuffList2",
               "options": [
                 {
-                  "mechanicRef": "9bc50b5e93a102eaea1f6a08fc182548c8bd3c5109f8c0438f6b3ae8ae499a52"
+                  "description": "角色攻击处于弱点击破状态下的敌人后，其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>80%</unbreak></color>的伤害，该效果单个回合内每个角色各自最多触发<color=#f29e38ff><unbreak>2</unbreak></color>次。",
+                  "id": 3111018,
+                  "name": "寸草不生",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "9f86c1f3f7dcd320a5912677c5089cfb2822eabed8e7cbc74cfd31635fe69bdb"
+                  "description": "消灭敌方目标后，敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>5%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>5</unbreak></color>层，该效果对所有新上场的敌人也生效。",
+                  "id": 3111019,
+                  "name": "牵丝攀藤",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "3fa8df76e8eb16f567de228cf3c28a9d899d512ffedc37800be0e7c4ab57fbe9"
+                  "description": "造成的终结技伤害的暴击伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，对处于弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+                  "id": 3111020,
+                  "name": "势如破竹",
+                  "order": 3
                 }
               ]
             },
@@ -176,10 +372,24 @@
               "key": "as:30032:MonsterID2",
               "traits": [
                 {
-                  "mechanicRef": "7003e97de04a2df22b9791ae25eab642058f73e2ab9154d35447b87229006ac0"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100601,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "87ed1916346b2faa976b130c9686034e2fa9676eecda8dfba3e316ba7e457fd2"
+                  "description": "召唤新的【玄莲】时，首领幻影会进入<color=#f29e38ff><u>韧性保护</u></color>状态。消灭任意召唤物会使首领幻影的韧性保护解除，并且对首领幻影造成额外韧性削减。",
+                  "id": 100602,
+                  "linkedEffects": [
+                    {
+                      "description": "韧性值无法受到削减。",
+                      "id": "70000305",
+                      "name": "韧性保护"
+                    }
+                  ],
+                  "name": "移花接木",
+                  "order": 2
                 }
               ]
             },
@@ -193,7 +403,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "de5be3447df2af77e4b35d0d84987eb5b8b1e8ecf3d6fbe256ca09120a01e3e2"
+                        "enemyHref": "/enemies/8015022",
+                        "hp": {
+                          "exactPerBar": "353352.272400",
+                          "phaseCount": 2,
+                          "roundedPerBar": "353,352"
+                        },
+                        "identity": "[801502202,8015022,\"7440\",\"1\",\"94.98717\",\"0.5\",\"353352.272400\",\"resolved\",\"353352.272400\",702,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.1\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1140\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1140\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"380\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[8012204,8012214],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 801502202,
+                        "monsterTemplateId": 8015022,
+                        "name": "乘间抵隙的煽动者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8015020.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "132.0",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "380",
+                          "roundedPerBar": "380"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -212,7 +460,9 @@
       },
       {
         "aftertaste": {
-          "mechanicRef": "ae61676b9dd17dbab5d2ae88ee421959ef5ff44c019b8e9923bc979e37d5585e"
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体行动提前并恢复战技点。\n敌方全体受到的追加攻击伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，终结技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110003,
+          "name": "末法余烬"
         },
         "battles": [
           {
@@ -220,13 +470,22 @@
               "key": "as:3003:BuffList1",
               "options": [
                 {
-                  "mechanicRef": "4dae9312853d5a2dec865d5372825592e8629320f74d0a7fc95a97f21d9d0382"
+                  "description": "角色造成的追加攻击伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的全属性抗性，同时对非弱点目标也能削减韧性，效果等同于原技能削韧值的<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111021,
+                  "name": "时来运转",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "f5a8f796cedce282910a673a2e435effeefd1b02559a512d940f86dff61d1342"
+                  "description": "角色造成的冰属性伤害提高<color=#f29e38ff><unbreak>55%</unbreak></color>。",
+                  "id": 3111022,
+                  "name": "千金一掷",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "770f2bb90f225de77e4f4573a7fac1bc91bfe1feab2a42fcb41990c8ecfa2455"
+                  "description": "角色击破敌方目标弱点时，行动提前<color=#f29e38ff><unbreak>15%</unbreak></color>，该效果每回合最多触发<color=#f29e38ff><unbreak>1</unbreak></color>次。",
+                  "id": 3111023,
+                  "name": "追亡逐北",
+                  "order": 3
                 }
               ]
             },
@@ -234,13 +493,31 @@
               "key": "as:30033:MonsterID1",
               "traits": [
                 {
-                  "mechanicRef": "c035faf2a5f0e008853929d3bfe12c55d0ba9b34b531a099133f9d432a7a92eb"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 100501,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "ea64ffa519b6b8563dbf75a73961c2c3cab125f7ecf82f9e86f2896b9268efea"
+                  "description": "首领幻影的技能会赋予所有我方和敌方单位<color=#f29e38ff><u>点数</u></color>",
+                  "id": 100502,
+                  "linkedEffects": [
+                    {
+                      "description": "敌方目标点数大于我方时，受到的伤害大幅降低，并获得韧性保护。我方角色攻击【点数】比自身低的敌方目标时，我方【点数】越高，敌方目标受到的伤害越高。点数的上限为<unbreak>100</unbreak>。",
+                      "id": "70000311",
+                      "name": "点数"
+                    }
+                  ],
+                  "name": "点数竞赛",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "4e03d3fce8642d1d9f54c443eb4cd6b7cf179614cd53ead9b84854a29dfa8b35"
+                  "description": "当我方单位点数小于召唤物点数时，召唤物受到的伤害大幅降低。",
+                  "id": 100503,
+                  "linkedEffects": [],
+                  "name": "庄家优势",
+                  "order": 3
                 }
               ]
             },
@@ -254,7 +531,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "87884219e8c6c879a65e362428f60d456f8bdd8b718a494f6099b01a1bc643fb"
+                        "enemyHref": "/enemies/8034012",
+                        "hp": {
+                          "exactPerBar": "1083995.7077250",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,083,996"
+                        },
+                        "identity": "[803401203,8034012,\"8137.5\",\"1\",\"148.01102\",\"0.9\",\"1083995.7077250\",\"resolved\",\"1083995.7077250\",703,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"570\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"-60\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"510\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"170\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[803203303,803203403],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 803401203,
+                        "monsterTemplateId": 8034012,
+                        "name": "孤注一掷的掷骰者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8034010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "170",
+                          "roundedPerBar": "170"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -269,13 +584,22 @@
               "key": "as:3003:BuffList2",
               "options": [
                 {
-                  "mechanicRef": "9bc50b5e93a102eaea1f6a08fc182548c8bd3c5109f8c0438f6b3ae8ae499a52"
+                  "description": "角色攻击处于弱点击破状态下的敌人后，其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>80%</unbreak></color>的伤害，该效果单个回合内每个角色各自最多触发<color=#f29e38ff><unbreak>2</unbreak></color>次。",
+                  "id": 3111018,
+                  "name": "寸草不生",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "9f86c1f3f7dcd320a5912677c5089cfb2822eabed8e7cbc74cfd31635fe69bdb"
+                  "description": "消灭敌方目标后，敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>5%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>5</unbreak></color>层，该效果对所有新上场的敌人也生效。",
+                  "id": 3111019,
+                  "name": "牵丝攀藤",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "3fa8df76e8eb16f567de228cf3c28a9d899d512ffedc37800be0e7c4ab57fbe9"
+                  "description": "造成的终结技伤害的暴击伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，对处于弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+                  "id": 3111020,
+                  "name": "势如破竹",
+                  "order": 3
                 }
               ]
             },
@@ -283,10 +607,24 @@
               "key": "as:30033:MonsterID2",
               "traits": [
                 {
-                  "mechanicRef": "7003e97de04a2df22b9791ae25eab642058f73e2ab9154d35447b87229006ac0"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100601,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "87ed1916346b2faa976b130c9686034e2fa9676eecda8dfba3e316ba7e457fd2"
+                  "description": "召唤新的【玄莲】时，首领幻影会进入<color=#f29e38ff><u>韧性保护</u></color>状态。消灭任意召唤物会使首领幻影的韧性保护解除，并且对首领幻影造成额外韧性削减。",
+                  "id": 100602,
+                  "linkedEffects": [
+                    {
+                      "description": "韧性值无法受到削减。",
+                      "id": "70000305",
+                      "name": "韧性保护"
+                    }
+                  ],
+                  "name": "移花接木",
+                  "order": 2
                 }
               ]
             },
@@ -300,7 +638,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "742ffdebd84357493a0facc33d157164ecdf4ab0d915f8180b94d97d4aace25a"
+                        "enemyHref": "/enemies/8015022",
+                        "hp": {
+                          "exactPerBar": "991081.789920",
+                          "phaseCount": 2,
+                          "roundedPerBar": "991,082"
+                        },
+                        "identity": "[801502203,8015022,\"7440\",\"1\",\"148.01102\",\"0.9\",\"991081.789920\",\"resolved\",\"991081.789920\",703,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.2\",\"eliteRatio\":\"1\",\"configuredValue\":\"144.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1140\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1140\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"380\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[8012204,8012214],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 801502203,
+                        "monsterTemplateId": 8015022,
+                        "name": "乘间抵隙的煽动者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8015020.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "144.0",
+                          "rounded": "144"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "380",
+                          "roundedPerBar": "380"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -319,7 +695,9 @@
       },
       {
         "aftertaste": {
-          "mechanicRef": "ae61676b9dd17dbab5d2ae88ee421959ef5ff44c019b8e9923bc979e37d5585e"
+          "description": "拥有<color=#f29e38ff>【坚防守备】</color>的敌方单位被<color=#f29e38ff>弱点击破</color>时，使我方全体行动提前并恢复战技点。\n敌方全体受到的追加攻击伤害提高<color=#f29e38ff><unbreak>25%</unbreak></color>，终结技伤害提高<color=#f29e38ff><unbreak>15%</unbreak></color>。",
+          "id": 3110003,
+          "name": "末法余烬"
         },
         "battles": [
           {
@@ -327,13 +705,22 @@
               "key": "as:3003:BuffList1",
               "options": [
                 {
-                  "mechanicRef": "4dae9312853d5a2dec865d5372825592e8629320f74d0a7fc95a97f21d9d0382"
+                  "description": "角色造成的追加攻击伤害无视敌方目标<color=#f29e38ff><unbreak>15%</unbreak></color>的全属性抗性，同时对非弱点目标也能削减韧性，效果等同于原技能削韧值的<color=#f29e38ff><unbreak>50%</unbreak></color>。",
+                  "id": 3111021,
+                  "name": "时来运转",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "f5a8f796cedce282910a673a2e435effeefd1b02559a512d940f86dff61d1342"
+                  "description": "角色造成的冰属性伤害提高<color=#f29e38ff><unbreak>55%</unbreak></color>。",
+                  "id": 3111022,
+                  "name": "千金一掷",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "770f2bb90f225de77e4f4573a7fac1bc91bfe1feab2a42fcb41990c8ecfa2455"
+                  "description": "角色击破敌方目标弱点时，行动提前<color=#f29e38ff><unbreak>15%</unbreak></color>，该效果每回合最多触发<color=#f29e38ff><unbreak>1</unbreak></color>次。",
+                  "id": 3111023,
+                  "name": "追亡逐北",
+                  "order": 3
                 }
               ]
             },
@@ -341,16 +728,38 @@
               "key": "as:30034:MonsterID1",
               "traits": [
                 {
-                  "mechanicRef": "c035faf2a5f0e008853929d3bfe12c55d0ba9b34b531a099133f9d432a7a92eb"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                  "id": 100501,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "ea64ffa519b6b8563dbf75a73961c2c3cab125f7ecf82f9e86f2896b9268efea"
+                  "description": "首领幻影的技能会赋予所有我方和敌方单位<color=#f29e38ff><u>点数</u></color>",
+                  "id": 100502,
+                  "linkedEffects": [
+                    {
+                      "description": "敌方目标点数大于我方时，受到的伤害大幅降低，并获得韧性保护。我方角色攻击【点数】比自身低的敌方目标时，我方【点数】越高，敌方目标受到的伤害越高。点数的上限为<unbreak>100</unbreak>。",
+                      "id": "70000311",
+                      "name": "点数"
+                    }
+                  ],
+                  "name": "点数竞赛",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "4e03d3fce8642d1d9f54c443eb4cd6b7cf179614cd53ead9b84854a29dfa8b35"
+                  "description": "当我方单位点数小于召唤物点数时，召唤物受到的伤害大幅降低。",
+                  "id": 100503,
+                  "linkedEffects": [],
+                  "name": "庄家优势",
+                  "order": 3
                 },
                 {
-                  "mechanicRef": "76a5817d5005aa13fd16719f9d576b73ae7dee847188f3ae697bc0bb411ae4a6"
+                  "description": "召唤物的点数越大，其生命上限越高。",
+                  "id": 100504,
+                  "linkedEffects": [],
+                  "name": "先发优势",
+                  "order": 4
                 }
               ]
             },
@@ -364,7 +773,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "afb93d639153a1de5e1c180cc7b42e7eb180bcf2b7d3dd73fc1826f4bd03efdd"
+                        "enemyHref": "/enemies/8034012",
+                        "hp": {
+                          "exactPerBar": "1924801.202625",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,924,801"
+                        },
+                        "identity": "[803401204,8034012,\"8137.5\",\"1\",\"236.53471\",\"1\",\"1924801.202625\",\"resolved\",\"1924801.202625\",704,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"570\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"570\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"190\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[803203304,803203404],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 803401204,
+                        "monsterTemplateId": 8034012,
+                        "name": "孤注一掷的掷骰者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8034010.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "190",
+                          "roundedPerBar": "190"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -379,13 +826,22 @@
               "key": "as:3003:BuffList2",
               "options": [
                 {
-                  "mechanicRef": "9bc50b5e93a102eaea1f6a08fc182548c8bd3c5109f8c0438f6b3ae8ae499a52"
+                  "description": "角色攻击处于弱点击破状态下的敌人后，其当前承受的所有持续伤害立即产生相当于原伤害<color=#f29e38ff><unbreak>80%</unbreak></color>的伤害，该效果单个回合内每个角色各自最多触发<color=#f29e38ff><unbreak>2</unbreak></color>次。",
+                  "id": 3111018,
+                  "name": "寸草不生",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "9f86c1f3f7dcd320a5912677c5089cfb2822eabed8e7cbc74cfd31635fe69bdb"
+                  "description": "消灭敌方目标后，敌方全体受到的击破伤害提高<color=#f29e38ff><unbreak>5%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>5</unbreak></color>层，该效果对所有新上场的敌人也生效。",
+                  "id": 3111019,
+                  "name": "牵丝攀藤",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "3fa8df76e8eb16f567de228cf3c28a9d899d512ffedc37800be0e7c4ab57fbe9"
+                  "description": "造成的终结技伤害的暴击伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>，对处于弱点击破状态下的敌方目标额外提高<color=#f29e38ff><unbreak>30%</unbreak></color>。",
+                  "id": 3111020,
+                  "name": "势如破竹",
+                  "order": 3
                 }
               ]
             },
@@ -393,13 +849,31 @@
               "key": "as:30034:MonsterID2",
               "traits": [
                 {
-                  "mechanicRef": "7003e97de04a2df22b9791ae25eab642058f73e2ab9154d35447b87229006ac0"
+                  "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                  "id": 100601,
+                  "linkedEffects": [],
+                  "name": "坚防守备",
+                  "order": 1
                 },
                 {
-                  "mechanicRef": "87ed1916346b2faa976b130c9686034e2fa9676eecda8dfba3e316ba7e457fd2"
+                  "description": "召唤新的【玄莲】时，首领幻影会进入<color=#f29e38ff><u>韧性保护</u></color>状态。消灭任意召唤物会使首领幻影的韧性保护解除，并且对首领幻影造成额外韧性削减。",
+                  "id": 100602,
+                  "linkedEffects": [
+                    {
+                      "description": "韧性值无法受到削减。",
+                      "id": "70000305",
+                      "name": "韧性保护"
+                    }
+                  ],
+                  "name": "移花接木",
+                  "order": 2
                 },
                 {
-                  "mechanicRef": "f2484ae3ec481c8a20364ec5a073f1d5da3ea6530860819a177bf8e02405e2a7"
+                  "description": "在二阶段，召唤物的生命上限提高<color=#f29e38ff><unbreak>35%</unbreak></color>。",
+                  "id": 100604,
+                  "linkedEffects": [],
+                  "name": "空花阳焰",
+                  "order": 4
                 }
               ]
             },
@@ -413,7 +887,45 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "07713c9a0bacc240eddc0fd37e6439f7c0e089a458388c5320d518753ffc9833"
+                        "enemyHref": "/enemies/8015022",
+                        "hp": {
+                          "exactPerBar": "1759818.24240",
+                          "phaseCount": 2,
+                          "roundedPerBar": "1,759,818"
+                        },
+                        "identity": "[801502204,8015022,\"7440\",\"1\",\"236.53471\",\"1\",\"1759818.24240\",\"resolved\",\"1759818.24240\",704,\"elite\",\"stage\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"1140\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"1140\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"380\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[8012204,8012214],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 801502204,
+                        "monsterTemplateId": 8015022,
+                        "name": "乘间抵隙的煽动者",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8015020.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "380",
+                          "roundedPerBar": "380"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       }
                     ],
                     "key": "fixed-1",
@@ -583,1085 +1095,5 @@
       }
     ]
   },
-  "route": "/endgame/as/3003",
-  "source": {
-    "axiomSets": [
-      {
-        "key": "as:3003:BuffList1",
-        "options": [
-          {
-            "buff": {
-              "mechanicRef": "ee92a3e2fdee60a27c6884ec6a78d4b010c2f03f40b99296ab1f5361bb2d30e7"
-            },
-            "order": 1,
-            "provenance": {
-              "arrayIndex": 0,
-              "field": "BuffList1",
-              "ownerId": 3003,
-              "table": "ChallengeBossGroupExtra"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "1d09c0e701094dc8ffd8bc1e881a66a130fd1a9be204c3e335cf209dddace815"
-            },
-            "order": 2,
-            "provenance": {
-              "arrayIndex": 1,
-              "field": "BuffList1",
-              "ownerId": 3003,
-              "table": "ChallengeBossGroupExtra"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "18008bf507c1fac718541009134c46496bd8355011d80767e9eaac6fb51bc833"
-            },
-            "order": 3,
-            "provenance": {
-              "arrayIndex": 2,
-              "field": "BuffList1",
-              "ownerId": 3003,
-              "table": "ChallengeBossGroupExtra"
-            }
-          }
-        ],
-        "provenance": {
-          "field": "BuffList1",
-          "ownerId": 3003,
-          "table": "ChallengeBossGroupExtra"
-        },
-        "selectCount": 1,
-        "slot": 1
-      },
-      {
-        "key": "as:3003:BuffList2",
-        "options": [
-          {
-            "buff": {
-              "mechanicRef": "5abfc4283bb12155de25bcfc9b4e683b8b0c68e09b04a2d7363b0927b6f241d3"
-            },
-            "order": 1,
-            "provenance": {
-              "arrayIndex": 0,
-              "field": "BuffList2",
-              "ownerId": 3003,
-              "table": "ChallengeBossGroupExtra"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "ae2fc31d183eaf8cf1d73bd8e1d49b9acb696c5295357ed818fab586445bf016"
-            },
-            "order": 2,
-            "provenance": {
-              "arrayIndex": 1,
-              "field": "BuffList2",
-              "ownerId": 3003,
-              "table": "ChallengeBossGroupExtra"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "3764c427cb82f59a8fdf7a7a48011735ed8d4c4b038151b4c2853a7e0026d446"
-            },
-            "order": 3,
-            "provenance": {
-              "arrayIndex": 2,
-              "field": "BuffList2",
-              "ownerId": 3003,
-              "table": "ChallengeBossGroupExtra"
-            }
-          }
-        ],
-        "provenance": {
-          "field": "BuffList2",
-          "ownerId": 3003,
-          "table": "ChallengeBossGroupExtra"
-        },
-        "selectCount": 1,
-        "slot": 2
-      }
-    ],
-    "encounters": [
-      {
-        "aftertaste": {
-          "buff": {
-            "mechanicRef": "02779c1ce40aed9b9e3c3a1dc62c4ec936069b1f3f0791109882cd1e8a4dcf2e"
-          },
-          "groupReference": {
-            "mazeBuffId": 3031001,
-            "provenance": {
-              "field": "MazeBuffID",
-              "ownerId": 3003,
-              "table": "ChallengeBossGroupConfig"
-            }
-          },
-          "provenance": {
-            "field": "MazeBuffID",
-            "ownerId": 30031,
-            "table": "ChallengeBossMazeConfig"
-          },
-          "stageBindings": [
-            {
-              "eventId": 420151,
-              "mazeBuffId": 3110003,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420151,
-                "table": "StageConfig"
-              },
-              "slot": 1,
-              "stageId": 420151
-            },
-            {
-              "eventId": 420141,
-              "mazeBuffId": 3110003,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420141,
-                "table": "StageConfig"
-              },
-              "slot": 2,
-              "stageId": 420141
-            }
-          ]
-        },
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 420151,
-                "hardLevelGroup": 1,
-                "level": 60,
-                "previewMonsterIds": [
-                  803401201
-                ],
-                "stageAbilities": [],
-                "stageId": 420151,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "242cd234724885cefc536b78ca49fe13fc639b5271de439d52e6ca92de3976a0"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "slot": 2,
-            "stages": [
-              {
-                "eventId": 420141,
-                "hardLevelGroup": 1,
-                "level": 60,
-                "previewMonsterIds": [
-                  801502201
-                ],
-                "stageAbilities": [],
-                "stageId": 420141,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "e000a2e1ab7a83f499a522f0366606ac76676bc01219f13f180541f64f531515"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "bossGuides": [
-          {
-            "difficulty": 1,
-            "guideMonsterId": 803401201,
-            "key": "as:30031:MonsterID1",
-            "provenance": {
-              "field": "MonsterID1",
-              "ownerId": 30031,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 1,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "9858679542023820017",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "16051398552166389676",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 803401201,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100501
-              },
-              {
-                "description": "首领幻影的技能会赋予所有我方和敌方单位<color=#f29e38ff><u>点数</u></color>",
-                "descriptionHash": "13598664178542547604",
-                "linkedEffects": [
-                  {
-                    "description": "敌方目标点数大于我方时，受到的伤害大幅降低，并获得韧性保护。我方角色攻击【点数】比自身低的敌方目标时，我方【点数】越高，敌方目标受到的伤害越高。点数的上限为<unbreak>100</unbreak>。",
-                    "id": "70000311",
-                    "name": "点数"
-                  }
-                ],
-                "name": "点数竞赛",
-                "nameHash": "7731269695277417383",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 803401201,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100502
-              }
-            ]
-          },
-          {
-            "difficulty": 1,
-            "guideMonsterId": 801502201,
-            "key": "as:30031:MonsterID2",
-            "provenance": {
-              "field": "MonsterID2",
-              "ownerId": 30031,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 2,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
-                "descriptionHash": "5954724499964700516",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "17048063209189515023",
-                "order": 1,
-                "params": [
-                  "0.6",
-                  "1.25",
-                  "1"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 801502201,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100601
-              },
-              {
-                "description": "召唤新的【玄莲】时，首领幻影会进入<color=#f29e38ff><u>韧性保护</u></color>状态。消灭任意召唤物会使首领幻影的韧性保护解除，并且对首领幻影造成额外韧性削减。",
-                "descriptionHash": "7136019192805433754",
-                "linkedEffects": [
-                  {
-                    "description": "韧性值无法受到削减。",
-                    "id": "70000305",
-                    "name": "韧性保护"
-                  }
-                ],
-                "name": "移花接木",
-                "nameHash": "7874925089941949299",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 801502201,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100602
-              }
-            ]
-          }
-        ],
-        "configId": 30031,
-        "id": "30031",
-        "name": "煽动博弈·难度<unbreak>01</unbreak>",
-        "ordinal": 1,
-        "variant": "floor"
-      },
-      {
-        "aftertaste": {
-          "buff": {
-            "mechanicRef": "02779c1ce40aed9b9e3c3a1dc62c4ec936069b1f3f0791109882cd1e8a4dcf2e"
-          },
-          "groupReference": {
-            "mazeBuffId": 3031001,
-            "provenance": {
-              "field": "MazeBuffID",
-              "ownerId": 3003,
-              "table": "ChallengeBossGroupConfig"
-            }
-          },
-          "provenance": {
-            "field": "MazeBuffID",
-            "ownerId": 30032,
-            "table": "ChallengeBossMazeConfig"
-          },
-          "stageBindings": [
-            {
-              "eventId": 420152,
-              "mazeBuffId": 3110003,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420152,
-                "table": "StageConfig"
-              },
-              "slot": 1,
-              "stageId": 420152
-            },
-            {
-              "eventId": 420142,
-              "mazeBuffId": 3110003,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420142,
-                "table": "StageConfig"
-              },
-              "slot": 2,
-              "stageId": 420142
-            }
-          ]
-        },
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 420152,
-                "hardLevelGroup": 1,
-                "level": 70,
-                "previewMonsterIds": [
-                  803401202
-                ],
-                "stageAbilities": [],
-                "stageId": 420152,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "86cba7177deae52621e0522662d07d2a7c01976c7edc1e2cb390b5c05be00df6"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "slot": 2,
-            "stages": [
-              {
-                "eventId": 420142,
-                "hardLevelGroup": 1,
-                "level": 70,
-                "previewMonsterIds": [
-                  801502202
-                ],
-                "stageAbilities": [],
-                "stageId": 420142,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "b61aadd7dcee476e07b43313a0e821d320e143673570742fc46d67c997ad7a1a"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "bossGuides": [
-          {
-            "difficulty": 2,
-            "guideMonsterId": 803401202,
-            "key": "as:30032:MonsterID1",
-            "provenance": {
-              "field": "MonsterID1",
-              "ownerId": 30032,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 1,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "9858679542023820017",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "16051398552166389676",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 803401202,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100501
-              },
-              {
-                "description": "首领幻影的技能会赋予所有我方和敌方单位<color=#f29e38ff><u>点数</u></color>",
-                "descriptionHash": "13598664178542547604",
-                "linkedEffects": [
-                  {
-                    "description": "敌方目标点数大于我方时，受到的伤害大幅降低，并获得韧性保护。我方角色攻击【点数】比自身低的敌方目标时，我方【点数】越高，敌方目标受到的伤害越高。点数的上限为<unbreak>100</unbreak>。",
-                    "id": "70000311",
-                    "name": "点数"
-                  }
-                ],
-                "name": "点数竞赛",
-                "nameHash": "7731269695277417383",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 803401202,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100502
-              }
-            ]
-          },
-          {
-            "difficulty": 2,
-            "guideMonsterId": 801502202,
-            "key": "as:30032:MonsterID2",
-            "provenance": {
-              "field": "MonsterID2",
-              "ownerId": 30032,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 2,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
-                "descriptionHash": "5954724499964700516",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "17048063209189515023",
-                "order": 1,
-                "params": [
-                  "0.6",
-                  "1.25",
-                  "1"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 801502202,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100601
-              },
-              {
-                "description": "召唤新的【玄莲】时，首领幻影会进入<color=#f29e38ff><u>韧性保护</u></color>状态。消灭任意召唤物会使首领幻影的韧性保护解除，并且对首领幻影造成额外韧性削减。",
-                "descriptionHash": "7136019192805433754",
-                "linkedEffects": [
-                  {
-                    "description": "韧性值无法受到削减。",
-                    "id": "70000305",
-                    "name": "韧性保护"
-                  }
-                ],
-                "name": "移花接木",
-                "nameHash": "7874925089941949299",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 801502202,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100602
-              }
-            ]
-          }
-        ],
-        "configId": 30032,
-        "id": "30032",
-        "name": "煽动博弈·难度<unbreak>02</unbreak>",
-        "ordinal": 2,
-        "variant": "floor"
-      },
-      {
-        "aftertaste": {
-          "buff": {
-            "mechanicRef": "02779c1ce40aed9b9e3c3a1dc62c4ec936069b1f3f0791109882cd1e8a4dcf2e"
-          },
-          "groupReference": {
-            "mazeBuffId": 3031001,
-            "provenance": {
-              "field": "MazeBuffID",
-              "ownerId": 3003,
-              "table": "ChallengeBossGroupConfig"
-            }
-          },
-          "provenance": {
-            "field": "MazeBuffID",
-            "ownerId": 30033,
-            "table": "ChallengeBossMazeConfig"
-          },
-          "stageBindings": [
-            {
-              "eventId": 420153,
-              "mazeBuffId": 3110003,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420153,
-                "table": "StageConfig"
-              },
-              "slot": 1,
-              "stageId": 420153
-            },
-            {
-              "eventId": 420143,
-              "mazeBuffId": 3110003,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420143,
-                "table": "StageConfig"
-              },
-              "slot": 2,
-              "stageId": 420143
-            }
-          ]
-        },
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 420153,
-                "hardLevelGroup": 1,
-                "level": 80,
-                "previewMonsterIds": [
-                  803401203
-                ],
-                "stageAbilities": [],
-                "stageId": 420153,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "61f55ae9174503d46e39371f4ac189a5cc6a29a3eaeb08d38746086af4dc99a5"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "slot": 2,
-            "stages": [
-              {
-                "eventId": 420143,
-                "hardLevelGroup": 1,
-                "level": 80,
-                "previewMonsterIds": [
-                  801502203
-                ],
-                "stageAbilities": [],
-                "stageId": 420143,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "68423dd3d5e7a9ee7c3ccab178549b5b681be2018443770efe306927bb931652"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "bossGuides": [
-          {
-            "difficulty": 3,
-            "guideMonsterId": 803401203,
-            "key": "as:30033:MonsterID1",
-            "provenance": {
-              "field": "MonsterID1",
-              "ownerId": 30033,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 1,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "9858679542023820017",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "16051398552166389676",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 803401203,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100501
-              },
-              {
-                "description": "首领幻影的技能会赋予所有我方和敌方单位<color=#f29e38ff><u>点数</u></color>",
-                "descriptionHash": "13598664178542547604",
-                "linkedEffects": [
-                  {
-                    "description": "敌方目标点数大于我方时，受到的伤害大幅降低，并获得韧性保护。我方角色攻击【点数】比自身低的敌方目标时，我方【点数】越高，敌方目标受到的伤害越高。点数的上限为<unbreak>100</unbreak>。",
-                    "id": "70000311",
-                    "name": "点数"
-                  }
-                ],
-                "name": "点数竞赛",
-                "nameHash": "7731269695277417383",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 803401203,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100502
-              },
-              {
-                "description": "当我方单位点数小于召唤物点数时，召唤物受到的伤害大幅降低。",
-                "descriptionHash": "13087228009407958676",
-                "linkedEffects": [],
-                "name": "庄家优势",
-                "nameHash": "14196905822486525913",
-                "order": 3,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 2,
-                  "field": "TagList",
-                  "ownerId": 803401203,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 3,
-                "tagId": 100503
-              }
-            ]
-          },
-          {
-            "difficulty": 3,
-            "guideMonsterId": 801502203,
-            "key": "as:30033:MonsterID2",
-            "provenance": {
-              "field": "MonsterID2",
-              "ownerId": 30033,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 2,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
-                "descriptionHash": "5954724499964700516",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "17048063209189515023",
-                "order": 1,
-                "params": [
-                  "0.6",
-                  "1.25",
-                  "1"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 801502203,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100601
-              },
-              {
-                "description": "召唤新的【玄莲】时，首领幻影会进入<color=#f29e38ff><u>韧性保护</u></color>状态。消灭任意召唤物会使首领幻影的韧性保护解除，并且对首领幻影造成额外韧性削减。",
-                "descriptionHash": "7136019192805433754",
-                "linkedEffects": [
-                  {
-                    "description": "韧性值无法受到削减。",
-                    "id": "70000305",
-                    "name": "韧性保护"
-                  }
-                ],
-                "name": "移花接木",
-                "nameHash": "7874925089941949299",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 801502203,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100602
-              }
-            ]
-          }
-        ],
-        "configId": 30033,
-        "id": "30033",
-        "name": "煽动博弈·难度<unbreak>03</unbreak>",
-        "ordinal": 3,
-        "variant": "floor"
-      },
-      {
-        "aftertaste": {
-          "buff": {
-            "mechanicRef": "02779c1ce40aed9b9e3c3a1dc62c4ec936069b1f3f0791109882cd1e8a4dcf2e"
-          },
-          "groupReference": {
-            "mazeBuffId": 3031001,
-            "provenance": {
-              "field": "MazeBuffID",
-              "ownerId": 3003,
-              "table": "ChallengeBossGroupConfig"
-            }
-          },
-          "provenance": {
-            "field": "MazeBuffID",
-            "ownerId": 30034,
-            "table": "ChallengeBossMazeConfig"
-          },
-          "stageBindings": [
-            {
-              "eventId": 420154,
-              "mazeBuffId": 3110003,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420154,
-                "table": "StageConfig"
-              },
-              "slot": 1,
-              "stageId": 420154
-            },
-            {
-              "eventId": 420144,
-              "mazeBuffId": 3110003,
-              "provenance": {
-                "arrayIndex": 3,
-                "field": "StageConfigData._BindingMazeBuff",
-                "ownerId": 420144,
-                "table": "StageConfig"
-              },
-              "slot": 2,
-              "stageId": 420144
-            }
-          ]
-        },
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 420154,
-                "hardLevelGroup": 1,
-                "level": 90,
-                "previewMonsterIds": [
-                  803401204
-                ],
-                "stageAbilities": [],
-                "stageId": 420154,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "21ff5a3458bccd2fcf476d19603f70864b211d6a9e8737ac7acc0a8d0befbbb8"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "slot": 2,
-            "stages": [
-              {
-                "eventId": 420144,
-                "hardLevelGroup": 1,
-                "level": 90,
-                "previewMonsterIds": [
-                  801502204
-                ],
-                "stageAbilities": [],
-                "stageId": 420144,
-                "waveModel": {
-                  "kind": "fixed",
-                  "waves": [
-                    {
-                      "enemies": [
-                        {
-                          "occurrenceRef": "88799bbea59a1252302f627fec111dc6c1b74a68fa082081f6e84a0a7de14c4b"
-                        }
-                      ],
-                      "wave": 1
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "bossGuides": [
-          {
-            "difficulty": 4,
-            "guideMonsterId": 803401204,
-            "key": "as:30034:MonsterID1",
-            "provenance": {
-              "field": "MonsterID1",
-              "ownerId": 30034,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 1,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
-                "descriptionHash": "9858679542023820017",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "16051398552166389676",
-                "order": 1,
-                "params": [
-                  "0.5",
-                  "1",
-                  "1.5"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 803401204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100501
-              },
-              {
-                "description": "首领幻影的技能会赋予所有我方和敌方单位<color=#f29e38ff><u>点数</u></color>",
-                "descriptionHash": "13598664178542547604",
-                "linkedEffects": [
-                  {
-                    "description": "敌方目标点数大于我方时，受到的伤害大幅降低，并获得韧性保护。我方角色攻击【点数】比自身低的敌方目标时，我方【点数】越高，敌方目标受到的伤害越高。点数的上限为<unbreak>100</unbreak>。",
-                    "id": "70000311",
-                    "name": "点数"
-                  }
-                ],
-                "name": "点数竞赛",
-                "nameHash": "7731269695277417383",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 803401204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100502
-              },
-              {
-                "description": "当我方单位点数小于召唤物点数时，召唤物受到的伤害大幅降低。",
-                "descriptionHash": "13087228009407958676",
-                "linkedEffects": [],
-                "name": "庄家优势",
-                "nameHash": "14196905822486525913",
-                "order": 3,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 2,
-                  "field": "TagList",
-                  "ownerId": 803401204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 3,
-                "tagId": 100503
-              },
-              {
-                "description": "召唤物的点数越大，其生命上限越高。",
-                "descriptionHash": "14972604068651521128",
-                "linkedEffects": [],
-                "name": "先发优势",
-                "nameHash": "12333093773924250999",
-                "order": 4,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 3,
-                  "field": "TagList",
-                  "ownerId": 803401204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 4,
-                "tagId": 100504
-              }
-            ]
-          },
-          {
-            "difficulty": 4,
-            "guideMonsterId": 801502204,
-            "key": "as:30034:MonsterID2",
-            "provenance": {
-              "field": "MonsterID2",
-              "ownerId": 30034,
-              "table": "ChallengeBossMazeExtra"
-            },
-            "slot": 2,
-            "traits": [
-              {
-                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
-                "descriptionHash": "5954724499964700516",
-                "linkedEffects": [],
-                "name": "坚防守备",
-                "nameHash": "17048063209189515023",
-                "order": 1,
-                "params": [
-                  "0.6",
-                  "1.25",
-                  "1"
-                ],
-                "provenance": {
-                  "arrayIndex": 0,
-                  "field": "TagList",
-                  "ownerId": 801502204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100601
-              },
-              {
-                "description": "召唤新的【玄莲】时，首领幻影会进入<color=#f29e38ff><u>韧性保护</u></color>状态。消灭任意召唤物会使首领幻影的韧性保护解除，并且对首领幻影造成额外韧性削减。",
-                "descriptionHash": "7136019192805433754",
-                "linkedEffects": [
-                  {
-                    "description": "韧性值无法受到削减。",
-                    "id": "70000305",
-                    "name": "韧性保护"
-                  }
-                ],
-                "name": "移花接木",
-                "nameHash": "7874925089941949299",
-                "order": 2,
-                "params": [],
-                "provenance": {
-                  "arrayIndex": 1,
-                  "field": "TagList",
-                  "ownerId": 801502204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 1,
-                "tagId": 100602
-              },
-              {
-                "description": "在二阶段，召唤物的生命上限提高<color=#f29e38ff><unbreak>35%</unbreak></color>。",
-                "descriptionHash": "3813983505572858914",
-                "linkedEffects": [],
-                "name": "空花阳焰",
-                "nameHash": "11349576240542950373",
-                "order": 4,
-                "params": [
-                  "0.35"
-                ],
-                "provenance": {
-                  "arrayIndex": 3,
-                  "field": "TagList",
-                  "ownerId": 801502204,
-                  "table": "MonsterGuideConfig"
-                },
-                "requiredDifficulty": 4,
-                "tagId": 100604
-              }
-            ]
-          }
-        ],
-        "configId": 30034,
-        "id": "30034",
-        "name": "煽动博弈·难度<unbreak>04</unbreak>",
-        "ordinal": 4,
-        "variant": "floor"
-      }
-    ],
-    "groupId": 3003,
-    "mode": "as",
-    "name": "煽动博弈",
-    "recommendationEligible": true,
-    "schedule": {
-      "begin": "2024-09-16 04:00:00",
-      "end": "2024-10-28 04:00:00"
-    }
-  }
+  "route": "/endgame/as/3003"
 }

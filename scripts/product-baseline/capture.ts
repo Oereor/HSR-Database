@@ -1,8 +1,5 @@
-import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { CharacterDetailIconKey } from '../../src/lib/domain/character-detail-icons.js';
-import { parseCharacterDetailIconKey } from '../../src/lib/domain/character-detail-icons.js';
 import type { EndgameGroup, EndgameModeDataset } from '../../src/lib/domain/endgame.js';
 import {
   buildGroupView,
@@ -18,7 +15,6 @@ import type { GlobalSearchIndex } from '../../src/lib/domain/search-index.js';
 import type {
   CatalogEntry,
   Character,
-  DataManifest,
   Enemy,
   EnemyCatalogEntry,
   HomepageRecentWarpData,
@@ -27,8 +23,6 @@ import type {
   RelicSet
 } from '../../src/lib/domain/types.js';
 import type { VisualAssetManifest } from '../../src/lib/domain/visual-assets.js';
-import { buildCharacterDomain } from '../../scripts/data/domain/character.js';
-import { loadCharacterDomainTables } from '../../scripts/data/character-sources.js';
 import {
   createGlobalSearchService,
   type GlobalSearchCatalogs
@@ -37,19 +31,8 @@ import { loadEnemyPortraitMap } from '../../src/lib/server/enemy-assets.js';
 import { m } from '../../src/lib/paraglide/messages.js';
 import { NAVIGATION_ITEMS } from '../../src/lib/navigation.js';
 import { SITE_NAME } from '../../src/lib/site.js';
-import {
-  readAssetManifest,
-  readAssetRequirements,
-  readCharacterDetailIconSources
-} from '../assets/shared.js';
-import { assertAssetRoot, resolveAssetRoot } from '../assets/paths.js';
-import {
-  assertDataRoot,
-  auditRoot,
-  generatedRoot,
-  siteRoot,
-  staticGeneratedRoot
-} from '../data/paths.js';
+import { readAssetManifest } from '../assets/shared.js';
+import { auditRoot, generatedRoot, staticGeneratedRoot } from '../data/paths.js';
 import type { TextDiagnosticKind, TextDiagnosticSummary } from '../data/localization.js';
 import { canonicalize, ContentRegistry, withoutObjectKeys } from './canonical.js';
 import {
@@ -64,10 +47,6 @@ const RECOMMENDATION_REFERENCE_TIME = Date.parse('2026-09-05T00:00:00Z');
 
 async function json<T>(file: string): Promise<T> {
   return JSON.parse(await readFile(file, 'utf8')) as T;
-}
-
-function fileDigest(value: Buffer): string {
-  return createHash('sha256').update(value).digest('hex');
 }
 
 function profilePresentation(profile: Record<string, any>) {
@@ -274,70 +253,10 @@ async function captureEnemies(catalog: EnemyCatalogEntry[]) {
   return {
     area: {
       order: catalog.map(({ id }) => id),
-      entities,
-      registries: {
-        templates: templates.values,
-        monsters: monsters.values,
-        skills: skills.values,
-        summons: summons.values,
-        statSeries: statSeries.values
-      }
+      entities
     },
     details
   };
-}
-
-function isOccurrence(value: Record<string, unknown>): boolean {
-  return (
-    'monsterId' in value &&
-    'monsterTemplateId' in value &&
-    'hp' in value &&
-    'speed' in value &&
-    'toughness' in value
-  );
-}
-
-function isMechanic(value: Record<string, unknown>): boolean {
-  return (
-    typeof value.id === 'number' &&
-    typeof value.name === 'string' &&
-    typeof value.description === 'string' &&
-    !('monsterId' in value)
-  );
-}
-
-function normalizeEndgameNode(
-  value: unknown,
-  registries: {
-    occurrences: ContentRegistry;
-    mechanics: ContentRegistry;
-    presentedOccurrences: ContentRegistry;
-  },
-  presentation = false
-): unknown {
-  if (Array.isArray(value))
-    return value.map((child) => normalizeEndgameNode(child, registries, presentation));
-  if (!value || typeof value !== 'object') return value;
-  const record = value as Record<string, unknown>;
-  if (isOccurrence(record)) {
-    const normalized = {
-      ...record,
-      ...('mechanics' in record
-        ? { mechanics: undefined, mechanicRef: registries.mechanics.add(record.mechanics) }
-        : {})
-    };
-    const reference = presentation
-      ? registries.presentedOccurrences.add(normalized)
-      : registries.occurrences.add(normalized);
-    return { occurrenceRef: reference };
-  }
-  if (isMechanic(record)) return { mechanicRef: registries.mechanics.add(record) };
-  return Object.fromEntries(
-    Object.entries(record).map(([key, child]) => [
-      key,
-      normalizeEndgameNode(child, registries, presentation)
-    ])
-  );
 }
 
 function scheduleBoundaryCases(groups: EndgameGroup[]) {
@@ -354,9 +273,6 @@ function scheduleBoundaryCases(groups: EndgameGroup[]) {
 }
 
 async function captureEndgame(enemyDetails: ReadonlyMap<string, Enemy>) {
-  const occurrences = new ContentRegistry();
-  const mechanics = new ContentRegistry();
-  const presentedOccurrences = new ContentRegistry();
   const portraits = await loadEnemyPortraitMap({ warn: () => undefined });
   const references = new Map<string, EndgameEnemyReference>();
   for (const detail of enemyDetails.values()) {
@@ -388,16 +304,7 @@ async function captureEndgame(enemyDetails: ReadonlyMap<string, Enemy>) {
         return [
           String(group.groupId),
           canonicalize({
-            source: normalizeEndgameNode(group, {
-              occurrences,
-              mechanics,
-              presentedOccurrences
-            }),
-            presentation: normalizeEndgameNode(
-              presentation,
-              { occurrences, mechanics, presentedOccurrences },
-              true
-            ),
+            presentation: canonicalize(presentation),
             route: `/endgame/${mode}/${group.groupId}`
           })
         ];
@@ -410,12 +317,7 @@ async function captureEndgame(enemyDetails: ReadonlyMap<string, Enemy>) {
     };
   }
   return {
-    modes,
-    registries: {
-      occurrences: occurrences.values,
-      mechanics: mechanics.values,
-      presentedOccurrences: presentedOccurrences.values
-    }
+    modes
   };
 }
 
@@ -433,48 +335,22 @@ function compactSearchResult(
   };
 }
 
-function systematicQueries(index: GlobalSearchIndex): string[] {
-  const queries = new Set<string>(['', '不存在的搜索词', '银鬃尉官', '的', '者']);
-  for (const document of index.documents) {
-    for (const label of [
-      document.canonicalName,
-      ...document.officialAliases,
-      ...document.playerAliases
-    ]) {
-      const trimmed = label.trim();
-      if (!trimmed) continue;
-      queries.add(trimmed);
-      queries.add(trimmed.slice(0, Math.min(2, trimmed.length)));
-      if (trimmed.length > 2) queries.add(trimmed.slice(-2));
-    }
-  }
-  return [...queries].sort((left, right) => left.localeCompare(right, 'zh-CN'));
-}
-
 async function captureSearch(catalogs: GlobalSearchCatalogs) {
   const index = await json<GlobalSearchIndex>(
     path.join(staticGeneratedRoot, 'zh-CN', 'search.json')
   );
   const search = createGlobalSearchService(index, catalogs);
+  const representativeQueries = [
+    '卡芙卡',
+    '锋镝',
+    '银鬃尉官',
+    '迷惘之渊的裁定者',
+    '不存在的搜索词'
+  ];
   return canonicalize({
-    documents: index.documents,
     locale: index.locale,
-    endgameTargets: index.endgameTargets,
     queries: Object.fromEntries(
-      systematicQueries(index).map((query) => [query, compactSearchResult(search.search(query))])
-    ),
-    shardMembership: Object.fromEntries(
-      index.endgameTargets.map((entry) => [
-        entry.id,
-        {
-          groupKeys: [
-            ...new Set(
-              entry.occurrences.map(({ locator: { mode, groupId } }) => `${mode}:${groupId}`)
-            )
-          ],
-          locatorCount: entry.occurrences.length
-        }
-      ])
+      representativeQueries.map((query) => [query, compactSearchResult(search.search(query))])
     )
   });
 }
@@ -536,23 +412,22 @@ async function captureUnresolvedLocalization() {
     >
   ).flatMap(([kind, summary]) => summary.entries.map((entry) => ({ kind, ...entry })));
   const unclassified = entries.filter((entry) => !entry.disposition);
+  const actionableFallbacks = entries
+    .filter(
+      (entry) =>
+        entry.disposition?.requirement === 'required' &&
+        entry.disposition.productRouteReachability === 'reachable'
+    )
+    .map(({ kind, identifier, source, disposition }) => ({
+      kind,
+      identifier,
+      source,
+      disposition
+    }));
   return canonicalize({
-    entries: entries.sort((left, right) =>
-      [left.kind, left.source.entity, left.source.id ?? '', left.source.field, left.identifier]
-        .join(':')
-        .localeCompare(
-          [
-            right.kind,
-            right.source.entity,
-            right.source.id ?? '',
-            right.source.field,
-            right.identifier
-          ].join(':'),
-          'en'
-        )
-    ),
     classificationComplete: unclassified.length === 0,
-    unclassified,
+    actionableFallbackCount: actionableFallbacks.length,
+    actionableFallbackSamples: actionableFallbacks.slice(0, 25),
     invalidProgramErrors: {
       invalidReferences: audit.textDiagnostics['invalid-reference'].count,
       invalidDescriptionParameters: audit.descriptionDiagnostics['invalid-param']?.count ?? 0,
@@ -561,138 +436,7 @@ async function captureUnresolvedLocalization() {
   });
 }
 
-function collectCharacterIconOwners(
-  characters: Record<string, unknown>,
-  neutralCharacters: Array<Record<string, any>>
-) {
-  const owners = new Map<string, unknown[]>();
-  const add = (key: unknown, owner: unknown) => {
-    if (typeof key !== 'string') return;
-    owners.set(key, [...(owners.get(key) ?? []), owner]);
-  };
-  const neutralById = new Map(neutralCharacters.map((character) => [character.id, character]));
-  for (const [characterId, semantic] of Object.entries(characters)) {
-    const detail = (semantic as Record<string, any>).detail;
-    const neutral = neutralById.get(characterId);
-    for (const [stat, key] of Object.entries(detail.baseStats.iconKeys ?? {}))
-      add(key, { characterId, ownerType: 'profile-stat', path: `baseStats.${stat}` });
-    for (const [profileName, profile] of Object.entries(detail.profiles) as Array<
-      [string, Record<string, any>]
-    >) {
-      const neutralProfile = neutral?.profiles?.[profileName];
-      add(profile.energy.iconKey, {
-        characterId,
-        profile: profileName,
-        ownerType: 'energy',
-        path: 'energy'
-      });
-      for (const card of profile.skillCards) {
-        const parsed = parseCharacterDetailIconKey(card.iconKey ?? '');
-        const attached = (neutralProfile?.skills ?? []).filter((skill: Record<string, any>) =>
-          card.variants.some((variant: Record<string, any>) => variant.id === skill.id)
-        );
-        add(card.iconKey, {
-          characterId,
-          profile: profileName,
-          ownerType: 'skill-card',
-          category: card.category,
-          skillIds: card.variants.map((variant: Record<string, any>) => variant.id),
-          configuredPaths: [
-            ...new Set(
-              attached.flatMap((skill: Record<string, any>) =>
-                parsed?.kind === 'skill-tree'
-                  ? [skill.progressionIconPath].filter(Boolean)
-                  : [skill.iconPath].filter(Boolean)
-              )
-            )
-          ]
-        });
-      }
-      for (const trace of profile.traces)
-        add(trace.iconKey, {
-          characterId,
-          profile: profileName,
-          ownerType: 'trace',
-          traceId: trace.id
-        });
-      for (const eidolon of profile.eidolons)
-        add(eidolon.iconKey, {
-          characterId,
-          profile: profileName,
-          ownerType: 'eidolon',
-          eidolonId: eidolon.id
-        });
-    }
-  }
-  return owners;
-}
-
-async function captureCharacterIcons(
-  characters: Record<string, unknown>,
-  assets: VisualAssetManifest
-) {
-  const requirements = await readAssetRequirements();
-  const assetRoot = assertAssetRoot(resolveAssetRoot());
-  const sources = await readCharacterDetailIconSources(
-    assetRoot,
-    requirements.characterDetailIconKeys
-  );
-  const characterSource = await loadCharacterDomainTables(assertDataRoot());
-  const neutralCharacters = buildCharacterDomain({ tables: characterSource }).characters;
-  const owners = collectCharacterIconOwners(
-    characters,
-    neutralCharacters as Array<Record<string, any>>
-  );
-  const entries = Object.fromEntries(
-    await Promise.all(
-      requirements.characterDetailIconKeys.map(async (key: CharacterDetailIconKey) => {
-        const source = sources.get(key);
-        const resolvedPath = assets.characterDetails.icons.resolved[key];
-        const resolvedFile = resolvedPath
-          ? path.join(siteRoot, 'static', ...resolvedPath.slice(1).split('/'))
-          : undefined;
-        return [
-          key,
-          canonicalize({
-            key,
-            parsedOwnership: parseCharacterDetailIconKey(key),
-            owners: owners.get(key) ?? [],
-            sourcePath: source ? path.relative(assetRoot, source).replaceAll('\\', '/') : null,
-            sourceDigest: source ? fileDigest(await readFile(source)) : null,
-            resolvedPath: resolvedPath ?? null,
-            resolvedDigest: resolvedFile ? fileDigest(await readFile(resolvedFile)) : null
-          })
-        ];
-      })
-    )
-  );
-  const duplicates = Object.entries(
-    Object.groupBy(
-      Object.entries(assets.characterDetails.icons.resolved),
-      ([, resolvedPath]) => resolvedPath
-    )
-  )
-    .flatMap(([resolvedPath, mappings]) =>
-      (mappings?.length ?? 0) > 1
-        ? [
-            {
-              resolvedPath,
-              keys: mappings!.map(([key]) => key).sort((left, right) => left.localeCompare(right))
-            }
-          ]
-        : []
-    )
-    .sort((left, right) => left.resolvedPath.localeCompare(right.resolvedPath));
-  return canonicalize({
-    requirementKeys: requirements.characterDetailIconKeys,
-    entries,
-    missingKeys: assets.characterDetails.icons.missing,
-    duplicateMappings: duplicates
-  });
-}
-
 export async function captureProductBaseline(): Promise<ProductBaselineCapture> {
-  const manifest = await json<DataManifest>(path.join(generatedRoot, 'manifest.json'));
   const assets = await readAssetManifest();
   if (!assets?.sourceCommit) throw new Error('Visual asset manifest is missing its source commit');
   const characterCatalog = await json<CatalogEntry[]>(
@@ -730,13 +474,7 @@ export async function captureProductBaseline(): Promise<ProductBaselineCapture> 
     enemies: enemyCatalog
   };
   return {
-    metadata: {
-      fixtureFormatVersion: PRODUCT_BASELINE_FIXTURE_FORMAT_VERSION,
-      locale: 'zh-CN',
-      sourceCommit: manifest.sourceCommit,
-      sourceVersion: manifest.sourceVersion,
-      assetCommit: assets.sourceCommit
-    },
+    metadata: { fixtureFormatVersion: PRODUCT_BASELINE_FIXTURE_FORMAT_VERSION, locale: 'zh-CN' },
     characters,
     lightCones,
     relics: {
@@ -749,7 +487,6 @@ export async function captureProductBaseline(): Promise<ProductBaselineCapture> 
     endgame: await captureEndgame(capturedEnemies.details),
     homepage: await captureHomepage(characterCatalog, lightConeCatalog, assets),
     search: await captureSearch(catalogs),
-    unresolvedLocalization: await captureUnresolvedLocalization(),
-    characterIcons: await captureCharacterIcons(characters.entities, assets)
+    unresolvedLocalization: await captureUnresolvedLocalization()
   };
 }

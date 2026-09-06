@@ -68,6 +68,15 @@ TextMaps, raw upstream tables, semantic domain objects, and private build metada
 
 `pnpm product:baseline:check` is the authoritative zh-CN semantic regression gate. Baseline fixtures are not updated as part of cleanup.
 
+The test authority is deliberately split into independent contracts:
+
+- **Product behavior** protects observable zh-CN text, formatting, ordering, grouping, routes, fallbacks, and displayed assets.
+- **Data/domain integrity** protects locale-neutral IDs, relationships, ownership, Enemy policy, Endgame identity, and referential integrity through focused tests.
+- **Architecture invariants** protect build/runtime boundaries such as locale-qualified caches, unsupported-locale failures, and the browser boundary.
+- **Upstream health** records version-scoped counts, missing hashes, and asset inventories as diagnostics rather than timeless product behavior.
+
+Migration-era captures, before/after trees, compatibility layouts, and raw registry snapshots are forensic history, not normative test authority.
+
 ## Standard Validation Commands
 
 ```text

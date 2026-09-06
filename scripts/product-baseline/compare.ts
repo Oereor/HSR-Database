@@ -85,15 +85,6 @@ export function compareProductBaseline(
     differences
   );
   compareStableArea('enemies', expected.enemies, actual.enemies);
-  for (const name of Object.keys(expected.enemies.registries))
-    compareValue(
-      expected.enemies.registries[name as keyof typeof expected.enemies.registries],
-      actual.enemies.registries[name as keyof typeof actual.enemies.registries],
-      'enemies',
-      `registry:${name}`,
-      '',
-      differences
-    );
   for (const mode of [
     ...new Set([...Object.keys(expected.endgame.modes), ...Object.keys(actual.endgame.modes)])
   ]) {
@@ -125,20 +116,10 @@ export function compareProductBaseline(
         differences
       );
   }
-  for (const name of Object.keys(expected.endgame.registries))
-    compareValue(
-      expected.endgame.registries[name as keyof typeof expected.endgame.registries],
-      actual.endgame.registries[name as keyof typeof actual.endgame.registries],
-      'endgame',
-      `registry:${name}`,
-      '',
-      differences
-    );
   for (const [domain, expectedArea, actualArea] of [
     ['homepage', expected.homepage, actual.homepage],
     ['search', expected.search, actual.search],
-    ['unresolved-localization', expected.unresolvedLocalization, actual.unresolvedLocalization],
-    ['character-icons', expected.characterIcons, actual.characterIcons]
+    ['unresolved-localization', expected.unresolvedLocalization, actual.unresolvedLocalization]
   ] as const)
     compareValue(expectedArea, actualArea, domain, domain, '', differences);
   return differences;

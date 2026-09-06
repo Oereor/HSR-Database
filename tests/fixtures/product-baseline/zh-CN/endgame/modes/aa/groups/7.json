@@ -15,13 +15,108 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "8056994f09a045f07cdeaefb1f68d2a5ae88e58f9ddc977d22127733f8e735c5"
+                        "enemyHref": "/enemies/5012090",
+                        "hp": {
+                          "exactPerBar": "864165.567375",
+                          "roundedPerBar": "864,166"
+                        },
+                        "identity": "[5012090,5012090,\"418.5\",\"1\",\"375.4385\",\"5.5\",\"864165.567375\",\"resolved\",\"864165.567375\",356,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"80\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"105.60\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 5012090,
+                        "monsterTemplateId": 5012090,
+                        "name": "SD民用机铠",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5012090.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "105.60",
+                          "rounded": "106"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
                       },
                       {
-                        "occurrenceRef": "6d7d890220308ce742984992fc10206659f77134291502c2246d5a3a7df8a2cd"
+                        "enemyHref": "/enemies/5023020",
+                        "hp": {
+                          "exactPerBar": "3072588.68400",
+                          "roundedPerBar": "3,072,589"
+                        },
+                        "identity": "[5023020,5023020,\"1488\",\"1\",\"375.4385\",\"5.5\",\"3072588.68400\",\"resolved\",\"3072588.68400\",356,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"540\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"540\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"180\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 5023020,
+                        "monsterTemplateId": 5023020,
+                        "name": "吞神子嗣",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5023020.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "180",
+                          "roundedPerBar": "180"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       },
                       {
-                        "occurrenceRef": "0c9a9335a38bda77e91a2e0a97fb6fc1d6e68e5a0191afec327344ee33336326"
+                        "enemyHref": "/enemies/5012040",
+                        "hp": {
+                          "exactPerBar": "480091.981875",
+                          "roundedPerBar": "480,092"
+                        },
+                        "identity": "[5012040,5012040,\"232.5\",\"1\",\"375.4385\",\"5.5\",\"480091.981875\",\"resolved\",\"480091.981875\",356,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"190.08\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 5012040,
+                        "monsterTemplateId": 5012040,
+                        "name": "助手涂鸦•拖稿",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5012040.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "190.08",
+                          "rounded": "190"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Wind",
+                            "name": "风"
+                          }
+                        ]
                       }
                     ],
                     "key": "spawn-305070111",
@@ -38,10 +133,14 @@
         "ordinal": 1,
         "traits": [
           {
-            "mechanicRef": "40b17c8b261d042268cb034a0d99edbd8e198054e8de45def1bcf979e58cfbb8"
+            "description": "进入战斗时，固定降低我方目标<color=#f29e38ff><unbreak>50%</unbreak></color>的能量，并使我方目标在自身回合外的能量恢复效率降低<color=#f29e38ff><unbreak>50%</unbreak></color>，持续<color=#f29e38ff><unbreak>2</unbreak></color>回合。",
+            "id": 3033038,
+            "name": "失能"
           },
           {
-            "mechanicRef": "27a4082ff244f7a32fa8c50340d8a933c34ddd8154b24ac4ceaae3513d8dfb5d"
+            "description": "敌方目标每次受到我方攻击后，使自身受到的伤害降低<color=#f29e38ff><unbreak>2%</unbreak></color>，受到的暴击伤害降低<color=#f29e38ff><unbreak>4%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层，该效果在敌方目标受到追加攻击后或阿哈时刻结束时改为降低<color=#f29e38ff><unbreak>5</unbreak></color>层。",
+            "id": 3033063,
+            "name": "破势"
           }
         ],
         "variant": "preliminary"
@@ -59,13 +158,95 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "dfdf30574840a0b1b53752fc0bc8a0459511ce10abdc4e3f5b673e36a0388160"
+                        "enemyHref": "/enemies/5012010",
+                        "hp": {
+                          "exactPerBar": "628484.049000",
+                          "roundedPerBar": "628,484"
+                        },
+                        "identity": "[5012010,5012010,\"232.5\",\"1\",\"375.4385\",\"7.2\",\"628484.049000\",\"resolved\",\"628484.049000\",367,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"190.08\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 5012010,
+                        "monsterTemplateId": 5012010,
+                        "name": "全自动魔仙棒",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5012010.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "190.08",
+                          "rounded": "190"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       },
                       {
-                        "occurrenceRef": "d752858eeae790b13efb2b1a049b0b36953d0c95df9d866dc359f55731fb626b"
+                        "enemyHref": "/enemies/5013030",
+                        "hp": {
+                          "exactPerBar": "4022297.91360",
+                          "roundedPerBar": "4,022,298"
+                        },
+                        "identity": "[5013030,5013030,\"1488\",\"1\",\"375.4385\",\"7.2\",\"4022297.91360\",\"resolved\",\"4022297.91360\",367,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"144\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"190.08\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"360\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"360\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"120\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 5013030,
+                        "monsterTemplateId": 5013030,
+                        "name": "画板孔雀",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5013030.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "190.08",
+                          "rounded": "190"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "120",
+                          "roundedPerBar": "120"
+                        },
+                        "weaknesses": []
                       },
                       {
-                        "occurrenceRef": "2035a5793c40db9b7ce5afc3f58eae78b697f70741fa64ce9cfeb46dc0743fa7"
+                        "enemyHref": "/enemies/5013040",
+                        "hp": {
+                          "exactPerBar": "3770904.29400",
+                          "roundedPerBar": "3,770,904"
+                        },
+                        "identity": "[5013040,5013040,\"1395\",\"1\",\"375.4385\",\"7.2\",\"3770904.29400\",\"resolved\",\"3770904.29400\",367,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 5013040,
+                        "monsterTemplateId": 5013040,
+                        "name": "破晓战队•苍翼",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5013040.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       }
                     ],
                     "key": "spawn-305070121",
@@ -74,7 +255,41 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "9b7f25c6e99eea04fa9f00b87383933e432d1bbdf81d4fa2aa4d210b3295e354"
+                        "enemyHref": "/enemies/5014020",
+                        "hp": {
+                          "exactPerBar": "9427260.735000",
+                          "phaseCount": 2,
+                          "roundedPerBar": "9,427,261"
+                        },
+                        "identity": "[5014020,5014020,\"3487.5\",\"1\",\"375.4385\",\"7.2\",\"9427260.735000\",\"resolved\",\"9427260.735000\",367,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"720\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"720\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"240\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[5012120],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 5014020,
+                        "monsterTemplateId": 5014020,
+                        "name": "合金机铠•帕姆王",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5014020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "240",
+                          "roundedPerBar": "240"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       }
                     ],
                     "key": "spawn-305070122",
@@ -91,7 +306,9 @@
         "ordinal": 2,
         "traits": [
           {
-            "mechanicRef": "0a484d3df40c56bcb3c8351a0c3222dbd2ae31cce1fb1779ba37a7821227f4be"
+            "description": "我方全体目标造成的伤害降低<color=#f29e38ff><unbreak>20%</unbreak></color>，受到的伤害降低<color=#f29e38ff><unbreak>10%</unbreak></color>。",
+            "id": 3033057,
+            "name": "沉毅+"
           }
         ],
         "variant": "preliminary"
@@ -109,10 +326,76 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "5495eecd719d0171b7c796a9aa6a3c24944b16159b12016505ca5a4fe3519816"
+                        "enemyHref": "/enemies/5013050",
+                        "hp": {
+                          "exactPerBar": "4504135.68450",
+                          "roundedPerBar": "4,504,136"
+                        },
+                        "identity": "[5013050,5013050,\"1395\",\"1\",\"375.4385\",\"8.6\",\"4504135.68450\",\"resolved\",\"4504135.68450\",370,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 5013050,
+                        "monsterTemplateId": 5013050,
+                        "name": "破晓战队•赤焰",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5013050.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       },
                       {
-                        "occurrenceRef": "d1fb4a6bd3de10bdeb0ada8ff08248e28acba0e6a6c3eb4486171e61c7e63134"
+                        "enemyHref": "/enemies/4013010",
+                        "hp": {
+                          "exactPerBar": "5404962.82140",
+                          "roundedPerBar": "5,404,963"
+                        },
+                        "identity": "[4013010,4013010,\"1674\",\"1\",\"375.4385\",\"8.6\",\"5404962.82140\",\"resolved\",\"5404962.82140\",370,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"132\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"174.24\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[4012010],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 4013010,
+                        "monsterTemplateId": 4013010,
+                        "name": "天谴先锋",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4013010.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "174.24",
+                          "rounded": "174"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          },
+                          {
+                            "element": "Quantum",
+                            "name": "量子"
+                          }
+                        ]
                       }
                     ],
                     "key": "spawn-305070131",
@@ -121,7 +404,26 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "c24a778f77d5dafee098841bf26856ebc848fa9837f1860e6c98db6393cf93bb"
+                        "enemyHref": "/enemies/4014020",
+                        "hp": {
+                          "exactPerBar": "18016542.73800",
+                          "phaseCount": 2,
+                          "roundedPerBar": "18,016,543"
+                        },
+                        "identity": "[4014020,4014020,\"5580\",\"1\",\"375.4385\",\"8.6\",\"18016542.73800\",\"resolved\",\"18016542.73800\",370,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"60\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"79.20\"},{\"internalStance\":{\"status\":\"unavailable\",\"reason\":\"missing-base\"},\"display\":{\"status\":\"unavailable\",\"reason\":\"missing-base\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[2,[4014012,4012060],true,true,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 4014020,
+                        "monsterTemplateId": 4014020,
+                        "name": "颁赐者，千军首，天谴之矛",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4014020.webp",
+                        "rank": "LittleBoss",
+                        "speed": {
+                          "exact": "79.20",
+                          "rounded": "79"
+                        },
+                        "toughness": {
+                          "roundedPerBar": "资料未提供"
+                        },
+                        "weaknesses": []
                       }
                     ],
                     "key": "spawn-305070132",
@@ -138,7 +440,9 @@
         "ordinal": 3,
         "traits": [
           {
-            "mechanicRef": "8d412ae0f822dec0bfd17b885e0c4796c8370ddeb85c85ccab67dabf0b92fd2c"
+            "description": "我方目标回合开始时损失<color=#f29e38ff><unbreak>500</unbreak></color>点生命值，该效果可致命。",
+            "id": 3033058,
+            "name": "血嗜"
           }
         ],
         "variant": "preliminary"
@@ -156,13 +460,112 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "06f41399b605a6e26ce0399c2c79e4a6704dff2fbb937cc963e4675ce8d0c531"
+                        "enemyHref": "/enemies/5013040",
+                        "hp": {
+                          "exactPerBar": "4597777.497960",
+                          "roundedPerBar": "4,597,777"
+                        },
+                        "identity": "[5013040,5013040,\"1395\",\"1\",\"484.69086\",\"6.8\",\"4597777.497960\",\"resolved\",\"4597777.497960\",368,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"158.40\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 5013040,
+                        "monsterTemplateId": 5013040,
+                        "name": "破晓战队•苍翼",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5013040.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "158.40",
+                          "rounded": "158"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       },
                       {
-                        "occurrenceRef": "a7e95665cde31230e9fec6d4e28804c3a72f09ef5444b223b3d9f221e8458c62"
+                        "enemyHref": "/enemies/4053020",
+                        "hp": {
+                          "exactPerBar": "4597777.497960",
+                          "roundedPerBar": "4,597,777"
+                        },
+                        "identity": "[4053020,4053020,\"1395\",\"1\",\"484.69086\",\"6.8\",\"4597777.497960\",\"resolved\",\"4597777.497960\",368,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"165\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"217.80\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[4052020],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 4053020,
+                        "monsterTemplateId": 4053020,
+                        "name": "飓风大母",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4053020.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "217.80",
+                          "rounded": "218"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
                       },
                       {
-                        "occurrenceRef": "2b6aec65aa26d52bf1a802d913fa8f509c783ef695974d7228d7fbffa898105b"
+                        "enemyHref": "/enemies/5012100",
+                        "hp": {
+                          "exactPerBar": "919555.499592",
+                          "roundedPerBar": "919,555"
+                        },
+                        "identity": "[5012100,5012100,\"279\",\"1\",\"484.69086\",\"6.8\",\"919555.499592\",\"resolved\",\"919555.499592\",368,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"132.00\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 5012100,
+                        "monsterTemplateId": 5012100,
+                        "name": "魔法少女急袭剧团",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5012100.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "132.00",
+                          "rounded": "132"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          }
+                        ]
                       }
                     ],
                     "key": "spawn-305070211",
@@ -171,7 +574,41 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "356b03577724ccee4a3fb2698ec316ba96a8a5945f8aaa1ec18b8fc09a3a6644"
+                        "enemyHref": "/enemies/8025010",
+                        "hp": {
+                          "exactPerBar": "14559631.195687998912",
+                          "phaseCount": 2,
+                          "roundedPerBar": "14,559,631"
+                        },
+                        "identity": "[802501003,8025010,\"2232\",\"1.979167\",\"484.69086\",\"6.8\",\"14559631.195687998912\",\"resolved\",\"14559631.195687998912\",368,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"15\",\"levelRatio\":\"1.32\",\"eliteRatio\":\"1\",\"configuredValue\":\"178.20\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"540\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"300\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"840\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"280\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[802203003,802202006],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 802501003,
+                        "monsterTemplateId": 8025010,
+                        "name": "碎星王虫•斯喀拉卡巴兹（拟造）",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8025010.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "178.20",
+                          "rounded": "178"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "280",
+                          "roundedPerBar": "280"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       }
                     ],
                     "key": "spawn-305070212",
@@ -188,10 +625,14 @@
         "mode": "aa",
         "traits": [
           {
-            "mechanicRef": "8d412ae0f822dec0bfd17b885e0c4796c8370ddeb85c85ccab67dabf0b92fd2c"
+            "description": "我方目标回合开始时损失<color=#f29e38ff><unbreak>500</unbreak></color>点生命值，该效果可致命。",
+            "id": 3033058,
+            "name": "血嗜"
           },
           {
-            "mechanicRef": "27a4082ff244f7a32fa8c50340d8a933c34ddd8154b24ac4ceaae3513d8dfb5d"
+            "description": "敌方目标每次受到我方攻击后，使自身受到的伤害降低<color=#f29e38ff><unbreak>2%</unbreak></color>，受到的暴击伤害降低<color=#f29e38ff><unbreak>4%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层，该效果在敌方目标受到追加攻击后或阿哈时刻结束时改为降低<color=#f29e38ff><unbreak>5</unbreak></color>层。",
+            "id": 3033063,
+            "name": "破势"
           }
         ],
         "variant": "boss-normal"
@@ -209,13 +650,112 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "57c716441ec0f717584d1d43d806c0c2c75b83bda69fe63c0bf2ae3161f4ba63"
+                        "enemyHref": "/enemies/5013040",
+                        "hp": {
+                          "exactPerBar": "16768364.64660",
+                          "roundedPerBar": "16,768,365"
+                        },
+                        "identity": "[5013040,5013040,\"1395\",\"1\",\"1938.7634\",\"6.2\",\"16768364.64660\",\"resolved\",\"16768364.64660\",369,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.5\",\"eliteRatio\":\"1\",\"configuredValue\":\"180.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 5013040,
+                        "monsterTemplateId": 5013040,
+                        "name": "破晓战队•苍翼",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5013040.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "180.0",
+                          "rounded": "180"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       },
                       {
-                        "occurrenceRef": "5030e04c9832f864373d59ccbd4a4f5011dce13f9f5a685784e77d5bfd9b53d6"
+                        "enemyHref": "/enemies/4053020",
+                        "hp": {
+                          "exactPerBar": "16768364.64660",
+                          "roundedPerBar": "16,768,365"
+                        },
+                        "identity": "[4053020,4053020,\"1395\",\"1\",\"1938.7634\",\"6.2\",\"16768364.64660\",\"resolved\",\"16768364.64660\",369,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"165\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.5\",\"eliteRatio\":\"1\",\"configuredValue\":\"247.5\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"480\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"480\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"160\"},\"barCount\":1,\"runtimeStatus\":\"runtime-unclear\"},\"[null,[4052020],false,false,false,false,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 4053020,
+                        "monsterTemplateId": 4053020,
+                        "name": "飓风大母",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_4053020.webp",
+                        "rank": "Elite",
+                        "speed": {
+                          "exact": "247.5",
+                          "rounded": "248"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "160",
+                          "roundedPerBar": "160"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Lightning",
+                            "name": "雷"
+                          }
+                        ]
                       },
                       {
-                        "occurrenceRef": "d71b72ee4d5ad3710b035d684fdaf5b993f54e9e329d49f26ad3d9d3eda3552b"
+                        "enemyHref": "/enemies/5012100",
+                        "hp": {
+                          "exactPerBar": "3353672.92932",
+                          "roundedPerBar": "3,353,673"
+                        },
+                        "identity": "[5012100,5012100,\"279\",\"1\",\"1938.7634\",\"6.2\",\"3353672.92932\",\"resolved\",\"3353672.92932\",369,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"100\",\"instanceRatio\":\"1\",\"instanceValue\":\"0\",\"levelRatio\":\"1.5\",\"eliteRatio\":\"1\",\"configuredValue\":\"150.0\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"90\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"0\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"90\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"30\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[null,[],false,false,false,false,\\\"static\\\"]\"]",
+                        "monsterId": 5012100,
+                        "monsterTemplateId": 5012100,
+                        "name": "魔法少女急袭剧团",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_5012100.webp",
+                        "rank": "MinionLv2",
+                        "speed": {
+                          "exact": "150.0",
+                          "rounded": "150"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "30",
+                          "roundedPerBar": "30"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Fire",
+                            "name": "火"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          }
+                        ]
                       }
                     ],
                     "key": "spawn-305070221",
@@ -224,7 +764,41 @@
                   {
                     "enemies": [
                       {
-                        "occurrenceRef": "064eb99dc69e045f5462b87efbf6e1c4f75123fa5523f51480a6343e221f0bb0"
+                        "enemyHref": "/enemies/8025010",
+                        "hp": {
+                          "exactPerBar": "53099830.32402781152",
+                          "phaseCount": 2,
+                          "roundedPerBar": "53,099,830"
+                        },
+                        "identity": "[802501003,8025010,\"2232\",\"1.979167\",\"1938.7634\",\"6.2\",\"53099830.32402781152\",\"resolved\",\"53099830.32402781152\",369,\"infinite-elite\",\"spawn-group\",\"verified\",{\"status\":\"resolved\",\"base\":\"120\",\"instanceRatio\":\"1\",\"instanceValue\":\"15\",\"levelRatio\":\"1.5\",\"eliteRatio\":\"1\",\"configuredValue\":\"202.5\"},{\"internalStance\":{\"status\":\"resolved\",\"baseInternal\":\"540\",\"instanceRatio\":\"1\",\"instanceValueInternal\":\"300\",\"hardLevelRatio\":\"1\",\"eliteRatio\":\"1\",\"resolvedInternal\":\"840\"},\"display\":{\"status\":\"resolved\",\"perBar\":\"280\"},\"barCount\":1,\"runtimeStatus\":\"static\"},\"[2,[802203003,802202006],false,false,true,true,\\\"runtime-unclear\\\"]\"]",
+                        "monsterId": 802501003,
+                        "monsterTemplateId": 8025010,
+                        "name": "碎星王虫•斯喀拉卡巴兹（拟造）",
+                        "portraitUrl": "/generated-enemy-assets/icons/Monster_8025010.webp",
+                        "rank": "BigBoss",
+                        "speed": {
+                          "exact": "202.5",
+                          "rounded": "203"
+                        },
+                        "toughness": {
+                          "barCount": 1,
+                          "exactPerBar": "280",
+                          "roundedPerBar": "280"
+                        },
+                        "weaknesses": [
+                          {
+                            "element": "Physical",
+                            "name": "物理"
+                          },
+                          {
+                            "element": "Ice",
+                            "name": "冰"
+                          },
+                          {
+                            "element": "Imaginary",
+                            "name": "虚数"
+                          }
+                        ]
                       }
                     ],
                     "key": "spawn-305070222",
@@ -241,10 +815,14 @@
         "mode": "aa",
         "traits": [
           {
-            "mechanicRef": "fb5a63a82932dfd78579b782c248c81acfbfab01ad80e62b6685ac2b85c43841"
+            "description": "我方目标回合开始时损失<color=#f29e38ff><unbreak>1000</unbreak></color>点生命值，该效果可致命。",
+            "id": 3033059,
+            "name": "血嗜+"
           },
           {
-            "mechanicRef": "6b264e661974ab12a0d9c7232cb8de0f199fff25ef82f861f844ee4a3e531883"
+            "description": "敌方目标每次受到我方攻击后，使自身受到的伤害降低<color=#f29e38ff><unbreak>3%</unbreak></color>，受到的暴击伤害降低<color=#f29e38ff><unbreak>6%</unbreak></color>，最多叠加<color=#f29e38ff><unbreak>10</unbreak></color>层，该效果在敌方目标受到追加攻击后或阿哈时刻结束时改为降低<color=#f29e38ff><unbreak>5</unbreak></color>层。",
+            "id": 3033064,
+            "name": "破势+"
           }
         ],
         "variant": "boss-hard"
@@ -254,13 +832,22 @@
       "key": "aa:704:BuffList",
       "options": [
         {
-          "mechanicRef": "0e18ab2b311c47fbfca072068246ea7e3de0fa6256fb4b7e403490b10ef5fca3"
+          "description": "我方全体目标欢愉度提高<color=#f29e38ff><unbreak>50%</unbreak></color>，阿哈时刻开始时，我方额外获得<color=#f29e38ff><unbreak>10</unbreak></color>个笑点。",
+          "id": 3033060,
+          "name": "捧腹大笑",
+          "order": 1
         },
         {
-          "mechanicRef": "d314d6c43d586236186679e3f551acbe3c08637b747725dd72fec3472b0ccb20"
+          "description": "为【碎星王虫•斯喀拉卡巴兹（拟造）】及其召唤物添加火属性弱点和雷属性弱点，并使以上目标的火属性和雷属性抗性降低<color=#f29e38ff><unbreak>60%</unbreak></color>。",
+          "id": 3033061,
+          "name": "烈火轰雷",
+          "order": 2
         },
         {
-          "mechanicRef": "618e3b2bb2603eff00b5fd818c1e1d1ccd11dbfcbbf408d9eb55d94fc79013f0"
+          "description": "我方全体目标造成的伤害提高<color=#f29e38ff><unbreak>30%</unbreak></color>；我方目标每次消灭敌方目标后，使自身造成的伤害额外提高<color=#f29e38ff><unbreak>3%</unbreak></color>，该效果可叠加。",
+          "id": 3033062,
+          "name": "破坚摧刚",
+          "order": 3
         }
       ]
     },
@@ -339,513 +926,5 @@
       }
     ]
   },
-  "route": "/endgame/aa/7",
-  "source": {
-    "encounters": [
-      {
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 30507011,
-                "hardLevelGroup": 3,
-                "level": 95,
-                "previewMonsterIds": [
-                  5012090,
-                  5023020,
-                  5012040,
-                  5012090
-                ],
-                "stageAbilities": [],
-                "stageId": 30507011,
-                "waveModel": {
-                  "kind": "spawn-sequence",
-                  "waveGroupId": 30507011,
-                  "waves": [
-                    {
-                      "clearPreviousAbility": true,
-                      "maxMonsterCount": 20,
-                      "maxTeammateCount": 4,
-                      "monsterGroups": [
-                        {
-                          "monsterGroupId": 305070111,
-                          "orderedEnemies": [
-                            {
-                              "occurrenceRef": "496fd278156f3dcc913a2fd84b7c78c66edef942b7035e73d8eb6f71dac157fa"
-                            },
-                            {
-                              "occurrenceRef": "20f8df02edccf52b3cbcf7dbc4944fdfd62905adea609edf6a0b795c83e1b19f"
-                            },
-                            {
-                              "occurrenceRef": "22db686876e28d8ec663733a8b5cf517145a9a04553eea2c0280ac57680bbd35"
-                            },
-                            {
-                              "occurrenceRef": "496fd278156f3dcc913a2fd84b7c78c66edef942b7035e73d8eb6f71dac157fa"
-                            },
-                            {
-                              "occurrenceRef": "22db686876e28d8ec663733a8b5cf517145a9a04553eea2c0280ac57680bbd35"
-                            }
-                          ]
-                        }
-                      ],
-                      "params": [],
-                      "waveId": 305070111
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "configId": 701,
-        "id": "701:preliminary",
-        "name": "骑士（一）",
-        "ordinal": 1,
-        "traits": [
-          {
-            "buff": {
-              "mechanicRef": "5e6434051a907d6ff53253c82c6f31be84b6390d154ed9c8e245206bd48615c6"
-            },
-            "provenance": {
-              "arrayIndex": 0,
-              "field": "TagList",
-              "ownerId": 701,
-              "table": "ChallengePeakConfig"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "034e42d8b77d3bc3762720514b3571c2b59e74938a50657f2d793d6957cbe4b3"
-            },
-            "provenance": {
-              "arrayIndex": 1,
-              "field": "TagList",
-              "ownerId": 701,
-              "table": "ChallengePeakConfig"
-            }
-          }
-        ],
-        "variant": "preliminary"
-      },
-      {
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 30507012,
-                "hardLevelGroup": 3,
-                "level": 95,
-                "previewMonsterIds": [
-                  5012010,
-                  5013030,
-                  5013040,
-                  5012010,
-                  5014020
-                ],
-                "stageAbilities": [],
-                "stageId": 30507012,
-                "waveModel": {
-                  "kind": "spawn-sequence",
-                  "waveGroupId": 30507012,
-                  "waves": [
-                    {
-                      "clearPreviousAbility": true,
-                      "maxMonsterCount": 4,
-                      "maxTeammateCount": 4,
-                      "monsterGroups": [
-                        {
-                          "monsterGroupId": 305070121,
-                          "orderedEnemies": [
-                            {
-                              "occurrenceRef": "b64a35c7232d0a558e3b47f49dbad4f5757cb49db915aa872870400984137060"
-                            },
-                            {
-                              "occurrenceRef": "d7a96551acb994b1a0c39084cb06554a1f5547f9bd913c9497166035c79a9142"
-                            },
-                            {
-                              "occurrenceRef": "63c3d36e7573f47f2dafc4be1f328ba01496e6f73d33570acf6c6d23860a9394"
-                            },
-                            {
-                              "occurrenceRef": "b64a35c7232d0a558e3b47f49dbad4f5757cb49db915aa872870400984137060"
-                            }
-                          ]
-                        }
-                      ],
-                      "params": [],
-                      "waveId": 305070121
-                    },
-                    {
-                      "clearPreviousAbility": true,
-                      "maxMonsterCount": 1,
-                      "maxTeammateCount": 1,
-                      "monsterGroups": [
-                        {
-                          "monsterGroupId": 305070122,
-                          "orderedEnemies": [
-                            {
-                              "occurrenceRef": "fea32813e96810dcf7a9c0d12f286dd51158f0c8d6b6a7c3b241914b0204d6d7"
-                            }
-                          ]
-                        }
-                      ],
-                      "params": [],
-                      "waveId": 305070122
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "configId": 702,
-        "id": "702:preliminary",
-        "name": "骑士（二）",
-        "ordinal": 2,
-        "traits": [
-          {
-            "buff": {
-              "mechanicRef": "d8cfc9d5d5c8052c3a22668335ab322d74efffa32f673c060a879c570eb595bf"
-            },
-            "provenance": {
-              "arrayIndex": 0,
-              "field": "TagList",
-              "ownerId": 702,
-              "table": "ChallengePeakConfig"
-            }
-          }
-        ],
-        "variant": "preliminary"
-      },
-      {
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 30507013,
-                "hardLevelGroup": 3,
-                "level": 95,
-                "previewMonsterIds": [
-                  5013050,
-                  4013010,
-                  4014020
-                ],
-                "stageAbilities": [],
-                "stageId": 30507013,
-                "waveModel": {
-                  "kind": "spawn-sequence",
-                  "waveGroupId": 30507013,
-                  "waves": [
-                    {
-                      "clearPreviousAbility": true,
-                      "maxMonsterCount": 2,
-                      "maxTeammateCount": 2,
-                      "monsterGroups": [
-                        {
-                          "monsterGroupId": 305070131,
-                          "orderedEnemies": [
-                            {
-                              "occurrenceRef": "fa2e92cca68449942c0a61c2ded544fae0103adf56665b5ac8e846c08a90b11f"
-                            },
-                            {
-                              "occurrenceRef": "a3489e4b3f45c1f63c299654cdd3af14b8a1ba6a4f0aeaaec5bd310acace3e94"
-                            }
-                          ]
-                        }
-                      ],
-                      "params": [],
-                      "waveId": 305070131
-                    },
-                    {
-                      "clearPreviousAbility": true,
-                      "maxMonsterCount": 1,
-                      "maxTeammateCount": 1,
-                      "monsterGroups": [
-                        {
-                          "monsterGroupId": 305070132,
-                          "orderedEnemies": [
-                            {
-                              "occurrenceRef": "664abe0bf85d2eb63afd7004cbb9e1b5ff0c2f04514224f1d1265b699e55deb6"
-                            }
-                          ]
-                        }
-                      ],
-                      "params": [],
-                      "waveId": 305070132
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "configId": 703,
-        "id": "703:preliminary",
-        "name": "骑士（三）",
-        "ordinal": 3,
-        "traits": [
-          {
-            "buff": {
-              "mechanicRef": "4621502c254f26ea1e4da9594d96fd0e90504d35dfbdc6cd7ea46e64077c969a"
-            },
-            "provenance": {
-              "arrayIndex": 0,
-              "field": "TagList",
-              "ownerId": 703,
-              "table": "ChallengePeakConfig"
-            }
-          }
-        ],
-        "variant": "preliminary"
-      },
-      {
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 30507021,
-                "hardLevelGroup": 3,
-                "level": 100,
-                "previewMonsterIds": [
-                  5013040,
-                  4053020,
-                  5012010,
-                  802501003
-                ],
-                "stageAbilities": [],
-                "stageId": 30507021,
-                "waveModel": {
-                  "kind": "spawn-sequence",
-                  "waveGroupId": 30507021,
-                  "waves": [
-                    {
-                      "clearPreviousAbility": true,
-                      "maxMonsterCount": 3,
-                      "maxTeammateCount": 3,
-                      "monsterGroups": [
-                        {
-                          "monsterGroupId": 305070211,
-                          "orderedEnemies": [
-                            {
-                              "occurrenceRef": "032ff6aaadb05609069389944e0474e390fdc9b39778a019492c73cba9d12bf0"
-                            },
-                            {
-                              "occurrenceRef": "3a51f3f21c65940e8141a7fe05fba266a30e471825430d4590c9a71c0323c8a9"
-                            },
-                            {
-                              "occurrenceRef": "e05acd2670a0814ae2178b0594f95bbe1507a6a343f146e5ba7c376f4613576b"
-                            }
-                          ]
-                        }
-                      ],
-                      "params": [],
-                      "waveId": 305070211
-                    },
-                    {
-                      "clearPreviousAbility": true,
-                      "maxMonsterCount": 1,
-                      "maxTeammateCount": 1,
-                      "monsterGroups": [
-                        {
-                          "monsterGroupId": 305070212,
-                          "orderedEnemies": [
-                            {
-                              "occurrenceRef": "857de016046b832d15a5f861178570db6d3369b630406d2ff6447afc9eabae65"
-                            }
-                          ]
-                        }
-                      ],
-                      "params": [],
-                      "waveId": 305070212
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "configId": 704,
-        "id": "704:normal",
-        "judgmentQuadrantKey": "aa:704:BuffList",
-        "name": "将杀王棋",
-        "traits": [
-          {
-            "buff": {
-              "mechanicRef": "4621502c254f26ea1e4da9594d96fd0e90504d35dfbdc6cd7ea46e64077c969a"
-            },
-            "provenance": {
-              "arrayIndex": 0,
-              "field": "TagList",
-              "ownerId": 704,
-              "table": "ChallengePeakConfig"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "034e42d8b77d3bc3762720514b3571c2b59e74938a50657f2d793d6957cbe4b3"
-            },
-            "provenance": {
-              "arrayIndex": 1,
-              "field": "TagList",
-              "ownerId": 704,
-              "table": "ChallengePeakConfig"
-            }
-          }
-        ],
-        "variant": "boss-normal"
-      },
-      {
-        "battles": [
-          {
-            "slot": 1,
-            "stages": [
-              {
-                "eventId": 30507022,
-                "hardLevelGroup": 3,
-                "level": 120,
-                "previewMonsterIds": [
-                  5013040,
-                  4053020,
-                  5012010,
-                  802501003
-                ],
-                "stageAbilities": [],
-                "stageId": 30507022,
-                "waveModel": {
-                  "kind": "spawn-sequence",
-                  "waveGroupId": 30507022,
-                  "waves": [
-                    {
-                      "clearPreviousAbility": true,
-                      "maxMonsterCount": 3,
-                      "maxTeammateCount": 3,
-                      "monsterGroups": [
-                        {
-                          "monsterGroupId": 305070221,
-                          "orderedEnemies": [
-                            {
-                              "occurrenceRef": "eff5c2074e292b612ca590b67153f2d20fe3e3e2b0cf2e4f75194f149a6f32e9"
-                            },
-                            {
-                              "occurrenceRef": "f321f7c2ccd589e2dd88263471f4c1aac72829affe0b42468e257bc51f346577"
-                            },
-                            {
-                              "occurrenceRef": "04fcf7c61e8b38e79a045383b90e57273637904c7811034e85bffb418699fe52"
-                            }
-                          ]
-                        }
-                      ],
-                      "params": [],
-                      "waveId": 305070221
-                    },
-                    {
-                      "clearPreviousAbility": true,
-                      "maxMonsterCount": 1,
-                      "maxTeammateCount": 1,
-                      "monsterGroups": [
-                        {
-                          "monsterGroupId": 305070222,
-                          "orderedEnemies": [
-                            {
-                              "occurrenceRef": "353b5b273a95a11948c7d0abb57b00726bf2f958da203901ed7c19439fef7c69"
-                            }
-                          ]
-                        }
-                      ],
-                      "params": [],
-                      "waveId": 305070222
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ],
-        "configId": 704,
-        "id": "704:hard",
-        "judgmentQuadrantKey": "aa:704:BuffList",
-        "name": "将杀王棋•绝境",
-        "traits": [
-          {
-            "buff": {
-              "mechanicRef": "8ea62902dbd80ff300f9496a1ec030ad322caefea24edd18d16b5a873afacc48"
-            },
-            "provenance": {
-              "arrayIndex": 0,
-              "field": "HardTagList",
-              "ownerId": 704,
-              "table": "ChallengePeakBossConfig"
-            }
-          },
-          {
-            "buff": {
-              "mechanicRef": "450fa9ad0960cb6a7816c3847932df63e146da4cbae5b70ad4c8cfc46eed7eb8"
-            },
-            "provenance": {
-              "arrayIndex": 1,
-              "field": "HardTagList",
-              "ownerId": 704,
-              "table": "ChallengePeakBossConfig"
-            }
-          }
-        ],
-        "variant": "boss-hard"
-      }
-    ],
-    "groupId": 7,
-    "judgmentQuadrant": {
-      "bossConfigId": 704,
-      "key": "aa:704:BuffList",
-      "options": [
-        {
-          "buff": {
-            "mechanicRef": "4e5c4befa2b6c3ddfc8f0b5f4138f37c82c808f33e7c5fe5edd5777d551ddfc9"
-          },
-          "order": 1,
-          "provenance": {
-            "arrayIndex": 0,
-            "field": "BuffList",
-            "ownerId": 704,
-            "table": "ChallengePeakBossConfig"
-          }
-        },
-        {
-          "buff": {
-            "mechanicRef": "67e7ab4e68470818e3dc7876b29ab36b3121023bbb540e7ca42ff87becd8e88d"
-          },
-          "order": 2,
-          "provenance": {
-            "arrayIndex": 1,
-            "field": "BuffList",
-            "ownerId": 704,
-            "table": "ChallengePeakBossConfig"
-          }
-        },
-        {
-          "buff": {
-            "mechanicRef": "030609359a42dcc46d4371e6b68e05c8993af2741f98b22c30b244a22c2a96c9"
-          },
-          "order": 3,
-          "provenance": {
-            "arrayIndex": 2,
-            "field": "BuffList",
-            "ownerId": 704,
-            "table": "ChallengePeakBossConfig"
-          }
-        }
-      ],
-      "provenance": {
-        "field": "BuffList",
-        "ownerId": 704,
-        "table": "ChallengePeakBossConfig"
-      },
-      "selectCount": 1
-    },
-    "mode": "aa",
-    "name": "嗡鸣如笑",
-    "recommendationEligible": true
-  }
+  "route": "/endgame/aa/7"
 }
