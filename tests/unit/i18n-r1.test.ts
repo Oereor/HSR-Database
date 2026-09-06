@@ -13,7 +13,7 @@ import { loadCharacterDomainTables } from '../../scripts/data/character-sources'
 import { generatedRoot, resolveDataRoot } from '../../scripts/data/paths';
 import type { RelicSet } from '../../src/lib/domain/types';
 
-it('separates generated locales from the single public locale', () => {
+it('separates generated locales while publishing both public locales', () => {
   expect(getPublicLocale()).toMatchObject({
     locale: 'zh-CN',
     textMapCode: 'CHS',
@@ -24,7 +24,7 @@ it('separates generated locales from the single public locale', () => {
   expect(LOCALE_REGISTRY.en).toMatchObject({
     textMapCode: 'EN',
     projectionEnabled: true,
-    publicRoutingEnabled: false
+    publicRoutingEnabled: true
   });
   expect(() => getLocaleConfig('fr')).toThrow('Unsupported locale');
 });

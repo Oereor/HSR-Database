@@ -1,8 +1,8 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
-  export let eyebrow: string = m.overview_eyebrow({}, { locale: 'zh-CN' });
-  export let title: string = m.characters_title({}, { locale: 'zh-CN' });
-  export let description: string = m.characters_description({}, { locale: 'zh-CN' });
+  export let eyebrow: string = m.overview_eyebrow();
+  export let title: string = m.characters_title();
+  export let description: string = m.characters_description();
   export let countLabel = '';
   export let artwork: Array<{ id: string; url: string }> = [];
 </script>

@@ -1,6 +1,8 @@
 <script lang="ts">
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
-  import { relicTypeNames } from '$lib/domain/constants';
+  import { localizedHref } from '$lib/i18n/routing';
+  import { relicCategoryLabel, relicSlotLabel } from '$lib/i18n/product';
+  import { m } from '$lib/paraglide/messages.js';
   import { getLightConePreviewUrl, getRelicSetIconUrl } from '$lib/data/visual-assets';
   import CompactEntityCard from './CompactEntityCard.svelte';
   import GameText from './GameText.svelte';
@@ -17,19 +19,19 @@
   class="detail-section equipment-recommendation section-nav-target"
 >
   <SectionHeading level={1}>
-    装备推荐
+    {m.detail_equipment_recommendation()}
     <svelte:fragment slot="meta"
       ><span aria-hidden="true">ⓘ</span>
-      来自游戏配置中的系统推荐数据，不代表实时玩家使用率。</svelte:fragment
+      {m.equipment_source_note()}</svelte:fragment
     >
   </SectionHeading>
 
   <div class="equipment-recommendation__group">
-    <SectionHeading level={2}>光锥建议</SectionHeading>
+    <SectionHeading level={2}>{m.equipment_light_cones()}</SectionHeading>
     <div class="compact-entity-grid">
       {#each recommendation.lightCones as lightCone (lightCone.id)}
         <CompactEntityCard
-          href={`/light-cones/${lightCone.id}`}
+          href={localizedHref(`/light-cones/${lightCone.id}`)}
           imageUrl={getLightConePreviewUrl(lightCone.id)}
           fallbackLabel={lightCone.name}
         >
@@ -51,33 +53,33 @@
   </div>
 
   <div class="equipment-recommendation__group">
-    <SectionHeading level={2}>遗器建议</SectionHeading>
+    <SectionHeading level={2}>{m.equipment_relics()}</SectionHeading>
     <div class="equipment-recommendation__subgroup">
-      <SectionHeading level={3}>隧洞遗器</SectionHeading>
+      <SectionHeading level={3}>{relicCategoryLabel('cavern')}</SectionHeading>
       <div class="compact-entity-grid">
         {#each recommendation.cavernSets as relicSet (relicSet.id)}
           <CompactEntityCard
-            href={`/relics/${relicSet.id}`}
+            href={localizedHref(`/relics/${relicSet.id}`)}
             imageUrl={getRelicSetIconUrl(relicSet.id)}
             fallbackLabel={relicSet.name}
           >
             <svelte:fragment slot="title"><GameText text={relicSet.name} /></svelte:fragment>
-            <svelte:fragment slot="secondary">隧洞遗器</svelte:fragment>
+            <svelte:fragment slot="secondary">{relicCategoryLabel('cavern')}</svelte:fragment>
           </CompactEntityCard>
         {/each}
       </div>
     </div>
     <div class="equipment-recommendation__subgroup">
-      <SectionHeading level={3}>位面饰品</SectionHeading>
+      <SectionHeading level={3}>{relicCategoryLabel('planar')}</SectionHeading>
       <div class="compact-entity-grid">
         {#each recommendation.planarSets as relicSet (relicSet.id)}
           <CompactEntityCard
-            href={`/relics/${relicSet.id}`}
+            href={localizedHref(`/relics/${relicSet.id}`)}
             imageUrl={getRelicSetIconUrl(relicSet.id)}
             fallbackLabel={relicSet.name}
           >
             <svelte:fragment slot="title"><GameText text={relicSet.name} /></svelte:fragment>
-            <svelte:fragment slot="secondary">位面饰品</svelte:fragment>
+            <svelte:fragment slot="secondary">{relicCategoryLabel('planar')}</svelte:fragment>
           </CompactEntityCard>
         {/each}
       </div>
@@ -85,12 +87,12 @@
   </div>
 
   <div class="equipment-recommendation__group">
-    <SectionHeading level={2}>推荐属性</SectionHeading>
+    <SectionHeading level={2}>{m.equipment_recommended_stats()}</SectionHeading>
     <article class="recommendation-stats-surface">
       <div class="recommendation-main-stats">
         {#each recommendation.mainStats as stat (stat.slot)}
           <section class="recommendation-main-stat" data-relic-slot={stat.slot}>
-            <h4>{relicTypeNames[stat.slot]}</h4>
+            <h4>{relicSlotLabel(stat.slot)}</h4>
             <div>
               {#each stat.properties as property (property.propertyType)}
                 <RelicPropertyToken {property} />
@@ -100,7 +102,7 @@
         {/each}
       </div>
       <div class="recommendation-substats">
-        <h4>推荐副属性</h4>
+        <h4>{m.equipment_substats()}</h4>
         <div>
           {#each recommendation.subStats as property (property.propertyType)}
             <RelicPropertyToken {property} chip />

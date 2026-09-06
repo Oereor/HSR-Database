@@ -2,6 +2,7 @@
   import type { EndgameModeView } from '$lib/domain/endgame-view';
   import { ENDGAME_MODE_META } from '$lib/domain/endgame-view';
   import EndgameModeIcon from './EndgameModeIcon.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let mode: EndgameModeView;
   export let featured = false;
@@ -25,17 +26,17 @@
 
   <span class="endgame-overview-card__heading">
     <span class="endgame-overview-card__icon"><EndgameModeIcon mode={mode.mode} /></span>
-    <span>{metadata.label}</span>
+    <span>{mode.label}</span>
   </span>
 
   <span class="endgame-overview-card__season">
-    <span class="endgame-overview-card__label">当前赛期</span>
-    <strong>{period?.name ?? '暂无赛期'}</strong>
+    <span class="endgame-overview-card__label">{m.endgame_current_period()}</span>
+    <strong>{period?.name ?? m.endgame_no_period()}</strong>
     <span class="endgame-overview-card__date">{dateLabel}</span>
   </span>
 
   <span class="endgame-overview-card__footer">
-    <span>{mode.periods.length} 个赛期</span>
+    <span>{m.endgame_period_count({ count: mode.periods.length })}</span>
     <span class="endgame-overview-card__arrow" aria-hidden="true">→</span>
   </span>
 </a>

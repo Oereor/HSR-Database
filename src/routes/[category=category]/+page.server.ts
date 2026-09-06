@@ -6,9 +6,9 @@ import { error } from '@sveltejs/kit';
 export const prerender = true;
 export const entries = () => Object.keys(CATEGORY_CONFIG).map((category) => ({ category }));
 
-export async function load({ params }) {
+export async function load({ params, locals }) {
   if (!isCategory(params.category)) error(404, '分类不存在');
-  const catalog = await getCatalog(params.category);
+  const catalog = await getCatalog(locals.locale, params.category);
   const enemyPortraits =
     params.category === 'enemies'
       ? Object.fromEntries(

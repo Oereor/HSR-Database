@@ -16,8 +16,8 @@ const root = path.resolve('src', 'lib', 'generated');
 const staticGeneratedRoot = path.resolve('static', 'generated');
 const searchIndexCache = new Map<string, Promise<GlobalSearchIndex>>();
 
-async function readJson<T>(...segments: string[]): Promise<T> {
-  return JSON.parse(await readFile(path.join(root, 'views', 'zh-CN', ...segments), 'utf8')) as T;
+async function readJson<T>(locale: SearchLocale, ...segments: string[]): Promise<T> {
+  return JSON.parse(await readFile(path.join(root, 'views', locale, ...segments), 'utf8')) as T;
 }
 
 async function readRootJson<T>(...segments: string[]): Promise<T> {
@@ -29,16 +29,19 @@ export const getPublicSiteVersion = async (): Promise<PublicSiteVersion> => {
   const manifest = await getManifest();
   return { gameVersion: manifest.gameVersion, dataRevision: manifest.dataRevision.slice(0, 8) };
 };
-export const getHomepageRecentWarps = () => readJson<HomepageRecentWarpData>('homepage.json');
-export const getCatalog = (category: CategorySlug) =>
-  readJson<CatalogEntry[]>('catalogs', `${category}.json`);
-export const getEnemyCatalog = () => readJson<EnemyCatalogEntry[]>('catalogs', 'enemies.json');
-export const getRelicCatalog = () => readJson<RelicCatalogEntry[]>('catalogs', 'relics.json');
-export const getRelicProperties = () =>
-  readJson<RelicProperty[]>('catalogs', 'relic-properties.json');
-export const getDetail = (category: CategorySlug, id: string) =>
-  readJson<Record<string, unknown>>('details', category, `${id}.json`);
-export const getSearchIndex = (locale: SearchLocale = 'zh-CN') => {
+export const getHomepageRecentWarps = (locale: SearchLocale) =>
+  readJson<HomepageRecentWarpData>(locale, 'homepage.json');
+export const getCatalog = (locale: SearchLocale, category: CategorySlug) =>
+  readJson<CatalogEntry[]>(locale, 'catalogs', `${category}.json`);
+export const getEnemyCatalog = (locale: SearchLocale) =>
+  readJson<EnemyCatalogEntry[]>(locale, 'catalogs', 'enemies.json');
+export const getRelicCatalog = (locale: SearchLocale) =>
+  readJson<RelicCatalogEntry[]>(locale, 'catalogs', 'relics.json');
+export const getRelicProperties = (locale: SearchLocale) =>
+  readJson<RelicProperty[]>(locale, 'catalogs', 'relic-properties.json');
+export const getDetail = (locale: SearchLocale, category: CategorySlug, id: string) =>
+  readJson<Record<string, unknown>>(locale, 'details', category, `${id}.json`);
+export const getSearchIndex = (locale: SearchLocale) => {
   let cached = searchIndexCache.get(locale);
   if (!cached) {
     cached = readFile(path.join(staticGeneratedRoot, locale, 'search.json'), 'utf8').then(

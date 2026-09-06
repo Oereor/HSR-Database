@@ -1,5 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
@@ -25,8 +26,8 @@
   import OverviewToolbar from './OverviewToolbar.svelte';
 
   export let entries: CatalogEntry[] = [];
-  export let title: string = m.enemies_title({}, { locale: 'zh-CN' });
-  export let description: string = m.enemies_description({}, { locale: 'zh-CN' });
+  export let title: string = m.enemies_title();
+  export let description: string = m.enemies_description();
   export let enemyPortraits: Record<string, string> = {};
 
   const heroEnemyIds = ['1005010', '2004010', '4034010'] as const;
@@ -130,35 +131,40 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow={m.enemies_eyebrow({}, { locale: 'zh-CN' })}
+  eyebrow={m.enemies_eyebrow()}
   {title}
   {description}
-  countLabel={m.enemies_count({ count: enemies.length }, { locale: 'zh-CN' })}
+  countLabel={m.enemies_count({ count: enemies.length })}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label={m.enemies_controls_aria({}, { locale: 'zh-CN' })}>
+<section class="overview-controls" aria-label={m.enemies_controls_aria()}>
   <OverviewSearch
     id="enemy-search-input"
     bind:value={draftQuery}
-    placeholder={m.enemies_search_placeholder({}, { locale: 'zh-CN' })}
+    placeholder={m.enemies_search_placeholder()}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
       id="enemy-type"
-      label={m.filter_enemy_type({}, { locale: 'zh-CN' })}
+      label={m.filter_enemy_type()}
       options={ENEMY_RANK_CATEGORIES.map((option) => ({
         value: option.code,
-        label: option.filterLabel
+        label:
+          option.code === 'normal'
+            ? m.enemy_filter_normal()
+            : option.code === 'elite'
+              ? m.enemy_filter_elite()
+              : m.enemy_filter_boss()
       }))}
       selected={filterState.types}
       onToggle={(value) => toggleFilter('types', value)}
     />
     <FilterGroup
       id="enemy-weakness"
-      label={m.filter_enemy_weakness({}, { locale: 'zh-CN' })}
+      label={m.filter_enemy_weakness()}
       iconKind="element"
       options={weaknessOptions}
       selected={filterState.weaknesses}
@@ -185,7 +191,7 @@
     {#each visible as entry (entry.id)}
       <EnemyOverviewCard
         {entry}
-        href={`/enemies/${entry.id}`}
+        href={localizedHref(`/enemies/${entry.id}`)}
         imageUrl={enemyPortraits[entry.id]}
       />
     {/each}
@@ -193,10 +199,10 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">
-    <h2>{m.overview_empty_title({}, { locale: 'zh-CN' })}</h2>
-    <p>{m.overview_empty_description({}, { locale: 'zh-CN' })}</p>
+    <h2>{m.overview_empty_title()}</h2>
+    <p>{m.overview_empty_description()}</p>
     <button class="button" type="button" on:click={clearSearchAndFilters}
-      >{m.overview_clear_filters({}, { locale: 'zh-CN' })}</button
+      >{m.overview_clear_filters()}</button
     >
   </section>
 {/if}

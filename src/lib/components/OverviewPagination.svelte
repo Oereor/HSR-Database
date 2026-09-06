@@ -12,9 +12,9 @@
 </script>
 
 {#if pages > 1}
-  <nav class="overview-pagination" aria-label={m.pagination_aria({}, { locale: 'zh-CN' })}>
+  <nav class="overview-pagination" aria-label={m.pagination_aria()}>
     {#if currentPage > 1}<a href={pageUrl(queryString, currentPage - 1)}
-        >{m.pagination_previous({}, { locale: 'zh-CN' })}</a
+        >{m.pagination_previous()}</a
       >{/if}
     <div class="overview-pagination__pages">
       {#each [...Array(pages).keys()] as pageIndex}
@@ -26,9 +26,9 @@
         </a>
       {/each}
     </div>
-    <span>{m.overview_page_count({ currentPage, pages }, { locale: 'zh-CN' })}</span>
+    <span>{m.overview_page_count({ currentPage, pages })}</span>
     {#if currentPage < pages}<a href={pageUrl(queryString, currentPage + 1)}
-        >{m.pagination_next({}, { locale: 'zh-CN' })}</a
+        >{m.pagination_next()}</a
       >{/if}
   </nav>
 {/if}

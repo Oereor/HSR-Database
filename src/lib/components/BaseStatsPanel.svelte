@@ -2,10 +2,11 @@
   import { formatBaseStat, getBaseStatsAtLevel } from '$lib/domain/stats';
   import type { BaseStatProgression, CharacterEnergy } from '$lib/domain/types';
   import { getCharacterDetailIconUrl } from '$lib/data/visual-assets';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let progression: BaseStatProgression;
   export let controlId: string;
-  export let controlLabel = '角色等级';
+  export let controlLabel = m.base_stats_character_level();
   export let energy: CharacterEnergy | undefined = undefined;
 
   let level = progression.defaultLevel;
@@ -30,7 +31,7 @@
         max={progression.maxLevel}
         step="1"
         bind:value={level}
-        aria-valuetext={`等级 ${level}`}
+        aria-valuetext={m.common_level({ level })}
       />
       <div class="skill-level-range" aria-hidden="true">
         <span>Lv.{progression.minLevel}</span><span>Lv.{progression.maxLevel}</span>
@@ -40,7 +41,8 @@
       <div class="inspection-stat-row" data-base-stat="hp">
         <dt>
           <span class="inspection-stat-label"
-            >{#if hpIconUrl}<img src={hpIconUrl} alt="" aria-hidden="true" />{/if}<span>生命值</span
+            >{#if hpIconUrl}<img src={hpIconUrl} alt="" aria-hidden="true" />{/if}<span
+              >{m.common_hp()}</span
             ></span
           >
         </dt>
@@ -50,7 +52,7 @@
         <dt>
           <span class="inspection-stat-label"
             >{#if attackIconUrl}<img src={attackIconUrl} alt="" aria-hidden="true" />{/if}<span
-              >攻击力</span
+              >{m.common_attack()}</span
             ></span
           >
         </dt>
@@ -60,7 +62,7 @@
         <dt>
           <span class="inspection-stat-label"
             >{#if defenceIconUrl}<img src={defenceIconUrl} alt="" aria-hidden="true" />{/if}<span
-              >防御力</span
+              >{m.common_defence()}</span
             ></span
           >
         </dt>
@@ -73,7 +75,7 @@
           <dt>
             <span class="inspection-stat-label"
               >{#if speedIconUrl}<img src={speedIconUrl} alt="" aria-hidden="true" />{/if}<span
-                >基础速度</span
+                >{m.common_base_speed()}</span
               ></span
             >
           </dt>
@@ -83,16 +85,20 @@
           <dt>
             <span class="inspection-stat-label"
               >{#if energyIconUrl}<img src={energyIconUrl} alt="" aria-hidden="true" />{/if}<span
-                >能量上限</span
+                >{m.common_energy_max()}</span
               ></span
             >
           </dt>
           <dd>
-            <strong>{energy.kind === 'special' ? '特殊能量' : formatBaseStat(energy.max)}</strong>
+            <strong
+              >{energy.kind === 'special'
+                ? m.common_special_energy()
+                : formatBaseStat(energy.max)}</strong
+            >
           </dd>
         </div>{/if}
     </dl>
   </div>
 {:else}
-  <p class="data-placeholder">暂无可解析的等级属性。</p>
+  <p class="data-placeholder">{m.base_stats_empty()}</p>
 {/if}

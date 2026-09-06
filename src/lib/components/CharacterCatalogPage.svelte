@@ -1,5 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
@@ -23,8 +24,8 @@
   import { formatDocumentTitle } from '$lib/site';
 
   export let entries: CatalogEntry[] = [];
-  export let title: string = m.characters_title({}, { locale: 'zh-CN' });
-  export let description: string = m.characters_description({}, { locale: 'zh-CN' });
+  export let title: string = m.characters_title();
+  export let description: string = m.characters_description();
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
@@ -131,25 +132,25 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow={m.characters_eyebrow({}, { locale: 'zh-CN' })}
+  eyebrow={m.characters_eyebrow()}
   {title}
   {description}
-  countLabel={m.characters_count({ count: entries.length }, { locale: 'zh-CN' })}
+  countLabel={m.characters_count({ count: entries.length })}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label={m.characters_controls_aria({}, { locale: 'zh-CN' })}>
+<section class="overview-controls" aria-label={m.characters_controls_aria()}>
   <OverviewSearch
     id="character-search-input"
     bind:value={draftQuery}
-    placeholder={m.characters_search_placeholder({}, { locale: 'zh-CN' })}
+    placeholder={m.characters_search_placeholder()}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
       id="character-path"
-      label={m.filter_path({}, { locale: 'zh-CN' })}
+      label={m.filter_path()}
       iconKind="path"
       options={options('path', 'pathName')}
       selected={filterState.paths}
@@ -157,7 +158,7 @@
     />
     <FilterGroup
       id="character-element"
-      label={m.filter_element({}, { locale: 'zh-CN' })}
+      label={m.filter_element()}
       iconKind="element"
       options={options('element', 'elementName')}
       selected={filterState.elements}
@@ -165,7 +166,7 @@
     />
     <FilterGroup
       id="character-rarity"
-      label={m.filter_rarity({}, { locale: 'zh-CN' })}
+      label={m.filter_rarity()}
       options={options('rarity').map((option) => ({ ...option, label: `${option.label}★` }))}
       selected={filterState.rarities}
       onToggle={(value) => toggleFilter('rarities', value)}
@@ -191,7 +192,7 @@
     {#each visible as entry (entry.id)}
       <CharacterOverviewCard
         {entry}
-        href={`/characters/${entry.id}`}
+        href={localizedHref(`/characters/${entry.id}`)}
         imageUrl={getCharacterPreviewUrl(entry.id)}
         density="compact"
       />
@@ -200,10 +201,10 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">
-    <h2>{m.overview_empty_title({}, { locale: 'zh-CN' })}</h2>
-    <p>{m.overview_empty_description({}, { locale: 'zh-CN' })}</p>
+    <h2>{m.overview_empty_title()}</h2>
+    <p>{m.overview_empty_description()}</p>
     <button class="button" type="button" on:click={clearSearchAndFilters}
-      >{m.overview_clear_filters({}, { locale: 'zh-CN' })}</button
+      >{m.overview_clear_filters()}</button
     >
   </section>
 {/if}

@@ -9,7 +9,7 @@ export const LOCALE_REGISTRY = {
     textMapCode: 'EN',
     siteMessageLocale: 'en',
     projectionEnabled: true,
-    publicRoutingEnabled: false
+    publicRoutingEnabled: true
   }
 } as const;
 
@@ -30,12 +30,17 @@ export function getLocaleConfig(locale: string): LocaleConfig {
 }
 
 export function getPublicLocale(): LocaleConfig & { locale: 'zh-CN'; textMapCode: 'CHS' } {
-  const entry = Object.entries(LOCALE_REGISTRY).find(([, config]) => config.publicRoutingEnabled);
-  if (!entry) throw new Error('Locale registry has no enabled production locale');
-  const config = getLocaleConfig(entry[0]);
+  const config = getLocaleConfig('zh-CN');
+  if (!config.publicRoutingEnabled) throw new Error('Base locale must be publicly routable');
   if (config.locale !== 'zh-CN' || config.textMapCode !== 'CHS')
     throw new Error('Production locale must be zh-CN backed by CHS');
   return config as LocaleConfig & { locale: 'zh-CN'; textMapCode: 'CHS' };
+}
+
+export function getPublicLocales(): LocaleConfig[] {
+  return Object.keys(LOCALE_REGISTRY)
+    .map(getLocaleConfig)
+    .filter((config) => config.publicRoutingEnabled);
 }
 
 /** Compatibility name for build-time callers; public routing capability remains authoritative. */

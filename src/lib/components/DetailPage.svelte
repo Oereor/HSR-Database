@@ -28,6 +28,8 @@
   import type { CatalogEntry } from '$lib/domain/types';
   import type { EquipmentRecommendationView } from '$lib/domain/equipment-recommendation-view';
   import { formatDocumentTitle } from '$lib/site';
+  import { localizedHref } from '$lib/i18n/routing';
+  import { m } from '$lib/paraglide/messages.js';
   export let detail: any;
   export let category: string;
   export let singular: string;
@@ -39,7 +41,7 @@
 
   $: plainName = gameTextToPlain(detail.name);
   $: metaDescription = gameTextToPlain(
-    detail.description || `${plainName}的${singular}资料与关联数据。`
+    detail.description || m.detail_meta_fallback({ name: plainName, category: singular })
   )
     .replace(/\s+/g, ' ')
     .trim();
@@ -63,11 +65,13 @@
     category === 'light-cones' ? getLightConePortraitUrl(detail.id) : undefined;
   $: if (specialEffectsOpen && !specialEffectsAvailable) specialEffectsOpen = false;
   $: characterSectionNavItems = [
-    { id: 'stats', label: '属性' },
-    { id: 'skills', label: '技能' },
-    { id: 'traces', label: '行迹' },
-    { id: 'eidolons', label: '星魂' },
-    ...(equipmentRecommendation ? [{ id: 'equipment-recommendation', label: '装备推荐' }] : [])
+    { id: 'stats', label: m.detail_stats() },
+    { id: 'skills', label: m.detail_skills() },
+    { id: 'traces', label: m.detail_traces() },
+    { id: 'eidolons', label: m.detail_eidolons() },
+    ...(equipmentRecommendation
+      ? [{ id: 'equipment-recommendation', label: m.detail_equipment_recommendation() }]
+      : [])
   ];
 
   function openSpecialEffects(trigger: HTMLButtonElement, level: number) {
@@ -105,7 +109,9 @@
   <meta name="description" content={metaDescription} />
 </svelte:head>
 
-<a class="back-link" href={`/${category}`}>← 返回{singular}列表</a>
+<a class="back-link" href={localizedHref(`/${category}`)}
+  >← {m.detail_back_to_list({ category: singular })}</a
+>
 {#if category === 'characters'}
   <header class="detail-profile-hero detail-profile-hero--character">
     <div class="detail-profile-hero__identity">
@@ -142,24 +148,26 @@
             />{/if}
         </div>
         {#if hasEnhancedProfile}<div class="enhancement-control">
-            <span>角色加强</span>
+            <span>{m.detail_enhancement()}</span>
             <button
               class="enhancement-switch"
               type="button"
               role="switch"
-              aria-label="角色加强"
+              aria-label={m.detail_enhancement()}
               aria-checked={enhancedEnabled}
               on:click={toggleEnhanced}
             >
               <span class="enhancement-switch__track" aria-hidden="true"><span></span></span>
-              <strong>{enhancedEnabled ? '加强后' : '加强前'}</strong>
+              <strong
+                >{enhancedEnabled ? m.detail_enhanced_after() : m.detail_enhanced_before()}</strong
+              >
             </button>
           </div>{/if}
         <div class="hero-description">
           {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
               class="muted"
             >
-              上游数据未提供可用简介。
+              {m.detail_intro_unavailable()}
             </p>{/if}
         </div>
       </div>
@@ -167,7 +175,7 @@
     <aside
       id="stats"
       class="detail-profile-hero__inspection section-nav-target"
-      aria-label="基础属性与等级"
+      aria-label={m.detail_stats_aria()}
     >
       <BaseStatsPanel
         progression={detail.baseStats}
@@ -201,17 +209,17 @@
         </div>
       </div>
     </div>
-    <aside class="detail-profile-hero__inspection" aria-label="基础属性与叠影效果">
+    <aside class="detail-profile-hero__inspection" aria-label={m.detail_light_cone_stats_aria()}>
       <BaseStatsPanel
         progression={detail.baseStats}
         controlId={`light-cone-level-${detail.id}`}
-        controlLabel="光锥等级"
+        controlLabel={m.detail_light_cone_level()}
       />
       <div class="detail-inspection-divider" aria-hidden="true"></div>
       {#if detail.passive.superimposition.levels.length}<SuperimpositionPanel
           passive={detail.passive}
           lightConeId={detail.id}
-        />{:else}<p class="data-placeholder">上游未提供可展示的叠影效果。</p>{/if}
+        />{:else}<p class="data-placeholder">{m.detail_superimposition_unavailable()}</p>{/if}
     </aside>
   </header>
 {:else if category === 'relics'}
@@ -222,7 +230,7 @@
   <SectionNav items={characterSectionNavItems} />
   {#key profileMode}
     <section id="skills" class="detail-section section-nav-target">
-      <SectionHeading level={1}>技能</SectionHeading>
+      <SectionHeading level={1}>{m.detail_skills()}</SectionHeading>
       {#if activeProfile.skillCards.length}<div class="stack-list skill-card-grid">
           {#each activeProfile.skillCards as card (card.category)}<SkillCardPanel
               {card}
@@ -230,21 +238,21 @@
               {specialEffectIconUrl}
               onOpenSpecialEffects={openSpecialEffects}
             />{/each}
-        </div>{:else}<p class="data-placeholder">上游未提供可展示的技能记录。</p>{/if}
+        </div>{:else}<p class="data-placeholder">{m.detail_skills_unavailable()}</p>{/if}
     </section>
     <section id="traces" class="detail-section section-nav-target">
-      <SectionHeading level={1}>行迹</SectionHeading>
+      <SectionHeading level={1}>{m.detail_traces()}</SectionHeading>
       {#if activeProfile.traces.length}<TraceCardPanel traces={activeProfile.traces} />{:else}<p
           class="data-placeholder"
         >
-          上游未提供可展示的行迹记录。
+          {m.detail_traces_unavailable()}
         </p>{/if}
     </section>
     <section id="eidolons" class="detail-section section-nav-target">
-      <SectionHeading level={1}>星魂</SectionHeading>
+      <SectionHeading level={1}>{m.detail_eidolons()}</SectionHeading>
       {#if activeProfile.eidolons.length}<div class="stack-list">
           {#each activeProfile.eidolons as rank (rank.id)}<EidolonCard eidolon={rank} />{/each}
-        </div>{:else}<p class="data-placeholder">上游未提供可展示的星魂记录。</p>{/if}
+        </div>{:else}<p class="data-placeholder">{m.detail_eidolons_unavailable()}</p>{/if}
     </section>
   {/key}
   {#if equipmentRecommendation}<EquipmentRecommendationSection
@@ -261,9 +269,9 @@
     />{/if}
 {:else if category === 'light-cones'}
   <section class="detail-section prose">
-    <SectionHeading level={1}>背景故事</SectionHeading>
+    <SectionHeading level={1}>{m.detail_story()}</SectionHeading>
     <p class:muted={!detail.story}>
-      <GameText text={detail.story || '上游未提供可用的背景故事文本。'} />
+      <GameText text={detail.story || m.detail_story_unavailable()} />
     </p>
   </section>
 {:else if category === 'enemies'}

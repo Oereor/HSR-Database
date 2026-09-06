@@ -23,7 +23,8 @@ const disposition: TextDiagnosticDisposition = {
 describe('R5 English data projection', () => {
   it('publishes complete dual-locale metadata while keeping zh-CN public', async () => {
     const manifest = await readDataManifest();
-    expect(manifest.schemaVersion).toBe(42);
+    expect(manifest.schemaVersion).toBe(43);
+    expect(manifest.publicLocales).toEqual(['zh-CN', 'en']);
     expect(manifest.generatedLocales).toEqual(['zh-CN', 'en']);
     expect(manifest.publicLocale).toBe('zh-CN');
     expect(manifest.locales.en.counts).toEqual(manifest.locales['zh-CN'].counts);

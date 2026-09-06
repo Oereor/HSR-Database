@@ -14,6 +14,8 @@
   import { formatRatioPercentage } from '$lib/domain/endgame-view';
   import { getEnemyRankLabel } from '$lib/domain/enemy-overview';
   import type { EnemyDetailView, EnemyMonsterDetailView } from '$lib/domain/enemy-view';
+  import * as m from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
 
   export let detail: EnemyDetailView;
 
@@ -22,7 +24,7 @@
       (candidate) => candidate.monsterId === value.defaultMonsterId
     );
     if (!monster)
-      throw new Error(`Enemy ${value.id} 缺少 default Monster ${value.defaultMonsterId}`);
+      throw new Error(`Enemy ${value.id} missing default Monster ${value.defaultMonsterId}`);
     return monster;
   }
 
@@ -84,13 +86,15 @@
 
   const monsterWeaknessLabel = (monster: EnemyMonsterDetailView): string =>
     monster.weaknesses.length
-      ? `弱点：${monster.weaknesses.map((weakness) => weakness.name).join('、')}`
-      : '无弱点数据';
+      ? m.weaknesses_aria({
+          weaknesses: monster.weaknesses.map((weakness) => weakness.name).join(', ')
+        })
+      : m.enemy_no_weaknesses_short();
 
   const sectionNavItems = [
-    { id: 'stats', label: '基础数据' },
-    { id: 'monsters', label: '派生个体' },
-    { id: 'skills', label: '技能' }
+    { id: 'stats', label: m.enemy_stats_section() },
+    { id: 'monsters', label: m.enemy_variants_section() },
+    { id: 'skills', label: m.detail_skills() }
   ] as const;
 </script>
 
@@ -105,7 +109,7 @@
     />
     <div class="detail-profile-hero__gradient" aria-hidden="true"></div>
     <div class="hero-identity-copy">
-      <p class="kicker">敌方单位 / 模板 ID {detail.template.monsterTemplateId}</p>
+      <p class="kicker">{m.enemy_kicker({ id: detail.template.monsterTemplateId })}</p>
       <h1><GameText text={detail.template.name} /></h1>
       <div class="hero-identity-metadata">
         <EnemyRankTag label={getEnemyRankLabel(detail.template.rank)} />
@@ -114,7 +118,7 @@
         {#if detail.description}<p><GameText text={detail.description} /></p>{:else}<p
             class="muted"
           >
-            上游数据未提供可用简介。
+            {m.detail_intro_unavailable()}
           </p>{/if}
       </div>
     </div>
@@ -122,7 +126,7 @@
   <aside
     id="stats"
     class="detail-profile-hero__inspection section-nav-target"
-    aria-label="Enemy Template 基础数据"
+    aria-label={m.enemy_template_stats_aria()}
   >
     <EnemyTemplateBaseStatsPanel baseStats={detail.template.baseStats} />
   </aside>
@@ -131,11 +135,11 @@
 <SectionNav items={sectionNavItems} />
 
 <section id="monsters" class="detail-section enemy-detail-section section-nav-target">
-  <SectionHeading level={1}>派生个体</SectionHeading>
+  <SectionHeading level={1}>{m.enemy_variants_section()}</SectionHeading>
 
   <div class="skill-level-control enemy-level-control enemy-level-control--standalone">
     <div>
-      <label for={`enemy-level-${detail.id}`}>敌人等级</label><output
+      <label for={`enemy-level-${detail.id}`}>{m.enemy_level()}</label><output
         for={`enemy-level-${detail.id}`}>Lv.{level}</output
       >
     </div>
@@ -146,7 +150,7 @@
       max={initialMonster.stats.maxLevel}
       step="1"
       bind:value={level}
-      aria-valuetext={`等级 ${level}`}
+      aria-valuetext={m.common_level({ level })}
     />
     <div class="skill-level-range" aria-hidden="true">
       <span>Lv.{initialMonster.stats.minLevel}</span><span>Lv.{initialMonster.stats.maxLevel}</span>
@@ -154,7 +158,7 @@
   </div>
 
   {#if detail.monsters.length > 1}
-    <div class="enemy-monster-selector" role="radiogroup" aria-label="具体敌方单位">
+    <div class="enemy-monster-selector" role="radiogroup" aria-label={m.enemy_specific_units()}>
       {#each detail.monsters as monster (monster.monsterId)}
         <button
           id={`enemy-monster-option-${monster.monsterId}`}
@@ -170,7 +174,8 @@
         >
           <span class="enemy-monster-option__identity">
             <strong>#{monster.monsterId}</strong>
-            {#if monster.monsterId === detail.defaultMonsterId}<small>默认</small>{/if}
+            {#if monster.monsterId === detail.defaultMonsterId}<small>{m.enemy_default()}</small
+              >{/if}
           </span>
           <span class="enemy-monster-option__weaknesses" aria-label={monsterWeaknessLabel(monster)}>
             {#each monster.weaknesses as weakness (weakness.element)}<span aria-hidden="true"
@@ -198,13 +203,13 @@
     data-battle-columns={selectedMonster.specialResistances.length ? '3' : '2'}
   >
     <section class="enemy-battle-column enemy-battle-column--stats">
-      <h3>基础属性</h3>
+      <h3>{m.enemy_base_stats()}</h3>
       <EnemyStatsPanel progression={selectedMonster.stats} {level} />
     </section>
     <section class="enemy-battle-column enemy-battle-column--attributes">
-      <h3>弱点与抗性</h3>
+      <h3>{m.enemy_weaknesses_and_resistances()}</h3>
       <div class="enemy-resistance-subsection">
-        <h4>弱点</h4>
+        <h4>{m.enemy_weaknesses()}</h4>
         {#if selectedMonster.weaknesses.length}<div class="enemy-weakness-list">
             {#each selectedMonster.weaknesses as weakness (weakness.element)}<SemanticIconLabel
                 kind="element"
@@ -212,10 +217,10 @@
                 label={weakness.name}
                 color={getElementColor(weakness.element)}
               />{/each}
-          </div>{:else}<p class="data-placeholder">暂无弱点数据。</p>{/if}
+          </div>{:else}<p class="data-placeholder">{m.enemy_no_weaknesses()}</p>{/if}
       </div>
       {#if selectedMonster.resistances.length}<div class="enemy-resistance-subsection">
-          <h4>抗性</h4>
+          <h4>{m.enemy_resistances()}</h4>
           <div class="enemy-resistance-table">
             {#each selectedMonster.resistances as resistance (resistance.element)}<div
                 class="enemy-resistance-row"
@@ -235,7 +240,7 @@
     {#if selectedMonster.specialResistances.length}<section
         class="enemy-battle-column enemy-battle-column--negative"
       >
-        <h3>负面效果抵抗</h3>
+        <h3>{m.enemy_negative_effect_resistance()}</h3>
         <div class="enemy-special-resistance-table">
           {#each selectedMonster.specialResistances as resistance (resistance.code)}<div
               class="enemy-special-resistance-item"
@@ -250,10 +255,10 @@
   </div>
 
   {#if selectedMonster.summons.length}<section id="summons" class="enemy-owned-section">
-      <SectionHeading level={2}>召唤单位</SectionHeading>
+      <SectionHeading level={2}>{m.enemy_summons()}</SectionHeading>
       <div class="enemy-summon-list">
         {#each selectedMonster.summons as summon (summon.monsterId)}<CompactEntityCard
-            href={summon.href}
+            href={localizedHref(summon.href)}
             imageUrl={summon.portraitUrl}
             fallbackLabel={summon.name}
             data-summon-monster={summon.monsterId}
@@ -269,9 +274,9 @@
     </section>{/if}
 
   <section id="skill-groups" class="enemy-owned-section">
-    <SectionHeading level={2}>技能组</SectionHeading>
+    <SectionHeading level={2}>{m.enemy_skill_groups()}</SectionHeading>
     {#if selectedMonster.skillPhases.length > 1}
-      <div class="enemy-phase-tabs" role="tablist" aria-label="敌人技能阶段">
+      <div class="enemy-phase-tabs" role="tablist" aria-label={m.enemy_skill_phases_aria()}>
         {#each selectedMonster.skillPhases as phase (phase.index)}
           <button
             id={`enemy-phase-tab-${selectedMonster.monsterId}-${phase.index}`}
@@ -284,7 +289,7 @@
             tabindex={phase.index === activePhaseIndex ? 0 : -1}
             on:click={(event) => selectPhase(phase.index, event.currentTarget)}
             on:keydown={(event) => handlePhaseKeydown(event, phase.index)}
-            >阶段 {phase.index}</button
+            >{m.enemy_phase({ phase: phase.index })}</button
           >
         {/each}
       </div>
@@ -316,7 +321,7 @@
                 </span>
                 <strong><GameText text={skill.name} /></strong><span aria-hidden="true">↘</span>
               </a>{/each}
-          {:else}<p class="data-placeholder">该阶段没有可展示的技能。</p>{/if}
+          {:else}<p class="data-placeholder">{m.enemy_phase_empty()}</p>{/if}
         </div>
       {/if}
     {/each}
@@ -324,8 +329,8 @@
 </section>
 
 <section id="skills" class="detail-section enemy-detail-section section-nav-target">
-  <SectionHeading level={1}>技能</SectionHeading>
+  <SectionHeading level={1}>{m.detail_skills()}</SectionHeading>
   {#if detail.skillDefinitions.length}<div class="enemy-skill-list">
       {#each detail.skillDefinitions as skill (skill.id)}<EnemySkillCard {skill} />{/each}
-    </div>{:else}<p class="data-placeholder">上游未提供可展示的敌人技能。</p>{/if}
+    </div>{:else}<p class="data-placeholder">{m.enemy_skills_empty()}</p>{/if}
 </section>

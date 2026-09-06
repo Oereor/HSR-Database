@@ -13,10 +13,10 @@
 </script>
 
 <form class="overview-search" on:submit|preventDefault={onSubmit}>
-  <label for={id}>{m.common_search({}, { locale: 'zh-CN' })}</label>
+  <label for={id}>{m.common_search()}</label>
   <div class="overview-search__control">
     <input {id} bind:value {placeholder} on:keydown={keydown} />
-    <button type="submit" class="button">{m.common_search({}, { locale: 'zh-CN' })}</button>
+    <button type="submit" class="button">{m.common_search()}</button>
   </div>
 </form>
 

@@ -13,15 +13,15 @@
 </script>
 
 <svelte:head>
-  <title>{formatDocumentTitle('高难模式')}</title>
-  <meta name="description" content={m.endgame_hero_description({}, { locale: 'zh-CN' })} />
+  <title>{formatDocumentTitle(m.endgame_hero_title())}</title>
+  <meta name="description" content={m.endgame_hero_description()} />
 </svelte:head>
 
 <OverviewHero
-  eyebrow={m.endgame_eyebrow({}, { locale: 'zh-CN' })}
-  title={m.endgame_hero_title({}, { locale: 'zh-CN' })}
-  description={m.endgame_hero_description({}, { locale: 'zh-CN' })}
-  countLabel={m.endgame_hero_count({}, { locale: 'zh-CN' })}
+  eyebrow={m.endgame_eyebrow()}
+  title={m.endgame_hero_title()}
+  description={m.endgame_hero_description()}
+  countLabel={m.endgame_hero_count()}
 >
   <svelte:fragment slot="artwork"><EndgameOverviewHeroArtwork /></svelte:fragment>
 </OverviewHero>

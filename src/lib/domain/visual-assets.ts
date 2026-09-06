@@ -8,14 +8,14 @@ export interface AssetResolutionMap {
   missing: string[];
 }
 
-export const UTILITY_ICON_KEYS = ['changelog'] as const;
+export const UTILITY_ICON_KEYS = ['changelog', 'settings'] as const;
 export type UtilityIconKey = (typeof UTILITY_ICON_KEYS)[number];
 
 export const BRAND_ICON_KEYS = ['train-party'] as const;
 export type BrandIconKey = (typeof BRAND_ICON_KEYS)[number];
 
 export interface VisualAssetManifest {
-  schemaVersion: 14;
+  schemaVersion: 15;
   requirementsFingerprint?: string;
   sourceCommit?: string;
   generatedAt: string;

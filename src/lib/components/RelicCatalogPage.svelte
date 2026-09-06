@@ -1,5 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
@@ -21,10 +22,11 @@
   import OverviewSearch from './OverviewSearch.svelte';
   import OverviewToolbar from './OverviewToolbar.svelte';
   import RelicOverviewCard from './RelicOverviewCard.svelte';
+  import { relicCategoryLabel } from '$lib/i18n/product';
 
   export let entries: CatalogEntry[] = [];
-  export let title: string = m.relics_title({}, { locale: 'zh-CN' });
-  export let description: string = m.relics_description({}, { locale: 'zh-CN' });
+  export let title: string = m.relics_title();
+  export let description: string = m.relics_description();
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
@@ -62,14 +64,10 @@
     Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, pages) : 1;
   $: visible = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-  const relicCategoryLabels: Record<RelicSetCategory, string> = {
-    cavern: '隧洞遗器',
-    planar: '位面饰品'
-  };
-  const relicCategoryOptions = Object.entries(relicCategoryLabels).map(([value, label]) => ({
-    value,
-    label
-  }));
+  const relicCategoryOptions: Array<{ value: RelicSetCategory; label: string }> = [
+    { value: 'cavern', label: relicCategoryLabel('cavern') },
+    { value: 'planar', label: relicCategoryLabel('planar') }
+  ];
 
   function relicEntry(entry: CatalogEntry): RelicCatalogEntry {
     const category = (entry as Partial<RelicCatalogEntry>).category;
@@ -136,25 +134,25 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow={m.relics_eyebrow({}, { locale: 'zh-CN' })}
+  eyebrow={m.relics_eyebrow()}
   {title}
   {description}
-  countLabel={m.relics_count({ count: relics.length }, { locale: 'zh-CN' })}
+  countLabel={m.relics_count({ count: relics.length })}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label={m.relics_controls_aria({}, { locale: 'zh-CN' })}>
+<section class="overview-controls" aria-label={m.relics_controls_aria()}>
   <OverviewSearch
     id="relic-search-input"
     bind:value={draftQuery}
-    placeholder={m.relics_search_placeholder({}, { locale: 'zh-CN' })}
+    placeholder={m.relics_search_placeholder()}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
       id="relic-category"
-      label={m.filter_relic_category({}, { locale: 'zh-CN' })}
+      label={m.filter_relic_category()}
       options={relicCategoryOptions}
       selected={selectedCategories}
       onToggle={selectCategory}
@@ -180,7 +178,7 @@
     {#each visible as relic (relic.id)}
       <RelicOverviewCard
         entry={relic}
-        href={`/relics/${relic.id}`}
+        href={localizedHref(`/relics/${relic.id}`)}
         imageUrl={getRelicSetIconUrl(relic.id)}
       />
     {/each}
@@ -188,10 +186,10 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">
-    <h2>{m.overview_empty_title({}, { locale: 'zh-CN' })}</h2>
-    <p>{m.overview_empty_description({}, { locale: 'zh-CN' })}</p>
+    <h2>{m.overview_empty_title()}</h2>
+    <p>{m.overview_empty_description()}</p>
     <button class="button" type="button" on:click={clearSearchAndFilters}
-      >{m.overview_clear_filters({}, { locale: 'zh-CN' })}</button
+      >{m.overview_clear_filters()}</button
     >
   </section>
 {/if}

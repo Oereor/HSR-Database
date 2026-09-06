@@ -1,5 +1,6 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
+  import { localizedHref } from '$lib/i18n/routing';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
@@ -23,8 +24,8 @@
   import OverviewToolbar from './OverviewToolbar.svelte';
 
   export let entries: CatalogEntry[] = [];
-  export let title: string = m.light_cones_title({}, { locale: 'zh-CN' });
-  export let description: string = m.light_cones_description({}, { locale: 'zh-CN' });
+  export let title: string = m.light_cones_title();
+  export let description: string = m.light_cones_description();
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
@@ -124,28 +125,25 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow={m.light_cones_eyebrow({}, { locale: 'zh-CN' })}
+  eyebrow={m.light_cones_eyebrow()}
   {title}
   {description}
-  countLabel={m.light_cones_count({ count: entries.length }, { locale: 'zh-CN' })}
+  countLabel={m.light_cones_count({ count: entries.length })}
   artwork={heroArtwork}
 />
 
-<section
-  class="overview-controls"
-  aria-label={m.light_cones_controls_aria({}, { locale: 'zh-CN' })}
->
+<section class="overview-controls" aria-label={m.light_cones_controls_aria()}>
   <OverviewSearch
     id="light-cone-search-input"
     bind:value={draftQuery}
-    placeholder={m.light_cones_search_placeholder({}, { locale: 'zh-CN' })}
+    placeholder={m.light_cones_search_placeholder()}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
       id="light-cone-path"
-      label={m.filter_path({}, { locale: 'zh-CN' })}
+      label={m.filter_path()}
       iconKind="path"
       options={options('path', 'pathName')}
       selected={filterState.paths}
@@ -153,7 +151,7 @@
     />
     <FilterGroup
       id="light-cone-rarity"
-      label={m.filter_rarity({}, { locale: 'zh-CN' })}
+      label={m.filter_rarity()}
       options={options('rarity').map((option) => ({ ...option, label: `${option.label}★` }))}
       selected={filterState.rarities}
       onToggle={(value) => toggleFilter('rarities', value)}
@@ -179,7 +177,7 @@
     {#each visible as entry (entry.id)}
       <LightConeOverviewCard
         {entry}
-        href={`/light-cones/${entry.id}`}
+        href={localizedHref(`/light-cones/${entry.id}`)}
         imageUrl={getLightConePreviewUrl(entry.id)}
       />
     {/each}
@@ -187,10 +185,10 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">
-    <h2>{m.overview_empty_title({}, { locale: 'zh-CN' })}</h2>
-    <p>{m.overview_empty_description({}, { locale: 'zh-CN' })}</p>
+    <h2>{m.overview_empty_title()}</h2>
+    <p>{m.overview_empty_description()}</p>
     <button class="button" type="button" on:click={clearSearchAndFilters}
-      >{m.overview_clear_filters({}, { locale: 'zh-CN' })}</button
+      >{m.overview_clear_filters()}</button
     >
   </section>
 {/if}

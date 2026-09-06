@@ -15,11 +15,12 @@ function resolveEntries(
   });
 }
 
-export async function load() {
+export async function load({ locals }) {
+  const locale = locals.locale;
   const [homepage, characters, lightCones] = await Promise.all([
-    getHomepageRecentWarps(),
-    getCatalog('characters'),
-    getCatalog('light-cones')
+    getHomepageRecentWarps(locale),
+    getCatalog(locale, 'characters'),
+    getCatalog(locale, 'light-cones')
   ]);
   return {
     recentCharacters: resolveEntries(

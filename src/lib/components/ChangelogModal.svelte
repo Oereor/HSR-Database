@@ -1,13 +1,23 @@
 <script lang="ts">
   import { m } from '$lib/paraglide/messages.js';
   import { onDestroy, onMount, tick } from 'svelte';
-  import { changelogEntries } from '$lib/content/changelog';
+  import {
+    formatChangelogDate,
+    loadChangelogEntries,
+    type ChangelogEntry
+  } from '$lib/content/changelog';
+  import type { Locale } from '$lib/paraglide/runtime.js';
   import {
     CHANGELOG_DISMISSED_DATE_KEY,
     dismissChangelogForToday,
     localDateKey,
     shouldAutoOpenChangelog
   } from '$lib/domain/changelog';
+
+  export let locale: Locale;
+
+  let changelogEntries: ChangelogEntry[] = [];
+  let entriesPromise: Promise<ChangelogEntry[]> | undefined;
 
   let dialog: HTMLDialogElement;
   let closeButton: HTMLButtonElement;
@@ -37,7 +47,13 @@
     closeButton?.focus();
   }
 
-  export function open() {
+  async function ensureEntries() {
+    entriesPromise ??= loadChangelogEntries(locale);
+    changelogEntries = await entriesPromise;
+  }
+
+  export async function open() {
+    await ensureEntries();
     if (dialog?.open) return;
     lockScroll();
     dialog.showModal();
@@ -78,14 +94,19 @@
   }
 
   onMount(() => {
+    void initialize();
+  });
+
+  async function initialize() {
+    await ensureEntries();
     let dismissedDate: string | null = null;
     try {
       dismissedDate = localStorage.getItem(CHANGELOG_DISMISSED_DATE_KEY);
     } catch {
       // localStorage may be unavailable; treat this session as not dismissed.
     }
-    if (shouldAutoOpenChangelog(changelogEntries.length, dismissedDate)) open();
-  });
+    if (shouldAutoOpenChangelog(changelogEntries.length, dismissedDate)) await open();
+  }
 
   onDestroy(unlockScroll);
 </script>
@@ -101,13 +122,13 @@
   <section class="changelog-dialog__surface" bind:this={surface}>
     <header class="changelog-dialog__header">
       <div>
-        <p class="kicker">{m.changelog_eyebrow({}, { locale: 'zh-CN' })}</p>
-        <h2 id="changelog-dialog-title">{m.changelog_title({}, { locale: 'zh-CN' })}</h2>
+        <p class="kicker">{m.changelog_eyebrow()}</p>
+        <h2 id="changelog-dialog-title">{m.changelog_title()}</h2>
       </div>
       <button
         class="changelog-dialog__close"
         type="button"
-        aria-label={m.changelog_close_aria({}, { locale: 'zh-CN' })}
+        aria-label={m.changelog_close_aria()}
         bind:this={closeButton}
         on:click={close}>×</button
       >
@@ -119,7 +140,7 @@
           <article class="changelog-entry">
             <div class="changelog-entry__heading">
               <h3>{entry.title}</h3>
-              <time datetime={entry.date}>{entry.date}</time>
+              <time datetime={entry.date}>{formatChangelogDate(entry.date, locale)}</time>
             </div>
             <div class="changelog-entry__body">
               <svelte:component this={entry.component} />
@@ -127,17 +148,15 @@
           </article>
         {/each}
       {:else}
-        <p class="changelog-dialog__empty">{m.changelog_empty({}, { locale: 'zh-CN' })}</p>
+        <p class="changelog-dialog__empty">{m.changelog_empty()}</p>
       {/if}
     </div>
 
     <footer class="changelog-dialog__footer">
       <button type="button" class="changelog-dialog__today" on:click={dismissToday}
-        >{m.changelog_dismiss_today({}, { locale: 'zh-CN' })}</button
+        >{m.changelog_dismiss_today()}</button
       >
-      <button type="button" class="button-primary" on:click={close}
-        >{m.common_close({}, { locale: 'zh-CN' })}</button
-      >
+      <button type="button" class="button-primary" on:click={close}>{m.common_close()}</button>
     </footer>
   </section>
 </dialog>

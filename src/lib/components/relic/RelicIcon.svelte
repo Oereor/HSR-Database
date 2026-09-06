@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   export let source: string | undefined;
   export let alt: string;
   export let fallbackLabel: string;
@@ -6,7 +7,7 @@
 
   let failedSource: string | undefined;
   $: visibleSource = source && source !== failedSource ? source : undefined;
-  $: fallbackMark = fallbackLabel.trim().slice(0, 1) || '遗';
+  $: fallbackMark = fallbackLabel.trim().slice(0, 1) || m.relic_fallback_mark();
 </script>
 
 <div

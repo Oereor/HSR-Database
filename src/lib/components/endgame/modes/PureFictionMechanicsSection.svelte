@@ -2,6 +2,7 @@
   import type { EndgameMechanicView, PureFictionCacophonyView } from '$lib/domain/endgame-view';
   import MechanicSectionCard from '../mechanics/MechanicSectionCard.svelte';
   import PureFictionCacophonySection from './PureFictionCacophonySection.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let fixedMechanics: EndgameMechanicView[] = [];
   export let cacophony: PureFictionCacophonyView | undefined = undefined;
@@ -21,7 +22,11 @@
     class="endgame-mechanics-section endgame-mechanics-section--fixed"
     data-endgame-mechanics="battle-will"
   >
-    <MechanicSectionCard title="战意机制" content={battleWillContent} headingLevel={2} />
+    <MechanicSectionCard
+      title={m.endgame_battle_will()}
+      content={battleWillContent}
+      headingLevel={2}
+    />
   </section>
 {/if}
 

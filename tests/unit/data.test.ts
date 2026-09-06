@@ -687,7 +687,8 @@ describe('真实数据管线', () => {
       await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(97);
-    expect(manifest.schemaVersion).toBe(42);
+    expect(manifest.schemaVersion).toBe(43);
+    expect(manifest.publicLocales).toEqual(['zh-CN', 'en']);
     expect(manifest.publicLocale).toBe('zh-CN');
     expect(manifest.generatedLocales).toEqual(['zh-CN', 'en']);
     expect(manifest.locales['zh-CN'].textMapCode).toBe('CHS');

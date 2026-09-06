@@ -263,7 +263,7 @@ describe('Site messages', () => {
     expect(m.overview_result_count({ count: 100 }, { locale: 'en' })).toBe(
       english.overview_result_count.replace('{count}', '100')
     );
-    expect(compilerOptions.strategy).toEqual(['baseLocale']);
+    expect(compilerOptions.strategy).toEqual(['url', 'baseLocale']);
   });
   it('rejects duplicate/missing keys and changed parameter shapes', () => {
     expect(() => validateMessageSource('{"common_close":"a","common_close":"b"}', {})).toThrow();

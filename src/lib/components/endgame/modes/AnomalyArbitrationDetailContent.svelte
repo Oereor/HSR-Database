@@ -7,6 +7,7 @@
   import BuffOptionGroup from '../mechanics/BuffOptionGroup.svelte';
   import MechanicSectionCard from '../mechanics/MechanicSectionCard.svelte';
   import { buildEndgameWaveGroups } from '../presentation';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let encounter: AnomalyArbitrationEncounterView;
   export let judgmentQuadrant: AnomalyArbitrationJudgmentQuadrantView | undefined = undefined;
@@ -24,13 +25,22 @@
 <div class="aa-detail" data-aa-stage-detail>
   {#if encounter.traits.length}
     <section class="aa-detail__traits" data-endgame-mechanics="chess-traits">
-      <MechanicSectionCard title="棋局特性" content={traitContent} headingLevel={2} tone="debuff" />
+      <MechanicSectionCard
+        title={m.endgame_chess_traits()}
+        content={traitContent}
+        headingLevel={2}
+        tone="debuff"
+      />
     </section>
   {/if}
 
   {#if judgmentQuadrant?.options.length}
     <section class="aa-detail__quadrant" data-endgame-mechanics="judgment-quadrant">
-      <BuffOptionGroup title="裁决象限" options={judgmentQuadrant.options} headingLevel={2} />
+      <BuffOptionGroup
+        title={m.endgame_judgment_quadrant()}
+        options={judgmentQuadrant.options}
+        headingLevel={2}
+      />
     </section>
   {/if}
 

@@ -84,6 +84,8 @@ await validateGeneratedArtifacts(manifest);
 if (
   manifest.publicLocale !== 'zh-CN' ||
   JSON.stringify(manifest.generatedLocales) !== '["zh-CN","en"]' ||
+  JSON.stringify(manifest.publicLocales) !== '["zh-CN","en"]' ||
+  manifest.routePaths.some((route) => route.startsWith('/zh-CN')) ||
   manifest.locales['zh-CN'].textMapCode !== 'CHS' ||
   manifest.locales.en.textMapCode !== 'EN'
 )

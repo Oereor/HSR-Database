@@ -10,12 +10,14 @@
     getLightConePreviewUrl,
     getNavigationIconUrl
   } from '$lib/data/visual-assets';
-  import { NAVIGATION_ITEMS } from '$lib/navigation';
-  import { SITE_NAME } from '$lib/site';
+  import { localizedNavigationItems } from '$lib/navigation';
+  import { localizedHref } from '$lib/i18n/routing';
+  import { siteName } from '$lib/site';
 
   export let data: PageData;
 
-  const directoryItems = NAVIGATION_ITEMS.filter((item) => item.id !== 'overview');
+  const directoryItems = localizedNavigationItems().filter((item) => item.id !== 'overview');
+  const name = siteName();
   const marchPreview = getCharacterPreviewUrl('1001');
   const thisIsMePreview = getLightConePreviewUrl('21030');
   const danHengPreview = getCharacterPreviewUrl('1002');
@@ -23,17 +25,17 @@
 </script>
 
 <svelte:head>
-  <title>{SITE_NAME}</title>
-  <meta name="description" content={m.home_meta_description({}, { locale: 'zh-CN' })} />
-  <meta property="og:title" content={SITE_NAME} />
-  <meta property="og:description" content={m.home_og_description({}, { locale: 'zh-CN' })} />
+  <title>{name}</title>
+  <meta name="description" content={m.home_meta_description()} />
+  <meta property="og:title" content={name} />
+  <meta property="og:description" content={m.home_og_description()} />
 </svelte:head>
 
 <div class="homepage">
   <section class="home-hero" aria-labelledby="home-title">
     <div class="home-hero__identity">
-      <h1 id="home-title">{SITE_NAME}</h1>
-      <p>{m.home_tagline({}, { locale: 'zh-CN' })}</p>
+      <h1 id="home-title">{name}</h1>
+      <p>{m.home_tagline()}</p>
     </div>
 
     <div class="home-hero__collage" aria-hidden="true">
@@ -64,16 +66,16 @@
     </div>
   </section>
 
-  <section class="home-directory" aria-label={m.home_directory_aria({}, { locale: 'zh-CN' })}>
+  <section class="home-directory" aria-label={m.home_directory_aria()}>
     <div class="home-search">
       <SearchBar
         id="home-search"
-        label={m.home_search_label({}, { locale: 'zh-CN' })}
-        placeholder={m.home_search_placeholder({}, { locale: 'zh-CN' })}
+        label={m.home_search_label()}
+        placeholder={m.home_search_placeholder()}
       />
     </div>
 
-    <nav class="home-directory__list" aria-label={m.home_categories_aria({}, { locale: 'zh-CN' })}>
+    <nav class="home-directory__list" aria-label={m.home_categories_aria()}>
       {#each directoryItems as item}
         {@const iconUrl = getNavigationIconUrl(item.iconKey)}
         <a class="home-directory-row" href={item.href}>
@@ -91,13 +93,13 @@
 
   <section class="home-recent" aria-labelledby="recent-avatar-ups">
     <SectionHeading level={1} id="recent-avatar-ups"
-      >{m.home_recent_character_warp({}, { locale: 'zh-CN' })}</SectionHeading
+      >{m.home_recent_character_warp()}</SectionHeading
     >
     <div class="home-recent-grid" data-homepage-recent="avatar">
       {#each data.recentCharacters as entry}
         <CharacterOverviewCard
           {entry}
-          href={`/characters/${entry.id}`}
+          href={localizedHref(`/characters/${entry.id}`)}
           imageUrl={getCharacterPreviewUrl(entry.id)}
           density="compact"
         />
@@ -107,13 +109,13 @@
 
   <section class="home-recent" aria-labelledby="recent-weapon-ups">
     <SectionHeading level={1} id="recent-weapon-ups"
-      >{m.home_recent_light_cone_warp({}, { locale: 'zh-CN' })}</SectionHeading
+      >{m.home_recent_light_cone_warp()}</SectionHeading
     >
     <div class="home-recent-grid" data-homepage-recent="weapon">
       {#each data.recentLightCones as entry}
         <LightConeOverviewCard
           {entry}
-          href={`/light-cones/${entry.id}`}
+          href={localizedHref(`/light-cones/${entry.id}`)}
           imageUrl={getLightConePreviewUrl(entry.id)}
         />
       {/each}

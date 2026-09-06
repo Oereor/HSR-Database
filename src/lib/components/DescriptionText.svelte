@@ -2,6 +2,7 @@
   import type { DescriptionToken } from '$lib/domain/types';
   import InlineGameTextToken from '$lib/components/InlineGameTextToken.svelte';
   import { segmentSpecialEffectTriggers } from '$lib/domain/special-effects-presentation';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let tokens: DescriptionToken[] = [];
   export let specialEffectsAvailable = false;
@@ -18,7 +19,7 @@
   {#if segment.kind === 'special-effect-trigger'}<button
       type="button"
       class="special-effect-trigger"
-      aria-label="查看特殊效果"
+      aria-label={m.special_effect_view()}
       on:click={(event) => onOpenSpecialEffects?.(event.currentTarget)}
       >{#each segment.tokens as token}<InlineGameTextToken
           {token}

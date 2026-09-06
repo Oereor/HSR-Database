@@ -28,7 +28,7 @@ import {
   ENDGAME_MODE_META,
   type EndgameModeIconKey
 } from '../../src/lib/domain/endgame-view.js';
-import { NAVIGATION_ITEMS, type NavigationIconKey } from '../../src/lib/navigation.js';
+import { NAVIGATION_ICON_KEYS, type NavigationIconKey } from '../../src/lib/navigation.js';
 import { generatedRoot } from '../data/paths.js';
 import {
   assetManifestPath,
@@ -54,7 +54,7 @@ import {
 // Windows may otherwise retain recently inspected files in libvips' cache during rollback cleanup.
 sharp.cache(false);
 
-export const VISUAL_ASSET_SCHEMA_VERSION = 14 as const;
+export const VISUAL_ASSET_SCHEMA_VERSION = 15 as const;
 
 export const ELEMENT_SOURCE_NAMES: Readonly<Record<string, string>> = {
   Physical: 'Physical',
@@ -92,7 +92,8 @@ export const BRAND_ICON_SOURCE_NAMES: Readonly<Record<BrandIconKey, string>> = {
 };
 
 export const UTILITY_ICON_SOURCE_NAMES: Readonly<Record<UtilityIconKey, string>> = {
-  changelog: 'SettingsPushIcon'
+  changelog: 'SettingsPushIcon',
+  settings: 'SettingsIcon'
 };
 
 export interface AssetRequirements {
@@ -252,7 +253,7 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
     ),
     elements: uniqueSorted(characterCatalog.map((entry) => entry.element)),
     paths: uniqueSorted([...characterCatalog, ...lightConeCatalog].map((entry) => entry.path)),
-    navigationIcons: NAVIGATION_ITEMS.map((item) => item.iconKey),
+    navigationIcons: [...NAVIGATION_ICON_KEYS],
     brandIcons: [...BRAND_ICON_KEYS],
     utilityIcons: [...UTILITY_ICON_KEYS],
     endgameModeIcons: ENDGAME_MODES.map((mode) => ENDGAME_MODE_META[mode].iconKey)

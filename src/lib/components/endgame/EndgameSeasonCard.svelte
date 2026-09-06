@@ -6,6 +6,8 @@
     type EndgamePeriodView
   } from '$lib/domain/endgame-view';
   import EndgameModeIcon from './EndgameModeIcon.svelte';
+  import { localizedHref } from '$lib/i18n/routing';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let mode: EndgameMode;
   export let period: EndgamePeriodView;
@@ -16,8 +18,8 @@
 
 <a
   class={`endgame-season-card endgame-season-card--${variant}`}
-  href={`/endgame/${mode}/${period.groupId}`}
-  aria-label={`${period.name}，查看赛期详情`}
+  href={localizedHref(`/endgame/${mode}/${period.groupId}`)}
+  aria-label={m.endgame_period_detail_aria({ period: period.name })}
   style={`--endgame-accent: ${metadata.accent};`}
   data-endgame-season-card={variant}
 >
@@ -33,7 +35,7 @@
   </div>
 
   <span class="endgame-season-card__footer">
-    <span>{period.encounterCount} 个关卡</span>
+    <span>{m.endgame_encounter_count({ count: period.encounterCount })}</span>
     <span class="endgame-season-card__arrow" aria-hidden="true">→</span>
   </span>
 </a>

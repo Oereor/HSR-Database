@@ -4,26 +4,26 @@
   export let hasFilters = false;
   export let sort = 'rarity';
   export let sortOptions: Array<{ value: string; label: string }> = [
-    { value: 'rarity', label: m.overview_sort_rarity({}, { locale: 'zh-CN' }) },
-    { value: 'name', label: m.overview_sort_name({}, { locale: 'zh-CN' }) },
-    { value: 'id', label: m.overview_sort_id({}, { locale: 'zh-CN' }) }
+    { value: 'rarity', label: m.overview_sort_rarity() },
+    { value: 'name', label: m.overview_sort_name() },
+    { value: 'id', label: m.overview_sort_id() }
   ];
   export let onClearFilters: () => void | Promise<void>;
   export let onSortChange: (value: string) => void | Promise<void>;
 </script>
 
 <div class="overview-toolbar">
-  <span>{m.overview_result_count({ count: resultCount }, { locale: 'zh-CN' })}</span>
+  <span>{m.overview_result_count({ count: resultCount })}</span>
   {#if hasFilters}
     <button type="button" class="button button--quiet" on:click={onClearFilters}
-      >{m.overview_clear_active_filters({}, { locale: 'zh-CN' })}</button
+      >{m.overview_clear_active_filters()}</button
     >
   {/if}
   <label class="overview-toolbar__sort">
-    <span>{m.overview_sort({}, { locale: 'zh-CN' })}</span>
+    <span>{m.overview_sort()}</span>
     <select
       value={sort}
-      aria-label={m.overview_sort({}, { locale: 'zh-CN' })}
+      aria-label={m.overview_sort()}
       on:change={(event) => onSortChange((event.currentTarget as HTMLSelectElement).value)}
     >
       {#each sortOptions as option (option.value)}

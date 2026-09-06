@@ -1,8 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let items: readonly { id: string; label: string }[] = [];
-  export let ariaLabel = '详情章节';
+  export let ariaLabel = m.section_nav_aria();
 
   let navElement: HTMLElement;
   let activeId = items[0]?.id ?? '';

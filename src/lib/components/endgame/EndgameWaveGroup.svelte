@@ -3,6 +3,7 @@
   import type { EndgameWaveView } from '$lib/domain/endgame-view';
   import EndgameEnemyGrid from './EndgameEnemyGrid.svelte';
   import { formatChineseOrdinal, type EndgameEnemyCardVariant } from './presentation';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let wave: EndgameWaveView;
   export let ordinal: number;
@@ -24,7 +25,7 @@
   data-wave-level={level}
 >
   <SectionHeading level={3} headingLevel={4} tone="muted">
-    波次{formatChineseOrdinal(ordinal)}
+    {m.endgame_wave({ number: formatChineseOrdinal(ordinal) })}
   </SectionHeading>
   <EndgameEnemyGrid enemies={wave.enemies} variant={enemyVariant} {level} />
 </section>

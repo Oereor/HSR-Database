@@ -61,7 +61,12 @@ import { projectRelic } from './projection/relic.js';
 import { buildEnemyDomain } from './domain/enemy.js';
 import { projectEnemies } from './projection/enemy.js';
 import { validateSiteMessageFiles } from '../messages.js';
-import { getGeneratedLocales, getProductionLocale, type LocaleConfig } from './locale-registry.js';
+import {
+  getGeneratedLocales,
+  getProductionLocale,
+  getPublicLocales,
+  type LocaleConfig
+} from './locale-registry.js';
 import { getLocaleProjectionPolicy } from './projection/policy.js';
 import { buildEndgameOccurrenceShards } from './endgame-occurrence-shards.js';
 import { assertCrossLocaleStructuralParity } from './structural-parity.js';
@@ -1024,23 +1029,41 @@ export async function syncData(): Promise<DataManifest> {
     })
   ) as DataManifest['locales'];
 
+  const routes = {
+    characters: baseProjection.details.characters.map((item) => item.id),
+    'light-cones': baseProjection.details['light-cones'].map((item) => item.id),
+    relics: baseProjection.details.relics.map((item) => item.id),
+    enemies: baseProjection.details.enemies.map((item) => item.id)
+  };
+  const routePaths = [
+    '/',
+    '/search',
+    ...Object.entries(routes).flatMap(([category, ids]) => [
+      `/${category}`,
+      ...ids.map((id) => `/${category}/${id}`)
+    ]),
+    '/endgame',
+    ...Object.values(baseProjection.endgame.datasets).flatMap((dataset) => [
+      `/endgame/${dataset.mode}`,
+      ...dataset.groups.map(
+        (group: { groupId: number }) => `/endgame/${dataset.mode}/${group.groupId}`
+      )
+    ])
+  ];
   const manifest: DataManifest = {
-    schemaVersion: 42,
+    schemaVersion: 43,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,
     generatedLocales: generatedLocales.map(({ locale }) => locale),
     publicLocale: locale.locale,
+    publicLocales: getPublicLocales().map(({ locale }) => locale),
+    routePaths,
     locales: localeManifest,
     dataRevision,
     artifacts,
     counts: countsOf(baseProjection),
-    routes: {
-      characters: baseProjection.details.characters.map((item) => item.id),
-      'light-cones': baseProjection.details['light-cones'].map((item) => item.id),
-      relics: baseProjection.details.relics.map((item) => item.id),
-      enemies: baseProjection.details.enemies.map((item) => item.id)
-    },
+    routes,
     endgame: baseProjection.endgame.audit.summary
   };
   await verifyGeneratedArtifacts(artifacts, nextGeneratedRoot, nextStaticGeneratedRoot);

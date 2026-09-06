@@ -14,7 +14,7 @@
   <h2 id={`filter-group-${id}`}>{label}</h2>
   <div class="filter-group__chips">
     <FilterChip
-      label={m.filter_all({}, { locale: 'zh-CN' })}
+      label={m.filter_all()}
       value="all"
       selected={selected.size === 0}
       on:click={() => onToggle(undefined)}

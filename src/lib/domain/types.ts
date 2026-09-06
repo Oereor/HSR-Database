@@ -443,13 +443,15 @@ export interface PublicSiteVersion {
 }
 
 export interface DataManifest {
-  schemaVersion: 42;
+  schemaVersion: 43;
   sourceCommit: string;
   sourceVersion: string;
   gameVersionFull: string | null;
   gameVersion: string | null;
   generatedLocales: Array<'zh-CN' | 'en'>;
   publicLocale: 'zh-CN';
+  publicLocales: Array<'zh-CN' | 'en'>;
+  routePaths: string[];
   locales: Record<
     'zh-CN' | 'en',
     {

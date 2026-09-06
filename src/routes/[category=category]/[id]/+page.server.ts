@@ -19,20 +19,23 @@ export async function entries() {
   );
 }
 
-export async function load({ params }) {
+export async function load({ params, locals }) {
   if (!isCategory(params.category)) error(404, '分类不存在');
   try {
     const detail =
       params.category === 'enemies'
-        ? await getEnemyDetail(params.id)
-        : await getDetail(params.category, params.id);
+        ? await getEnemyDetail(locals.locale, params.id)
+        : await getDetail(locals.locale, params.category, params.id);
     const specialEffectTargets =
       params.category === 'characters'
-        ? await resolveSpecialEffectTargets(detail as Record<string, unknown>)
+        ? await resolveSpecialEffectTargets(locals.locale, detail as Record<string, unknown>)
         : [];
     const equipmentRecommendation =
       params.category === 'characters'
-        ? await resolveCharacterEquipmentRecommendation(detail as unknown as Character)
+        ? await resolveCharacterEquipmentRecommendation(
+            locals.locale,
+            detail as unknown as Character
+          )
         : undefined;
     return {
       category: params.category,
@@ -46,11 +49,14 @@ export async function load({ params }) {
   }
 }
 
-async function resolveCharacterEquipmentRecommendation(character: Character) {
+async function resolveCharacterEquipmentRecommendation(
+  locale: App.Locals['locale'],
+  character: Character
+) {
   const [lightCones, relicSets, relicProperties] = await Promise.all([
-    getCatalog('light-cones'),
-    getRelicCatalog(),
-    getRelicProperties()
+    getCatalog(locale, 'light-cones'),
+    getRelicCatalog(locale),
+    getRelicProperties(locale)
   ]);
   return resolveEquipmentRecommendation(
     character.equipmentRecommendation,
@@ -60,7 +66,10 @@ async function resolveCharacterEquipmentRecommendation(character: Character) {
   );
 }
 
-async function resolveSpecialEffectTargets(detail: Record<string, unknown>) {
+async function resolveSpecialEffectTargets(
+  locale: App.Locals['locale'],
+  detail: Record<string, unknown>
+) {
   const profiles = detail.profiles as
     Record<string, { specialEffects?: CharacterSpecialEffectEntry[] } | undefined> | undefined;
   const ids = new Set<string>();
@@ -71,5 +80,5 @@ async function resolveSpecialEffectTargets(detail: Record<string, unknown>) {
     }
   }
   if (!ids.size) return [];
-  return (await getCatalog('characters')).filter((entry) => ids.has(entry.id));
+  return (await getCatalog(locale, 'characters')).filter((entry) => ids.has(entry.id));
 }

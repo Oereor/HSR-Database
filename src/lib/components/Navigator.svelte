@@ -5,7 +5,8 @@
   import { onDestroy } from 'svelte';
   import { getBrandIconUrl, getUtilityIconUrl } from '$lib/data/visual-assets';
   import type { PublicSiteVersion } from '$lib/domain/types';
-  import { SITE_NAME } from '$lib/site';
+  import { localizedHref } from '$lib/i18n/routing';
+  import { siteName } from '$lib/site';
   import PrimaryNavigation from './PrimaryNavigation.svelte';
   import SearchBar from './SearchBar.svelte';
 
@@ -16,12 +17,14 @@
   let expanded = false;
   const trainPartyIconUrl = getBrandIconUrl('train-party');
   const changelogIconUrl = getUtilityIconUrl('changelog');
+  const homeHref = localizedHref('/');
+  const name = siteName();
 
   $: revision = siteVersion.dataRevision;
   $: versionLabel = siteVersion.gameVersion
-    ? m.navigation_data_version({ version: siteVersion.gameVersion }, { locale: 'zh-CN' })
-    : m.navigation_unknown_version({}, { locale: 'zh-CN' });
-  $: snapshotLabel = m.navigation_snapshot({ versionLabel, revision }, { locale: 'zh-CN' });
+    ? m.navigation_data_version({ version: siteVersion.gameVersion })
+    : m.navigation_unknown_version();
+  $: snapshotLabel = m.navigation_snapshot({ versionLabel, revision });
 
   function lockPage(locked: boolean) {
     document.body.classList.toggle('navigator-open', locked);
@@ -61,11 +64,11 @@
   });
 </script>
 
-<aside class="navigator-rail" aria-label={m.navigation_compact_aria({}, { locale: 'zh-CN' })}>
+<aside class="navigator-rail" aria-label={m.navigation_compact_aria()}>
   <a
     class="brand navigator-rail__brand"
-    href="/"
-    aria-label={m.navigation_home_aria({ siteName: SITE_NAME }, { locale: 'zh-CN' })}
+    href={homeHref}
+    aria-label={m.navigation_home_aria({ siteName: name })}
   >
     <span class="brand-icon" aria-hidden="true">
       {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
@@ -74,7 +77,7 @@
   <button
     class="navigator-toggle"
     type="button"
-    aria-label={m.navigation_open({}, { locale: 'zh-CN' })}
+    aria-label={m.navigation_open()}
     aria-expanded={expanded}
     aria-controls="primary-navigator-pane"
     on:click={openNavigator}
@@ -84,15 +87,13 @@
   <button
     class="changelog-trigger"
     type="button"
-    aria-label={m.navigation_changelog({}, { locale: 'zh-CN' })}
+    aria-label={m.navigation_changelog()}
     on:click={onOpenChangelog}
   >
     {#if changelogIconUrl}<img src={changelogIconUrl} alt="" />{:else}<span aria-hidden="true"
-        >{m.navigation_changelog_fallback({}, { locale: 'zh-CN' })}</span
+        >{m.navigation_changelog_fallback()}</span
       >{/if}
-    <span class="changelog-trigger__tooltip" role="tooltip"
-      >{m.navigation_changelog({}, { locale: 'zh-CN' })}</span
-    >
+    <span class="changelog-trigger__tooltip" role="tooltip">{m.navigation_changelog()}</span>
   </button>
   <PrimaryNavigation pathname={$page.url.pathname} compact />
   <div class="navigator-rail__snapshot" role="status" aria-label={snapshotLabel}>
@@ -102,29 +103,27 @@
 </aside>
 
 <header class="mobile-header">
-  <a class="brand" href="/">
+  <a class="brand" href={homeHref}>
     <span class="brand-icon" aria-hidden="true">
       {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
-    </span><strong>{SITE_NAME}</strong>
+    </span><strong>{name}</strong>
   </a>
   <div class="mobile-header__actions">
     <button
       class="changelog-trigger mobile-header__changelog"
       type="button"
-      aria-label={m.navigation_changelog({}, { locale: 'zh-CN' })}
+      aria-label={m.navigation_changelog()}
       on:click={onOpenChangelog}
     >
       {#if changelogIconUrl}<img src={changelogIconUrl} alt="" />{:else}<span aria-hidden="true"
-          >{m.navigation_changelog_fallback({}, { locale: 'zh-CN' })}</span
+          >{m.navigation_changelog_fallback()}</span
         >{/if}
-      <span class="changelog-trigger__tooltip" role="tooltip"
-        >{m.navigation_changelog({}, { locale: 'zh-CN' })}</span
-      >
+      <span class="changelog-trigger__tooltip" role="tooltip">{m.navigation_changelog()}</span>
     </button>
     <button
       class="navigator-toggle"
       type="button"
-      aria-label={m.navigation_open({}, { locale: 'zh-CN' })}
+      aria-label={m.navigation_open()}
       aria-expanded={expanded}
       aria-controls="primary-navigator-pane"
       on:click={openNavigator}
@@ -138,26 +137,23 @@
   id="primary-navigator-pane"
   class="navigator-pane"
   bind:this={navigatorPane}
-  aria-label={m.navigation_full_aria({}, { locale: 'zh-CN' })}
+  aria-label={m.navigation_full_aria()}
   on:click={handlePaneClick}
   on:close={handlePaneClose}
   on:cancel={handlePaneClose}
 >
   <div class="navigator-pane__surface">
     <div class="navigator-pane__heading">
-      <a class="brand navigator-pane__brand" href="/" on:click={closeNavigator}>
+      <a class="brand navigator-pane__brand" href={homeHref} on:click={closeNavigator}>
         <span class="brand-icon" aria-hidden="true">
           {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
         </span>
-        <span
-          ><strong>{SITE_NAME}</strong><small>{m.site_short_tagline({}, { locale: 'zh-CN' })}</small
-          ></span
-        >
+        <span><strong>{name}</strong><small>{m.site_short_tagline()}</small></span>
       </a>
       <button
         class="navigator-toggle"
         type="button"
-        aria-label={m.navigation_close({}, { locale: 'zh-CN' })}
+        aria-label={m.navigation_close()}
         aria-expanded={expanded}
         aria-controls="primary-navigator-pane"
         on:click={closeNavigator}
@@ -168,8 +164,8 @@
 
     <SearchBar
       id="global-search"
-      label={m.navigation_search_label({}, { locale: 'zh-CN' })}
-      placeholder={m.navigation_search_placeholder({}, { locale: 'zh-CN' })}
+      label={m.navigation_search_label()}
+      placeholder={m.navigation_search_placeholder()}
       variant="sidebar"
     />
 

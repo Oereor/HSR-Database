@@ -2,11 +2,14 @@
   import type { ElementLabel } from '$lib/domain/types';
   import { getElementColor } from '$lib/domain/elements';
   import SemanticIconLabel from './SemanticIconLabel.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let weaknesses: ElementLabel[];
   export let size: 'default' | 'overview' = 'default';
 
-  $: accessibilityLabel = `弱点：${weaknesses.map((weakness) => weakness.name).join('、')}`;
+  $: accessibilityLabel = m.weaknesses_aria({
+    weaknesses: weaknesses.map((weakness) => weakness.name).join(', ')
+  });
 </script>
 
 {#if weaknesses.length}
@@ -17,11 +20,11 @@
     aria-label={accessibilityLabel}
   >
     {#each weaknesses as weakness (weakness.element)}
-      <span class="enemy-weakness-group__item" title={`${weakness.name}属性弱点`}>
+      <span class="enemy-weakness-group__item" title={m.weakness_type({ element: weakness.name })}>
         <SemanticIconLabel
           kind="element"
           code={weakness.element}
-          label={`${weakness.name}属性弱点`}
+          label={m.weakness_type({ element: weakness.name })}
           color={getElementColor(weakness.element)}
           showLabel={false}
         />

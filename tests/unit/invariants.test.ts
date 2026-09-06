@@ -106,12 +106,12 @@ describe('重构 invariants', () => {
     expect(sources.join('\n')).not.toContain('{@html');
   });
 
-  it('搜索页只声明简体中文能力', async () => {
+  it('搜索页使用共享本地化消息能力', async () => {
     const source = await readFile(
       path.join(root, 'src', 'routes', 'search', '+page.svelte'),
       'utf8'
     );
-    expect(source).toContain('简体中文搜索');
+    expect(source).toContain('search_hero_title');
     expect(source).not.toMatch(/多语言|其他语言|language switch/i);
   });
 

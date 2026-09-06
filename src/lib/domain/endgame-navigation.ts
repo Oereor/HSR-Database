@@ -4,6 +4,7 @@ import type {
   MocEncounterView,
   PureFictionEncounterView
 } from './endgame-view';
+import { m } from '$lib/paraglide/messages.js';
 
 export interface EndgameLocalNavigationItem {
   id: string;
@@ -42,7 +43,7 @@ export function buildMocLocalNavigation(
 ): EndgameLocalNavigationModel {
   const sections = [
     {
-      label: '关卡',
+      label: m.endgame_local_stage_section(),
       items: encounters.map((encounter) => ({
         id: encounter.id,
         label: String(encounter.ordinal ?? encounter.id).padStart(2, '0'),
@@ -54,9 +55,11 @@ export function buildMocLocalNavigation(
   ];
   const selected = currentItem(sections, selectedId);
   return {
-    ariaLabel: '选择混沌回忆关卡',
-    menuLabel: '选择关卡',
-    currentLabel: selected ? `关卡 ${selected.label}` : '选择关卡',
+    ariaLabel: m.endgame_local_moc_aria(),
+    menuLabel: m.endgame_local_stage_select(),
+    currentLabel: selected
+      ? m.endgame_local_stage_current({ label: selected.label })
+      : m.endgame_local_stage_select(),
     sections
   };
 }
@@ -68,10 +71,10 @@ function buildDifficultyLocalNavigation(
 ): EndgameLocalNavigationModel {
   const sections = [
     {
-      label: '难度',
+      label: m.endgame_local_difficulty_section(),
       items: encounters.map((encounter) => ({
         id: encounter.id,
-        label: `难度 ${encounter.ordinal ?? encounter.id}`,
+        label: m.endgame_local_difficulty_label({ number: encounter.ordinal ?? encounter.id }),
         href: encounterHref(encounter.id),
         current: encounter.id === selectedId,
         title: encounter.label
@@ -80,8 +83,8 @@ function buildDifficultyLocalNavigation(
   ];
   return {
     ariaLabel,
-    menuLabel: '选择难度',
-    currentLabel: currentItem(sections, selectedId)?.label ?? '选择难度',
+    menuLabel: m.endgame_local_difficulty_select(),
+    currentLabel: currentItem(sections, selectedId)?.label ?? m.endgame_local_difficulty_select(),
     sections
   };
 }
@@ -90,14 +93,14 @@ export function buildPureFictionLocalNavigation(
   encounters: PureFictionEncounterView[],
   selectedId: string
 ): EndgameLocalNavigationModel {
-  return buildDifficultyLocalNavigation(encounters, selectedId, '选择虚构叙事难度');
+  return buildDifficultyLocalNavigation(encounters, selectedId, m.endgame_local_pf_aria());
 }
 
 export function buildApocalypticShadowLocalNavigation(
   encounters: ApocalypticShadowEncounterView[],
   selectedId: string
 ): EndgameLocalNavigationModel {
-  return buildDifficultyLocalNavigation(encounters, selectedId, '选择末日幻影难度');
+  return buildDifficultyLocalNavigation(encounters, selectedId, m.endgame_local_as_aria());
 }
 
 export function buildAnomalyArbitrationLocalNavigation(
@@ -106,7 +109,7 @@ export function buildAnomalyArbitrationLocalNavigation(
 ): EndgameLocalNavigationModel {
   const sections = [
     {
-      label: '骑士',
+      label: m.endgame_local_knights(),
       items: encounters
         .filter((encounter) => encounter.variant === 'preliminary')
         .map((encounter) => ({
@@ -117,7 +120,7 @@ export function buildAnomalyArbitrationLocalNavigation(
         }))
     },
     {
-      label: '王棋',
+      label: m.endgame_local_king_pieces(),
       items: encounters
         .filter((encounter) => encounter.variant !== 'preliminary')
         .map((encounter) => ({
@@ -129,9 +132,9 @@ export function buildAnomalyArbitrationLocalNavigation(
     }
   ];
   return {
-    ariaLabel: '选择异相仲裁节点',
-    menuLabel: '选择棋局节点',
-    currentLabel: currentItem(sections, selectedId)?.label ?? '选择棋局节点',
+    ariaLabel: m.endgame_local_aa_aria(),
+    menuLabel: m.endgame_local_chess_node_select(),
+    currentLabel: currentItem(sections, selectedId)?.label ?? m.endgame_local_chess_node_select(),
     sections
   };
 }

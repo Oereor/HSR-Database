@@ -3,6 +3,7 @@
   import EndgameNodeHeading from '../EndgameNodeHeading.svelte';
   import BuffOptionGroup from '../mechanics/BuffOptionGroup.svelte';
   import AsBossDossier from './AsBossDossier.svelte';
+  import { m } from '$lib/paraglide/messages.js';
 
   export let battle: ApocalypticShadowBattleSlotView;
 </script>
@@ -20,7 +21,7 @@
   {#if battle.axiomSet?.options.length}
     <section class="as-node-section__axiom" data-endgame-mechanics="axiom">
       <BuffOptionGroup
-        title="终焉公理"
+        title={m.endgame_terminal_axiom()}
         options={battle.axiomSet.options}
         headingLevel={4}
         level={2}

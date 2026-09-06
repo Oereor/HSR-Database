@@ -3,9 +3,10 @@ import type { EnemyDetailView } from '$lib/domain/enemy-view';
 import { buildEnemyDetailView } from '$lib/domain/enemy-view';
 import { getEnemyPortraitUrl } from '$lib/server/enemy-assets';
 import { getDetail } from '$lib/server/generated';
+import type { SearchLocale } from '$lib/domain/search-index';
 
-export async function getEnemyDetail(id: string): Promise<EnemyDetailView> {
-  const detail = (await getDetail('enemies', id)) as unknown as Enemy;
+export async function getEnemyDetail(locale: SearchLocale, id: string): Promise<EnemyDetailView> {
+  const detail = (await getDetail(locale, 'enemies', id)) as unknown as Enemy;
   if (detail.kind !== 'enemy') throw new Error(`Enemy ${id} 数据类型不匹配`);
   const view = buildEnemyDetailView(detail);
   const summonTemplateIds = [

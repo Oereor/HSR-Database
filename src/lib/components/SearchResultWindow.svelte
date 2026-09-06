@@ -1,13 +1,14 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   export let shown: number;
   export let total: number;
   export let onLoadMore: () => void;
 </script>
 
 <div class="search-result-window" data-search-total={total}>
-  <p>已展示 {Math.min(shown, total)} / {total} 个结果</p>
+  <p>{m.search_result_window({ shown: Math.min(shown, total), total })}</p>
   {#if shown < total}
-    <button type="button" on:click={onLoadMore}>加载更多</button>
+    <button type="button" on:click={onLoadMore}>{m.search_load_more()}</button>
   {/if}
 </div>
 

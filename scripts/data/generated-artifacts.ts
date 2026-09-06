@@ -4,7 +4,7 @@ import path from 'node:path';
 import type { DataManifest, GeneratedArtifactMetadata } from '../../src/lib/domain/types.js';
 import { generatedRoot, staticGeneratedRoot } from './paths.js';
 
-export const DATA_MANIFEST_SCHEMA_VERSION = 42 as const;
+export const DATA_MANIFEST_SCHEMA_VERSION = 43 as const;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === 'object' && !Array.isArray(value);
@@ -17,6 +17,10 @@ export function assertDataManifest(value: unknown): asserts value is DataManifes
     typeof value.sourceCommit !== 'string' ||
     value.publicLocale !== 'zh-CN' ||
     JSON.stringify(value.generatedLocales) !== '["zh-CN","en"]' ||
+    JSON.stringify(value.publicLocales) !== '["zh-CN","en"]' ||
+    !Array.isArray(value.routePaths) ||
+    value.routePaths.some((route) => typeof route !== 'string' || !route.startsWith('/')) ||
+    new Set(value.routePaths).size !== value.routePaths.length ||
     !isRecord(value.locales) ||
     typeof value.dataRevision !== 'string' ||
     !isRecord(value.artifacts) ||

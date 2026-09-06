@@ -28,6 +28,7 @@ import {
   type SearchLocale
 } from '$lib/domain/search-index';
 import { getSearchIndex } from '$lib/server/generated';
+import { getEndgameModeCopy } from '$lib/i18n/endgame';
 
 const generatedRoot = path.resolve('src', 'lib', 'generated', 'views');
 const datasetCache = new Map<string, Promise<EndgameModeDataset>>();
@@ -40,7 +41,7 @@ async function readJson<T>(locale: SearchLocale, ...segments: string[]): Promise
 
 export function getEndgameDataset<TMode extends EndgameMode>(
   mode: TMode,
-  locale: SearchLocale = 'zh-CN'
+  locale: SearchLocale
 ): Promise<EndgameDatasetByMode[TMode]> {
   const key = `${locale}:${mode}`;
   const cached = datasetCache.get(key);
@@ -86,21 +87,25 @@ async function getEnemyReference(
   return pending;
 }
 
-export async function getEndgameLanding(
-  locale: SearchLocale = 'zh-CN'
-): Promise<EndgameModeView[]> {
+export async function getEndgameLanding(locale: SearchLocale): Promise<EndgameModeView[]> {
   return Promise.all(
     ENDGAME_MODES.map(async (mode) =>
-      buildModeView(mode, (await getEndgameDataset(mode, locale)).groups)
+      Object.assign(
+        buildModeView(mode, (await getEndgameDataset(mode, locale)).groups),
+        getEndgameModeCopy(mode)
+      )
     )
   );
 }
 
 export async function getEndgameMode(
   mode: EndgameMode,
-  locale: SearchLocale = 'zh-CN'
+  locale: SearchLocale
 ): Promise<EndgameModeView> {
-  return buildModeView(mode, (await getEndgameDataset(mode, locale)).groups);
+  return Object.assign(
+    buildModeView(mode, (await getEndgameDataset(mode, locale)).groups),
+    getEndgameModeCopy(mode)
+  );
 }
 
 async function buildResolvedGroupView(
@@ -132,13 +137,15 @@ async function buildResolvedGroupView(
       references.set(key, await getEnemyReference(monsterId, templateId, locale))
     )
   );
-  return buildGroupView(group, periods, references);
+  return Object.assign(buildGroupView(group, periods, references), {
+    modeLabel: getEndgameModeCopy(group.mode).label
+  });
 }
 
 export async function getEndgameGroup(
   mode: EndgameMode,
   groupId: number,
-  locale: SearchLocale = 'zh-CN'
+  locale: SearchLocale
 ): Promise<EndgameGroupView | undefined> {
   const key = `${locale}:${mode}:${groupId}`;
   const cached = groupViewCache.get(key);
@@ -188,7 +195,7 @@ export async function getEndgameOccurrenceTargetIds(): Promise<Array<{ targetId:
 
 export async function getEndgameOccurrenceShard(
   targetId: string,
-  locale: SearchLocale = 'zh-CN'
+  locale: SearchLocale
 ): Promise<EndgameOccurrenceShard | undefined> {
   const entry = (await getSearchIndex(locale)).endgameTargets.find(
     (candidate) => candidate.id === targetId
@@ -233,17 +240,17 @@ export async function getEndgameOccurrenceShard(
   };
 }
 
-export async function getEndgameGroupEntries(): Promise<
-  Array<{ mode: EndgameMode; groupId: string }>
-> {
-  const datasets = await Promise.all(ENDGAME_MODES.map((mode) => getEndgameDataset(mode)));
+export async function getEndgameGroupEntries(
+  locale: SearchLocale
+): Promise<Array<{ mode: EndgameMode; groupId: string }>> {
+  const datasets = await Promise.all(ENDGAME_MODES.map((mode) => getEndgameDataset(mode, locale)));
   return datasets.flatMap((dataset) =>
     dataset.groups.map((group) => ({ mode: dataset.mode, groupId: String(group.groupId) }))
   );
 }
 
-export async function getEndgameRoutePaths(): Promise<string[]> {
-  const entries = await getEndgameGroupEntries();
+export async function getEndgameRoutePaths(locale: SearchLocale): Promise<string[]> {
+  const entries = await getEndgameGroupEntries(locale);
   return [
     '/endgame',
     ...ENDGAME_MODES.map((mode) => `/endgame/${mode}`),

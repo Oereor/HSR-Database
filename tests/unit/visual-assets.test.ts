@@ -246,7 +246,10 @@ describe('视觉资源管线', () => {
       endgame: 'AbyssIcon01'
     });
     expect(BRAND_ICON_SOURCE_NAMES).toEqual({ 'train-party': 'TrainPartyIcon' });
-    expect(UTILITY_ICON_SOURCE_NAMES).toEqual({ changelog: 'SettingsPushIcon' });
+    expect(UTILITY_ICON_SOURCE_NAMES).toEqual({
+      changelog: 'SettingsPushIcon',
+      settings: 'SettingsIcon'
+    });
   });
 
   it('manifest 必须覆盖角色、属性与命途的完整需求集合', () => {
