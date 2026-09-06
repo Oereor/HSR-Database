@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   export let id: string;
   export let value = '';
   export let placeholder: string;
@@ -12,10 +13,10 @@
 </script>
 
 <form class="overview-search" on:submit|preventDefault={onSubmit}>
-  <label for={id}>搜索</label>
+  <label for={id}>{m.common_search({}, { locale: 'zh-CN' })}</label>
   <div class="overview-search__control">
     <input {id} bind:value {placeholder} on:keydown={keydown} />
-    <button type="submit" class="button">搜索</button>
+    <button type="submit" class="button">{m.common_search({}, { locale: 'zh-CN' })}</button>
   </div>
 </form>
 

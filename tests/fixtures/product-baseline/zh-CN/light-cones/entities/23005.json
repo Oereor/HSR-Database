@@ -1,0 +1,363 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23005",
+    "name": "制胜的瞬间",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 27,
+            "perLevel": 4.05
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 59.4,
+            "perLevel": 4.05
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 102.6,
+            "perLevel": 4.05
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 145.8,
+            "perLevel": 4.05
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 189,
+            "perLevel": 4.05
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 232.2,
+            "perLevel": 4.05
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 275.4,
+            "perLevel": 4.05
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23005",
+    "kind": "light-cone",
+    "name": "制胜的瞬间",
+    "passive": {
+      "id": "23005",
+      "name": "决断",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的防御力提高24%，效果命中提高24%，同时使自身受到攻击的概率提高。当装备者受到攻击后，防御力额外提高24%，持续到自身回合结束。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，效果命中提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，同时使自身受到攻击的概率提高。当装备者受到攻击后，防御力额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，持续到自身回合结束。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的防御力提高28%，效果命中提高28%，同时使自身受到攻击的概率提高。当装备者受到攻击后，防御力额外提高28%，持续到自身回合结束。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "，效果命中提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "，同时使自身受到攻击的概率提高。当装备者受到攻击后，防御力额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "，持续到自身回合结束。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的防御力提高32%，效果命中提高32%，同时使自身受到攻击的概率提高。当装备者受到攻击后，防御力额外提高32%，持续到自身回合结束。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "，效果命中提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "，同时使自身受到攻击的概率提高。当装备者受到攻击后，防御力额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "，持续到自身回合结束。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的防御力提高36%，效果命中提高36%，同时使自身受到攻击的概率提高。当装备者受到攻击后，防御力额外提高36%，持续到自身回合结束。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "，效果命中提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "，同时使自身受到攻击的概率提高。当装备者受到攻击后，防御力额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "，持续到自身回合结束。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的防御力提高40%，效果命中提高40%，同时使自身受到攻击的概率提高。当装备者受到攻击后，防御力额外提高40%，持续到自身回合结束。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，效果命中提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，同时使自身受到攻击的概率提高。当装备者受到攻击后，防御力额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，持续到自身回合结束。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5,
+    "story": "<i>「输了想哭就哭吧，杰帕德。」\n「但哭着也要站起来，直到你能赢过我…无论需要五年还是十年。」</i>\n几年后，小男孩不再哭鼻子，也不再输给姐姐。\n\n如今在战场上，无论以何种姿态，骁勇无畏的银鬃铁卫戍卫官总会坚守至最后\n——只为找到彻底摧毁敌人的一瞬。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23005",
+    "storyFallbackRendered": false
+  }
+}

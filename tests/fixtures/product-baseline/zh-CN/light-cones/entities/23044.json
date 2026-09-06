@@ -1,0 +1,363 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23044",
+    "name": "黎明恰如此燃烧",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 31.2,
+            "perLevel": 4.68
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 68.64,
+            "perLevel": 4.68
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 118.56,
+            "perLevel": 4.68
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 168.48,
+            "perLevel": 4.68
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 218.4,
+            "perLevel": 4.68
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 268.32,
+            "perLevel": 4.68
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 318.24,
+            "perLevel": 4.68
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23044",
+    "kind": "light-cone",
+    "name": "黎明恰如此燃烧",
+    "passive": {
+      "id": "23044",
+      "name": "失却",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的基础速度提高12，造成伤害时无视目标18%的防御力。装备者施放终结技后，获得【烈阳】，回合开始时移除。持有【烈阳】时，装备者造成的伤害提高60%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的基础速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12"
+              },
+              {
+                "type": "text",
+                "value": "，造成伤害时无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。装备者施放终结技后，获得【烈阳】，回合开始时移除。持有【烈阳】时，装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的基础速度提高14，造成伤害时无视目标23%的防御力。装备者施放终结技后，获得【烈阳】，回合开始时移除。持有【烈阳】时，装备者造成的伤害提高78%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的基础速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14"
+              },
+              {
+                "type": "text",
+                "value": "，造成伤害时无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "23%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。装备者施放终结技后，获得【烈阳】，回合开始时移除。持有【烈阳】时，装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "78%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的基础速度提高16，造成伤害时无视目标27%的防御力。装备者施放终结技后，获得【烈阳】，回合开始时移除。持有【烈阳】时，装备者造成的伤害提高96%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的基础速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16"
+              },
+              {
+                "type": "text",
+                "value": "，造成伤害时无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。装备者施放终结技后，获得【烈阳】，回合开始时移除。持有【烈阳】时，装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "96%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的基础速度提高18，造成伤害时无视目标32%的防御力。装备者施放终结技后，获得【烈阳】，回合开始时移除。持有【烈阳】时，装备者造成的伤害提高114%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的基础速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18"
+              },
+              {
+                "type": "text",
+                "value": "，造成伤害时无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。装备者施放终结技后，获得【烈阳】，回合开始时移除。持有【烈阳】时，装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "114%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的基础速度提高20，造成伤害时无视目标36%的防御力。装备者施放终结技后，获得【烈阳】，回合开始时移除。持有【烈阳】时，装备者造成的伤害提高132%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的基础速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20"
+              },
+              {
+                "type": "text",
+                "value": "，造成伤害时无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。装备者施放终结技后，获得【烈阳】，回合开始时移除。持有【烈阳】时，装备者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "132%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5,
+    "story": "又一次站在旅途的终点，男人的身影被金色的骄阳吞没。\n\n<i>「那黄金的血液，救世的希望，原来……」</i>\n\n他的眼泪还未落下，便蒸发不见。\n<i>「小白，明天见！」</i>\n<i>「救世主，记得活到最后！」</i>\n<i>「去成为翁法罗斯的黎明吧……」</i>\n\n……\n众人的愿望空余回响，无名的英雄破碎，露出那酷烈的死亡。\n\n<i>「若怒火不足以焚灭悖谬的命运……」</i>\n他一次又一次朝着那山顶攀升，一次又一次跌落粉碎——\n\n<i>「那就让我与它一同燃尽！」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23044",
+    "storyFallbackRendered": false
+  }
+}

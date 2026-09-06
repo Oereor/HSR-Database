@@ -1,0 +1,3261 @@
+{
+  "catalog": {
+    "baseName": "罗刹",
+    "description": "随身携带着棺椁，自天之外海而来的化外行商。\n医术精湛。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "id": "1203",
+    "name": "罗刹",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "罗刹",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 101
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 102.96,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 49.5,
+            "perLevel": 2.475
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 174.24,
+            "perLevel": 8.712
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 144.144,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 69.3,
+            "perLevel": 2.475
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 243.936,
+            "perLevel": 8.712
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 185.328,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 89.1,
+            "perLevel": 2.475
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 313.632,
+            "perLevel": 8.712
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 226.512,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 108.9,
+            "perLevel": 2.475
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 383.328,
+            "perLevel": 8.712
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 267.696,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 128.7,
+            "perLevel": 2.475
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 453.024,
+            "perLevel": 8.712
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 308.88,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 148.5,
+            "perLevel": 2.475
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 522.72,
+            "perLevel": 8.712
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 350.064,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 168.3,
+            "perLevel": 2.475
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 592.416,
+            "perLevel": 8.712
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "随身携带着棺椁，自天之外海而来的化外行商。\n医术精湛。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "equipmentRecommendation": {
+      "avatarId": "1203",
+      "cavernSetIds": [
+        "101",
+        "121",
+        "102"
+      ],
+      "lightConeIds": [
+        "23008",
+        "21014",
+        "23013"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HealRatioBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "301",
+        "317",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "AttackAddedRatio",
+        "SpeedDelta",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "罗刹",
+    "id": "1203",
+    "kind": "character",
+    "name": "罗刹",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "结界生效时我方全体攻击力提高<unbreak>20%</unbreak>。",
+            "iconKey": "rank--120301",
+            "id": "120301",
+            "name": "濯洗生者",
+            "rank": 1
+          },
+          {
+            "description": "触发战技效果时，若指定我方目标当前生命值百分比小于<unbreak>50%</unbreak>，则罗刹提供的治疗量提高<unbreak>30%</unbreak>；若指定我方目标当前生命值百分比大于等于<unbreak>50%</unbreak>，则为其提供能够抵消等同于罗刹<unbreak>18%</unbreak>攻击力+<unbreak>240</unbreak>伤害的护盾，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--120302",
+            "id": "120302",
+            "name": "净庭赐礼",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--120303",
+            "id": "120303",
+            "name": "愚人试探",
+            "rank": 3
+          },
+          {
+            "description": "结界生效时使敌方目标陷入虚弱状态，造成的伤害降低<unbreak>12%</unbreak>。",
+            "iconKey": "rank--120304",
+            "id": "120304",
+            "name": "荆冠审判",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--120305",
+            "id": "120305",
+            "name": "受难之痕",
+            "rank": 5
+          },
+          {
+            "description": "施放终结技时，有<unbreak>100%</unbreak><u>固定概率</u>使敌方全体全属性抗性降低<unbreak>20%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "不会被任何因素影响的固定概率。",
+                "id": "30000002",
+                "name": "固定概率"
+              }
+            ],
+            "iconKey": "rank--120306",
+            "id": "120306",
+            "name": "皆归尘土",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 100
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1203001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1203001",
+                "variantIds": [
+                  "120301"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120301",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于罗刹50%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于罗刹60%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于罗刹70%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于罗刹80%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于罗刹90%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于罗刹100%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于罗刹110%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于罗刹120%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于罗刹130%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于罗刹140%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "黑渊的棘刺",
+                "progressionId": "1203001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1203002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1203002",
+                "variantIds": [
+                  "120302"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "energyGain": 30
+                },
+                "id": "120302",
+                "levels": [
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹40%攻击力+200的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹43%攻击力+320的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹45%攻击力+410的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "410"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹48%攻击力+500的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "500"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹50%攻击力+560的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "560"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹52%攻击力+620的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "620"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹54%攻击力+665的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "665"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹56%攻击力+710的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "710"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹58%攻击力+755的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "755"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹60%攻击力+800的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "800"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹62%攻击力+845的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "845"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹64%攻击力+890的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "890"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹66%攻击力+935的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "935"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹68%攻击力+980的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "980"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放战技后立即为指定我方单体回复等同于罗刹70%攻击力+1025的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于50%时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技后立即为指定我方单体回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1025"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并使罗刹获得1层【白花之刻】。\n当我方任意单体当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，罗刹会立即对其触发1次等同于战技的效果，此次触发不消耗战技点。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "白花的祈望",
+                "progressionId": "1203002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1203003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1203003",
+                "variantIds": [
+                  "120303"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "对战斗有增益效果的所有持续状态，若无特殊说明则可以被解除。",
+                      "id": "10000009",
+                      "name": "增益效果"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "120303",
+                "levels": [
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹120%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹128%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹136%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹144%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹152%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹160%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹170%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "170%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹180%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹190%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "190%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹200%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹208%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "208%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹216%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹224%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹232%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "232%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "解除敌方全体1个增益效果，并对敌方全体造成等同于罗刹240%攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "解除敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对敌方全体造成等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时使罗刹获得1层【白花之刻】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "归葬的遂愿",
+                "progressionId": "1203003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1203004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1203004",
+                "variantIds": [
+                  "120304"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    }
+                  ]
+                },
+                "id": "120304",
+                "levels": [
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹12.0%攻击力+60的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹12.8%攻击力+96的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹13.5%攻击力+123的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "123"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹14.2%攻击力+150的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹15.0%攻击力+168的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹15.6%攻击力+186的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "186"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹16.2%攻击力+200的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹16.8%攻击力+213的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "213"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹17.4%攻击力+227的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "227"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹18.0%攻击力+240的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹18.6%攻击力+254的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "254"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹19.2%攻击力+267的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "267"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹19.8%攻击力+281的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "281"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹20.4%攻击力+294的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "294"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "当【白花之刻】达到2层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹21.0%攻击力+308的生命值。\n结界效果持续2回合。当罗刹陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当【白花之刻】达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层时，罗刹会消耗全部【白花之刻】展开结界。\n处于结界中的任意敌方目标受到攻击后，施放攻击的我方目标立即回复等同于罗刹"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "308"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。\n结界效果持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。当罗刹陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "生息的轮转",
+                "progressionId": "1203004",
+                "scalingParamIndexes": [
+                  1,
+                  3
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1203007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1203007",
+                "variantIds": [
+                  "120307"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  }
+                },
+                "id": "120307",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时立即触发天赋。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时立即触发天赋。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "愚者的悲悯",
+                "progressionId": "1203007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "触发战技效果时，解除指定我方单体的<unbreak>1</unbreak>个<u>负面效果</u>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "skill-tree--1203101",
+            "id": "1203101",
+            "name": "浸池苏生",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "处于结界中的任意敌方目标受到我方攻击后，除攻击者外的我方目标也会回复等同于罗刹<unbreak>7.0%</unbreak>攻击力+<unbreak>93</unbreak>的生命值。",
+            "iconKey": "skill-tree--1203102",
+            "id": "1203102",
+            "name": "浇灌尘身",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "抵抗<u>控制类负面状态</u>的概率提高<unbreak>70%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                "id": "10000011",
+                "name": "控制类负面状态"
+              }
+            ],
+            "iconKey": "skill-tree--1203103",
+            "id": "1203103",
+            "name": "行过幽谷",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1203201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1203202",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1203101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1203203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1203202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1203204",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1203203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1203205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1203102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1203206",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1203205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1203207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1203206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1203208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1203103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1203209",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1203103"
+            ],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1203210",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1203001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120301",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1203002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120302",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1203003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120303",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1203004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120304",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1203007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120307",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1203",
+    "subtitleRendered": false
+  }
+}

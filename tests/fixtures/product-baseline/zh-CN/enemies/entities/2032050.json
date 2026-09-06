@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "心兽之爪，决天维，裂地纪。",
+    "id": "2032050",
+    "name": "裂维之爪",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2032050",
+    "defaultMonsterRef": "e546fc67461707c2e5c9e18f835c62ef7437de3d84898f64c8af01238c0c29fa",
+    "description": "心兽之爪，决天维，裂地纪。",
+    "id": "2032050",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e546fc67461707c2e5c9e18f835c62ef7437de3d84898f64c8af01238c0c29fa"
+    ],
+    "name": "裂维之爪",
+    "rank": "MinionLv2",
+    "templateRef": "1d4609f801713c69e132b683d43a6820d3e4b079ad18f17b12064af0b986cd64",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2032050",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2032050",
+    "selectableMonsterIds": [
+      "2032050"
+    ]
+  }
+}

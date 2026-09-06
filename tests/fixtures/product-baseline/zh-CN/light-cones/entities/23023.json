@@ -1,0 +1,504 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23023",
+    "name": "命运从未公平",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 19.2,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 30,
+            "perLevel": 4.5
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 42.24,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 4.5
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 72.96,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 114,
+            "perLevel": 4.5
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 103.68,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 162,
+            "perLevel": 4.5
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 134.4,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 210,
+            "perLevel": 4.5
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 165.12,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 258,
+            "perLevel": 4.5
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 195.84,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 306,
+            "perLevel": 4.5
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23023",
+    "kind": "light-cone",
+    "name": "命运从未公平",
+    "passive": {
+      "id": "23023",
+      "name": "全下",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的防御力提高40%，当装备者为我方目标提供护盾时，使装备者的暴击伤害提高40%，持续2回合。当装备者发动追加攻击击中敌方目标时，有100%的基础概率使受到攻击的敌方目标受到的伤害提高10.0%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，当装备者为我方目标提供护盾时，使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。当装备者发动追加攻击击中敌方目标时，有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使受到攻击的敌方目标受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10.0%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的防御力提高46%，当装备者为我方目标提供护盾时，使装备者的暴击伤害提高46%，持续2回合。当装备者发动追加攻击击中敌方目标时，有115%的基础概率使受到攻击的敌方目标受到的伤害提高11.5%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "46%"
+              },
+              {
+                "type": "text",
+                "value": "，当装备者为我方目标提供护盾时，使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "46%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。当装备者发动追加攻击击中敌方目标时，有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "115%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使受到攻击的敌方目标受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "11.5%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的防御力提高52%，当装备者为我方目标提供护盾时，使装备者的暴击伤害提高52%，持续2回合。当装备者发动追加攻击击中敌方目标时，有130%的基础概率使受到攻击的敌方目标受到的伤害提高13.0%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "52%"
+              },
+              {
+                "type": "text",
+                "value": "，当装备者为我方目标提供护盾时，使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "52%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。当装备者发动追加攻击击中敌方目标时，有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "130%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使受到攻击的敌方目标受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "13.0%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的防御力提高58%，当装备者为我方目标提供护盾时，使装备者的暴击伤害提高58%，持续2回合。当装备者发动追加攻击击中敌方目标时，有145%的基础概率使受到攻击的敌方目标受到的伤害提高14.5%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "58%"
+              },
+              {
+                "type": "text",
+                "value": "，当装备者为我方目标提供护盾时，使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "58%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。当装备者发动追加攻击击中敌方目标时，有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "145%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使受到攻击的敌方目标受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14.5%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的防御力提高64%，当装备者为我方目标提供护盾时，使装备者的暴击伤害提高64%，持续2回合。当装备者发动追加攻击击中敌方目标时，有160%的基础概率使受到攻击的敌方目标受到的伤害提高16.0%，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "64%"
+              },
+              {
+                "type": "text",
+                "value": "，当装备者为我方目标提供护盾时，使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "64%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。当装备者发动追加攻击击中敌方目标时，有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "160%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使受到攻击的敌方目标受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16.0%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          3,
+          4
+        ]
+      }
+    },
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5,
+    "story": "最后一张牌摊开，沮丧，愤怒，无奈，镇静，百千种情绪瞬间浮现于对手们的脸。\n<i>「来都来了，何不再刺激一点？」 </i>\n他押上所有筹码，自认倒霉者咒骂着退出，暗自期待他的大败。\n\n输赢、声名、运气…他并不在意，他只是痴迷于那令生命颤抖的时刻——\n在深渊与天堂之间，只有一个选择的距离。\n\n筹码掷下，哀叹声起，如这般虚幻的满足在尘埃落定后转瞬即逝。\n<i>「所有，或一无所有，但我并无选择的自由……」 </i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23023",
+    "storyFallbackRendered": false
+  }
+}

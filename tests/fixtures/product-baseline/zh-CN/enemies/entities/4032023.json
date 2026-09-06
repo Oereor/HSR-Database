@@ -1,0 +1,78 @@
+{
+  "catalog": {
+    "description": "黑斗篷魔王忠实的扈从，继承了魔王的部分力量和残暴性格，各个星球都有他们为非作歹的事迹。",
+    "id": "4032023",
+    "name": "魔王爪牙",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032023",
+    "defaultMonsterRef": "a222e4546b4c1471768a75e7d0d243e362f7b70197c49e5b1ce7692a786d9734",
+    "description": "黑斗篷魔王忠实的扈从，继承了魔王的部分力量和残暴性格，各个星球都有他们为非作歹的事迹。",
+    "id": "4032023",
+    "kind": "enemy",
+    "monsterRefs": [
+      "a222e4546b4c1471768a75e7d0d243e362f7b70197c49e5b1ce7692a786d9734",
+      "f2b2b235c159d273028fc984f2211ec56fdd62bcc63b91cd009ac37848f0fad2",
+      "8c955f23c997ce5b3c5840723ef3c6c7a9dc4ae7edd2ac0a7b40aac74bf7a8be",
+      "c15a25fc2c85c8b8c6e05166b2fea36195e6e428832b6c0028fadcd510199a64",
+      "805090f67ddb52845c875833a42c561d3706f73decd25f85c5b9506089a349a6",
+      "2e28fc51bb37088090d55495acc98b89e600f3330bead1ad5da3100962ea3ef6",
+      "a7a33e671d904b75c09abec320cc747ee56af103f2ebf38af943a76176914b02",
+      "e964ec460df1186768683d79c4378cfb783a98d123eae21b323944c808d85c0d",
+      "c41c1c7df1e1c9534aa7713a19550cf78a5228221f1d6fcdf721688b5d547ec5",
+      "6239c96bc7e39016c7ad63f4e662275f91a31caeea8703fae7ca684f039ccd38"
+    ],
+    "name": "魔王爪牙",
+    "rank": "MinionLv2",
+    "templateRef": "ca7b3a14900b1cc986640051fb48a57c2d289a90bbd07e62ad73e1cb817b526b",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032023",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032023",
+    "selectableMonsterIds": [
+      "4032023",
+      "403202301",
+      "403202302",
+      "403202303",
+      "403202304",
+      "403202305",
+      "403202306",
+      "403202307",
+      "403202308",
+      "403202309"
+    ]
+  }
+}

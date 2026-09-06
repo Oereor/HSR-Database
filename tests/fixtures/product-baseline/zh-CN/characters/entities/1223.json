@@ -1,0 +1,3583 @@
+{
+  "catalog": {
+    "baseName": "貊泽",
+    "description": "仙舟「曜青」的影卫，沉默寡言、独来独往。\n专司情报与不见光的事务，鲜少在人前露面。貊泽显露锋芒时，便是敌人的死期。\n刺杀手段丰富，对整洁和条理有超乎寻常的执着。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "id": "1223",
+    "name": "貊泽",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "貊泽",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 111
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 81.6,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 48,
+            "perLevel": 2.4
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 110.4,
+            "perLevel": 5.52
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 114.24,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 67.2,
+            "perLevel": 2.4
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 154.56,
+            "perLevel": 5.52
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 86.4,
+            "perLevel": 2.4
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 198.72,
+            "perLevel": 5.52
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 179.52,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 105.6,
+            "perLevel": 2.4
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 242.88,
+            "perLevel": 5.52
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 212.16,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 124.8,
+            "perLevel": 2.4
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 287.04,
+            "perLevel": 5.52
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 144,
+            "perLevel": 2.4
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 331.2,
+            "perLevel": 5.52
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 277.44,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 163.2,
+            "perLevel": 2.4
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 375.36,
+            "perLevel": 5.52
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟「曜青」的影卫，沉默寡言、独来独往。\n专司情报与不见光的事务，鲜少在人前露面。貊泽显露锋芒时，便是敌人的死期。\n刺杀手段丰富，对整洁和条理有超乎寻常的执着。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "equipmentRecommendation": {
+      "avatarId": "1223",
+      "cavernSetIds": [
+        "117",
+        "109",
+        "120"
+      ],
+      "lightConeIds": [
+        "21010",
+        "24001",
+        "23016"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ThunderAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "315",
+        "314",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "貊泽",
+    "id": "1223",
+    "kind": "character",
+    "name": "貊泽",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "进入战斗后，貊泽恢复<unbreak>20</unbreak>点能量。每触发1次天赋的<u>附加伤害</u>，貊泽恢复<unbreak>2</unbreak>点能量。",
+            "extraEffects": [
+              {
+                "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000005",
+                "name": "附加伤害"
+              }
+            ],
+            "iconKey": "rank--122301",
+            "id": "122301",
+            "name": "矢志",
+            "rank": 1
+          },
+          {
+            "description": "我方全体目标对成为【猎物】的敌方目标造成伤害时，暴击伤害提高<unbreak>40%</unbreak>。",
+            "iconKey": "rank--122302",
+            "id": "122302",
+            "name": "惩膺",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--122303",
+            "id": "122303",
+            "name": "追奔",
+            "rank": 3
+          },
+          {
+            "description": "施放终结技时，貊泽造成的伤害提高<unbreak>30.0%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--122304",
+            "id": "122304",
+            "name": "逐薮",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--122305",
+            "id": "122305",
+            "name": "闪诳",
+            "rank": 5
+          },
+          {
+            "description": "天赋的<u>追加攻击</u>的伤害倍率提高<unbreak>25%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--122306",
+            "id": "122306",
+            "name": "丹心",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1223001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1223001",
+                "variantIds": [
+                  "122301"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "122301",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽90%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽130%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "飞铙",
+                "progressionId": "1223001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1223002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1223002",
+                "variantIds": [
+                  "122302"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "122302",
+                "levels": [
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽75%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽83%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽90%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽98%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽105%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽113%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽122%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽131%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽141%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "141%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽150%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽158%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽165%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽173%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽180%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽188%攻击力的雷属性伤害，并获得9点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体目标成为【猎物】，并对其造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n当场上没有可以战斗的其他角色时，貊泽无法使用战技，并解除敌人的【猎物】状态。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "迅羽掠袭",
+                "progressionId": "1223002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1223003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1223003",
+                "variantIds": [
+                  "122303"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "122303",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽162%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "162%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽173%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽184%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "184%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽194%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "194%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽205%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "205%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽216%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽230%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽243%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "243%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽257%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "257%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽270%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "270%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽281%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "281%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽292%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "292%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽302%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "302%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽313%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "313%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于貊泽324%攻击力的雷属性伤害，并对该目标发动天赋的追加攻击。若本次追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于貊泽"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "324%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并对该目标发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "锋入幽渺，影出凌厉",
+                "progressionId": "1223003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1223004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1223004",
+                "variantIds": [
+                  "122304"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 10,
+                  "extraEffects": [
+                    {
+                      "description": "处于离场状态的目标无法成为技能目标，且不会出现在行动序列上。",
+                      "id": "10000016",
+                      "name": "离场"
+                    },
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    },
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "122304",
+                "levels": [
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身15%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身80%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身17%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身88%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身18%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身96%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身20%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身104%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身21%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身112%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身23%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身120%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身24%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身130%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身26%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身140%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身28%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身150%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身30%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身160%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身32%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身168%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身33%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身176%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "176%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身35%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身184%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "184%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身36%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身192%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "场上存在【猎物】时，貊泽会进入离场状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身38%攻击力的雷属性附加伤害，并消耗1点充能。每消耗3点充能，貊泽会对【猎物】发动1次追加攻击，造成等同于自身200%攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动追加攻击所需的充能点数。天赋的追加攻击不会消耗充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上存在【猎物】时，貊泽会进入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "离场"
+                      },
+                      {
+                        "type": "text",
+                        "value": "状态。\n我方目标攻击【猎物】后，貊泽会额外造成1次等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗1点充能。每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，貊泽会对【猎物】发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，当充能为0时，解除目标【猎物】状态，并重置计入发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "所需的充能点数。天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不会消耗充能。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "伸天卑飞，折翅为芒",
+                "progressionId": "1223004",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1223007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1223007",
+                "variantIds": [
+                  "122307"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "122307",
+                "levels": [
+                  {
+                    "description": "使用秘技后进入持续20秒的隐身状态。隐身状态下不会被敌人发现，貊泽在隐身状态下攻击敌人进入战斗时伤害提高30%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后进入持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的隐身状态。隐身状态下不会被敌人发现，貊泽在隐身状态下攻击敌人进入战斗时伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "胁翼匿迹",
+                "progressionId": "1223007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放天赋的<u>追加攻击</u>后，恢复<unbreak>1</unbreak>个战技点，该效果在<unbreak>1</unbreak>回合后可再次触发。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1223101",
+            "id": "1223101",
+            "name": "墨毫绣衣",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "貊泽解除<u>离场</u>状态时，<u>行动提前</u><unbreak>20%</unbreak>。每个波次开始时，貊泽<u>行动提前</u><unbreak>30%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "处于离场状态的目标无法成为技能目标，且不会出现在行动序列上。",
+                "id": "10000016",
+                "name": "离场"
+              },
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--1223102",
+            "id": "1223102",
+            "name": "手奋匕尺",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放终结技造成伤害时，被视为发动了<u>追加攻击</u>。【猎物】受到的<u>追加攻击</u>伤害提高<unbreak>25%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1223103",
+            "id": "1223103",
+            "name": "不折镆干",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1223201",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1223202",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1223101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1223203",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1223202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1223204",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1223205",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1223102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1223206",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1223205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1223207",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1223208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1223103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1223209",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1223208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1223210",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1223208"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1223001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122301",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1223002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122302",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1223003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122303",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1223004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122304",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1223007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "122307",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1223",
+    "subtitleRendered": false
+  }
+}

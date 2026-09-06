@@ -1,0 +1,78 @@
+{
+  "catalog": {
+    "description": "美梦剧团中扮饰囚徒的艺者。本应于「谐乐大典」之中献演，如今却被「秩序」所缚，上演着关于「过去」的剧目。往昔是不朽的锁链，安宁的火苗在笼中点亮，以烛光招引司狱的权臣。",
+    "id": "3003030",
+    "name": "「身陷樊笼的往昔」",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003030",
+    "defaultMonsterRef": "196289498f3d050e3c6756924e0c78b3bfc3b539709e9b826f7287d93d5eef49",
+    "description": "美梦剧团中扮饰囚徒的艺者。本应于「谐乐大典」之中献演，如今却被「秩序」所缚，上演着关于「过去」的剧目。往昔是不朽的锁链，安宁的火苗在笼中点亮，以烛光招引司狱的权臣。",
+    "id": "3003030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "196289498f3d050e3c6756924e0c78b3bfc3b539709e9b826f7287d93d5eef49",
+      "d411627ca52b0b748e58bd31c2a54d2be83f6594ad51ab0e1a1162e950b1bcb2",
+      "a032dafb6745c0721e27fbecf13db76dbd28ee4631ca9834b40c0a47802ee6ab",
+      "d13a266192b86ad0848435b80a5c9a337c43fc31f8795423bf4efad032cf531a",
+      "23ffec682bce0ed5f3c106bf41b8e3a13ba2243c8d1d3f558013d3ceb9bd5e2e",
+      "1b97c96ca134049e573e74a9744f49d720323297fb745bed84230a4e4a326af1",
+      "c98f00b5ee50e9521e31e1d86038f7d2d0c64838f02a5fcaf471c5c5fb34efb3",
+      "49b3584bcaae2df58dd94ce098ad532f6258a334f53a7285e84c8bdab46cbd26",
+      "3c6dbb8cd6e04fb9b59689f154585409609d4c2cf61c756351837e9f9554db6a",
+      "b181f6c4c41918b31ebbf1126008ca6ed2bb945f04bd6d86a8457ecf351c1bf1"
+    ],
+    "name": "「身陷樊笼的往昔」",
+    "rank": "Elite",
+    "templateRef": "80cae79cce9cfffe1ac32e6615dc8b6a21af5986679e13b2d15b29ea17c5aa9a",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003030",
+    "selectableMonsterIds": [
+      "3003030",
+      "300303001",
+      "300303002",
+      "300303003",
+      "300303004",
+      "300303005",
+      "300303006",
+      "300303007",
+      "300303008",
+      "300303009"
+    ]
+  }
+}

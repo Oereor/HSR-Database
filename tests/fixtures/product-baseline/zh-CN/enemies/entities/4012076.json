@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "一切妄图逃离终局的生者，皆要面对来自冥土的追索。",
+    "id": "4012076",
+    "name": "哀悯长臂",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012076",
+    "defaultMonsterRef": "7f897208f485a648f05f84ee7852c9838b649934c864fc4f3154591f5e5c3c52",
+    "description": "一切妄图逃离终局的生者，皆要面对来自冥土的追索。",
+    "id": "4012076",
+    "kind": "enemy",
+    "monsterRefs": [
+      "7f897208f485a648f05f84ee7852c9838b649934c864fc4f3154591f5e5c3c52",
+      "62c956ae0c067c5520c1bb9ae5a494363b21282378bf62aa8c69df8628e28c04",
+      "e29bfce6b5cd905b3e61abaf764e997cb41d96497fafeaf6c6c1f1b89d506e70",
+      "f70edaa30e86e587927ce3ec0e109f195702bd253e268f7d7f6aaa0eee73e20e",
+      "cf16c5117b0238d36805b007b04ef13f670da51cad2b26e964b5f32b5c384343"
+    ],
+    "name": "哀悯长臂",
+    "rank": "MinionLv2",
+    "templateRef": "667eed35ede161b91a59d2eb9d86e0a55aa55a49b6398e37966ab3c120dddd5e",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012076",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012076",
+    "selectableMonsterIds": [
+      "4012076",
+      "401207601",
+      "401207602",
+      "401207603",
+      "401207604"
+    ]
+  }
+}

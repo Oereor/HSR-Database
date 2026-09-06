@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "22000",
+    "name": "新手任务开始前",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 15,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 33,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 129,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "22000",
+    "kind": "light-cone",
+    "name": "新手任务开始前",
+    "passive": {
+      "id": "22000",
+      "name": "眼疾手快",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的效果命中提高20%。当装备者攻击防御力被降低的敌方目标后，恢复4点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的效果命中提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者攻击防御力被降低的敌方目标后，恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的效果命中提高25%。当装备者攻击防御力被降低的敌方目标后，恢复5点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的效果命中提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者攻击防御力被降低的敌方目标后，恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的效果命中提高30%。当装备者攻击防御力被降低的敌方目标后，恢复6点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的效果命中提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者攻击防御力被降低的敌方目标后，恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的效果命中提高35%。当装备者攻击防御力被降低的敌方目标后，恢复7点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的效果命中提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "35%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者攻击防御力被降低的敌方目标后，恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "7"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的效果命中提高40%。当装备者攻击防御力被降低的敌方目标后，恢复8点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的效果命中提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者攻击防御力被降低的敌方目标后，恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4,
+    "story": "<i>「还有多久开始行动？」\n「你居然会问我这个…是新人出什么事了？」\n「没有。」\n「虽然艾利欧招揽她是因为别的原因，但她至少得活得过新手任务。」\n「她很轻松。」\n「那我放心了。看来阿刃也已经是非常靠谱的前辈了。」\n「……」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/22000",
+    "storyFallbackRendered": false
+  }
+}

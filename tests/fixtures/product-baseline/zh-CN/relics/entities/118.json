@@ -1,0 +1,139 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：击破特攻提高16%。 4件：当装备者对我方目标施放终结技时，我方全体击破特攻提高30%，持续2回合，该效果无法叠加。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "118",
+    "name": "机心戏梦的钟表匠",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "2.0"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：击破特攻提高16%。 4件：当装备者对我方目标施放终结技时，我方全体击破特攻提高30%，持续2回合，该效果无法叠加。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "击破特攻提高16%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "击破特攻提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "16%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "当装备者对我方目标施放终结技时，我方全体击破特攻提高30%，持续2回合，该效果无法叠加。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "当装备者对我方目标施放终结技时，我方全体击破特攻提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "30%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "回合，该效果无法叠加。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "118",
+    "kind": "relic",
+    "name": "机心戏梦的钟表匠",
+    "pieces": [
+      {
+        "description": "一枚金雕目镜，镜片映照远方的纷繁奇象，助它的主人望穿迷梦。",
+        "id": "31181",
+        "name": "钟表匠的极目透镜",
+        "slot": "HEAD"
+      },
+      {
+        "description": "一块做工精美的手表，有着奇特的子盘与时针，据说是梦境中好运的象征。",
+        "id": "31182",
+        "name": "钟表匠的交运腕表",
+        "slot": "HAND"
+      },
+      {
+        "description": "一身富丽堂皇的皮领礼服，华美典雅，通常用于宴会等正式场合。",
+        "id": "31183",
+        "name": "钟表匠的空幻礼服",
+        "slot": "BODY"
+      },
+      {
+        "description": "一双款式优雅的皮靴，穿戴者曾以神秘的姿态踏梦潜行。",
+        "id": "31184",
+        "name": "钟表匠的隐梦革履",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【「白日梦」酒店-梦境】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "2.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31181"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31182"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31183"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31184"
+      }
+    ],
+    "route": "/relics/118"
+  }
+}

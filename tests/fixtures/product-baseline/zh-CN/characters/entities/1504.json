@@ -1,0 +1,4540 @@
+{
+  "catalog": {
+    "baseName": "不死途",
+    "description": "随缘营业，硬核推理，全凭直觉却屡破奇案。\n猴子当助手，一心盼退休，侦探睡在冰箱，只为等愿者上钩。\n幻月下，恶兽长嗥，他的追猎游戏会如何收网？",
+    "element": "Lightning",
+    "elementName": "雷",
+    "id": "1504",
+    "name": "不死途",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "不死途",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 106
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 105.6,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 2.64
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 116.16,
+            "perLevel": 5.808
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 147.84,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 73.92,
+            "perLevel": 2.64
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 162.624,
+            "perLevel": 5.808
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 190.08,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 95.04,
+            "perLevel": 2.64
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 209.088,
+            "perLevel": 5.808
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 232.32,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 116.16,
+            "perLevel": 2.64
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 255.552,
+            "perLevel": 5.808
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 274.56,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 137.28,
+            "perLevel": 2.64
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.016,
+            "perLevel": 5.808
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 316.8,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 158.4,
+            "perLevel": 2.64
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 348.48,
+            "perLevel": 5.808
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 359.04,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 179.52,
+            "perLevel": 2.64
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 394.944,
+            "perLevel": 5.808
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "随缘营业，硬核推理，全凭直觉却屡破奇案。\n猴子当助手，一心盼退休，侦探睡在冰箱，只为等愿者上钩。\n幻月下，恶兽长嗥，他的追猎游戏会如何收网？",
+    "element": "Lightning",
+    "elementName": "雷",
+    "equipmentRecommendation": {
+      "avatarId": "1504",
+      "cavernSetIds": [
+        "115",
+        "117",
+        "120"
+      ],
+      "lightConeIds": [
+        "23056",
+        "23031",
+        "23016"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ThunderAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "326",
+        "315",
+        "313"
+      ],
+      "subStatPropertyTypes": [
+        "SpeedDelta",
+        "CriticalDamageBase",
+        "CriticalChanceBase",
+        "AttackAddedRatio"
+      ]
+    },
+    "fullName": "不死途",
+    "id": "1504",
+    "kind": "character",
+    "name": "不死途",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "不死途在场时，敌方全体受到的伤害提高<unbreak>24%</unbreak>。当敌方目标当前生命值百分比小于等于<unbreak>50%</unbreak>时，其受到的伤害提高至<unbreak>36%</unbreak>。",
+            "iconKey": "rank--150401",
+            "id": "150401",
+            "name": "小心，满月不可外出",
+            "rank": 1
+          },
+          {
+            "description": "【婪酣】叠加上限提高至<unbreak>18</unbreak>层，每当不死途发动强化天赋<u>追加攻击</u>后，返还所移除【婪酣】层数的<unbreak>35%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--150402",
+            "id": "150402",
+            "name": "敲门，屋内空余窃笑",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--150403",
+            "id": "150403",
+            "name": "沉默，老友各怀心事",
+            "rank": 3
+          },
+          {
+            "description": "不死途施放终结技时，攻击力提高<unbreak>40%</unbreak>，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "rank--150404",
+            "id": "150404",
+            "name": "切记，不必咀嚼真相",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--150405",
+            "id": "150405",
+            "name": "提醒，侦探亦是凶手",
+            "rank": 5
+          },
+          {
+            "description": "当场上存在【饲饵】时，敌方全体的全属性抗性降低<unbreak>20%</unbreak>。不死途每获得过1层【婪酣】，造成的伤害提高<unbreak>4%</unbreak>，该效果最多叠加<unbreak>30</unbreak>层。",
+            "iconKey": "rank--150406",
+            "id": "150406",
+            "name": "结局，或许无人生还",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 150
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1504001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1504001",
+                "variantIds": [
+                  "150401"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "150401",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于不死途50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于不死途60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于不死途70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于不死途80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于不死途90%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于不死途100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于不死途110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于不死途120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于不死途130%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于不死途140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "利爪，授以礼仪",
+                "progressionId": "1504001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1504002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1504002",
+                "variantIds": [
+                  "150402"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "150402",
+                "levels": [
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途100%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途50%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低20%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途110%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途55%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低22%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途120%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途60%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低24%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途130%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途65%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低26%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途140%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途70%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低28%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途150%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途75%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低30%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途163%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途81%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低33%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途175%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途88%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低35%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途188%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途94%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低38%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途200%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途100%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低40%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途210%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途105%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低42%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途220%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途110%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低44%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途230%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途115%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低46%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途240%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途120%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低48%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途250%攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途125%攻击力的雷属性伤害，并恢复1点战技点。场上存在【饲饵】时，敌方全体防御力降低50%。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若该目标为【饲饵】，则额外对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，并恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点战技点。场上存在【饲饵】时，敌方全体防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n场上不存在【饲饵】时，不死途立即使当前场上生命值最低的敌方单体目标成为【饲饵】，【饲饵】状态仅对最新被施加的目标生效。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "鞭哨，逐尽恶兽",
+                "progressionId": "1504002",
+                "scalingParamIndexes": [
+                  0,
+                  2,
+                  3
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1504003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1504003",
+                "variantIds": [
+                  "150403"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "150403",
+                "levels": [
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途200%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途100%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途220%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途110%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途240%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途120%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途260%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途130%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "260%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途280%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途140%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途300%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途150%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途325%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途163%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "325%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途350%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途175%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途375%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途188%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "375%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途400%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途200%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "400%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途420%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途210%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "420%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途440%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途220%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "440%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途460%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途230%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "460%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途480%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途240%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "480%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使指定敌方单体成为【饲饵】，对其造成等同于不死途500%攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋追加攻击，且不死途获得3点充能。\n强化天赋追加攻击不消耗充能，拥有【婪酣】时，每消耗4层【婪酣】可额外造成1次等同于不死途250%攻击力的雷属性伤害，且本次追加攻击过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于4层。若当前场上的所有敌方目标都受到致命攻击后强化天赋追加攻击会立即结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体成为【饲饵】，对其造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "500%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后立即对【饲饵】发动1次获得强化的天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。\n强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "不消耗充能，拥有【婪酣】时，每消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】可额外造成1次等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，且本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "过程中对目标造成致命攻击时，会继续对新的【饲饵】造成伤害，直至【婪酣】小于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。若当前场上的所有敌方目标都受到致命攻击后强化天赋"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "会立即结束。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "飨宴，自始无终",
+                "progressionId": "1504003",
+                "scalingParamIndexes": [
+                  0,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1504004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1504004",
+                "variantIds": [
+                  "150404"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "150404",
+                "levels": [
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途100%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途110%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途120%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途130%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途140%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途150%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途163%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途175%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途188%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途200%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途210%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途220%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途230%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途240%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "不死途初始拥有2点充能，最多拥有3点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复8点能量，随后消耗1点充能对【饲饵】发动追加攻击，造成等同于不死途250%攻击力的雷属性伤害，随后获得2层【婪酣】，最多叠加12层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "不死途初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。【饲饵】受到我方其他目标攻击后，不死途固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，随后消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能对【饲饵】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于不死途"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，随后获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【婪酣】，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "宿怨，切齿奉还",
+                "progressionId": "1504004",
+                "scalingParamIndexes": [
+                  3
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1504007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1504007",
+                "variantIds": [
+                  "150407"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  }
+                },
+                "id": "150407",
+                "levels": [
+                  {
+                    "description": "使用秘技后使一定区域内的敌人陷入10秒的晕眩状态，晕眩状态下敌人不会主动攻击我方目标。\n若主动攻击陷入晕眩状态的敌人，进入战斗时，对敌方全体造成等同于不死途攻击力100%的雷属性伤害，且不死途获得1点充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后使一定区域内的敌人陷入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的晕眩状态，晕眩状态下敌人不会主动攻击我方目标。\n若主动攻击陷入晕眩状态的敌人，进入战斗时，对敌方全体造成等同于不死途攻击力"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，且不死途获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "吃吧，可憎的手",
+                "progressionId": "1504007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "不死途施放战技/终结技时，获得<unbreak>1</unbreak>/<unbreak>2</unbreak>层【婪酣】。不死途<u>追加攻击</u>过程中每有<unbreak>1</unbreak>个敌人受到致命攻击时，不死途获得<unbreak>1</unbreak>层【婪酣】。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1504101",
+            "id": "1504101",
+            "name": "罪途",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "不死途<u>追加攻击</u>造成的伤害提高<unbreak>80%</unbreak>，且每有<unbreak>1</unbreak>层【婪酣】，追加攻击造成的伤害额外提高<unbreak>10%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1504102",
+            "id": "1504102",
+            "name": "影肢",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "不死途在场时，我方目标造成的暴击伤害提高<unbreak>40%</unbreak>，我方目标<u>追加攻击</u>造成的暴击伤害额外提高<unbreak>80%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1504103",
+            "id": "1504103",
+            "name": "头狼",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1504201",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "雷属性伤害提高3.2%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1504202",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1504101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1504203",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1504202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1504204",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1504205",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1504102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "雷属性伤害提高4.8%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1504206",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1504205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1504207",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1504208",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1504103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "雷属性伤害提高6.4%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1504209",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1504208"
+            ],
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1504210",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1504208"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1504001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150401",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1504002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150402",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1504003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150403",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1504004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150404",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1504007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150407",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1504",
+    "subtitleRendered": false
+  }
+}

@@ -4,34 +4,13 @@ import type {
   EnemySkillPhase,
   EnemySpecialResistance,
   EnemyStatProgression,
-  EnemyStatValue,
-  SemanticTag
+  EnemyStatValue
 } from '../../src/lib/domain/types.js';
 import type { DecimalString } from '../../src/lib/domain/endgame.js';
 import { addDecimals, decimalOf, internalStanceToToughness, parseDecimal } from './decimal.js';
 import { resolveEnemyConfiguredStat, type EnemyConfiguredStatSources } from './enemy-stats.js';
 
 type Raw = Record<string, any>;
-
-const SKILL_TAG_CODES: Record<string, string> = {
-  天赋: 'Talent',
-  单攻: 'SingleAttack',
-  群攻: 'AoEAttack',
-  蓄力: 'Charge',
-  召唤: 'Summon',
-  强化: 'Enhance',
-  其他: 'Other',
-  妨害: 'Impair',
-  扩散: 'Blast',
-  辅助: 'Support',
-  弹射: 'Bounce',
-  锁定: 'LockOn',
-  分摊: 'Shared',
-  横扫: 'Sweep',
-  防御: 'Defence',
-  回复: 'Restore',
-  扫射: 'Barrage'
-};
 
 const SPECIAL_RESISTANCE_LABELS: Record<string, string> = {
   STAT_CTRL: '控制抵抗',
@@ -43,19 +22,12 @@ const SPECIAL_RESISTANCE_LABELS: Record<string, string> = {
   STAT_DOT_Poison: '风化抵抗'
 };
 
-export const enemySkillTagCodes = SKILL_TAG_CODES;
+export {
+  enemySkillTagCodes,
+  normalizeEnemySkillKind,
+  normalizeEnemySkillTag
+} from './enemy-skill-policy.js';
 export const enemySpecialResistanceLabels = SPECIAL_RESISTANCE_LABELS;
-
-export function normalizeEnemySkillKind(label: string): 'skill' | 'talent' | 'unknown' {
-  if (label === '技能') return 'skill';
-  if (label === '天赋') return 'talent';
-  return 'unknown';
-}
-
-export function normalizeEnemySkillTag(label: string): SemanticTag {
-  const code = SKILL_TAG_CODES[label];
-  return { code: code ?? label ?? 'Unknown', label: label || '未知', known: Boolean(code) };
-}
 
 export function normalizeEnemyPhases(value: unknown): number[] {
   if (!Array.isArray(value)) return [];

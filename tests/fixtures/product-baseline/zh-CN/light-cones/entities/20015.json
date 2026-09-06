@@ -1,0 +1,261 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20015",
+    "name": "蕃息",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 3
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 14.4,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 9,
+            "perLevel": 1.35
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 31.68,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 19.8,
+            "perLevel": 1.35
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 54.72,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 34.2,
+            "perLevel": 1.35
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 77.76,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 48.6,
+            "perLevel": 1.35
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 100.8,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 63,
+            "perLevel": 1.35
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 123.84,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 77.4,
+            "perLevel": 1.35
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 91.8,
+            "perLevel": 1.35
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20015",
+    "kind": "light-cone",
+    "name": "蕃息",
+    "passive": {
+      "id": "20015",
+      "name": "丰饶民",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "当装备者施放普攻后，使下一次行动提前12%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者施放普攻后，使下一次行动提前"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "当装备者施放普攻后，使下一次行动提前14%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者施放普攻后，使下一次行动提前"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "当装备者施放普攻后，使下一次行动提前16%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者施放普攻后，使下一次行动提前"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "当装备者施放普攻后，使下一次行动提前18%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者施放普攻后，使下一次行动提前"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "当装备者施放普攻后，使下一次行动提前20%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者施放普攻后，使下一次行动提前"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 3,
+    "story": "自时光中凝取的稀薄力量。正是所有微不足道的刹那，编织成了壮绝的命运。\n\n<i>「当生命失却意蕴时，请继续赐以生命。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/20015",
+    "storyFallbackRendered": false
+  }
+}

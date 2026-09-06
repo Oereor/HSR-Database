@@ -21,6 +21,7 @@ export interface InlineGameTextIcon {
 }
 
 export interface DescriptionToken {
+  semanticReference?: `character-special-effects:${string}`;
   type: 'text' | 'scaling-value' | 'icon';
   value: string;
   icon?: InlineGameTextIcon;
@@ -251,6 +252,8 @@ export interface ElementLabel {
 }
 
 export interface CatalogEntry {
+  /** Localized base identity supplied by the naming service for character catalogs. */
+  baseName?: string;
   id: string;
   name: string;
   description?: string;
@@ -294,7 +297,11 @@ export interface RelicCatalogEntry extends CatalogEntry {
 
 export interface RelicSet extends RelicCatalogEntry {
   kind: 'relic';
-  effects: Array<{ required: RelicEffectRequirement; description: string }>;
+  effects: Array<{
+    required: RelicEffectRequirement;
+    description: string;
+    descriptionTokens: DescriptionToken[];
+  }>;
   pieces: Array<{ id: string; slot: RelicSlot; name: string; description: string }>;
   sources: string[];
 }
@@ -409,6 +416,8 @@ export interface EnemySkill {
   name: string;
   description: string;
   kind: 'skill' | 'talent' | 'unknown';
+  kindLabel: string;
+  localizedTextStatus: 'available' | 'missing';
   tag: SemanticTag;
   damageType?: ElementLabel;
   phases: number[];
@@ -421,14 +430,59 @@ export interface HomepageRecentWarpData {
   weaponUps: Array<{ gachaId: number; equipmentId: string }>;
 }
 
+export interface NeutralArtifactManifest {
+  schemaVersion: 1;
+  parserVersion: string;
+  sourceCommit: string;
+  contentDigest: string;
+  artifacts: Record<string, { bytes: number; sha256: string }>;
+  sourceShards?: Record<
+    string,
+    { bytes: number; sha256: string; contentDigest: string; sourceCommit?: string }
+  >;
+  domains?: Record<
+    string,
+    {
+      schemaVersion: 1 | 2 | 3 | 4;
+      builderVersion: string;
+      sourceDigest: string;
+      contentDigest: string;
+      bytes: number;
+      sha256: string;
+      recordCount: number;
+    }
+  >;
+}
+
+export interface LocalizedViewManifest {
+  schemaVersion: 2;
+  locale: 'zh-CN';
+  textMapCode: 'CHS';
+  projectionVersion: string;
+  neutralDigest: string;
+  contentDigest: string;
+  textMapDigest: string;
+  domainDigests?: Partial<Record<'characters' | 'lightCones' | 'relics', string>>;
+  neutralSourceDigests?: Partial<Record<'characters' | 'lightCones' | 'relics', string>>;
+}
+
 export interface DataManifest {
-  schemaVersion: number;
+  schemaVersion: 40;
   sourceCommit: string;
   sourceVersion: string;
   gameVersionFull: string | null;
   gameVersion: string | null;
   generatedAt: string;
   language: 'CHS';
+  neutral: NeutralArtifactManifest;
+  view: LocalizedViewManifest;
+  migration?: {
+    characters: { domain: string; productionView: string } | string;
+    lightCones: { domain: string; productionView: string } | string;
+    relics: { domain: string; productionView: string } | string;
+    enemies: { productionView: string } | string;
+    endgame: { productionView: string } | string;
+  };
   counts: Record<'characters' | 'lightCones' | 'relics' | 'relicProperties' | 'enemies', number>;
   routes: Record<'characters' | 'light-cones' | 'relics' | 'enemies', string[]>;
   endgame: import('./endgame.js').EndgameManifestSummary;

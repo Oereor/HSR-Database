@@ -1,0 +1,261 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20011",
+    "name": "渊环",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 3
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 14.4,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 31.68,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 54.72,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 77.76,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 100.8,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 123.84,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20011",
+    "kind": "light-cone",
+    "name": "渊环",
+    "passive": {
+      "id": "20011",
+      "name": "追逼",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者对减速状态下的敌方目标造成的伤害提高24%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者对减速状态下的敌方目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者对减速状态下的敌方目标造成的伤害提高30%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者对减速状态下的敌方目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者对减速状态下的敌方目标造成的伤害提高36%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者对减速状态下的敌方目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者对减速状态下的敌方目标造成的伤害提高42%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者对减速状态下的敌方目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "42%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者对减速状态下的敌方目标造成的伤害提高48%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者对减速状态下的敌方目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "48%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 3,
+    "story": "自时光中凝取的稀薄力量。正是所有微不足道的刹那，编织成了壮绝的命运。\n\n<i>「逃亡者试图摆脱过去的幻影，他以为这痛苦无人能懂。直到他抬起头，未来的自己正睁着可怖的双眼。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/20011",
+    "storyFallbackRendered": false
+  }
+}

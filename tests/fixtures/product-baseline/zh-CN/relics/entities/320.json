@@ -1,0 +1,121 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的速度提高6%。当装备者的速度大于等于135/180时，使装备者及其忆灵的治疗量提高12%/20%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "320",
+    "name": "渊思寂虑的巨树",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.1"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的速度提高6%。当装备者的速度大于等于135/180时，使装备者及其忆灵的治疗量提高12%/20%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的速度提高6%。当装备者的速度大于等于135/180时，使装备者及其忆灵的治疗量提高12%/20%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的速度提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "6%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者的速度大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "135"
+          },
+          {
+            "type": "text",
+            "value": "/"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "180"
+          },
+          {
+            "type": "text",
+            "value": "时，使装备者及其忆灵的治疗量提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "/"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "20%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "320",
+    "kind": "relic",
+    "name": "渊思寂虑的巨树",
+    "pieces": [
+      {
+        "description": "位面球封装的是翁法罗斯的神悟树庭，「裂分之枝」{RUBY_B#理性之泰坦}瑟希斯{RUBY_E#}的神躯在此沉思。「最初的学者」带领众人在林间建立起花园与庭院，分享学识，树庭由此初诞。",
+        "id": "33205",
+        "name": "神悟树庭的沉思巨桹",
+        "slot": "NECK"
+      },
+      {
+        "description": "金丝与藤蔓串联起树庭识网，成为学派间共享成果的生命线。信息由根系传入，沿脉络游览、析构。直至化作一滴露珠，溶入友爱之馆的池中。",
+        "id": "33206",
+        "name": "神悟树庭的联识叶路",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.1"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33205"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33206"
+      }
+    ],
+    "route": "/relics/320"
+  }
+}

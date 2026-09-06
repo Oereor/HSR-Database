@@ -14,6 +14,8 @@ export default ts.config(
       'test-results/**',
       'coverage/**',
       'src/lib/generated/**',
+      'src/lib/paraglide/**',
+      'data/audit/**',
       'static/generated/**',
       'src/lib/generated-assets/**',
       'static/generated-assets/**'

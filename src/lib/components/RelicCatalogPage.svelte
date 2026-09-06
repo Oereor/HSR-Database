@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
@@ -22,8 +23,8 @@
   import RelicOverviewCard from './RelicOverviewCard.svelte';
 
   export let entries: CatalogEntry[] = [];
-  export let title = '遗器';
-  export let description = '浏览、搜索并筛选遗器套装资料。';
+  export let title: string = m.relics_title({}, { locale: 'zh-CN' });
+  export let description: string = m.relics_description({}, { locale: 'zh-CN' });
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
@@ -135,25 +136,25 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow="DATABASE / RELICS"
+  eyebrow={m.relics_eyebrow({}, { locale: 'zh-CN' })}
   {title}
   {description}
-  countLabel={`共 ${relics.length} 套遗器`}
+  countLabel={m.relics_count({ count: relics.length }, { locale: 'zh-CN' })}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label="遗器搜索与筛选">
+<section class="overview-controls" aria-label={m.relics_controls_aria({}, { locale: 'zh-CN' })}>
   <OverviewSearch
     id="relic-search-input"
     bind:value={draftQuery}
-    placeholder="搜索遗器套装"
+    placeholder={m.relics_search_placeholder({}, { locale: 'zh-CN' })}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
       id="relic-category"
-      label="遗器类别"
+      label={m.filter_relic_category({}, { locale: 'zh-CN' })}
       options={relicCategoryOptions}
       selected={selectedCategories}
       onToggle={selectCategory}
@@ -187,9 +188,11 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">
-    <h2>没有匹配结果</h2>
-    <p>尝试减少筛选条件，或清空当前搜索。</p>
-    <button class="button" type="button" on:click={clearSearchAndFilters}>清空筛选</button>
+    <h2>{m.overview_empty_title({}, { locale: 'zh-CN' })}</h2>
+    <p>{m.overview_empty_description({}, { locale: 'zh-CN' })}</p>
+    <button class="button" type="button" on:click={clearSearchAndFilters}
+      >{m.overview_clear_filters({}, { locale: 'zh-CN' })}</button
+    >
   </section>
 {/if}
 

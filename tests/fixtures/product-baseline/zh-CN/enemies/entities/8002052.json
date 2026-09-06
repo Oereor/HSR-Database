@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002052",
+    "name": "扑老二",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8002052",
+    "defaultMonsterRef": "4efcfa4f2c5d67c21caf9b2dde849a3a115883586a93458ea49abaa84428ba57",
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002052",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4efcfa4f2c5d67c21caf9b2dde849a3a115883586a93458ea49abaa84428ba57",
+      "7accf2074300d74fc740efa993aa3f4de1c9399d14103f4b0d74222f9f6cf240",
+      "7a56899366ea66191389c3c9c5e09788703f350ecbdf4698a51e7e8bd65b27fc",
+      "dc2823604c1bbf8a8a1aa2bcb04983fbba77f08b1e6457684b2e0b8109117440"
+    ],
+    "name": "扑老二",
+    "rank": "MinionLv2",
+    "templateRef": "60c4f15229c47b85acdce2a64ac69e6c0045c5b03883c08132bddbf66e155b04",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8002052",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8002052",
+    "selectableMonsterIds": [
+      "8002052",
+      "800205201",
+      "800205202",
+      "800205203"
+    ]
+  }
+}

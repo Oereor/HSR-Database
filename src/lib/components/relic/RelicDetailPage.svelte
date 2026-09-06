@@ -1,5 +1,6 @@
 <script lang="ts">
   import GameText from '$lib/components/GameText.svelte';
+  import DescriptionText from '$lib/components/DescriptionText.svelte';
   import SectionHeading from '$lib/components/SectionHeading.svelte';
   import RelicIcon from '$lib/components/relic/RelicIcon.svelte';
   import { getRelicPieceIconUrl, getRelicSetIconUrl } from '$lib/data/visual-assets';
@@ -41,7 +42,13 @@
         {#each detail.effects as effect (effect.required)}
           <article class="relic-effect" data-effect-requirement={effect.required}>
             <strong><span>{effect.required}</span> 件套</strong>
-            <p><GameText text={effect.description || '上游未提供可解析的套装描述。'} /></p>
+            <p>
+              {#if effect.descriptionTokens?.length}
+                <DescriptionText tokens={effect.descriptionTokens} />
+              {:else}
+                <GameText text={effect.description || '上游未提供可解析的套装描述。'} />
+              {/if}
+            </p>
           </article>
         {/each}
       </div>

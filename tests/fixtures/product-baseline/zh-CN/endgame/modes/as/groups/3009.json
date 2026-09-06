@@ -1,0 +1,1745 @@
+{
+  "presentation": {
+    "defaultEncounterId": "30094",
+    "encounters": [
+      {
+        "aftertaste": {
+          "mechanicRef": "4d111807c06c801a85e3f671040b8bec88fed82de9c54ef4dafe0ef5a77446a9"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3009:BuffList1",
+              "options": [
+                {
+                  "mechanicRef": "6c6f17aa11f5b4cc7916d53313bb6f832cd4af55c70c5258fb1f7fa5d3022e6b"
+                },
+                {
+                  "mechanicRef": "3ed3e198ec08b3f29483a5baefc4996c5032cf78f77558f1a40a319800da2905"
+                },
+                {
+                  "mechanicRef": "3fa8df76e8eb16f567de228cf3c28a9d899d512ffedc37800be0e7c4ab57fbe9"
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30091:MonsterID1",
+              "traits": [
+                {
+                  "mechanicRef": "fe58189b86b6354d37251811a860252e792aa05567bde0dd45ae5fe30936b891"
+                },
+                {
+                  "mechanicRef": "7c240de71303cbe8f2fc1338915a01d83c737396106abc45dc85a17baa2df19f"
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420261-0",
+                "level": 60,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "e88330bea063c70ceb1ad07c1caed2a44754c9b9b658e6ac56b2854611ed6781"
+                      },
+                      {
+                        "occurrenceRef": "5311dac2517429c8dbba1bb2a4e3edf444ab86966372f58261afc5364dab816b"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3009:BuffList2",
+              "options": [
+                {
+                  "mechanicRef": "2450d45d16b06a37d3acb9ea2574a6b647d6cddf2fedc6c1b70a6ca45af44739"
+                },
+                {
+                  "mechanicRef": "7dde2f862acfd1b04284684254f664f5db560503729e559847a34a4c4e7b7050"
+                },
+                {
+                  "mechanicRef": "4800a9af3f7a048de3f71f1cb78e2f93f4bd0a7d679fd4c1a7508324e6b1bbc0"
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30091:MonsterID2",
+              "traits": [
+                {
+                  "mechanicRef": "b914eb991397656d4ca6b3e63e39fb387377e559a864f570534bd918b5fbf8ff"
+                },
+                {
+                  "mechanicRef": "679dbf16c00074d5fae8d7f93b08f15fa554503a853d6180aba91d0bf34ecf69"
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420271-0",
+                "level": 60,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "be0c9201d39b5a3cc5601c560e99472bc8a0e2cc706385f819b7fe27f0270f53"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30091",
+        "label": "冽风支配·难度<unbreak>01</unbreak>",
+        "mode": "as",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "mechanicRef": "4d111807c06c801a85e3f671040b8bec88fed82de9c54ef4dafe0ef5a77446a9"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3009:BuffList1",
+              "options": [
+                {
+                  "mechanicRef": "6c6f17aa11f5b4cc7916d53313bb6f832cd4af55c70c5258fb1f7fa5d3022e6b"
+                },
+                {
+                  "mechanicRef": "3ed3e198ec08b3f29483a5baefc4996c5032cf78f77558f1a40a319800da2905"
+                },
+                {
+                  "mechanicRef": "3fa8df76e8eb16f567de228cf3c28a9d899d512ffedc37800be0e7c4ab57fbe9"
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30092:MonsterID1",
+              "traits": [
+                {
+                  "mechanicRef": "fe58189b86b6354d37251811a860252e792aa05567bde0dd45ae5fe30936b891"
+                },
+                {
+                  "mechanicRef": "7c240de71303cbe8f2fc1338915a01d83c737396106abc45dc85a17baa2df19f"
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420262-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "b69670c61516b904b0cdb6e1a76f1a4899fc0a27a0cb0a2e3c8c940fad3082da"
+                      },
+                      {
+                        "occurrenceRef": "d34c211f239e35346d4bd7cb640ef9d532df8373745928f94f114f3fd9155c7d"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3009:BuffList2",
+              "options": [
+                {
+                  "mechanicRef": "2450d45d16b06a37d3acb9ea2574a6b647d6cddf2fedc6c1b70a6ca45af44739"
+                },
+                {
+                  "mechanicRef": "7dde2f862acfd1b04284684254f664f5db560503729e559847a34a4c4e7b7050"
+                },
+                {
+                  "mechanicRef": "4800a9af3f7a048de3f71f1cb78e2f93f4bd0a7d679fd4c1a7508324e6b1bbc0"
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30092:MonsterID2",
+              "traits": [
+                {
+                  "mechanicRef": "b914eb991397656d4ca6b3e63e39fb387377e559a864f570534bd918b5fbf8ff"
+                },
+                {
+                  "mechanicRef": "679dbf16c00074d5fae8d7f93b08f15fa554503a853d6180aba91d0bf34ecf69"
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420272-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "c4d0b5279e90e2ee0be13b68e002fb564941730f0cac96be0c31c1dc7e87bd6a"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30092",
+        "label": "冽风支配·难度<unbreak>02</unbreak>",
+        "mode": "as",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "mechanicRef": "4d111807c06c801a85e3f671040b8bec88fed82de9c54ef4dafe0ef5a77446a9"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3009:BuffList1",
+              "options": [
+                {
+                  "mechanicRef": "6c6f17aa11f5b4cc7916d53313bb6f832cd4af55c70c5258fb1f7fa5d3022e6b"
+                },
+                {
+                  "mechanicRef": "3ed3e198ec08b3f29483a5baefc4996c5032cf78f77558f1a40a319800da2905"
+                },
+                {
+                  "mechanicRef": "3fa8df76e8eb16f567de228cf3c28a9d899d512ffedc37800be0e7c4ab57fbe9"
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30093:MonsterID1",
+              "traits": [
+                {
+                  "mechanicRef": "fe58189b86b6354d37251811a860252e792aa05567bde0dd45ae5fe30936b891"
+                },
+                {
+                  "mechanicRef": "7c240de71303cbe8f2fc1338915a01d83c737396106abc45dc85a17baa2df19f"
+                },
+                {
+                  "mechanicRef": "080f75ccacc6afcdfe15be71a17cb250400f29480b043db27f660a85e2ac542b"
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420263-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "c9e0ab78eedfc0f9082f8c57ba102a283c67289536c2c47cc4c4a67661775ab5"
+                      },
+                      {
+                        "occurrenceRef": "0ccc77a475fe1f71a46e0c764c0c15f705ab6e1e5196a73fad60e737e6b71a40"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3009:BuffList2",
+              "options": [
+                {
+                  "mechanicRef": "2450d45d16b06a37d3acb9ea2574a6b647d6cddf2fedc6c1b70a6ca45af44739"
+                },
+                {
+                  "mechanicRef": "7dde2f862acfd1b04284684254f664f5db560503729e559847a34a4c4e7b7050"
+                },
+                {
+                  "mechanicRef": "4800a9af3f7a048de3f71f1cb78e2f93f4bd0a7d679fd4c1a7508324e6b1bbc0"
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30093:MonsterID2",
+              "traits": [
+                {
+                  "mechanicRef": "b914eb991397656d4ca6b3e63e39fb387377e559a864f570534bd918b5fbf8ff"
+                },
+                {
+                  "mechanicRef": "679dbf16c00074d5fae8d7f93b08f15fa554503a853d6180aba91d0bf34ecf69"
+                },
+                {
+                  "mechanicRef": "0f5b114add3e9692eabeb5e9007007c22983dd638d586f956db658ed071bf4ab"
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420273-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "3a9dfe544eb2f46ae92611e5d84582cb70b502671eea4b077b2c3c3110d0e620"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30093",
+        "label": "冽风支配·难度<unbreak>03</unbreak>",
+        "mode": "as",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "mechanicRef": "4d111807c06c801a85e3f671040b8bec88fed82de9c54ef4dafe0ef5a77446a9"
+        },
+        "battles": [
+          {
+            "axiomSet": {
+              "key": "as:3009:BuffList1",
+              "options": [
+                {
+                  "mechanicRef": "6c6f17aa11f5b4cc7916d53313bb6f832cd4af55c70c5258fb1f7fa5d3022e6b"
+                },
+                {
+                  "mechanicRef": "3ed3e198ec08b3f29483a5baefc4996c5032cf78f77558f1a40a319800da2905"
+                },
+                {
+                  "mechanicRef": "3fa8df76e8eb16f567de228cf3c28a9d899d512ffedc37800be0e7c4ab57fbe9"
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30094:MonsterID1",
+              "traits": [
+                {
+                  "mechanicRef": "fe58189b86b6354d37251811a860252e792aa05567bde0dd45ae5fe30936b891"
+                },
+                {
+                  "mechanicRef": "7c240de71303cbe8f2fc1338915a01d83c737396106abc45dc85a17baa2df19f"
+                },
+                {
+                  "mechanicRef": "080f75ccacc6afcdfe15be71a17cb250400f29480b043db27f660a85e2ac542b"
+                },
+                {
+                  "mechanicRef": "f4fc1a2636fc3d15569ce04dd850cc62f66cc745051e8ef4d42ae5fd8339733f"
+                }
+              ]
+            },
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420264-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "db704f6d96e40abba92b9944f0bcfabeddd163e17ce7665760b237b5a652c064"
+                      },
+                      {
+                        "occurrenceRef": "2a9292c032572d29db58babd6dd033d62d415c8f63ac930a74b52a0de4235a91"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "axiomSet": {
+              "key": "as:3009:BuffList2",
+              "options": [
+                {
+                  "mechanicRef": "2450d45d16b06a37d3acb9ea2574a6b647d6cddf2fedc6c1b70a6ca45af44739"
+                },
+                {
+                  "mechanicRef": "7dde2f862acfd1b04284684254f664f5db560503729e559847a34a4c4e7b7050"
+                },
+                {
+                  "mechanicRef": "4800a9af3f7a048de3f71f1cb78e2f93f4bd0a7d679fd4c1a7508324e6b1bbc0"
+                }
+              ]
+            },
+            "bossGuide": {
+              "key": "as:30094:MonsterID2",
+              "traits": [
+                {
+                  "mechanicRef": "b914eb991397656d4ca6b3e63e39fb387377e559a864f570534bd918b5fbf8ff"
+                },
+                {
+                  "mechanicRef": "679dbf16c00074d5fae8d7f93b08f15fa554503a853d6180aba91d0bf34ecf69"
+                },
+                {
+                  "mechanicRef": "0f5b114add3e9692eabeb5e9007007c22983dd638d586f956db658ed071bf4ab"
+                },
+                {
+                  "mechanicRef": "a232fdf64896cb7204e1b669d696596119394c486023c76e6db0bc4cbf336eb7"
+                }
+              ]
+            },
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "420274-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "4120c71e1eff9674ab5c6e33e4adac183e8b251926b3ed5332706ddafb3912ad"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "30094",
+        "label": "冽风支配·难度<unbreak>04</unbreak>",
+        "mode": "as",
+        "ordinal": 4,
+        "variant": "floor"
+      }
+    ],
+    "mode": "as",
+    "modeLabel": "末日幻影",
+    "period": {
+      "dateLabel": "2025/05/26 – 2025/07/07",
+      "encounterCount": 4,
+      "groupId": 3009,
+      "name": "冽风支配",
+      "status": "historical"
+    },
+    "periods": [
+      {
+        "dateLabel": "2026/08/31 – 2026/10/05",
+        "encounterCount": 4,
+        "groupId": 3020,
+        "name": "仙客天狼",
+        "status": "current"
+      },
+      {
+        "dateLabel": "2026/07/20 – 2026/08/31",
+        "encounterCount": 4,
+        "groupId": 3019,
+        "name": "兵锋骑士",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/06/08 – 2026/07/20",
+        "encounterCount": 4,
+        "groupId": 3018,
+        "name": "遗忘冽风",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/04/27 – 2026/06/08",
+        "encounterCount": 4,
+        "groupId": 3017,
+        "name": "偶像螟蝗",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/03/16 – 2026/04/27",
+        "encounterCount": 4,
+        "groupId": 3016,
+        "name": "兵锋天狼",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/02/02 – 2026/03/16",
+        "encounterCount": 4,
+        "groupId": 3015,
+        "name": "支配冥茫",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/12/22 – 2026/02/02",
+        "encounterCount": 4,
+        "groupId": 3014,
+        "name": "猢狲骑士",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/11/10 – 2025/12/22",
+        "encounterCount": 4,
+        "groupId": 3013,
+        "name": "螟蝗煽动",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/09/29 – 2025/11/10",
+        "encounterCount": 4,
+        "groupId": 3012,
+        "name": "冥茫冽风",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/08/18 – 2025/09/29",
+        "encounterCount": 4,
+        "groupId": 3011,
+        "name": "天狼战首",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/07/07 – 2025/08/18",
+        "encounterCount": 4,
+        "groupId": 3010,
+        "name": "金血恶兽",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/05/26 – 2025/07/07",
+        "encounterCount": 4,
+        "groupId": 3009,
+        "name": "冽风支配",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/04/14 – 2025/05/26",
+        "encounterCount": 4,
+        "groupId": 3008,
+        "name": "螟蝗战首",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/03/03 – 2025/04/14",
+        "encounterCount": 4,
+        "groupId": 3007,
+        "name": "猢狲博弈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/01/20 – 2025/03/03",
+        "encounterCount": 4,
+        "groupId": 3006,
+        "name": "煽动螟蝗",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/12/09 – 2025/01/20",
+        "encounterCount": 4,
+        "groupId": 3005,
+        "name": "冽风猢狲",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/10/28 – 2024/12/09",
+        "encounterCount": 4,
+        "groupId": 3004,
+        "name": "支配指挥",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/09/16 – 2024/10/28",
+        "encounterCount": 4,
+        "groupId": 3003,
+        "name": "煽动博弈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/08/05 – 2024/09/16",
+        "encounterCount": 4,
+        "groupId": 3002,
+        "name": "支配恶兽",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/06/17 – 2024/08/05",
+        "encounterCount": 4,
+        "groupId": 3001,
+        "name": "冽风骑士",
+        "status": "historical"
+      }
+    ]
+  },
+  "route": "/endgame/as/3009",
+  "source": {
+    "axiomSets": [
+      {
+        "key": "as:3009:BuffList1",
+        "options": [
+          {
+            "buff": {
+              "mechanicRef": "bcc64dfff7fe566c92c6c567c50442a798fb35a4cb8f02d514aeb48b9435027d"
+            },
+            "order": 1,
+            "provenance": {
+              "arrayIndex": 0,
+              "field": "BuffList1",
+              "ownerId": 3009,
+              "table": "ChallengeBossGroupExtra"
+            }
+          },
+          {
+            "buff": {
+              "mechanicRef": "5abfc4283bb12155de25bcfc9b4e683b8b0c68e09b04a2d7363b0927b6f241d3"
+            },
+            "order": 2,
+            "provenance": {
+              "arrayIndex": 1,
+              "field": "BuffList1",
+              "ownerId": 3009,
+              "table": "ChallengeBossGroupExtra"
+            }
+          },
+          {
+            "buff": {
+              "mechanicRef": "3764c427cb82f59a8fdf7a7a48011735ed8d4c4b038151b4c2853a7e0026d446"
+            },
+            "order": 3,
+            "provenance": {
+              "arrayIndex": 2,
+              "field": "BuffList1",
+              "ownerId": 3009,
+              "table": "ChallengeBossGroupExtra"
+            }
+          }
+        ],
+        "provenance": {
+          "field": "BuffList1",
+          "ownerId": 3009,
+          "table": "ChallengeBossGroupExtra"
+        },
+        "selectCount": 1,
+        "slot": 1
+      },
+      {
+        "key": "as:3009:BuffList2",
+        "options": [
+          {
+            "buff": {
+              "mechanicRef": "c8c63cbb3ddb7eefbe579820216dcc7985acad8718d048c1f0a476929d588a90"
+            },
+            "order": 1,
+            "provenance": {
+              "arrayIndex": 0,
+              "field": "BuffList2",
+              "ownerId": 3009,
+              "table": "ChallengeBossGroupExtra"
+            }
+          },
+          {
+            "buff": {
+              "mechanicRef": "ee92a3e2fdee60a27c6884ec6a78d4b010c2f03f40b99296ab1f5361bb2d30e7"
+            },
+            "order": 2,
+            "provenance": {
+              "arrayIndex": 1,
+              "field": "BuffList2",
+              "ownerId": 3009,
+              "table": "ChallengeBossGroupExtra"
+            }
+          },
+          {
+            "buff": {
+              "mechanicRef": "9cf2920a01788ce0e81934358b694497b5427f117a87a4d5d206f0321047394b"
+            },
+            "order": 3,
+            "provenance": {
+              "arrayIndex": 2,
+              "field": "BuffList2",
+              "ownerId": 3009,
+              "table": "ChallengeBossGroupExtra"
+            }
+          }
+        ],
+        "provenance": {
+          "field": "BuffList2",
+          "ownerId": 3009,
+          "table": "ChallengeBossGroupExtra"
+        },
+        "selectCount": 1,
+        "slot": 2
+      }
+    ],
+    "encounters": [
+      {
+        "aftertaste": {
+          "buff": {
+            "mechanicRef": "c01bd9f04f518dd9d91fad0fdcb8a18e8857f7e095ac3b2c50773e638dd7fc01"
+          },
+          "groupReference": {
+            "mazeBuffId": 3031001,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 3009,
+              "table": "ChallengeBossGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 30091,
+            "table": "ChallengeBossMazeConfig"
+          },
+          "stageBindings": [
+            {
+              "eventId": 420261,
+              "mazeBuffId": 3110009,
+              "provenance": {
+                "arrayIndex": 3,
+                "field": "StageConfigData._BindingMazeBuff",
+                "ownerId": 420261,
+                "table": "StageConfig"
+              },
+              "slot": 1,
+              "stageId": 420261
+            },
+            {
+              "eventId": 420271,
+              "mazeBuffId": 3110009,
+              "provenance": {
+                "arrayIndex": 3,
+                "field": "StageConfigData._BindingMazeBuff",
+                "ownerId": 420271,
+                "table": "StageConfig"
+              },
+              "slot": 2,
+              "stageId": 420271
+            }
+          ]
+        },
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 420261,
+                "hardLevelGroup": 1,
+                "level": 60,
+                "previewMonsterIds": [
+                  100401401,
+                  100402601
+                ],
+                "stageAbilities": [],
+                "stageId": 420261,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "bc44fa88e63a84cbfd5a773438156a2022f0d346ab4c6ac8794e404540656a44"
+                        },
+                        {
+                          "occurrenceRef": "227701c9f8fd88fab45cb3c05fcacd26ede53a7a91fcfad618a56bf4baa8d134"
+                        }
+                      ],
+                      "wave": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 420271,
+                "hardLevelGroup": 1,
+                "level": 60,
+                "previewMonsterIds": [
+                  200401401
+                ],
+                "stageAbilities": [],
+                "stageId": 420271,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "f9932eebf5e96fa2dc4a749ae98ff66b43623886a6e27ab840e3134b69a20a76"
+                        }
+                      ],
+                      "wave": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "bossGuides": [
+          {
+            "difficulty": 1,
+            "guideMonsterId": 100401401,
+            "key": "as:30091:MonsterID1",
+            "provenance": {
+              "field": "MonsterID1",
+              "ownerId": 30091,
+              "table": "ChallengeBossMazeExtra"
+            },
+            "slot": 1,
+            "traits": [
+              {
+                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                "descriptionHash": "6300875263989191075",
+                "linkedEffects": [],
+                "name": "坚防守备",
+                "nameHash": "7045240788021610782",
+                "order": 1,
+                "params": [
+                  "0.6",
+                  "1.25",
+                  "1"
+                ],
+                "provenance": {
+                  "arrayIndex": 0,
+                  "field": "TagList",
+                  "ownerId": 100401401,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100101
+              },
+              {
+                "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                "descriptionHash": "9547664995187952701",
+                "linkedEffects": [
+                  {
+                    "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                    "id": "70000304",
+                    "name": "转移"
+                  }
+                ],
+                "name": "阵地转移",
+                "nameHash": "12767398382858444996",
+                "order": 2,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 1,
+                  "field": "TagList",
+                  "ownerId": 100401401,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100102
+              }
+            ]
+          },
+          {
+            "difficulty": 1,
+            "guideMonsterId": 200401401,
+            "key": "as:30091:MonsterID2",
+            "provenance": {
+              "field": "MonsterID2",
+              "ownerId": 30091,
+              "table": "ChallengeBossMazeExtra"
+            },
+            "slot": 2,
+            "traits": [
+              {
+                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                "descriptionHash": "10580368499371980404",
+                "linkedEffects": [],
+                "name": "坚防守备",
+                "nameHash": "10241237536073719051",
+                "order": 1,
+                "params": [
+                  "0.5",
+                  "1",
+                  "1.5"
+                ],
+                "provenance": {
+                  "arrayIndex": 0,
+                  "field": "TagList",
+                  "ownerId": 200401401,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100401
+              },
+              {
+                "description": "首领幻影召唤2个精英敌人协助战斗。首领幻影会将自身弱点属性<color=#f29e38ff><u>传递</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                "descriptionHash": "1766163900383230637",
+                "linkedEffects": [
+                  {
+                    "description": "将弱点属性传递给目标，目标被消灭后造成额外韧性值削减，弱点属性会在所有获得弱点属性的目标被消灭后返回。",
+                    "id": "70000307",
+                    "name": "传递"
+                  }
+                ],
+                "name": "阵地转移",
+                "nameHash": "5107345776030312901",
+                "order": 2,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 1,
+                  "field": "TagList",
+                  "ownerId": 200401401,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100402
+              }
+            ]
+          }
+        ],
+        "configId": 30091,
+        "id": "30091",
+        "name": "冽风支配·难度<unbreak>01</unbreak>",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "buff": {
+            "mechanicRef": "c01bd9f04f518dd9d91fad0fdcb8a18e8857f7e095ac3b2c50773e638dd7fc01"
+          },
+          "groupReference": {
+            "mazeBuffId": 3031001,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 3009,
+              "table": "ChallengeBossGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 30092,
+            "table": "ChallengeBossMazeConfig"
+          },
+          "stageBindings": [
+            {
+              "eventId": 420262,
+              "mazeBuffId": 3110009,
+              "provenance": {
+                "arrayIndex": 3,
+                "field": "StageConfigData._BindingMazeBuff",
+                "ownerId": 420262,
+                "table": "StageConfig"
+              },
+              "slot": 1,
+              "stageId": 420262
+            },
+            {
+              "eventId": 420272,
+              "mazeBuffId": 3110009,
+              "provenance": {
+                "arrayIndex": 3,
+                "field": "StageConfigData._BindingMazeBuff",
+                "ownerId": 420272,
+                "table": "StageConfig"
+              },
+              "slot": 2,
+              "stageId": 420272
+            }
+          ]
+        },
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 420262,
+                "hardLevelGroup": 1,
+                "level": 70,
+                "previewMonsterIds": [
+                  100401402,
+                  100402602
+                ],
+                "stageAbilities": [],
+                "stageId": 420262,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "2d4507d42aa35769d224dd24ab018e62e0d32927d3abe5ac8e7a45ae5820d8ce"
+                        },
+                        {
+                          "occurrenceRef": "f97244a1c1e45146472ee792fe276975efab58ac0732420529a4234754e4c162"
+                        }
+                      ],
+                      "wave": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 420272,
+                "hardLevelGroup": 1,
+                "level": 70,
+                "previewMonsterIds": [
+                  200401402
+                ],
+                "stageAbilities": [],
+                "stageId": 420272,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "628db0f7c809969744b53915fe878f19382e05277d1491bed7900ced58f8cda4"
+                        }
+                      ],
+                      "wave": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "bossGuides": [
+          {
+            "difficulty": 2,
+            "guideMonsterId": 100401402,
+            "key": "as:30092:MonsterID1",
+            "provenance": {
+              "field": "MonsterID1",
+              "ownerId": 30092,
+              "table": "ChallengeBossMazeExtra"
+            },
+            "slot": 1,
+            "traits": [
+              {
+                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                "descriptionHash": "6300875263989191075",
+                "linkedEffects": [],
+                "name": "坚防守备",
+                "nameHash": "7045240788021610782",
+                "order": 1,
+                "params": [
+                  "0.6",
+                  "1.25",
+                  "1"
+                ],
+                "provenance": {
+                  "arrayIndex": 0,
+                  "field": "TagList",
+                  "ownerId": 100401402,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100101
+              },
+              {
+                "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                "descriptionHash": "9547664995187952701",
+                "linkedEffects": [
+                  {
+                    "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                    "id": "70000304",
+                    "name": "转移"
+                  }
+                ],
+                "name": "阵地转移",
+                "nameHash": "12767398382858444996",
+                "order": 2,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 1,
+                  "field": "TagList",
+                  "ownerId": 100401402,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100102
+              }
+            ]
+          },
+          {
+            "difficulty": 2,
+            "guideMonsterId": 200401402,
+            "key": "as:30092:MonsterID2",
+            "provenance": {
+              "field": "MonsterID2",
+              "ownerId": 30092,
+              "table": "ChallengeBossMazeExtra"
+            },
+            "slot": 2,
+            "traits": [
+              {
+                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                "descriptionHash": "10580368499371980404",
+                "linkedEffects": [],
+                "name": "坚防守备",
+                "nameHash": "10241237536073719051",
+                "order": 1,
+                "params": [
+                  "0.5",
+                  "1",
+                  "1.5"
+                ],
+                "provenance": {
+                  "arrayIndex": 0,
+                  "field": "TagList",
+                  "ownerId": 200401402,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100401
+              },
+              {
+                "description": "首领幻影召唤2个精英敌人协助战斗。首领幻影会将自身弱点属性<color=#f29e38ff><u>传递</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                "descriptionHash": "1766163900383230637",
+                "linkedEffects": [
+                  {
+                    "description": "将弱点属性传递给目标，目标被消灭后造成额外韧性值削减，弱点属性会在所有获得弱点属性的目标被消灭后返回。",
+                    "id": "70000307",
+                    "name": "传递"
+                  }
+                ],
+                "name": "阵地转移",
+                "nameHash": "5107345776030312901",
+                "order": 2,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 1,
+                  "field": "TagList",
+                  "ownerId": 200401402,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100402
+              }
+            ]
+          }
+        ],
+        "configId": 30092,
+        "id": "30092",
+        "name": "冽风支配·难度<unbreak>02</unbreak>",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "buff": {
+            "mechanicRef": "c01bd9f04f518dd9d91fad0fdcb8a18e8857f7e095ac3b2c50773e638dd7fc01"
+          },
+          "groupReference": {
+            "mazeBuffId": 3031001,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 3009,
+              "table": "ChallengeBossGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 30093,
+            "table": "ChallengeBossMazeConfig"
+          },
+          "stageBindings": [
+            {
+              "eventId": 420263,
+              "mazeBuffId": 3110009,
+              "provenance": {
+                "arrayIndex": 3,
+                "field": "StageConfigData._BindingMazeBuff",
+                "ownerId": 420263,
+                "table": "StageConfig"
+              },
+              "slot": 1,
+              "stageId": 420263
+            },
+            {
+              "eventId": 420273,
+              "mazeBuffId": 3110009,
+              "provenance": {
+                "arrayIndex": 3,
+                "field": "StageConfigData._BindingMazeBuff",
+                "ownerId": 420273,
+                "table": "StageConfig"
+              },
+              "slot": 2,
+              "stageId": 420273
+            }
+          ]
+        },
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 420263,
+                "hardLevelGroup": 1,
+                "level": 80,
+                "previewMonsterIds": [
+                  100401403,
+                  100402603
+                ],
+                "stageAbilities": [],
+                "stageId": 420263,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "6856e0f730fb8dd11883adee0c0e351537d6652e4638985f6415c357dfd0e418"
+                        },
+                        {
+                          "occurrenceRef": "f9f6f9ed0f9df25e264ea718a0955db70f32a8b8b3c6052b94230f9452076a9f"
+                        }
+                      ],
+                      "wave": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 420273,
+                "hardLevelGroup": 1,
+                "level": 80,
+                "previewMonsterIds": [
+                  200401403
+                ],
+                "stageAbilities": [],
+                "stageId": 420273,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "c41442103773f559715f128572f78e82e87b23ddb6e6313aa9afc00d6b37f5ea"
+                        }
+                      ],
+                      "wave": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "bossGuides": [
+          {
+            "difficulty": 3,
+            "guideMonsterId": 100401403,
+            "key": "as:30093:MonsterID1",
+            "provenance": {
+              "field": "MonsterID1",
+              "ownerId": 30093,
+              "table": "ChallengeBossMazeExtra"
+            },
+            "slot": 1,
+            "traits": [
+              {
+                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                "descriptionHash": "6300875263989191075",
+                "linkedEffects": [],
+                "name": "坚防守备",
+                "nameHash": "7045240788021610782",
+                "order": 1,
+                "params": [
+                  "0.6",
+                  "1.25",
+                  "1"
+                ],
+                "provenance": {
+                  "arrayIndex": 0,
+                  "field": "TagList",
+                  "ownerId": 100401403,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100101
+              },
+              {
+                "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                "descriptionHash": "9547664995187952701",
+                "linkedEffects": [
+                  {
+                    "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                    "id": "70000304",
+                    "name": "转移"
+                  }
+                ],
+                "name": "阵地转移",
+                "nameHash": "12767398382858444996",
+                "order": 2,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 1,
+                  "field": "TagList",
+                  "ownerId": 100401403,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100102
+              },
+              {
+                "description": "首领幻影的召唤物会标记1个我方单位，首领幻影施放单攻技能后会对被标记的我方单位<color=#f29e38ff><u>追加施放</u></color>。",
+                "descriptionHash": "13166846290589288209",
+                "linkedEffects": [
+                  {
+                    "description": "在施放单攻技能后，会重新选择目标并再次使用该技能。",
+                    "id": "70000302",
+                    "name": "追加施放"
+                  }
+                ],
+                "name": "逃无可逃",
+                "nameHash": "12518788504695034800",
+                "order": 3,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 2,
+                  "field": "TagList",
+                  "ownerId": 100401403,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 3,
+                "tagId": 100103
+              }
+            ]
+          },
+          {
+            "difficulty": 3,
+            "guideMonsterId": 200401403,
+            "key": "as:30093:MonsterID2",
+            "provenance": {
+              "field": "MonsterID2",
+              "ownerId": 30093,
+              "table": "ChallengeBossMazeExtra"
+            },
+            "slot": 2,
+            "traits": [
+              {
+                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                "descriptionHash": "10580368499371980404",
+                "linkedEffects": [],
+                "name": "坚防守备",
+                "nameHash": "10241237536073719051",
+                "order": 1,
+                "params": [
+                  "0.5",
+                  "1",
+                  "1.5"
+                ],
+                "provenance": {
+                  "arrayIndex": 0,
+                  "field": "TagList",
+                  "ownerId": 200401403,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100401
+              },
+              {
+                "description": "首领幻影召唤2个精英敌人协助战斗。首领幻影会将自身弱点属性<color=#f29e38ff><u>传递</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                "descriptionHash": "1766163900383230637",
+                "linkedEffects": [
+                  {
+                    "description": "将弱点属性传递给目标，目标被消灭后造成额外韧性值削减，弱点属性会在所有获得弱点属性的目标被消灭后返回。",
+                    "id": "70000307",
+                    "name": "传递"
+                  }
+                ],
+                "name": "阵地转移",
+                "nameHash": "5107345776030312901",
+                "order": 2,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 1,
+                  "field": "TagList",
+                  "ownerId": 200401403,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100402
+              },
+              {
+                "description": "除首领幻影外，每多存在1个<color=#f29e38ff>敌方单位</color>，敌方全体受到的伤害降低。",
+                "descriptionHash": "7955379142941308187",
+                "linkedEffects": [],
+                "name": "众星拱卫",
+                "nameHash": "10626144687711294455",
+                "order": 3,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 2,
+                  "field": "TagList",
+                  "ownerId": 200401403,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 3,
+                "tagId": 100403
+              }
+            ]
+          }
+        ],
+        "configId": 30093,
+        "id": "30093",
+        "name": "冽风支配·难度<unbreak>03</unbreak>",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "aftertaste": {
+          "buff": {
+            "mechanicRef": "c01bd9f04f518dd9d91fad0fdcb8a18e8857f7e095ac3b2c50773e638dd7fc01"
+          },
+          "groupReference": {
+            "mazeBuffId": 3031001,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 3009,
+              "table": "ChallengeBossGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 30094,
+            "table": "ChallengeBossMazeConfig"
+          },
+          "stageBindings": [
+            {
+              "eventId": 420264,
+              "mazeBuffId": 3110009,
+              "provenance": {
+                "arrayIndex": 3,
+                "field": "StageConfigData._BindingMazeBuff",
+                "ownerId": 420264,
+                "table": "StageConfig"
+              },
+              "slot": 1,
+              "stageId": 420264
+            },
+            {
+              "eventId": 420274,
+              "mazeBuffId": 3110009,
+              "provenance": {
+                "arrayIndex": 3,
+                "field": "StageConfigData._BindingMazeBuff",
+                "ownerId": 420274,
+                "table": "StageConfig"
+              },
+              "slot": 2,
+              "stageId": 420274
+            }
+          ]
+        },
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 420264,
+                "hardLevelGroup": 1,
+                "level": 90,
+                "previewMonsterIds": [
+                  100401404,
+                  100402604
+                ],
+                "stageAbilities": [],
+                "stageId": 420264,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "23d9075554c6ae7c2dbf41caa5a6013b554fc160ef8fd6ebd714c61dba5bb3d3"
+                        },
+                        {
+                          "occurrenceRef": "51a505fbfbfc3efd486f61c2b589d5fe68254a6b489f5ed350d228e182e80edd"
+                        }
+                      ],
+                      "wave": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 420274,
+                "hardLevelGroup": 1,
+                "level": 90,
+                "previewMonsterIds": [
+                  200401404
+                ],
+                "stageAbilities": [],
+                "stageId": 420274,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "351a07e2e2b9c498447ffd24d597b797a89f6b72fa8c7e47d1e5b12d42f0c737"
+                        }
+                      ],
+                      "wave": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "bossGuides": [
+          {
+            "difficulty": 4,
+            "guideMonsterId": 100401404,
+            "key": "as:30094:MonsterID1",
+            "provenance": {
+              "field": "MonsterID1",
+              "ownerId": 30094,
+              "table": "ChallengeBossMazeExtra"
+            },
+            "slot": 1,
+            "traits": [
+              {
+                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>60%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>125%</unbreak></color>。",
+                "descriptionHash": "6300875263989191075",
+                "linkedEffects": [],
+                "name": "坚防守备",
+                "nameHash": "7045240788021610782",
+                "order": 1,
+                "params": [
+                  "0.6",
+                  "1.25",
+                  "1"
+                ],
+                "provenance": {
+                  "arrayIndex": 0,
+                  "field": "TagList",
+                  "ownerId": 100401404,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100101
+              },
+              {
+                "description": "杰帕德会加入战斗并为首领幻影提供保护。首领幻影会将自身弱点属性<color=#f29e38ff><u>转移</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                "descriptionHash": "9547664995187952701",
+                "linkedEffects": [
+                  {
+                    "description": "将弱点属性转移给目标，弱点属性会在目标被消灭后返回，并造成额外韧性值削减。",
+                    "id": "70000304",
+                    "name": "转移"
+                  }
+                ],
+                "name": "阵地转移",
+                "nameHash": "12767398382858444996",
+                "order": 2,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 1,
+                  "field": "TagList",
+                  "ownerId": 100401404,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100102
+              },
+              {
+                "description": "首领幻影的召唤物会标记1个我方单位，首领幻影施放单攻技能后会对被标记的我方单位<color=#f29e38ff><u>追加施放</u></color>。",
+                "descriptionHash": "13166846290589288209",
+                "linkedEffects": [
+                  {
+                    "description": "在施放单攻技能后，会重新选择目标并再次使用该技能。",
+                    "id": "70000302",
+                    "name": "追加施放"
+                  }
+                ],
+                "name": "逃无可逃",
+                "nameHash": "12518788504695034800",
+                "order": 3,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 2,
+                  "field": "TagList",
+                  "ownerId": 100401404,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 3,
+                "tagId": 100103
+              },
+              {
+                "description": "敌方全体受到的伤害降低。但每拥有1个<color=#f29e38ff>弱点属性</color>，受到的伤害提高。",
+                "descriptionHash": "18051145983740348173",
+                "linkedEffects": [],
+                "name": "坚韧之志",
+                "nameHash": "11686600169445116114",
+                "order": 4,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 3,
+                  "field": "TagList",
+                  "ownerId": 100401404,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 4,
+                "tagId": 100104
+              }
+            ]
+          },
+          {
+            "difficulty": 4,
+            "guideMonsterId": 200401404,
+            "key": "as:30094:MonsterID2",
+            "provenance": {
+              "field": "MonsterID2",
+              "ownerId": 30094,
+              "table": "ChallengeBossMazeExtra"
+            },
+            "slot": 2,
+            "traits": [
+              {
+                "description": "首领幻影受到的伤害降低<color=#f29e38ff><unbreak>50%</unbreak></color>。<color=#f29e38ff>弱点击破</color>后，行动额外延后，受到的伤害提高<color=#f29e38ff><unbreak>100%</unbreak></color>。",
+                "descriptionHash": "10580368499371980404",
+                "linkedEffects": [],
+                "name": "坚防守备",
+                "nameHash": "10241237536073719051",
+                "order": 1,
+                "params": [
+                  "0.5",
+                  "1",
+                  "1.5"
+                ],
+                "provenance": {
+                  "arrayIndex": 0,
+                  "field": "TagList",
+                  "ownerId": 200401404,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100401
+              },
+              {
+                "description": "首领幻影召唤2个精英敌人协助战斗。首领幻影会将自身弱点属性<color=#f29e38ff><u>传递</u></color>给召唤物，但当召唤物被消灭时，自身韧性值受到额外削减。",
+                "descriptionHash": "1766163900383230637",
+                "linkedEffects": [
+                  {
+                    "description": "将弱点属性传递给目标，目标被消灭后造成额外韧性值削减，弱点属性会在所有获得弱点属性的目标被消灭后返回。",
+                    "id": "70000307",
+                    "name": "传递"
+                  }
+                ],
+                "name": "阵地转移",
+                "nameHash": "5107345776030312901",
+                "order": 2,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 1,
+                  "field": "TagList",
+                  "ownerId": 200401404,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 1,
+                "tagId": 100402
+              },
+              {
+                "description": "除首领幻影外，每多存在1个<color=#f29e38ff>敌方单位</color>，敌方全体受到的伤害降低。",
+                "descriptionHash": "7955379142941308187",
+                "linkedEffects": [],
+                "name": "众星拱卫",
+                "nameHash": "10626144687711294455",
+                "order": 3,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 2,
+                  "field": "TagList",
+                  "ownerId": 200401404,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 3,
+                "tagId": 100403
+              },
+              {
+                "description": "首领幻影第二阶段施放【傀儡候场】时，会对<color=#f29e38ff>所有的召唤物</color>附加强化效果。",
+                "descriptionHash": "2016274699329700199",
+                "linkedEffects": [],
+                "name": "绝境逆转",
+                "nameHash": "1347718804256334044",
+                "order": 4,
+                "params": [],
+                "provenance": {
+                  "arrayIndex": 3,
+                  "field": "TagList",
+                  "ownerId": 200401404,
+                  "table": "MonsterGuideConfig"
+                },
+                "requiredDifficulty": 4,
+                "tagId": 100404
+              }
+            ]
+          }
+        ],
+        "configId": 30094,
+        "id": "30094",
+        "name": "冽风支配·难度<unbreak>04</unbreak>",
+        "ordinal": 4,
+        "variant": "floor"
+      }
+    ],
+    "groupId": 3009,
+    "mode": "as",
+    "name": "冽风支配",
+    "recommendationEligible": true,
+    "schedule": {
+      "begin": "2025-05-26 04:00:00",
+      "end": "2025-07-07 04:00:00"
+    }
+  }
+}

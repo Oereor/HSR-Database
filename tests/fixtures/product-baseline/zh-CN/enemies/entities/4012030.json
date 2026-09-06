@@ -1,0 +1,74 @@
+{
+  "catalog": {
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。信仰如飞箭矢志不移，为泰坦造主的悬锋与凶矛寻取猎物，猎杀荒原中的奇兽与战场上的敌兵，射程之内无活物得以幸免。",
+    "id": "4012030",
+    "name": "天谴猎手",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012030",
+    "defaultMonsterRef": "fc8138ab33d2cc6cd69572c7eb9e771198b09c50a7ef8e48bac556a7c20d218c",
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。信仰如飞箭矢志不移，为泰坦造主的悬锋与凶矛寻取猎物，猎杀荒原中的奇兽与战场上的敌兵，射程之内无活物得以幸免。",
+    "id": "4012030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "fc8138ab33d2cc6cd69572c7eb9e771198b09c50a7ef8e48bac556a7c20d218c",
+      "2f484a888013ff0f6d40ca85232b01a6d5558350dea03bda699e6acf481b6a75",
+      "f0f0904fd751b20c0fb55688541b61464c51e7dc6e6f7714a643d953369b0c43",
+      "edc6b87601db3666c241ca27afa40b519891d90c17f8c8efd92248350643dccf",
+      "c2fa92491157040fe4195a163c8921d98a5cf64ef40a9c36f7f9d88ed85cdf2b",
+      "071fe01b70db96c87947f3652ca2fed0f165ecf90f9c82b6a2989299173f261f",
+      "807088f1ce70ac41df91ee00ae770a0fa8c1e7bedab6ea4d826e0e719bd97357",
+      "3548a2835b4daacad79bf6b11f93e90188825e794127d7dd8578befe550d118b"
+    ],
+    "name": "天谴猎手",
+    "rank": "MinionLv2",
+    "templateRef": "9bb021c3c2c4970c0c915d543ad452348fe4dc7c407ffcb2c3590b8f6d519af6",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012030",
+    "selectableMonsterIds": [
+      "4012030",
+      "401203001",
+      "401203002",
+      "401203003",
+      "401203004",
+      "401203005",
+      "401203006",
+      "401203007"
+    ]
+  }
+}

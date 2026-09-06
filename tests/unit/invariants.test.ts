@@ -33,7 +33,7 @@ describe('重构 invariants', () => {
     const sources = await Promise.all(files.map((file) => readFile(file, 'utf8')));
     const combined = sources.join('\n');
     expect(combined).toContain("path.join(root, 'TextMap', 'TextMapCHS.json')");
-    expect(combined).not.toMatch(/TextMapMain|TextMap(?:EN|JP|KR|CHT)|i18n|locale state/i);
+    expect(combined).not.toMatch(/TextMapMain|TextMap(?:EN|JP|KR|CHT)|locale state/i);
   });
 
   it('属性色与技能橙色各自只有一个运行时定义位置', async () => {

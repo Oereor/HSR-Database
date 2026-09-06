@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是为宾客带来惊喜的抽奖机器，失控后仍在筹备着各种礼品，渴望奉献自身来印证来者的幸运。",
+    "id": "3002020",
+    "name": "惊梦剧团的幸运贩售",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3002020",
+    "defaultMonsterRef": "b924d251521a3c6d216db47ba62e81677696ec7021594bdbfea928f937bda71f",
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是为宾客带来惊喜的抽奖机器，失控后仍在筹备着各种礼品，渴望奉献自身来印证来者的幸运。",
+    "id": "3002020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "b924d251521a3c6d216db47ba62e81677696ec7021594bdbfea928f937bda71f",
+      "e3490f593026cad110df6a9428f9464d8fe245dc0add16e6f8a07e6a8871e27c",
+      "0b7a65e1753d74381028bc474487eb6ab32ded77b1a2e2e7616bb17661739514",
+      "9bbb7dad2f8eee8f0644678960f26f37a2c16a585b5914545aa4e60db1dbab29",
+      "77a486030eb8087078c98550f14e12848804048bfb26ed944435ad9e4777717a",
+      "dd30765daf15790a28076ef9d1f3d6f7f9234ff5f3f2ef4b2c1f8b1cddbcae5c"
+    ],
+    "name": "惊梦剧团的幸运贩售",
+    "rank": "MinionLv2",
+    "templateRef": "770a374ac3d3af7cea2946ea54f1099458c8b61c055bfb104a3cd968a1fafccf",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3002020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3002020",
+    "selectableMonsterIds": [
+      "3002020",
+      "300202001",
+      "300202002",
+      "300202003",
+      "300202004",
+      "300202005"
+    ]
+  }
+}

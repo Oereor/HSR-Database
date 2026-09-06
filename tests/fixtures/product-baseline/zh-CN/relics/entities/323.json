@@ -1,0 +1,94 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击率提高8%。装备者的忆灵在场时，我方全体速度提高8%，该效果无法叠加。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "323",
+    "name": "永恒之地翁法罗斯",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.7"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击率提高8%。装备者的忆灵在场时，我方全体速度提高8%，该效果无法叠加。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的暴击率提高8%。装备者的忆灵在场时，我方全体速度提高8%，该效果无法叠加。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "。装备者的忆灵在场时，我方全体速度提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "，该效果无法叠加。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "323",
+    "kind": "relic",
+    "name": "永恒之地翁法罗斯",
+    "pieces": [
+      {
+        "description": "位面球中封装着「如我所书」中的一个章节：「一页永恒」。它被赋予了鲜花的芬芳，西风的温暖…以及一个开放的结局。",
+        "id": "33235",
+        "name": "翁法罗斯的西风尽途",
+        "slot": "NECK"
+      },
+      {
+        "description": "在故事的尾声，三千万世的数据化作完整的诗篇，执笔者写下的岁月，将留在银河的回忆之中，永不褪色。",
+        "id": "33236",
+        "name": "翁法罗斯的永恒诗篇",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.7"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33235"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33236"
+      }
+    ],
+    "route": "/relics/323"
+  }
+}

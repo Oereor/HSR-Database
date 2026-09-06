@@ -1,0 +1,543 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23028",
+    "name": "偏偏希望无价",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 58.08,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 184.8,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 227.04,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23028",
+    "kind": "light-cone",
+    "name": "偏偏希望无价",
+    "passive": {
+      "id": "23028",
+      "name": "承诺",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击率提高16%。当装备者在战斗中暴击伤害大于120%时，每超过20%，追加攻击造成的伤害提高12%，该效果可叠加4层。战斗开始时和装备者施放普攻后，使终结技或追加攻击造成的伤害无视目标20%的防御，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者在战斗中暴击伤害大于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "时，每超过"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，追加攻击造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果可叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层。战斗开始时和装备者施放普攻后，使终结技或追加攻击造成的伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "的防御，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击率提高19%。当装备者在战斗中暴击伤害大于120%时，每超过20%，追加攻击造成的伤害提高14%，该效果可叠加4层。战斗开始时和装备者施放普攻后，使终结技或追加攻击造成的伤害无视目标24%的防御，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "19%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者在战斗中暴击伤害大于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "时，每超过"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，追加攻击造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果可叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层。战斗开始时和装备者施放普攻后，使终结技或追加攻击造成的伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "的防御，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击率提高22%。当装备者在战斗中暴击伤害大于120%时，每超过20%，追加攻击造成的伤害提高16%，该效果可叠加4层。战斗开始时和装备者施放普攻后，使终结技或追加攻击造成的伤害无视目标28%的防御，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "22%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者在战斗中暴击伤害大于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "时，每超过"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，追加攻击造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果可叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层。战斗开始时和装备者施放普攻后，使终结技或追加攻击造成的伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "的防御，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击率提高25%。当装备者在战斗中暴击伤害大于120%时，每超过20%，追加攻击造成的伤害提高18%，该效果可叠加4层。战斗开始时和装备者施放普攻后，使终结技或追加攻击造成的伤害无视目标32%的防御，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者在战斗中暴击伤害大于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "时，每超过"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，追加攻击造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果可叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层。战斗开始时和装备者施放普攻后，使终结技或追加攻击造成的伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "的防御，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击率提高28%。当装备者在战斗中暴击伤害大于120%时，每超过20%，追加攻击造成的伤害提高20%，该效果可叠加4层。战斗开始时和装备者施放普攻后，使终结技或追加攻击造成的伤害无视目标36%的防御，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者在战斗中暴击伤害大于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "时，每超过"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，追加攻击造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果可叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层。战斗开始时和装备者施放普攻后，使终结技或追加攻击造成的伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "的防御，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          3,
+          5
+        ]
+      }
+    },
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5,
+    "story": "<i>「慈玉女士，要不是您一直送来物资和善款，福利院恐怕……」</i>\n她轻轻抚摸着孩子们的头，制止了院长的话头。\n<i>「只要我在，不用担心以后的日子…至于这些话，也不必说给孩子们听，增添他们的忧虑。」</i>\n\n孩子们仰起头，叽叽喳喳与她谈着最近的趣事，烦恼和梦想。\n<i>「慈玉女士，下次来是什么时候？」</i>\n<i>「平时工作不要太累了哦，要早点睡觉……」</i>\n<i>「慈玉女士，长大了我一定要成为和你一样的人！」</i>\n她望着孩子们清澈的双眼，突然愣了一下。\n<i>「和我一样的人……」</i>\n孩子将苹果递给她，<i>「嗯！给别人带来光和希望的人！」</i>\n\n贫乏、过失、忧愁、苦难…她行走在银河之间，收取他人的抵押，给予等价的回报。\n生命因欲望而存在，因欲望而奔走，因欲望而死去——这是无可抵抗的规律，亦是生命的必然。\n表里不一的慈善家，抵押灵魂的恶商…她被世人赋予诸般身份，也只有她自己才明白这些举止背后的道义。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23028",
+    "storyFallbackRendered": false
+  }
+}

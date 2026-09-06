@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "天空之泰坦。融合神。被人征服，与人融合，不再宰制翁法罗斯的昼夜，却仍不改孤绝高傲的本性。\n在它眼中，破碎世界的凡俗是如此丑陋——比起由光明守护的世界，浑浑噩噩的庸人反而与黑潮更加相配。",
+    "id": "4015012",
+    "name": "伊什塔尔•胡姆巴巴-艾格勒",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4015012",
+    "defaultMonsterRef": "4b22d3684d3710357e9d311269e10eda50a7f6ff6189a60329ff95acb7ec852b",
+    "description": "天空之泰坦。融合神。被人征服，与人融合，不再宰制翁法罗斯的昼夜，却仍不改孤绝高傲的本性。\n在它眼中，破碎世界的凡俗是如此丑陋——比起由光明守护的世界，浑浑噩噩的庸人反而与黑潮更加相配。",
+    "id": "4015012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4b22d3684d3710357e9d311269e10eda50a7f6ff6189a60329ff95acb7ec852b"
+    ],
+    "name": "伊什塔尔•胡姆巴巴-艾格勒",
+    "rank": "BigBoss",
+    "templateRef": "17073d168e4e93dc47e933160967febdfbb55a5c78ba52184b2e449f7ea0784e",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4015012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4015012",
+    "selectableMonsterIds": [
+      "4015012"
+    ]
+  }
+}

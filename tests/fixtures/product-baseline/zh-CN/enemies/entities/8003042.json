@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "由星核力量幻造而成的虚影，执行着令裂界不断扩张的意志。\n智慧生命的欲求在裂界中投影形成的活体能量，犹如一颗沙砾在蚌壳中凝成了珠贝。然而驱动它的这股欲望早已扭曲，模糊不清。",
+    "id": "8003042",
+    "name": "蚕食者之影",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8003042",
+    "defaultMonsterRef": "23be08991cb10c156f695ac9ef71921dc9d4550e8cf74da3a0e524b0f5000983",
+    "description": "由星核力量幻造而成的虚影，执行着令裂界不断扩张的意志。\n智慧生命的欲求在裂界中投影形成的活体能量，犹如一颗沙砾在蚌壳中凝成了珠贝。然而驱动它的这股欲望早已扭曲，模糊不清。",
+    "id": "8003042",
+    "kind": "enemy",
+    "monsterRefs": [
+      "23be08991cb10c156f695ac9ef71921dc9d4550e8cf74da3a0e524b0f5000983"
+    ],
+    "name": "蚕食者之影",
+    "rank": "Elite",
+    "templateRef": "2331f0c617bfe88bd45e60550ebe4ad5785d37d1c6c2e4385f9e6730152fa27f",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8003042",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8003042",
+    "selectableMonsterIds": [
+      "8003042"
+    ]
+  }
+}

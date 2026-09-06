@@ -1,0 +1,58 @@
+{
+  "catalog": {
+    "description": "「盾」的雕塑；萦绕着纯美灵魂，枪与盾相依，盾是捍卫生灵的决心。",
+    "id": "3021041",
+    "name": "「盾」",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3021041",
+    "defaultMonsterRef": "b084c1487fef1f91777170b068da7991db1cdc937ca814cf77c661d5aa2cc3b5",
+    "description": "「盾」的雕塑；萦绕着纯美灵魂，枪与盾相依，盾是捍卫生灵的决心。",
+    "id": "3021041",
+    "kind": "enemy",
+    "monsterRefs": [
+      "b084c1487fef1f91777170b068da7991db1cdc937ca814cf77c661d5aa2cc3b5",
+      "f90f094086e0cd4bafc8e8040a9c8a743696be902a3c7ea0252c6d4d0197842e",
+      "57a9de27ffef03e21f58b18de8bb5aff725374c2e627dbd3484832e2798f0a9b",
+      "c48965671bef36130d43071912affc1727e77dad51f5662b5b51b4a4454162c3"
+    ],
+    "name": "「盾」",
+    "rank": "Minion",
+    "templateRef": "8e3acd5c039642592569fd8e3f0a4523ba9413a5be0d47dde325a77d80031fc7",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3021041",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3021041",
+    "selectableMonsterIds": [
+      "3021041",
+      "302104101",
+      "302104102",
+      "302104103"
+    ]
+  }
+}

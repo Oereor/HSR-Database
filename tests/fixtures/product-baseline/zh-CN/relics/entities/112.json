@@ -1,0 +1,139 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：虚数属性伤害提高10%。 4件：装备者对陷入负面效果的敌方目标造成伤害时暴击率提高10%，对陷入禁锢状态的敌方目标造成伤害时暴击伤害提高20%。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "112",
+    "name": "盗匪荒漠的废土客",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：虚数属性伤害提高10%。 4件：装备者对陷入负面效果的敌方目标造成伤害时暴击率提高10%，对陷入禁锢状态的敌方目标造成伤害时暴击伤害提高20%。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "虚数属性伤害提高10%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "虚数属性伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "装备者对陷入负面效果的敌方目标造成伤害时暴击率提高10%，对陷入禁锢状态的敌方目标造成伤害时暴击伤害提高20%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "装备者对陷入负面效果的敌方目标造成伤害时暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10%"
+          },
+          {
+            "type": "text",
+            "value": "，对陷入禁锢状态的敌方目标造成伤害时暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "20%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "112",
+    "kind": "relic",
+    "name": "盗匪荒漠的废土客",
+    "pieces": [
+      {
+        "description": "能够过滤沙尘与辐射的面罩，像是由废弃呼吸器改造而来。",
+        "id": "31121",
+        "name": "废土客的呼吸面罩",
+        "slot": "HEAD"
+      },
+      {
+        "description": "能检测电离辐射气体的多功能垃圾，会讲垃圾话。",
+        "id": "31122",
+        "name": "废土客的荒漠终端",
+        "slot": "HAND"
+      },
+      {
+        "description": "宽松的长袍，由传教士的款式改造而来。",
+        "id": "31123",
+        "name": "废土客的修士长袍",
+        "slot": "BODY"
+      },
+      {
+        "description": "动力甲的腿部，废铁和旧电线制作的外骨骼。",
+        "id": "31124",
+        "name": "废土客的动力腿甲",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【迴星港】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31121"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31122"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31123"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31124"
+      }
+    ],
+    "route": "/relics/112"
+  }
+}

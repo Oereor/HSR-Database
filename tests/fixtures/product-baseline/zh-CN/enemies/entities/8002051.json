@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002051",
+    "name": "扑大哥",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8002051",
+    "defaultMonsterRef": "64d134694266f794c1f0228ae9744ce28cb97b01f9b89a6fb9e129520f9e1e43",
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002051",
+    "kind": "enemy",
+    "monsterRefs": [
+      "64d134694266f794c1f0228ae9744ce28cb97b01f9b89a6fb9e129520f9e1e43",
+      "f6a0f2d64e4d532e7c521ceacbfe1aff46c7a28a6b642b7506f475924d170884",
+      "d85b78e1ec0b6951361ea87a9ac744fb0fc2a8b14991487df9ac19a3d4faedfa",
+      "33b88b23b767a666d9a6a58595eaa1bbf3571f83b466289e1cc1081e65bce384"
+    ],
+    "name": "扑大哥",
+    "rank": "MinionLv2",
+    "templateRef": "949602e4932c86cd43749a3557ffc3c6aa65ed5d0f8361320a96bc6e2bc5a862",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8002051",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8002051",
+    "selectableMonsterIds": [
+      "8002051",
+      "800205101",
+      "800205102",
+      "800205103"
+    ]
+  }
+}

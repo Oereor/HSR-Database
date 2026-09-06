@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   export let currentPage = 1;
   export let pages = 1;
   export let queryString = '';
@@ -11,8 +12,10 @@
 </script>
 
 {#if pages > 1}
-  <nav class="overview-pagination" aria-label="分页">
-    {#if currentPage > 1}<a href={pageUrl(queryString, currentPage - 1)}>上一页</a>{/if}
+  <nav class="overview-pagination" aria-label={m.pagination_aria({}, { locale: 'zh-CN' })}>
+    {#if currentPage > 1}<a href={pageUrl(queryString, currentPage - 1)}
+        >{m.pagination_previous({}, { locale: 'zh-CN' })}</a
+      >{/if}
     <div class="overview-pagination__pages">
       {#each [...Array(pages).keys()] as pageIndex}
         <a
@@ -23,8 +26,10 @@
         </a>
       {/each}
     </div>
-    <span>第 {currentPage} / {pages} 页</span>
-    {#if currentPage < pages}<a href={pageUrl(queryString, currentPage + 1)}>下一页</a>{/if}
+    <span>{m.overview_page_count({ currentPage, pages }, { locale: 'zh-CN' })}</span>
+    {#if currentPage < pages}<a href={pageUrl(queryString, currentPage + 1)}
+        >{m.pagination_next({}, { locale: 'zh-CN' })}</a
+      >{/if}
   </nav>
 {/if}
 

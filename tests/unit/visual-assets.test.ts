@@ -389,7 +389,6 @@ describe('视觉资源管线', () => {
     const requirements = await readAssetRequirements();
     const generated = await readAssetManifest();
     expect(requirements.characterIds).toHaveLength(97);
-    expect(requirements.characterDetailIconKeys).toHaveLength(1547);
     expect(requirements.lightConeIds).toHaveLength(169);
     expect(requirements.relicSetIds).toHaveLength(60);
     expect(requirements.relicPieces).toHaveLength(184);
@@ -414,10 +413,30 @@ describe('视觉资源管线', () => {
     }
     expect(generated!.characters.previews.missing).toEqual([]);
     expect(generated!.characters.portraits.missing).toEqual([]);
-    expect(Object.keys(generated!.characterDetails.icons.resolved)).toHaveLength(1547);
+    expect(Object.keys(generated!.characterDetails.icons.resolved).sort()).toEqual(
+      [...requirements.characterDetailIconKeys].sort()
+    );
     expect(generated!.characterDetails.icons.missing).toEqual([]);
     expect(resolveCharacterDetailIconAsset('skill-tree--1407002', generated)).toBe(
       '/generated-assets/character-details/icons/skill/1407_skill.png'
+    );
+    expect(resolveCharacterDetailIconAsset('skill-tree--1413301', generated)).toBe(
+      '/generated-assets/character-details/icons/skill/1413_memosprite_skill3.png'
+    );
+    expect(resolveCharacterDetailIconAsset('skill-tree--1415301', generated)).toBe(
+      '/generated-assets/character-details/icons/skill/1415_memosprite_skill.png'
+    );
+    expect(resolveCharacterDetailIconAsset('skill-tree--1510004', generated)).toBe(
+      '/generated-assets/character-details/icons/skill/1510_talent.png'
+    );
+    expect(resolveCharacterDetailIconAsset('skill--151022', generated)).toBe(
+      '/generated-assets/character-details/icons/skill/1510_assist01.png'
+    );
+    expect(resolveCharacterDetailIconAsset('skill-tree--8007301', generated)).toBe(
+      '/generated-assets/character-details/icons/skill/8007_memosprite_skill1.png'
+    );
+    expect(resolveCharacterDetailIconAsset('skill-tree--8008301', generated)).toBe(
+      '/generated-assets/character-details/icons/skill/8008_memosprite_skill1.png'
     );
     for (const id of ['20000', '21015', '23000']) {
       expect(requirements.lightConeIds).toContain(id);

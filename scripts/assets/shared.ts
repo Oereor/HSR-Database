@@ -184,10 +184,11 @@ const uniqueSorted = (values: Array<string | undefined>): string[] =>
   );
 
 export async function readAssetRequirements(): Promise<AssetRequirements> {
-  const characterCatalogPath = path.join(generatedRoot, 'catalogs', 'characters.json');
-  const lightConeCatalogPath = path.join(generatedRoot, 'catalogs', 'light-cones.json');
-  const relicCatalogPath = path.join(generatedRoot, 'catalogs', 'relics.json');
-  const relicPropertyCatalogPath = path.join(generatedRoot, 'catalogs', 'relic-properties.json');
+  const productRoot = path.join(generatedRoot, 'views', 'zh-CN');
+  const characterCatalogPath = path.join(productRoot, 'catalogs', 'characters.json');
+  const lightConeCatalogPath = path.join(productRoot, 'catalogs', 'light-cones.json');
+  const relicCatalogPath = path.join(productRoot, 'catalogs', 'relics.json');
+  const relicPropertyCatalogPath = path.join(productRoot, 'catalogs', 'relic-properties.json');
   let characterCatalog: CatalogEntry[];
   let characterDetails: Character[];
   let lightConeCatalog: CatalogEntry[];
@@ -203,7 +204,7 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
     relicDetails = await Promise.all(
       relicCatalog.map(async (set) =>
         JSON.parse(
-          await readFile(path.join(generatedRoot, 'details', 'relics', `${set.id}.json`), 'utf8')
+          await readFile(path.join(productRoot, 'details', 'relics', `${set.id}.json`), 'utf8')
         )
       )
     );
@@ -211,7 +212,7 @@ export async function readAssetRequirements(): Promise<AssetRequirements> {
       characterCatalog.map(async (character) =>
         JSON.parse(
           await readFile(
-            path.join(generatedRoot, 'details', 'characters', `${character.id}.json`),
+            path.join(productRoot, 'details', 'characters', `${character.id}.json`),
             'utf8'
           )
         )

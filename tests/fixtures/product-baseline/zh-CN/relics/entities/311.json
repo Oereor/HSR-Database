@@ -1,0 +1,122 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的攻击力提高12%。当装备者的速度大于等于135/160时，使装备者造成的伤害提高12%/18%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "311",
+    "name": "苍穹战线格拉默",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.5"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的攻击力提高12%。当装备者的速度大于等于135/160时，使装备者造成的伤害提高12%/18%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的攻击力提高12%。当装备者的速度大于等于135/160时，使装备者造成的伤害提高12%/18%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者的速度大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "135"
+          },
+          {
+            "type": "text",
+            "value": "/"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "160"
+          },
+          {
+            "type": "text",
+            "value": "时，使装备者造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "/"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "18%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "311",
+    "kind": "relic",
+    "name": "苍穹战线格拉默",
+    "pieces": [
+      {
+        "description": "位面球中封装的是格拉默帝国盛名在外的铁骑变形鞘。无数白银机甲被装载进舰船，驶向星系外缘，抵御自深空而来的虫群恶蠹。",
+        "id": "33115",
+        "name": "格拉默的铁骑兵团",
+        "slot": "NECK"
+      },
+      {
+        "description": "鼎盛的「帝国」格拉默化为了尘埃。没有任何东西能证明它往日的辉煌，唯有星尘、机甲、舰船与虫群的残骸飘荡在真空中绵延成河，维持着惨烈战线的原状，也成了它陨落的纪念碑。",
+        "id": "33116",
+        "name": "格拉默的寂静坟碑",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第八世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.5"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33115"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33116"
+      }
+    ],
+    "route": "/relics/311"
+  }
+}

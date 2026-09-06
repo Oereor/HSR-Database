@@ -1,0 +1,148 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：攻击力提高12%。 4件：装备者进入战斗时/施放战技时，使战技和终结技造成的伤害提高18%，最多叠加3层，装备者回合开始时/施放终结技后，移除1层该效果。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "131",
+    "name": "星如我见的领航员",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "4.3"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：攻击力提高12%。 4件：装备者进入战斗时/施放战技时，使战技和终结技造成的伤害提高18%，最多叠加3层，装备者回合开始时/施放终结技后，移除1层该效果。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "攻击力提高12%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "装备者进入战斗时/施放战技时，使战技和终结技造成的伤害提高18%，最多叠加3层，装备者回合开始时/施放终结技后，移除1层该效果。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "装备者进入战斗时/施放战技时，使战技和终结技造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "18%"
+          },
+          {
+            "type": "text",
+            "value": "，最多叠加"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "3"
+          },
+          {
+            "type": "text",
+            "value": "层，装备者回合开始时/施放终结技后，移除"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "1"
+          },
+          {
+            "type": "text",
+            "value": "层该效果。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "131",
+    "kind": "relic",
+    "name": "星如我见的领航员",
+    "pieces": [
+      {
+        "description": "领航员精心打造的望远镜，他见证过生命诞生于荒芜的星尘，也目睹了毁灭自彼方升起。",
+        "id": "31311",
+        "name": "领航员的深空之镜",
+        "slot": "HEAD"
+      },
+      {
+        "description": "领航员的骰子戒指，每一次转动都会给出有趣的谜题。他似乎和很多人玩过游戏，有些人赢了，有些人则就此不知所踪。",
+        "id": "31312",
+        "name": "领航员的游戏之骰",
+        "slot": "HAND"
+      },
+      {
+        "description": "领航员制服的暗纹里，细密地绣着星穹列车曾驶过的浩瀚星图。每一条金线的延伸，都代表着一段航程。",
+        "id": "31313",
+        "name": "领航员的星图制服",
+        "slot": "BODY"
+      },
+      {
+        "description": "领航员的特制皮靴，据传拥有特殊的魔力，会把人带往所有不欢迎他的地方。",
+        "id": "31314",
+        "name": "领航员的永行魔靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【{TextID#FloorName_20511001}】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "4.3"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31311"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31312"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31313"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31314"
+      }
+    ],
+    "route": "/relics/131"
+  }
+}

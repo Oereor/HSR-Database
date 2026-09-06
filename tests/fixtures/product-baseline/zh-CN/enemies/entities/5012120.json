@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "为「星铁FES」提供安保和清洁服务的机铠。\n它们勤劳勇敢、敢作敢当、当仁不让、让…让…让二相乐园再次干净整洁帕。",
+    "id": "5012120",
+    "name": "「合金保姆」",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012120",
+    "defaultMonsterRef": "bd6f6ab441c2c3cde3665f5a31fb6f493a2138106f89b5b2a97719d53a3476de",
+    "description": "为「星铁FES」提供安保和清洁服务的机铠。\n它们勤劳勇敢、敢作敢当、当仁不让、让…让…让二相乐园再次干净整洁帕。",
+    "id": "5012120",
+    "kind": "enemy",
+    "monsterRefs": [
+      "bd6f6ab441c2c3cde3665f5a31fb6f493a2138106f89b5b2a97719d53a3476de",
+      "c27bc9885ff705b80e378a1f0b8b7416968b74336e7015bf063f71335ccad223",
+      "f93a1db9393bddf354822a1889cb476f1601804459cd8efc63361e9af11f8fc0",
+      "3c25436803cf7e071dbade2f821f62b54a9139d2dab709bc16ad7f552d3395c0"
+    ],
+    "name": "「合金保姆」",
+    "rank": "MinionLv2",
+    "templateRef": "bd6102ee961ab4ba4bb6f8a9a44b8787284af7636fa8cff3926ad00133ebb2bc",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012120",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012120",
+    "selectableMonsterIds": [
+      "5012120",
+      "501212001",
+      "501212002",
+      "501212003"
+    ]
+  }
+}

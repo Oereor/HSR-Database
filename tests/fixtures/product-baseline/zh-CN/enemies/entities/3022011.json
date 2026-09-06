@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "某人对至亲记忆之余音。迢迢长夜里，它们与他同在——昔在、今在，以后永在。",
+    "id": "3022011",
+    "name": "旧梦的回声",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3022011",
+    "defaultMonsterRef": "373ced26f234ba6ba3a2e9d3e880781c01949894566747a75e59f6cfbb72bfc0",
+    "description": "某人对至亲记忆之余音。迢迢长夜里，它们与他同在——昔在、今在，以后永在。",
+    "id": "3022011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "373ced26f234ba6ba3a2e9d3e880781c01949894566747a75e59f6cfbb72bfc0"
+    ],
+    "name": "旧梦的回声",
+    "rank": "MinionLv2",
+    "templateRef": "abcbc0782337cb04aff50f9fcc564305eef497dce11d7033b61e951163934905",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3022011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3022011",
+    "selectableMonsterIds": [
+      "3022011"
+    ]
+  }
+}

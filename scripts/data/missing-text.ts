@@ -33,8 +33,6 @@ export interface MissingTextAuditCollector {
 }
 
 const categories: MissingTextCategory[] = ['A', 'B', 'C', 'D'];
-const MAX_SAMPLES = 20;
-
 export function createMissingTextAuditCollector(): MissingTextAuditCollector {
   const entries = new Map<MissingTextCategory, Map<string, MissingTextSample>>(
     categories.map((category) => [category, new Map()])
@@ -74,7 +72,7 @@ export function createMissingTextAuditCollector(): MissingTextAuditCollector {
             groups: [...groups.values()].sort(
               (a, b) => b.count - a.count || a.entity.localeCompare(b.entity)
             ),
-            samples: samples.slice(0, MAX_SAMPLES)
+            samples
           }
         ];
       })

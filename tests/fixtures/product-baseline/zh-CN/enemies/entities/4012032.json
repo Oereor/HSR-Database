@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。信仰如飞箭矢志不移，为泰坦造主的悬锋与凶矛寻取猎物，猎杀荒原中的奇兽与战场上的敌兵，射程之内无活物得以幸免。",
+    "id": "4012032",
+    "name": "天谴猎手",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012032",
+    "defaultMonsterRef": "822c75d3a8204230d75056175a7a327ea0d2b178fc089d1ad5f8212daabc9797",
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。信仰如飞箭矢志不移，为泰坦造主的悬锋与凶矛寻取猎物，猎杀荒原中的奇兽与战场上的敌兵，射程之内无活物得以幸免。",
+    "id": "4012032",
+    "kind": "enemy",
+    "monsterRefs": [
+      "822c75d3a8204230d75056175a7a327ea0d2b178fc089d1ad5f8212daabc9797"
+    ],
+    "name": "天谴猎手",
+    "rank": "MinionLv2",
+    "templateRef": "d163a60765aafea392187563d0690ea2562af2df43d71efff858a0fbcac5ca45",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012032",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012032",
+    "selectableMonsterIds": [
+      "4012032"
+    ]
+  }
+}

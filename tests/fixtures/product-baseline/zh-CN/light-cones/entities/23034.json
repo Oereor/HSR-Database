@@ -1,0 +1,447 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23034",
+    "name": "回到大地的飞行",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 52.8,
+            "perLevel": 7.92
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 116.16,
+            "perLevel": 7.92
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 200.64,
+            "perLevel": 7.92
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 285.12,
+            "perLevel": 7.92
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 369.6,
+            "perLevel": 7.92
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 454.08,
+            "perLevel": 7.92
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 538.56,
+            "perLevel": 7.92
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23034",
+    "kind": "light-cone",
+    "name": "回到大地的飞行",
+    "passive": {
+      "id": "23034",
+      "name": "再启程",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "当装备者对我方单体角色施放战技或终结技后，装备者恢复6.0点能量，同时使技能目标获得1层【圣咏】，持续3回合，最多叠加3层，每层【圣咏】使持有者造成的伤害提高15%。装备者每对我方单体角色施放2次战技或终结技后，恢复1个战技点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者对我方单体角色施放战技或终结技后，装备者恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "6.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，同时使技能目标获得1层【圣咏】，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层，每层【圣咏】使持有者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者每对我方单体角色施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "次战技或终结技后，恢复1个战技点。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "当装备者对我方单体角色施放战技或终结技后，装备者恢复6.5点能量，同时使技能目标获得1层【圣咏】，持续3回合，最多叠加3层，每层【圣咏】使持有者造成的伤害提高17%。装备者每对我方单体角色施放2次战技或终结技后，恢复1个战技点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者对我方单体角色施放战技或终结技后，装备者恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "6.5"
+              },
+              {
+                "type": "text",
+                "value": "点能量，同时使技能目标获得1层【圣咏】，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层，每层【圣咏】使持有者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "17%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者每对我方单体角色施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "次战技或终结技后，恢复1个战技点。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "当装备者对我方单体角色施放战技或终结技后，装备者恢复7.0点能量，同时使技能目标获得1层【圣咏】，持续3回合，最多叠加3层，每层【圣咏】使持有者造成的伤害提高20%。装备者每对我方单体角色施放2次战技或终结技后，恢复1个战技点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者对我方单体角色施放战技或终结技后，装备者恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "7.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，同时使技能目标获得1层【圣咏】，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层，每层【圣咏】使持有者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者每对我方单体角色施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "次战技或终结技后，恢复1个战技点。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "当装备者对我方单体角色施放战技或终结技后，装备者恢复7.5点能量，同时使技能目标获得1层【圣咏】，持续3回合，最多叠加3层，每层【圣咏】使持有者造成的伤害提高22%。装备者每对我方单体角色施放2次战技或终结技后，恢复1个战技点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者对我方单体角色施放战技或终结技后，装备者恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "7.5"
+              },
+              {
+                "type": "text",
+                "value": "点能量，同时使技能目标获得1层【圣咏】，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层，每层【圣咏】使持有者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "22%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者每对我方单体角色施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "次战技或终结技后，恢复1个战技点。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "当装备者对我方单体角色施放战技或终结技后，装备者恢复8.0点能量，同时使技能目标获得1层【圣咏】，持续3回合，最多叠加3层，每层【圣咏】使持有者造成的伤害提高24%。装备者每对我方单体角色施放2次战技或终结技后，恢复1个战技点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者对我方单体角色施放战技或终结技后，装备者恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，同时使技能目标获得1层【圣咏】，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层，每层【圣咏】使持有者造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者每对我方单体角色施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "次战技或终结技后，恢复1个战技点。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 5,
+    "story": "虚妄迷想业已碎裂，他要做万物的太阳，却从天空坠落。\n\n<i>「感受到了何为痛苦吗？」</i>\n他心中另一道声音如是说道。\n<i>「那正是我应感受的。」</i>\n他落入尘埃，用沉重的脚步回答。\n\n他行走于大地，再次看到遍布人世的苦楚，如同源源不断的水泉。\n他跨越拦路的荆棘，他听闻凡人的呼喊，他经受苦惘，他获得宁静。\n\n<i>「坠落，本是飞翔的别名。」</i>\n在这第八日，他赐予自身「启程」。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23034",
+    "storyFallbackRendered": false
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：风属性伤害提高10%。 4件：当装备者施放终结技后，使其行动提前25%。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "110",
+    "name": "晨昏交界的翔鹰",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：风属性伤害提高10%。 4件：当装备者施放终结技后，使其行动提前25%。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "风属性伤害提高10%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "风属性伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "当装备者施放终结技后，使其行动提前25%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "当装备者施放终结技后，使其行动提前"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "25%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "110",
+    "kind": "relic",
+    "name": "晨昏交界的翔鹰",
+    "pieces": [
+      {
+        "description": "高速飞行中使用的流体头盔，形似空渔鹰的鸟喙。",
+        "id": "31101",
+        "name": "翔鹰的长喙头盔",
+        "slot": "HEAD"
+      },
+      {
+        "description": "卓越空渔人大师所佩戴的指环，空渔鹰双翅纹样紧抱手指。",
+        "id": "31102",
+        "name": "翔鹰的鹰击指环",
+        "slot": "HAND"
+      },
+      {
+        "description": "连接扑翼装的腰带，金属支撑藏在粗麻束带中，柔软贴身。",
+        "id": "31103",
+        "name": "翔鹰的翼装束带",
+        "slot": "BODY"
+      },
+      {
+        "description": "飞行中确保腿部保暖的绑带，装饰着空渔鹰的翎羽。",
+        "id": "31104",
+        "name": "翔鹰的绒羽绑带",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【收容舱段】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31101"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31102"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31103"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31104"
+      }
+    ],
+    "route": "/relics/110"
+  }
+}

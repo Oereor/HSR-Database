@@ -1,0 +1,139 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：击破特攻提高16%。 4件：使装备者的击破特攻提高16%。当装备者击破敌方目标弱点后，恢复3点能量。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "111",
+    "name": "流星追迹的怪盗",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：击破特攻提高16%。 4件：使装备者的击破特攻提高16%。当装备者击破敌方目标弱点后，恢复3点能量。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "击破特攻提高16%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "击破特攻提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "16%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "使装备者的击破特攻提高16%。当装备者击破敌方目标弱点后，恢复3点能量。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的击破特攻提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "16%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者击破敌方目标弱点后，恢复"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "3"
+          },
+          {
+            "type": "text",
+            "value": "点能量。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "111",
+    "kind": "relic",
+    "name": "流星追迹的怪盗",
+    "pieces": [
+      {
+        "description": "用以改变面貌的面具，结合精湛的演技便能以假乱真。",
+        "id": "31111",
+        "name": "怪盗的千人假面",
+        "slot": "HEAD"
+      },
+      {
+        "description": "编入纳米材料的特殊手套，可即时编写手套表面纹样。",
+        "id": "31112",
+        "name": "怪盗的绘纹手套",
+        "slot": "HAND"
+      },
+      {
+        "description": "伪装成编织腰带的钢索，腰带卡扣里隐藏着挂钩和滑轮。",
+        "id": "31113",
+        "name": "怪盗的纤钢爪钩",
+        "slot": "BODY"
+      },
+      {
+        "description": "一双辅助增强人体机能的靴子，帮助怪盗在楼宇之间大步流星。",
+        "id": "31114",
+        "name": "怪盗的流星快靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【铁卫禁区】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31111"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31112"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31113"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31114"
+      }
+    ],
+    "route": "/relics/111"
+  }
+}

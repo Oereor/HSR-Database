@@ -1,0 +1,54 @@
+{
+  "catalog": {
+    "description": "「星际和平公司」的资深员工，级别至少是项目组的小组长。驾驶的机甲属于公有资产，一旦损坏需要自费赔偿。工资尚可，足够在公司旗下的企业舰上租下一室一厅的单间。",
+    "id": "1002064",
+    "name": "公司组长幻象",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1002064",
+    "defaultMonsterRef": "788997628e97e230a7613f8a33b4319345cca2c131d663b914e88bf17de7b5cb",
+    "description": "「星际和平公司」的资深员工，级别至少是项目组的小组长。驾驶的机甲属于公有资产，一旦损坏需要自费赔偿。工资尚可，足够在公司旗下的企业舰上租下一室一厅的单间。",
+    "id": "1002064",
+    "kind": "enemy",
+    "monsterRefs": [
+      "788997628e97e230a7613f8a33b4319345cca2c131d663b914e88bf17de7b5cb",
+      "0a6389acb92e7ee4fdda199d1c982e199988bc4b80df7e42368053be6922f7fe"
+    ],
+    "name": "公司组长幻象",
+    "rank": "MinionLv2",
+    "templateRef": "ec6d86a2528cfc7865d8430bfe7021230718ca06131ea50edd329258de0a88a3",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1002064",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1002064",
+    "selectableMonsterIds": [
+      "1002064",
+      "100206401"
+    ]
+  }
+}

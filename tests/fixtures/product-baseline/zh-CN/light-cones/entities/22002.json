@@ -1,0 +1,357 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "22002",
+    "name": "为了明日的旅途",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 15,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 33,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 129,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "22002",
+    "kind": "light-cone",
+    "name": "为了明日的旅途",
+    "passive": {
+      "id": "22002",
+      "name": "联结",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的攻击力提高16%。装备者施放终结技后，造成的伤害提高18%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技后，造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的攻击力提高20%。装备者施放终结技后，造成的伤害提高21%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技后，造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的攻击力提高24%。装备者施放终结技后，造成的伤害提高24%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技后，造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的攻击力提高28%。装备者施放终结技后，造成的伤害提高27%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技后，造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的攻击力提高32%。装备者施放终结技后，造成的伤害提高30%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技后，造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 4,
+    "story": "罗盘的指针不断旋转，最后指向了梦的时刻。\n车窗外，忆质充盈的阿斯德纳星系泛着迷蒙的光彩，坐落其间的边陲监狱战火绵延。\n\n<i>「你们说，梦中的世界会是什么样的？我一定要仔仔细细地画下完整的地图！」 </i>\n少女收起测绘仪器，满怀憧憬地看着触手可及的新世界。\n<i>「那里乱得很，你们两个到了之后别乱跑。再像上次那样被别人绑架，我……」 </i>\n牛仔打扮的男人擦拭完武器，端着一杯饮料走到沙发处，无奈地摇了摇头。 \n<i>「梦想之地，有无限可能，我们一定会干出一番事业…列车长，要是我们爱上这地方不回来了，你会想我们吗？」 </i>\n绅士打扮的无名客朝帕姆眨了眨眼，微笑道。 \n<i>「不可以随便开列车长的玩笑帕！列车长，你是不是想说这句？」 </i>少女露出狡黠的笑容。\n<i>「可恶！你们！」 </i>\n气泡在饮料里浮浮沉沉，车厢里充满了欢声笑语。 \n……\n\n无名客年轻的背影逐渐被忆质吞没。\n<i>「一路平安…帕……」</i>\n回头的时候，车厢变得空落落的。\n它愣住了…这样的场景，它似乎已经经历过无数次了。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/22002",
+    "storyFallbackRendered": false
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "来自蚀月猎群的步离人士兵，以贪婪吞噬敌人血肉而闻名。",
+    "id": "2032020",
+    "name": "蚀月狼卒",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2032020",
+    "defaultMonsterRef": "64ef99695d85ed431afe9c525b7c3e302d5a3fcf528ff2735783b37867dbad80",
+    "description": "来自蚀月猎群的步离人士兵，以贪婪吞噬敌人血肉而闻名。",
+    "id": "2032020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "64ef99695d85ed431afe9c525b7c3e302d5a3fcf528ff2735783b37867dbad80",
+      "73b1ff8c8c4d08e10c45cbffba0ee3a2ff009aacd693d7de96d66405a7abf980",
+      "75d2f8b5c89ae793ec6cc0f485884700e072d4799026a1d0d51ca2bd88f6358b",
+      "6c9d8966accad6b5dd3462ad64ae78aa4be6505e047ad2bdcc1276967f113a78",
+      "ab976d17a6012ddda31f6b2e05eec955fe4e7262c8c9ceb2a655056108bcde62"
+    ],
+    "name": "蚀月狼卒",
+    "rank": "MinionLv2",
+    "templateRef": "0af5f74206f4b308ef31f4911ae60b24a0a961146d71ff5fea0b135fce576613",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2032020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2032020",
+    "selectableMonsterIds": [
+      "2032020",
+      "203202001",
+      "203202002",
+      "203202003",
+      "203202004"
+    ]
+  }
+}

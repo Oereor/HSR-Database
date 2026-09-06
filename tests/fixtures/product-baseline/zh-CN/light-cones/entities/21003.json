@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21003",
+    "name": "唯有沉默",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 15,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 33,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 129,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21003",
+    "kind": "light-cone",
+    "name": "唯有沉默",
+    "passive": {
+      "id": "21003",
+      "name": "记录",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的攻击力提高16%。当场上的敌方目标数量小于等于2时，装备者的暴击率提高12%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。当场上的敌方目标数量小于等于2时，装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的攻击力提高20%。当场上的敌方目标数量小于等于2时，装备者的暴击率提高15%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。当场上的敌方目标数量小于等于2时，装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的攻击力提高24%。当场上的敌方目标数量小于等于2时，装备者的暴击率提高18%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。当场上的敌方目标数量小于等于2时，装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的攻击力提高28%。当场上的敌方目标数量小于等于2时，装备者的暴击率提高21%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。当场上的敌方目标数量小于等于2时，装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的攻击力提高32%。当场上的敌方目标数量小于等于2时，装备者的暴击率提高24%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "。当场上的敌方目标数量小于等于2时，装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 4,
+    "story": "<i>「已经到站了，不下车吗？」</i>\n头顶传来一声轻笑。他的眼睛动了动，没有抬头。\n\n<i>「事先说明，小三月总说你面无表情，我可不这么觉得。」\n「列车智库的数据有更新输入的痕迹，但是却没保存结果。」\n「所以…哪个条目还能难住你？」</i>\n\n他捏紧了笔，看着笔记本上那个仅凭印象复写而成的惨烈之景。\n\n<i>「原来如此，是关于你自己的事……」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21003",
+    "storyFallbackRendered": false
+  }
+}

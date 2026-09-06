@@ -1,0 +1,453 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "24002",
+    "name": "记忆的质料",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 19.2,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 42.24,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 72.96,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 103.68,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 134.4,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 165.12,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 195.84,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "24002",
+    "kind": "light-cone",
+    "name": "记忆的质料",
+    "passive": {
+      "id": "24002",
+      "name": "珍存",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的效果抵抗提高8%，当装备者受到攻击后，如果自身未持有护盾，则获得1个等同于装备者16%生命上限的护盾，持续2回合。该效果每3回合只能触发1次。如果装备者持有护盾，则使自身受到的伤害降低12%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的效果抵抗提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "，当装备者受到攻击后，如果自身未持有护盾，则获得1个等同于装备者"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的护盾，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。该效果每"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合只能触发1次。如果装备者持有护盾，则使自身受到的伤害降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的效果抵抗提高10%，当装备者受到攻击后，如果自身未持有护盾，则获得1个等同于装备者20%生命上限的护盾，持续2回合。该效果每3回合只能触发1次。如果装备者持有护盾，则使自身受到的伤害降低15%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的效果抵抗提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "，当装备者受到攻击后，如果自身未持有护盾，则获得1个等同于装备者"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的护盾，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。该效果每"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合只能触发1次。如果装备者持有护盾，则使自身受到的伤害降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的效果抵抗提高12%，当装备者受到攻击后，如果自身未持有护盾，则获得1个等同于装备者24%生命上限的护盾，持续2回合。该效果每3回合只能触发1次。如果装备者持有护盾，则使自身受到的伤害降低18%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的效果抵抗提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，当装备者受到攻击后，如果自身未持有护盾，则获得1个等同于装备者"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的护盾，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。该效果每"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合只能触发1次。如果装备者持有护盾，则使自身受到的伤害降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的效果抵抗提高14%，当装备者受到攻击后，如果自身未持有护盾，则获得1个等同于装备者28%生命上限的护盾，持续2回合。该效果每3回合只能触发1次。如果装备者持有护盾，则使自身受到的伤害降低21%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的效果抵抗提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "，当装备者受到攻击后，如果自身未持有护盾，则获得1个等同于装备者"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的护盾，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。该效果每"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合只能触发1次。如果装备者持有护盾，则使自身受到的伤害降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的效果抵抗提高16%，当装备者受到攻击后，如果自身未持有护盾，则获得1个等同于装备者32%生命上限的护盾，持续2回合。该效果每3回合只能触发1次。如果装备者持有护盾，则使自身受到的伤害降低24%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的效果抵抗提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "，当装备者受到攻击后，如果自身未持有护盾，则获得1个等同于装备者"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的护盾，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。该效果每"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合只能触发1次。如果装备者持有护盾，则使自身受到的伤害降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          4
+        ]
+      }
+    },
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5,
+    "story": "宇宙像一片堆满垃圾的生荒地。\n偶有琳琅，无人捡拾。\n祂翻阅往日的罅隙，拣选记忆的种子\n——新的生命要是萌芽，它的种子须是死的。\n粉色、蓝色、白色的宝石被带了来，\n在祂的苗圃中轻盈闪烁，\n但宇宙依旧寂静如谜。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/24002",
+    "storyFallbackRendered": false
+  }
+}

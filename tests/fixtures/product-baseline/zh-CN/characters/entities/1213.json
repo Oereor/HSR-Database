@@ -1,0 +1,3642 @@
+{
+  "catalog": {
+    "baseName": "丹恒•饮月",
+    "description": "丹恒身为持明族的本相，其上一世「饮月君」所遗存的力量。\n接受了额顶的峥嵘角冠，就要接受那罪人所立的一切功过。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "id": "1213",
+    "name": "丹恒•饮月",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "丹恒•饮月",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 125,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 102
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 95.04,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 49.5,
+            "perLevel": 2.475
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 168.96,
+            "perLevel": 8.448
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 133.056,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 69.3,
+            "perLevel": 2.475
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 236.544,
+            "perLevel": 8.448
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 171.072,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 89.1,
+            "perLevel": 2.475
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 304.128,
+            "perLevel": 8.448
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 209.088,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 108.9,
+            "perLevel": 2.475
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 371.712,
+            "perLevel": 8.448
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 247.104,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 128.7,
+            "perLevel": 2.475
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 439.296,
+            "perLevel": 8.448
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 285.12,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 148.5,
+            "perLevel": 2.475
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 506.88,
+            "perLevel": 8.448
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 323.136,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 168.3,
+            "perLevel": 2.475
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 574.464,
+            "perLevel": 8.448
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "丹恒身为持明族的本相，其上一世「饮月君」所遗存的力量。\n接受了额顶的峥嵘角冠，就要接受那罪人所立的一切功过。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "equipmentRecommendation": {
+      "avatarId": "1213",
+      "cavernSetIds": [
+        "102",
+        "112",
+        "117"
+      ],
+      "lightConeIds": [
+        "23015",
+        "24000",
+        "21019"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ImaginaryAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "309",
+        "305",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "丹恒•饮月",
+    "id": "1213",
+    "kind": "character",
+    "name": "丹恒•饮月",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "使【亢心】的可叠加层数增加<unbreak>4</unbreak>层。且每段攻击额外获得1层【亢心】。",
+            "iconKey": "rank--121301",
+            "id": "121301",
+            "name": "萦天",
+            "rank": 1
+          },
+          {
+            "description": "施放终结技后丹恒•饮月<u>行动提前</u><unbreak>100%</unbreak>，并且会额外获得1个【逆鳞】。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "rank--121302",
+            "id": "121302",
+            "name": "九斿",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--121303",
+            "id": "121303",
+            "name": "云旂",
+            "rank": 3
+          },
+          {
+            "description": "【叱咤】的<u>增益效果</u>会持续到下一个自身回合结束。",
+            "extraEffects": [
+              {
+                "description": "对战斗有增益效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000009",
+                "name": "增益效果"
+              }
+            ],
+            "iconKey": "rank--121304",
+            "id": "121304",
+            "name": "嘲风",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--121305",
+            "id": "121305",
+            "name": "偃蹇",
+            "rank": 5
+          },
+          {
+            "description": "我方其他角色施放终结技后，丹恒•饮月下一次施放【盘拏耀跃】时虚数属性<u>抗性穿透</u>提高<unbreak>20%</unbreak>，该效果最多叠加<unbreak>3</unbreak>层。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "rank--121306",
+            "id": "121306",
+            "name": "见谯",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 140
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1213001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1213001",
+                "variantIds": [
+                  "121301",
+                  "121308",
+                  "121310",
+                  "121312"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "121301",
+                "levels": [
+                  {
+                    "description": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月50%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月60%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月70%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月80%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月90%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月100%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月110%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月120%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月130%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月140%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放2段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "泽芝",
+                "progressionId": "1213001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "121308",
+                "levels": [
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月130%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月156%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月182%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "182%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月208%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "208%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月234%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "234%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月260%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "260%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月286%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "286%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月312%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "312%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月338%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "338%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月364%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "364%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "瞬华",
+                "progressionId": "1213001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": -2,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 35,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "121310",
+                "levels": [
+                  {
+                    "description": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月190%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月30%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "190%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月228%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月36%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月266%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月42%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "266%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月304%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月48%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "304%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月342%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月54%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "342%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月380%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月60%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "380%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月418%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月66%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "418%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月456%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月72%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "456%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月494%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月78%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "494%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月532%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月84%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放5段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "532%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "天矢阴",
+                "progressionId": "1213001",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": -3,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 40,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 40
+                    },
+                    {
+                      "type": "blast",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "121312",
+                "levels": [
+                  {
+                    "description": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月250%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月90%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月300%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月108%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月350%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月126%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月400%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月144%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "400%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月450%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月162%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "450%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "162%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月500%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月180%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "500%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月550%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月198%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "550%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "198%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月600%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月216%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "600%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月650%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月234%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "650%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "234%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月700%攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月252%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放7段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "700%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。从第4段攻击开始同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "盘拏耀跃",
+                "progressionId": "1213001",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1213002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1213002",
+                "variantIds": [
+                  "121302"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "121302",
+                "levels": [
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高6.0%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高6.6%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高7.2%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高7.8%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高8.4%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高9.0%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高9.8%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高10.5%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高11.3%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高12.0%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高12.6%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高13.2%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高13.8%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高14.4%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高15.0%，该效果最多叠加4层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使普攻的效果得到强化，最多可连续强化3次，施放本技能不消耗战技点且不视为使用战技。\n强化1次，【泽芝】变为【瞬华】。\n强化2次，【泽芝】变为【天矢阴】。\n强化3次，【泽芝】变为【盘拏耀跃】。\n施放【天矢阴】或【盘拏耀跃】时，从第4段攻击开始每段攻击前获得1层【叱咤】，使丹恒•饮月的暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "龙力自在",
+                "progressionId": "1213002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1213003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1213003",
+                "variantIds": [
+                  "121303"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "121303",
+                "levels": [
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月180%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月84%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月192%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月90%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月204%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月95%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "204%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月216%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月101%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "101%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月228%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月106%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "106%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月240%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月112%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月255%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月119%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "255%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "119%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月270%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月126%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "270%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月285%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月133%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "285%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "133%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月300%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月140%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月312%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月146%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "312%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "146%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月324%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月151%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "324%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "151%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月336%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月157%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "336%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "157%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月348%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月162%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "348%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "162%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月360%攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月168%攻击力的虚数属性伤害。并使自身获得2个【逆鳞】。\n【逆鳞】最多持有3个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放3段攻击对指定敌方单体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，同时对其相邻目标造成等同于丹恒•饮月"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。\n【逆鳞】最多持有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个，可用来抵扣丹恒•饮月的战技点消耗。消耗【逆鳞】视为消耗战技点。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "苍龙傲睨，劫水濯世",
+                "progressionId": "1213003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1213004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1213004",
+                "variantIds": [
+                  "121304"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "121304",
+                "levels": [
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高5.0%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高5.5%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高6.0%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高6.5%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高7.0%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高7.5%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高8.1%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高8.8%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高9.4%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高10.0%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高10.5%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高11.0%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高11.5%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高12.0%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高12.5%，该效果可以叠加6层，持续至自身回合结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "丹恒•饮月施放每段攻击后获得1层【亢心】，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层，持续至自身回合结束。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "亢心",
+                "progressionId": "1213004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1213007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1213007",
+                "variantIds": [
+                  "121307"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "121307",
+                "levels": [
+                  {
+                    "description": "使用秘技后进入持续20秒的【蟠跃】状态。【蟠跃】状态下使用攻击会快速向前移动一段距离并攻击接触到的敌人，在快速移动的过程中可抵挡敌人的所有攻击。【蟠跃】状态下主动攻击敌人进入战斗后，对敌方全体造成等同于丹恒•饮月120%攻击力的虚数属性伤害，并使自身获得1个【逆鳞】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后进入持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的【蟠跃】状态。【蟠跃】状态下使用攻击会快速向前移动一段距离并攻击接触到的敌人，在快速移动的过程中可抵挡敌人的所有攻击。【蟠跃】状态下主动攻击敌人进入战斗后，对敌方全体造成等同于丹恒•饮月"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个【逆鳞】。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "掣空如虹",
+                "progressionId": "1213007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "战斗开始时，立即恢复<unbreak>15</unbreak>点能量。",
+            "iconKey": "skill-tree--1213101",
+            "id": "1213101",
+            "name": "伏辰",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "抵抗<u>控制类负面状态</u>的概率提高<unbreak>35%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                "id": "10000011",
+                "name": "控制类负面状态"
+              }
+            ],
+            "iconKey": "skill-tree--1213102",
+            "id": "1213102",
+            "name": "修禹",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "对拥有虚数属性弱点的敌方目标造成伤害时，暴击伤害提高<unbreak>24%</unbreak>。",
+            "iconKey": "skill-tree--1213103",
+            "id": "1213103",
+            "name": "起蛰",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "虚数属性伤害提高3.2%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1213201",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [],
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1213202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1213101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "虚数属性伤害提高3.2%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1213203",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1213202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1213204",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1213203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "虚数属性伤害提高4.8%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1213205",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1213102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1213206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1213205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "虚数属性伤害提高4.8%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1213207",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1213206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1213208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1213103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1213209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1213208"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "虚数属性伤害提高6.4%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "1213210",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "1213208"
+            ],
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1213001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121301",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121308",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121310",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121312",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1213002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121302",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1213003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121303",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1213004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121304",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1213007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121307",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1213",
+    "subtitleRendered": false
+  }
+}

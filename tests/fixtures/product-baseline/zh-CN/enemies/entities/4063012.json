@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "流光忆庭的模因生命遭遇「毁灭」金血糅合而成的扭曲怪物。略有翼蛇雏形，足以装神弄鬼。\n它那扭曲的理智在黑潮中彻底疯狂，那强烈的自我防御冲动，无形中染上了一层幻想色彩。",
+    "id": "4063012",
+    "name": "复仇者战队•翼蛇形",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4063012",
+    "defaultMonsterRef": "e16111e81dc570d2e303c12fff241386915f2c05caa8e92590abdd70d4c38fb7",
+    "description": "流光忆庭的模因生命遭遇「毁灭」金血糅合而成的扭曲怪物。略有翼蛇雏形，足以装神弄鬼。\n它那扭曲的理智在黑潮中彻底疯狂，那强烈的自我防御冲动，无形中染上了一层幻想色彩。",
+    "id": "4063012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e16111e81dc570d2e303c12fff241386915f2c05caa8e92590abdd70d4c38fb7"
+    ],
+    "name": "复仇者战队•翼蛇形",
+    "rank": "Elite",
+    "templateRef": "8ed733da32abff1b31670eadd190f6d7cec18d0924e7377d4a0aaa7ce45b8aa9",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4063012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4063012",
+    "selectableMonsterIds": [
+      "4063012"
+    ]
+  }
+}

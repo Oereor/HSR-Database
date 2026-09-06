@@ -97,8 +97,16 @@ export function createMazeBuffResolver(
         );
       }
     });
-    const name = text.resolveRef(row.BuffName, textSource(id, 'BuffName')) || undefined;
-    const rawDescription = text.resolveRef(row.BuffDesc, textSource(id, 'BuffDesc')) || undefined;
+    const disposition = {
+      requirement: 'optional' as const,
+      visibility: 'hidden' as const,
+      fallbackUsed: false,
+      productRouteReachability: 'reachable' as const
+    };
+    const name =
+      text.resolveRef(row.BuffName, textSource(id, 'BuffName'), disposition) || undefined;
+    const rawDescription =
+      text.resolveRef(row.BuffDesc, textSource(id, 'BuffDesc'), disposition) || undefined;
     const formatted = rawDescription
       ? formatGameMarkup(
           rawDescription,

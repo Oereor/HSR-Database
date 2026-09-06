@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "贝洛伯格守护者的继任者，银鬃铁卫的统帅。\n布洛妮娅会使用多种战术攻击敌人，并大幅提升友军的作战能力。出现于此的是基于你的记忆模拟出的幻影。",
+    "id": "1004032",
+    "name": "布洛妮娅（幻象）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004032",
+    "defaultMonsterRef": "7410cabffc3ef89b0639f43c5afd11afec2399541e64a24aabde696fa829b477",
+    "description": "贝洛伯格守护者的继任者，银鬃铁卫的统帅。\n布洛妮娅会使用多种战术攻击敌人，并大幅提升友军的作战能力。出现于此的是基于你的记忆模拟出的幻影。",
+    "id": "1004032",
+    "kind": "enemy",
+    "monsterRefs": [
+      "7410cabffc3ef89b0639f43c5afd11afec2399541e64a24aabde696fa829b477"
+    ],
+    "name": "布洛妮娅（幻象）",
+    "rank": "LittleBoss",
+    "templateRef": "8b3fd88e4c10208feb5b2d1cbfdfc85cf4ce933ee882cc2409a93d0640f5d4ad",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004032",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004032",
+    "selectableMonsterIds": [
+      "1004032"
+    ]
+  }
+}

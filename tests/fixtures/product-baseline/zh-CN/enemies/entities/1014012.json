@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为旧世界的古老遗物，地髓开拓团的时代遗留下的自动控制单元。与大部分无智、只接受指令的机器不同，史瓦罗具有复杂的思考能力。\n在战斗中，史瓦罗（完整）能召唤各种类型的机械并操控机械臂抓取和控制敌人，对目标进行沉重的打击。",
+    "id": "1014012",
+    "name": "史瓦罗（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1014012",
+    "defaultMonsterRef": "851ac7e8d7a0bf5ac3657666f654bb619e442a9a1925526c0608ae9e365146e0",
+    "description": "代码受到影响后的完整投影。参照本体为旧世界的古老遗物，地髓开拓团的时代遗留下的自动控制单元。与大部分无智、只接受指令的机器不同，史瓦罗具有复杂的思考能力。\n在战斗中，史瓦罗（完整）能召唤各种类型的机械并操控机械臂抓取和控制敌人，对目标进行沉重的打击。",
+    "id": "1014012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "851ac7e8d7a0bf5ac3657666f654bb619e442a9a1925526c0608ae9e365146e0",
+      "669508f7e24e79f7fe31b2a5e493255e86a9c7e514d4434b894f5d7b1e57c719"
+    ],
+    "name": "史瓦罗（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "3ede80b1b4ddf97b02d59f98819a93057b7ba3347300c0689b387a45a6f5e3cf",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1014012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1014012",
+    "selectableMonsterIds": [
+      "1014012",
+      "101401201"
+    ]
+  }
+}

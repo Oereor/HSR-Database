@@ -2129,6 +2129,14 @@ test('角色详情 icon 增强保持 canonical 技能、紧凑卡片与无破图
       `/generated-assets/character-details/icons/skill/${id}_basic_atk2.png`
     );
   }
+
+  await page.goto('/characters/1510');
+  await expect(
+    page.locator('[data-skill-category="talent"] .skill-card__heading img')
+  ).toHaveAttribute('src', '/generated-assets/character-details/icons/skill/1510_talent.png');
+  await expect(
+    page.locator('[data-skill-category="assist"] .skill-card__heading img')
+  ).toHaveAttribute('src', '/generated-assets/character-details/icons/skill/1510_assist01.png');
 });
 
 test('角色与敌人属性文字使用统一颜色', async ({ page }) => {

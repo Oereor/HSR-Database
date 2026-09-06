@@ -1,0 +1,357 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21055",
+    "name": "直到明天的明天",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21055",
+    "kind": "light-cone",
+    "name": "直到明天的明天",
+    "passive": {
+      "id": "21055",
+      "name": "离别",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的治疗量提高12%。我方目标当前生命值百分比大于等于50%时，造成的伤害提高12%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。我方目标当前生命值百分比大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "时，造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的治疗量提高15%。我方目标当前生命值百分比大于等于50%时，造成的伤害提高14%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "。我方目标当前生命值百分比大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "时，造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的治疗量提高18%。我方目标当前生命值百分比大于等于50%时，造成的伤害提高16%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。我方目标当前生命值百分比大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "时，造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的治疗量提高21%。我方目标当前生命值百分比大于等于50%时，造成的伤害提高18%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "。我方目标当前生命值百分比大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "时，造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的治疗量提高24%。我方目标当前生命值百分比大于等于50%时，造成的伤害提高20%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。我方目标当前生命值百分比大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "时，造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          2
+        ]
+      }
+    },
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 4,
+    "story": "<i>「缇里西庇俄丝，明天见……」</i>\n\n母亲远行的时分，女孩拭去她脸庞的泪。\n\n她等待着一个又一个明天，直到自己也成长为母亲一般的人。\n她站在门扉之前，紧握火种，耳边响起母亲的话。\n\n<i>「那里，没有风雪、严寒与骤雨……」</i>\n\n<i>「但如果明天见不到……」</i>\n\n她坠向大地，留下稚嫩的身影如流星划过天空——\n\n<i>「那就明天的明天见啦！」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21055",
+    "storyFallbackRendered": false
+  }
+}

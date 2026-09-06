@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "盘踞在银河深处的恐怖大魔王，拥有脚踩星系拳打黑洞的实力，数百万颗星球被笼罩在漆黑斗篷的阴影下，全银河都在呼唤一位能掀翻魔王统治的勇士。",
+    "id": "4034012",
+    "name": "「黑斗篷魔王」",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4034012",
+    "defaultMonsterRef": "28cd8ed030a966b7b2a2b7f07812cc8afd2e74bbe441042b42e481e485852ea2",
+    "description": "盘踞在银河深处的恐怖大魔王，拥有脚踩星系拳打黑洞的实力，数百万颗星球被笼罩在漆黑斗篷的阴影下，全银河都在呼唤一位能掀翻魔王统治的勇士。",
+    "id": "4034012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "28cd8ed030a966b7b2a2b7f07812cc8afd2e74bbe441042b42e481e485852ea2"
+    ],
+    "name": "「黑斗篷魔王」",
+    "rank": "LittleBoss",
+    "templateRef": "12653be772c2da9ab687f3b5ced9ca8574b8221a9b56de4e6f198e54d133cbde",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4034012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4034012",
+    "selectableMonsterIds": [
+      "4034012"
+    ]
+  }
+}

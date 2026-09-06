@@ -12,14 +12,19 @@ import type { GlobalSearchIndex } from '$lib/domain/search-index';
 import type { CategorySlug } from '$lib/domain/constants';
 
 const root = path.resolve('src', 'lib', 'generated');
+const viewRoot = path.resolve('src', 'lib', 'generated', 'views', 'zh-CN');
 const staticGeneratedRoot = path.resolve('static', 'generated');
 let searchIndexCache: Promise<GlobalSearchIndex> | undefined;
 
 async function readJson<T>(...segments: string[]): Promise<T> {
+  return JSON.parse(await readFile(path.join(viewRoot, ...segments), 'utf8')) as T;
+}
+
+async function readRootJson<T>(...segments: string[]): Promise<T> {
   return JSON.parse(await readFile(path.join(root, ...segments), 'utf8')) as T;
 }
 
-export const getManifest = () => readJson<DataManifest>('manifest.json');
+export const getManifest = () => readRootJson<DataManifest>('manifest.json');
 export const getHomepageRecentWarps = () => readJson<HomepageRecentWarpData>('homepage.json');
 export const getCatalog = (category: CategorySlug) =>
   readJson<CatalogEntry[]>('catalogs', `${category}.json`);

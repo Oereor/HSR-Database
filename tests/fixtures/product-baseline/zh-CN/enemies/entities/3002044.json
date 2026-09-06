@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "集中了所有拍摄资源，成为大咖中的大咖的主角斯科特。意识和灵魂被从者分散后，以千般面相展开了对开拓者的复仇。",
+    "id": "3002044",
+    "name": "怠惰斯科特",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3002044",
+    "defaultMonsterRef": "1e5c2d6bf11eb418e25dce652505f01fa31684ae89a947c334e3355b09ab6ac5",
+    "description": "集中了所有拍摄资源，成为大咖中的大咖的主角斯科特。意识和灵魂被从者分散后，以千般面相展开了对开拓者的复仇。",
+    "id": "3002044",
+    "kind": "enemy",
+    "monsterRefs": [
+      "1e5c2d6bf11eb418e25dce652505f01fa31684ae89a947c334e3355b09ab6ac5"
+    ],
+    "name": "怠惰斯科特",
+    "rank": "MinionLv2",
+    "templateRef": "7b7fee1dfb4db1fd07c4849a9621e9e4642586e56cca52e5032b2c3a37f6dc3b",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3002044",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3002044",
+    "selectableMonsterIds": [
+      "3002044"
+    ]
+  }
+}

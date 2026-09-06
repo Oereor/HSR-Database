@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "由「建木」化生，拱卫其根系的灵瑞之兽，履迹所之，和泽滋生，枝杪郁敷。\n自毁于太古时代的战争后，「建木」终于在星核的修补下再度生长。彼时仙人们所造的珍禽奇兽纷至沓来，宛如旧梦重临。出现于此的是基于你的记忆模拟出的幻影。",
+    "id": "2024013",
+    "name": "丰饶玄鹿（幻象）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2024013",
+    "defaultMonsterRef": "e1e41fe7bd1c09caaf4cafae70c82fb1c2d1da00910d007d3205e19c809f2e63",
+    "description": "由「建木」化生，拱卫其根系的灵瑞之兽，履迹所之，和泽滋生，枝杪郁敷。\n自毁于太古时代的战争后，「建木」终于在星核的修补下再度生长。彼时仙人们所造的珍禽奇兽纷至沓来，宛如旧梦重临。出现于此的是基于你的记忆模拟出的幻影。",
+    "id": "2024013",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e1e41fe7bd1c09caaf4cafae70c82fb1c2d1da00910d007d3205e19c809f2e63"
+    ],
+    "name": "丰饶玄鹿（幻象）",
+    "rank": "LittleBoss",
+    "templateRef": "1af993a59e1f096a3f630944a78808c6993fe841178f4a305db3ef68da6d268c",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2024013",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2024013",
+    "selectableMonsterIds": [
+      "2024013"
+    ]
+  }
+}

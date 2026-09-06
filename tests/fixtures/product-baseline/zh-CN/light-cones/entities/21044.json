@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21044",
+    "name": "无边曼舞",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 15,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 33,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 129,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21044",
+    "kind": "light-cone",
+    "name": "无边曼舞",
+    "passive": {
+      "id": "21044",
+      "name": "试探",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击率提高8%。装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高24%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击率提高10%。装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高30%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击率提高12%。装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高36%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击率提高14%。装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高42%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "42%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击率提高16%。装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高48%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者对处于防御降低或减速状态下的敌人造成的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "48%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4,
+    "story": "舞步翩跹，光影悄然更迭。她牵着对方的手，含笑望向那双淡漠的眼睛。\n<i>「美丽的游侠…欢迎来到『记忆』的舞台。在这个距离…你比看上去更迷人。」</i>\n\n四周逐渐变得黑暗，一束光芒从穹顶倾泻而下，追随着两人不断变换的舞步。\n<i>「不过，有些人本该与我们共舞，但他们却迟迟未到……」</i>\n\n在旋转的瞬间，她凑近那副毫无表情的脸庞，握紧冰冷的手，轻轻问道——\n<i>「可以告诉我，你做了什么？」</i>\n\n在越来越急促的舞步中，支离破碎的过往片段顺着指尖涌入她的脑海。\n在越来越遥远的过去，她听见雨声，听见生命消逝之前发出的哀叹，然后她看到面前的舞者在微茫的雨中撑着血红的纸伞，而在她视线所及的地方——\n\n无数溺亡者的尸骸正在洪流中载沉载浮。\n\n她惊慌地试图抽出手，向后跌落。\n四周再次明亮起来，宴会的喧闹声重新涌现，对方轻轻托住了她的腰，仿佛浑然不知刚刚发生了什么。\n<i>「忆者，多么优美的舞蹈，要再来一次么？」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21044",
+    "storyFallbackRendered": false
+  }
+}

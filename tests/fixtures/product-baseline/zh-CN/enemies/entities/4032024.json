@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "盗火行者以灾难之力创造的分身，皆是寄宿着破坏意志的祸端。",
+    "id": "4032024",
+    "name": "残破容器",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032024",
+    "defaultMonsterRef": "966a5a9d5624ac8d51cf12ae16999973ff4e20e11d520bb918c929284c8df88d",
+    "description": "盗火行者以灾难之力创造的分身，皆是寄宿着破坏意志的祸端。",
+    "id": "4032024",
+    "kind": "enemy",
+    "monsterRefs": [
+      "966a5a9d5624ac8d51cf12ae16999973ff4e20e11d520bb918c929284c8df88d",
+      "12c09b33bb1186c82e7fd814339ff3d3ffcc304977333a5ed5da34abc96bcdf4"
+    ],
+    "name": "残破容器",
+    "rank": "MinionLv2",
+    "templateRef": "89e060d74af4c10050dd57b62abcf3f31df9a22a7b096d2e81f3bce63c6f4476",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032024",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032024",
+    "selectableMonsterIds": [
+      "4032024",
+      "403202401"
+    ]
+  }
+}

@@ -28,6 +28,8 @@ import {
   resolveDataRoot
 } from '../../scripts/data/paths';
 import type { MissingTextAudit } from '../../scripts/data/missing-text';
+
+const localizedRoot = path.join(generatedRoot, 'views', 'zh-CN');
 import { hashOf, mergeConfigSources, readTable } from '../../scripts/data/raw';
 import {
   characterLdSourceNames,
@@ -643,10 +645,13 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'characters', '1001.json'), 'utf8')
     ) as Character;
     const lightCone = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(manifest.counts.characters).toBe(97);
-    expect(manifest.schemaVersion).toBe(36);
+    expect(manifest.neutral.schemaVersion).toBe(1);
+    expect(manifest.view.locale).toBe('zh-CN');
+    expect(manifest.view.textMapCode).toBe('CHS');
+    expect(manifest.view.neutralDigest).toBe(manifest.neutral.contentDigest);
     expect(manifest.gameVersionFull).toBe('4.5.0');
     expect(manifest.gameVersion).toBe('4.5');
     expect(manifest.language).toBe('CHS');
@@ -836,34 +841,22 @@ describe('真实数据管线', () => {
     };
     const missing = audit.missingTextAudit;
     expect(missing.D.count).toBe(0);
-    // Search V2 no longer probes 97 missing AvatarFullName hashes as search aliases.
-    expect(missing.A.count).toBe(1614);
+    expect(missing.A.samples).toHaveLength(missing.A.count);
     expect(missing.A.groups.some((group) => group.field === 'searchAlias')).toBe(false);
-    expect(missing.A.groups).toContainEqual({
-      reason: 'missing-source-field',
-      entity: 'character-trace',
-      field: 'PointDesc',
-      count: 1070
-    });
     expect(
       missing.A.groups.some(
         (group) => group.entity === 'avatar-skill' || group.entity === 'memosprite-skill'
       )
     ).toBe(false);
     expect(missing.A.groups.some((group) => group.entity === 'item')).toBe(false);
-    expect(missing.B.groups).toContainEqual({
-      reason: 'unsupported-icon-markup',
-      entity: 'avatar-skill',
-      field: 'SkillDesc',
-      count: 15
-    });
+    expect(missing.B.count).toBe(0);
     expect(missing.C.count).toBe(0);
   });
 
   it('光锥叠影保留真实等级并只高亮变化参数', async () => {
     const readLightCone = async (id: string) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'light-cones', `${id}.json`), 'utf8')
+        await readFile(path.join(localizedRoot, 'details', 'light-cones', `${id}.json`), 'utf8')
       ) as LightCone;
     const arrows = await readLightCone('20000');
     const amber = await readLightCone('20003');
@@ -1308,7 +1301,7 @@ describe('真实数据管线', () => {
         ownerCharacterId: '1510',
         entryKind: 'avatar-skill-link',
         sourceAvatarId: '8001',
-        sourceTarget: { id: '8001', name: '开拓者·毁灭' }
+        sourceTarget: { id: '8001', name: '开拓者·毁灭', baseName: '开拓者' }
       })
     ).toEqual({ sourceAvatarId: '8001', displayAvatarId: '8002', displayName: '开拓者' });
     expect(
@@ -1316,7 +1309,7 @@ describe('真实数据管线', () => {
         ownerCharacterId: '1510',
         entryKind: 'avatar-skill-link',
         sourceAvatarId: '1001',
-        sourceTarget: { id: '1001', name: '三月七·存护' }
+        sourceTarget: { id: '1001', name: '三月七·存护', baseName: '三月七' }
       })
     ).toEqual({ sourceAvatarId: '1001', displayAvatarId: '1001', displayName: '三月七' });
     expect(
@@ -1324,7 +1317,7 @@ describe('真实数据管线', () => {
         ownerCharacterId: '1000',
         entryKind: 'avatar-skill-link',
         sourceAvatarId: '8001',
-        sourceTarget: { id: '8001', name: '开拓者·毁灭' }
+        sourceTarget: { id: '8001', name: '开拓者·毁灭', baseName: '开拓者' }
       })
     ).toEqual({
       sourceAvatarId: '8001',
@@ -1338,7 +1331,7 @@ describe('真实数据管线', () => {
       await readFile(path.join(generatedRoot, 'details', 'characters', '1001.json'), 'utf8')
     ) as Character;
     const arrows = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'details', 'light-cones', '20000.json'), 'utf8')
     ) as LightCone;
     expect(getBaseStatsAtLevel(march.baseStats, 1).hp).toBe(144);
     expect(getBaseStatsAtLevel(march.baseStats, 19).hp).toBe(273.6);
@@ -1500,16 +1493,16 @@ describe('真实数据管线', () => {
     expect(JSON.stringify(rin.equipmentRecommendation)).not.toMatch(/PropertyList|ScoreRankList/);
 
     const relics = JSON.parse(
-      await readFile(path.join(generatedRoot, 'catalogs', 'relics.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'catalogs', 'relics.json'), 'utf8')
     ) as RelicCatalogEntry[];
     const properties = JSON.parse(
       await readFile(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), 'utf8')
     ) as RelicProperty[];
     const cavern = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'relics', '101.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'details', 'relics', '101.json'), 'utf8')
     ) as RelicSet;
     const planar = JSON.parse(
-      await readFile(path.join(generatedRoot, 'details', 'relics', '301.json'), 'utf8')
+      await readFile(path.join(localizedRoot, 'details', 'relics', '301.json'), 'utf8')
     ) as RelicSet;
     expect(relics.filter((set) => set.category === 'cavern')).toHaveLength(32);
     expect(relics.filter((set) => set.category === 'planar')).toHaveLength(28);

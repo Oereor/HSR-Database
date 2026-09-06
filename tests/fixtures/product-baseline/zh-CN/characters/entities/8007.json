@@ -1,0 +1,5700 @@
+{
+  "catalog": {
+    "baseName": "开拓者",
+    "description": "登上星穹列车的{F#少女}{M#少年}。\n为了消除星核带来的危机，选择与星穹列车同行。",
+    "element": "Ice",
+    "elementName": "冰",
+    "id": "8007",
+    "name": "开拓者·记忆",
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "开拓者",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 103
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 73.92,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 85.8,
+            "perLevel": 4.29
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 142.56,
+            "perLevel": 7.128
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 103.488,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 120.12,
+            "perLevel": 4.29
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 199.584,
+            "perLevel": 7.128
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 133.056,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 154.44,
+            "perLevel": 4.29
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 256.608,
+            "perLevel": 7.128
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 162.624,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 188.76,
+            "perLevel": 4.29
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 313.632,
+            "perLevel": 7.128
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 192.192,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 223.08,
+            "perLevel": 4.29
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 370.656,
+            "perLevel": 7.128
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 221.76,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 257.4,
+            "perLevel": 4.29
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 427.68,
+            "perLevel": 7.128
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 251.328,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 291.72,
+            "perLevel": 4.29
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 484.704,
+            "perLevel": 7.128
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "登上星穹列车的{F#少女}{M#少年}。\n为了消除星核带来的危机，选择与星穹列车同行。",
+    "element": "Ice",
+    "elementName": "冰",
+    "equipmentRecommendation": {
+      "avatarId": "8007",
+      "cavernSetIds": [
+        "123",
+        "104",
+        "110"
+      ],
+      "lightConeIds": [
+        "21050",
+        "24005"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "IceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "317",
+        "312",
+        "318"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalDamageBase",
+        "SpeedDelta",
+        "AttackAddedRatio"
+      ]
+    },
+    "fullName": "开拓者·记忆",
+    "id": "8007",
+    "kind": "character",
+    "name": "开拓者·记忆",
+    "path": "Memory",
+    "pathName": "记忆",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "持有【迷迷的声援】的我方目标暴击率提高<unbreak>10%</unbreak>。当我方目标持有【迷迷的声援】时，【迷迷的声援】的效果对该目标的忆灵/忆师也生效，该效果不可叠加。",
+            "iconKey": "rank--800701",
+            "id": "800701",
+            "name": "现在的记叙者",
+            "rank": 1
+          },
+          {
+            "description": "除迷迷以外的我方忆灵行动时，开拓者恢复<unbreak>8</unbreak>点能量。该效果每回合最多触发<unbreak>1</unbreak>次，开拓者回合开始时重置可触发次数。",
+            "iconKey": "rank--800702",
+            "id": "800702",
+            "name": "过往的拾遗者",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级；忆灵天赋等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--800703",
+            "id": "800703",
+            "name": "未来的咏唱者",
+            "rank": 3
+          },
+          {
+            "description": "使能量上限为0的我方目标主动施放技能时，迷迷也能够获得<unbreak>3%</unbreak>充能，并且该目标通过【迷迷的声援】造成的真实伤害倍率额外提高<unbreak>6%</unbreak>。",
+            "iconKey": "rank--800704",
+            "id": "800704",
+            "name": "缪斯的新舞伴",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级；忆灵技等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--800705",
+            "id": "800705",
+            "name": "诗篇的裁缝匠",
+            "rank": 5
+          },
+          {
+            "description": "终结技的暴击率固定为<unbreak>100%</unbreak>。",
+            "iconKey": "rank--800706",
+            "id": "800706",
+            "name": "神启的转呈者",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 160
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--8007001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "8007001",
+                "variantIds": [
+                  "800701",
+                  "800708"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "800701",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者50%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者60%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者70%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者80%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者90%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者100%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者110%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者120%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者130%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者140%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "包在我身上！",
+                "progressionId": "8007001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                      "id": "10000011",
+                      "name": "控制类负面状态"
+                    },
+                    {
+                      "description": "多个目标在一次行动中，分别对敌方目标施放攻击。",
+                      "id": "10000019",
+                      "name": "连携攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "800708",
+                "levels": [
+                  {
+                    "description": "消耗1层【史诗】，解除迷迷陷入的所有控制类负面状态。开拓者与迷迷发起连携攻击，对敌方全体分别造成等同于开拓者60%攻击力以及迷迷60%攻击力的冰属性伤害，随后使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【史诗】，解除迷迷陷入的所有"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。开拓者与迷迷发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，随后使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "消耗1层【史诗】，解除迷迷陷入的所有控制类负面状态。开拓者与迷迷发起连携攻击，对敌方全体分别造成等同于开拓者72%攻击力以及迷迷72%攻击力的冰属性伤害，随后使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【史诗】，解除迷迷陷入的所有"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。开拓者与迷迷发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，随后使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "消耗1层【史诗】，解除迷迷陷入的所有控制类负面状态。开拓者与迷迷发起连携攻击，对敌方全体分别造成等同于开拓者84%攻击力以及迷迷84%攻击力的冰属性伤害，随后使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【史诗】，解除迷迷陷入的所有"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。开拓者与迷迷发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，随后使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "消耗1层【史诗】，解除迷迷陷入的所有控制类负面状态。开拓者与迷迷发起连携攻击，对敌方全体分别造成等同于开拓者96%攻击力以及迷迷96%攻击力的冰属性伤害，随后使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【史诗】，解除迷迷陷入的所有"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。开拓者与迷迷发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，随后使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "消耗1层【史诗】，解除迷迷陷入的所有控制类负面状态。开拓者与迷迷发起连携攻击，对敌方全体分别造成等同于开拓者108%攻击力以及迷迷108%攻击力的冰属性伤害，随后使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【史诗】，解除迷迷陷入的所有"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。开拓者与迷迷发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，随后使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "消耗1层【史诗】，解除迷迷陷入的所有控制类负面状态。开拓者与迷迷发起连携攻击，对敌方全体分别造成等同于开拓者120%攻击力以及迷迷120%攻击力的冰属性伤害，随后使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【史诗】，解除迷迷陷入的所有"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。开拓者与迷迷发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，随后使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "消耗1层【史诗】，解除迷迷陷入的所有控制类负面状态。开拓者与迷迷发起连携攻击，对敌方全体分别造成等同于开拓者132%攻击力以及迷迷132%攻击力的冰属性伤害，随后使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【史诗】，解除迷迷陷入的所有"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。开拓者与迷迷发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，随后使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "消耗1层【史诗】，解除迷迷陷入的所有控制类负面状态。开拓者与迷迷发起连携攻击，对敌方全体分别造成等同于开拓者144%攻击力以及迷迷144%攻击力的冰属性伤害，随后使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【史诗】，解除迷迷陷入的所有"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。开拓者与迷迷发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，随后使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "消耗1层【史诗】，解除迷迷陷入的所有控制类负面状态。开拓者与迷迷发起连携攻击，对敌方全体分别造成等同于开拓者156%攻击力以及迷迷156%攻击力的冰属性伤害，随后使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【史诗】，解除迷迷陷入的所有"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。开拓者与迷迷发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，随后使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "消耗1层【史诗】，解除迷迷陷入的所有控制类负面状态。开拓者与迷迷发起连携攻击，对敌方全体分别造成等同于开拓者168%攻击力以及迷迷168%攻击力的冰属性伤害，随后使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗1层【史诗】，解除迷迷陷入的所有"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。开拓者与迷迷发起"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "连携攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体分别造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力以及迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，随后使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "明天，一同写下！",
+                "progressionId": "8007001",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--8007002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8007002",
+                "variantIds": [
+                  "800702"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Summon",
+                    "known": true,
+                    "label": "召唤"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "将忆灵召唤到场上。若忆灵已在场，解除忆灵陷入的所有控制类负面状态。",
+                      "id": "10000018",
+                      "name": "召唤忆灵"
+                    }
+                  ]
+                },
+                "id": "800702",
+                "levels": [
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限30%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限33%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限36%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限39%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限42%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限45%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限49%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限53%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限56%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限60%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限63%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限66%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限69%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限72%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限75%的生命值，并且使迷迷获得10%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。若迷迷已在场，为迷迷回复等同于迷迷生命上限"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，并且使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "就决定是你了！",
+                "progressionId": "8007002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--8007003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8007003",
+                "variantIds": [
+                  "800703"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "将忆灵召唤到场上。若忆灵已在场，解除忆灵陷入的所有控制类负面状态。",
+                      "id": "10000018",
+                      "name": "召唤忆灵"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "800703",
+                "levels": [
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷120%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷132%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷144%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷156%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷168%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷180%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷195%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "195%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷210%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷225%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷240%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷252%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷264%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷276%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "276%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷288%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "召唤忆灵迷迷。使迷迷获得40%充能，随后使迷迷对敌方全体造成等同于迷迷300%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "召唤忆灵"
+                      },
+                      {
+                        "type": "text",
+                        "value": "迷迷。使迷迷获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能，随后使迷迷对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "一起上吧，迷迷！",
+                "progressionId": "8007003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--8007004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8007004",
+                "variantIds": [
+                  "800704"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "800704",
+                "levels": [
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者50%生命上限+400的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "400"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者53%生命上限+424的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "424"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者56%生命上限+448的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "448"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者59%生命上限+472的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "472"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者62%生命上限+496的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "496"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者65%生命上限+520的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "520"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者69%生命上限+550的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "550"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者73%生命上限+580的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "580"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者76%生命上限+610的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "610"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者80%生命上限+640的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "640"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者83%生命上限+664的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "664"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者86%生命上限+688的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "688"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者89%生命上限+712的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "89%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "712"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者92%生命上限+736的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "736"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "忆灵迷迷初始拥有130点速度和等同于开拓者95%生命上限+760的生命上限。我方全体每累计恢复10点能量，迷迷都会获得1%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "忆灵迷迷初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "130"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度和等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "760"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命上限。我方全体每累计恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，迷迷都会获得1%充能。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "无所不能的伙伴",
+                "progressionId": "8007004",
+                "scalingParamIndexes": [
+                  1,
+                  3
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "memosprite-skill",
+            "displayLabel": "忆灵技",
+            "iconKey": "skill-tree--8007301",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "8007301",
+                "variantIds": [
+                  "1800701",
+                  "1800707"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Servant",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 10,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    },
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "1800701",
+                "levels": [
+                  {
+                    "description": "造成4次伤害，每次对敌方随机单体造成等同于迷迷18.0%攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷45%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "造成4次伤害，每次对敌方随机单体造成等同于迷迷21.6%攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷54%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "造成4次伤害，每次对敌方随机单体造成等同于迷迷25.2%攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷63%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "造成4次伤害，每次对敌方随机单体造成等同于迷迷28.8%攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷72%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "造成4次伤害，每次对敌方随机单体造成等同于迷迷32.4%攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷81%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "造成4次伤害，每次对敌方随机单体造成等同于迷迷36.0%攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷90%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "造成4次伤害，每次对敌方随机单体造成等同于迷迷39.6%攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷99%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "造成4次伤害，每次对敌方随机单体造成等同于迷迷43.2%攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷108%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "造成4次伤害，每次对敌方随机单体造成等同于迷迷46.8%攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷117%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "117%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "造成4次伤害，每次对敌方随机单体造成等同于迷迷50.4%攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷126%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。最后对敌方全体造成等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "坏人！麻烦！",
+                "progressionId": "8007301",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "memosprite",
+                "type": "忆灵技"
+              },
+              {
+                "attackType": "Servant",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 10,
+                  "extraEffects": [
+                    {
+                      "description": "使目标在下次行动前的等待间隔缩短。",
+                      "id": "10000001",
+                      "name": "行动提前"
+                    },
+                    {
+                      "description": "不受任何效果所影响的无属性伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000017",
+                      "name": "真实伤害"
+                    }
+                  ],
+                  "specialResource": "<unbreak>100%</unbreak>充能"
+                },
+                "id": "1800707",
+                "levels": [
+                  {
+                    "description": "使指定我方单体行动提前100%并附上【迷迷的声援】，持续3回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害18%的真实伤害。\n当对自身施放该技能时，无法触发行动提前效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并附上【迷迷的声援】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当对自身施放该技能时，无法触发"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "value": "效果。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使指定我方单体行动提前100%并附上【迷迷的声援】，持续3回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害20%的真实伤害。\n当对自身施放该技能时，无法触发行动提前效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并附上【迷迷的声援】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当对自身施放该技能时，无法触发"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "value": "效果。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使指定我方单体行动提前100%并附上【迷迷的声援】，持续3回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害22%的真实伤害。\n当对自身施放该技能时，无法触发行动提前效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并附上【迷迷的声援】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当对自身施放该技能时，无法触发"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "value": "效果。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使指定我方单体行动提前100%并附上【迷迷的声援】，持续3回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害24%的真实伤害。\n当对自身施放该技能时，无法触发行动提前效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并附上【迷迷的声援】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当对自身施放该技能时，无法触发"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "value": "效果。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使指定我方单体行动提前100%并附上【迷迷的声援】，持续3回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害26%的真实伤害。\n当对自身施放该技能时，无法触发行动提前效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并附上【迷迷的声援】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当对自身施放该技能时，无法触发"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "value": "效果。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使指定我方单体行动提前100%并附上【迷迷的声援】，持续3回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害28%的真实伤害。\n当对自身施放该技能时，无法触发行动提前效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并附上【迷迷的声援】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当对自身施放该技能时，无法触发"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "value": "效果。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使指定我方单体行动提前100%并附上【迷迷的声援】，持续3回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害30%的真实伤害。\n当对自身施放该技能时，无法触发行动提前效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并附上【迷迷的声援】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当对自身施放该技能时，无法触发"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "value": "效果。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使指定我方单体行动提前100%并附上【迷迷的声援】，持续3回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害32%的真实伤害。\n当对自身施放该技能时，无法触发行动提前效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并附上【迷迷的声援】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当对自身施放该技能时，无法触发"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "value": "效果。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使指定我方单体行动提前100%并附上【迷迷的声援】，持续3回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害34%的真实伤害。\n当对自身施放该技能时，无法触发行动提前效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并附上【迷迷的声援】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当对自身施放该技能时，无法触发"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "value": "效果。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使指定我方单体行动提前100%并附上【迷迷的声援】，持续3回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害36%的真实伤害。\n当对自身施放该技能时，无法触发行动提前效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定我方单体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并附上【迷迷的声援】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n持有【迷迷的声援】的目标每造成1次伤害，都会再额外造成1次等同于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当对自身施放该技能时，无法触发"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "value": "效果。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "我会！帮你！",
+                "progressionId": "8007301",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "memosprite",
+                "type": "忆灵技"
+              }
+            ]
+          },
+          {
+            "category": "memosprite-talent",
+            "displayLabel": "忆灵天赋",
+            "iconKey": "skill-tree--8007302",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "8007302",
+                "variantIds": [
+                  "1800703",
+                  "1800705",
+                  "1800706"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "使目标在下次行动前的等待间隔缩短。",
+                      "id": "10000001",
+                      "name": "行动提前"
+                    },
+                    {
+                      "description": "不受任何效果所影响的无属性伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000017",
+                      "name": "真实伤害"
+                    }
+                  ]
+                },
+                "id": "1800703",
+                "levels": [
+                  {
+                    "description": "使我方全体的暴击伤害提高，提高数值等同于迷迷6.0%暴击伤害+12.0%。\n若充能未达到100%，迷迷行动时自动施放【坏人！麻烦！】。充能达到100%时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体的暴击伤害提高，提高数值等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若充能未达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，迷迷行动时自动施放【坏人！麻烦！】。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使我方全体的暴击伤害提高，提高数值等同于迷迷7.2%暴击伤害+14.4%。\n若充能未达到100%，迷迷行动时自动施放【坏人！麻烦！】。充能达到100%时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体的暴击伤害提高，提高数值等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若充能未达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，迷迷行动时自动施放【坏人！麻烦！】。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使我方全体的暴击伤害提高，提高数值等同于迷迷8.4%暴击伤害+16.8%。\n若充能未达到100%，迷迷行动时自动施放【坏人！麻烦！】。充能达到100%时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体的暴击伤害提高，提高数值等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若充能未达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，迷迷行动时自动施放【坏人！麻烦！】。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使我方全体的暴击伤害提高，提高数值等同于迷迷9.6%暴击伤害+19.2%。\n若充能未达到100%，迷迷行动时自动施放【坏人！麻烦！】。充能达到100%时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体的暴击伤害提高，提高数值等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若充能未达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，迷迷行动时自动施放【坏人！麻烦！】。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使我方全体的暴击伤害提高，提高数值等同于迷迷10.8%暴击伤害+21.6%。\n若充能未达到100%，迷迷行动时自动施放【坏人！麻烦！】。充能达到100%时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体的暴击伤害提高，提高数值等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若充能未达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，迷迷行动时自动施放【坏人！麻烦！】。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使我方全体的暴击伤害提高，提高数值等同于迷迷12.0%暴击伤害+24.0%。\n若充能未达到100%，迷迷行动时自动施放【坏人！麻烦！】。充能达到100%时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体的暴击伤害提高，提高数值等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若充能未达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，迷迷行动时自动施放【坏人！麻烦！】。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使我方全体的暴击伤害提高，提高数值等同于迷迷13.2%暴击伤害+26.4%。\n若充能未达到100%，迷迷行动时自动施放【坏人！麻烦！】。充能达到100%时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体的暴击伤害提高，提高数值等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若充能未达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，迷迷行动时自动施放【坏人！麻烦！】。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使我方全体的暴击伤害提高，提高数值等同于迷迷14.4%暴击伤害+28.8%。\n若充能未达到100%，迷迷行动时自动施放【坏人！麻烦！】。充能达到100%时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体的暴击伤害提高，提高数值等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若充能未达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，迷迷行动时自动施放【坏人！麻烦！】。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使我方全体的暴击伤害提高，提高数值等同于迷迷15.6%暴击伤害+31.2%。\n若充能未达到100%，迷迷行动时自动施放【坏人！麻烦！】。充能达到100%时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体的暴击伤害提高，提高数值等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若充能未达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，迷迷行动时自动施放【坏人！麻烦！】。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使我方全体的暴击伤害提高，提高数值等同于迷迷16.8%暴击伤害+33.6%。\n若充能未达到100%，迷迷行动时自动施放【坏人！麻烦！】。充能达到100%时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体的暴击伤害提高，提高数值等同于迷迷"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若充能未达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，迷迷行动时自动施放【坏人！麻烦！】。充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时迷迷立即行动，下一次行动时能够选择我方单体并施放【我会！帮你！】。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "伙伴！一起！",
+                "progressionId": "8007302",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "memosprite",
+                "type": "忆灵天赋"
+              },
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "1800705",
+                "levels": [
+                  {
+                    "description": "迷迷被召唤时，立即获得50%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷被召唤时，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "迷迷被召唤时，立即获得50%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷被召唤时，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "迷迷被召唤时，立即获得50%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷被召唤时，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "迷迷被召唤时，立即获得50%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷被召唤时，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "迷迷被召唤时，立即获得50%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷被召唤时，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "迷迷被召唤时，立即获得50%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷被召唤时，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "迷迷被召唤时，立即获得50%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷被召唤时，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "迷迷被召唤时，立即获得50%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷被召唤时，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "迷迷被召唤时，立即获得50%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷被召唤时，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "迷迷被召唤时，立即获得50%充能。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷被召唤时，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "充能。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "迷迷，加油！",
+                "progressionId": "8007302",
+                "scalingParamIndexes": [],
+                "source": "memosprite",
+                "type": "忆灵天赋"
+              },
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "使目标在下次行动前的等待间隔缩短。",
+                      "id": "10000001",
+                      "name": "行动提前"
+                    }
+                  ]
+                },
+                "id": "1800706",
+                "levels": [
+                  {
+                    "description": "迷迷消失时，使开拓者行动提前25%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷消失时，使开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "迷迷消失时，使开拓者行动提前25%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷消失时，使开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "迷迷消失时，使开拓者行动提前25%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷消失时，使开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "迷迷消失时，使开拓者行动提前25%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷消失时，使开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "迷迷消失时，使开拓者行动提前25%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷消失时，使开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "迷迷消失时，使开拓者行动提前25%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷消失时，使开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "迷迷消失时，使开拓者行动提前25%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷消失时，使开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "迷迷消失时，使开拓者行动提前25%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷消失时，使开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "迷迷消失时，使开拓者行动提前25%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷消失时，使开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "迷迷消失时，使开拓者行动提前25%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "迷迷消失时，使开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "遗憾…不留",
+                "progressionId": "8007302",
+                "scalingParamIndexes": [],
+                "source": "memosprite",
+                "type": "忆灵天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--8007007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "8007007",
+                "variantIds": [
+                  "800707"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "使目标在下次行动前的等待间隔延长。",
+                      "id": "10000002",
+                      "name": "行动延后"
+                    }
+                  ]
+                },
+                "id": "800707",
+                "levels": [
+                  {
+                    "description": "使用秘技后，制造1片持续10秒的特殊领域。处于特殊领域内的敌人陷入时停状态。时停状态下的敌人会停止所有行动。\n与处于时停状态下的敌人进入战斗后，使敌方全体行动延后50%，随后对敌方全体造成等同于开拓者100%攻击力的冰属性伤害。\n我方制造的领域效果最多存在1个。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，制造1片持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的特殊领域。处于特殊领域内的敌人陷入时停状态。时停状态下的敌人会停止所有行动。\n与处于时停状态下的敌人进入战斗后，使敌方全体"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动延后"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，随后对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。\n我方制造的领域效果最多存在1个。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "记忆如往日重现",
+                "progressionId": "8007007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "战斗开始时，开拓者的<u>行动提前</u><unbreak>30%</unbreak>。首次召唤迷迷时，使迷迷获得<unbreak>40%</unbreak>充能。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--8007101",
+            "id": "8007101",
+            "name": "追念之权杖",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "迷迷施放【坏人！麻烦！】时，立即获得<unbreak>5%</unbreak>充能。",
+            "iconKey": "skill-tree--8007102",
+            "id": "8007102",
+            "name": "袖珍的事诗",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "持有【迷迷的声援】的我方目标能量上限大于<unbreak>100</unbreak>点时，每超过<unbreak>10</unbreak>点，通过【迷迷的声援】造成的<u>真实伤害</u>倍率额外提高<unbreak>2%</unbreak>，最多提高<unbreak>20%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "不受任何效果所影响的无属性伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000017",
+                "name": "真实伤害"
+              }
+            ],
+            "iconKey": "skill-tree--8007103",
+            "id": "8007103",
+            "name": "磁石与长链",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "8007201",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "8007202",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "8007201"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "8007203",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "8007201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "8007204",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "8007101"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "8007205",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "8007101"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "8007206",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "8007102"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "8007207",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "8007102"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "8007208",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "8007103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "8007209",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "8007208"
+            ],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "暴击伤害提高10.7%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "8007210",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "8007209"
+            ],
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 21,
+            "description": "施放终结技后，获得1层【史诗】，最多持有<unbreak>2</unbreak>层。持有【史诗】且迷迷在场时，普攻强化为【明天，一同写下！】。",
+            "iconKey": "skill-tree--8007501",
+            "id": "8007501",
+            "name": "未完的尾声",
+            "prerequisiteIds": [],
+            "sourcePointType": 5,
+            "type": "ability"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "8007001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800701",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800708",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8007002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800702",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8007003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800703",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8007004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800704",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "memosprite-skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "8007301",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1800701",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1800707",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "memosprite-talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "8007302",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1800703",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1800705",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "1800706",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "8007007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800707",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/8007",
+    "subtitleRendered": false
+  }
+}

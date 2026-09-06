@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为成熟体的真蛰虫；博识学会的杜卢伊爵士遨游星海，曾写下三十卷《诸界异虫札记》。书中详实记载了迄今为止被确认的十几种蠹虫种类，以及星系间数之不尽的亚种。",
+    "id": "8024010",
+    "name": "虫群•真蛰虫（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8024010",
+    "defaultMonsterRef": "ffc7471fb51713bc9959f0f7e489c5a4b06b788155f3541ee9943d9ac5fc38e5",
+    "description": "代码受到影响后的完整投影。参照本体为成熟体的真蛰虫；博识学会的杜卢伊爵士遨游星海，曾写下三十卷《诸界异虫札记》。书中详实记载了迄今为止被确认的十几种蠹虫种类，以及星系间数之不尽的亚种。",
+    "id": "8024010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ffc7471fb51713bc9959f0f7e489c5a4b06b788155f3541ee9943d9ac5fc38e5"
+    ],
+    "name": "虫群•真蛰虫（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "95e58a25b7902caf5bc9ec91ae4eb433d06572c2ab6246f43d534bffa13161e9",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8024010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8024010",
+    "selectableMonsterIds": [
+      "8024010"
+    ]
+  }
+}

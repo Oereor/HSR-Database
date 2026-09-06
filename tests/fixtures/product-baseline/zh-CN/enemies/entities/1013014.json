@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为以旧世界遗留的科技拼凑制造的自动机器单元，加装了厚重的铠甲，用于冲锋陷阵保护银鬃铁卫。\n战斗中，自动机兵「灰熊」（完整）会发出信号召来「蜘蛛」合作战斗，同时会积蓄动能发出强力一击。",
+    "id": "1013014",
+    "name": "自动机兵•灰熊（完整）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1013014",
+    "defaultMonsterRef": "655a3616b30eff5e1cfbea2a3f9455b869f50e6cbf1e113e56ee5a8a17047709",
+    "description": "代码受到影响后的完整投影。参照本体为以旧世界遗留的科技拼凑制造的自动机器单元，加装了厚重的铠甲，用于冲锋陷阵保护银鬃铁卫。\n战斗中，自动机兵「灰熊」（完整）会发出信号召来「蜘蛛」合作战斗，同时会积蓄动能发出强力一击。",
+    "id": "1013014",
+    "kind": "enemy",
+    "monsterRefs": [
+      "655a3616b30eff5e1cfbea2a3f9455b869f50e6cbf1e113e56ee5a8a17047709"
+    ],
+    "name": "自动机兵•灰熊（完整）",
+    "rank": "Elite",
+    "templateRef": "05d0e5613d022b7e2c8e496a8e1c6c712ceed5d686949976e9afaa89bee572c8",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1013014",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1013014",
+    "selectableMonsterIds": [
+      "1013014"
+    ]
+  }
+}

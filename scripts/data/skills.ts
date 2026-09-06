@@ -37,7 +37,7 @@ const categoryOrder: SkillCategory[] = [
   'technique'
 ];
 
-const categoryLabels: Record<SkillCategory, string> = {
+export const SKILL_CATEGORY_LABELS: Record<SkillCategory, string> = {
   basic: '普攻',
   skill: '战技',
   ultimate: '终结技',
@@ -114,7 +114,7 @@ export function buildSkillCards(inputs: SkillVariantInput[]): SkillCard[] {
     return [
       {
         category,
-        displayLabel: categoryLabels[category],
+        displayLabel: SKILL_CATEGORY_LABELS[category],
         order,
         progressions,
         variants: variants.map(buildSkillVariant)

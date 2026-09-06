@@ -1,0 +1,196 @@
+[
+  {
+    "allowedMainSlots": [
+      "BODY",
+      "FOOT",
+      "NECK",
+      "OBJECT"
+    ],
+    "canBeSubStat": true,
+    "iconKey": "IconAttack",
+    "name": "攻击力",
+    "propertyType": "AttackAddedRatio"
+  },
+  {
+    "allowedMainSlots": [
+      "HAND"
+    ],
+    "canBeSubStat": true,
+    "iconKey": "IconAttack",
+    "name": "攻击力",
+    "propertyType": "AttackDelta"
+  },
+  {
+    "allowedMainSlots": [
+      "OBJECT"
+    ],
+    "canBeSubStat": true,
+    "iconKey": "IconBreakUp",
+    "name": "击破特攻",
+    "propertyType": "BreakDamageAddedRatioBase"
+  },
+  {
+    "allowedMainSlots": [
+      "BODY"
+    ],
+    "canBeSubStat": true,
+    "iconKey": "IconCriticalChance",
+    "name": "暴击率",
+    "propertyType": "CriticalChanceBase"
+  },
+  {
+    "allowedMainSlots": [
+      "BODY"
+    ],
+    "canBeSubStat": true,
+    "iconKey": "IconCriticalDamage",
+    "name": "暴击伤害",
+    "propertyType": "CriticalDamageBase"
+  },
+  {
+    "allowedMainSlots": [
+      "BODY",
+      "FOOT",
+      "NECK",
+      "OBJECT"
+    ],
+    "canBeSubStat": true,
+    "iconKey": "IconDefence",
+    "name": "防御力",
+    "propertyType": "DefenceAddedRatio"
+  },
+  {
+    "allowedMainSlots": [],
+    "canBeSubStat": true,
+    "iconKey": "IconDefence",
+    "name": "防御力",
+    "propertyType": "DefenceDelta"
+  },
+  {
+    "allowedMainSlots": [
+      "NECK"
+    ],
+    "canBeSubStat": false,
+    "iconKey": "IconFireAddedRatio",
+    "name": "火属性伤害提高",
+    "propertyType": "FireAddedRatio"
+  },
+  {
+    "allowedMainSlots": [
+      "BODY"
+    ],
+    "canBeSubStat": false,
+    "iconKey": "IconHealRatio",
+    "name": "治疗量加成",
+    "propertyType": "HealRatioBase"
+  },
+  {
+    "allowedMainSlots": [
+      "BODY",
+      "FOOT",
+      "NECK",
+      "OBJECT"
+    ],
+    "canBeSubStat": true,
+    "iconKey": "IconMaxHP",
+    "name": "生命值",
+    "propertyType": "HPAddedRatio"
+  },
+  {
+    "allowedMainSlots": [
+      "HEAD"
+    ],
+    "canBeSubStat": true,
+    "iconKey": "IconMaxHP",
+    "name": "生命值",
+    "propertyType": "HPDelta"
+  },
+  {
+    "allowedMainSlots": [
+      "NECK"
+    ],
+    "canBeSubStat": false,
+    "iconKey": "IconIceAddedRatio",
+    "name": "冰属性伤害提高",
+    "propertyType": "IceAddedRatio"
+  },
+  {
+    "allowedMainSlots": [
+      "NECK"
+    ],
+    "canBeSubStat": false,
+    "iconKey": "IconImaginaryAddedRatio",
+    "name": "虚数属性伤害提高",
+    "propertyType": "ImaginaryAddedRatio"
+  },
+  {
+    "allowedMainSlots": [
+      "NECK"
+    ],
+    "canBeSubStat": false,
+    "iconKey": "IconPhysicalAddedRatio",
+    "name": "物理属性伤害提高",
+    "propertyType": "PhysicalAddedRatio"
+  },
+  {
+    "allowedMainSlots": [
+      "NECK"
+    ],
+    "canBeSubStat": false,
+    "iconKey": "IconQuantumAddedRatio",
+    "name": "量子属性伤害提高",
+    "propertyType": "QuantumAddedRatio"
+  },
+  {
+    "allowedMainSlots": [
+      "FOOT"
+    ],
+    "canBeSubStat": true,
+    "iconKey": "IconSpeed",
+    "name": "速度",
+    "propertyType": "SpeedDelta"
+  },
+  {
+    "allowedMainSlots": [
+      "OBJECT"
+    ],
+    "canBeSubStat": false,
+    "iconKey": "IconEnergyRecovery",
+    "name": "能量恢复效率",
+    "propertyType": "SPRatioBase"
+  },
+  {
+    "allowedMainSlots": [
+      "BODY"
+    ],
+    "canBeSubStat": true,
+    "iconKey": "IconStatusProbability",
+    "name": "效果命中",
+    "propertyType": "StatusProbabilityBase"
+  },
+  {
+    "allowedMainSlots": [],
+    "canBeSubStat": true,
+    "iconKey": "IconStatusResistance",
+    "name": "效果抵抗",
+    "propertyType": "StatusResistanceBase"
+  },
+  {
+    "allowedMainSlots": [
+      "NECK"
+    ],
+    "canBeSubStat": false,
+    "iconKey": "IconThunderAddedRatio",
+    "name": "雷属性伤害提高",
+    "propertyType": "ThunderAddedRatio"
+  },
+  {
+    "allowedMainSlots": [
+      "NECK"
+    ],
+    "canBeSubStat": false,
+    "iconKey": "IconWindAddedRatio",
+    "name": "风属性伤害提高",
+    "propertyType": "WindAddedRatio"
+  }
+]

@@ -1,0 +1,2607 @@
+{
+  "catalog": {
+    "baseName": "青雀",
+    "description": "仙舟「罗浮」太卜司的卜者，兼书库管理员。\n因工作一再偷闲摸鱼，即将贬无可贬成为「掌门人」。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "id": "1201",
+    "name": "青雀",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "青雀",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 98
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 88.8,
+            "perLevel": 4.44
+          },
+          "defence": {
+            "base": 60,
+            "perLevel": 3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 139.2,
+            "perLevel": 6.96
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 124.32,
+            "perLevel": 4.44
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 194.88,
+            "perLevel": 6.96
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 159.84,
+            "perLevel": 4.44
+          },
+          "defence": {
+            "base": 108,
+            "perLevel": 3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 250.56,
+            "perLevel": 6.96
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 195.36,
+            "perLevel": 4.44
+          },
+          "defence": {
+            "base": 132,
+            "perLevel": 3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 306.24,
+            "perLevel": 6.96
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 230.88,
+            "perLevel": 4.44
+          },
+          "defence": {
+            "base": 156,
+            "perLevel": 3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 361.92,
+            "perLevel": 6.96
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 266.4,
+            "perLevel": 4.44
+          },
+          "defence": {
+            "base": 180,
+            "perLevel": 3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 417.6,
+            "perLevel": 6.96
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 301.92,
+            "perLevel": 4.44
+          },
+          "defence": {
+            "base": 204,
+            "perLevel": 3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 473.28,
+            "perLevel": 6.96
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟「罗浮」太卜司的卜者，兼书库管理员。\n因工作一再偷闲摸鱼，即将贬无可贬成为「掌门人」。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "equipmentRecommendation": {
+      "avatarId": "1201",
+      "cavernSetIds": [
+        "108",
+        "102",
+        "111"
+      ],
+      "lightConeIds": [
+        "21034",
+        "21027",
+        "23010"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "QuantumAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "309",
+        "305",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "青雀",
+    "id": "1201",
+    "kind": "character",
+    "name": "青雀",
+    "path": "Mage",
+    "pathName": "智识",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "施放终结技造成的伤害提高<unbreak>10%</unbreak>。",
+            "iconKey": "rank--120101",
+            "id": "120101",
+            "name": "散勇化骁摸幺鱼",
+            "rank": 1
+          },
+          {
+            "description": "青雀每次触发抽牌时，立即恢复<unbreak>1</unbreak>点能量。",
+            "iconKey": "rank--120102",
+            "id": "120102",
+            "name": "棋枰作枕好入眠",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--120103",
+            "id": "120103",
+            "name": "观琼视茕门前清",
+            "rank": 3
+          },
+          {
+            "description": "施放战技后，有<unbreak>24%</unbreak>的<u>固定概率</u>获得【不求人】状态，持续至本回合结束。\n【不求人】状态下，施放普攻或施放强化普攻后立即进行1次<u>追加攻击</u>，对该目标造成等同于普攻或强化普攻伤害<unbreak>100%</unbreak>的量子属性伤害。",
+            "extraEffects": [
+              {
+                "description": "不会被任何因素影响的固定概率。",
+                "id": "30000002",
+                "name": "固定概率"
+              },
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--120104",
+            "id": "120104",
+            "name": "帝垣翔鳞和绝张",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--120105",
+            "id": "120105",
+            "name": "七星流离全不靠",
+            "rank": 5
+          },
+          {
+            "description": "施放强化普攻后，恢复1个战技点。",
+            "iconKey": "rank--120106",
+            "id": "120106",
+            "name": "虚心平意候枭卢",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 140
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1201001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1201001",
+                "variantIds": [
+                  "120101",
+                  "120108"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120101",
+                "levels": [
+                  {
+                    "description": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀50%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀60%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀70%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀80%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀90%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀100%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀110%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀120%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀130%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀140%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用1张当前花色最少的琼玉牌，对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "门前清",
+                "progressionId": "1201001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120108",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于青雀120%攻击力的量子属性伤害，并对其相邻目标造成等同于青雀50%攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并对其相邻目标造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于青雀144%攻击力的量子属性伤害，并对其相邻目标造成等同于青雀60%攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并对其相邻目标造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于青雀168%攻击力的量子属性伤害，并对其相邻目标造成等同于青雀70%攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并对其相邻目标造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于青雀192%攻击力的量子属性伤害，并对其相邻目标造成等同于青雀80%攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并对其相邻目标造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于青雀216%攻击力的量子属性伤害，并对其相邻目标造成等同于青雀90%攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并对其相邻目标造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于青雀240%攻击力的量子属性伤害，并对其相邻目标造成等同于青雀100%攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并对其相邻目标造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于青雀264%攻击力的量子属性伤害，并对其相邻目标造成等同于青雀110%攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并对其相邻目标造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于青雀288%攻击力的量子属性伤害，并对其相邻目标造成等同于青雀120%攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并对其相邻目标造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于青雀312%攻击力的量子属性伤害，并对其相邻目标造成等同于青雀130%攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "312%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并对其相邻目标造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于青雀336%攻击力的量子属性伤害，并对其相邻目标造成等同于青雀140%攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "336%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并对其相邻目标造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。\n【杠上开花！】无法恢复战技点。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "杠上开花！",
+                "progressionId": "1201001",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1201002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1201002",
+                "variantIds": [
+                  "120102"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "120102",
+                "levels": [
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高14%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高15%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高17%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高18%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高20%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高21%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高23%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高25%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高26%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高28%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高29%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高31%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高32%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高34%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "立即抽取2张琼玉牌，使自身造成的伤害提高35%，持续至本回合结束。该效果可以叠加4层。施放该战技后，本回合不会结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌，使自身造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续至本回合结束。该效果可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。施放该战技后，本回合不会结束。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "海底捞月",
+                "progressionId": "1201002",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1201003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1201003",
+                "variantIds": [
+                  "120103"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "120103",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于青雀120%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀128%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀136%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀144%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀152%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀160%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀170%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "170%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀180%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀190%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "190%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀200%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀208%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "208%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀216%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀224%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀232%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "232%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于青雀240%攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于青雀"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，并获得4张相同花色的琼玉牌。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "四幺暗刻？和！",
+                "progressionId": "1201003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1201004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1201004",
+                "variantIds": [
+                  "120104"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "120104",
+                "levels": [
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高36%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高40%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高43%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高47%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高50%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高54%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高59%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高63%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高68%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高72%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高76%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高79%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高83%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高86%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高90%，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标回合开始时，青雀会从3种不同花色的琼玉牌中随机抽取1张，最多持有4张琼玉牌。\n青雀回合开始时，若持有的琼玉牌数为4且花色相同，青雀消耗所有琼玉牌进入【暗杠】状态。\n处于【暗杠】状态时无法再次施放战技，同时使自身攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻【门前清】强化为【杠上开花！】，【暗杠】状态会在施放【杠上开花！】后结束。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "帝垣琼玉",
+                "progressionId": "1201004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1201007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1201007",
+                "variantIds": [
+                  "120107"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "120107",
+                "levels": [
+                  {
+                    "description": "使用秘技后，进入战斗时青雀会抽取2张琼玉牌。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，进入战斗时青雀会抽取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "张琼玉牌。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "独弈之乐",
+                "progressionId": "1201007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放战技时，恢复1个战技点。该效果单场战斗中只能触发1次。",
+            "iconKey": "skill-tree--1201101",
+            "id": "1201101",
+            "name": "争番",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "战技使自身造成的伤害提高效果额外提高<unbreak>10%</unbreak>。",
+            "iconKey": "skill-tree--1201102",
+            "id": "1201102",
+            "name": "听牌",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放强化普攻后，青雀的速度提高<unbreak>10%</unbreak>，持续1回合。",
+            "iconKey": "skill-tree--1201103",
+            "id": "1201103",
+            "name": "抢杠",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1201201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "量子属性伤害提高3.2%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1201202",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1201101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1201203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1201202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1201204",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1201202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1201205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1201102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "量子属性伤害提高4.8%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1201206",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1201205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1201207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1201205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1201208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1201103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "量子属性伤害提高6.4%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1201209",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1201103"
+            ],
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1201210",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1201001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120101",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120108",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1201002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120102",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1201003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120103",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1201004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120104",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1201007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120107",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1201",
+    "subtitleRendered": false
+  }
+}

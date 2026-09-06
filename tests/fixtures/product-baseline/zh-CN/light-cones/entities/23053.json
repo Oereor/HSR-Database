@@ -1,0 +1,543 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>欢愉</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23053",
+    "name": "花花世界迷人眼",
+    "path": "Elation",
+    "pathName": "欢愉",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 21,
+            "perLevel": 3.15
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 58.08,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 46.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 79.8,
+            "perLevel": 3.15
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 113.4,
+            "perLevel": 3.15
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 184.8,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 147,
+            "perLevel": 3.15
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 227.04,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 180.6,
+            "perLevel": 3.15
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 214.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>欢愉</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23053",
+    "kind": "light-cone",
+    "name": "花花世界迷人眼",
+    "passive": {
+      "id": "23053",
+      "name": "瞩目",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击伤害提高48%。装备者在场时，队伍中每有1名「欢愉」命途的角色，战技点上限提高1点，最多提高3点；装备者每消耗1个战技点使自身造成的欢愉伤害无视敌方目标5.0%的防御力，最多叠加4层，若在同一回合内消耗大于等于4个战技点则使装备者获得【推流】。装备者持有【推流】时，我方全体欢愉度提高20%。同类光锥效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "48%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者在场时，队伍中每有1名「欢愉」命途的角色，战技点上限提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "点，最多提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "点；装备者每消耗1个战技点使自身造成的欢愉伤害无视敌方目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "5.0%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层，若在同一回合内消耗大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "个战技点则使装备者获得【推流】。装备者持有【推流】时，我方全体欢愉度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。同类光锥效果无法叠加。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击伤害提高56%。装备者在场时，队伍中每有1名「欢愉」命途的角色，战技点上限提高1点，最多提高3点；装备者每消耗1个战技点使自身造成的欢愉伤害无视敌方目标6.0%的防御力，最多叠加4层，若在同一回合内消耗大于等于4个战技点则使装备者获得【推流】。装备者持有【推流】时，我方全体欢愉度提高24%。同类光锥效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "56%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者在场时，队伍中每有1名「欢愉」命途的角色，战技点上限提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "点，最多提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "点；装备者每消耗1个战技点使自身造成的欢愉伤害无视敌方目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "6.0%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层，若在同一回合内消耗大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "个战技点则使装备者获得【推流】。装备者持有【推流】时，我方全体欢愉度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。同类光锥效果无法叠加。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击伤害提高64%。装备者在场时，队伍中每有1名「欢愉」命途的角色，战技点上限提高1点，最多提高3点；装备者每消耗1个战技点使自身造成的欢愉伤害无视敌方目标7.0%的防御力，最多叠加4层，若在同一回合内消耗大于等于4个战技点则使装备者获得【推流】。装备者持有【推流】时，我方全体欢愉度提高28%。同类光锥效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "64%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者在场时，队伍中每有1名「欢愉」命途的角色，战技点上限提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "点，最多提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "点；装备者每消耗1个战技点使自身造成的欢愉伤害无视敌方目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "7.0%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层，若在同一回合内消耗大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "个战技点则使装备者获得【推流】。装备者持有【推流】时，我方全体欢愉度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。同类光锥效果无法叠加。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击伤害提高72%。装备者在场时，队伍中每有1名「欢愉」命途的角色，战技点上限提高1点，最多提高3点；装备者每消耗1个战技点使自身造成的欢愉伤害无视敌方目标8.0%的防御力，最多叠加4层，若在同一回合内消耗大于等于4个战技点则使装备者获得【推流】。装备者持有【推流】时，我方全体欢愉度提高32%。同类光锥效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "72%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者在场时，队伍中每有1名「欢愉」命途的角色，战技点上限提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "点，最多提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "点；装备者每消耗1个战技点使自身造成的欢愉伤害无视敌方目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8.0%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层，若在同一回合内消耗大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "个战技点则使装备者获得【推流】。装备者持有【推流】时，我方全体欢愉度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "。同类光锥效果无法叠加。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击伤害提高80%。装备者在场时，队伍中每有1名「欢愉」命途的角色，战技点上限提高1点，最多提高3点；装备者每消耗1个战技点使自身造成的欢愉伤害无视敌方目标9.0%的防御力，最多叠加4层，若在同一回合内消耗大于等于4个战技点则使装备者获得【推流】。装备者持有【推流】时，我方全体欢愉度提高36%。同类光锥效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者在场时，队伍中每有1名「欢愉」命途的角色，战技点上限提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "点，最多提高"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "点；装备者每消耗1个战技点使自身造成的欢愉伤害无视敌方目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "9.0%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层，若在同一回合内消耗大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "个战技点则使装备者获得【推流】。装备者持有【推流】时，我方全体欢愉度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "。同类光锥效果无法叠加。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          3,
+          5
+        ]
+      }
+    },
+    "path": "Elation",
+    "pathName": "欢愉",
+    "rarity": 5,
+    "story": "当她大笑时，粉丝大笑着。\n当她悲伤时，粉丝流泪着。\n当她愤怒时，粉丝愤怒着。\n\n<i>「可爱、俏皮、受欢迎，火花是我想成为的样子……」</i>\n<i>「不要被骗了，火花是毒药，是谎言……」</i>\n<i>「永远追随火花花，她给了我重生的勇气……」</i>\n<i>「火花该从这个世界消失！」</i>\n……\n\n点击，弹幕，评论…在每个人的瞳孔里，「火花」燃烧得更加旺盛。\n\n<i>「大家的心意我收到了~我会以最热烈的方式回报大家~♥，比如……」</i>\n\n直播尾声，少女眨眨眼睛，仿佛看穿了屏幕前所有人的内心——\n\n<i>「给你一个机会，你会选择成为火花吗？」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23053",
+    "storyFallbackRendered": false
+  }
+}

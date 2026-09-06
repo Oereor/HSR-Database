@@ -1,0 +1,414 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>记忆</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23052",
+    "name": "爱如此刻永恒",
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 21,
+            "perLevel": 3.15
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 57.6,
+            "perLevel": 8.64
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 46.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 126.72,
+            "perLevel": 8.64
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 79.8,
+            "perLevel": 3.15
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 218.88,
+            "perLevel": 8.64
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 113.4,
+            "perLevel": 3.15
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 311.04,
+            "perLevel": 8.64
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 147,
+            "perLevel": 3.15
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 403.2,
+            "perLevel": 8.64
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 180.6,
+            "perLevel": 3.15
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 495.36,
+            "perLevel": 8.64
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 214.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 587.52,
+            "perLevel": 8.64
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>记忆</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23052",
+    "kind": "light-cone",
+    "name": "爱如此刻永恒",
+    "passive": {
+      "id": "23052",
+      "name": "约定",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的速度提高18%。装备者的忆灵对我方单体施放忆灵技时获得【空白】：敌方全体受到的伤害提高10%。装备者的忆灵对敌方施放忆灵技时获得【诗行】：我方全体的暴击伤害提高16%。装备者的忆灵同时持有【空白】和【诗行】时，【空白】和【诗行】的效果提高60%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵对我方单体施放忆灵技时获得【空白】：敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵对敌方施放忆灵技时获得【诗行】：我方全体的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵同时持有【空白】和【诗行】时，【空白】和【诗行】的效果提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的速度提高21%。装备者的忆灵对我方单体施放忆灵技时获得【空白】：敌方全体受到的伤害提高12%。装备者的忆灵对敌方施放忆灵技时获得【诗行】：我方全体的暴击伤害提高19%。装备者的忆灵同时持有【空白】和【诗行】时，【空白】和【诗行】的效果提高65%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵对我方单体施放忆灵技时获得【空白】：敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵对敌方施放忆灵技时获得【诗行】：我方全体的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "19%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵同时持有【空白】和【诗行】时，【空白】和【诗行】的效果提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "65%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的速度提高24%。装备者的忆灵对我方单体施放忆灵技时获得【空白】：敌方全体受到的伤害提高14%。装备者的忆灵对敌方施放忆灵技时获得【诗行】：我方全体的暴击伤害提高22%。装备者的忆灵同时持有【空白】和【诗行】时，【空白】和【诗行】的效果提高70%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵对我方单体施放忆灵技时获得【空白】：敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵对敌方施放忆灵技时获得【诗行】：我方全体的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "22%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵同时持有【空白】和【诗行】时，【空白】和【诗行】的效果提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的速度提高27%。装备者的忆灵对我方单体施放忆灵技时获得【空白】：敌方全体受到的伤害提高16%。装备者的忆灵对敌方施放忆灵技时获得【诗行】：我方全体的暴击伤害提高25%。装备者的忆灵同时持有【空白】和【诗行】时，【空白】和【诗行】的效果提高75%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵对我方单体施放忆灵技时获得【空白】：敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵对敌方施放忆灵技时获得【诗行】：我方全体的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵同时持有【空白】和【诗行】时，【空白】和【诗行】的效果提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "75%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的速度提高30%。装备者的忆灵对我方单体施放忆灵技时获得【空白】：敌方全体受到的伤害提高18%。装备者的忆灵对敌方施放忆灵技时获得【诗行】：我方全体的暴击伤害提高28%。装备者的忆灵同时持有【空白】和【诗行】时，【空白】和【诗行】的效果提高80%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵对我方单体施放忆灵技时获得【空白】：敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵对敌方施放忆灵技时获得【诗行】：我方全体的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵同时持有【空白】和【诗行】时，【空白】和【诗行】的效果提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 5,
+    "story": "蔚蓝的天空映照出灿烂的明天。\n一步、两步…少女行过的路是如此漫长，所幸那些珍藏的故事未被轮转的岁月遗忘。\n而今，在众人共同的谱写下，史诗已然成篇，迎来尾声。\n\n群星，百花，飞鸟，美好的新世界。\n轻纱，花环，长裙，风儿衔来祝福。\n三千万世的追寻化作幸福的一瞬，足以抵过永恒的千言万语。\n\n<i>「嘻，约好啦……」</i>\n少女回眸，莞尔一笑。\n<i>「一人留在过去，一人走向未来…但我们的心，从未分离♪」</i>\n\n她踮起脚尖，走入过往——\n而记忆，化作往昔的涟漪，向着明日荡去。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23052",
+    "storyFallbackRendered": false
+  }
+}

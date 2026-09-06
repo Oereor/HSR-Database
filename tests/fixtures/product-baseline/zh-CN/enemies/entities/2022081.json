@@ -1,0 +1,56 @@
+{
+  "catalog": {
+    "description": "随玄鹿足迹而生的建木枝梢。",
+    "id": "2022081",
+    "name": "缃叶之杪",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2022081",
+    "defaultMonsterRef": "53960844056edeb4b4166ff51c75ece983a5db69c9a502b0ac3aaa5d61e0b908",
+    "description": "随玄鹿足迹而生的建木枝梢。",
+    "id": "2022081",
+    "kind": "enemy",
+    "monsterRefs": [
+      "53960844056edeb4b4166ff51c75ece983a5db69c9a502b0ac3aaa5d61e0b908",
+      "4394dd37d7f8bcf34887f1781c6c5e8d4cb5051715e2dff4f809b2aae85c77b0",
+      "8583126dbafd47af8d512e584ec71698674eadc17451743a05705d5cddc87df3"
+    ],
+    "name": "缃叶之杪",
+    "rank": "MinionLv2",
+    "templateRef": "fdf89feb63dcfdebba7a3f80d380a998dd0f63ca09ea1714d9c5ddc26e006bab",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2022081",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2022081",
+    "selectableMonsterIds": [
+      "2022081",
+      "202208101",
+      "202208102"
+    ]
+  }
+}

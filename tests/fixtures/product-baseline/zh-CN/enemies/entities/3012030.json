@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "破碎的生命聚作终焉的符号，彼岸的灵魂仍在凝望此岸，眼中倒映忘却与离别的碑文。\n无辜的灵魂在永眠墓碣中沉睡，消灭永眠墓碣可以唤醒他们。",
+    "id": "3012030",
+    "name": "永眠墓碣",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3012030",
+    "defaultMonsterRef": "94a6fdecdf46f5018e75e3097baf410438074e23b537234cf2687ee9102dba4c",
+    "description": "破碎的生命聚作终焉的符号，彼岸的灵魂仍在凝望此岸，眼中倒映忘却与离别的碑文。\n无辜的灵魂在永眠墓碣中沉睡，消灭永眠墓碣可以唤醒他们。",
+    "id": "3012030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "94a6fdecdf46f5018e75e3097baf410438074e23b537234cf2687ee9102dba4c"
+    ],
+    "name": "永眠墓碣",
+    "rank": "MinionLv2",
+    "templateRef": "e2132f5e9f5bf86d0705bbd2cf088b06e9456862acc500360b38d8a1fe94d2d9",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3012030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3012030",
+    "selectableMonsterIds": [
+      "3012030"
+    ]
+  }
+}

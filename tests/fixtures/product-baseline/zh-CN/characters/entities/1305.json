@@ -1,0 +1,3452 @@
+{
+  "catalog": {
+    "baseName": "真理医生",
+    "description": "博识学会学者。\n性情古怪、言辞刻薄却又风度翩翩。\n奇异石膏头雕下的面容似乎出人意料的俊美。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "id": "1305",
+    "name": "真理医生",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "真理医生",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 103
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 105.6,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 62.7,
+            "perLevel": 3.135
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 142.56,
+            "perLevel": 7.128
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 147.84,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 87.78,
+            "perLevel": 3.135
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 199.584,
+            "perLevel": 7.128
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 190.08,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 112.86,
+            "perLevel": 3.135
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 256.608,
+            "perLevel": 7.128
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 232.32,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 137.94,
+            "perLevel": 3.135
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 313.632,
+            "perLevel": 7.128
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 274.56,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 163.02,
+            "perLevel": 3.135
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 370.656,
+            "perLevel": 7.128
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 316.8,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 188.1,
+            "perLevel": 3.135
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 427.68,
+            "perLevel": 7.128
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 359.04,
+            "perLevel": 5.28
+          },
+          "defence": {
+            "base": 213.18,
+            "perLevel": 3.135
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 484.704,
+            "perLevel": 7.128
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "博识学会学者。\n性情古怪、言辞刻薄却又风度翩翩。\n奇异石膏头雕下的面容似乎出人意料的俊美。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "equipmentRecommendation": {
+      "avatarId": "1305",
+      "cavernSetIds": [
+        "117",
+        "112",
+        "115"
+      ],
+      "lightConeIds": [
+        "23020",
+        "24001",
+        "23012"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalDamageBase",
+            "CriticalChanceBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ImaginaryAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "315",
+        "306",
+        "311"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "真理医生",
+    "id": "1305",
+    "kind": "character",
+    "name": "真理医生",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "行迹【归纳】的叠加层数上限提高<unbreak>4</unbreak>层。战斗开始时，立即获得<unbreak>4</unbreak>层【归纳】。需要先解锁行迹【归纳】。",
+            "iconKey": "rank--130501",
+            "id": "130501",
+            "name": "倨傲生祸患",
+            "rank": 1
+          },
+          {
+            "description": "天赋的<u>追加攻击</u>击中目标时，目标每有1个<u>负面效果</u>，则额外造成等同于真理医生<unbreak>20%</unbreak>攻击力的虚数属性<u>附加伤害</u>。该效果在每次<u>追加攻击</u>中最多触发<unbreak>4</unbreak>次。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              },
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              },
+              {
+                "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000005",
+                "name": "附加伤害"
+              }
+            ],
+            "iconKey": "rank--130502",
+            "id": "130502",
+            "name": "显微而阐幽",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--130503",
+            "id": "130503",
+            "name": "认识你自己",
+            "rank": 3
+          },
+          {
+            "description": "触发天赋时，真理医生额外恢复<unbreak>15</unbreak>点能量。",
+            "iconKey": "rank--130504",
+            "id": "130504",
+            "name": "盲目造痴愚",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--130505",
+            "id": "130505",
+            "name": "海阔舟无楫",
+            "rank": 5
+          },
+          {
+            "description": "【智者的短见】的触发效果额外增加<unbreak>1</unbreak>次，天赋的<u>追加攻击</u>造成的伤害提高<unbreak>50%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--130506",
+            "id": "130506",
+            "name": "永恒唯真理",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 140
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1305001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1305001",
+                "variantIds": [
+                  "130501"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "130501",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生50%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生60%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生70%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生80%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生90%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生100%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生110%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生120%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生130%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生140%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "知识就是力量",
+                "progressionId": "1305001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1305002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1305002",
+                "variantIds": [
+                  "130502"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "130502",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生75%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生83%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生90%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生98%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生105%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生113%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生122%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生131%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生141%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "141%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生150%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生158%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生165%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生173%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生180%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生188%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "精神助产术",
+                "progressionId": "1305002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1305003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1305003",
+                "variantIds": [
+                  "130503"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "130503",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生144%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生154%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生163%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生173%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生182%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "182%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生192%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生204%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "204%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生216%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生228%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生240%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生250%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生259%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "259%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生269%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "269%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生278%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "278%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于真理医生288%攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的追加攻击。\n【智者的短见】效果最多触发2次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并附上【智者的短见】。真理医生的队友攻击持有【智者的短见】的目标时，真理医生对该目标发动1次天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【智者的短见】效果最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次且仅对真理医生终结技最新施放的目标生效。施放终结技后重置该效果触发次数。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "三段悖论",
+                "progressionId": "1305003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1305004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1305004",
+                "variantIds": [
+                  "130504"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "不会被任何因素影响的固定概率。",
+                      "id": "30000002",
+                      "name": "固定概率"
+                    },
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "130504",
+                "levels": [
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生135%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "135%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生149%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "149%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生162%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "162%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生176%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "176%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生189%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "189%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生203%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "203%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生219%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "219%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生236%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "236%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生253%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "253%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生270%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "270%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生284%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "284%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生297%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "297%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生311%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "311%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生324%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "324%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放战技时，有40%的固定概率对该目标发动1次追加攻击，造成等同于真理医生338%攻击力的虚数属性伤害。目标每有1个负面效果，追加攻击发动的固定概率提高20%。若追加攻击施放前目标被消灭则对敌方随机单体发动追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放战技时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "对该目标发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于真理医生"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "338%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。目标每有1个负面效果，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。若"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "施放前目标被消灭则对敌方随机单体发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "我思故我在",
+                "progressionId": "1305004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1305007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1305007",
+                "variantIds": [
+                  "130507"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ]
+                },
+                "id": "130507",
+                "levels": [
+                  {
+                    "description": "使用秘技后，制造一个特殊领域嘲讽附近敌人，持续10秒。与处于特殊领域内的敌人进入战斗后，有100%基础概率使敌方每个单体目标速度降低15%，持续2回合。我方制造的领域效果最多存在1个。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，制造一个特殊领域嘲讽附近敌人，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒。与处于特殊领域内的敌人进入战斗后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。我方制造的领域效果最多存在1个。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "偶像塑造",
+                "progressionId": "1305007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放战技时，目标每有1个<u>负面效果</u>，真理医生暴击率提高<unbreak>2.5%</unbreak>、暴击伤害提高<unbreak>5%</unbreak>，该效果最多叠加<unbreak>6</unbreak>层。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "skill-tree--1305101",
+            "id": "1305101",
+            "name": "归纳",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "施放战技攻击敌方目标后，有<unbreak>100%</unbreak>的<u>基础概率</u>使受到攻击的敌方目标效果抵抗降低<unbreak>10%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "skill-tree--1305102",
+            "id": "1305102",
+            "name": "演绎",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "造成伤害时，若目标负面状态大于等于<unbreak>3</unbreak>个，目标每有1个<u>负面效果</u>，真理医生对其造成的伤害提高<unbreak>10%</unbreak>，最多提高<unbreak>50%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "skill-tree--1305103",
+            "id": "1305103",
+            "name": "推理",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1305201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1305202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1305101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1305203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1305202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1305204",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1305205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1305102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1305206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1305205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1305207",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1305208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1305103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1305209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1305208"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1305210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1305208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1305001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130501",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1305002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130502",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1305003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130503",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1305004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130504",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1305007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130507",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1305",
+    "subtitleRendered": false
+  }
+}

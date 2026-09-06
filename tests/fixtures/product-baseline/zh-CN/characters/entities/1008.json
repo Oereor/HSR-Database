@@ -1,0 +1,2306 @@
+{
+  "catalog": {
+    "baseName": "阿兰",
+    "description": "空间站「黑塔」的防卫科负责人。\n不善言辞，希望保护珍视研究的人们顺利完成他们的研究。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "id": "1008",
+    "name": "阿兰",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "阿兰",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 125,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 102
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 81.6,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 45,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 163.2,
+            "perLevel": 8.16
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 114.24,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 63,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 228.48,
+            "perLevel": 8.16
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 293.76,
+            "perLevel": 8.16
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 179.52,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 99,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 359.04,
+            "perLevel": 8.16
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 212.16,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 117,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 424.32,
+            "perLevel": 8.16
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 135,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 8.16
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 277.44,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 554.88,
+            "perLevel": 8.16
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "空间站「黑塔」的防卫科负责人。\n不善言辞，希望保护珍视研究的人们顺利完成他们的研究。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "equipmentRecommendation": {
+      "avatarId": "1008",
+      "cavernSetIds": [
+        "109",
+        "122",
+        "117"
+      ],
+      "lightConeIds": [
+        "21012",
+        "24000"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ThunderAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "309",
+        "301",
+        "305"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "阿兰",
+    "id": "1008",
+    "kind": "character",
+    "name": "阿兰",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "当前生命值百分比小于等于<unbreak>50%</unbreak>时，战技造成的伤害提高<unbreak>10%</unbreak>。",
+            "iconKey": "rank--100801",
+            "id": "100801",
+            "name": "万死不辞",
+            "rank": 1
+          },
+          {
+            "description": "施放战技、终结技时，解除自身的1个<u>负面效果</u>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "rank--100802",
+            "id": "100802",
+            "name": "除制去缚",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--100803",
+            "id": "100803",
+            "name": "重剑强攻",
+            "rank": 3
+          },
+          {
+            "description": "进入战斗后，受到致命攻击时阿兰不会陷入<u>无法战斗状态</u>，并立即回复至自身生命上限的<unbreak>25%</unbreak>。该效果在触发1次后或持续<unbreak>2</unbreak>回合后自动解除。",
+            "extraEffects": [
+              {
+                "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                "id": "10000007",
+                "name": "无法战斗状态"
+              }
+            ],
+            "iconKey": "rank--100804",
+            "id": "100804",
+            "name": "绝处反击",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--100805",
+            "id": "100805",
+            "name": "全力倾注",
+            "rank": 5
+          },
+          {
+            "description": "当前生命值百分比小于等于<unbreak>50%</unbreak>时，终结技造成的伤害提高<unbreak>20%</unbreak>，且对相邻目标的伤害倍率提高到与主目标相同的伤害倍率。",
+            "iconKey": "rank--100806",
+            "id": "100806",
+            "name": "以身作引",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 110
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1008001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1008001",
+                "variantIds": [
+                  "100801"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "100801",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰90%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰130%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "如雷疾行",
+                "progressionId": "1008001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1008002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1008002",
+                "variantIds": [
+                  "100802"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "specialResource": "<unbreak>15%</unbreak>生命值",
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "100802",
+                "levels": [
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰120%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰132%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰144%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰156%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰168%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰180%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰195%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "195%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰210%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰225%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰240%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰252%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰264%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰276%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "276%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰288%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "消耗等同于阿兰生命上限15%的生命值对指定敌方单体造成等同于阿兰300%攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于阿兰生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。若当前生命值不足，施放战技时阿兰的当前生命值降至1点。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "禁锢解除",
+                "progressionId": "1008002",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1008003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1008003",
+                "variantIds": [
+                  "100803"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "100803",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰192%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰96%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰205%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰102%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "205%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰218%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰109%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "218%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "109%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰230%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰115%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰243%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰122%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "243%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰256%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰128%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "256%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰272%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰136%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "272%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰288%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰144%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰304%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰152%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "304%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰320%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰160%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰333%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰166%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "333%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "166%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰346%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰173%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "346%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰358%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰179%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "358%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "179%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰371%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰186%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "371%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "186%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于阿兰384%攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰192%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "384%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时对其相邻目标造成等同于阿兰"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "狂者制裁",
+                "progressionId": "1008003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1008004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1008004",
+                "variantIds": [
+                  "100804"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "100804",
+                "levels": [
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高36%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高40%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高43%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高47%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高54%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高59%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高63%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高68%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高72%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高76%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高79%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高83%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高86%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高90%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "根据阿兰当前损失的生命值百分比获得伤害加成，最多使阿兰造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "至痛至怒",
+                "progressionId": "1008004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1008007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1008007",
+                "variantIds": [
+                  "100807"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "100807",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后对敌方全体造成等同于阿兰80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后对敌方全体造成等同于阿兰"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "极速收割",
+                "progressionId": "1008007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "消灭敌方目标时，若当前生命值百分比小于等于<unbreak>30%</unbreak>，则立即回复等同于自身生命上限<unbreak>20%</unbreak>的生命值。",
+            "iconKey": "skill-tree--1008101",
+            "id": "1008101",
+            "name": "苏生",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "抵抗持续伤害类负面状态的概率提高<unbreak>50%</unbreak>。",
+            "iconKey": "skill-tree--1008102",
+            "id": "1008102",
+            "name": "坚忍",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "进入战斗时，若当前生命值百分比小于等于<unbreak>50%</unbreak>，阿兰可以抵抗除持续伤害外的所有伤害。当阿兰受到攻击后，该效果解除。",
+            "iconKey": "skill-tree--1008103",
+            "id": "1008103",
+            "name": "抗御",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1008201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1008202",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1008101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1008203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1008202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1008204",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1008203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1008205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1008102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1008206",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1008205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1008207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1008206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1008208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1008103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "效果抵抗提高8.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1008209",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1008208"
+            ],
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1008210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1008208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1008001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100801",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1008002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100802",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1008003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100803",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1008004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100804",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1008007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100807",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1008",
+    "subtitleRendered": false
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为「星际和平公司」的资深员工，级别至少是项目组的小组长。驾驶的机甲属于公有资产，一旦损坏需要自费赔偿。工资尚可，足够在公司旗下的企业舰上租下一室一厅的单间。",
+    "id": "8033011",
+    "name": "资深员工•组长（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8033011",
+    "defaultMonsterRef": "9c8bc997823f2c0affe348dde36350a320b285ad6d20f850f42f72bafb60f12d",
+    "description": "代码受到影响后的错误投影。参照本体为「星际和平公司」的资深员工，级别至少是项目组的小组长。驾驶的机甲属于公有资产，一旦损坏需要自费赔偿。工资尚可，足够在公司旗下的企业舰上租下一室一厅的单间。",
+    "id": "8033011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "9c8bc997823f2c0affe348dde36350a320b285ad6d20f850f42f72bafb60f12d",
+      "1d60b316f090d3ac8e61961113c4fff537cf37823ae382559937f15416faabff",
+      "547cd6f3cfe3a8c90535305577b2162d2e150f5cc2b6c02f1673f031002f40eb"
+    ],
+    "name": "资深员工•组长（错误）",
+    "rank": "Elite",
+    "templateRef": "fec17872467a67c9ca60ee5868c351eaab6f97663f1155cf3c2b9b5cb8449fb5",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8033011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8033011",
+    "selectableMonsterIds": [
+      "8033011",
+      "803301101",
+      "803301102"
+    ]
+  }
+}

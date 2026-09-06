@@ -1,0 +1,88 @@
+{
+  "catalog": {
+    "description": "罗浮仙舟云骑军地面巡防部队的成员，手持阵刀，身着轻银打造的铠甲，维护各个洞天的日常秩序。",
+    "id": "2002010",
+    "name": "云骑巡防士卒",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2002010",
+    "defaultMonsterRef": "da73242a539103056e99f9deb5654602388e97e77546be9728cf709ea34c5efc",
+    "description": "罗浮仙舟云骑军地面巡防部队的成员，手持阵刀，身着轻银打造的铠甲，维护各个洞天的日常秩序。",
+    "id": "2002010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "da73242a539103056e99f9deb5654602388e97e77546be9728cf709ea34c5efc",
+      "6e51fd4862accd022d4c340c8530ad1de37f54d0763594b2082a0ee34d886592",
+      "b804052d0e036abf1e84f42018754af6c0b9635bf29e3568ff6f21207e05c5ea",
+      "4751a4232016a396170b6f1f5fe77b07c5bde0b2474a1a203db2d2faaf455228",
+      "723f135e125134d65a94c74e7b1c9e134924425dd5c111f5de7c10cccf5e12a8",
+      "3c301efc4716a06b3bbf28223aec8b8e9b652802eb22973a04640603cf08139b",
+      "666c62a5829375c4c9fb6740f336d38631c42105842544c965a83091e0be5587",
+      "d940a782a2f1be06ec126b376197cc5d7a56730d5894963c302069f3b4028714",
+      "b62f4b8152851e37f37d6e1ca2c41c273bca787d42be4007ee0e6844b3da7ba6",
+      "d10c8f293160daa075f479b2497857c94a1108be7cf59b892407bac285ef5c29",
+      "f160ba14340786fcccf33e8ee948fbe091f423de2eb25e7282f8e6685c8a93c1",
+      "03fbb72cf4591ac32259fd9b4ed9fd39a1ea8f26a65cbb1868566051267d0cd3",
+      "c0338ebebf3b73786699902800a3482d209357f142ff89c13d5ffa117cfdc251",
+      "bd7fdc642d47bfb25ced5b8bfd9979b9d352986eaf5d56be56d0c37b590810cf",
+      "d07c192892f78e7357d7b37b491b188f4e0f9ba7e0cbbb0f5e3816efd49b270c"
+    ],
+    "name": "云骑巡防士卒",
+    "rank": "MinionLv2",
+    "templateRef": "0a91cf3fff9955b6edcb7db402b49e5a07de6f2f868dd89fb0ddae729609748d",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2002010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2002010",
+    "selectableMonsterIds": [
+      "2002010",
+      "200201001",
+      "200201002",
+      "200201003",
+      "200201004",
+      "200201005",
+      "200201006",
+      "200201007",
+      "200201008",
+      "200201009",
+      "200201010",
+      "200201011",
+      "200201012",
+      "200201013",
+      "200201014"
+    ]
+  }
+}

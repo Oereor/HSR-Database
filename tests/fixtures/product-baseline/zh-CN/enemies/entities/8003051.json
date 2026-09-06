@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为在裂界延展中遭遇侵蚀的怪物，在力量的本源发生畸变后拥有了更为灵活的战斗方式。\n兴风者会利用风的力量协助自己战斗，借助风向射出更为迅猛的箭矢。并会在战斗中召唤巽风造物，与自己合作战斗。",
+    "id": "8003051",
+    "name": "兴风者（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8003051",
+    "defaultMonsterRef": "6ee7e46f2cbd4b7abbf5f3f92608deea3c93099ce1511c7fd613266828acc0c9",
+    "description": "代码受到影响后的错误投影。参照本体为在裂界延展中遭遇侵蚀的怪物，在力量的本源发生畸变后拥有了更为灵活的战斗方式。\n兴风者会利用风的力量协助自己战斗，借助风向射出更为迅猛的箭矢。并会在战斗中召唤巽风造物，与自己合作战斗。",
+    "id": "8003051",
+    "kind": "enemy",
+    "monsterRefs": [
+      "6ee7e46f2cbd4b7abbf5f3f92608deea3c93099ce1511c7fd613266828acc0c9",
+      "c303030f91a3902a86e6262653f7a003d2b51f8d5e012f49afa1420b36b44d3c"
+    ],
+    "name": "兴风者（错误）",
+    "rank": "Elite",
+    "templateRef": "94d6b7a52efaff7ed8f48bea6a2ece32ae404a73370036ea0dc214ce7b9a84f8",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8003051",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8003051",
+    "selectableMonsterIds": [
+      "8003051",
+      "800305101"
+    ]
+  }
+}

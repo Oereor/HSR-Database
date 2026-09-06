@@ -1,0 +1,453 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23017",
+    "name": "惊魂夜",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 52.8,
+            "perLevel": 7.92
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 116.16,
+            "perLevel": 7.92
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 200.64,
+            "perLevel": 7.92
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 285.12,
+            "perLevel": 7.92
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 369.6,
+            "perLevel": 7.92
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 454.08,
+            "perLevel": 7.92
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 538.56,
+            "perLevel": 7.92
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23017",
+    "kind": "light-cone",
+    "name": "惊魂夜",
+    "passive": {
+      "id": "23017",
+      "name": "深度深呼吸",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的能量恢复效率提高12%。我方目标施放终结技时，装备者为当前生命值百分比最低的我方目标回复等同于其10%生命上限的生命值。当装备者为我方目标提供治疗时，使该目标的攻击力提高2.4%，该效果最多叠加5层，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。我方目标施放终结技时，装备者为当前生命值百分比最低的我方目标回复等同于其"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的生命值。当装备者为我方目标提供治疗时，使该目标的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "2.4%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "层，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的能量恢复效率提高14%。我方目标施放终结技时，装备者为当前生命值百分比最低的我方目标回复等同于其11%生命上限的生命值。当装备者为我方目标提供治疗时，使该目标的攻击力提高2.8%，该效果最多叠加5层，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。我方目标施放终结技时，装备者为当前生命值百分比最低的我方目标回复等同于其"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "11%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的生命值。当装备者为我方目标提供治疗时，使该目标的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "2.8%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "层，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的能量恢复效率提高16%。我方目标施放终结技时，装备者为当前生命值百分比最低的我方目标回复等同于其12%生命上限的生命值。当装备者为我方目标提供治疗时，使该目标的攻击力提高3.2%，该效果最多叠加5层，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。我方目标施放终结技时，装备者为当前生命值百分比最低的我方目标回复等同于其"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的生命值。当装备者为我方目标提供治疗时，使该目标的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "3.2%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "层，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的能量恢复效率提高18%。我方目标施放终结技时，装备者为当前生命值百分比最低的我方目标回复等同于其13%生命上限的生命值。当装备者为我方目标提供治疗时，使该目标的攻击力提高3.6%，该效果最多叠加5层，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。我方目标施放终结技时，装备者为当前生命值百分比最低的我方目标回复等同于其"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "13%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的生命值。当装备者为我方目标提供治疗时，使该目标的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "3.6%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "层，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的能量恢复效率提高20%。我方目标施放终结技时，装备者为当前生命值百分比最低的我方目标回复等同于其14%生命上限的生命值。当装备者为我方目标提供治疗时，使该目标的攻击力提高4.0%，该效果最多叠加5层，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。我方目标施放终结技时，装备者为当前生命值百分比最低的我方目标回复等同于其"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "生命上限的生命值。当装备者为我方目标提供治疗时，使该目标的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "4.0%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "层，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 5,
+    "story": "少女躲在门后，不敢再靠前一步。\n或许是因为今夜的目标就在眼前，她反而有些心跳加速。\n「不怕不怕，我不怕……」\n黑暗中，沉默放声尖叫。\n\n少女颤抖着，捏紧了手里的「武器」，却依然不敢靠近「目标」。\n「没什么好害怕…好…好害怕！」\n\n身后的尾巴终于忍受不住，骤然亮起。\n「快点啊，你就是拿个快递而已！」"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23017",
+    "storyFallbackRendered": false
+  }
+}

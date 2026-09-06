@@ -1,0 +1,459 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23011",
+    "name": "她已闭上双眼",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 19.2,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 57.6,
+            "perLevel": 8.64
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 42.24,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 126.72,
+            "perLevel": 8.64
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 72.96,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 218.88,
+            "perLevel": 8.64
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 103.68,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 311.04,
+            "perLevel": 8.64
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 134.4,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 403.2,
+            "perLevel": 8.64
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 165.12,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 495.36,
+            "perLevel": 8.64
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 195.84,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 587.52,
+            "perLevel": 8.64
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23011",
+    "kind": "light-cone",
+    "name": "她已闭上双眼",
+    "passive": {
+      "id": "23011",
+      "name": "视界",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的生命上限提高24%，能量恢复效率提高12%。当装备者的生命值降低时，使我方全体造成的伤害提高9.0%，持续2回合。\n每个波次开始时，为我方全体回复等同于各自已损失生命值80%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者的生命值降低时，使我方全体造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "9.0%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。\n每个波次开始时，为我方全体回复等同于各自已损失生命值"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的生命上限提高28%，能量恢复效率提高14%。当装备者的生命值降低时，使我方全体造成的伤害提高10.5%，持续2回合。\n每个波次开始时，为我方全体回复等同于各自已损失生命值85%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "，能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者的生命值降低时，使我方全体造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10.5%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。\n每个波次开始时，为我方全体回复等同于各自已损失生命值"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "85%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的生命上限提高32%，能量恢复效率提高16%。当装备者的生命值降低时，使我方全体造成的伤害提高12.0%，持续2回合。\n每个波次开始时，为我方全体回复等同于各自已损失生命值90%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "，能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者的生命值降低时，使我方全体造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12.0%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。\n每个波次开始时，为我方全体回复等同于各自已损失生命值"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "90%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的生命上限提高36%，能量恢复效率提高18%。当装备者的生命值降低时，使我方全体造成的伤害提高13.5%，持续2回合。\n每个波次开始时，为我方全体回复等同于各自已损失生命值95%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "，能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者的生命值降低时，使我方全体造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "13.5%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。\n每个波次开始时，为我方全体回复等同于各自已损失生命值"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "95%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的生命上限提高40%，能量恢复效率提高20%。当装备者的生命值降低时，使我方全体造成的伤害提高15.0%，持续2回合。\n每个波次开始时，为我方全体回复等同于各自已损失生命值100%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，能量恢复效率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者的生命值降低时，使我方全体造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15.0%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。\n每个波次开始时，为我方全体回复等同于各自已损失生命值"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 5,
+    "story": "额间的痛楚将伴随余生，但仍不及过去的万分之一。\n她自以为神机妙算，直到故人离去。\n如今她「看见」万象更迭，时移世变…\n但她已闭上双眼，因为未来已经落定\n——在「第三眼」中。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23011",
+    "storyFallbackRendered": false
+  }
+}

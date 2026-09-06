@@ -1,0 +1,4552 @@
+{
+  "catalog": {
+    "baseName": "千冶•刃",
+    "description": "身如春木，心若死灰，指尖仍留工匠的火星。\n累世宿怨再度点燃，他许诺将自己与神明一同送往彼岸——\n支离此身，千冶成刃…会铸就何种答案？",
+    "element": "Fire",
+    "elementName": "火",
+    "id": "1507",
+    "name": "千冶•刃",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "千冶•刃",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 107
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 73.92,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 184.8,
+            "perLevel": 9.24
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 103.488,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 258.72,
+            "perLevel": 9.24
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 133.056,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 332.64,
+            "perLevel": 9.24
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 162.624,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 406.56,
+            "perLevel": 9.24
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 192.192,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 480.48,
+            "perLevel": 9.24
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 221.76,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 554.4,
+            "perLevel": 9.24
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 251.328,
+            "perLevel": 3.696
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 628.32,
+            "perLevel": 9.24
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "身如春木，心若死灰，指尖仍留工匠的火星。\n累世宿怨再度点燃，他许诺将自己与神明一同送往彼岸——\n支离此身，千冶成刃…会铸就何种答案？",
+    "element": "Fire",
+    "elementName": "火",
+    "equipmentRecommendation": {
+      "avatarId": "1507",
+      "cavernSetIds": [
+        "132",
+        "117",
+        "113"
+      ],
+      "lightConeIds": [
+        "23059",
+        "23043",
+        "22000"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "HPAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "FireAddedRatio",
+            "HPAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "319",
+        "306",
+        "315"
+      ],
+      "subStatPropertyTypes": [
+        "HPAddedRatio",
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "千冶•刃",
+    "id": "1507",
+    "kind": "character",
+    "name": "千冶•刃",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "结界持续期间，使敌方全体全属性抗性降低<unbreak>20%</unbreak>，施放天赋的额外战技后使【无量忿怒】倒计时<u>行动延后</u><unbreak>15%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔延长。",
+                "id": "10000002",
+                "name": "行动延后"
+              }
+            ],
+            "iconKey": "rank--150701",
+            "id": "150701",
+            "name": "我殁之前，我仍未成形",
+            "rank": 1
+          },
+          {
+            "description": "我方角色施放终结技造成伤害时，被视为发动了<u>追加攻击</u>，我方目标造成的<u>追加攻击</u>伤害提高<unbreak>75%</unbreak>。千冶•刃充能点的上限降低至<unbreak>7</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--150702",
+            "id": "150702",
+            "name": "心若死灰，而炉火未熄",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--150703",
+            "id": "150703",
+            "name": "身渡彼岸，现忿怒本相",
+            "rank": 3
+          },
+          {
+            "description": "【万淬心】使我方目标造成的伤害额外提高<unbreak>50%</unbreak>。",
+            "iconKey": "rank--150704",
+            "id": "150704",
+            "name": "锻打遗恨，后剑骨自成",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--150705",
+            "id": "150705",
+            "name": "自断苦己，知死所由生",
+            "rank": 5
+          },
+          {
+            "description": "结界持续期间，千冶•刃受到伤害或消耗生命值时，获得1点充能，该效果在任意目标回合结束后可再次触发。【千冶铸一，万劫烬灭】的伤害倍率提高为原倍率的<unbreak>150%</unbreak>。",
+            "iconKey": "rank--150706",
+            "id": "150706",
+            "name": "神若当殒，自誓弑寿瘟",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 160
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1507001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1507001",
+                "variantIds": [
+                  "150701",
+                  "150708"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "150701",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃25%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃30%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃35%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃40%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃45%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃50%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃55%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃60%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃65%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃70%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "残锋，掠尽",
+                "progressionId": "1507001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "150708",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃50%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃60%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃70%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃80%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃90%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃100%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃110%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃120%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃130%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于千冶•刃140%生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并使目标陷入嘲讽状态，持续1回合。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "淬锋，断魄",
+                "progressionId": "1507001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1507002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1507002",
+                "variantIds": [
+                  "150702"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "specialResource": "<unbreak>10%</unbreak>生命值",
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    },
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "150702",
+                "levels": [
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃36%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃12.0%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃40%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃13.2%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃43%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃14.4%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃47%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃15.6%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃50%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃16.8%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃54%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃18.0%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃59%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃19.5%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃63%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃21.0%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃68%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃22.5%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃72%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃24.0%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃76%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃25.2%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃79%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃26.4%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃83%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃27.6%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃86%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃28.8%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "消耗等同于千冶•刃生命上限10.0%的生命值对敌方全体造成等同于千冶•刃90%生命上限的火属性伤害，并额外造成4次伤害，每次伤害对随机敌方单体造成等同于千冶•刃30.0%生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对随机敌方单体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。\n若当前生命值不足，施放战技时千冶•刃的当前生命值降低至1点。\n未处于【无量忿怒】状态或当前生命值小于等于1时，千冶•刃无法施放战技。\n施放战技时不消耗战技点。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "刃下，归葬",
+                "progressionId": "1507002",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1507003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1507003",
+                "variantIds": [
+                  "150703",
+                  "150714"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    }
+                  ]
+                },
+                "id": "150703",
+                "levels": [
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低20.0%，受到的伤害提高30.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高30.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低21.0%，受到的伤害提高32.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高33.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低22.0%，受到的伤害提高34.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高36.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低23.0%，受到的伤害提高36.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高39.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低24.0%，受到的伤害提高38.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高42.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低25.0%，受到的伤害提高40.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高45.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低26.3%，受到的伤害提高42.5%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高48.8%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低27.5%，受到的伤害提高45.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高52.5%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低28.7%，受到的伤害提高47.5%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高56.3%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低30.0%，受到的伤害提高50.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高60.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低31.0%，受到的伤害提高52.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高63.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低32.0%，受到的伤害提高54.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高66.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低33.0%，受到的伤害提高56.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高69.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低34.0%，受到的伤害提高58.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高72.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低35.0%，受到的伤害提高60.0%，持续2回合。随后消耗等同于千冶•刃生命上限20%的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高20%，暴击伤害提高75.0%，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入无法战斗状态，但会解除结界退出【无量忿怒】状态并回复等同于自身50%生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有70速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【煞火缠身】，【煞火缠身】状态下的敌方目标防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。随后消耗等同于千冶•刃生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值展开结界，结界持续期间，千冶•刃获得【无量忿怒】状态。\n【无量忿怒】状态下暴击率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，普攻获得强化，同时解放战技并获得全新终结技【千冶铸一，万劫烬灭】，若受到致命攻击时，不会陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，但会解除结界退出【无量忿怒】状态并回复等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的生命值。\n获得【无量忿怒】状态时，行动序列上出现对应倒计时，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "速度，倒计时回合开始时结界解除且退出【无量忿怒】状态。\n若当前生命值不足，施放本技能时千冶•刃的当前生命值降低至1点。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "骸骨当炉，血肉即薪",
+                "progressionId": "1507003",
+                "scalingParamIndexes": [
+                  2,
+                  3,
+                  6
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              },
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "150714",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃210.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃224.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃238.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "238.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃252.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃266.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "266.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃280.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃297.5%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "297.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃315.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "315.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃332.5%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "332.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃350.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃364.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "364.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃378.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "378.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃392.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "392.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃406.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "406.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于千冶•刃420.0%生命上限的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于千冶•刃"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "420.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的火属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "千冶铸一，万劫烬灭",
+                "progressionId": "1507003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1507004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1507004",
+                "variantIds": [
+                  "150704"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ]
+                },
+                "id": "150704",
+                "levels": [
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复15.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复16.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复17.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复18.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复19.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复20.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复21.3点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复22.5点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复23.8点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复25.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复26.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复27.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复28.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复29.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到9点且当前生命值大于1时，消耗9点充能，恢复30.0点能量，并使千冶•刃额外施放1次战技，本次战技视为追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "结界持续期间，我方目标每次攻击敌方后，使对应敌方目标陷入【煞火缠身】状态并使千冶•刃获得1点充能，当充能达到"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点且当前生命值大于1时，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "9"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，并使千冶•刃额外施放1次战技，本次战技视为"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "因果尽偿",
+                "progressionId": "1507004",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1507007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1507007",
+                "variantIds": [
+                  "150707"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "150707",
+                "levels": [
+                  {
+                    "description": "立即攻击一定范围内的所有敌人，进入战斗后，使敌方全体陷入嘲讽状态，持续1回合，并使自身受到的伤害降低90%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击一定范围内的所有敌人，进入战斗后，使敌方全体陷入嘲讽状态，持续1回合，并使自身受到的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "十方无赦",
+                "progressionId": "1507007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "千冶•刃可积攒最多<unbreak>80</unbreak>点溢出能量，施放终结技后清空并恢复相应的能量值。战斗开始时或结界解除时，若能量不足<unbreak>75%</unbreak>则立刻恢复至<unbreak>75%</unbreak>。当能量恢复至上限时解除自身所有<u>负面效果</u>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "skill-tree--1507101",
+            "id": "1507101",
+            "name": "百炼骨",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "结界持续期间，被敌方攻击的概率提高，自身受到的伤害降低<unbreak>50%</unbreak>，受到的治疗量提高<unbreak>50%</unbreak>，且受到攻击后使对应目标陷入【煞火缠身】状态并使千冶•刃获得1点充能。",
+            "iconKey": "skill-tree--1507102",
+            "id": "1507102",
+            "name": "千锻魂",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "结界持续期间，我方目标造成的伤害提高<unbreak>50%</unbreak>，我方队伍中存在除千冶•刃之外的「虚无」命途角色时，使我方目标造成的终结技伤害提高<unbreak>75%</unbreak>，否则，使千冶•刃造成的伤害额外提高<unbreak>75%</unbreak>。",
+            "iconKey": "skill-tree--1507103",
+            "id": "1507103",
+            "name": "万淬心",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "火属性伤害提高3.2%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1507201",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [],
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1507202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1507101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "火属性伤害提高3.2%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1507203",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1507202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1507204",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1507203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "火属性伤害提高4.8%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1507205",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1507102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1507206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1507205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "火属性伤害提高4.8%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1507207",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1507206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1507208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1507103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1507209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1507103"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "火属性伤害提高6.4%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1507210",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1507201"
+            ],
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1507001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150701",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150708",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1507002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150702",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1507003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150703",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150714",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1507004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150704",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1507007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "150707",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1507",
+    "subtitleRendered": false
+  }
+}

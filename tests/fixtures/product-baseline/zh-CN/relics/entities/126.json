@@ -1,0 +1,157 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：暴击伤害提高16%。 4件：装备者成为其他我方目标的技能目标时，获得1层【助力】，最多叠加2层。施放终结技时，若持有2层【助力】，消耗所有【助力】，使装备者攻击力提高48%，持续1回合。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "126",
+    "name": "恶海逐波的船长",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "3.3"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：暴击伤害提高16%。 4件：装备者成为其他我方目标的技能目标时，获得1层【助力】，最多叠加2层。施放终结技时，若持有2层【助力】，消耗所有【助力】，使装备者攻击力提高48%，持续1回合。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "暴击伤害提高16%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "16%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "装备者成为其他我方目标的技能目标时，获得1层【助力】，最多叠加2层。施放终结技时，若持有2层【助力】，消耗所有【助力】，使装备者攻击力提高48%，持续1回合。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "装备者成为其他我方目标的技能目标时，获得1层【助力】，最多叠加"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "层。施放终结技时，若持有"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "层【助力】，消耗所有【助力】，使装备者攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "48%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "1"
+          },
+          {
+            "type": "text",
+            "value": "回合。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "126",
+    "kind": "relic",
+    "name": "恶海逐波的船长",
+    "pieces": [
+      {
+        "description": "泛着珍珠光泽的宽边太阳帽。海上驰骋的船员们，借此抵挡艾格勒的烈日。",
+        "id": "31261",
+        "name": "船长的领航笠帽",
+        "slot": "HEAD"
+      },
+      {
+        "description": "捕获星光指引方向的航海罗盘。即使身处昏黑无边的大海中，也会有星光指出前进方向。",
+        "id": "31262",
+        "name": "船长的捕光星盘",
+        "slot": "HAND"
+      },
+      {
+        "description": "航海斗篷如同巨帆般飞舞。若长风不助我，我便化为长风。",
+        "id": "31263",
+        "name": "船长的驭风斗篷",
+        "slot": "BODY"
+      },
+      {
+        "description": "破碎的浪花在船长靴下绽放。即便他一去不返，海潮也会带回他的祝福。",
+        "id": "31264",
+        "name": "船长的踏浪游靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【「云端遗堡」晨昏之眼】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "3.3"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31261"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31262"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31263"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31264"
+      }
+    ],
+    "route": "/relics/126"
+  }
+}

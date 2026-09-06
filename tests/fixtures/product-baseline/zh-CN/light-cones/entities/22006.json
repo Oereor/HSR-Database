@@ -1,0 +1,363 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>记忆</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "22006",
+    "name": "飞向粉色的明天",
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>记忆</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "22006",
+    "kind": "light-cone",
+    "name": "飞向粉色的明天",
+    "passive": {
+      "id": "22006",
+      "name": "凝望",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击伤害提高12%。开拓者•记忆装备时，使我方全体目标造成的伤害提高8%，强化普攻【明天，一同写下！】造成的伤害提高60%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。开拓者•记忆装备时，使我方全体目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "，强化普攻【明天，一同写下！】造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击伤害提高15%。开拓者•记忆装备时，使我方全体目标造成的伤害提高10%，强化普攻【明天，一同写下！】造成的伤害提高70%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "。开拓者•记忆装备时，使我方全体目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "，强化普攻【明天，一同写下！】造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击伤害提高18%。开拓者•记忆装备时，使我方全体目标造成的伤害提高12%，强化普攻【明天，一同写下！】造成的伤害提高80%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。开拓者•记忆装备时，使我方全体目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，强化普攻【明天，一同写下！】造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击伤害提高21%。开拓者•记忆装备时，使我方全体目标造成的伤害提高14%，强化普攻【明天，一同写下！】造成的伤害提高90%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "。开拓者•记忆装备时，使我方全体目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "，强化普攻【明天，一同写下！】造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "90%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击伤害提高24%。开拓者•记忆装备时，使我方全体目标造成的伤害提高16%，强化普攻【明天，一同写下！】造成的伤害提高100%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。开拓者•记忆装备时，使我方全体目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "，强化普攻【明天，一同写下！】造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 4,
+    "story": "轻风吹散了云朵，露出银河的模样。\n黄金的光辉闪耀，史诗将于星空传颂。\n\n<i>「流星，相逢，约定！」</i>\n小妖精望着天空，一如初见，一如重逢。\n\n<i>「迷迷，等待。开拓，世界！」</i>\n小妖精的眼眸被星光照亮——闪烁着，恰如那粉色的明天。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/22006",
+    "storyFallbackRendered": false
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "集中了所有拍摄资源，成为大咖中的大咖的主角斯科特。意识和灵魂被从者分散后，以千般面相展开了对开拓者的复仇。",
+    "id": "3002016",
+    "name": "嫉妒斯科特（污染）",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3002016",
+    "defaultMonsterRef": "785d8b98074a985325ff84196dd0f3c4834b642130383cbe046b75b64a2c48ee",
+    "description": "集中了所有拍摄资源，成为大咖中的大咖的主角斯科特。意识和灵魂被从者分散后，以千般面相展开了对开拓者的复仇。",
+    "id": "3002016",
+    "kind": "enemy",
+    "monsterRefs": [
+      "785d8b98074a985325ff84196dd0f3c4834b642130383cbe046b75b64a2c48ee",
+      "68da379c9c44d24d4c78914198196caa5e40087324a1ab5d403d0fbdc0600926"
+    ],
+    "name": "嫉妒斯科特（污染）",
+    "rank": "MinionLv2",
+    "templateRef": "f2da7774be1efbf1fdffd563ec35845852bac611ac1d7228310d3f582f96e353",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3002016",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3002016",
+    "selectableMonsterIds": [
+      "3002016",
+      "300201601"
+    ]
+  }
+}

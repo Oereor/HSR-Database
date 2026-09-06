@@ -1,0 +1,84 @@
+{
+  "catalog": {
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。刚猛的身躯是军阵的盾牌，以坚石之身阻隔敌军，以粗大臂膀搬运战场的口粮，也常被悬锋的士兵当作练武的对象。",
+    "id": "4012010",
+    "name": "天谴斗士",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012010",
+    "defaultMonsterRef": "ac8be296654477df75f61631559ee35655e3c84e621f47932b11df9f3c8b0c74",
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。刚猛的身躯是军阵的盾牌，以坚石之身阻隔敌军，以粗大臂膀搬运战场的口粮，也常被悬锋的士兵当作练武的对象。",
+    "id": "4012010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ac8be296654477df75f61631559ee35655e3c84e621f47932b11df9f3c8b0c74",
+      "f5f1eff766bc610e85bc3b6e7a03fb0227aa3482db696391e0c9ceef64af65d1",
+      "0dc86de7f27c1d22e39823fa7e7860df844f3be854243a46e3a4d1f52e1d40dd",
+      "f10a45a040b6830db0a571c51fe253afabfbb80163542d341094ae39de9872ce",
+      "e5aed324aaeec1bd3e84ce27a17c2ceb265d03d0c6e52e9b818950d0536d690b",
+      "1c46f62648dfa612b0230cbef893ac3b12cbb88ba6f8a8b94c3ab6ee810a6f54",
+      "80055ee83206faed74ab88349ef1c03a0cbd6a8bee8eb1dabb3c7734b3d210e6",
+      "d741e1ce095974cd0f81e75d83fc754f4572954cd10e26148ddb5c1449853246",
+      "10f7861aac3bb3df55c32ebafbe784320179dbc3b3a4a807777d4ea7da72d04e",
+      "c31c3f2c17360a05a2b51480056d50979341c7c0ac4a215b67841f1f83d5df08",
+      "6cf35a97a31a39f3c51bcdca87c106dd65fd6e76d4dd5bc858441962c4c494f3",
+      "bbc1c27d9db442234c5eef8603bc6ad92b38109d1518103d4137c67378d2b737",
+      "68889eff428166e93cdeed6fbfabc5303f45b23aef0fc9e8cd85bff7db7b678a"
+    ],
+    "name": "天谴斗士",
+    "rank": "MinionLv2",
+    "templateRef": "a805558bf3be8ad807be9126010032f5513bbbf509a93e51f55bf1d99c57cab4",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012010",
+    "selectableMonsterIds": [
+      "4012010",
+      "401201004",
+      "401201005",
+      "401201006",
+      "401201007",
+      "401201008",
+      "401201009",
+      "401201010",
+      "401201011",
+      "401201012",
+      "401201013",
+      "401201014",
+      "401201015"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "catalog": {
+    "description": "美梦剧团的演员们蒙受了「秩序」的恩典，化作宣明法度的傀儡。它们在至高的诫命下起舞，献演迎接乐园的剧目。",
+    "id": "3004010",
+    "name": "昔在、今在、永在的剧目",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": []
+  },
+  "detail": {
+    "defaultMonsterId": "3004010",
+    "defaultMonsterRef": "60528513d33dac5cb792c9d746e0be707680fabacfa6902eebebf9de7a219e75",
+    "description": "美梦剧团的演员们蒙受了「秩序」的恩典，化作宣明法度的傀儡。它们在至高的诫命下起舞，献演迎接乐园的剧目。",
+    "id": "3004010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "60528513d33dac5cb792c9d746e0be707680fabacfa6902eebebf9de7a219e75",
+      "af4302031fb36cfc872a3ab42f1e4894b482a72bdf85f3344507dff6e2f70c5e",
+      "fa8c4fadcb83747b00d6693a9c52171becc4dcf188ce90b80bcf241eadf9d1dd",
+      "8908b8466fb451607ebcd687a84eadb2e76165940422470f631b580e525e027e"
+    ],
+    "name": "昔在、今在、永在的剧目",
+    "rank": "LittleBoss",
+    "templateRef": "d073f901dcdb37a1e48b5651d05fe7e59598d0db937821b2ff6001dd1342b137",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": []
+  },
+  "presentation": {
+    "defaultMonsterId": "3004010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3004010",
+    "selectableMonsterIds": [
+      "3004010",
+      "300401001",
+      "300401002",
+      "300401003"
+    ]
+  }
+}

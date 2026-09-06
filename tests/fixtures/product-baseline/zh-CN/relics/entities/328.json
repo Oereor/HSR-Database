@@ -1,0 +1,103 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：进入战斗时，若装备者能量上限大于等于200点，每超过1点使装备者造成的伤害提高0.2%，最多提高32%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "328",
+    "name": "寰宇生研院",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "4.4"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：进入战斗时，若装备者能量上限大于等于200点，每超过1点使装备者造成的伤害提高0.2%，最多提高32%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "进入战斗时，若装备者能量上限大于等于200点，每超过1点使装备者造成的伤害提高0.2%，最多提高32%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "进入战斗时，若装备者能量上限大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "200"
+          },
+          {
+            "type": "text",
+            "value": "点，每超过1点使装备者造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "0.2%"
+          },
+          {
+            "type": "text",
+            "value": "，最多提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "32%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "328",
+    "kind": "relic",
+    "name": "寰宇生研院",
+    "pieces": [
+      {
+        "description": "位面球中封装着生命科学研究院的核心区域，研究员如同神经网络中的节点，不断在工业化流程中产出灵感与回馈。",
+        "id": "33285",
+        "name": "生研院的中心突触",
+        "slot": "NECK"
+      },
+      {
+        "description": "批量生产人造生命的管线，流水线履带轻轻摇晃，总有造物将它误认作母亲与摇篮。",
+        "id": "33286",
+        "name": "生研院的外周管线",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "4.4"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33285"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33286"
+      }
+    ],
+    "route": "/relics/328"
+  }
+}

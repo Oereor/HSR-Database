@@ -1,0 +1,157 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：暴击伤害提高16%。 4件：装备者及其忆灵造成的欢愉伤害无视目标10%的防御力，我方每累计获得5点笑点，造成的欢愉伤害额外无视目标1%的防御力，最多叠加10层。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "129",
+    "name": "闪耀功勋的魔法少女",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "4.0"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：暴击伤害提高16%。 4件：装备者及其忆灵造成的欢愉伤害无视目标10%的防御力，我方每累计获得5点笑点，造成的欢愉伤害额外无视目标1%的防御力，最多叠加10层。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "暴击伤害提高16%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "16%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "装备者及其忆灵造成的欢愉伤害无视目标10%的防御力，我方每累计获得5点笑点，造成的欢愉伤害额外无视目标1%的防御力，最多叠加10层。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "装备者及其忆灵造成的欢愉伤害无视目标"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10%"
+          },
+          {
+            "type": "text",
+            "value": "的防御力，我方每累计获得"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5"
+          },
+          {
+            "type": "text",
+            "value": "点笑点，造成的欢愉伤害额外无视目标"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "1%"
+          },
+          {
+            "type": "text",
+            "value": "的防御力，最多叠加"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10"
+          },
+          {
+            "type": "text",
+            "value": "层。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "129",
+    "kind": "relic",
+    "name": "闪耀功勋的魔法少女",
+    "pieces": [
+      {
+        "description": "魔法少女糖果色的蝴蝶结发卡，犹如一枚闪闪发光的勋章。",
+        "id": "31291",
+        "name": "魔法少女的闪耀勋章",
+        "slot": "HEAD"
+      },
+      {
+        "description": "魔法少女的多功能手套，集娱乐和战斗功能于一体。纯白的双手，呵护着众人的愿。",
+        "id": "31292",
+        "name": "魔法少女的守护手套",
+        "slot": "HAND"
+      },
+      {
+        "description": "定制的多用型作战服，也是能用作打歌服的偶像短裙。舒适、轻便，且不易污浊。",
+        "id": "31293",
+        "name": "魔法少女的永舞战裙",
+        "slot": "BODY"
+      },
+      {
+        "description": "抗磨损一流的长靴，真正的约定超越言语，需在行迹中践履。",
+        "id": "31294",
+        "name": "魔法少女的缔约长靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【{TextID#FloorName_20501001}】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "4.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31291"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31292"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31293"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31294"
+      }
+    ],
+    "route": "/relics/129"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为徘徊在裂界中的机械单元，但毫无疑问这并非人类技术造就的产物，而是裂界扭曲的力量模仿而成的怪物。\n深寒徘徊者（错误）会吸引永冬灾影，同时能降低我方的速度与冰属性抗性。",
+    "id": "1023021",
+    "name": "深寒徘徊者（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1023021",
+    "defaultMonsterRef": "4afb40e99c2e227268d320f008d3b649274b0d9d5202fc3f5df322b2a65c0e58",
+    "description": "代码受到影响后的错误投影。参照本体为徘徊在裂界中的机械单元，但毫无疑问这并非人类技术造就的产物，而是裂界扭曲的力量模仿而成的怪物。\n深寒徘徊者（错误）会吸引永冬灾影，同时能降低我方的速度与冰属性抗性。",
+    "id": "1023021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4afb40e99c2e227268d320f008d3b649274b0d9d5202fc3f5df322b2a65c0e58",
+      "8fb6cf71d2a19836088aac0e7e1be58b9b67ed9fe0b671b3dcdc85f65bbcb8e4"
+    ],
+    "name": "深寒徘徊者（错误）",
+    "rank": "Elite",
+    "templateRef": "34f2ceec49f0ebe877b4610d2a32b67b17aa7d2be6e18154f0900c59ebe54d83",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1023021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1023021",
+    "selectableMonsterIds": [
+      "1023021",
+      "102302101"
+    ]
+  }
+}

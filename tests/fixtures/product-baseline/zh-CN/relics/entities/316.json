@@ -1,0 +1,103 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的速度提高6%。当装备者击中拥有火属性弱点的敌方目标时，击破特攻提高40%，持续1回合。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "316",
+    "name": "劫火莲灯铸炼宫",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.3"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的速度提高6%。当装备者击中拥有火属性弱点的敌方目标时，击破特攻提高40%，持续1回合。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的速度提高6%。当装备者击中拥有火属性弱点的敌方目标时，击破特攻提高40%，持续1回合。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的速度提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "6%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者击中拥有火属性弱点的敌方目标时，击破特攻提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "40%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "1"
+          },
+          {
+            "type": "text",
+            "value": "回合。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "316",
+    "kind": "relic",
+    "name": "劫火莲灯铸炼宫",
+    "pieces": [
+      {
+        "description": "位面封装的是朱明仙舟的工造司所在地——焰轮铸炼宫，朱明仙舟围绕着岁阳之祖「燧皇」构建的天体级球形结构。天才匠人们自其中汲取能量，将奇思异想打造成型。",
+        "id": "33165",
+        "name": "铸炼宫的莲华灯芯",
+        "slot": "NECK"
+      },
+      {
+        "description": "伟如恒星般的岁阳始祖沉陷在无边梦境之中。在它的酣眠之中，周身的原子与分子碰撞激发，不断从焰轮铸炼的外壳结构中逸散出来，最终呈现为色彩纷呈的天绸光带。",
+        "id": "33166",
+        "name": "铸炼宫的焰轮天绸",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "2.3"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33165"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33166"
+      }
+    ],
+    "route": "/relics/316"
+  }
+}

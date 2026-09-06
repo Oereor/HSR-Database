@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "「纷争」的泰坦，在疯狂中延续疯狂的战争，乃是翁法罗斯众邦挥之不去的恐惧。\n它也曾身负荣耀的威名，令众邦众神心怀敬意。而那敬畏它的城邦被踏碎，那赞颂它的诗篇被焚毁，只有恶名回荡在无光的末世，玷污全世之座背负的光辉。",
+    "id": "4014013",
+    "name": "兵戈扰攘的常胜军",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4014013",
+    "defaultMonsterRef": "3ed8023b43c298a7400d1e8220a9c5c52448d393a47f4dc376bf84a6c72c5963",
+    "description": "「纷争」的泰坦，在疯狂中延续疯狂的战争，乃是翁法罗斯众邦挥之不去的恐惧。\n它也曾身负荣耀的威名，令众邦众神心怀敬意。而那敬畏它的城邦被踏碎，那赞颂它的诗篇被焚毁，只有恶名回荡在无光的末世，玷污全世之座背负的光辉。",
+    "id": "4014013",
+    "kind": "enemy",
+    "monsterRefs": [
+      "3ed8023b43c298a7400d1e8220a9c5c52448d393a47f4dc376bf84a6c72c5963",
+      "640fe0fad15df0242d405656127880853915ae7b5dc324096c92e85fce2a8960",
+      "bf37728f3afde23877a37e0284d776a5d30c3d9fb210142de5c133073b227d3f",
+      "086667ffc9b1d84c8f7d180cd327526855b4ae679624c4a764bd4a2db1731467",
+      "aa30b20ae6e7650591308c874e23f06cdb7a37cd6ee5382a66aeade82fe6540e"
+    ],
+    "name": "兵戈扰攘的常胜军",
+    "rank": "LittleBoss",
+    "templateRef": "32bf3b2b94977499c8f5cf5535b5df604aed3a9a11ac789fee1e6f0f8c42d2a9",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4014013",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4014013",
+    "selectableMonsterIds": [
+      "4014013",
+      "401401301",
+      "401401302",
+      "401401303",
+      "401401304"
+    ]
+  }
+}

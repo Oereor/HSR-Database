@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21062",
+    "name": "于那终点再见",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21062",
+    "kind": "light-cone",
+    "name": "于那终点再见",
+    "passive": {
+      "id": "21062",
+      "name": "执着",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击伤害提高24%。装备者造成的战技和追加攻击伤害提高24%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者造成的战技和追加攻击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击伤害提高28%。装备者造成的战技和追加攻击伤害提高28%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者造成的战技和追加攻击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击伤害提高32%。装备者造成的战技和追加攻击伤害提高32%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者造成的战技和追加攻击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击伤害提高36%。装备者造成的战技和追加攻击伤害提高36%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者造成的战技和追加攻击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击伤害提高40%。装备者造成的战技和追加攻击伤害提高40%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者造成的战技和追加攻击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 4,
+    "story": "不甘的泪水从面颊滑落，损毁法阵中央留下的除却死亡的阴影，还有无尽的寂静与空洞。\n\n恍然间，黑暗中传来一声叹息，那是属于「灵魂」的震颤。\n<i>「是你吗？姐姐…」</i>\n男孩抬起手，眼中闪过一丝光亮。那至亲身影只停留片刻，却仿佛在他心间停滞千年。\n\n<i>「我明白了…谢谢你来与我作最后的道别。」</i>\n他缓缓起身，第一缕清晨的朝阳映照着倔强的脸庞与未干的泪痕。\n\n<i>「求索定是孤独的长路，让我们于终点再见吧……」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21062",
+    "storyFallbackRendered": false
+  }
+}

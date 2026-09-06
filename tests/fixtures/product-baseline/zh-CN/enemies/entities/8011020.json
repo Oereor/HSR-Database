@@ -1,0 +1,72 @@
+{
+  "catalog": {
+    "description": "「反物质军团」为防止反粒子逸散发生湮灭，制造了两种用于运输的小型离子阱，统称「重子」与「反重子」。\n「反重子」具备基本的智能，能在战场上回应「虚卒」的意志与召唤，为其开辟道路。",
+    "id": "8011020",
+    "name": "反重子",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8011020",
+    "defaultMonsterRef": "4f621824fe048415b1157d3c3b09ecf7136371aa51afca7febf6c27f1061b3e5",
+    "description": "「反物质军团」为防止反粒子逸散发生湮灭，制造了两种用于运输的小型离子阱，统称「重子」与「反重子」。\n「反重子」具备基本的智能，能在战场上回应「虚卒」的意志与召唤，为其开辟道路。",
+    "id": "8011020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4f621824fe048415b1157d3c3b09ecf7136371aa51afca7febf6c27f1061b3e5",
+      "29156cf3a6487a94ec1e580bf1065d5fbdab548a962762eff15cae97cdfef351",
+      "68b24fe168f3668c5224f9423ede3b1f4b6ca07456de3bb531001c9993c3bd67",
+      "cd8ad30270834482f40a7ed73f62f3e5a02a50aaf234b7d640a4425677db1d7e",
+      "492606289cc5e3d8c296f39b08b246b7894dfbf5890f7190cd304cfbf5cffd96",
+      "81b2e00306f49f903231072592dce2677f42ea8cae697ecb23fee5e64dd4b97d",
+      "90e8f730953c2998849a47f0fde67ae8cb94c47a59fa66a98c09a525c45e91e6",
+      "1d9e35a85e4c1cbbd5b450897fc96304648d7bc62553ed3980e378e7c9b9b998",
+      "01272ffdb40a6a21fdac87adeec7470bf7e2dcf847e4806419793e5d94b191eb",
+      "8e505120ea7149845edfa5870dd6c4cd1b4583f927be46c678c0ffd7334224df",
+      "2c25dbaf061a42ce69fb699e2b918b772313c3e1e37a9dcc3fc5bfc79983131b"
+    ],
+    "name": "反重子",
+    "rank": "Minion",
+    "templateRef": "72c877676faf491f565ed9972fee4cdcc023e5a79fa3988d60b68c6aa908d43d",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8011020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8011020",
+    "selectableMonsterIds": [
+      "8011020",
+      "801102001",
+      "801102002",
+      "801102003",
+      "801102004",
+      "801102005",
+      "801102007",
+      "801102008",
+      "801102009",
+      "801102011",
+      "801102012"
+    ]
+  }
+}

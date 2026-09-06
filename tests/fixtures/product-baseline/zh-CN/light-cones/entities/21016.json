@@ -1,0 +1,408 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21016",
+    "name": "宇宙市场趋势",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 16.8,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 36.96,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 63.84,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 90.72,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 117.6,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 144.48,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 171.36,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21016",
+    "kind": "light-cone",
+    "name": "宇宙市场趋势",
+    "passive": {
+      "id": "21016",
+      "name": "新一轮洗牌",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的防御力提高16%。当装备者受到攻击后，有100%的基础概率使敌方目标陷入灼烧状态，每回合造成等同于装备者40%防御力的持续伤害，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者受到攻击后，有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方目标陷入灼烧状态，每回合造成等同于装备者"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "防御力的持续伤害，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的防御力提高20%。当装备者受到攻击后，有105%的基础概率使敌方目标陷入灼烧状态，每回合造成等同于装备者50%防御力的持续伤害，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者受到攻击后，有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "105%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方目标陷入灼烧状态，每回合造成等同于装备者"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "防御力的持续伤害，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的防御力提高24%。当装备者受到攻击后，有110%的基础概率使敌方目标陷入灼烧状态，每回合造成等同于装备者60%防御力的持续伤害，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者受到攻击后，有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "110%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方目标陷入灼烧状态，每回合造成等同于装备者"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "防御力的持续伤害，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的防御力提高28%。当装备者受到攻击后，有115%的基础概率使敌方目标陷入灼烧状态，每回合造成等同于装备者70%防御力的持续伤害，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者受到攻击后，有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "115%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方目标陷入灼烧状态，每回合造成等同于装备者"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "防御力的持续伤害，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的防御力提高32%。当装备者受到攻击后，有120%的基础概率使敌方目标陷入灼烧状态，每回合造成等同于装备者80%防御力的持续伤害，持续2回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者受到攻击后，有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方目标陷入灼烧状态，每回合造成等同于装备者"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "防御力的持续伤害，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 4,
+    "story": "星球的价值正在被重新计算……\n\n<i>「这个项目是否会说明，追回债务的益处是相互的？」\n「但我们只需传达一个信息，就是宣告我们的存在。」</i>\n\n「它若是要有自己的价值，就得为公司增添价值。」"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21016",
+    "storyFallbackRendered": false
+  }
+}

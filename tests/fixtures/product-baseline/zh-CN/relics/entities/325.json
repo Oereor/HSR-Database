@@ -1,0 +1,121 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的欢愉度提高8%。战斗中欢愉度首次达到40%/80%时，使装备者暴击伤害提高20%/32%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "325",
+    "name": "零号关卡朋克洛德",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "4.1"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的欢愉度提高8%。战斗中欢愉度首次达到40%/80%时，使装备者暴击伤害提高20%/32%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的欢愉度提高8%。战斗中欢愉度首次达到40%/80%时，使装备者暴击伤害提高20%/32%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的欢愉度提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "。战斗中欢愉度首次达到"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "40%"
+          },
+          {
+            "type": "text",
+            "value": "/"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "80%"
+          },
+          {
+            "type": "text",
+            "value": "时，使装备者暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "20%"
+          },
+          {
+            "type": "text",
+            "value": "/"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "32%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "325",
+    "kind": "relic",
+    "name": "零号关卡朋克洛德",
+    "pieces": [
+      {
+        "description": "位面球中封装着朋克洛德的虹霓都市。昼与夜没有分别，虚幻和现实没有边界，生命有如一段闪烁的字节。",
+        "id": "33255",
+        "name": "朋克洛德的虹霓都市",
+        "slot": "NECK"
+      },
+      {
+        "description": "信息川流的网络，将骇客们的卡带彼此相连。奔腾的不只有数据，还有骇客的生命。",
+        "id": "33256",
+        "name": "朋克洛德的数据洪流",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "4.1"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33255"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33256"
+      }
+    ],
+    "route": "/relics/325"
+  }
+}

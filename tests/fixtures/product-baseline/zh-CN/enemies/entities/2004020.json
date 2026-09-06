@@ -1,0 +1,82 @@
+{
+  "catalog": {
+    "description": "将军景元的侍卫，不过总角之年的御剑天才。",
+    "id": "2004020",
+    "name": "云骑骁卫•彦卿",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2004020",
+    "defaultMonsterRef": "7bba26337a9b41ee92aa14912f6ec1363ad2301cfc4daffa08ffdc309eaaa290",
+    "description": "将军景元的侍卫，不过总角之年的御剑天才。",
+    "id": "2004020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "7bba26337a9b41ee92aa14912f6ec1363ad2301cfc4daffa08ffdc309eaaa290",
+      "e643ae963c36ef235fa784cf268655a84ebb634030f7d06f49feb193db2f9141",
+      "8128157e13db121ae6a731205fc0af425e0b2e772edb2b2ab511a2796d190811",
+      "7c1199e6a8d8c76cf677eb489d6b78a067216f4594aeec325284eeb6d9f34729",
+      "0e7922bb86f43f8fb85e0bcd2c47e3352f402a051ef826a4b8bc2c27c39d1082",
+      "3237b40e88e12874505e5cf8176cbdb68696a3378d03d6dc6da03a9669b8c573",
+      "3be3d9e51834937292ecdf14f1baf513b9eb2ec1af10b597a65242bf9ab90996",
+      "5e9c770839e3e6948f6229c275c0a6347d3883c2d8c326de48428cf7999163fe",
+      "320b22919984c9f7a32c3c9a80878e0300617b3c69bb4d30adeddefe386fa765",
+      "8a279355941bc343311f81d027163b2cef367fb24e0cd62b3c74c1a00235b81d",
+      "c629a6d48cb03ad3f14cee8a408b925da6be3e9f89ef78db8d6089f81925e852",
+      "6da60a2e4b487f1d8879d7c215c24568bcb486a95588d1f2b8eba0ba3d464305"
+    ],
+    "name": "云骑骁卫•彦卿",
+    "rank": "LittleBoss",
+    "templateRef": "5cd838357cba3e75e21bf9527884cd3df85146b088a17f723fb75dfa65a2d6af",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2004020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2004020",
+    "selectableMonsterIds": [
+      "2004020",
+      "200402001",
+      "200402002",
+      "200402003",
+      "200402004",
+      "200402005",
+      "200402006",
+      "200402007",
+      "200402008",
+      "200402009",
+      "200402010",
+      "200402011"
+    ]
+  }
+}

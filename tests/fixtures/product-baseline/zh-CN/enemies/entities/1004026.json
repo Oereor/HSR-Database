@@ -1,0 +1,70 @@
+{
+  "catalog": {
+    "description": "银鬃铁卫的戍卫长。\n杰帕德会为士兵提供抵挡攻击伤害的护盾。",
+    "id": "1004026",
+    "name": "杰帕德",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004026",
+    "defaultMonsterRef": "e4ee57bba42da64e2c285ea0835655e7c5844c5fc00291fcea91d6c5ec5b8e5a",
+    "description": "银鬃铁卫的戍卫长。\n杰帕德会为士兵提供抵挡攻击伤害的护盾。",
+    "id": "1004026",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e4ee57bba42da64e2c285ea0835655e7c5844c5fc00291fcea91d6c5ec5b8e5a",
+      "fb698582fa2246f1c1a761766126f925b9d0bdedad6f88be7eb00c9a916192db",
+      "a43da84ba8617ba56e02b8679739e83481a6ff630dd9621dcb21640a1776034e",
+      "f03b2f1c1c740a7e4e8eb3d163f650b9df866521820bce968760b4038b136634",
+      "e589ccf85d5801c8ff1fa061719a74d8370ed7caa887279de76a2e7ad48db9aa",
+      "e6989040f95f769cd4861e67dcf3c593b8e0dc1ad60851ef1cc3f2076bf100bf"
+    ],
+    "name": "杰帕德",
+    "rank": "LittleBoss",
+    "templateRef": "0f82f4bd6cfe21860c04d86aa92b62107f1206806dabd247e78d371a85d93f6e",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004026",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004026",
+    "selectableMonsterIds": [
+      "1004026",
+      "100402601",
+      "100402602",
+      "100402603",
+      "100402604",
+      "100402605"
+    ]
+  }
+}

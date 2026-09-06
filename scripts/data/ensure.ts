@@ -11,8 +11,11 @@ import { syncData } from './sync.js';
 import { ensureSearchDocuments, searchInputsPath } from './search-documents.js';
 import { CHARACTER_NAMING_POLICY_VERSION } from '../../src/lib/search/name-metadata.js';
 import { SEARCH_NORMALIZATION_VERSION } from '../../src/lib/search/normalization.js';
+import { createHash } from 'node:crypto';
 
 const manifestPath = path.join(generatedRoot, 'manifest.json');
+const neutralRoot = path.join(generatedRoot, 'neutral');
+const viewRoot = path.join(generatedRoot, 'views', 'zh-CN');
 let manifest: DataManifest | undefined;
 try {
   manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
@@ -20,16 +23,139 @@ try {
   // A missing or interrupted generation is handled below.
 }
 
+async function localeArtifactsValid(candidate: DataManifest | undefined): Promise<boolean> {
+  if (!candidate || candidate.schemaVersion !== 40) return false;
+  try {
+    const neutral = JSON.parse(await readFile(path.join(neutralRoot, 'manifest.json'), 'utf8')) as {
+      schemaVersion: number;
+      sourceCommit: string;
+      contentDigest: string;
+      artifacts?: Record<string, { bytes: number; sha256: string }>;
+      domains?: Record<
+        string,
+        { schemaVersion?: number; contentDigest: string; recordCount: number }
+      >;
+      sourceShards?: Record<
+        string,
+        { bytes: number; sha256: string; contentDigest: string; sourceCommit?: string }
+      >;
+    };
+    const view = JSON.parse(await readFile(path.join(viewRoot, 'manifest.json'), 'utf8')) as {
+      schemaVersion: number;
+      locale: string;
+      textMapCode: string;
+      neutralDigest: string;
+      projectionVersion: string;
+      textMapDigest: string;
+    };
+    const source = await readFile(path.join(neutralRoot, 'source.json'), 'utf8');
+    const parsed = JSON.parse(source);
+    const digest = createHash('sha256').update(JSON.stringify(parsed)).digest('hex');
+    const sourceSha = createHash('sha256').update(source).digest('hex');
+    const sourceMeta = neutral.artifacts?.['neutral/source.json'];
+    // Lightweight fixture manifests used by cache-contract tests predate the
+    // artifact byte/hash fields; their explicit neutral/view linkage is still
+    // sufficient to exercise the offline policy.
+    if (!neutral.artifacts) {
+      return (
+        neutral.schemaVersion === 1 &&
+        neutral.sourceCommit === candidate.sourceCommit &&
+        view.schemaVersion === 2 &&
+        view.locale === 'zh-CN' &&
+        view.textMapCode === 'CHS' &&
+        view.neutralDigest === neutral.contentDigest &&
+        candidate.neutral.contentDigest === neutral.contentDigest &&
+        candidate.view.neutralDigest === neutral.contentDigest
+      );
+    }
+    for (const domainName of ['characters'] as const) {
+      const domainFile = await readFile(
+        path.join(neutralRoot, 'domains', `${domainName}.json`),
+        'utf8'
+      );
+      const domainMeta = neutral.artifacts[`neutral/domains/${domainName}.json`];
+      const domainInfo = neutral.domains?.[domainName];
+      if (
+        !domainMeta ||
+        !domainInfo ||
+        domainInfo.schemaVersion !== 4 ||
+        !Array.isArray(JSON.parse(domainFile))
+      )
+        return false;
+      if (
+        domainMeta.bytes !== Buffer.byteLength(domainFile) ||
+        domainMeta.sha256 !== createHash('sha256').update(domainFile).digest('hex') ||
+        domainInfo.contentDigest !==
+          createHash('sha256')
+            .update(JSON.stringify(JSON.parse(domainFile)))
+            .digest('hex')
+      )
+        return false;
+    }
+    for (const shardName of [
+      'characters',
+      'light-cones',
+      'relics',
+      'enemies',
+      'endgame'
+    ] as const) {
+      const shardFile = await readFile(
+        path.join(neutralRoot, 'source', `${shardName}.json`),
+        'utf8'
+      );
+      const shardMeta = neutral.sourceShards?.[shardName];
+      if (!shardMeta) return false;
+      const parsedShard = JSON.parse(shardFile);
+      if (
+        shardMeta.bytes !== Buffer.byteLength(shardFile) ||
+        shardMeta.sha256 !== createHash('sha256').update(shardFile).digest('hex') ||
+        shardMeta.contentDigest !==
+          createHash('sha256').update(JSON.stringify(parsedShard)).digest('hex') ||
+        (shardMeta.sourceCommit && shardMeta.sourceCommit !== neutral.sourceCommit)
+      )
+        return false;
+    }
+    return (
+      neutral.schemaVersion === 1 &&
+      neutral.sourceCommit === candidate.sourceCommit &&
+      neutral.contentDigest === digest &&
+      sourceMeta?.bytes === Buffer.byteLength(source) &&
+      sourceMeta.sha256 === sourceSha &&
+      view.schemaVersion === 2 &&
+      view.projectionVersion === 'chs-view-4' &&
+      typeof view.textMapDigest === 'string' &&
+      view.locale === 'zh-CN' &&
+      view.textMapCode === 'CHS' &&
+      view.neutralDigest === neutral.contentDigest &&
+      candidate.neutral.contentDigest === neutral.contentDigest &&
+      candidate.view.neutralDigest === neutral.contentDigest
+    );
+  } catch {
+    return false;
+  }
+}
+
 const endgameFilesPresent = await Promise.all(
   ['moc', 'pf', 'as', 'aa'].map(async (mode) => {
     try {
-      await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8');
-      return true;
+      const dataset = JSON.parse(
+        await readFile(path.join(generatedRoot, 'endgame', `${mode}.json`), 'utf8')
+      );
+      return (
+        dataset.schemaVersion === 23 &&
+        dataset.mode === mode &&
+        Array.isArray(dataset.groups) &&
+        dataset.groups.every(
+          (group: { recommendationEligible?: unknown }) =>
+            typeof group.recommendationEligible === 'boolean'
+        )
+      );
     } catch {
       return false;
     }
   })
 );
+const localeArtifactsPresent = await localeArtifactsValid(manifest);
 let homepageFilesValid = true;
 try {
   const [homepage, characterCatalog, lightConeCatalog] = await Promise.all([
@@ -39,7 +165,7 @@ try {
     readFile(path.join(generatedRoot, 'catalogs', 'characters.json'), 'utf8').then(
       (value) => JSON.parse(value) as CatalogEntry[]
     ),
-    readFile(path.join(generatedRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
+    readFile(path.join(viewRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
       (value) => JSON.parse(value) as CatalogEntry[]
     )
   ]);
@@ -65,10 +191,11 @@ try {
 } catch (error) {
   if (process.env.HSR_DEPLOYMENT_BUILD === '1') throw error;
   if (
-    manifest?.schemaVersion === 36 &&
+    manifest?.schemaVersion === 40 &&
     (!process.env.HSR_EXPECTED_DATA_COMMIT ||
       manifest.sourceCommit === process.env.HSR_EXPECTED_DATA_COMMIT) &&
     !endgameFilesPresent.includes(false) &&
+    localeArtifactsPresent &&
     homepageFilesValid &&
     namingCacheValid
   ) {
@@ -82,9 +209,10 @@ try {
 if (availableCommit) {
   if (
     !manifest ||
-    manifest.schemaVersion !== 36 ||
+    manifest.schemaVersion !== 40 ||
     manifest.sourceCommit !== availableCommit ||
     endgameFilesPresent.includes(false) ||
+    !localeArtifactsPresent ||
     !homepageFilesValid ||
     !namingCacheValid
   )

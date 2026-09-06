@@ -1,0 +1,453 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23032",
+    "name": "唯有香如故",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23032",
+    "kind": "light-cone",
+    "name": "唯有香如故",
+    "passive": {
+      "id": "23032",
+      "name": "安心",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者击破特攻提高60%。装备者施放终结技攻击敌方目标后，使其陷入【忘忧】状态，持续2回合，【忘忧】状态下的敌方目标受到的伤害提高10%，若装备者当前击破特攻大于等于150%，受到的伤害提高效果额外提高8%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技攻击敌方目标后，使其陷入【忘忧】状态，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，【忘忧】状态下的敌方目标受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "，若装备者当前击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "，受到的伤害提高效果额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者击破特攻提高70%。装备者施放终结技攻击敌方目标后，使其陷入【忘忧】状态，持续2回合，【忘忧】状态下的敌方目标受到的伤害提高12%，若装备者当前击破特攻大于等于150%，受到的伤害提高效果额外提高10%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技攻击敌方目标后，使其陷入【忘忧】状态，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，【忘忧】状态下的敌方目标受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，若装备者当前击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "，受到的伤害提高效果额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者击破特攻提高80%。装备者施放终结技攻击敌方目标后，使其陷入【忘忧】状态，持续2回合，【忘忧】状态下的敌方目标受到的伤害提高14%，若装备者当前击破特攻大于等于150%，受到的伤害提高效果额外提高12%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技攻击敌方目标后，使其陷入【忘忧】状态，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，【忘忧】状态下的敌方目标受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "，若装备者当前击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "，受到的伤害提高效果额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者击破特攻提高90%。装备者施放终结技攻击敌方目标后，使其陷入【忘忧】状态，持续2回合，【忘忧】状态下的敌方目标受到的伤害提高16%，若装备者当前击破特攻大于等于150%，受到的伤害提高效果额外提高14%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "90%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技攻击敌方目标后，使其陷入【忘忧】状态，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，【忘忧】状态下的敌方目标受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "，若装备者当前击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "，受到的伤害提高效果额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者击破特攻提高100%。装备者施放终结技攻击敌方目标后，使其陷入【忘忧】状态，持续2回合，【忘忧】状态下的敌方目标受到的伤害提高18%，若装备者当前击破特攻大于等于150%，受到的伤害提高效果额外提高16%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技攻击敌方目标后，使其陷入【忘忧】状态，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，【忘忧】状态下的敌方目标受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，若装备者当前击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "，受到的伤害提高效果额外提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          3
+        ]
+      }
+    },
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 5,
+    "story": "<i>「第一件，整顿工作习惯。」 </i>\n<i>「第二件，严格执行奖惩规定。」 </i>\n<i>「当然，最要紧的还是尽快查清那些盘根错节的利益关系……」</i>\n本在欣赏湖光山色，思绪又不知不觉滑向了工作，压力和烦躁也随之而来。\n\n她赶紧点燃一柱随身携带的安神香。\n<i>「世界如此美妙，我却如此暴躁…休假的日子，就别想那些烦人的事了……」 </i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23032",
+    "storyFallbackRendered": false
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "街头帮派共愿帮的二当家。\n踏入歧途但对音乐梦想未能忘怀，即便在战斗中也手持乐器载歌载舞。",
+    "id": "5013011",
+    "name": "共愿帮二当家，恶水",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5013011",
+    "defaultMonsterRef": "41e6bd012e48180833ce3d3fcdd012f98b4f67d476e11b4a5628f7f19cacaa83",
+    "description": "街头帮派共愿帮的二当家。\n踏入歧途但对音乐梦想未能忘怀，即便在战斗中也手持乐器载歌载舞。",
+    "id": "5013011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "41e6bd012e48180833ce3d3fcdd012f98b4f67d476e11b4a5628f7f19cacaa83"
+    ],
+    "name": "共愿帮二当家，恶水",
+    "rank": "Elite",
+    "templateRef": "2de58b7ac01f730b072db8b94f2fbf7c15bec7a890af767a3d4ddb877bd1a19c",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5013011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5013011",
+    "selectableMonsterIds": [
+      "5013011"
+    ]
+  }
+}

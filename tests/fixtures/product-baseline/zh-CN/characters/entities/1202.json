@@ -1,0 +1,2973 @@
+{
+  "catalog": {
+    "baseName": "停云",
+    "description": "仙舟「罗浮」天舶司的接渡使。\n随商团出使过众多世界，缔结贸易与盟谊。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "id": "1202",
+    "name": "停云",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "停云",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 112
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 72,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 54,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 115.2,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 100.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 75.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 161.28,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 158.4,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 253.44,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 187.2,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 140.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 299.52,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 216,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 162,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 345.6,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟「罗浮」天舶司的接渡使。\n随商团出使过众多世界，缔结贸易与盟谊。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "equipmentRecommendation": {
+      "avatarId": "1202",
+      "cavernSetIds": [
+        "121",
+        "114",
+        "110"
+      ],
+      "lightConeIds": [
+        "21032",
+        "21018",
+        "21011"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "308",
+        "312",
+        "302"
+      ],
+      "subStatPropertyTypes": [
+        "SpeedDelta",
+        "AttackAddedRatio",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "停云",
+    "id": "1202",
+    "kind": "character",
+    "name": "停云",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "得到【赐福】的我方单体施放终结技后速度提高<unbreak>20%</unbreak>，持续1回合。",
+            "iconKey": "rank--120201",
+            "id": "120201",
+            "name": "春风得意，时运驰骋",
+            "rank": 1
+          },
+          {
+            "description": "得到【赐福】的我方单体在消灭敌方目标时恢复<unbreak>5</unbreak>点能量，该效果每回合只能触发1次。",
+            "iconKey": "rank--120202",
+            "id": "120202",
+            "name": "君子惠渥，晏笑承之",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--120203",
+            "id": "120203",
+            "name": "青丘遗泽",
+            "rank": 3
+          },
+          {
+            "description": "【赐福】附加的伤害倍率提高<unbreak>20%</unbreak>。",
+            "iconKey": "rank--120204",
+            "id": "120204",
+            "name": "鸣火机变，度时察势",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--120205",
+            "id": "120205",
+            "name": "绥绥狐魅",
+            "rank": 5
+          },
+          {
+            "description": "终结技为我方目标恢复的能量提高<unbreak>10</unbreak>点。",
+            "iconKey": "rank--120206",
+            "id": "120206",
+            "name": "和气生财，泽盈四方",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 130
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1202001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1202001",
+                "variantIds": [
+                  "120201"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120201",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于停云50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于停云"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于停云60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于停云"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于停云70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于停云"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于停云80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于停云"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于停云90%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于停云"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于停云100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于停云"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于停云110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于停云"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于停云120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于停云"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于停云130%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于停云"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于停云140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于停云"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "逐客令",
+                "progressionId": "1202001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1202002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1202002",
+                "variantIds": [
+                  "120202"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ]
+                },
+                "id": "120202",
+                "levels": [
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高25%，最高不超过停云当前攻击力的15%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身20%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高28%，最高不超过停云当前攻击力的16%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身22%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高30%，最高不超过停云当前攻击力的17%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身24%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高33%，最高不超过停云当前攻击力的18%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身26%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高35%，最高不超过停云当前攻击力的19%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身28%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高38%，最高不超过停云当前攻击力的20%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身30%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高41%，最高不超过停云当前攻击力的21%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身33%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高44%，最高不超过停云当前攻击力的23%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身35%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高47%，最高不超过停云当前攻击力的24%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身38%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高50%，最高不超过停云当前攻击力的25%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身40%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高53%，最高不超过停云当前攻击力的26%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身42%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高55%，最高不超过停云当前攻击力的27%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身44%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高57%，最高不超过停云当前攻击力的28%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身46%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高60%，最高不超过停云当前攻击力的29%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身48%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为指定我方单体提供【赐福】，使其攻击力提高63%，最高不超过停云当前攻击力的30%。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身50%攻击力的雷属性附加伤害。\n【赐福】持续3回合且仅对停云战技最新的施放目标生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体提供【赐福】，使其攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最高不超过停云当前攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n获得【赐福】的目标施放攻击后，会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【赐福】持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合且仅对停云战技最新的施放目标生效。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "祥音和韵",
+                "progressionId": "1202002",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  3
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1202003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1202003",
+                "variantIds": [
+                  "120203"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 5
+                },
+                "id": "120203",
+                "levels": [
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高20%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高23%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高26%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高29%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高32%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高35%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高39%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高43%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高46%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高50%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高53%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高56%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高59%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高62%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为指定我方单体恢复50点能量，同时使目标造成的伤害提高65%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为指定我方单体恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，同时使目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "庆云光覆仪祷",
+                "progressionId": "1202003",
+                "scalingParamIndexes": [
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1202004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1202004",
+                "variantIds": [
+                  "120204"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ]
+                },
+                "id": "120204",
+                "levels": [
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身30%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身33%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身36%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身39%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身42%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身45%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身49%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身53%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身56%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身60%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身63%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身66%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身69%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身72%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身75%攻击力的雷属性附加伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "敌方目标受到停云攻击后，获得【赐福】的目标立即对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "紫电扶摇",
+                "progressionId": "1202004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1202007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1202007",
+                "variantIds": [
+                  "120207"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "120207",
+                "levels": [
+                  {
+                    "description": "使用秘技后立即为自身恢复50点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后立即为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "惠风和畅",
+                "progressionId": "1202007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放战技时，停云自身速度提高<unbreak>20%</unbreak>，持续1回合。",
+            "iconKey": "skill-tree--1202101",
+            "id": "1202101",
+            "name": "驻晴",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "普攻造成的伤害提高<unbreak>40%</unbreak>。",
+            "iconKey": "skill-tree--1202102",
+            "id": "1202102",
+            "name": "止厄",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "停云的回合开始时，自身立即恢复<unbreak>5</unbreak>点能量。",
+            "iconKey": "skill-tree--1202103",
+            "id": "1202103",
+            "name": "亨通",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1202201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1202202",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1202101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1202203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1202202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "雷属性伤害提高3.2%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1202204",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1202201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1202205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1202102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1202206",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1202205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1202207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1202201"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "雷属性伤害提高4.8%",
+            "iconKey": "property--ThunderAddedRatio",
+            "id": "1202208",
+            "name": "伤害强化•雷",
+            "prerequisiteIds": [
+              "1202103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "ThunderAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "防御力提高10.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1202209",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1202208"
+            ],
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1202210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1202208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1202001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120201",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1202002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120202",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1202003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120203",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1202004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120204",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1202007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120207",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1202",
+    "subtitleRendered": false
+  }
+}

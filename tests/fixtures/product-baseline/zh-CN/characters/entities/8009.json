@@ -1,0 +1,5337 @@
+{
+  "catalog": {
+    "baseName": "开拓者",
+    "description": "登上星穹列车的{F#少女}{M#少年}。\n为了消除星核带来的危机，选择与星穹列车同行。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "id": "8009",
+    "name": "开拓者·欢愉",
+    "path": "Elation",
+    "pathName": "欢愉",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "开拓者",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 106
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 63.36,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 85.8,
+            "perLevel": 4.29
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 147.84,
+            "perLevel": 7.392
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 88.704,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 120.12,
+            "perLevel": 4.29
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 206.976,
+            "perLevel": 7.392
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 114.048,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 154.44,
+            "perLevel": 4.29
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 266.112,
+            "perLevel": 7.392
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 139.392,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 188.76,
+            "perLevel": 4.29
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 325.248,
+            "perLevel": 7.392
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 164.736,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 223.08,
+            "perLevel": 4.29
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 384.384,
+            "perLevel": 7.392
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 190.08,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 257.4,
+            "perLevel": 4.29
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 443.52,
+            "perLevel": 7.392
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 215.424,
+            "perLevel": 3.168
+          },
+          "defence": {
+            "base": 291.72,
+            "perLevel": 4.29
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 502.656,
+            "perLevel": 7.392
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "登上星穹列车的{F#少女}{M#少年}。\n为了消除星核带来的危机，选择与星穹列车同行。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "equipmentRecommendation": {
+      "avatarId": "8009",
+      "cavernSetIds": [
+        "130",
+        "129",
+        "102"
+      ],
+      "lightConeIds": [
+        "23054",
+        "24006",
+        "22007"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalDamageBase",
+            "CriticalChanceBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "317",
+        "325",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "SpeedDelta",
+        "AttackAddedRatio"
+      ]
+    },
+    "fullName": "开拓者·欢愉",
+    "id": "8009",
+    "kind": "character",
+    "name": "开拓者·欢愉",
+    "path": "Elation",
+    "pathName": "欢愉",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "施放战技后，下一次终结技使我方目标获得的【<u>好活当赏</u>】提高<unbreak>2</unbreak>点，该效果最多叠加<unbreak>3</unbreak>层。",
+            "extraEffects": [
+              {
+                "description": "使参演阿哈时刻的角色获得【好活当赏】状态，并将本次阿哈时刻的笑点计入该状态，持续2回合。【好活当赏】状态产生的技能效果和欢愉伤害以【好活当赏】计入的笑点数计算。\n多个【好活当赏】计入的笑点数合并计算。\n各个【好活当赏】的持续时间各自独立计算。",
+                "id": "10000029",
+                "name": "好活当赏"
+              }
+            ],
+            "iconKey": "rank--800901",
+            "id": "800901",
+            "name": "相信光的时间",
+            "rank": 1
+          },
+          {
+            "description": "终结技额外使指定我方单体的欢愉度提高<unbreak>12%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--800902",
+            "id": "800902",
+            "name": "名场面酝酿中……",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级；欢愉技等级+1，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--800903",
+            "id": "800903",
+            "name": "来吧，镜头的焦点",
+            "rank": 3
+          },
+          {
+            "description": "施放欢愉技时，使敌方目标受到的伤害提高<unbreak>10%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--800904",
+            "id": "800904",
+            "name": "拯救世界，无需理由",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级；欢愉技等级+1，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--800905",
+            "id": "800905",
+            "name": "爱与勇气，永不过时",
+            "rank": 5
+          },
+          {
+            "description": "施放欢愉技时，使自身暴击伤害提高<unbreak>100%</unbreak>，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "rank--800906",
+            "id": "800906",
+            "name": "银河传奇，登场！",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 160
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--8009001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "8009001",
+                "variantIds": [
+                  "800901"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "800901",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者90%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者130%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "此即应援",
+                "progressionId": "8009001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--8009002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8009002",
+                "variantIds": [
+                  "800902"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "使参演阿哈时刻的角色获得【好活当赏】状态，并将本次阿哈时刻的笑点计入该状态，持续2回合。【好活当赏】状态产生的技能效果和欢愉伤害以【好活当赏】计入的笑点数计算。\n多个【好活当赏】计入的笑点数合并计算。\n各个【好活当赏】的持续时间各自独立计算。",
+                      "id": "10000029",
+                      "name": "好活当赏"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "800902",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于开拓者30%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者33%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者36%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者39%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者42%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者45%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者49%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者53%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者56%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者60%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者63%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者66%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者69%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者72%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于开拓者75%攻击力的雷属性伤害，获得20点【好活当赏】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "风暴甚是喧嚣",
+                "progressionId": "8009002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--8009003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8009003",
+                "variantIds": [
+                  "800903"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "笑点为全队共享。造成欢愉伤害时，计入的笑点越多，欢愉伤害越高。",
+                      "id": "10000027",
+                      "name": "笑点"
+                    },
+                    {
+                      "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                      "id": "10000011",
+                      "name": "控制类负面状态"
+                    },
+                    {
+                      "description": "使参演阿哈时刻的角色获得【好活当赏】状态，并将本次阿哈时刻的笑点计入该状态，持续2回合。【好活当赏】状态产生的技能效果和欢愉伤害以【好活当赏】计入的笑点数计算。\n多个【好活当赏】计入的笑点数合并计算。\n各个【好活当赏】的持续时间各自独立计算。",
+                      "id": "10000029",
+                      "name": "好活当赏"
+                    },
+                    {
+                      "description": "使目标在下次行动前的等待间隔缩短。",
+                      "id": "10000001",
+                      "name": "行动提前"
+                    }
+                  ]
+                },
+                "id": "800903",
+                "levels": [
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高30%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高32%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高34%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高36%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高38%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高40%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高43%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高45%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高48%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高50%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高52%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高54%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高56%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高58%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "获得5个笑点，使指定我方单体暴击伤害提高60%，持续3回合，并解除该目标的控制类负面状态。\n若目标拥有欢愉技，目标额外获得10点【好活当赏】，并使其立即施放1次固定计入20笑点的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其行动提前50%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使指定我方单体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并解除该目标的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n若目标拥有欢愉技，目标额外获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】，并使其立即施放1次固定计入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的欢愉技，若欢愉技施放前敌方目标被消灭则对新入场的敌方目标发动欢愉技。\n若目标不拥有欢愉技，使其"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "放心飞，开拓永相随！",
+                "progressionId": "8009003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--8009004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8009004",
+                "variantIds": [
+                  "800904"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "笑点为全队共享。造成欢愉伤害时，计入的笑点越多，欢愉伤害越高。",
+                      "id": "10000027",
+                      "name": "笑点"
+                    },
+                    {
+                      "description": "使参演阿哈时刻的角色获得【好活当赏】状态，并将本次阿哈时刻的笑点计入该状态，持续2回合。【好活当赏】状态产生的技能效果和欢愉伤害以【好活当赏】计入的笑点数计算。\n多个【好活当赏】计入的笑点数合并计算。\n各个【好活当赏】的持续时间各自独立计算。",
+                      "id": "10000029",
+                      "name": "好活当赏"
+                    },
+                    {
+                      "description": "计入的笑点越多，欢愉度、角色等级越高，则造成的欢愉伤害越高。\n欢愉伤害不受伤害提高类效果所影响。",
+                      "id": "10000028",
+                      "name": "欢愉伤害"
+                    }
+                  ]
+                },
+                "id": "800904",
+                "levels": [
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成15%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成17%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成18%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成20%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成21%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成23%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成24%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成26%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成28%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成30%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成32%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成33%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成35%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成36%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放攻击后，固定恢复10点能量并获得3个笑点。\n开拓者持有【好活当赏】时，战技对敌方全体额外造成38%的雷属性欢愉伤害，此伤害使用我方最高的【好活当赏】数值计算。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放攻击后，固定恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "笑点"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n开拓者持有【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】时，战技对敌方全体额外造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此伤害使用我方最高的【"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "好活当赏"
+                      },
+                      {
+                        "type": "text",
+                        "value": "】数值计算。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "英雄一笑，生死难料",
+                "progressionId": "8009004",
+                "scalingParamIndexes": [
+                  2
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "elation-skill",
+            "displayLabel": "欢愉技",
+            "iconKey": "skill-tree--8009420",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8009420",
+                "variantIds": [
+                  "800920"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "ElationDamage",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "计入的笑点越多，欢愉度、角色等级越高，则造成的欢愉伤害越高。\n欢愉伤害不受伤害提高类效果所影响。",
+                      "id": "10000028",
+                      "name": "欢愉伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "800920",
+                "levels": [
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成10%的雷属性欢愉伤害。最后造成30%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成11%的雷属性欢愉伤害。最后造成33%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成12%的雷属性欢愉伤害。最后造成36%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成13%的雷属性欢愉伤害。最后造成39%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成14%的雷属性欢愉伤害。最后造成42%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成15%的雷属性欢愉伤害。最后造成45%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成16%的雷属性欢愉伤害。最后造成49%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成18%的雷属性欢愉伤害。最后造成53%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成19%的雷属性欢愉伤害。最后造成56%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成20%的雷属性欢愉伤害。最后造成60%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成21%的雷属性欢愉伤害。最后造成63%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成22%的雷属性欢愉伤害。最后造成66%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成23%的雷属性欢愉伤害。最后造成69%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成24%的雷属性欢愉伤害。最后造成72%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "造成8次伤害，每次对敌方随机单体造成25%的雷属性欢愉伤害。最后造成75%的雷属性欢愉伤害，由敌方全体均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次对敌方随机单体造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。最后造成"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "欢愉伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，由敌方全体均分。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "我说欢愉，你耳朵聋吗？",
+                "progressionId": "8009420",
+                "scalingParamIndexes": [
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "欢愉技"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--8009007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "8009007",
+                "variantIds": [
+                  "800907"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "800907",
+                "levels": [
+                  {
+                    "description": "使用秘技后随机获得以下1种效果：\n小概率获得【开怀大笑】：欢愉度提高30%。\n大概率获得【忍俊不禁】：欢愉度提高20%。\n下一次战斗开始时，使我方全体提高对应数值的欢愉度，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后随机获得以下1种效果：\n小概率获得【开怀大笑】：欢愉度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n大概率获得【忍俊不禁】：欢愉度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n下一次战斗开始时，使我方全体提高对应数值的欢愉度，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "燃起来了！",
+                "progressionId": "8009007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "若开拓者的攻击力高于<unbreak>1000</unbreak>点，每超过<unbreak>200</unbreak>点攻击力可使自身欢愉度提高<unbreak>10.0%</unbreak>，最多提高<unbreak>60.0%</unbreak>。",
+            "iconKey": "skill-tree--8009101",
+            "id": "8009101",
+            "name": "快哉快哉",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "自身暴击率提高<unbreak>15%</unbreak>。施放终结技后，为我方恢复<unbreak>1</unbreak>个战技点。",
+            "iconKey": "skill-tree--8009102",
+            "id": "8009102",
+            "name": "跟你爆了",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "我方目标施放欢愉技后，开拓者下一次施放战技时额外获得<unbreak>2</unbreak>点【<u>好活当赏</u>】。",
+            "extraEffects": [
+              {
+                "description": "使参演阿哈时刻的角色获得【好活当赏】状态，并将本次阿哈时刻的笑点计入该状态，持续2回合。【好活当赏】状态产生的技能效果和欢愉伤害以【好活当赏】计入的笑点数计算。\n多个【好活当赏】计入的笑点数合并计算。\n各个【好活当赏】的持续时间各自独立计算。",
+                "id": "10000029",
+                "name": "好活当赏"
+              }
+            ],
+            "iconKey": "skill-tree--8009103",
+            "id": "8009103",
+            "name": "阿哈咬它！",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "8009201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "8009202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "8009203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "8009101"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "8009204",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "8009101"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "8009205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "8009102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "8009206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "8009205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "8009207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "8009206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "8009208",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "8009103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "8009209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "8009208"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "8009210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "8009209"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "8009001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800901",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8009002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800902",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8009003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800903",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8009004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800904",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "elation-skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8009420",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800920",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "8009007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800907",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/8009",
+    "subtitleRendered": false
+  }
+}

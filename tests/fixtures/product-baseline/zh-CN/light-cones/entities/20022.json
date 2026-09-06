@@ -1,0 +1,306 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>记忆</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20022",
+    "name": "溯忆",
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 3
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 19.2,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 28.8,
+            "perLevel": 4.32
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 42.24,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 63.36,
+            "perLevel": 4.32
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 72.96,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 109.44,
+            "perLevel": 4.32
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 103.68,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 155.52,
+            "perLevel": 4.32
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 134.4,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 201.6,
+            "perLevel": 4.32
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 165.12,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 247.68,
+            "perLevel": 4.32
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 195.84,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 293.76,
+            "perLevel": 4.32
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>记忆</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20022",
+    "kind": "light-cone",
+    "name": "溯忆",
+    "passive": {
+      "id": "20022",
+      "name": "入寐",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "忆灵的回合开始时，使装备者和忆灵分别获得1层【缅怀】，每层使造成的伤害提高8%，最多叠加4层。忆灵消失时移除装备者和忆灵的【缅怀】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "忆灵的回合开始时，使装备者和忆灵分别获得1层【缅怀】，每层使造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层。忆灵消失时移除装备者和忆灵的【缅怀】。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "忆灵的回合开始时，使装备者和忆灵分别获得1层【缅怀】，每层使造成的伤害提高9%，最多叠加4层。忆灵消失时移除装备者和忆灵的【缅怀】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "忆灵的回合开始时，使装备者和忆灵分别获得1层【缅怀】，每层使造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "9%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层。忆灵消失时移除装备者和忆灵的【缅怀】。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "忆灵的回合开始时，使装备者和忆灵分别获得1层【缅怀】，每层使造成的伤害提高10%，最多叠加4层。忆灵消失时移除装备者和忆灵的【缅怀】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "忆灵的回合开始时，使装备者和忆灵分别获得1层【缅怀】，每层使造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层。忆灵消失时移除装备者和忆灵的【缅怀】。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "忆灵的回合开始时，使装备者和忆灵分别获得1层【缅怀】，每层使造成的伤害提高11%，最多叠加4层。忆灵消失时移除装备者和忆灵的【缅怀】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "忆灵的回合开始时，使装备者和忆灵分别获得1层【缅怀】，每层使造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "11%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层。忆灵消失时移除装备者和忆灵的【缅怀】。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "忆灵的回合开始时，使装备者和忆灵分别获得1层【缅怀】，每层使造成的伤害提高12%，最多叠加4层。忆灵消失时移除装备者和忆灵的【缅怀】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "忆灵的回合开始时，使装备者和忆灵分别获得1层【缅怀】，每层使造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "层。忆灵消失时移除装备者和忆灵的【缅怀】。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 3,
+    "story": "自时光中凝取的稀薄力量。正是所有微不足道的刹那，编织成了壮绝的命运。\n\n<i>「衰老的灵魂在短暂的美梦中，仿佛回到了童年七彩斑斓的海。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/20022",
+    "storyFallbackRendered": false
+  }
+}

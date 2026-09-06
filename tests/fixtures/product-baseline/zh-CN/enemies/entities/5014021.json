@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "谁能驾驭星穹列车的洪荒之力？！失控的帕姆变成了「合金机铠•帕姆王」。\n帕姆王是一台对干净整洁极为执着的强大机铠，按照它的标准，这里不干净了，必须进行全！面！打！扫！帕！",
+    "id": "5014021",
+    "name": "合金机铠•帕姆王",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5014021",
+    "defaultMonsterRef": "9704f74cf36a4c3413a5f645a8f71990e74807a3d81e4d79932454dbc2799230",
+    "description": "谁能驾驭星穹列车的洪荒之力？！失控的帕姆变成了「合金机铠•帕姆王」。\n帕姆王是一台对干净整洁极为执着的强大机铠，按照它的标准，这里不干净了，必须进行全！面！打！扫！帕！",
+    "id": "5014021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "9704f74cf36a4c3413a5f645a8f71990e74807a3d81e4d79932454dbc2799230"
+    ],
+    "name": "合金机铠•帕姆王",
+    "rank": "LittleBoss",
+    "templateRef": "3af1015b570f36f2f86d8e9f3b8440cce44369a0145aa43e6e85a0b47b6382d6",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5014021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5014021",
+    "selectableMonsterIds": [
+      "5014021"
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n锋利双刃能瞬间撕裂挡在前方的所有活物，迅疾身形如幽魂般难以捉摸，要将污染与侵蚀散布至世界所有角落。",
+    "id": "4032011",
+    "name": "黑潮蚀刃",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032011",
+    "defaultMonsterRef": "fda6d97d49571e3bf9123a65695d9e534bcd7ed0b9ca80d50eb4f91c12e98ec8",
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n锋利双刃能瞬间撕裂挡在前方的所有活物，迅疾身形如幽魂般难以捉摸，要将污染与侵蚀散布至世界所有角落。",
+    "id": "4032011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "fda6d97d49571e3bf9123a65695d9e534bcd7ed0b9ca80d50eb4f91c12e98ec8",
+      "b9b0cb865e716b71dce6cb0214dfe5f4d16256dc1fa25f6244542f7158517ac9"
+    ],
+    "name": "黑潮蚀刃",
+    "rank": "MinionLv2",
+    "templateRef": "4f68d912671439ad9ef62b222942a2639626ec02c632515aa0b1a8532d8851da",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032011",
+    "selectableMonsterIds": [
+      "4032011",
+      "403201101"
+    ]
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的攻击力提高12%。当装备者的速度大于等于120时，攻击力额外提高12%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "301",
+    "name": "太空封印站",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的攻击力提高12%。当装备者的速度大于等于120时，攻击力额外提高12%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的攻击力提高12%。当装备者的速度大于等于120时，攻击力额外提高12%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者的速度大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "120"
+          },
+          {
+            "type": "text",
+            "value": "时，攻击力额外提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "301",
+    "kind": "relic",
+    "name": "太空封印站",
+    "pieces": [
+      {
+        "description": "位面封装的是「黑塔」空间站，它停靠在湛蓝星上空，沿着既定轨道缓缓漂流，寂静的银河像是本书卷等待翻阅。",
+        "id": "33015",
+        "name": "「黑塔」的空间站点",
+        "slot": "NECK"
+      },
+      {
+        "description": "「黑塔」空间站建立起那一刻，黑塔女士便失去了兴致。它在湛蓝星上空保持着第一宇宙速度，在卫星轨道上留下环绕的轨迹。",
+        "id": "33016",
+        "name": "「黑塔」的漫历轨迹",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第三世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33015"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33016"
+      }
+    ],
+    "route": "/relics/301"
+  }
+}

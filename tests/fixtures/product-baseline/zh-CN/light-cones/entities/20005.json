@@ -1,0 +1,261 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20005",
+    "name": "齐颂",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 3
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 14.4,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 31.68,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 54.72,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 77.76,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 100.8,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 123.84,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20005",
+    "kind": "light-cone",
+    "name": "齐颂",
+    "passive": {
+      "id": "20005",
+      "name": "协力",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "进入战斗后，使我方全体的攻击力提高8%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，使我方全体的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "进入战斗后，使我方全体的攻击力提高9%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，使我方全体的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "9%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "进入战斗后，使我方全体的攻击力提高10%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，使我方全体的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "进入战斗后，使我方全体的攻击力提高11%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，使我方全体的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "11%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "进入战斗后，使我方全体的攻击力提高12%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，使我方全体的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 3,
+    "story": "自时光中凝取的稀薄力量。正是所有微不足道的刹那，编织成了壮绝的命运。\n\n<i>「合指为拳，众志成城。我献出自我，而后收获更高之物——我们。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/20005",
+    "storyFallbackRendered": false
+  }
+}

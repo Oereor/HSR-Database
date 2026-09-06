@@ -1,0 +1,2558 @@
+{
+  "catalog": {
+    "baseName": "艾丝妲",
+    "description": "空间站「黑塔」的站长，出身名门的大小姐。\n好奇心旺盛的天文研究者，擅长管理空间站各抒己见的科员。",
+    "element": "Fire",
+    "elementName": "火",
+    "id": "1009",
+    "name": "艾丝妲",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "艾丝妲",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 106
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 69.6,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 63,
+            "perLevel": 3.15
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 139.2,
+            "perLevel": 6.96
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 97.44,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 88.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 194.88,
+            "perLevel": 6.96
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 125.28,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 113.4,
+            "perLevel": 3.15
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 250.56,
+            "perLevel": 6.96
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 153.12,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 138.6,
+            "perLevel": 3.15
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 306.24,
+            "perLevel": 6.96
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 180.96,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 163.8,
+            "perLevel": 3.15
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 361.92,
+            "perLevel": 6.96
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 208.8,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 189,
+            "perLevel": 3.15
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 417.6,
+            "perLevel": 6.96
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 236.64,
+            "perLevel": 3.48
+          },
+          "defence": {
+            "base": 214.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 473.28,
+            "perLevel": 6.96
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "空间站「黑塔」的站长，出身名门的大小姐。\n好奇心旺盛的天文研究者，擅长管理空间站各抒己见的科员。",
+    "element": "Fire",
+    "elementName": "火",
+    "equipmentRecommendation": {
+      "avatarId": "1009",
+      "cavernSetIds": [
+        "114",
+        "111",
+        "106"
+      ],
+      "lightConeIds": [
+        "21032",
+        "21011"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "CriticalChanceBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "FireAddedRatio",
+            "HPAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "302",
+        "310",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "SpeedDelta",
+        "AttackAddedRatio",
+        "CriticalChanceBase",
+        "CriticalDamageBase"
+      ]
+    },
+    "fullName": "艾丝妲",
+    "id": "1009",
+    "kind": "character",
+    "name": "艾丝妲",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "施放战技时，对敌方随机单体额外造成1次伤害。",
+            "iconKey": "rank--100901",
+            "id": "100901",
+            "name": "星有无言之歌",
+            "rank": 1
+          },
+          {
+            "description": "施放终结技时，艾丝妲下回合不会减少蓄能层数。",
+            "iconKey": "rank--100902",
+            "id": "100902",
+            "name": "月见圆缺之意",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--100903",
+            "id": "100903",
+            "name": "黄道陨石之变",
+            "rank": 3
+          },
+          {
+            "description": "天赋的蓄能层数大于等于<unbreak>2</unbreak>时，艾丝妲的能量恢复效率提高<unbreak>15%</unbreak>。",
+            "iconKey": "rank--100904",
+            "id": "100904",
+            "name": "极光显现之时",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--100905",
+            "id": "100905",
+            "name": "深空天体之谜",
+            "rank": 5
+          },
+          {
+            "description": "天赋每回合减少的蓄能层数降低<unbreak>1</unbreak>。",
+            "iconKey": "rank--100906",
+            "id": "100906",
+            "name": "眠于银河之下",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1009001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1009001",
+                "variantIds": [
+                  "100901"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "100901",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲60%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲70%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲80%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲90%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲100%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲110%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲120%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲130%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲140%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "光谱射线",
+                "progressionId": "1009001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1009002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1009002",
+                "variantIds": [
+                  "100902"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Bounce",
+                    "known": true,
+                    "label": "弹射"
+                  },
+                  "energyGain": 6,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "100902",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲25%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲25%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲28%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲28%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲30%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲30%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲33%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲33%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲35%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲35%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲38%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲38%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲41%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲41%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲44%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲44%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲47%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲47%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲50%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲53%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲53%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲55%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲55%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲57%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲57%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲60%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲60%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于艾丝妲63%攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲63%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于艾丝妲"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "流星群落",
+                "progressionId": "1009002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1009003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1009003",
+                "variantIds": [
+                  "100903"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 5
+                },
+                "id": "100903",
+                "levels": [
+                  {
+                    "description": "使我方全体速度提高36点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使我方全体速度提高37点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "37"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使我方全体速度提高39点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使我方全体速度提高40点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使我方全体速度提高42点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使我方全体速度提高43点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使我方全体速度提高45点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使我方全体速度提高47点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使我方全体速度提高48点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使我方全体速度提高50点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使我方全体速度提高51点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使我方全体速度提高53点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使我方全体速度提高54点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使我方全体速度提高56点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使我方全体速度提高57点，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体速度提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "星空祝言",
+                "progressionId": "1009003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1009004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1009004",
+                "variantIds": [
+                  "100904"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "100904",
+                "levels": [
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高7.0%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高7.7%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高8.4%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高9.1%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高9.8%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高10.5%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高11.4%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高12.3%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高13.1%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高14.0%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高14.7%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高15.4%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高16.1%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高16.8%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高17.5%，该效果最多叠加5层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每击中1名不同的敌方目标获得1层蓄能，若受到攻击的敌方目标弱点为火属性，则额外获得1层蓄能。\n艾丝妲每拥有1层蓄能，会使我方全体攻击力提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n从自身的第2回合开始，艾丝妲每回合开始时蓄能层数减少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "天象学",
+                "progressionId": "1009004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1009007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1009007",
+                "variantIds": [
+                  "100907"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "100907",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后对敌方全体目标造成等同于艾丝妲50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后对敌方全体目标造成等同于艾丝妲"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "灵光一现",
+                "progressionId": "1009007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放普攻时，有<unbreak>80%</unbreak>的<u>基础概率</u>使敌方目标陷入灼烧状态，持续<unbreak>3</unbreak>回合。\n灼烧状态下，敌方目标每回合开始时受到等同于艾丝妲普攻<unbreak>50%</unbreak>的火属性持续伤害。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "skill-tree--1009101",
+            "id": "1009101",
+            "name": "火花",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "艾丝妲在场时，我方全体的火属性伤害提高<unbreak>18%</unbreak>。",
+            "iconKey": "skill-tree--1009102",
+            "id": "1009102",
+            "name": "点燃",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "艾丝妲每拥有1层蓄能，自身防御力提高<unbreak>6%</unbreak>。",
+            "iconKey": "skill-tree--1009103",
+            "id": "1009103",
+            "name": "星座",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "火属性伤害提高3.2%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1009201",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [],
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1009202",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1009101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "火属性伤害提高3.2%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1009203",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1009202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1009204",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1009201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "火属性伤害提高4.8%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1009205",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1009102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1009206",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1009205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "火属性伤害提高4.8%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1009207",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1009201"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1009208",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1009103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "防御力提高10.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1009209",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1009208"
+            ],
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "火属性伤害提高6.4%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1009210",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1009208"
+            ],
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1009001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100901",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1009002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100902",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1009003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100903",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1009004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100904",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1009007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100907",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1009",
+    "subtitleRendered": false
+  }
+}

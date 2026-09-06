@@ -1,0 +1,70 @@
+{
+  "catalog": {
+    "description": "由「建木」化生，拱卫其根系的灵瑞之兽，履迹所之，和泽滋生，枝杪郁敷。\n自毁于太古时代的战争后，「建木」终于在星核的修补下再度生长。彼时仙人们所造的珍禽奇兽纷至沓来，宛如旧梦重临。",
+    "id": "2024014",
+    "name": "丰饶玄鹿",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2024014",
+    "defaultMonsterRef": "3a78de26abd7e9576d3cfe2eb798bfb8ffad63028edbad9028b6993b47bd364b",
+    "description": "由「建木」化生，拱卫其根系的灵瑞之兽，履迹所之，和泽滋生，枝杪郁敷。\n自毁于太古时代的战争后，「建木」终于在星核的修补下再度生长。彼时仙人们所造的珍禽奇兽纷至沓来，宛如旧梦重临。",
+    "id": "2024014",
+    "kind": "enemy",
+    "monsterRefs": [
+      "3a78de26abd7e9576d3cfe2eb798bfb8ffad63028edbad9028b6993b47bd364b",
+      "20768fb2ae8b5681e9ebb3c7f0d6d8fd6a8731e7132d82f0a95837c2ce7f9bbb",
+      "838ac513b10290e9e016797bacab041139b8a6d8bec37e5caeaa0bc98e3af01e",
+      "5f1a416cc1a2fd89355b6d8640bafb26f031b790110170d3d1a12b5cb9f107ad",
+      "52de4db31ac8537cb15c35a18bb1ec4a5748d087e8f942bf6b58ebbb897f6db5",
+      "6a977671703f53386bd03ec9659e519d4c49a2e638fc19cdfedc0a21b2194dfd"
+    ],
+    "name": "丰饶玄鹿",
+    "rank": "LittleBoss",
+    "templateRef": "ca61ca07011f85ad465f7e63ea5d00324fba1c8f23861bae611f6ac999c66521",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2024014",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2024014",
+    "selectableMonsterIds": [
+      "2024014",
+      "202401401",
+      "202401402",
+      "202401403",
+      "202401404",
+      "202401406"
+    ]
+  }
+}

@@ -1,0 +1,3906 @@
+{
+  "catalog": {
+    "baseName": "卢卡",
+    "description": "贝洛伯格下层区的冠军拳手，「地火」的得力干将之一。\n搏击俱乐部的蝉联冠军，以自身的热情激励着下层区有梦想的孩子们。",
+    "element": "Physical",
+    "elementName": "物理",
+    "id": "1111",
+    "name": "卢卡",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "卢卡",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 103
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 79.2,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 124.8,
+            "perLevel": 6.24
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 110.88,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 174.72,
+            "perLevel": 6.24
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 224.64,
+            "perLevel": 6.24
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 174.24,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 274.56,
+            "perLevel": 6.24
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 205.92,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 324.48,
+            "perLevel": 6.24
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 237.6,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 374.4,
+            "perLevel": 6.24
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 424.32,
+            "perLevel": 6.24
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "贝洛伯格下层区的冠军拳手，「地火」的得力干将之一。\n搏击俱乐部的蝉联冠军，以自身的热情激励着下层区有梦想的孩子们。",
+    "element": "Physical",
+    "elementName": "物理",
+    "equipmentRecommendation": {
+      "avatarId": "1111",
+      "cavernSetIds": [
+        "105",
+        "116",
+        "102"
+      ],
+      "lightConeIds": [
+        "21015",
+        "21001"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "PhysicalAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "301",
+        "307",
+        "309"
+      ],
+      "subStatPropertyTypes": [
+        "AttackAddedRatio",
+        "SpeedDelta",
+        "BreakDamageAddedRatioBase",
+        "CriticalChanceBase",
+        "CriticalDamageBase"
+      ]
+    },
+    "fullName": "卢卡",
+    "id": "1111",
+    "kind": "character",
+    "name": "卢卡",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "当卢卡行动时，若指定的敌方目标处于裂伤状态，卢卡造成的伤害提高<unbreak>15%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--111101",
+            "id": "111101",
+            "name": "争斗不休",
+            "rank": 1
+          },
+          {
+            "description": "若战技击中的敌方目标弱点为物理属性，获得<unbreak>1</unbreak>层【斗志】。",
+            "iconKey": "rank--111102",
+            "id": "111102",
+            "name": "敌弱，我强",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--111103",
+            "id": "111103",
+            "name": "为擂台而生",
+            "rank": 3
+          },
+          {
+            "description": "每获得1层【斗志】，攻击力提高<unbreak>5%</unbreak>，该效果最多叠加<unbreak>4</unbreak>层。",
+            "iconKey": "rank--111104",
+            "id": "111104",
+            "name": "百折不回",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--111105",
+            "id": "111105",
+            "name": "地火之魂",
+            "rank": 5
+          },
+          {
+            "description": "施放强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，本次强化普攻使用的【直冲拳】每施放过1段攻击，则额外使其当前承受的裂伤状态立即产生1次相当于原伤害<unbreak>8%</unbreak>的伤害。",
+            "iconKey": "rank--111106",
+            "id": "111106",
+            "name": "冠军应得的喝彩",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 130
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1111001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1111001",
+                "variantIds": [
+                  "111101",
+                  "111108"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "111101",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡50%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡60%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡70%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡90%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡100%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡110%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡120%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡130%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡140%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "直冲拳",
+                "progressionId": "1111001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "111108",
+                "levels": [
+                  {
+                    "description": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡10%攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡40%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡12%攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡48%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡14%攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡56%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡16%攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡64%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡18%攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡72%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡20%攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡22%攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡88%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡24%攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡96%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡26%攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡104%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡28%攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡112%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗2层【斗志】，先使用【直冲拳】施放3段攻击，每段攻击对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n再使用【碎天拳】施放1段攻击，对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "直冲碎天拳",
+                "progressionId": "1111001",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1111002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1111002",
+                "variantIds": [
+                  "111102"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "111102",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡60%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的130%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡66%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的143%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "143%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡72%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的156%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡78%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的169%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "169%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡84%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的182%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "182%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡90%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的202%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "202%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡98%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的228%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡105%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的260%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "260%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡113%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的299%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "299%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡120%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的338%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "338%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡126%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的355%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "355%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡132%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的372%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "372%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡138%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的389%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "389%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡144%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的406%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "406%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于卢卡150%攻击力的物理属性伤害，随后有100%的基础概率使目标陷入裂伤状态，持续3回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身24.0%生命上限的物理属性持续伤害，最多不超过卢卡攻击力的422%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，随后有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入裂伤状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过卢卡攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "422%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "裂伤拳",
+                "progressionId": "1111002",
+                "scalingParamIndexes": [
+                  0,
+                  3
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1111003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1111003",
+                "variantIds": [
+                  "111103"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "111103",
+                "levels": [
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高12.0%，持续3回合，随后对该目标造成等同于卢卡198%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "198%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高12.8%，持续3回合，随后对该目标造成等同于卢卡211%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "211%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高13.6%，持续3回合，随后对该目标造成等同于卢卡224%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高14.4%，持续3回合，随后对该目标造成等同于卢卡238%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "238%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高15.2%，持续3回合，随后对该目标造成等同于卢卡251%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "251%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高16.0%，持续3回合，随后对该目标造成等同于卢卡264%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高17.0%，持续3回合，随后对该目标造成等同于卢卡281%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "281%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高18.0%，持续3回合，随后对该目标造成等同于卢卡297%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "297%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高19.0%，持续3回合，随后对该目标造成等同于卢卡314%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "314%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高20.0%，持续3回合，随后对该目标造成等同于卢卡330%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "330%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高20.8%，持续3回合，随后对该目标造成等同于卢卡343%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "343%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高21.6%，持续3回合，随后对该目标造成等同于卢卡356%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "356%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高22.4%，持续3回合，随后对该目标造成等同于卢卡370%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "370%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高23.2%，持续3回合，随后对该目标造成等同于卢卡383%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "383%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "获得2层【斗志】，并有100%的基础概率使指定敌方单体受到的伤害提高24.0%，持续3回合，随后对该目标造成等同于卢卡396%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，随后对该目标造成等同于卢卡"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "396%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "制胜一击",
+                "progressionId": "1111003",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1111004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1111004",
+                "variantIds": [
+                  "111104"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "111104",
+                "levels": [
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害68%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害70%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害71%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "71%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害73%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害75%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害77%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害79%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害81%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害83%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害85%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "85%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害87%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "87%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害88%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害90%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害92%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得1层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害94%的伤害。战斗开始时，卢卡持有1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "卢卡在施放普攻【直冲拳】和战技【裂伤拳】后，获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【斗志】，最多可持有4层【斗志】。当持有的【斗志】大于等于2层时，普攻【直冲拳】强化为【直冲碎天拳】。当强化普攻的【碎天拳】击中陷入裂伤状态下的敌方目标后，则使其当前承受的裂伤状态立即产生1次相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。战斗开始时，卢卡持有1层【斗志】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "火花四溅",
+                "progressionId": "1111004",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1111007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1111007",
+                "variantIds": [
+                  "111107"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "111107",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后对敌方随机单体造成等同于卢卡50%攻击力的物理属性伤害，并有100%的基础概率使目标陷入与战技相同的裂伤状态。随后卢卡额外获得1层【斗志】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后对敌方随机单体造成等同于卢卡"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入与战技相同的裂伤状态。随后卢卡额外获得1层【斗志】。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "抢先者",
+                "progressionId": "1111007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放战技时，立即解除敌方目标<unbreak>1</unbreak>个<u>增益效果</u>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有增益效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000009",
+                "name": "增益效果"
+              }
+            ],
+            "iconKey": "skill-tree--1111101",
+            "id": "1111101",
+            "name": "动能过载",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "每获得1层【斗志】，额外恢复<unbreak>3</unbreak>点能量。",
+            "iconKey": "skill-tree--1111102",
+            "id": "1111102",
+            "name": "循环制动",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放强化普攻时，【直冲拳】的每1段攻击都有<unbreak>50%</unbreak>的<u>固定概率</u>使卢卡额外施放1段攻击。此效果对额外施放的攻击不会生效。",
+            "extraEffects": [
+              {
+                "description": "不会被任何因素影响的固定概率。",
+                "id": "30000002",
+                "name": "固定概率"
+              }
+            ],
+            "iconKey": "skill-tree--1111103",
+            "id": "1111103",
+            "name": "粉碎斗志",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1111201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "效果命中提高4.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1111202",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1111101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1111203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1111202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1111204",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1111203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1111205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1111102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "效果命中提高6.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1111206",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1111205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1111207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1111206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1111208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1111103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "效果命中提高8.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1111209",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1111103"
+            ],
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1111210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1111201"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1111001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111101",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111108",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1111002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111102",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1111003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111103",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1111004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111104",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1111007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111107",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1111",
+    "subtitleRendered": false
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "22004",
+    "name": "宇宙大生意",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 15,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 33,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 129,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "22004",
+    "kind": "light-cone",
+    "name": "宇宙大生意",
+    "passive": {
+      "id": "22004",
+      "name": "互惠",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的攻击力提高8%。敌方目标每拥有1个不同属性的弱点，装备者对其造成的伤害提高4%，最多计入7个。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "。敌方目标每拥有1个不同属性的弱点，装备者对其造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "4%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入7个。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的攻击力提高10%。敌方目标每拥有1个不同属性的弱点，装备者对其造成的伤害提高5%，最多计入7个。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "。敌方目标每拥有1个不同属性的弱点，装备者对其造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "5%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入7个。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的攻击力提高12%。敌方目标每拥有1个不同属性的弱点，装备者对其造成的伤害提高6%，最多计入7个。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。敌方目标每拥有1个不同属性的弱点，装备者对其造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "6%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入7个。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的攻击力提高14%。敌方目标每拥有1个不同属性的弱点，装备者对其造成的伤害提高7%，最多计入7个。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。敌方目标每拥有1个不同属性的弱点，装备者对其造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "7%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入7个。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的攻击力提高16%。敌方目标每拥有1个不同属性的弱点，装备者对其造成的伤害提高8%，最多计入7个。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。敌方目标每拥有1个不同属性的弱点，装备者对其造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入7个。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 4,
+    "story": "数据构成的虚拟会场中，参展代表们交换着意见。\n两个身影穿行于展台之间，派送各方所需的一切。\n\n<i>「咦，莫非您是…」</i>\n<i>「我在电视上见过你帕。」</i>\n它们谈论起游戏、美食、彼此的身材，以及宇宙中的一切美好之物。\n它们明明鲜少见面，却亲密得如一对老友——\n\n<i>「对了，要不要再考虑一下我的提议……」</i>\n<i>「列车是非卖品帕！」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/22004",
+    "storyFallbackRendered": false
+  }
+}

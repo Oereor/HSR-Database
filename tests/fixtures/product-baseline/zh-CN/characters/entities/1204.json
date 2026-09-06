@@ -1,0 +1,3367 @@
+{
+  "catalog": {
+    "baseName": "景元",
+    "description": "仙舟联盟帝弓七天将之一，负责节制罗浮云骑军的「神策将军」。\n师从前代「罗浮」剑首，但并不显名于武力。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "id": "1204",
+    "name": "景元",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "景元",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 99
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 95.04,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 158.4,
+            "perLevel": 7.92
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 133.056,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 221.76,
+            "perLevel": 7.92
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 171.072,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 285.12,
+            "perLevel": 7.92
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 209.088,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 348.48,
+            "perLevel": 7.92
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 247.104,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 411.84,
+            "perLevel": 7.92
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 285.12,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 475.2,
+            "perLevel": 7.92
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 323.136,
+            "perLevel": 4.752
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 538.56,
+            "perLevel": 7.92
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟联盟帝弓七天将之一，负责节制罗浮云骑军的「神策将军」。\n师从前代「罗浮」剑首，但并不显名于武力。",
+    "element": "Lightning",
+    "elementName": "雷",
+    "equipmentRecommendation": {
+      "avatarId": "1204",
+      "cavernSetIds": [
+        "115",
+        "109",
+        "122"
+      ],
+      "lightConeIds": [
+        "23010",
+        "23000",
+        "21034"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "ThunderAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "318",
+        "306",
+        "313"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "景元",
+    "id": "1204",
+    "kind": "character",
+    "name": "景元",
+    "path": "Mage",
+    "pathName": "智识",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "【神君】施放攻击时，对指定敌方单体的相邻目标造成的伤害倍率额外提高，提高数值等同于对主目标伤害倍率的<unbreak>25%</unbreak>。",
+            "iconKey": "rank--120401",
+            "id": "120401",
+            "name": "星流霆击碎昆冈",
+            "rank": 1
+          },
+          {
+            "description": "【神君】行动后，景元的普攻、战技、终结技造成的伤害提高<unbreak>20%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--120402",
+            "id": "120402",
+            "name": "戎戈动地开天阵",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--120403",
+            "id": "120403",
+            "name": "移锋惊电冲霄汉",
+            "rank": 3
+          },
+          {
+            "description": "【神君】每段攻击后，景元恢复<unbreak>2</unbreak>点能量。",
+            "iconKey": "rank--120404",
+            "id": "120404",
+            "name": "刃卷横云落玉沙",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--120405",
+            "id": "120405",
+            "name": "百战弃躯轻死生",
+            "rank": 5
+          },
+          {
+            "description": "【神君】每段攻击后会使指定敌方目标额外陷入易伤状态。\n易伤状态下的敌方目标受到的伤害提高<unbreak>12%</unbreak>，持续至【神君】本次攻击结束，该效果最多叠加<unbreak>3</unbreak>层。",
+            "iconKey": "rank--120406",
+            "id": "120406",
+            "name": "威灵有应破敌雠",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 130
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1204001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1204001",
+                "variantIds": [
+                  "120401"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120401",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于景元50%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于景元60%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于景元70%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于景元80%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于景元90%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于景元100%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于景元110%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于景元120%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于景元130%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于景元140%攻击力的雷属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "石火流光",
+                "progressionId": "1204001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1204002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1204002",
+                "variantIds": [
+                  "120402"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120402",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于景元50%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元55%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元60%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元65%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元70%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元75%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元81%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元88%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元94%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元100%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元105%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元110%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元115%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元120%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元125%攻击力的雷属性伤害，同时增加2段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害，同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "紫霄震曜",
+                "progressionId": "1204002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1204003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1204003",
+                "variantIds": [
+                  "120403"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "120403",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于景元120%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元128%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元136%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元144%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元152%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元160%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元170%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "170%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元180%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元190%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "190%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元200%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元208%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "208%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元216%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元224%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元232%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "232%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于景元240%攻击力的雷属性伤害。同时增加3段【神君】下回合的攻击段数。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于景元"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的雷属性伤害。同时增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段【神君】下回合的攻击段数。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "吾身光明",
+                "progressionId": "1204003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1204004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1204004",
+                "variantIds": [
+                  "120404"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Bounce",
+                    "known": true,
+                    "label": "弹射"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    },
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    },
+                    {
+                      "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                      "id": "10000011",
+                      "name": "控制类负面状态"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "120404",
+                "levels": [
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力33%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力36%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力40%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力43%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力46%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力50%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力54%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力58%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力62%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力66%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力69%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力73%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力76%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力79%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "战斗开始时召唤【神君】。【神君】初始拥有60点速度以及3段攻击段数，行动时发动追加攻击，每段攻击对随机敌方单体造成等同于景元攻击力83%的雷属性伤害，同时对其相邻目标造成等同于主目标25%的雷属性伤害。\n【神君】最多累计10段攻击段数且每增加1段攻击段数，速度提高10点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入无法战斗状态时【神君】消失。\n当景元受到控制类负面状态影响时【神君】也无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤【神君】。【神君】初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度以及"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，每段攻击对随机敌方单体造成等同于景元攻击力"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害，同时对其相邻目标造成等同于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的雷属性伤害。\n【神君】最多累计"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段攻击段数且每增加1段攻击段数，速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，行动结束后速度和攻击段数恢复至初始状态。\n当景元陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时【神君】消失。\n当景元受到"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "影响时【神君】也无法行动。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "斩勘神形",
+                "progressionId": "1204004",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1204007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1204007",
+                "variantIds": [
+                  "120407"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "120407",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时【神君】第1回合的攻击段数增加3段。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时【神君】第1回合的攻击段数增加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "段。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "摄召威灵",
+                "progressionId": "1204007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "若【神君】下回合的攻击段数大于等于<unbreak>6</unbreak>段，则其下回合的暴击伤害提高<unbreak>25%</unbreak>。",
+            "iconKey": "skill-tree--1204101",
+            "id": "1204101",
+            "name": "破阵",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "战斗开始时，立即恢复<unbreak>15</unbreak>点能量。",
+            "iconKey": "skill-tree--1204102",
+            "id": "1204102",
+            "name": "绸缪",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放战技后，暴击率提升<unbreak>10%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "skill-tree--1204103",
+            "id": "1204103",
+            "name": "遣将",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1204201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1204202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1204101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1204203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1204202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1204204",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1204202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1204205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1204102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1204206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1204205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1204207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1204205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1204208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1204103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1204209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1204103"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1204210",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1204001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120401",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1204002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120402",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1204003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120403",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1204004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120404",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1204007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120407",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1204",
+    "subtitleRendered": false
+  }
+}

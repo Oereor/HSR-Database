@@ -1,0 +1,104 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的防御力提高15%。当装备者的效果命中大于等于50%时，防御力额外提高15%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "304",
+    "name": "筑城者的贝洛伯格",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的防御力提高15%。当装备者的效果命中大于等于50%时，防御力额外提高15%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的防御力提高15%。当装备者的效果命中大于等于50%时，防御力额外提高15%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的防御力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "15%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者的效果命中大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "50%"
+          },
+          {
+            "type": "text",
+            "value": "时，防御力额外提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "15%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "304",
+    "kind": "relic",
+    "name": "筑城者的贝洛伯格",
+    "pieces": [
+      {
+        "description": "位面封装的是贝洛伯格行政区最常见的风景：永冬铭碑。人们从这里路过，感受到来自遥远而温暖的目光守护着他们。",
+        "id": "33045",
+        "name": "贝洛伯格的存护堡垒",
+        "slot": "NECK"
+      },
+      {
+        "description": "贝洛伯格的银鬃铁卫矗立在风雪之中，他们排成一线，等待着前来进犯的天外入侵者。铁卫的意志坚不可摧，铁卫的阵线也绝不后退。",
+        "id": "33046",
+        "name": "贝洛伯格的铁卫防线",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第六世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33045"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33046"
+      }
+    ],
+    "route": "/relics/304"
+  }
+}

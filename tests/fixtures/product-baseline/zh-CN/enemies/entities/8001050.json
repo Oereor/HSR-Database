@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "游荡在裂界中的晶体元素，只有最简单的智能，其形态犹如气流缠绕，驰翔疾风的鸟类生命。",
+    "id": "8001050",
+    "name": "巽风造物",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8001050",
+    "defaultMonsterRef": "5dc78f7cb3104fcb5709c553a84df6089c9d79968614104922707b3b2dfd577b",
+    "description": "游荡在裂界中的晶体元素，只有最简单的智能，其形态犹如气流缠绕，驰翔疾风的鸟类生命。",
+    "id": "8001050",
+    "kind": "enemy",
+    "monsterRefs": [
+      "5dc78f7cb3104fcb5709c553a84df6089c9d79968614104922707b3b2dfd577b",
+      "a385878ee9af1d72ec73643f0e40afb894cd439be63fd175deaac2d2448b7504",
+      "c1c28e853f2f18ed69b94dbb7ae035d43a2d17f6c2ab5327e4dabb35986afff5",
+      "be292d6894f410ed0505ca3618140bba40830983005996e08f1049d7630e1ce1",
+      "1bd25d5e9820e3c6eeeb63f23b1c139f58ed9ceeef6009f03e5b4ca6385239a6",
+      "e7e0ae01fad1a9c1990433785077f886a1705b87199fbe148136a7fc3bff35b7",
+      "52c711e00c57108fccf93f8d59a36868dd6439fd36f83ee556cd7a264ee50bae",
+      "62dc33ecbeeb6279e7295939759b533e2c6179bc8c47f04f72038c6c72130303"
+    ],
+    "name": "巽风造物",
+    "rank": "Minion",
+    "templateRef": "b1383c9a38388c4c4f909b4531721a2d43d267298cf4448f24c5a3180cf3ac89",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8001050",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8001050",
+    "selectableMonsterIds": [
+      "8001050",
+      "800105001",
+      "800105002",
+      "800105003",
+      "800105004",
+      "800105005",
+      "800105006",
+      "800105007"
+    ]
+  }
+}

@@ -1,0 +1,2851 @@
+{
+  "presentation": {
+    "defaultEncounterId": "4912",
+    "encounters": [
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120011-0",
+                "level": 68,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "2a411e2e94c3eb09c2aecd36091d291cfb6f66a02185c47934973dfebff97dc2"
+                      },
+                      {
+                        "occurrenceRef": "1f8a803be3cadd3e2cbd5ac162369942be8a5c61c5034516121f69e3c674aad0"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "1f8a803be3cadd3e2cbd5ac162369942be8a5c61c5034516121f69e3c674aad0"
+                      },
+                      {
+                        "occurrenceRef": "9f17279699fda028ca23876d7e32016fa0d6d4dc8e3945eec34ce8b0dd6f4867"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120012-0",
+                "level": 68,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "24a29fd055cd824fd507d8ee12f289bd4a28f0c00cf1954c627cf66257b336fb"
+                      },
+                      {
+                        "occurrenceRef": "ccb5ba5b010598a3e272c0e54e3e278dd19bc109f314e33a29ec8c14b97f7f9d"
+                      },
+                      {
+                        "occurrenceRef": "f681e234a5048a3f3b4d1817ab021458a1e4faafb732bb8507a2fa68522d13c5"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "33e0e7b973490ad190da45cd509962f71d184f77cc921bcd8149c489b8d6c561"
+                      },
+                      {
+                        "occurrenceRef": "ccb5ba5b010598a3e272c0e54e3e278dd19bc109f314e33a29ec8c14b97f7f9d"
+                      },
+                      {
+                        "occurrenceRef": "5a014e0e28a0b091b02ca1dfa53227a1a6c676a22eabf463058ff6ef277cc400"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4901",
+        "label": "网络谜踪其一",
+        "mode": "moc",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120021-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "81de0b6608d5a524072d56caab46f06c3b04b9cbef8cec07c28f9c728154b296"
+                      },
+                      {
+                        "occurrenceRef": "605f2b19b0b3b7451fcad58659a9a33b18107fef72ffe6ed9c3aa8c29dfb6d04"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "605f2b19b0b3b7451fcad58659a9a33b18107fef72ffe6ed9c3aa8c29dfb6d04"
+                      },
+                      {
+                        "occurrenceRef": "46486d81c42189c48f8e405608cdc20bd78832beedb77a56067c42f95e39225c"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120022-0",
+                "level": 70,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "c385aa5cb8c65e5d2e0f3740cdb44b7909a941b4b7dbd4220071a8e5a0ffc7c3"
+                      },
+                      {
+                        "occurrenceRef": "930a8c1eaf7f5722bbe9b259f4feabf081bc695bd319f6650f20a1c628d2bc4d"
+                      },
+                      {
+                        "occurrenceRef": "b9eca40af5a3738ebcd60f7306b40aed511c10c6937de41e3735f40020446ac4"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "930a8c1eaf7f5722bbe9b259f4feabf081bc695bd319f6650f20a1c628d2bc4d"
+                      },
+                      {
+                        "occurrenceRef": "d30f2a1d370feeb6308b715478172649c7e7668abee72eac0f3d63911c62052e"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4902",
+        "label": "网络谜踪其二",
+        "mode": "moc",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120031-0",
+                "level": 73,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "9b121f0a3951b268cc81f7377d693bf27a1bd8c474b262c7c2d505df3f85146a"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "9b121f0a3951b268cc81f7377d693bf27a1bd8c474b262c7c2d505df3f85146a"
+                      },
+                      {
+                        "occurrenceRef": "61d6b2c88428a1512ce1e45cfcfb98e44cc899562b2c3061fe2b1d8ec1d2973c"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120032-0",
+                "level": 73,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "e6e24daa9cc30e01465f11124dc409681ca76aa96d8f9a6878a8579d01d3e60d"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "e6e24daa9cc30e01465f11124dc409681ca76aa96d8f9a6878a8579d01d3e60d"
+                      },
+                      {
+                        "occurrenceRef": "ad94d63f58c7a05e2ff12a2f3800bcda8bf1e4656afd186d3857d176a493676c"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4903",
+        "label": "网络谜踪其三",
+        "mode": "moc",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120041-0",
+                "level": 75,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "024c2c448a1e3e156df5adf9c5120eb66b837219bb52fa495bc1515ed1b29588"
+                      },
+                      {
+                        "occurrenceRef": "a402f78454f561a8c4d0068a780b799d788ee356088564618d0068d581132b2d"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "a402f78454f561a8c4d0068a780b799d788ee356088564618d0068d581132b2d"
+                      },
+                      {
+                        "occurrenceRef": "2f1b2fd920d47e93a0a6fb209bbb14058bf7858adbb7ff3c5b2c0110515af264"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120042-0",
+                "level": 75,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "4fc92ef77af2f692bfd78285c5e5ec547b822d1155918b7a307740417e90ae7c"
+                      },
+                      {
+                        "occurrenceRef": "5c623a96582608d50e5201cfe45efeda311ec7015d8bca83abf8b8be2370f43b"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "5c623a96582608d50e5201cfe45efeda311ec7015d8bca83abf8b8be2370f43b"
+                      },
+                      {
+                        "occurrenceRef": "d7abd6371baabbc5def270f8daaecddcc97c04ac31bd929595970190a3b01521"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4904",
+        "label": "网络谜踪其四",
+        "mode": "moc",
+        "ordinal": 4,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120051-0",
+                "level": 78,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "b8c008c6b841231bcf6637aa4685bc94ee5ab124780b0a48aeca982cc4a94e19"
+                      },
+                      {
+                        "occurrenceRef": "6b1efb3f383dd3aee8b7a88c09a192c263e0722d2c898e97cb310ef2c3b056d7"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "a2ee5c9a5296abd0b311621b95ca53aaadeb2761b78d0ebddbd96edf88ec64ac"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120052-0",
+                "level": 78,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "984a79f61ac3ca0161619644d80f7c15b3374ab888970a5bb2cc77938f5cc297"
+                      },
+                      {
+                        "occurrenceRef": "073afb85fe894c86351e10b1ee7cb5769b4ceb8a4f642c35ee0622aa235298f9"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "073afb85fe894c86351e10b1ee7cb5769b4ceb8a4f642c35ee0622aa235298f9"
+                      },
+                      {
+                        "occurrenceRef": "75fb23602cc3e228cb4e1c77c717555b40372eae5775fa3fb411ceb231b28a54"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4905",
+        "label": "网络谜踪其五",
+        "mode": "moc",
+        "ordinal": 5,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120061-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "dca848a3c4380cc9f02ac2412f7dbf140df957b2c1d8004dc2c32730ce22a0ac"
+                      },
+                      {
+                        "occurrenceRef": "d1bd4f322b299ea8b028a94991c9663b532037cd3fce50dad2c947edea68ef55"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "d1bd4f322b299ea8b028a94991c9663b532037cd3fce50dad2c947edea68ef55"
+                      },
+                      {
+                        "occurrenceRef": "ff0cf8ae805247c6da302ad1e0e14e96aa7b8473d50b2291c7f024c44bd7ba89"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120062-0",
+                "level": 80,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "bfb4f180e2e211f4f074b87f089e2e24fdb161f4307512daaa454717e887c9a3"
+                      },
+                      {
+                        "occurrenceRef": "b388ead4b5f9aff071eb6bf70fcd2b3b413c02c91547eaf726cb77198fb80864"
+                      },
+                      {
+                        "occurrenceRef": "52f1f8bb78742c9976118e35200a00a40624dfd674e4352ff7917095b5b7f6b2"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "0b051b1a88e7e7e925deb2716468c43be184e387d15600ab6629e71a8ff3f847"
+                      },
+                      {
+                        "occurrenceRef": "b388ead4b5f9aff071eb6bf70fcd2b3b413c02c91547eaf726cb77198fb80864"
+                      },
+                      {
+                        "occurrenceRef": "61b0d3d3ac1b3912f38b78a2a32c9437a7a3a984fe131bc58a5ff4b18242ea47"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4906",
+        "label": "网络谜踪其六",
+        "mode": "moc",
+        "ordinal": 6,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120071-0",
+                "level": 82,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "c664f652674d655e47698271a6d271f06bb2b702d7964ed42a3e1513c46c58d5"
+                      },
+                      {
+                        "occurrenceRef": "9cec52cb6dd474c435f245e5f8e927924f7525968fd1445edbbc22d4d10b33a7"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "9cec52cb6dd474c435f245e5f8e927924f7525968fd1445edbbc22d4d10b33a7"
+                      },
+                      {
+                        "occurrenceRef": "73819094bd66b3e3d434f3471e89ea4edf07573e2ea4e4c3b989e3f7550ecf68"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120072-0",
+                "level": 82,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "399c59695b8b4b73c09edb51e8a503b17032a10b70ab0cfbac7e9466a395f5f2"
+                      },
+                      {
+                        "occurrenceRef": "e032579dcb76ffdadedc658ce44ad90fcee38f43b48fd0c87517f4a3572d5869"
+                      },
+                      {
+                        "occurrenceRef": "68d2a86a96646351de50721d03d0408d60f24f48ca738825f01bc40ebefbf1b9"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "e032579dcb76ffdadedc658ce44ad90fcee38f43b48fd0c87517f4a3572d5869"
+                      },
+                      {
+                        "occurrenceRef": "33166f7869a1ad71f3c1ddfee257731558f818bce3cec09ec0f50b3d3f5d1d71"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4907",
+        "label": "网络谜踪其七",
+        "mode": "moc",
+        "ordinal": 7,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120081-0",
+                "level": 85,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "11818e4fa7fb28b5344caf053ce656a5ccf29f1833de66c5c419115565a9b4a3"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "11818e4fa7fb28b5344caf053ce656a5ccf29f1833de66c5c419115565a9b4a3"
+                      },
+                      {
+                        "occurrenceRef": "9c726a9e867344d3f749d57f3c7245320fcc1aa345e5c888a8ba5941548cf6e9"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120082-0",
+                "level": 85,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "eb10a3e25e3bf125c84d070dbeff6bfc48e71c4fd483c6df6459fa41dd05dada"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "eb10a3e25e3bf125c84d070dbeff6bfc48e71c4fd483c6df6459fa41dd05dada"
+                      },
+                      {
+                        "occurrenceRef": "f52f352fd004ccbafd60e8366fce10738e9cba18f1e5b600374b6ae652715406"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4908",
+        "label": "网络谜踪其八",
+        "mode": "moc",
+        "ordinal": 8,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120091-0",
+                "level": 88,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "f8741b43464e3222bec9f5169723349390d8b73fe6fdf316448fca99afa2387b"
+                      },
+                      {
+                        "occurrenceRef": "8688b8f0b48f3f7ba8fcf3ef6300a52fcb6710e5af4e741a05671bdf0693482c"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "8688b8f0b48f3f7ba8fcf3ef6300a52fcb6710e5af4e741a05671bdf0693482c"
+                      },
+                      {
+                        "occurrenceRef": "234cd7412c6dd22db04560b00673b38a7d03cc820facbeaa0878b94d95870af9"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120092-0",
+                "level": 88,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "409c2db6d32001e7e6794f604162903dba8e259ebfebe1fb0017825d2157da53"
+                      },
+                      {
+                        "occurrenceRef": "08cc3f1afdef9b360ef4f0b8d8b02b0f6b6bf879cd8e5a36c396fa5ef26d7c95"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "08cc3f1afdef9b360ef4f0b8d8b02b0f6b6bf879cd8e5a36c396fa5ef26d7c95"
+                      },
+                      {
+                        "occurrenceRef": "c0b9349c3f615d7b0c1f9a8a4c57807be339bd2d6c1627c370abfd82614628e5"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4909",
+        "label": "网络谜踪其九",
+        "mode": "moc",
+        "ordinal": 9,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120101-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "888908a7032521fc86d41f5e4f6869c093624219780e28ee737b96a2cab43327"
+                      },
+                      {
+                        "occurrenceRef": "cdb05e9cdca943c93b2235f32afd367d4a26d732d61c7321ff4dfa08b178475b"
+                      },
+                      {
+                        "occurrenceRef": "480b848fca6199da5a804a5dbb15da805146275749209cc86da7242e624148c0"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "c55e1d69236bb723bfdf9bd9844a32f18e2217c572097218719408bac28111fb"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120102-0",
+                "level": 90,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "c55d3af88b69ace3d0402dd59453bb8b24303198fd7d7b8db6c9dd91570a852c"
+                      },
+                      {
+                        "occurrenceRef": "e093ebd91715a9f08e2a56ee4f805176cc8963e012dd606751101dc1a61935c3"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "c55d3af88b69ace3d0402dd59453bb8b24303198fd7d7b8db6c9dd91570a852c"
+                      },
+                      {
+                        "occurrenceRef": "e093ebd91715a9f08e2a56ee4f805176cc8963e012dd606751101dc1a61935c3"
+                      },
+                      {
+                        "occurrenceRef": "bdffad8420a1e9a706724dc78aa047acfd01c581bc85e37094012e5eceeb7291"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4910",
+        "label": "网络谜踪其十",
+        "mode": "moc",
+        "ordinal": 10,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120111-0",
+                "level": 92,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "a445c53a2c58ba48c76d10bdec05b940a676ae5b2d38ce87bb0b68d7934d4e79"
+                      },
+                      {
+                        "occurrenceRef": "939642e7467344dd90bc24a62c8b96690a03c09a395ef1c15a5806c827993d04"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "1fee1e4850c549d51805657185e2b427a5c327fd528846be1339f573dbe4b196"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120112-0",
+                "level": 92,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "574608897689becb84c2b9394ba9524a8e340e63ea7474313ecf35ffeb6f5799"
+                      },
+                      {
+                        "occurrenceRef": "fb0261d89cc8739d8a91343a04c793e523f7c80be9c21287382112bcb99f6e97"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "a2c490657f84111f600270c9c91c64eec4bc73044f23e1d8fdf9846953002b61"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4911",
+        "label": "网络谜踪其十一",
+        "mode": "moc",
+        "ordinal": 11,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120121-0",
+                "level": 95,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "67a5065e8042a745660b8b0fa883b087372a5fca8c9f33d96af05dd4eb846d67"
+                      },
+                      {
+                        "occurrenceRef": "1ed20a8346c74ddb396f9111a310e54a0ff50699483863bca2ecdba8e57a5a5a"
+                      },
+                      {
+                        "occurrenceRef": "a4a987bd6f46c0e83d97e65ed33eb637d49ff74c52977aa0e18e9f9f6794888f"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "24597a9430d457a823f840697dda470f00702791232eaf63a7ae9c76aa8af358"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30120122-0",
+                "level": 95,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "c4285b683e96610097e04b3d6f42c9a5a22711cfa4e70b8af5339f6bb541ae2a"
+                      },
+                      {
+                        "occurrenceRef": "5dca9785775a4ffb005cc59e6b6ab30ea49459bc3a6282f2fe55a8cbf1d87482"
+                      }
+                    ],
+                    "key": "fixed-1",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "08c9d13ab2c9f0435eebbc54ea9bdaf1ab630b73cb8c6913a784a9d68aad4905"
+                      }
+                    ],
+                    "key": "fixed-2",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "4912",
+        "label": "网络谜踪其十二",
+        "mode": "moc",
+        "ordinal": 12,
+        "variant": "floor"
+      }
+    ],
+    "memoryTurbulence": {
+      "mechanicRef": "e23452adcc82ad7ba3c33e000ddc3640e78f3fb8c7238a07a30e56adb62b99dd"
+    },
+    "mode": "moc",
+    "modeLabel": "混沌回忆",
+    "period": {
+      "dateLabel": "2026/03/02 – 2026/04/13",
+      "encounterCount": 12,
+      "groupId": 1030,
+      "name": "网络谜踪",
+      "status": "historical"
+    },
+    "periods": [
+      {
+        "dateLabel": "-",
+        "encounterCount": 12,
+        "groupId": 1035,
+        "name": "数据组 1035",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 12,
+        "groupId": 1034,
+        "name": "扫除风暴",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "2026/07/06 – 2026/08/17",
+        "encounterCount": 12,
+        "groupId": 1033,
+        "name": "学院怪谈",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/05/25 – 2026/07/06",
+        "encounterCount": 12,
+        "groupId": 1032,
+        "name": "值日行动",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/04/13 – 2026/05/25",
+        "encounterCount": 12,
+        "groupId": 1031,
+        "name": "演剧终焉",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/03/02 – 2026/04/13",
+        "encounterCount": 12,
+        "groupId": 1030,
+        "name": "网络谜踪",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/01/19 – 2026/03/02",
+        "encounterCount": 12,
+        "groupId": 1029,
+        "name": "堤溃蚁穴",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/12/08 – 2026/01/19",
+        "encounterCount": 12,
+        "groupId": 1028,
+        "name": "猴子把戏",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/10/27 – 2025/12/08",
+        "encounterCount": 12,
+        "groupId": 1027,
+        "name": "范畴错误",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/09/15 – 2025/10/27",
+        "encounterCount": 12,
+        "groupId": 1026,
+        "name": "创世之柱",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/08/04 – 2025/09/15",
+        "encounterCount": 12,
+        "groupId": 1025,
+        "name": "博徒困境",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/06/23 – 2025/08/04",
+        "encounterCount": 12,
+        "groupId": 1024,
+        "name": "赤月吞狼",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/05/12 – 2025/06/23",
+        "encounterCount": 12,
+        "groupId": 1023,
+        "name": "彼岸之息",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/03/31 – 2025/05/12",
+        "encounterCount": 12,
+        "groupId": 1022,
+        "name": "出故乡记",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/02/17 – 2025/03/31",
+        "encounterCount": 12,
+        "groupId": 1021,
+        "name": "创世纷争",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/01/06 – 2025/02/17",
+        "encounterCount": 12,
+        "groupId": 1020,
+        "name": "舸舰迷津",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/11/25 – 2025/01/06",
+        "encounterCount": 12,
+        "groupId": 1019,
+        "name": "与梦共舞",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/10/14 – 2024/11/25",
+        "encounterCount": 12,
+        "groupId": 1018,
+        "name": "鳞渊潮动",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/09/02 – 2024/10/14",
+        "encounterCount": 12,
+        "groupId": 1017,
+        "name": "长眠不醒",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/07/22 – 2024/09/02",
+        "encounterCount": 12,
+        "groupId": 1016,
+        "name": "曲尽梦散",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/06/10 – 2024/07/22",
+        "encounterCount": 12,
+        "groupId": 1015,
+        "name": "弦外之声",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/05/13 – 2024/06/24",
+        "encounterCount": 12,
+        "groupId": 1014,
+        "name": "梦中之梦",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/04/15 – 2024/05/27",
+        "encounterCount": 12,
+        "groupId": 1013,
+        "name": "白夜梦国记",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/03/18 – 2024/04/29",
+        "encounterCount": 12,
+        "groupId": 1012,
+        "name": "一晌荒宴",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/02/19 – 2024/04/01",
+        "encounterCount": 12,
+        "groupId": 1011,
+        "name": "难舍梦乡",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/01/22 – 2024/03/04",
+        "encounterCount": 12,
+        "groupId": 1010,
+        "name": "重燃之光",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/12/25 – 2024/02/05",
+        "encounterCount": 12,
+        "groupId": 1009,
+        "name": "藏于深空之秘",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/12/11 – 2023/12/25",
+        "encounterCount": 10,
+        "groupId": 1008,
+        "name": "藏于深空之秘",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/11/27 – 2023/12/11",
+        "encounterCount": 10,
+        "groupId": 1007,
+        "name": "万载盟誓",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/11/13 – 2023/11/27",
+        "encounterCount": 10,
+        "groupId": 1006,
+        "name": "镇伏玄根",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/10/30 – 2023/11/13",
+        "encounterCount": 10,
+        "groupId": 1005,
+        "name": "建木降临",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/10/16 – 2023/10/30",
+        "encounterCount": 10,
+        "groupId": 1004,
+        "name": "生劫火劫",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/10/02 – 2023/10/16",
+        "encounterCount": 10,
+        "groupId": 1003,
+        "name": "魔阴空劫",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/09/18 – 2023/10/02",
+        "encounterCount": 10,
+        "groupId": 1002,
+        "name": "天裂一射",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/09/04 – 2023/09/18",
+        "encounterCount": 10,
+        "groupId": 1001,
+        "name": "迷梦造舸",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 6,
+        "groupId": 900,
+        "name": "天艟求仙迷航录",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "2023/05/29 – 2023/06/12",
+        "encounterCount": 10,
+        "groupId": 119,
+        "name": "琥珀恩赐",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/05/15 – 2023/05/29",
+        "encounterCount": 10,
+        "groupId": 118,
+        "name": "琥珀恩赐",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/04/17 – 2023/05/15",
+        "encounterCount": 10,
+        "groupId": 117,
+        "name": "琥珀恩赐",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/04/03 – 2023/04/17",
+        "encounterCount": 10,
+        "groupId": 116,
+        "name": "琥珀恩赐",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/08/21 – 2023/09/04",
+        "encounterCount": 10,
+        "groupId": 115,
+        "name": "药王垂迹",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/08/07 – 2023/08/21",
+        "encounterCount": 10,
+        "groupId": 114,
+        "name": "泪雨长战",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/07/24 – 2023/08/07",
+        "encounterCount": 10,
+        "groupId": 113,
+        "name": "孤航天海",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/07/10 – 2023/07/24",
+        "encounterCount": 10,
+        "groupId": 112,
+        "name": "风暴止息",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/06/26 – 2023/07/10",
+        "encounterCount": 10,
+        "groupId": 111,
+        "name": "蹈冰寻火",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/06/12 – 2023/06/26",
+        "encounterCount": 10,
+        "groupId": 110,
+        "name": "寒铁砥砺",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2033/02/20 – 2033/03/06",
+        "encounterCount": 10,
+        "groupId": 109,
+        "name": "永冬试炼",
+        "status": "upcoming"
+      },
+      {
+        "dateLabel": "2033/02/06 – 2033/02/20",
+        "encounterCount": 10,
+        "groupId": 108,
+        "name": "霜痕旧梦",
+        "status": "upcoming"
+      },
+      {
+        "dateLabel": "2023/03/20 – 2023/04/03",
+        "encounterCount": 10,
+        "groupId": 107,
+        "name": "琥珀恩赐",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/01/09 – 2023/01/23",
+        "encounterCount": 10,
+        "groupId": 106,
+        "name": "永冬试炼",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2022/12/26 – 2023/01/09",
+        "encounterCount": 10,
+        "groupId": 105,
+        "name": "霜痕旧梦",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/03/06 – 2023/03/20",
+        "encounterCount": 10,
+        "groupId": 104,
+        "name": "琥珀恩赐",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2022/11/28 – 2022/12/12",
+        "encounterCount": 10,
+        "groupId": 103,
+        "name": "永冬试炼",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2022/11/14 – 2022/11/28",
+        "encounterCount": 10,
+        "groupId": 102,
+        "name": "霜痕旧梦",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2023/02/06 – 2023/03/06",
+        "encounterCount": 10,
+        "groupId": 101,
+        "name": "琥珀恩赐",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 15,
+        "groupId": 100,
+        "name": "永屹之城遗秘",
+        "status": "unknown"
+      }
+    ]
+  },
+  "route": "/endgame/moc/1030",
+  "source": {
+    "encounters": [
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120011,
+                "hardLevelGroup": 3,
+                "level": 68,
+                "previewMonsterIds": [
+                  1012030,
+                  1013010,
+                  1012030,
+                  1013010,
+                  1013020
+                ],
+                "stageAbilities": [],
+                "stageId": 30120011,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "e596eff84220b0c792fd70e81e268aca103fbb692a5186c895f61f089af452a6"
+                        },
+                        {
+                          "occurrenceRef": "b88390eb023d192e4a49feac22da94c63e4f7d91216c0d30bf2cc82bfb93389f"
+                        },
+                        {
+                          "occurrenceRef": "e596eff84220b0c792fd70e81e268aca103fbb692a5186c895f61f089af452a6"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "b88390eb023d192e4a49feac22da94c63e4f7d91216c0d30bf2cc82bfb93389f"
+                        },
+                        {
+                          "occurrenceRef": "89af40d05e2308ddfe9c11812804089f946bf5990a3df7ea128cb016a73c4d06"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120012,
+                "hardLevelGroup": 3,
+                "level": 68,
+                "previewMonsterIds": [
+                  8002010,
+                  8003040,
+                  8002010,
+                  1012010,
+                  8002010,
+                  8003040,
+                  3003040
+                ],
+                "stageAbilities": [],
+                "stageId": 30120012,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "31cf3607e475579aad11b46acea837419528f39ce98c5e1bc945bdacde5f5217"
+                        },
+                        {
+                          "occurrenceRef": "e93c6befb5aa58cd111e9dc285da7e9f44db7adb11476a60fd9c90a898466f8a"
+                        },
+                        {
+                          "occurrenceRef": "31cf3607e475579aad11b46acea837419528f39ce98c5e1bc945bdacde5f5217"
+                        },
+                        {
+                          "occurrenceRef": "57007c4379644367a1dd97ea800e75aa17909e492a0e815e8c363ce12f695606"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "31cf3607e475579aad11b46acea837419528f39ce98c5e1bc945bdacde5f5217"
+                        },
+                        {
+                          "occurrenceRef": "e93c6befb5aa58cd111e9dc285da7e9f44db7adb11476a60fd9c90a898466f8a"
+                        },
+                        {
+                          "occurrenceRef": "7ea33efff74be9aac2345bda4deb5c34ad80e6ad3c51673eaf45e4d76a0b02f9"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4901,
+        "id": "4901",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4901,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其一",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120021,
+                "hardLevelGroup": 3,
+                "level": 70,
+                "previewMonsterIds": [
+                  8002010,
+                  1023020,
+                  1023020,
+                  8003030
+                ],
+                "stageAbilities": [],
+                "stageId": 30120021,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "e919f096520c1cb0af6beb5e1aea9b62b6627c9d5344000fa4861cc3dd8910a9"
+                        },
+                        {
+                          "occurrenceRef": "6097f8d78d1831d6481022fc75f7dab85a327c0b20d29e09fbb9b64eca293210"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "6097f8d78d1831d6481022fc75f7dab85a327c0b20d29e09fbb9b64eca293210"
+                        },
+                        {
+                          "occurrenceRef": "41ba72d5bebf6bfc2a4277aad4817245ecd8a3c7a2fd84073cfdd960a79c76f5"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120022,
+                "hardLevelGroup": 3,
+                "level": 70,
+                "previewMonsterIds": [
+                  2002030,
+                  2013020,
+                  2012010,
+                  2002030,
+                  2013020,
+                  8013010
+                ],
+                "stageAbilities": [],
+                "stageId": 30120022,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "80ddac998ad55d910623e73f0eaf2933ec8b32e782077fdf94dc8c977e09a98b"
+                        },
+                        {
+                          "occurrenceRef": "8ff503c8173627c32420ee3c330b146722ffeb67c712a3b1d0c614cef1c422f8"
+                        },
+                        {
+                          "occurrenceRef": "fe60139fcf5d13e6336660f3c5da534c507bf392798358909238baf148d1311d"
+                        },
+                        {
+                          "occurrenceRef": "80ddac998ad55d910623e73f0eaf2933ec8b32e782077fdf94dc8c977e09a98b"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "8ff503c8173627c32420ee3c330b146722ffeb67c712a3b1d0c614cef1c422f8"
+                        },
+                        {
+                          "occurrenceRef": "e65ff570656cd07f674cfd7d9b76439ab39ec98cb284f08c1c43a43667f363ea"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4902,
+        "id": "4902",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4902,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其二",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120031,
+                "hardLevelGroup": 3,
+                "level": 73,
+                "previewMonsterIds": [
+                  3003020,
+                  3003020,
+                  3003040
+                ],
+                "stageAbilities": [],
+                "stageId": 30120031,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "ebf7c314369b779213c563da78a9949d84f523af5e0c2b4038db9bfb4cd7600e"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "ebf7c314369b779213c563da78a9949d84f523af5e0c2b4038db9bfb4cd7600e"
+                        },
+                        {
+                          "occurrenceRef": "9b85dd1d0046efc9aa21a903dc53c8f7d05c584be5803aa669dd9bb9f2eaf70a"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120032,
+                "hardLevelGroup": 3,
+                "level": 73,
+                "previewMonsterIds": [
+                  2023010,
+                  2023010,
+                  2023020
+                ],
+                "stageAbilities": [],
+                "stageId": 30120032,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "3faf8d58d5ed4ddd6e77ce1d529d655daf425dcd7c69a573903ceeadf7e7f967"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "3faf8d58d5ed4ddd6e77ce1d529d655daf425dcd7c69a573903ceeadf7e7f967"
+                        },
+                        {
+                          "occurrenceRef": "1e8ad7772705eaa2c66c4c41b27ddf07844f2ae8096e4f5f935ec79110c49c69"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4903,
+        "id": "4903",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4903,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其三",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120041,
+                "hardLevelGroup": 3,
+                "level": 75,
+                "previewMonsterIds": [
+                  4012030,
+                  4013010,
+                  4012030,
+                  4013010,
+                  8003020
+                ],
+                "stageAbilities": [],
+                "stageId": 30120041,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "efebc5dec8fb034ab2ba2397fdbf79aadaf22c6884442e27128635d50a7d4b1d"
+                        },
+                        {
+                          "occurrenceRef": "d28cfb545c1bebeeca66f17edec430e9ff5473ff3a1658e8dae0ca46a880ae01"
+                        },
+                        {
+                          "occurrenceRef": "efebc5dec8fb034ab2ba2397fdbf79aadaf22c6884442e27128635d50a7d4b1d"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "d28cfb545c1bebeeca66f17edec430e9ff5473ff3a1658e8dae0ca46a880ae01"
+                        },
+                        {
+                          "occurrenceRef": "8015711e323d855c2ccfaa1660336a33fca2a50515161cfb9b61e8e5ee2311b7"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120042,
+                "hardLevelGroup": 3,
+                "level": 75,
+                "previewMonsterIds": [
+                  4012050,
+                  3003020,
+                  3003020,
+                  8013010
+                ],
+                "stageAbilities": [],
+                "stageId": 30120042,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "ebcc6d8ce71b4b0dd3732e4348c9980057896dcd8119356be77ac475101050e6"
+                        },
+                        {
+                          "occurrenceRef": "1f73086b6a272e9327ecf16508b45f42408496579ee1ba427b35718ac3772dab"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "1f73086b6a272e9327ecf16508b45f42408496579ee1ba427b35718ac3772dab"
+                        },
+                        {
+                          "occurrenceRef": "c9e356ca7a65fa2711071ee98ac1b6732e5222258501879ab3917c66d7793c15"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4904,
+        "id": "4904",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4904,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其四",
+        "ordinal": 4,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120051,
+                "hardLevelGroup": 3,
+                "level": 78,
+                "previewMonsterIds": [
+                  4032040,
+                  4033030,
+                  4032040,
+                  100401010
+                ],
+                "stageAbilities": [],
+                "stageId": 30120051,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "e907d86f876c4fa727ee6da058666ec7edab76b34fd942e0185930653dc44d8d"
+                        },
+                        {
+                          "occurrenceRef": "c91f3dc4496c52effc2edd699dbe36567f7bbf1378b14c1ae89d53ea8068c045"
+                        },
+                        {
+                          "occurrenceRef": "e907d86f876c4fa727ee6da058666ec7edab76b34fd942e0185930653dc44d8d"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "b85d89ea7b6da35fcc7b1e81fe6b8318a0084bfcb54a20ddf2b2491848206b9e"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120052,
+                "hardLevelGroup": 3,
+                "level": 78,
+                "previewMonsterIds": [
+                  4032010,
+                  4033010,
+                  4032010,
+                  4033010,
+                  4033020
+                ],
+                "stageAbilities": [],
+                "stageId": 30120052,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "f3481914e3daad3a9f218c949c3935726bf24fbbc22e184788388866d4363ff5"
+                        },
+                        {
+                          "occurrenceRef": "5090c90d6f68e14fc845ff269fe9021f632b8f5ffcbc2ffdd4afb48071b509a5"
+                        },
+                        {
+                          "occurrenceRef": "f3481914e3daad3a9f218c949c3935726bf24fbbc22e184788388866d4363ff5"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "5090c90d6f68e14fc845ff269fe9021f632b8f5ffcbc2ffdd4afb48071b509a5"
+                        },
+                        {
+                          "occurrenceRef": "48c2cbaa0908481b4babbbb0a69b1299c3b77234e92fed1840f7fe3d7fbf5a71"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4905,
+        "id": "4905",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4905,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其五",
+        "ordinal": 5,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120061,
+                "hardLevelGroup": 3,
+                "level": 80,
+                "previewMonsterIds": [
+                  1012030,
+                  1013010,
+                  1012030,
+                  1013010,
+                  1013020
+                ],
+                "stageAbilities": [],
+                "stageId": 30120061,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "4a9e741d9dd78cf4346dcca5a04b841fce195c675a3897cdc7e898302f1a181a"
+                        },
+                        {
+                          "occurrenceRef": "be2b5d26a5ff15b92e2b3178e7a554b2f604e8dda40b11a2b934cc5aa91ca7c3"
+                        },
+                        {
+                          "occurrenceRef": "4a9e741d9dd78cf4346dcca5a04b841fce195c675a3897cdc7e898302f1a181a"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "be2b5d26a5ff15b92e2b3178e7a554b2f604e8dda40b11a2b934cc5aa91ca7c3"
+                        },
+                        {
+                          "occurrenceRef": "06a00f89b6462559143cbc3ae5a96501e69bb2f6958b915687aafde6481524b3"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120062,
+                "hardLevelGroup": 3,
+                "level": 80,
+                "previewMonsterIds": [
+                  8002010,
+                  8003040,
+                  8002010,
+                  1012010,
+                  8002010,
+                  8003040,
+                  3003040
+                ],
+                "stageAbilities": [],
+                "stageId": 30120062,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "69b2444de158e04b29e7bfae070e6032c5d95f353528436fe3f390805e9a80a9"
+                        },
+                        {
+                          "occurrenceRef": "298d6e83c806aa5f5f60c10599b01250ace16f497aea521b47093c7101d12bd9"
+                        },
+                        {
+                          "occurrenceRef": "69b2444de158e04b29e7bfae070e6032c5d95f353528436fe3f390805e9a80a9"
+                        },
+                        {
+                          "occurrenceRef": "61f48b5a04f3331d7e73e7d360e831c7844ac6c536a04d570fe29bca6fb620cf"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "69b2444de158e04b29e7bfae070e6032c5d95f353528436fe3f390805e9a80a9"
+                        },
+                        {
+                          "occurrenceRef": "298d6e83c806aa5f5f60c10599b01250ace16f497aea521b47093c7101d12bd9"
+                        },
+                        {
+                          "occurrenceRef": "0997c7a1cd4c78d6c4268263e8025badbc71131a8a9ad75f21c515f61299991d"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4906,
+        "id": "4906",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4906,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其六",
+        "ordinal": 6,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120071,
+                "hardLevelGroup": 3,
+                "level": 82,
+                "previewMonsterIds": [
+                  8002010,
+                  1023020,
+                  1023020,
+                  8003030
+                ],
+                "stageAbilities": [],
+                "stageId": 30120071,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "de8c2dc2ff0b1655244f6dd85a187872441b7de367583043576ff4b5ffd2aae5"
+                        },
+                        {
+                          "occurrenceRef": "dcfd090784212b6686b5882dca855ea2ebc535656bd8888a4ad3b9dc21a8eb29"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "dcfd090784212b6686b5882dca855ea2ebc535656bd8888a4ad3b9dc21a8eb29"
+                        },
+                        {
+                          "occurrenceRef": "894b8fb21bbdd97ea9a53fd15a0b401b1b60b77685932a74fb676bd9633b72e2"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120072,
+                "hardLevelGroup": 3,
+                "level": 82,
+                "previewMonsterIds": [
+                  2002030,
+                  2013020,
+                  2012010,
+                  2002030,
+                  2013020,
+                  8013010
+                ],
+                "stageAbilities": [],
+                "stageId": 30120072,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "e626f2ef378edb607ff2d366848221918068c86be7b6e2ff28a89b9c5d144d65"
+                        },
+                        {
+                          "occurrenceRef": "c883291b5587134119bac53831c3c1c1ff2a40e69c8399aa476e9a6f44095508"
+                        },
+                        {
+                          "occurrenceRef": "89a98e47dae609755587cd2b4daac6290864a26963a5d2c6e6b63e38d21ef8c3"
+                        },
+                        {
+                          "occurrenceRef": "e626f2ef378edb607ff2d366848221918068c86be7b6e2ff28a89b9c5d144d65"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "c883291b5587134119bac53831c3c1c1ff2a40e69c8399aa476e9a6f44095508"
+                        },
+                        {
+                          "occurrenceRef": "4a3471ed883ab09c1e032906c3d7d6312551d2df02d0b7ea32261bd724970c58"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4907,
+        "id": "4907",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4907,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其七",
+        "ordinal": 7,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120081,
+                "hardLevelGroup": 3,
+                "level": 85,
+                "previewMonsterIds": [
+                  3003020,
+                  3003020,
+                  3003040
+                ],
+                "stageAbilities": [],
+                "stageId": 30120081,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "23b44b82613d79084c40922e579e1e85f0d0ad2b4a334ae67522f0597e310590"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "23b44b82613d79084c40922e579e1e85f0d0ad2b4a334ae67522f0597e310590"
+                        },
+                        {
+                          "occurrenceRef": "3fc4ebe1ca924b81943853bd035fd30125644d47f08eab5f1cc9afc6f7979031"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120082,
+                "hardLevelGroup": 3,
+                "level": 85,
+                "previewMonsterIds": [
+                  2023010,
+                  2023010,
+                  2023020
+                ],
+                "stageAbilities": [],
+                "stageId": 30120082,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "98c96faf1d419d6d95754c65177094d7a43ee3e4a775989349a6dc1657586209"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "98c96faf1d419d6d95754c65177094d7a43ee3e4a775989349a6dc1657586209"
+                        },
+                        {
+                          "occurrenceRef": "6815476b90dd23d90c44ecf050035d7eb8cbcae9c5c2e4f312bc90d8b4f063df"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4908,
+        "id": "4908",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4908,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其八",
+        "ordinal": 8,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120091,
+                "hardLevelGroup": 3,
+                "level": 88,
+                "previewMonsterIds": [
+                  4012030,
+                  4013010,
+                  4012030,
+                  4013010,
+                  8003020
+                ],
+                "stageAbilities": [],
+                "stageId": 30120091,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "6e985054c40108b5a7b644c8d7614fb8dfbe40fc86b2f77cb94ba0c4f2581c75"
+                        },
+                        {
+                          "occurrenceRef": "ce14f6c0d7dfa2d7b89c323a16e914575d5fa2bf9f77daf2677f9d237db42150"
+                        },
+                        {
+                          "occurrenceRef": "6e985054c40108b5a7b644c8d7614fb8dfbe40fc86b2f77cb94ba0c4f2581c75"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "ce14f6c0d7dfa2d7b89c323a16e914575d5fa2bf9f77daf2677f9d237db42150"
+                        },
+                        {
+                          "occurrenceRef": "e3f8f557ff92329974f2b06ff4628bd563c7690dcff149bba1d9977909c3417e"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120092,
+                "hardLevelGroup": 3,
+                "level": 88,
+                "previewMonsterIds": [
+                  4012050,
+                  3003020,
+                  3003020,
+                  8013010
+                ],
+                "stageAbilities": [],
+                "stageId": 30120092,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "6033c155f82cd2e06d92d098bf22793974c7966f6274623a4ed072edbbfbc380"
+                        },
+                        {
+                          "occurrenceRef": "9df910bd621ce082a00b863eaeb6495e3980f46d07a119780bd51161238f2df1"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "9df910bd621ce082a00b863eaeb6495e3980f46d07a119780bd51161238f2df1"
+                        },
+                        {
+                          "occurrenceRef": "7d0ce442561ca9fff3aaa3f741824aef9d3079a636061d8b7a7cc6e5cb5a373b"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4909,
+        "id": "4909",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4909,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其九",
+        "ordinal": 9,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120101,
+                "hardLevelGroup": 3,
+                "level": 90,
+                "previewMonsterIds": [
+                  5012040,
+                  5013030,
+                  8003010,
+                  5012040,
+                  200402009
+                ],
+                "stageAbilities": [],
+                "stageId": 30120101,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "aec30076925572cb5a8069a20db508b9f92a2d9000c8b4d3e9593bc4e331be5e"
+                        },
+                        {
+                          "occurrenceRef": "860fb8253c300a0c3553ebf8c528587db90f2e1f87e5e251d895a378c007c4e3"
+                        },
+                        {
+                          "occurrenceRef": "7adecc836fd25bb173ff584503188bc18a393477359e0c05b2af4232bc85be1a"
+                        },
+                        {
+                          "occurrenceRef": "aec30076925572cb5a8069a20db508b9f92a2d9000c8b4d3e9593bc4e331be5e"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "1c9f51dbb91a4778d24c040c18833bdc527db80db8c83b83d3eb82f6673c2b1b"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120102,
+                "hardLevelGroup": 3,
+                "level": 90,
+                "previewMonsterIds": [
+                  5012020,
+                  4033020,
+                  5012020,
+                  5012020,
+                  4033020,
+                  200401007,
+                  5012020
+                ],
+                "stageAbilities": [],
+                "stageId": 30120102,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "3d6650a82eba56eaa262e19937e18e5c50a135add9de85a4df730b48414ded5f"
+                        },
+                        {
+                          "occurrenceRef": "9c62c370025fa1624b2a17d4a370595eeedff524c31a38311e3a309e73c2b089"
+                        },
+                        {
+                          "occurrenceRef": "3d6650a82eba56eaa262e19937e18e5c50a135add9de85a4df730b48414ded5f"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "3d6650a82eba56eaa262e19937e18e5c50a135add9de85a4df730b48414ded5f"
+                        },
+                        {
+                          "occurrenceRef": "9c62c370025fa1624b2a17d4a370595eeedff524c31a38311e3a309e73c2b089"
+                        },
+                        {
+                          "occurrenceRef": "6e9182aa58d23d6a627361bcfd704a3fee5bc59b7fb81f35d42830e51527959d"
+                        },
+                        {
+                          "occurrenceRef": "3d6650a82eba56eaa262e19937e18e5c50a135add9de85a4df730b48414ded5f"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4910,
+        "id": "4910",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4910,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其十",
+        "ordinal": 10,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120111,
+                "hardLevelGroup": 3,
+                "level": 92,
+                "previewMonsterIds": [
+                  803301014,
+                  4063010,
+                  3004020
+                ],
+                "stageAbilities": [],
+                "stageId": 30120111,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "c848da02d4617795ada292b7fb73aea6e286dd47684a9a3023eb0626a05f6ed8"
+                        },
+                        {
+                          "occurrenceRef": "30a9285d9057e5146cd325bfd024f62fbde69180c61066403719f5acca03991f"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "3f96d0faaa62b49ff8ed308a60818078fa94c6a12351fb01fee106b630c082ed"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120112,
+                "hardLevelGroup": 3,
+                "level": 92,
+                "previewMonsterIds": [
+                  3003020,
+                  2013020,
+                  4064010
+                ],
+                "stageAbilities": [],
+                "stageId": 30120112,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "dd5a4bc6411fae56dc651f8057361989c757a665f0fc9d3bfe3f2ec9769f8179"
+                        },
+                        {
+                          "occurrenceRef": "20eff79b0cc81d4a87efc7972f59b28c7470654800193b8ac36cf16ae120d1c1"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "7a02c29c1569210372576c4c9b5c27c4447a150384f0b9fdd0fc57c595bc4eeb"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4911,
+        "id": "4911",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4911,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其十一",
+        "ordinal": 11,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30120121,
+                "hardLevelGroup": 3,
+                "level": 95,
+                "previewMonsterIds": [
+                  5012030,
+                  5013010,
+                  5013030,
+                  5012030,
+                  5014010
+                ],
+                "stageAbilities": [],
+                "stageId": 30120121,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "c840c70b5cafb988cabb65a21de77782160602999f5816cfd52d94d2145af009"
+                        },
+                        {
+                          "occurrenceRef": "e9b5c210f243a5ff8b75808fe795225893b921f3ac83693e1780ed6d00c3da76"
+                        },
+                        {
+                          "occurrenceRef": "343a5fc846b4e3f8784a70b2fb6fba2c8764c05a726deb5ecd2b2211cb48565f"
+                        },
+                        {
+                          "occurrenceRef": "c840c70b5cafb988cabb65a21de77782160602999f5816cfd52d94d2145af009"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "f218911e3d614322cd0b41f2928493cc3080f00bae152b3250751bb8f79309cd"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30120122,
+                "hardLevelGroup": 3,
+                "level": 95,
+                "previewMonsterIds": [
+                  4053010,
+                  4033010,
+                  4044010
+                ],
+                "stageAbilities": [],
+                "stageId": 30120122,
+                "waveModel": {
+                  "kind": "fixed",
+                  "waves": [
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "0cede3acdb6a26176ae4b58b6b208fe9c365065d56bb36fe0151bbc31ca0e1b7"
+                        },
+                        {
+                          "occurrenceRef": "3e419750676b611854c78adfe390175c6aed235fbdb7337e7f1ca9c7a8b807ec"
+                        }
+                      ],
+                      "wave": 1
+                    },
+                    {
+                      "enemies": [
+                        {
+                          "occurrenceRef": "153f6fd8612a07d03d011a16530dbba9d7b3a433b410650bf706874f580ea6b0"
+                        }
+                      ],
+                      "wave": 2
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 4912,
+        "id": "4912",
+        "memoryTurbulence": {
+          "buff": {
+            "mechanicRef": "13babc9557b6e00bf49a63433597d1bc1a5e4caaba7d9dc5428fa0a1ae4df9e4"
+          },
+          "groupReference": {
+            "mazeBuffId": 3030143,
+            "provenance": {
+              "field": "MazeBuffID",
+              "ownerId": 1030,
+              "table": "ChallengeGroupConfig"
+            }
+          },
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 4912,
+            "table": "ChallengeMazeConfig"
+          }
+        },
+        "name": "网络谜踪其十二",
+        "ordinal": 12,
+        "variant": "floor"
+      }
+    ],
+    "groupId": 1030,
+    "mode": "moc",
+    "name": "网络谜踪",
+    "recommendationEligible": true,
+    "schedule": {
+      "begin": "2026-03-02 04:00:00",
+      "end": "2026-04-13 04:00:00"
+    }
+  }
+}

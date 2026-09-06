@@ -1,0 +1,70 @@
+{
+  "catalog": {
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n生前的决斗之魂被黑潮扭曲，它握持一柄与肩齐高的双手大剑，在漫无目的的游荡中寻找着所有可摧毁的目标，为世界的纷乱献上新增的熵值。",
+    "id": "4033020",
+    "name": "黑潮斗将",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4033020",
+    "defaultMonsterRef": "24d726a93d03cdcdb00441c1ad200eeaf1eba13fe225c38ef17ee49c996efaf3",
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n生前的决斗之魂被黑潮扭曲，它握持一柄与肩齐高的双手大剑，在漫无目的的游荡中寻找着所有可摧毁的目标，为世界的纷乱献上新增的熵值。",
+    "id": "4033020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "24d726a93d03cdcdb00441c1ad200eeaf1eba13fe225c38ef17ee49c996efaf3",
+      "0466d8ab955cc39cb11b89961e98352dd2dc76a6ac1cf308511d3bdf0dc000ec",
+      "9f6c183161cf912d8ce577a888e4bf3d5d39a3c51cfd0f3065389736d480bccd",
+      "da089d250bcab26951b9cfcb28247176a86c9e00b34d46c8b83ac103fd85d045",
+      "d2258cc2bef12b89e8c69206e091b36a00a858a9fb227eba17d8fdf65f290269",
+      "16bde54bd52b3a920cc01c9c722316f1963829acf0ffde735ea040eca989f4f4"
+    ],
+    "name": "黑潮斗将",
+    "rank": "Elite",
+    "templateRef": "212a674c262b73e3fb5de312030f451c4c190d72fd919e458e83c67047f19ed6",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4033020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4033020",
+    "selectableMonsterIds": [
+      "4033020",
+      "403302001",
+      "403302002",
+      "403302003",
+      "403302004",
+      "403302005"
+    ]
+  }
+}

@@ -1,0 +1,357 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "22003",
+    "name": "忍事录•音律狩猎",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "22003",
+    "kind": "light-cone",
+    "name": "忍事录•音律狩猎",
+    "passive": {
+      "id": "22003",
+      "name": "开演！",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的生命上限提高12%，损失或回复自身生命值后，暴击伤害提高18%，持续2回合，该效果每回合只可触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，损失或回复自身生命值后，暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，该效果每回合只可触发1次。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的生命上限提高15%，损失或回复自身生命值后，暴击伤害提高23%，持续2回合，该效果每回合只可触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "，损失或回复自身生命值后，暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "23%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，该效果每回合只可触发1次。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的生命上限提高18%，损失或回复自身生命值后，暴击伤害提高27%，持续2回合，该效果每回合只可触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，损失或回复自身生命值后，暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，该效果每回合只可触发1次。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的生命上限提高21%，损失或回复自身生命值后，暴击伤害提高32%，持续2回合，该效果每回合只可触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "，损失或回复自身生命值后，暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，该效果每回合只可触发1次。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的生命上限提高24%，损失或回复自身生命值后，暴击伤害提高36%，持续2回合，该效果每回合只可触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，损失或回复自身生命值后，暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，该效果每回合只可触发1次。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 4,
+    "story": "银河忍法千变万化，音律•狩猎风云叱咤，且听——\n\n吉他扫弦奏响，贝斯拨动心脏，电音轮舞刹那点燃全场！\n汗水不会说谎，记录下一路跌宕，化作键盘音符回荡。\n缭乱唱响，当仁不让，就算遍体鳞伤。\n<i>「缭乱！」</i><i>「缭乱！」</i><i>「缭乱！」</i>\n嘿，阁下，这世界本就荒诞狂浪，纵情高唱又何妨？"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/22003",
+    "storyFallbackRendered": false
+  }
+}

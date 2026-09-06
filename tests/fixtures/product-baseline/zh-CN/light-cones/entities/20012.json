@@ -1,0 +1,261 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20012",
+    "name": "轮契",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 3
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 14.4,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 31.68,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 54.72,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 77.76,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 100.8,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 123.84,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20012",
+    "kind": "light-cone",
+    "name": "轮契",
+    "passive": {
+      "id": "20012",
+      "name": "速决",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者施放攻击或受到攻击后，额外恢复4点能量，该效果单个回合内不可重复触发。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者施放攻击或受到攻击后，额外恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "点能量，该效果单个回合内不可重复触发。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者施放攻击或受到攻击后，额外恢复5点能量，该效果单个回合内不可重复触发。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者施放攻击或受到攻击后，额外恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "5"
+              },
+              {
+                "type": "text",
+                "value": "点能量，该效果单个回合内不可重复触发。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者施放攻击或受到攻击后，额外恢复6点能量，该效果单个回合内不可重复触发。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者施放攻击或受到攻击后，额外恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "点能量，该效果单个回合内不可重复触发。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者施放攻击或受到攻击后，额外恢复7点能量，该效果单个回合内不可重复触发。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者施放攻击或受到攻击后，额外恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "7"
+              },
+              {
+                "type": "text",
+                "value": "点能量，该效果单个回合内不可重复触发。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者施放攻击或受到攻击后，额外恢复8点能量，该效果单个回合内不可重复触发。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者施放攻击或受到攻击后，额外恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8"
+              },
+              {
+                "type": "text",
+                "value": "点能量，该效果单个回合内不可重复触发。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 3,
+    "story": "自时光中凝取的稀薄力量。正是所有微不足道的刹那，编织成了壮绝的命运。\n\n<i>「没有比这更和谐的声响，人人各就其位，庞大的机器应声而动。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/20012",
+    "storyFallbackRendered": false
+  }
+}

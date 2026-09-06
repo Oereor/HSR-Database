@@ -1,0 +1,84 @@
+{
+  "catalog": {
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是「苏乐达」汽水的运输工，失控后仍在分享背负的美味，向路过的宾客抛掷它的礼物。",
+    "id": "3003020",
+    "name": "惊梦剧团的甜猿泰山",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003020",
+    "defaultMonsterRef": "90467c0a550b2da5e7c276702c7e10e3e02d5d8158f5074858539a9f6db592b0",
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是「苏乐达」汽水的运输工，失控后仍在分享背负的美味，向路过的宾客抛掷它的礼物。",
+    "id": "3003020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "90467c0a550b2da5e7c276702c7e10e3e02d5d8158f5074858539a9f6db592b0",
+      "b612901f52954eebf4771be56685563fa009caace39611b2870a805914b264d7",
+      "0bc7a21d9161c18beb5ba4d32249373888ced463b6345b2fa1da8af424a313db",
+      "98237f63a642163fc3c7042f3c78ac2341a61de2ef7e02bcaf1f793dcbe39751",
+      "5a5f344460492ea7ef0039a704ef9201a344254d43aa9eb05e095a5573e85e3e",
+      "00abf85a52c08952bbda2149a4181d4d2ec3426dc6e787dd63acf74b2d4a0a7b",
+      "585762d353fee5f6f982b81249b9c5cc469bea2c66feadbc669ef63b11ee680f",
+      "5077adc3f30b6a8cd2ffb3b84f32bd88e35028b52d091d5e85a42c97dad41b65",
+      "c72d314d75929652e30976e1cd6b39aabe23845737ee1826e1fb6356123093e6",
+      "f8f6652790912cf0f606716e1613d07bdac93c5e53671747e4b21321b8ff1dee",
+      "788eccc065268abd7fe94e0380a5a6d786fb2b075d8a5bc66dde7c04be154930",
+      "e2681e2b62a9f0310341079bff78b5bc7796afefcd80c96bc07276f44e84ac1f",
+      "a111981bfc156d84596d73f5438b40249c5182f27083384aeb1c9c1aebc8d80d"
+    ],
+    "name": "惊梦剧团的甜猿泰山",
+    "rank": "Elite",
+    "templateRef": "f731edced57dfc6859e0a3ea566e7150f763582f63434f1a844af0d7e6ee29e3",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003020",
+    "selectableMonsterIds": [
+      "3003020",
+      "300302001",
+      "300302002",
+      "300302003",
+      "300302004",
+      "300302005",
+      "300302006",
+      "300302007",
+      "300302008",
+      "300302009",
+      "300302010",
+      "300302011",
+      "300302013"
+    ]
+  }
+}

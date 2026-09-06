@@ -1,0 +1,112 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击伤害提高16%，若在同一回合内消耗大于等于3点战技点，额外使装备者暴击伤害提高32%，持续3回合。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "324",
+    "name": "天国@直播间",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.7"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的暴击伤害提高16%，若在同一回合内消耗大于等于3点战技点，额外使装备者暴击伤害提高32%，持续3回合。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的暴击伤害提高16%，若在同一回合内消耗大于等于3点战技点，额外使装备者暴击伤害提高32%，持续3回合。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "16%"
+          },
+          {
+            "type": "text",
+            "value": "，若在同一回合内消耗大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "3"
+          },
+          {
+            "type": "text",
+            "value": "点战技点，额外使装备者暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "32%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "3"
+          },
+          {
+            "type": "text",
+            "value": "回合。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "324",
+    "kind": "relic",
+    "name": "天国@直播间",
+    "pieces": [
+      {
+        "description": "位面球中封装着无数直播窗口的数字空间。它是与现实深度交织的虚拟社会，它是梦幻且疏离的假想都市，它是人人可以窥探并参与其中的另一种生活。",
+        "id": "33245",
+        "name": "直播间的千窗万面",
+        "slot": "NECK"
+      },
+      {
+        "description": "天国@直播间或许不是天国。无数次的聊天框流淌，既能构建辉煌，也能带来崩溃——它从来都不是现实的隔绝，而是现实的延伸。",
+        "id": "33246",
+        "name": "直播间的畅聊语流",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "3.7"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33245"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33246"
+      }
+    ],
+    "route": "/relics/324"
+  }
+}

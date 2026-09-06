@@ -1,0 +1,261 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20010",
+    "name": "戍御",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 3
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 12,
+            "perLevel": 1.8
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 26.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 45.6,
+            "perLevel": 1.8
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 64.8,
+            "perLevel": 1.8
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 1.8
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 103.2,
+            "perLevel": 1.8
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "defence": {
+            "base": 122.4,
+            "perLevel": 1.8
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20010",
+    "kind": "light-cone",
+    "name": "戍御",
+    "passive": {
+      "id": "20010",
+      "name": "兴复",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者施放终结技时，回复等同于自身生命上限18%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者施放终结技时，回复等同于自身生命上限"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者施放终结技时，回复等同于自身生命上限21%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者施放终结技时，回复等同于自身生命上限"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者施放终结技时，回复等同于自身生命上限24%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者施放终结技时，回复等同于自身生命上限"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者施放终结技时，回复等同于自身生命上限27%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者施放终结技时，回复等同于自身生命上限"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者施放终结技时，回复等同于自身生命上限30%的生命值。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者施放终结技时，回复等同于自身生命上限"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "的生命值。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 3,
+    "story": "自时光中凝取的稀薄力量。正是所有微不足道的刹那，编织成了壮绝的命运。\n\n<i>「城墙后坚强的民众，证明了防御也是一种取胜手段。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/20010",
+    "storyFallbackRendered": false
+  }
+}

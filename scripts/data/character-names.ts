@@ -27,13 +27,34 @@ interface MultiplePathRow {
   BaseAvatarID: number | string;
 }
 
+interface NamingOwnerRow {
+  PHFMCACHFIJ: string;
+  OENAMINOLLF: unknown;
+}
+
+export function resolveTrailblazerBaseName(rows: NamingOwnerRow[], text: TextResolver): string {
+  const matches = rows.filter((row) => row.PHFMCACHFIJ === 'Trailblazer');
+  if (matches.length !== 1 || hashOf(matches[0].OENAMINOLLF) !== '4036035618718239522')
+    throw new Error('FateRinOwner.Trailblazer.OENAMINOLLF provenance requires review');
+  const name = normalizeGameText(
+    text.resolveRef(matches[0].OENAMINOLLF, {
+      entity: 'character-base-name',
+      id: '8001',
+      field: 'FateRinOwner.Trailblazer.OENAMINOLLF'
+    })
+  );
+  if (!name || hasNamePlaceholder(name)) throw new Error('Trailblazer base name is missing');
+  return name;
+}
+
 export function buildCharacterNames(
   avatars: AvatarNameRow[],
   ldAvatars: AvatarNameRow[],
   paths: PathRow[],
   multiplePaths: MultiplePathRow[],
   text: TextResolver,
-  sourceCommit: string
+  sourceCommit: string,
+  namingOwners: NamingOwnerRow[] = []
 ) {
   const merged = mergeConfigSources(
     'AvatarConfig',
@@ -54,6 +75,7 @@ export function buildCharacterNames(
     characters: {}
   };
   const displayNames: Record<string, string> = {};
+  const baseNames: Record<string, string> = {};
   for (const avatar of [...merged].sort((a, b) =>
     compareSearchText(String(a.AvatarID), String(b.AvatarID))
   )) {
@@ -77,16 +99,21 @@ export function buildCharacterNames(
         })
       : '';
     if (isMultiplePath && (!pathHash || !pathName)) throw new Error(`角色 ${id} 缺少命途名称`);
-    const displayName = isMultiplePath
-      ? `${baseAvatarId === '8001' ? '开拓者' : '三月七'}·${pathName}`
-      : rawName;
+    const baseName =
+      baseAvatarId === '8001' ? resolveTrailblazerBaseName(namingOwners, text) : rawName;
+    baseNames[id] = gameTextToPlain(baseName);
+    const displayName = isMultiplePath ? `${baseName}·${pathName}` : rawName;
     const canonicalName = gameTextToPlain(displayName);
     if (!normalizeSearch(canonicalName) || hasNamePlaceholder(canonicalName))
       throw new Error(`角色 ${id} canonicalName 无效`);
     displayNames[id] = displayName;
     // Explicit reviewed provenance rule. Other differing raw names are NOT aliases.
     const officialBaseName = (id === '1001' || id === '1224') && baseAvatarId === '1001';
-    if (officialBaseName && gameTextToPlain(rawName) !== '三月七')
+    const reviewedMarchHashes: Record<string, string> = {
+      '1001': '6186714091647966180',
+      '1224': '16417870574330506928'
+    };
+    if (officialBaseName && textHash !== reviewedMarchHashes[id])
       throw new Error(`角色 ${id} official-base-name 规则需要重新审阅`);
     snapshot.characters[id] = {
       canonicalName,
@@ -110,16 +137,17 @@ export function buildCharacterNames(
         : []
     };
   }
-  return { snapshot, displayNames };
+  return { snapshot, displayNames, baseNames };
 }
 
 export async function deriveCharacterNames(root: string, commit: string, resolver?: TextResolver) {
-  const [avatars, ldAvatars, paths, multiplePaths, text] = await Promise.all([
+  const [avatars, ldAvatars, paths, multiplePaths, text, namingOwners] = await Promise.all([
     readTable<AvatarNameRow>(root, 'AvatarConfig'),
     readTable<AvatarNameRow>(root, 'AvatarConfigLD'),
     readTable<PathRow>(root, 'AvatarBaseType'),
     readTable<MultiplePathRow>(root, 'MultiplePathAvatarConfig'),
-    resolver ?? loadTextMap(root).then(createTextResolver)
+    resolver ?? loadTextMap(root).then(createTextResolver),
+    readTable<NamingOwnerRow>(root, 'FateRinOwner')
   ]);
-  return buildCharacterNames(avatars, ldAvatars, paths, multiplePaths, text, commit);
+  return buildCharacterNames(avatars, ldAvatars, paths, multiplePaths, text, commit, namingOwners);
 }

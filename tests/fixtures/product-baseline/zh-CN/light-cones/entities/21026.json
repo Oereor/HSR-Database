@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21026",
+    "name": "汪！散步时间！",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 15,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 33,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 129,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>毁灭</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21026",
+    "kind": "light-cone",
+    "name": "汪！散步时间！",
+    "passive": {
+      "id": "21026",
+      "name": "快溜",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的攻击力提高10%，对处于灼烧或裂伤状态的敌方目标造成的伤害提高16%，该效果对持续伤害也会生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "，对处于灼烧或裂伤状态的敌方目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果对持续伤害也会生效。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的攻击力提高13%，对处于灼烧或裂伤状态的敌方目标造成的伤害提高20%，该效果对持续伤害也会生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "13%"
+              },
+              {
+                "type": "text",
+                "value": "，对处于灼烧或裂伤状态的敌方目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果对持续伤害也会生效。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的攻击力提高15%，对处于灼烧或裂伤状态的敌方目标造成的伤害提高24%，该效果对持续伤害也会生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "，对处于灼烧或裂伤状态的敌方目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果对持续伤害也会生效。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的攻击力提高18%，对处于灼烧或裂伤状态的敌方目标造成的伤害提高28%，该效果对持续伤害也会生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，对处于灼烧或裂伤状态的敌方目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果对持续伤害也会生效。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的攻击力提高20%，对处于灼烧或裂伤状态的敌方目标造成的伤害提高32%，该效果对持续伤害也会生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，对处于灼烧或裂伤状态的敌方目标造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果对持续伤害也会生效。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 4,
+    "story": "可惜还没人看到…\n看到它抽抽鼻子，四处嗅嗅，钻入无人的小路。\n\n可惜还没人看到…\n看到它收起爪子，按下密码，投入自由的怀抱。\n\n还没有人看到么…\n一只成熟的小狗，早就学会自己去太空散步了！"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21026",
+    "storyFallbackRendered": false
+  }
+}

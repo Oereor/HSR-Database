@@ -1,0 +1,3177 @@
+{
+  "catalog": {
+    "baseName": "银枝",
+    "description": "「纯美骑士团」的古典骑士，虔诚地仰慕着已失踪的「纯美」星神伊德莉拉。\n为人正直、光明磊落，于宇宙中漫游，宣扬伊德莉拉的美名。",
+    "element": "Physical",
+    "elementName": "物理",
+    "id": "1302",
+    "name": "银枝",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "银枝",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 103
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 49.5,
+            "perLevel": 2.475
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 142.56,
+            "perLevel": 7.128
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 140.448,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 69.3,
+            "perLevel": 2.475
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 199.584,
+            "perLevel": 7.128
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 180.576,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 89.1,
+            "perLevel": 2.475
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 256.608,
+            "perLevel": 7.128
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 220.704,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 108.9,
+            "perLevel": 2.475
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 313.632,
+            "perLevel": 7.128
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 260.832,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 128.7,
+            "perLevel": 2.475
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 370.656,
+            "perLevel": 7.128
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 300.96,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 148.5,
+            "perLevel": 2.475
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 427.68,
+            "perLevel": 7.128
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 341.088,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 168.3,
+            "perLevel": 2.475
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 484.704,
+            "perLevel": 7.128
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "「纯美骑士团」的古典骑士，虔诚地仰慕着已失踪的「纯美」星神伊德莉拉。\n为人正直、光明磊落，于宇宙中漫游，宣扬伊德莉拉的美名。",
+    "element": "Physical",
+    "elementName": "物理",
+    "equipmentRecommendation": {
+      "avatarId": "1302",
+      "cavernSetIds": [
+        "122",
+        "105",
+        "108"
+      ],
+      "lightConeIds": [
+        "23018",
+        "21034",
+        "24004"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "PhysicalAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "306",
+        "313",
+        "305"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "银枝",
+    "id": "1302",
+    "kind": "character",
+    "name": "银枝",
+    "path": "Mage",
+    "pathName": "智识",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "每层【升格】额外使暴击伤害提高<unbreak>4%</unbreak>。",
+            "iconKey": "rank--130201",
+            "id": "130201",
+            "name": "审美王国的缺口",
+            "rank": 1
+          },
+          {
+            "description": "施放终结技时，若敌方目标数量大于等于<unbreak>3</unbreak>个时，攻击力提高<unbreak>40%</unbreak>，持续<unbreak>1</unbreak>回合。",
+            "iconKey": "rank--130202",
+            "id": "130202",
+            "name": "玛瑙石的谦卑",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--130203",
+            "id": "130203",
+            "name": "荆棘路的荣光",
+            "rank": 3
+          },
+          {
+            "description": "战斗开始时，获得<unbreak>2</unbreak>层【升格】，并使天赋的效果可叠加上限提高<unbreak>2</unbreak>层。",
+            "iconKey": "rank--130204",
+            "id": "130204",
+            "name": "号角的奉献",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--130205",
+            "id": "130205",
+            "name": "宇宙某处的雪",
+            "rank": 5
+          },
+          {
+            "description": "施放终结技时，无视敌方目标<unbreak>30%</unbreak>的防御力。",
+            "iconKey": "rank--130206",
+            "id": "130206",
+            "name": "「你」的光芒",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 180
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1302001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1302001",
+                "variantIds": [
+                  "130201"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "130201",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于银枝50%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于银枝60%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于银枝70%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于银枝80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于银枝90%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于银枝100%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于银枝110%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于银枝120%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于银枝130%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于银枝140%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "芬芳一现",
+                "progressionId": "1302001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1302002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1302002",
+                "variantIds": [
+                  "130202"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "130202",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于银枝60%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝66%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝72%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝78%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝84%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝90%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝98%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝105%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝113%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝120%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝126%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝132%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝138%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝144%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于银枝150%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "公正，此处盛放",
+                "progressionId": "1302002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1302003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1302003",
+                "variantIds": [
+                  "130203",
+                  "130214"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "130203",
+                "levels": [
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝96%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝102%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝109%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "109%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝115%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝122%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝128%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝136%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝144%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝152%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝160%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝166%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "166%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝173%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝179%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "179%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝186%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "186%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "消耗90点能量，对敌方全体造成等同于银枝192%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "驻于花庭，赐与尽美",
+                "progressionId": "1302003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              },
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    },
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "130214",
+                "levels": [
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝168%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝57%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝179%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝61%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "179%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝190%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝65%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "190%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝202%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝68%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "202%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝213%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝72%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "213%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝224%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝76%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝238%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝81%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "238%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝252%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝86%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝266%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝90%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "266%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝280%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝95%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝291%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝99%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "291%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝302%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝103%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "302%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "103%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝314%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝106%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "314%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "106%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝325%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝110%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "325%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "消耗180点能量，对敌方全体造成等同于银枝336%攻击力的物理属性伤害，并额外造成6次伤害，每次伤害对敌方随机单体造成等同于银枝114%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "336%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "6"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于银枝"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "114%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "驻「我」华庭，授予至勋",
+                "progressionId": "1302003",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1302004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1302004",
+                "variantIds": [
+                  "130204"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "130204",
+                "levels": [
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高1.0%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高1.1%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高1.3%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高1.5%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高1.6%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高1.8%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高1.9%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高2.1%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高2.3%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高2.5%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高2.6%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高2.8%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高2.9%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高3.1%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复3点能量并获得1层【升格】，使银枝暴击率提高3.3%，该效果最多叠加10层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放普攻、战技、终结技时，每击中1个敌方目标，为银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量并获得1层【升格】，使银枝暴击率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "崇高的客体",
+                "progressionId": "1302004",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1302007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1302007",
+                "variantIds": [
+                  "130207"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  }
+                },
+                "id": "130207",
+                "levels": [
+                  {
+                    "description": "使用秘技后使一定区域内的敌人陷入10秒的晕眩状态，晕眩状态下敌人不会主动攻击我方目标。\n若主动攻击陷入晕眩状态的敌人，进入战斗时，对敌方全体造成等同于银枝80%攻击力的物理属性伤害，并使银枝恢复15点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后使一定区域内的敌人陷入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的晕眩状态，晕眩状态下敌人不会主动攻击我方目标。\n若主动攻击陷入晕眩状态的敌人，进入战斗时，对敌方全体造成等同于银枝"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并使银枝恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "纯粹高洁宣言",
+                "progressionId": "1302007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "回合开始时，立即获得<unbreak>1</unbreak>层【升格】。",
+            "iconKey": "skill-tree--1302101",
+            "id": "1302101",
+            "name": "虔诚",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "在敌方目标进入战斗时，自身立即恢复<unbreak>2</unbreak>点能量。",
+            "iconKey": "skill-tree--1302102",
+            "id": "1302102",
+            "name": "慷慨",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "对当前生命值百分比小于等于<unbreak>50%</unbreak>的敌方目标造成的伤害提高<unbreak>15%</unbreak>。",
+            "iconKey": "skill-tree--1302103",
+            "id": "1302103",
+            "name": "勇气",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1302201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "物理伤害提高3.2%",
+            "iconKey": "property--PhysicalAddedRatio",
+            "id": "1302202",
+            "name": "伤害强化•物理",
+            "prerequisiteIds": [
+              "1302101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "PhysicalAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1302203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1302202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1302204",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1302202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1302205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1302102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "物理伤害提高4.8%",
+            "iconKey": "property--PhysicalAddedRatio",
+            "id": "1302206",
+            "name": "伤害强化•物理",
+            "prerequisiteIds": [
+              "1302205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "PhysicalAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1302207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1302205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1302208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1302103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "物理伤害提高6.4%",
+            "iconKey": "property--PhysicalAddedRatio",
+            "id": "1302209",
+            "name": "伤害强化•物理",
+            "prerequisiteIds": [
+              "1302103"
+            ],
+            "propertyType": "PhysicalAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1302210",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1302001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130201",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1302002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130202",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1302003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130203",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130214",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1302004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130204",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1302007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130207",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1302",
+    "subtitleRendered": false
+  }
+}

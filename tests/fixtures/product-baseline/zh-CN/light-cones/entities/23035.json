@@ -1,0 +1,447 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23035",
+    "name": "长路终有归途",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 30,
+            "perLevel": 4.5
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 4.5
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 114,
+            "perLevel": 4.5
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 162,
+            "perLevel": 4.5
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 210,
+            "perLevel": 4.5
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 258,
+            "perLevel": 4.5
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 306,
+            "perLevel": 4.5
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23035",
+    "kind": "light-cone",
+    "name": "长路终有归途",
+    "passive": {
+      "id": "23035",
+      "name": "新生",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的击破特攻提高60%。当有敌方目标的弱点被击破时，有100%的基础概率使其陷入【焚灼】状态，受到的击破伤害提高18%，持续2回合，此效果可叠加2层。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "。当有敌方目标的弱点被击破时，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使其陷入【焚灼】状态，受到的击破伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，此效果可叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "层。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的击破特攻提高70%。当有敌方目标的弱点被击破时，有100%的基础概率使其陷入【焚灼】状态，受到的击破伤害提高21%，持续2回合，此效果可叠加2层。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "。当有敌方目标的弱点被击破时，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使其陷入【焚灼】状态，受到的击破伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，此效果可叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "层。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的击破特攻提高80%。当有敌方目标的弱点被击破时，有100%的基础概率使其陷入【焚灼】状态，受到的击破伤害提高24%，持续2回合，此效果可叠加2层。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "。当有敌方目标的弱点被击破时，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使其陷入【焚灼】状态，受到的击破伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，此效果可叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "层。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的击破特攻提高90%。当有敌方目标的弱点被击破时，有100%的基础概率使其陷入【焚灼】状态，受到的击破伤害提高27%，持续2回合，此效果可叠加2层。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "90%"
+              },
+              {
+                "type": "text",
+                "value": "。当有敌方目标的弱点被击破时，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使其陷入【焚灼】状态，受到的击破伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，此效果可叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "层。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的击破特攻提高100%。当有敌方目标的弱点被击破时，有100%的基础概率使其陷入【焚灼】状态，受到的击破伤害提高30%，持续2回合，此效果可叠加2层。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "。当有敌方目标的弱点被击破时，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使其陷入【焚灼】状态，受到的击破伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，此效果可叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "层。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          2
+        ]
+      }
+    },
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 5,
+    "story": "<i>「她…是谁？」</i>少女轻抚着陌生的自己。\n\n她想起了那日的火如何将她吞噬，珠宝折扇化作飞灰。\n\n自己曾走在漫长的道路上，寻找前方的光。\n外面的声音在呼唤她，领她前行，带着她穿越重重黑暗。\n内心的声音在提醒她，那些未完成的誓言，要赴的约定，未实现的梦，还在等着她——\n\n它们未曾消弭于火中，反而于火中愈发闪耀生辉。\n\n<i>「那就是我……」</i>\n她站在终点，不再回头留恋——\n<i>「原来的我，亦是全新的我。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23035",
+    "storyFallbackRendered": false
+  }
+}

@@ -1,0 +1,306 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21021",
+    "name": "等价交换",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 19.2,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 42.24,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 72.96,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 103.68,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 134.4,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 165.12,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 195.84,
+            "perLevel": 2.88
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21021",
+    "kind": "light-cone",
+    "name": "等价交换",
+    "passive": {
+      "id": "21021",
+      "name": "酣适",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "当装备者的回合开始时，随机为1个当前能量百分比小于50%的我方其他目标恢复8点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者的回合开始时，随机为1个当前能量百分比小于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "的我方其他目标恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "当装备者的回合开始时，随机为1个当前能量百分比小于50%的我方其他目标恢复10点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者的回合开始时，随机为1个当前能量百分比小于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "的我方其他目标恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "当装备者的回合开始时，随机为1个当前能量百分比小于50%的我方其他目标恢复12点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者的回合开始时，随机为1个当前能量百分比小于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "的我方其他目标恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "当装备者的回合开始时，随机为1个当前能量百分比小于50%的我方其他目标恢复14点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者的回合开始时，随机为1个当前能量百分比小于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "的我方其他目标恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "当装备者的回合开始时，随机为1个当前能量百分比小于50%的我方其他目标恢复16点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "当装备者的回合开始时，随机为1个当前能量百分比小于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "的我方其他目标恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          1
+        ]
+      }
+    },
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 4,
+    "story": "在享受完龙女使出一身雷劲的按摩后，\n狐人少女伸出手，捏了捏她的脸蛋。\n看着小人儿气鼓鼓地嘟起嘴，她媚然一笑。\n\n<i>「等价交换嘛。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21021",
+    "storyFallbackRendered": false
+  }
+}

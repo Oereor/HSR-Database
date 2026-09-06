@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
@@ -22,8 +23,8 @@
   import { formatDocumentTitle } from '$lib/site';
 
   export let entries: CatalogEntry[] = [];
-  export let title = '角色';
-  export let description = '浏览、搜索并筛选角色资料。';
+  export let title: string = m.characters_title({}, { locale: 'zh-CN' });
+  export let description: string = m.characters_description({}, { locale: 'zh-CN' });
 
   let draftQuery = '';
   let synchronizedQuery: string | undefined;
@@ -130,25 +131,25 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow="DATABASE / CHARACTERS"
+  eyebrow={m.characters_eyebrow({}, { locale: 'zh-CN' })}
   {title}
   {description}
-  countLabel={`共 ${entries.length} 位角色`}
+  countLabel={m.characters_count({ count: entries.length }, { locale: 'zh-CN' })}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label="角色搜索与筛选">
+<section class="overview-controls" aria-label={m.characters_controls_aria({}, { locale: 'zh-CN' })}>
   <OverviewSearch
     id="character-search-input"
     bind:value={draftQuery}
-    placeholder="搜索角色"
+    placeholder={m.characters_search_placeholder({}, { locale: 'zh-CN' })}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
       id="character-path"
-      label="命途"
+      label={m.filter_path({}, { locale: 'zh-CN' })}
       iconKind="path"
       options={options('path', 'pathName')}
       selected={filterState.paths}
@@ -156,7 +157,7 @@
     />
     <FilterGroup
       id="character-element"
-      label="属性"
+      label={m.filter_element({}, { locale: 'zh-CN' })}
       iconKind="element"
       options={options('element', 'elementName')}
       selected={filterState.elements}
@@ -164,7 +165,7 @@
     />
     <FilterGroup
       id="character-rarity"
-      label="稀有度"
+      label={m.filter_rarity({}, { locale: 'zh-CN' })}
       options={options('rarity').map((option) => ({ ...option, label: `${option.label}★` }))}
       selected={filterState.rarities}
       onToggle={(value) => toggleFilter('rarities', value)}
@@ -199,9 +200,11 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">
-    <h2>没有匹配结果</h2>
-    <p>尝试减少筛选条件，或清空当前搜索。</p>
-    <button class="button" type="button" on:click={clearSearchAndFilters}>清空筛选</button>
+    <h2>{m.overview_empty_title({}, { locale: 'zh-CN' })}</h2>
+    <p>{m.overview_empty_description({}, { locale: 'zh-CN' })}</p>
+    <button class="button" type="button" on:click={clearSearchAndFilters}
+      >{m.overview_clear_filters({}, { locale: 'zh-CN' })}</button
+    >
   </section>
 {/if}
 

@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "它的矛尖划定了疆界，无边无际。\n疆界之中的军与民，皆是被征服或将被征服的。\n畏怖者的血成为滋养神躯的蜜酿，抗争者的魂灵踏入冥河下的荣耀殿堂。",
+    "id": "4012060",
+    "name": "征服或被征服",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012060",
+    "defaultMonsterRef": "d4899a624b775ade4eadb4e7d2eb8fc3a094223a2bf32db354aee13107720537",
+    "description": "它的矛尖划定了疆界，无边无际。\n疆界之中的军与民，皆是被征服或将被征服的。\n畏怖者的血成为滋养神躯的蜜酿，抗争者的魂灵踏入冥河下的荣耀殿堂。",
+    "id": "4012060",
+    "kind": "enemy",
+    "monsterRefs": [
+      "d4899a624b775ade4eadb4e7d2eb8fc3a094223a2bf32db354aee13107720537",
+      "4b26f258a41972f61a01e76887ad02a4c488d8caf5a0775fff8a9b22dcbce096",
+      "22015e1ff96b4e0f35dbfd94e45c4927ac6c68615e5cbb1d8fe3fa4539418547"
+    ],
+    "name": "征服或被征服",
+    "rank": "MinionLv2",
+    "templateRef": "5c3776a9e65383309b65dce6f825d54ca700e671d95c8a10bb7bf6cdab77a86f",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012060",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012060",
+    "selectableMonsterIds": [
+      "4012060",
+      "401206001",
+      "401206002"
+    ]
+  }
+}

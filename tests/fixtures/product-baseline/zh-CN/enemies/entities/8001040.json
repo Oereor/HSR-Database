@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "游荡在裂界中的晶体元素，只有最简单的智能，其形态犹如负载电荷，喷薄雷霆的鸟类生命。",
+    "id": "8001040",
+    "name": "鸣雷造物",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8001040",
+    "defaultMonsterRef": "2b847644426480a6a9b797ee8ab6d657f1e13957cfdb3597cfa05e27e69ebeaa",
+    "description": "游荡在裂界中的晶体元素，只有最简单的智能，其形态犹如负载电荷，喷薄雷霆的鸟类生命。",
+    "id": "8001040",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2b847644426480a6a9b797ee8ab6d657f1e13957cfdb3597cfa05e27e69ebeaa",
+      "8084df0177b36b2b5fbb98d64f8d6e7ddeda3b5528004bff1fe0902bb9830c35",
+      "de553c838c22a886ba7e6cd41944140db8c2ba9560c8b1b3e63a4794b624e94d",
+      "f57fe94e137f1d8fc1d22cfebae822b1c1e448ae77af1c62a7f49a19333cdeaf",
+      "c5616643c626ba06d79c81f595dd1418760d0496603c4d7dbca310c799f864ff"
+    ],
+    "name": "鸣雷造物",
+    "rank": "Minion",
+    "templateRef": "37996b436ac6d6c852913f699930057f891c7533b31764817bb101ddc180556a",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8001040",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8001040",
+    "selectableMonsterIds": [
+      "8001040",
+      "800104001",
+      "800104002",
+      "800104003",
+      "800104004"
+    ]
+  }
+}

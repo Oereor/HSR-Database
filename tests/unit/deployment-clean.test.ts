@@ -28,6 +28,8 @@ it('cleans all generated namespaces, keeps tracked placeholders and runs the exi
   await fixture(async (root) => {
     const artifacts = [
       'src/lib/generated',
+      'src/lib/paraglide',
+      'project.inlang/cache',
       'static/generated',
       'src/lib/generated-assets',
       'static/generated-assets',

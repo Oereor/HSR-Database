@@ -7,6 +7,8 @@ import { siteRoot } from './prepare.js';
 
 const artifactPaths = [
   'src/lib/generated',
+  'src/lib/paraglide',
+  'project.inlang/cache',
   'static/generated',
   'src/lib/generated-assets',
   'static/generated-assets',

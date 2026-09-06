@@ -1,0 +1,72 @@
+{
+  "catalog": {
+    "description": "真气操作浮游攻击单元，别名「飞剑」的武器。同御剑者心智紧密相连，如臂使指。",
+    "id": "2002020",
+    "name": "飞剑",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2002020",
+    "defaultMonsterRef": "8ba5914c97f03cdaa60cb480aabe5c512ff4d95dffc1365da37e1395921ab85c",
+    "description": "真气操作浮游攻击单元，别名「飞剑」的武器。同御剑者心智紧密相连，如臂使指。",
+    "id": "2002020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "8ba5914c97f03cdaa60cb480aabe5c512ff4d95dffc1365da37e1395921ab85c",
+      "5ba0bbf2d4034fcedb6cacdfe61095efcd46131e5fce9c83a1fcab8bc505d5a4",
+      "4e7d0e05dc52ec5af222d828d198f7361e12227b530d13e0aacf9759540cf954",
+      "7c62e515ebedff6591e05a0792800c16c816e426f472b3914278eed7c66cd5be",
+      "bf899ee9b2e072f8c5b1cf720a4cfd3dc7fb300102316bcd8e7b530472825aa5",
+      "4de5d1eb203894bd4437a99b238a89f0b8bea65d9a5d93ebe1e22c7d4ed4606a",
+      "00c01ccc7b50ae7d4830bb007b86a5be49f772a6ef57d73e4d0b0da6b262d043"
+    ],
+    "name": "飞剑",
+    "rank": "MinionLv2",
+    "templateRef": "7ddbf5c0e6c8c8442122e537cb0979b1c738fabca0d06186a2f506707437ae77",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2002020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2002020",
+    "selectableMonsterIds": [
+      "2002020",
+      "200202001",
+      "200202002",
+      "200202003",
+      "200202004",
+      "200202005",
+      "200202006"
+    ]
+  }
+}

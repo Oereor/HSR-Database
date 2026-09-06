@@ -1,0 +1,3431 @@
+{
+  "catalog": {
+    "baseName": "托帕&账账",
+    "description": "星际和平公司旗下「战略投资部」高级干部托帕，领导特殊债务纠察小组。\n年纪轻轻便已成为「石心十人」之一，基石为「催讨黄玉」。\n搭档次元扑满「账账」则能敏锐感知「财富」所在，即便是安保、催债、精算等工作也不在话下。\n如今他们正一同巡行银河，追究各类影响公司业务开展的债务纠纷。",
+    "element": "Fire",
+    "elementName": "火",
+    "id": "1112",
+    "name": "托帕&账账",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "托帕&账账",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 110
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 84.48,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 56.1,
+            "perLevel": 2.805
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 126.72,
+            "perLevel": 6.336
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 118.272,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 78.54,
+            "perLevel": 2.805
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 177.408,
+            "perLevel": 6.336
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 152.064,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 100.98,
+            "perLevel": 2.805
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 228.096,
+            "perLevel": 6.336
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 185.856,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 123.42,
+            "perLevel": 2.805
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 278.784,
+            "perLevel": 6.336
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 219.648,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 145.86,
+            "perLevel": 2.805
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 329.472,
+            "perLevel": 6.336
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 253.44,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 168.3,
+            "perLevel": 2.805
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 380.16,
+            "perLevel": 6.336
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 287.232,
+            "perLevel": 4.224
+          },
+          "defence": {
+            "base": 190.74,
+            "perLevel": 2.805
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 430.848,
+            "perLevel": 6.336
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "星际和平公司旗下「战略投资部」高级干部托帕，领导特殊债务纠察小组。\n年纪轻轻便已成为「石心十人」之一，基石为「催讨黄玉」。\n搭档次元扑满「账账」则能敏锐感知「财富」所在，即便是安保、催债、精算等工作也不在话下。\n如今他们正一同巡行银河，追究各类影响公司业务开展的债务纠纷。",
+    "element": "Fire",
+    "elementName": "火",
+    "equipmentRecommendation": {
+      "avatarId": "1112",
+      "cavernSetIds": [
+        "115",
+        "107",
+        "117"
+      ],
+      "lightConeIds": [
+        "23016",
+        "21010",
+        "23012"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "FireAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "318",
+        "306",
+        "315"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "托帕&账账",
+    "id": "1112",
+    "kind": "character",
+    "name": "托帕&账账",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "陷入【负债证明】状态下的敌方目标受到<u>追加攻击</u>时，将会陷入【被执行】状态，单次攻击内最多生效1次。\n【被执行】使敌方目标受到的<u>追加攻击</u>的暴击伤害提高<unbreak>25%</unbreak>，最多叠加<unbreak>2</unbreak>层。【负债证明】被移除时，【被执行】也会被移除。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--111201",
+            "id": "111201",
+            "name": "未来市场",
+            "rank": 1
+          },
+          {
+            "description": "账账自身行动并发动攻击后，托帕恢复<unbreak>5</unbreak>点能量。",
+            "iconKey": "rank--111202",
+            "id": "111202",
+            "name": "善意收购",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--111203",
+            "id": "111203",
+            "name": "抓大放小",
+            "rank": 3
+          },
+          {
+            "description": "账账自身回合开始时，托帕的<u>行动提前</u><unbreak>20%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "rank--111204",
+            "id": "111204",
+            "name": "敏捷处理",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--111205",
+            "id": "111205",
+            "name": "需求膨胀",
+            "rank": 5
+          },
+          {
+            "description": "账账处于【涨幅惊人！】状态的攻击次数增加<unbreak>1</unbreak>次，且攻击时火属性<u>抗性穿透</u>提高<unbreak>10%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "rank--111206",
+            "id": "111206",
+            "name": "激励机制",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 130
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1112001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1112001",
+                "variantIds": [
+                  "111201"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "111201",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于托帕50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于托帕60%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于托帕70%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于托帕80%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于托帕90%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于托帕100%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于托帕110%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于托帕120%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于托帕130%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于托帕140%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "赤字…",
+                "progressionId": "1112001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1112002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1112002",
+                "variantIds": [
+                  "111202"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "111202",
+                "levels": [
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高25%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕75%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高28%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕83%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高30%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕90%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高33%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕98%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高35%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕105%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高38%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕113%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高41%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕122%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高44%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕131%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高47%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕141%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "141%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高50%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕150%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高53%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕158%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高55%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕165%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高57%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕173%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高60%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕180%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使指定敌方单体陷入【负债证明】状态，使其受到的追加攻击伤害提高63%。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕188%攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了追加攻击。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体陷入【负债证明】状态，使其受到的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。【负债证明】仅对最新被施加的目标生效，我方目标回合开始或行动时，若场上不存在陷入【负债证明】状态的敌方目标，托帕使随机敌方目标陷入【负债证明】状态。\n使账账对该目标造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。施放此战技造成伤害时，被视为发动了"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "支付困难？",
+                "progressionId": "1112002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1112003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1112003",
+                "variantIds": [
+                  "111203"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 5
+                },
+                "id": "111203",
+                "levels": [
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高75%，暴击伤害提高13%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高83%，暴击伤害提高14%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高90%，暴击伤害提高15%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高98%，暴击伤害提高16%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高105%，暴击伤害提高18%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高113%，暴击伤害提高19%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高122%，暴击伤害提高20%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高131%，暴击伤害提高22%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高141%，暴击伤害提高23%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "141%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高150%，暴击伤害提高25%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高158%，暴击伤害提高26%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高165%，暴击伤害提高28%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高173%，暴击伤害提高29%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高180%，暴击伤害提高30%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使账账进入【涨幅惊人！】状态，伤害倍率提高188%，暴击伤害提高31%，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前50%。账账施放2次攻击后退出【涨幅惊人！】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使账账进入【涨幅惊人！】状态，伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且当陷入【负债证明】状态下的敌方目标受到我方的普攻、战技或终结技的攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。账账施放"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次攻击后退出【涨幅惊人！】状态。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "扭亏为盈！",
+                "progressionId": "1112003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1112004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1112004",
+                "variantIds": [
+                  "111204"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    },
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "111204",
+                "levels": [
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕75%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕83%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕90%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕98%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕105%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕113%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕122%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕131%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕141%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "141%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕150%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕158%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕165%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕173%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕180%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "战斗开始时召唤账账。账账初始拥有80点速度，行动时发动追加攻击，对陷入【负债证明】状态下的敌方单体造成等同于托帕188%攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前50%。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入无法战斗状态时账账消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "战斗开始时召唤账账。账账初始拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度，行动时发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对陷入【负债证明】状态下的敌方单体造成等同于托帕"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n陷入【负债证明】状态下的敌方目标受到我方的追加攻击时，账账行动提前"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。在账账自身回合内，无法触发行动提前效果。\n当托帕陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时账账消失。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "猪市？！",
+                "progressionId": "1112004",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1112007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1112007",
+                "variantIds": [
+                  "111207"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "111207",
+                "levels": [
+                  {
+                    "description": "托帕入场时召唤账账，账账会自动搜寻一定范围内的普通战利品与扑满。\n主动施放秘技使下一场战斗中账账施放首次攻击后，托帕恢复60点能量。\n主动施放秘技与大地图内的敌人战斗胜利后，若托帕仍在队伍中，则在获取信用点时额外获取少量信用点，每个地球日内最多额外获取10000点。\n主动施放秘技与模拟宇宙、差分宇宙内的敌人战斗胜利后，额外获取少量宇宙碎片并有小概率获得1个随机奇物。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "托帕入场时召唤账账，账账会自动搜寻一定范围内的普通战利品与扑满。\n主动施放秘技使下一场战斗中账账施放首次攻击后，托帕恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。\n主动施放秘技与大地图内的敌人战斗胜利后，若托帕仍在队伍中，则在获取信用点时额外获取少量信用点，每个地球日内最多额外获取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10000"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n主动施放秘技与模拟宇宙、差分宇宙内的敌人战斗胜利后，额外获取少量宇宙碎片并有小概率获得1个随机奇物。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "明补",
+                "progressionId": "1112007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "托帕施放普攻造成伤害时，被视为发动了<u>追加攻击</u>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1112101",
+            "id": "1112101",
+            "name": "透支",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "托帕和账账对拥有火属性弱点的敌方目标造成的伤害提高<unbreak>15%</unbreak>。",
+            "iconKey": "skill-tree--1112102",
+            "id": "1112102",
+            "name": "金融动荡",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "当账账处于【涨幅惊人！】状态施放攻击后，额外使托帕恢复<unbreak>10</unbreak>点能量。",
+            "iconKey": "skill-tree--1112103",
+            "id": "1112103",
+            "name": "技术性调整",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "火属性伤害提高3.2%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1112201",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [],
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1112202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1112101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "火属性伤害提高3.2%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1112203",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1112202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1112204",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "火属性伤害提高4.8%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1112205",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1112102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1112206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1112205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "火属性伤害提高4.8%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1112207",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1112208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1112103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1112209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1112208"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "火属性伤害提高6.4%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1112210",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1112208"
+            ],
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1112001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111201",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1112002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111202",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1112003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111203",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1112004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111204",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1112007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "111207",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1112",
+    "subtitleRendered": false
+  }
+}

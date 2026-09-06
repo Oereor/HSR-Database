@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21031",
+    "name": "重返幽冥",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 15,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 33,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 129,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21031",
+    "kind": "light-cone",
+    "name": "重返幽冥",
+    "passive": {
+      "id": "21031",
+      "name": "汹涌",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者暴击率提高12%。暴击后有16%的固定概率解除被攻击敌方目标所持有的1个增益效果，该效果每次攻击只可触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。暴击后有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "的固定概率解除被攻击敌方目标所持有的1个增益效果，该效果每次攻击只可触发1次。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者暴击率提高15%。暴击后有20%的固定概率解除被攻击敌方目标所持有的1个增益效果，该效果每次攻击只可触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "。暴击后有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "的固定概率解除被攻击敌方目标所持有的1个增益效果，该效果每次攻击只可触发1次。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者暴击率提高18%。暴击后有24%的固定概率解除被攻击敌方目标所持有的1个增益效果，该效果每次攻击只可触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。暴击后有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "的固定概率解除被攻击敌方目标所持有的1个增益效果，该效果每次攻击只可触发1次。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者暴击率提高21%。暴击后有28%的固定概率解除被攻击敌方目标所持有的1个增益效果，该效果每次攻击只可触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "。暴击后有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "的固定概率解除被攻击敌方目标所持有的1个增益效果，该效果每次攻击只可触发1次。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者暴击率提高24%。暴击后有32%的固定概率解除被攻击敌方目标所持有的1个增益效果，该效果每次攻击只可触发1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。暴击后有"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "的固定概率解除被攻击敌方目标所持有的1个增益效果，该效果每次攻击只可触发1次。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 4,
+    "story": "虽然在姐姐身边，她却什么都听不见。\n只有心底的声音越来越响。\n\n<i>「姐姐的身体冷冷的。」\n「姐姐的身体不会动。」</i>\n\n愤怒的潮水将她淹没，义无反顾。她已来不及想起——\n\n<i>「姐姐的身体，很早以前就是冷的了。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21031",
+    "storyFallbackRendered": false
+  }
+}

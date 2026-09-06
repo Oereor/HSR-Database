@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21002",
+    "name": "余生的第一天",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 16.8,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 21,
+            "perLevel": 3.15
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 36.96,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 46.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 63.84,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 79.8,
+            "perLevel": 3.15
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 90.72,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 113.4,
+            "perLevel": 3.15
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 117.6,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 147,
+            "perLevel": 3.15
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 144.48,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 180.6,
+            "perLevel": 3.15
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 171.36,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 214.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21002",
+    "kind": "light-cone",
+    "name": "余生的第一天",
+    "passive": {
+      "id": "21002",
+      "name": "此刻定格",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的防御力提高16%。进入战斗后，使我方全体的全属性抗性提高8%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。进入战斗后，使我方全体的全属性抗性提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的防御力提高18%。进入战斗后，使我方全体的全属性抗性提高9%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。进入战斗后，使我方全体的全属性抗性提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "9%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的防御力提高20%。进入战斗后，使我方全体的全属性抗性提高10%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。进入战斗后，使我方全体的全属性抗性提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的防御力提高22%。进入战斗后，使我方全体的全属性抗性提高11%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "22%"
+              },
+              {
+                "type": "text",
+                "value": "。进入战斗后，使我方全体的全属性抗性提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "11%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的防御力提高24%。进入战斗后，使我方全体的全属性抗性提高12%。同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。进入战斗后，使我方全体的全属性抗性提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。同类技能无法重复生效。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 4,
+    "story": "<i>「今天帕姆换上了新衣服，开心~喜欢~」\n「今天过生日啦，今年的我依旧可爱。」\n「今天我终于终于终于也有后辈啦！是不是，{NICKNAME}？」</i>\n\n一次次不假思索地按下快门。\n是为了抓住当时的快乐？\n还是抓住当时的自己？"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21002",
+    "storyFallbackRendered": false
+  }
+}

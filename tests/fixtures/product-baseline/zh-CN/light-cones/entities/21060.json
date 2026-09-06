@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21060",
+    "name": "氤氲麦香的梦",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21060",
+    "kind": "light-cone",
+    "name": "氤氲麦香的梦",
+    "passive": {
+      "id": "21060",
+      "name": "憧憬",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击率提高12%。装备者造成的终结技和追加攻击伤害提高24%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者造成的终结技和追加攻击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击率提高14%。装备者造成的终结技和追加攻击伤害提高28%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者造成的终结技和追加攻击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击率提高16%。装备者造成的终结技和追加攻击伤害提高32%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者造成的终结技和追加攻击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击率提高18%。装备者造成的终结技和追加攻击伤害提高36%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者造成的终结技和追加攻击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击率提高20%。装备者造成的终结技和追加攻击伤害提高40%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者造成的终结技和追加攻击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 4,
+    "story": "轻风拂过少年的指尖，将笔渍未干的书信带向远方。\n\n<i>「属于我的未来会是什么样……」</i>\n梦想在脑海中迸发，飘向天际。\n麦子随风儿舞动，泛起层层涟漪，似是在回应着那份青涩而真挚的心声。\n\n<i>「不论发生了什么，哪怕手里只有一把剑，我也想守护好这方天地！」</i>\n少年在心中默默立下誓言——\n\n那誓愿有如烙印，永志心间。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21060",
+    "storyFallbackRendered": false
+  }
+}

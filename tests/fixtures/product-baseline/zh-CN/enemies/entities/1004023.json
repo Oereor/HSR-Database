@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为银鬃铁卫的戍卫长。\n杰帕德（完整）会指挥麾下士兵集中攻击，并且能为士兵提供抵挡攻击伤害的护盾。",
+    "id": "1004023",
+    "name": "杰帕德（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004023",
+    "defaultMonsterRef": "12851e6b2909d2d9d28c3305ca7955726f5840fc97b1053a0adf0d3a76036d3e",
+    "description": "代码受到影响后的完整投影。参照本体为银鬃铁卫的戍卫长。\n杰帕德（完整）会指挥麾下士兵集中攻击，并且能为士兵提供抵挡攻击伤害的护盾。",
+    "id": "1004023",
+    "kind": "enemy",
+    "monsterRefs": [
+      "12851e6b2909d2d9d28c3305ca7955726f5840fc97b1053a0adf0d3a76036d3e",
+      "f2bc569140242d0bea8a56e80b083125fe109131c30619b468487945d7e4de0a",
+      "e009ba1ad93880db2ee7a6c6db3875d6c7e11219341c8c78ff58483e8e7bbf58"
+    ],
+    "name": "杰帕德（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "134f1576de4253188cae26d4ccc27639abca362c40b8693b33d75c8866d0a424",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004023",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004023",
+    "selectableMonsterIds": [
+      "1004023",
+      "100402301",
+      "100402302"
+    ]
+  }
+}

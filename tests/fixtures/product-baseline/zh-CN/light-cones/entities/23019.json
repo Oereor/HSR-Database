@@ -1,0 +1,453 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23019",
+    "name": "镜中故我",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>同谐</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23019",
+    "kind": "light-cone",
+    "name": "镜中故我",
+    "passive": {
+      "id": "23019",
+      "name": "彻骨梅香",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者击破特攻提高60%。装备者施放终结技后，使我方全体造成的伤害提高24%，持续3回合，并且若装备者击破特攻大于等于150%，则恢复1个战技点。\n每个波次开始时，我方全体立即恢复10.0点能量，同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技后，使我方全体造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合，并且若装备者击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "，则恢复1个战技点。\n每个波次开始时，我方全体立即恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，同类技能无法重复生效。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者击破特攻提高70%。装备者施放终结技后，使我方全体造成的伤害提高28%，持续3回合，并且若装备者击破特攻大于等于150%，则恢复1个战技点。\n每个波次开始时，我方全体立即恢复12.5点能量，同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技后，使我方全体造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合，并且若装备者击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "，则恢复1个战技点。\n每个波次开始时，我方全体立即恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12.5"
+              },
+              {
+                "type": "text",
+                "value": "点能量，同类技能无法重复生效。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者击破特攻提高80%。装备者施放终结技后，使我方全体造成的伤害提高32%，持续3回合，并且若装备者击破特攻大于等于150%，则恢复1个战技点。\n每个波次开始时，我方全体立即恢复15.0点能量，同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技后，使我方全体造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合，并且若装备者击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "，则恢复1个战技点。\n每个波次开始时，我方全体立即恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，同类技能无法重复生效。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者击破特攻提高90%。装备者施放终结技后，使我方全体造成的伤害提高36%，持续3回合，并且若装备者击破特攻大于等于150%，则恢复1个战技点。\n每个波次开始时，我方全体立即恢复17.5点能量，同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "90%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技后，使我方全体造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合，并且若装备者击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "，则恢复1个战技点。\n每个波次开始时，我方全体立即恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "17.5"
+              },
+              {
+                "type": "text",
+                "value": "点能量，同类技能无法重复生效。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者击破特攻提高100%。装备者施放终结技后，使我方全体造成的伤害提高40%，持续3回合，并且若装备者击破特攻大于等于150%，则恢复1个战技点。\n每个波次开始时，我方全体立即恢复20.0点能量，同类技能无法重复生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者击破特攻提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "100%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放终结技后，使我方全体造成的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合，并且若装备者击破特攻大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "150%"
+              },
+              {
+                "type": "text",
+                "value": "，则恢复1个战技点。\n每个波次开始时，我方全体立即恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，同类技能无法重复生效。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          4
+        ]
+      }
+    },
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 5,
+    "story": "梅花将谢未谢时，她曾喜欢将这时刻封存，留于身边。\n许多年过去，聒噪的、甜美的、各式各样的生命诞生于她的手下，但梅花依旧如期凋落。\n许多年过去，镜中容颜未变，但于宇宙的尺度间，她是否也只能于短短的一瞬保持鲜活?\n\n<i>「既然一切难逃逝去，创造还有何意义？」</i>\n不知沉默了多久，风吹花落，镜中人的回答一如旧时。\n<i>「为了有一天，不再留住梅花。」</i>\n她轻抚冰冷的镜面，如这样的自语，已不知发生过多少次了。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23019",
+    "storyFallbackRendered": false
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "流光忆庭的模因生命遭遇「毁灭」金血糅合而成的扭曲怪物。初具犬形。\n它咄咄逼人，可见即便人性已经蒸发，遵循着「毁灭」的本能便是如此模样。",
+    "id": "4062020",
+    "name": "金血忆灵•犬形",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4062020",
+    "defaultMonsterRef": "bfcb4f2228be086ff13bc23690d5ea9c8e3f2e653c0aef00b18d8cdc3a767a8f",
+    "description": "流光忆庭的模因生命遭遇「毁灭」金血糅合而成的扭曲怪物。初具犬形。\n它咄咄逼人，可见即便人性已经蒸发，遵循着「毁灭」的本能便是如此模样。",
+    "id": "4062020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "bfcb4f2228be086ff13bc23690d5ea9c8e3f2e653c0aef00b18d8cdc3a767a8f",
+      "fddc9ba2ec2f5bf3a948e5dfca6a1b97bd8f1ccac30253a3f3ae803f03e1e59c",
+      "4b4dabf068580bf479ff171c6951a0542df61b2105a34a1e57d54b5e3860fac0",
+      "3dc0a8b9a06f586e0084b4f587841d243eae0e969bf99f499797c9905d7a5bc2",
+      "e96a463047bfc5c5f5b1ccd947e7b7f475e79e4c7d9930051907b690ee0e6925",
+      "348a28da20cbf33699b12e30331a24cd62d80e405fec8e7e038327e762b5ce98"
+    ],
+    "name": "金血忆灵•犬形",
+    "rank": "MinionLv2",
+    "templateRef": "e53cc68e2bec894f6ca5a3ef30670e29e387175f10d521f6c55abf89500ce2d6",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4062020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4062020",
+    "selectableMonsterIds": [
+      "4062020",
+      "406202001",
+      "406202002",
+      "406202003",
+      "406202004",
+      "406202005"
+    ]
+  }
+}

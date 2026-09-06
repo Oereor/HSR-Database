@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "在裂界延展中遭遇侵蚀的怪物，在力量的本源发生畸变后拥有了更为灵活的战斗方式。\n兴风者会利用风的力量协助自己战斗，借助风向射出更为迅猛的箭矢。",
+    "id": "8003052",
+    "name": "兴风者",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8003052",
+    "defaultMonsterRef": "7cf704d93454d7f12f88c52f491863c19a69f4bf207c7369c95fad65e4da2e17",
+    "description": "在裂界延展中遭遇侵蚀的怪物，在力量的本源发生畸变后拥有了更为灵活的战斗方式。\n兴风者会利用风的力量协助自己战斗，借助风向射出更为迅猛的箭矢。",
+    "id": "8003052",
+    "kind": "enemy",
+    "monsterRefs": [
+      "7cf704d93454d7f12f88c52f491863c19a69f4bf207c7369c95fad65e4da2e17"
+    ],
+    "name": "兴风者",
+    "rank": "Elite",
+    "templateRef": "e49cc68a6faf0d4535a951c6c690b2b0ec2232238a887954c615ebe2585c0d61",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8003052",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8003052",
+    "selectableMonsterIds": [
+      "8003052"
+    ]
+  }
+}

@@ -1,0 +1,3286 @@
+{
+  "catalog": {
+    "baseName": "知更鸟",
+    "description": "出生于匹诺康尼，闻名银河的天环族歌者，举止从容优雅的少女。\n此次受家族宴请回到故乡，在「谐乐大典」为众宾献歌一曲。\n可以依靠「同谐」的力量传递歌声，在歌迷乃至万界生灵之中展现「共鸣」。",
+    "element": "Physical",
+    "elementName": "物理",
+    "id": "1309",
+    "name": "知更鸟",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "知更鸟",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 102
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 87.12,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 174.24,
+            "perLevel": 8.712
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 121.968,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 243.936,
+            "perLevel": 8.712
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 156.816,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 313.632,
+            "perLevel": 8.712
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 191.664,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 383.328,
+            "perLevel": 8.712
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 226.512,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 453.024,
+            "perLevel": 8.712
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 261.36,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 522.72,
+            "perLevel": 8.712
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 296.208,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 592.416,
+            "perLevel": 8.712
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "出生于匹诺康尼，闻名银河的天环族歌者，举止从容优雅的少女。\n此次受家族宴请回到故乡，在「谐乐大典」为众宾献歌一曲。\n可以依靠「同谐」的力量传递歌声，在歌迷乃至万界生灵之中展现「共鸣」。",
+    "element": "Physical",
+    "elementName": "物理",
+    "equipmentRecommendation": {
+      "avatarId": "1309",
+      "cavernSetIds": [
+        "102",
+        "105",
+        "116"
+      ],
+      "lightConeIds": [
+        "23026",
+        "22002",
+        "23003"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "PhysicalAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "302",
+        "301",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "AttackAddedRatio",
+        "AttackDelta",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "知更鸟",
+    "id": "1309",
+    "kind": "character",
+    "name": "知更鸟",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "处于【协奏】状态时，我方全体全属性<u>抗性穿透</u>提高<unbreak>24%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "rank--130901",
+            "id": "130901",
+            "name": "微笑的国度",
+            "rank": 1
+          },
+          {
+            "description": "处于【协奏】状态时，我方全体速度提高<unbreak>16%</unbreak>。天赋的能量恢复效果额外提高<unbreak>1</unbreak>点。",
+            "iconKey": "rank--130902",
+            "id": "130902",
+            "name": "两者的午茶",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；终结技等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--130903",
+            "id": "130903",
+            "name": "倒悬的弦宫",
+            "rank": 3
+          },
+          {
+            "description": "施放终结技时，解除我方全体的<u>控制类负面状态</u>，使我方全体在知更鸟处于【协奏】状态期间的效果抵抗提高<unbreak>50%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                "id": "10000011",
+                "name": "控制类负面状态"
+              }
+            ],
+            "iconKey": "rank--130904",
+            "id": "130904",
+            "name": "雨滴的钥匙",
+            "rank": 4
+          },
+          {
+            "description": "普攻等级+1，最多不超过<unbreak>10</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--130905",
+            "id": "130905",
+            "name": "孤星的眼泪",
+            "rank": 5
+          },
+          {
+            "description": "处于【协奏】状态时，终结技造成的物理属性<u>附加伤害</u>的暴击伤害额外提高<unbreak>450%</unbreak>。【月隐的午夜】效果最多触发<unbreak>8</unbreak>次，每次施放终结技时重置触发次数。",
+            "extraEffects": [
+              {
+                "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000005",
+                "name": "附加伤害"
+              }
+            ],
+            "iconKey": "rank--130906",
+            "id": "130906",
+            "name": "月隐的午夜",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 160
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1309001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1309001",
+                "variantIds": [
+                  "130901"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "130901",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于知更鸟50%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于知更鸟"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于知更鸟60%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于知更鸟"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于知更鸟70%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于知更鸟"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于知更鸟80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于知更鸟"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于知更鸟90%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于知更鸟"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于知更鸟100%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于知更鸟"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于知更鸟110%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于知更鸟"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于知更鸟120%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于知更鸟"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于知更鸟130%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于知更鸟"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于知更鸟140%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于知更鸟"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "扑翼白声",
+                "progressionId": "1309001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1309002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1309002",
+                "variantIds": [
+                  "130902"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 30
+                },
+                "id": "130902",
+                "levels": [
+                  {
+                    "description": "使我方全体造成的伤害提高25%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高28%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高30%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高33%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高35%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高38%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高41%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高44%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高47%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高50%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高53%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高55%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高57%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高60%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使我方全体造成的伤害提高63%，持续3回合，知更鸟每回合开始时持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，知更鸟每回合开始时持续回合数减1。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "翎之咏叹调",
+                "progressionId": "1309002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1309003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1309003",
+                "variantIds": [
+                  "130903"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    },
+                    {
+                      "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                      "id": "10000011",
+                      "name": "控制类负面状态"
+                    }
+                  ]
+                },
+                "id": "130903",
+                "levels": [
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的15.2%+50点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身72%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的16.0%+65点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身77%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的16.7%+80点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身82%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "82%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的17.5%+95点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身86%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的18.2%+110点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身91%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "91%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的19.0%+125点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身96%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的20.0%+144点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身102%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的20.9%+163点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身108%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的21.9%+181点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身114%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "181"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "114%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的22.8%+200点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身120%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的23.6%+215点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身125%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "215"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的24.3%+230点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身130%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的25.1%+245点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身134%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "245"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "134%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的25.8%+260点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身139%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "260"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "139%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的26.6%+275点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身144%攻击力的物理属性附加伤害，该伤害暴击率固定为100%，暴击伤害固定为150%。\n处于【协奏】状态时，知更鸟免疫控制类负面状态，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有90点速度。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "知更鸟进入【协奏】状态，使除自身以外的队友立即行动。\n处于【协奏】状态时，我方全体攻击力提高，提高数值等同于知更鸟攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "275"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，且我方目标每次施放攻击后，知更鸟会额外造成1次等同于其自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该伤害暴击率固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，暴击伤害固定为"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n处于【协奏】状态时，知更鸟免疫"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "控制类负面状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，【协奏】状态结束前不会进入自己的回合且无法行动。\n行动序列上出现【协奏】倒计时，倒计时回合开始时知更鸟退出【协奏】状态并立即行动，倒计时固定拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "90"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点速度。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "千音迭奏，群星赋格",
+                "progressionId": "1309003",
+                "scalingParamIndexes": [
+                  0,
+                  2,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1309004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1309004",
+                "variantIds": [
+                  "130904"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "130904",
+                "levels": [
+                  {
+                    "description": "使我方全体暴击伤害提高5.0%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高6.5%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高8.0%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高9.5%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高11.0%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高12.5%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高14.4%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高16.3%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高18.1%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高20.0%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高21.5%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高23.0%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高24.5%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高26.0%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使我方全体暴击伤害提高27.5%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复2点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使我方全体暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，且我方目标攻击敌方目标后，知更鸟额外为自身恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "调性合颂",
+                "progressionId": "1309004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1309007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1309007",
+                "variantIds": [
+                  "130907"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "130907",
+                "levels": [
+                  {
+                    "description": "施放秘技后，在自身周围展开持续15秒的特殊领域，处于领域内的敌人不会对知更鸟发动攻击，且在领域展开期间跟随知更鸟。领域展开期间进入战斗后，每个波次开始时知更鸟恢复5点能量。我方制造的领域效果最多存在1个。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放秘技后，在自身周围展开持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的特殊领域，处于领域内的敌人不会对知更鸟发动攻击，且在领域展开期间跟随知更鸟。领域展开期间进入战斗后，每个波次开始时知更鸟恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。我方制造的领域效果最多存在1个。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "酣醉序曲",
+                "progressionId": "1309007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "战斗开始时，自身<u>行动提前</u><unbreak>25%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--1309101",
+            "id": "1309101",
+            "name": "华彩花腔",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "处于【协奏】状态时，我方全体发动<u>追加攻击</u>造成的暴击伤害提高<unbreak>25%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1309102",
+            "id": "1309102",
+            "name": "即兴装饰",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放战技时额外恢复<unbreak>5</unbreak>点能量。",
+            "iconKey": "skill-tree--1309103",
+            "id": "1309103",
+            "name": "模进乐段",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1309201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1309202",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1309101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1309203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1309202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1309204",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1309201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1309205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1309102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1309206",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1309205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1309207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1309201"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1309208",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1309103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1309209",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1309208"
+            ],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1309210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1309208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1309001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130901",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1309002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130902",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1309003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130903",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1309004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130904",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1309007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "130907",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1309",
+    "subtitleRendered": false
+  }
+}

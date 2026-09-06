@@ -1,0 +1,148 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：速度提高6%。 4件：当装备者及其忆灵为装备者及其忆灵以外的我方目标提供治疗后，使装备者获得【甘霖】，每回合最多触发1次，持续2回合。装备者持有【甘霖】时，速度提高6%，我方全体暴击伤害提高15%，该效果无法叠加。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "125",
+    "name": "烈阳惊雷的女武神",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "3.3"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：速度提高6%。 4件：当装备者及其忆灵为装备者及其忆灵以外的我方目标提供治疗后，使装备者获得【甘霖】，每回合最多触发1次，持续2回合。装备者持有【甘霖】时，速度提高6%，我方全体暴击伤害提高15%，该效果无法叠加。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "速度提高6%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "速度提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "6%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "当装备者及其忆灵为装备者及其忆灵以外的我方目标提供治疗后，使装备者获得【甘霖】，每回合最多触发1次，持续2回合。装备者持有【甘霖】时，速度提高6%，我方全体暴击伤害提高15%，该效果无法叠加。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "当装备者及其忆灵为装备者及其忆灵以外的我方目标提供治疗后，使装备者获得【甘霖】，每回合最多触发1次，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "回合。装备者持有【甘霖】时，速度提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "6%"
+          },
+          {
+            "type": "text",
+            "value": "，我方全体暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "15%"
+          },
+          {
+            "type": "text",
+            "value": "，该效果无法叠加。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "125",
+    "kind": "relic",
+    "name": "烈阳惊雷的女武神",
+    "pieces": [
+      {
+        "description": "这顶翼盔曾见证了阳雷骑士挑落天神，它也见证了天空阖眼。",
+        "id": "31251",
+        "name": "女武神的翱翔翼盔",
+        "slot": "HEAD"
+      },
+      {
+        "description": "这对护手陪伴骑士赢下了所有的战斗。它能够让人紧握最致命的武器，忍受最痛苦的背叛。",
+        "id": "31252",
+        "name": "女武神的骑枪手铠",
+        "slot": "HAND"
+      },
+      {
+        "description": "这袭披风为阳雷骑士遮雨避尘，陪伴她经历所有的冒险——留下那天空中最醒目的背影。",
+        "id": "31253",
+        "name": "女武神的启程披风",
+        "slot": "BODY"
+      },
+      {
+        "description": "这对马刺来自阳雷骑士两只翼兽伙伴的馈赠——走在追求真实的道路之上，这是必要的疼痛。",
+        "id": "31254",
+        "name": "女武神的勋礼马刺",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【「云端遗堡」晨昏之眼】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "3.3"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31251"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31252"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31253"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31254"
+      }
+    ],
+    "route": "/relics/125"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n手持千斤重的巨斧，蓄力一击甚至可以击碎坚硬的磐石。任何挡在它面前的活物，皆避免不了被碾碎和侵蚀的结局。",
+    "id": "4032030",
+    "name": "黑潮蚀斧",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032030",
+    "defaultMonsterRef": "da28d69fec849803d58a515c27c931a77d706ef0eb467c811cee73962f0988c7",
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n手持千斤重的巨斧，蓄力一击甚至可以击碎坚硬的磐石。任何挡在它面前的活物，皆避免不了被碾碎和侵蚀的结局。",
+    "id": "4032030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "da28d69fec849803d58a515c27c931a77d706ef0eb467c811cee73962f0988c7",
+      "abbcfbb78f47f717e96c7e71d2ead62c42b2cedf00ba48af3eaa85de7d699769",
+      "2a3c52a1d0defdb1bc6518317130064c7769f4420aaefe132dcf4f2dcf9f23c0"
+    ],
+    "name": "黑潮蚀斧",
+    "rank": "MinionLv2",
+    "templateRef": "2b272193a98b9bd079663fea0a3dd92666fb5d3ac5f8dab8e65737ed59eaa375",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032030",
+    "selectableMonsterIds": [
+      "4032030",
+      "403203001",
+      "403203002"
+    ]
+  }
+}

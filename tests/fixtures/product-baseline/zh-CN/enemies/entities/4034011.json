@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "伴随黑潮而来、狩猎泰坦火种的无名剑士，无人知晓其真身。\n身负不可思议的力量，剑技也近乎无懈可击。疯狂与执着交织于它的锋刃，神悟树庭与哀丽秘榭皆毁于其手。",
+    "id": "4034011",
+    "name": "？？？",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4034011",
+    "defaultMonsterRef": "11b778e2de6f804d32355e24157d0908ade7db898faea67329bb51a36769f467",
+    "description": "伴随黑潮而来、狩猎泰坦火种的无名剑士，无人知晓其真身。\n身负不可思议的力量，剑技也近乎无懈可击。疯狂与执着交织于它的锋刃，神悟树庭与哀丽秘榭皆毁于其手。",
+    "id": "4034011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "11b778e2de6f804d32355e24157d0908ade7db898faea67329bb51a36769f467",
+      "f60ecbe76317b47d442510a19e3e0330d71b14569a773ed28d7a2787ec3d7c94",
+      "2674b406fceb58338c5daf7a20f6a9201f910ec276b9bb3d2b6f6914294c8f73"
+    ],
+    "name": "？？？",
+    "rank": "LittleBoss",
+    "templateRef": "68d614197bc83ba52f8dd3e3a0c8bea234c99cb61f761ee349e0a78ec5c4c9e3",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4034011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4034011",
+    "selectableMonsterIds": [
+      "4034011",
+      "403401101",
+      "403401102"
+    ]
+  }
+}

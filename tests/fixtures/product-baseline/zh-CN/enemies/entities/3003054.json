@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "美梦剧团中取悦宾客的酒侍。本应于「谐乐大典」之中献杯，如今却被「秩序」所缚，上演着关于「当下」的剧目。此刻是彻夜的欢宴，喜乐的渴望在杯中荡漾，以佳酿进献设宴的主人。",
+    "id": "3003054",
+    "name": "散装英雄王",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003054",
+    "defaultMonsterRef": "8a262ece9347ad05d86bb4c352a10cd416973b3577ff10d044fa4715eb787967",
+    "description": "美梦剧团中取悦宾客的酒侍。本应于「谐乐大典」之中献杯，如今却被「秩序」所缚，上演着关于「当下」的剧目。此刻是彻夜的欢宴，喜乐的渴望在杯中荡漾，以佳酿进献设宴的主人。",
+    "id": "3003054",
+    "kind": "enemy",
+    "monsterRefs": [
+      "8a262ece9347ad05d86bb4c352a10cd416973b3577ff10d044fa4715eb787967",
+      "fe08c1ea869923beceef257eada51f42c36a281355ca3d859457bcc4bba7ecee"
+    ],
+    "name": "散装英雄王",
+    "rank": "Elite",
+    "templateRef": "a72c5087d10d782160398a957b963b9e8c5b55f37efc6fdd1680722482a28042",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003054",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003054",
+    "selectableMonsterIds": [
+      "3003054",
+      "300305401"
+    ]
+  }
+}

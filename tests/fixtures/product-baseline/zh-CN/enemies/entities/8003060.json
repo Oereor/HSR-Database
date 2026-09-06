@@ -1,0 +1,34 @@
+{
+  "catalog": {
+    "description": "虚构集合体",
+    "id": "8003060",
+    "name": "虚构集合体",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": []
+  },
+  "detail": {
+    "defaultMonsterId": "8003060",
+    "defaultMonsterRef": "9bd0397b74e07b24a9e1fb43c639573906645f51441c510f1776b7aa57738a8e",
+    "description": "虚构集合体",
+    "id": "8003060",
+    "kind": "enemy",
+    "monsterRefs": [
+      "9bd0397b74e07b24a9e1fb43c639573906645f51441c510f1776b7aa57738a8e"
+    ],
+    "name": "虚构集合体",
+    "rank": "Elite",
+    "templateRef": "73b51a1783347090e48b31155898f647010d4b9181eb6ea4b4976d93fdbb2f50",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": []
+  },
+  "presentation": {
+    "defaultMonsterId": "8003060",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8003060",
+    "selectableMonsterIds": [
+      "8003060"
+    ]
+  }
+}

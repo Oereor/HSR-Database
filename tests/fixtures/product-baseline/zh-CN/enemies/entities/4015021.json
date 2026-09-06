@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "以笑意缝补晨昏的半神，被黑潮裹挟后的样貌。即便火种的光彩已几近浑浊，但仍有余温——\n医师未曾设想覆灭昔日同行的旧友，而誓言驱散心底的阴云。",
+    "id": "4015021",
+    "name": "晨昏之眼，雅辛忒丝",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4015021",
+    "defaultMonsterRef": "3cd43e71e4e9a88e808efd8f34fa92219d5fe715de19ab3a1c851a2c6e56af39",
+    "description": "以笑意缝补晨昏的半神，被黑潮裹挟后的样貌。即便火种的光彩已几近浑浊，但仍有余温——\n医师未曾设想覆灭昔日同行的旧友，而誓言驱散心底的阴云。",
+    "id": "4015021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "3cd43e71e4e9a88e808efd8f34fa92219d5fe715de19ab3a1c851a2c6e56af39"
+    ],
+    "name": "晨昏之眼，雅辛忒丝",
+    "rank": "BigBoss",
+    "templateRef": "4fe6d6314600e3b9372bdba05e7fddf419296a6df8b57867adc905afb9d68389",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4015021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4015021",
+    "selectableMonsterIds": [
+      "4015021"
+    ]
+  }
+}

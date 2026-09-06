@@ -1,0 +1,3401 @@
+{
+  "presentation": {
+    "cacophony": {
+      "key": "pf:2008:BuffList",
+      "options": [
+        {
+          "mechanicRef": "735fd572e3a1be3fa5a5d4ba409bb38c3279f7a2dd95b89bc77c760f0f0162a4"
+        },
+        {
+          "mechanicRef": "75d26b28ff3d9cdb00d0f546151af40016e4a458c8ad46f0f1ae97d6a9da210c"
+        },
+        {
+          "mechanicRef": "a47d7840dd88cd6b4c0c7b31ba2a10e00cfa93bbbdd1e67dede294899a04f17a"
+        }
+      ]
+    },
+    "defaultEncounterId": "20084",
+    "encounters": [
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30306011-0",
+                "level": 55,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "334a702503dfdc819d04cf35a765a70aee881b59c0086f5a5f59bd6474c37ef7"
+                      },
+                      {
+                        "occurrenceRef": "b7f06366a379b767122de3b1cb2a08402bc8e2e574e9d43a9bc4f9d3d47db85d"
+                      },
+                      {
+                        "occurrenceRef": "0713510ac13036269e3aaeb86e6620113888a3b74639e9692d5e170a197a6851"
+                      }
+                    ],
+                    "key": "spawn-303060111",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "9a9336a3f89521543f5281204fd20be2ed754c3c05900b9f15885d0778f9fd5b"
+                      },
+                      {
+                        "occurrenceRef": "46c35065b0259f6151a34639dd0dbb4757fa8b74a9da7bec3d8c124d220c31e0"
+                      },
+                      {
+                        "occurrenceRef": "58ec01eebc244e83fd0d191eca7ce3b56903abe1f8ae0319bd42856853e95470"
+                      }
+                    ],
+                    "key": "spawn-303060112",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "5735bde49d1943cb7e0c1a7551b9a894791e23deefc662f3df9814d258f6211a"
+                      },
+                      {
+                        "occurrenceRef": "e6fd489ff76e0e34d221ef37713a64e12f7b022fd87fc66f3332ee15bd09f4ef"
+                      },
+                      {
+                        "occurrenceRef": "5413def953621bf627dc1f594ec45a155cb7f0d9feb688075458894bf8a8e069"
+                      }
+                    ],
+                    "key": "spawn-303060113",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30306012-0",
+                "level": 55,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "d506821b321c89a1b69f6e3aa91753290636424e2f47647e8a3eae052aed8f19"
+                      },
+                      {
+                        "occurrenceRef": "7a2bd5b3d77c4f2e42a6c6bb6aefd5bf03f540094572afae24e3f7487e9bd988"
+                      },
+                      {
+                        "occurrenceRef": "d3b62a5a80cc4a7c59802f155b2340c9c44aa873ee7ee6e5fc72b83cb8b0c3f2"
+                      }
+                    ],
+                    "key": "spawn-303060121",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "d0b8a5fb9eedc30940683515a48e108822f8c55b31c16d13b2648a0b56973e83"
+                      },
+                      {
+                        "occurrenceRef": "0cb0a4dc2c86f78d2cfcd22c272922ebba162ad1161559b98b73dc33c1e377b2"
+                      },
+                      {
+                        "occurrenceRef": "58ec01eebc244e83fd0d191eca7ce3b56903abe1f8ae0319bd42856853e95470"
+                      }
+                    ],
+                    "key": "spawn-303060122",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "3cbbbdb52a76b453f4425c3e0b411fcf60ea0e64505a51cabfa97d34686705f6"
+                      },
+                      {
+                        "occurrenceRef": "269644e57e43a55beea66e82857b4acfe9e6315e983cb2089d59121ebe72c5ab"
+                      },
+                      {
+                        "occurrenceRef": "e6604c348e7175dc44c1a685beb88d6dd587c79d29a1211ca23c329c669e0650"
+                      }
+                    ],
+                    "key": "spawn-303060123",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "20081",
+        "label": "欺人虚言其一",
+        "mode": "pf",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30306021-0",
+                "level": 65,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "dfbbdaededbddcae003c16496e129c374bdfeb49b35645b69f98c6fd492cb86f"
+                      },
+                      {
+                        "occurrenceRef": "76519bcdcc061b79b1bfe4d6ca6d19582906602633ca98c1f31a45dc32521e24"
+                      },
+                      {
+                        "occurrenceRef": "1bfb443a2815fcd225ab509a6663c63f943ce0fe33a751fca89e3f3f619f9b4b"
+                      }
+                    ],
+                    "key": "spawn-303060211",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "b22685f11d69e25f1444f159d17f5cb6fd77a14433fec8075b69392e38a6b87b"
+                      },
+                      {
+                        "occurrenceRef": "18daa059f17418df1713792d20bcd46a95c06a49d9e7d2b3c9c3981a0e720dc5"
+                      },
+                      {
+                        "occurrenceRef": "0d22020471d78dd8ebe107152005c0ae706505287e576e9808d7c8f4bccb1c93"
+                      }
+                    ],
+                    "key": "spawn-303060212",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "c6dbef0c4806a84bcac01ca1c8165d938aff8b64f101aa923704e7aebc627fbc"
+                      },
+                      {
+                        "occurrenceRef": "af49c83b31412688d84713b4015c4c853047f9d84a60973400f9546403cb843b"
+                      },
+                      {
+                        "occurrenceRef": "616ccf3f941a765e0aa73d7a7abcd3fb5b79d01425089364041cca902a60c985"
+                      }
+                    ],
+                    "key": "spawn-303060213",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30306022-0",
+                "level": 65,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "d28fc2f19ca0a194fc089183b592b36a709a4a3215ac67eff5f689290082d2ae"
+                      },
+                      {
+                        "occurrenceRef": "bd78810e00b4c8c1a5ea5045f244114ba9d9ee7013069a2911bc312eb4a34571"
+                      },
+                      {
+                        "occurrenceRef": "44f905570e4519e666671f618f0924bc0e6037706b5d3d0b20e523cc5c3831e1"
+                      }
+                    ],
+                    "key": "spawn-303060221",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "8cc22cb707ef12389ffec05fc4bbe8a28c34888d0e31075f209b22b8e2c3779a"
+                      },
+                      {
+                        "occurrenceRef": "abb2c76799f0156cedaa0d349aa7be39c9c74c9ed7c7f378dec0949d8e8a6011"
+                      },
+                      {
+                        "occurrenceRef": "0d22020471d78dd8ebe107152005c0ae706505287e576e9808d7c8f4bccb1c93"
+                      }
+                    ],
+                    "key": "spawn-303060222",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "ef8eaf1dd39df6ade3713af2e9239ba0c800caa11ad5ed282f2a857dd39d38f9"
+                      },
+                      {
+                        "occurrenceRef": "1420f05a515ffef6a2cc537bc47900fcc6f153d6a0f323c209799b2940d999ac"
+                      },
+                      {
+                        "occurrenceRef": "148fd0d0aa037ac9f4b2075dfc2c35153185265b778e2f25439c4a63731d26d0"
+                      }
+                    ],
+                    "key": "spawn-303060223",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "20082",
+        "label": "欺人虚言其二",
+        "mode": "pf",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30306031-0",
+                "level": 75,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "ed86ff87262eb0b6b4d7ae17aa27c3a5b095be3bf89560266fa00ca976fdf99a"
+                      },
+                      {
+                        "occurrenceRef": "87db5b6c0a945024b5a9b76c3fc82dfccb9c36711655cedf0602f5580f9c1161"
+                      },
+                      {
+                        "occurrenceRef": "b773d5e1307a99df5dfb48abd512a4525f87adc370bb6a480ffbef970b9b47dd"
+                      }
+                    ],
+                    "key": "spawn-303060311",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "a132adea5854d7f23963d60bd31f3882dbc136cccf335d5e58a8ab76eb9fcf22"
+                      },
+                      {
+                        "occurrenceRef": "5026e15ba607deee1cb3329d6ca3f12d825c72d88c0c9b2f63364a421b5e8cb2"
+                      },
+                      {
+                        "occurrenceRef": "d0e8400b649bd35fba7479d594a4c3784904945a39924438e64bba1358198775"
+                      }
+                    ],
+                    "key": "spawn-303060312",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "4b4417b115251f1940f4c7cea5553f4c9f4cb61afe3b5509a869b7e13bdbb456"
+                      },
+                      {
+                        "occurrenceRef": "edbc952b207567fc230e120d956320894ac8bae451a07aa54590a182a999c68f"
+                      },
+                      {
+                        "occurrenceRef": "4afaf5357f6c998624fc8e25a72f6bb06b2b05a8e59536db40e7b6f93e59665b"
+                      }
+                    ],
+                    "key": "spawn-303060313",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30306032-0",
+                "level": 75,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "08189bf56aae43aab5a33b30212d3dc7dd40f33ac88f5539206a4cbc21b3ac17"
+                      },
+                      {
+                        "occurrenceRef": "917873f951b91fc9b4498923825290211406475bf955d2cf04a84c839fff14c5"
+                      },
+                      {
+                        "occurrenceRef": "7e2a136ea5a69dcc28fa29f5e5df996bb14befbb25c513dd89e3ed1688497494"
+                      }
+                    ],
+                    "key": "spawn-303060321",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "69dcebfeb80c312c783850ce12ddf5f7cad4fc068384d34396315ee3c43bbdad"
+                      },
+                      {
+                        "occurrenceRef": "cc0db44e309153d72fc1a4532f912d20d98ad68708a71d3fed43343f160ffd80"
+                      },
+                      {
+                        "occurrenceRef": "d0e8400b649bd35fba7479d594a4c3784904945a39924438e64bba1358198775"
+                      }
+                    ],
+                    "key": "spawn-303060322",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "66eca45bc34b2266ca31cf8a3458a7607c8956d80a718493d240fb4943f48b45"
+                      },
+                      {
+                        "occurrenceRef": "b9c0fa360995ea00299337ea8790b91dc2cf3d4409a19cdc660a9b8713bc66a0"
+                      },
+                      {
+                        "occurrenceRef": "4df4f418574a6084c3aec2858b79f2c529c178fecb5d396793666a6c291bd12b"
+                      }
+                    ],
+                    "key": "spawn-303060323",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "20083",
+        "label": "欺人虚言其三",
+        "mode": "pf",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30306041-0",
+                "level": 85,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "4af44da6b5f58c0cab748d94f5c08009a61cac0e750b0d6a1a699f1cfaab000e"
+                      },
+                      {
+                        "occurrenceRef": "e4c1b80929034ebd12231aab5910ad0e14daf030db660e992c57e051b8494bd5"
+                      },
+                      {
+                        "occurrenceRef": "f8a239e0b5a83bf0fc0774aa4524995d73e90dc3272f11b9beb7fae4053e6d08"
+                      }
+                    ],
+                    "key": "spawn-303060411",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "740a826607d78476135bbd5b2b1a9d50d423e311b55a71ad62a7829a6767780d"
+                      },
+                      {
+                        "occurrenceRef": "b30e7a6d64d18f41a4831a78cb2a380a4619159f537588d92da757694a1787c4"
+                      },
+                      {
+                        "occurrenceRef": "4d5dc389998df96532c268a3930cc285662a2893f83cf1cd11b66e91bf1814f1"
+                      }
+                    ],
+                    "key": "spawn-303060412",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "267ff0213df0c901087f27325a0eddadc7646b881ad592ec56d88eac165e0bf6"
+                      },
+                      {
+                        "occurrenceRef": "7847a0be613041b81c4b9bc0d882bd7585687006f6c7e923c64df3bbb0093e3e"
+                      },
+                      {
+                        "occurrenceRef": "3de4a40f96de43c84ef27ce9a442e6dd1b934c4e969ab59ab8613187252706b9"
+                      }
+                    ],
+                    "key": "spawn-303060413",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30306042-0",
+                "level": 85,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "d3c7f132eb7d9e64e81ce371aa34748ab233423559edb5f1b95a3cdcb16d2f97"
+                      },
+                      {
+                        "occurrenceRef": "9ab3efdb70a39d36f08fdd09f08118a1b9882981e324f8d3118fdb775dbc3cc4"
+                      },
+                      {
+                        "occurrenceRef": "7d5832aea6164682fa17a0072905ee5251f1a174712e827f2397645fd0a24e88"
+                      }
+                    ],
+                    "key": "spawn-303060421",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "531d67d7dbdb067d7773cad00bbe4c36f809f649ec402a750830e833dd66f083"
+                      },
+                      {
+                        "occurrenceRef": "e4ac078448b4ca4009a95a52b37ec7c6834267b2d0fb8e6826814d096f29c089"
+                      },
+                      {
+                        "occurrenceRef": "4d5dc389998df96532c268a3930cc285662a2893f83cf1cd11b66e91bf1814f1"
+                      }
+                    ],
+                    "key": "spawn-303060422",
+                    "label": "波次 2"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "e3b74a7cabdaadb19f8ca1ab76390cd7bbea17be44086d45eb3f76599875cd69"
+                      },
+                      {
+                        "occurrenceRef": "7847a0be613041b81c4b9bc0d882bd7585687006f6c7e923c64df3bbb0093e3e"
+                      },
+                      {
+                        "occurrenceRef": "4ea21b19539bc585e893a5bd77d9d2b6f40b91817b6224095c6bc696aceffeb0"
+                      }
+                    ],
+                    "key": "spawn-303060423",
+                    "label": "波次 3"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "20084",
+        "label": "欺人虚言其四",
+        "mode": "pf",
+        "ordinal": 4,
+        "variant": "floor"
+      }
+    ],
+    "fixedMechanics": [
+      {
+        "mechanicRef": "0a866c5d68b935a298b557e50da09d448c9305738c2a6b01dd42fe7a020ff093"
+      }
+    ],
+    "mode": "pf",
+    "modeLabel": "虚构叙事",
+    "period": {
+      "dateLabel": "2024/08/19 – 2024/09/30",
+      "encounterCount": 4,
+      "groupId": 2008,
+      "name": "欺人虚言",
+      "status": "historical"
+    },
+    "periods": [
+      {
+        "dateLabel": "2026/09/14 – 2026/10/19",
+        "encounterCount": 4,
+        "groupId": 2026,
+        "name": "立界开篇",
+        "status": "upcoming"
+      },
+      {
+        "dateLabel": "2026/08/03 – 2026/09/14",
+        "encounterCount": 4,
+        "groupId": 2025,
+        "name": "构事生意",
+        "status": "current"
+      },
+      {
+        "dateLabel": "2026/06/22 – 2026/08/03",
+        "encounterCount": 4,
+        "groupId": 2024,
+        "name": "借虚成真",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/05/11 – 2026/06/22",
+        "encounterCount": 4,
+        "groupId": 2023,
+        "name": "造象立说",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/03/30 – 2026/05/11",
+        "encounterCount": 4,
+        "groupId": 2022,
+        "name": "虚境成章",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/02/16 – 2026/03/30",
+        "encounterCount": 4,
+        "groupId": 2021,
+        "name": "无字小说",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2026/01/05 – 2026/02/16",
+        "encounterCount": 4,
+        "groupId": 2020,
+        "name": "史诗集群",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/11/24 – 2026/01/05",
+        "encounterCount": 4,
+        "groupId": 2019,
+        "name": "程式句法",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/10/13 – 2025/11/24",
+        "encounterCount": 4,
+        "groupId": 2018,
+        "name": "五步抑扬",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/09/01 – 2025/10/13",
+        "encounterCount": 4,
+        "groupId": 2017,
+        "name": "主观叙事",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/07/21 – 2025/09/01",
+        "encounterCount": 4,
+        "groupId": 2016,
+        "name": "三幕架构",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/06/09 – 2025/07/21",
+        "encounterCount": 4,
+        "groupId": 2015,
+        "name": "叙事分析",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/04/28 – 2025/06/09",
+        "encounterCount": 4,
+        "groupId": 2014,
+        "name": "结构规律",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/03/17 – 2025/04/28",
+        "encounterCount": 4,
+        "groupId": 2013,
+        "name": "自证预言",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2025/02/03 – 2025/03/17",
+        "encounterCount": 4,
+        "groupId": 2012,
+        "name": "陈腔滥调",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/12/23 – 2025/02/03",
+        "encounterCount": 4,
+        "groupId": 2011,
+        "name": "深文巧诋",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/11/11 – 2024/12/23",
+        "encounterCount": 4,
+        "groupId": 2010,
+        "name": "论黄数黑",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/09/30 – 2024/11/11",
+        "encounterCount": 4,
+        "groupId": 2009,
+        "name": "巧言如流",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/08/19 – 2024/09/30",
+        "encounterCount": 4,
+        "groupId": 2008,
+        "name": "欺人虚言",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/07/08 – 2024/08/19",
+        "encounterCount": 4,
+        "groupId": 2007,
+        "name": "向壁虚造",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/05/27 – 2024/07/08",
+        "encounterCount": 4,
+        "groupId": 2006,
+        "name": "新词迷离",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/04/29 – 2024/06/10",
+        "encounterCount": 4,
+        "groupId": 2005,
+        "name": "作言造语",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/04/01 – 2024/05/13",
+        "encounterCount": 4,
+        "groupId": 2004,
+        "name": "撒诈捣虚",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/03/04 – 2024/04/15",
+        "encounterCount": 4,
+        "groupId": 2003,
+        "name": "舌灿莲花",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/02/05 – 2024/03/18",
+        "encounterCount": 4,
+        "groupId": 2002,
+        "name": "羁鸟奇谭",
+        "status": "historical"
+      },
+      {
+        "dateLabel": "2024/01/08 – 2024/02/19",
+        "encounterCount": 4,
+        "groupId": 2001,
+        "name": "游辞漫说",
+        "status": "historical"
+      }
+    ]
+  },
+  "route": "/endgame/pf/2008",
+  "source": {
+    "battleWillMechanics": [],
+    "cacophony": {
+      "key": "pf:2008:BuffList",
+      "options": [
+        {
+          "buff": {
+            "mechanicRef": "273150b56812b103e07d4c2b8bf92a099e7a2e3f0804d4ba4f86053f29ec7edf"
+          },
+          "order": 1,
+          "provenance": {
+            "arrayIndex": 0,
+            "field": "BuffList",
+            "ownerId": 2008,
+            "table": "ChallengeStoryGroupExtra"
+          }
+        },
+        {
+          "buff": {
+            "mechanicRef": "eda629b3c048fade9b2e745c70f6bc68b1fdb32c8491ea562ff50e177f25d181"
+          },
+          "order": 2,
+          "provenance": {
+            "arrayIndex": 1,
+            "field": "BuffList",
+            "ownerId": 2008,
+            "table": "ChallengeStoryGroupExtra"
+          }
+        },
+        {
+          "buff": {
+            "mechanicRef": "62149ea2c72afd6cec7efaf13d165c0b6649a38eca6c4ab9c40247720d24d818"
+          },
+          "order": 3,
+          "provenance": {
+            "arrayIndex": 2,
+            "field": "BuffList",
+            "ownerId": 2008,
+            "table": "ChallengeStoryGroupExtra"
+          }
+        }
+      ],
+      "provenance": {
+        "field": "BuffList",
+        "ownerId": 2008,
+        "table": "ChallengeStoryGroupExtra"
+      },
+      "selectCount": 1
+    },
+    "encounters": [
+      {
+        "baseMechanic": {
+          "display": {
+            "mechanicRef": "d320b36fa3f84f64eab9489607282f1a22d9afa86cdf5a2ff69cbde635aee716"
+          },
+          "mazeBuffId": 3031001,
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 20081,
+            "table": "ChallengeStoryMazeConfig"
+          }
+        },
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30306011,
+                "hardLevelGroup": 1,
+                "level": 55,
+                "previewMonsterIds": [
+                  8002010,
+                  1022010,
+                  8003030,
+                  8002010,
+                  8003030,
+                  8003030
+                ],
+                "stageAbilities": [],
+                "stageId": 30306011,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30306011,
+                  "waves": [
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 13,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060111,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "fd6efeac084c20bf9f64e51dbd87cccca6a64a0a6a135d3b2470a04e891cc5fe"
+                            },
+                            {
+                              "occurrenceRef": "c4ffd8312759bb383ccd258fc17c23f881f5edbb215e36194cea767cae05e35e"
+                            },
+                            {
+                              "occurrenceRef": "d8293e967398012e7064f545c31a04bb82bcb6ad649a0565c1701f9dac170eb0"
+                            },
+                            {
+                              "occurrenceRef": "fd6efeac084c20bf9f64e51dbd87cccca6a64a0a6a135d3b2470a04e891cc5fe"
+                            },
+                            {
+                              "occurrenceRef": "c4ffd8312759bb383ccd258fc17c23f881f5edbb215e36194cea767cae05e35e"
+                            },
+                            {
+                              "occurrenceRef": "c4ffd8312759bb383ccd258fc17c23f881f5edbb215e36194cea767cae05e35e"
+                            },
+                            {
+                              "occurrenceRef": "fd6efeac084c20bf9f64e51dbd87cccca6a64a0a6a135d3b2470a04e891cc5fe"
+                            },
+                            {
+                              "occurrenceRef": "c4ffd8312759bb383ccd258fc17c23f881f5edbb215e36194cea767cae05e35e"
+                            },
+                            {
+                              "occurrenceRef": "fd6efeac084c20bf9f64e51dbd87cccca6a64a0a6a135d3b2470a04e891cc5fe"
+                            },
+                            {
+                              "occurrenceRef": "c4ffd8312759bb383ccd258fc17c23f881f5edbb215e36194cea767cae05e35e"
+                            },
+                            {
+                              "occurrenceRef": "fd6efeac084c20bf9f64e51dbd87cccca6a64a0a6a135d3b2470a04e891cc5fe"
+                            },
+                            {
+                              "occurrenceRef": "fd6efeac084c20bf9f64e51dbd87cccca6a64a0a6a135d3b2470a04e891cc5fe"
+                            },
+                            {
+                              "occurrenceRef": "c4ffd8312759bb383ccd258fc17c23f881f5edbb215e36194cea767cae05e35e"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0",
+                        "0"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060111
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 14,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060112,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "5400b3a41f0d02886e59b48ea9dc265270d874f834dc540df560d60fed6d1e6f"
+                            },
+                            {
+                              "occurrenceRef": "d0397b07adcb3cd21443609b5373b8d942edf6adf57e52cc69f527a4cb2528af"
+                            },
+                            {
+                              "occurrenceRef": "a20dc7e5590adb331eb68e58fc48fb8c2a2fb05106cd7b5e26a076510357d643"
+                            },
+                            {
+                              "occurrenceRef": "5400b3a41f0d02886e59b48ea9dc265270d874f834dc540df560d60fed6d1e6f"
+                            },
+                            {
+                              "occurrenceRef": "d0397b07adcb3cd21443609b5373b8d942edf6adf57e52cc69f527a4cb2528af"
+                            },
+                            {
+                              "occurrenceRef": "5400b3a41f0d02886e59b48ea9dc265270d874f834dc540df560d60fed6d1e6f"
+                            },
+                            {
+                              "occurrenceRef": "5400b3a41f0d02886e59b48ea9dc265270d874f834dc540df560d60fed6d1e6f"
+                            },
+                            {
+                              "occurrenceRef": "d0397b07adcb3cd21443609b5373b8d942edf6adf57e52cc69f527a4cb2528af"
+                            },
+                            {
+                              "occurrenceRef": "a20dc7e5590adb331eb68e58fc48fb8c2a2fb05106cd7b5e26a076510357d643"
+                            },
+                            {
+                              "occurrenceRef": "5400b3a41f0d02886e59b48ea9dc265270d874f834dc540df560d60fed6d1e6f"
+                            },
+                            {
+                              "occurrenceRef": "d0397b07adcb3cd21443609b5373b8d942edf6adf57e52cc69f527a4cb2528af"
+                            },
+                            {
+                              "occurrenceRef": "d0397b07adcb3cd21443609b5373b8d942edf6adf57e52cc69f527a4cb2528af"
+                            },
+                            {
+                              "occurrenceRef": "5400b3a41f0d02886e59b48ea9dc265270d874f834dc540df560d60fed6d1e6f"
+                            },
+                            {
+                              "occurrenceRef": "d0397b07adcb3cd21443609b5373b8d942edf6adf57e52cc69f527a4cb2528af"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.1",
+                        "0.4"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0.4",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1.4"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060112
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 26,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060113,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "be92893eda8e414388fa4c14542138da6a7c104b5085e83e32d57b1a2ac65361"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "be92893eda8e414388fa4c14542138da6a7c104b5085e83e32d57b1a2ac65361"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "86a8cb08c5f8bfc1191d08ccb9ed44b976622d7673767a4c4620c9cb13169888"
+                            },
+                            {
+                              "occurrenceRef": "759aac7b8189aec46db903871cd73191c2c2aa7dfd57a0956c258d32fc020805"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.15",
+                        "1.2"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "1.2",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "2.2"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060113
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30306012,
+                "hardLevelGroup": 1,
+                "level": 55,
+                "previewMonsterIds": [
+                  2012010,
+                  1012030,
+                  2013020,
+                  2012010,
+                  1012030,
+                  2013020,
+                  2013020
+                ],
+                "stageAbilities": [],
+                "stageId": 30306012,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30306012,
+                  "waves": [
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 13,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060121,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "f0bcc7628dd75fade0c3c8150ed029a6396da64a451a33e9f4ac8244f09eab34"
+                            },
+                            {
+                              "occurrenceRef": "37a24dec30c401de50dccd13e67a389745e0a1a34cb7e19bc66e232ccfa6251c"
+                            },
+                            {
+                              "occurrenceRef": "af7ef92f6d97bd681b4d28773078e96c3564a707b3039520f74115799200f778"
+                            },
+                            {
+                              "occurrenceRef": "f0bcc7628dd75fade0c3c8150ed029a6396da64a451a33e9f4ac8244f09eab34"
+                            },
+                            {
+                              "occurrenceRef": "37a24dec30c401de50dccd13e67a389745e0a1a34cb7e19bc66e232ccfa6251c"
+                            },
+                            {
+                              "occurrenceRef": "37a24dec30c401de50dccd13e67a389745e0a1a34cb7e19bc66e232ccfa6251c"
+                            },
+                            {
+                              "occurrenceRef": "f0bcc7628dd75fade0c3c8150ed029a6396da64a451a33e9f4ac8244f09eab34"
+                            },
+                            {
+                              "occurrenceRef": "37a24dec30c401de50dccd13e67a389745e0a1a34cb7e19bc66e232ccfa6251c"
+                            },
+                            {
+                              "occurrenceRef": "f0bcc7628dd75fade0c3c8150ed029a6396da64a451a33e9f4ac8244f09eab34"
+                            },
+                            {
+                              "occurrenceRef": "37a24dec30c401de50dccd13e67a389745e0a1a34cb7e19bc66e232ccfa6251c"
+                            },
+                            {
+                              "occurrenceRef": "f0bcc7628dd75fade0c3c8150ed029a6396da64a451a33e9f4ac8244f09eab34"
+                            },
+                            {
+                              "occurrenceRef": "f0bcc7628dd75fade0c3c8150ed029a6396da64a451a33e9f4ac8244f09eab34"
+                            },
+                            {
+                              "occurrenceRef": "37a24dec30c401de50dccd13e67a389745e0a1a34cb7e19bc66e232ccfa6251c"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0",
+                        "0"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060121
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 14,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060122,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "59f7cd1de309c0341901748cf2e07d2182c70a1e051372dfa1d885b5c46f7058"
+                            },
+                            {
+                              "occurrenceRef": "d8a8dddd212a0af271b844d9959feffa99c3380a4bb7a914b354282aed52a659"
+                            },
+                            {
+                              "occurrenceRef": "a20dc7e5590adb331eb68e58fc48fb8c2a2fb05106cd7b5e26a076510357d643"
+                            },
+                            {
+                              "occurrenceRef": "59f7cd1de309c0341901748cf2e07d2182c70a1e051372dfa1d885b5c46f7058"
+                            },
+                            {
+                              "occurrenceRef": "d8a8dddd212a0af271b844d9959feffa99c3380a4bb7a914b354282aed52a659"
+                            },
+                            {
+                              "occurrenceRef": "59f7cd1de309c0341901748cf2e07d2182c70a1e051372dfa1d885b5c46f7058"
+                            },
+                            {
+                              "occurrenceRef": "59f7cd1de309c0341901748cf2e07d2182c70a1e051372dfa1d885b5c46f7058"
+                            },
+                            {
+                              "occurrenceRef": "d8a8dddd212a0af271b844d9959feffa99c3380a4bb7a914b354282aed52a659"
+                            },
+                            {
+                              "occurrenceRef": "a20dc7e5590adb331eb68e58fc48fb8c2a2fb05106cd7b5e26a076510357d643"
+                            },
+                            {
+                              "occurrenceRef": "59f7cd1de309c0341901748cf2e07d2182c70a1e051372dfa1d885b5c46f7058"
+                            },
+                            {
+                              "occurrenceRef": "d8a8dddd212a0af271b844d9959feffa99c3380a4bb7a914b354282aed52a659"
+                            },
+                            {
+                              "occurrenceRef": "d8a8dddd212a0af271b844d9959feffa99c3380a4bb7a914b354282aed52a659"
+                            },
+                            {
+                              "occurrenceRef": "59f7cd1de309c0341901748cf2e07d2182c70a1e051372dfa1d885b5c46f7058"
+                            },
+                            {
+                              "occurrenceRef": "d8a8dddd212a0af271b844d9959feffa99c3380a4bb7a914b354282aed52a659"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.1",
+                        "0.4"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0.4",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1.4"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060122
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 26,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060123,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "9b7ab50f782a83fc9733cccbc8ce95345d0b4a604769783e0b3a7a33c7490c0d"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "9b7ab50f782a83fc9733cccbc8ce95345d0b4a604769783e0b3a7a33c7490c0d"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "a60b580911418428b852790325db68010fdd4d3dc73ce30f59e262489e0c01d7"
+                            },
+                            {
+                              "occurrenceRef": "8dd040e0a7d65bfde2159fd419a9f4112c90cc521d389a481d7b00e754b8653e"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.15",
+                        "1.2"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "1.2",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "2.2"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060123
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 20081,
+        "id": "20081",
+        "name": "欺人虚言其一",
+        "ordinal": 1,
+        "variant": "floor"
+      },
+      {
+        "baseMechanic": {
+          "display": {
+            "mechanicRef": "d320b36fa3f84f64eab9489607282f1a22d9afa86cdf5a2ff69cbde635aee716"
+          },
+          "mazeBuffId": 3031001,
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 20082,
+            "table": "ChallengeStoryMazeConfig"
+          }
+        },
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30306021,
+                "hardLevelGroup": 1,
+                "level": 65,
+                "previewMonsterIds": [
+                  8012030,
+                  1002020,
+                  8003050,
+                  1002020,
+                  8003050,
+                  8003050
+                ],
+                "stageAbilities": [],
+                "stageId": 30306021,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30306021,
+                  "waves": [
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 13,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060211,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "537377d4b56a89219ba4aa27944190b8cbdf16f9545fce16814b024e350f6330"
+                            },
+                            {
+                              "occurrenceRef": "a83eb92c7d26e6e917311cdb532391ce90738afefa72e60b06d0e395ccbf71d5"
+                            },
+                            {
+                              "occurrenceRef": "e3400f55c7cadd20e50f4a1df8bbe53447d77bf62b896bb5f75fc9e46f042aa6"
+                            },
+                            {
+                              "occurrenceRef": "a83eb92c7d26e6e917311cdb532391ce90738afefa72e60b06d0e395ccbf71d5"
+                            },
+                            {
+                              "occurrenceRef": "a83eb92c7d26e6e917311cdb532391ce90738afefa72e60b06d0e395ccbf71d5"
+                            },
+                            {
+                              "occurrenceRef": "a83eb92c7d26e6e917311cdb532391ce90738afefa72e60b06d0e395ccbf71d5"
+                            },
+                            {
+                              "occurrenceRef": "537377d4b56a89219ba4aa27944190b8cbdf16f9545fce16814b024e350f6330"
+                            },
+                            {
+                              "occurrenceRef": "a83eb92c7d26e6e917311cdb532391ce90738afefa72e60b06d0e395ccbf71d5"
+                            },
+                            {
+                              "occurrenceRef": "a83eb92c7d26e6e917311cdb532391ce90738afefa72e60b06d0e395ccbf71d5"
+                            },
+                            {
+                              "occurrenceRef": "a83eb92c7d26e6e917311cdb532391ce90738afefa72e60b06d0e395ccbf71d5"
+                            },
+                            {
+                              "occurrenceRef": "537377d4b56a89219ba4aa27944190b8cbdf16f9545fce16814b024e350f6330"
+                            },
+                            {
+                              "occurrenceRef": "537377d4b56a89219ba4aa27944190b8cbdf16f9545fce16814b024e350f6330"
+                            },
+                            {
+                              "occurrenceRef": "a83eb92c7d26e6e917311cdb532391ce90738afefa72e60b06d0e395ccbf71d5"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0",
+                        "0"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060211
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 14,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060212,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "5aa96e47a03e7f6fdf8694d77affef6d7749e292d25820cd67cc47bfdada5195"
+                            },
+                            {
+                              "occurrenceRef": "edc4365b806b2b9e8bff3a25b8d6732c34fd302d05f3e34a0e3db6351e744bd8"
+                            },
+                            {
+                              "occurrenceRef": "c52017c5a3555f4bf06aec0b2ea6a4c055dce99edbcf1fce2d6df62881700b11"
+                            },
+                            {
+                              "occurrenceRef": "5aa96e47a03e7f6fdf8694d77affef6d7749e292d25820cd67cc47bfdada5195"
+                            },
+                            {
+                              "occurrenceRef": "edc4365b806b2b9e8bff3a25b8d6732c34fd302d05f3e34a0e3db6351e744bd8"
+                            },
+                            {
+                              "occurrenceRef": "5aa96e47a03e7f6fdf8694d77affef6d7749e292d25820cd67cc47bfdada5195"
+                            },
+                            {
+                              "occurrenceRef": "5aa96e47a03e7f6fdf8694d77affef6d7749e292d25820cd67cc47bfdada5195"
+                            },
+                            {
+                              "occurrenceRef": "edc4365b806b2b9e8bff3a25b8d6732c34fd302d05f3e34a0e3db6351e744bd8"
+                            },
+                            {
+                              "occurrenceRef": "c52017c5a3555f4bf06aec0b2ea6a4c055dce99edbcf1fce2d6df62881700b11"
+                            },
+                            {
+                              "occurrenceRef": "5aa96e47a03e7f6fdf8694d77affef6d7749e292d25820cd67cc47bfdada5195"
+                            },
+                            {
+                              "occurrenceRef": "edc4365b806b2b9e8bff3a25b8d6732c34fd302d05f3e34a0e3db6351e744bd8"
+                            },
+                            {
+                              "occurrenceRef": "edc4365b806b2b9e8bff3a25b8d6732c34fd302d05f3e34a0e3db6351e744bd8"
+                            },
+                            {
+                              "occurrenceRef": "5aa96e47a03e7f6fdf8694d77affef6d7749e292d25820cd67cc47bfdada5195"
+                            },
+                            {
+                              "occurrenceRef": "edc4365b806b2b9e8bff3a25b8d6732c34fd302d05f3e34a0e3db6351e744bd8"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.1",
+                        "0.4"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0.4",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1.4"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060212
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 26,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060213,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "ca7c9c3e20fe56c6b1d2ef3487c4e65ed31d82b91bbc6593b00f249fce4a8227"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "897241418db693ee4b1e881091265b53db44cc98a71d34e161f76b46d328d74f"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "ca7c9c3e20fe56c6b1d2ef3487c4e65ed31d82b91bbc6593b00f249fce4a8227"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "ca7c9c3e20fe56c6b1d2ef3487c4e65ed31d82b91bbc6593b00f249fce4a8227"
+                            },
+                            {
+                              "occurrenceRef": "ca7c9c3e20fe56c6b1d2ef3487c4e65ed31d82b91bbc6593b00f249fce4a8227"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "ca7c9c3e20fe56c6b1d2ef3487c4e65ed31d82b91bbc6593b00f249fce4a8227"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "897241418db693ee4b1e881091265b53db44cc98a71d34e161f76b46d328d74f"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "ca7c9c3e20fe56c6b1d2ef3487c4e65ed31d82b91bbc6593b00f249fce4a8227"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            },
+                            {
+                              "occurrenceRef": "ca7c9c3e20fe56c6b1d2ef3487c4e65ed31d82b91bbc6593b00f249fce4a8227"
+                            },
+                            {
+                              "occurrenceRef": "ca7c9c3e20fe56c6b1d2ef3487c4e65ed31d82b91bbc6593b00f249fce4a8227"
+                            },
+                            {
+                              "occurrenceRef": "96ded8d85ccca9b40be53dcc325a1f14c7f2976d859b646496a84ceb3c06a1ba"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.15",
+                        "1.2"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "1.2",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "2.2"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060213
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30306022,
+                "hardLevelGroup": 1,
+                "level": 65,
+                "previewMonsterIds": [
+                  1012030,
+                  1012010,
+                  8003040,
+                  1012010,
+                  1012010,
+                  8003040,
+                  8003040
+                ],
+                "stageAbilities": [],
+                "stageId": 30306022,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30306022,
+                  "waves": [
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 13,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060221,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "ba13b308e5eaed3b5e569b30c5b5e6db57e3d088ed027a9a0029dcb8893704e6"
+                            },
+                            {
+                              "occurrenceRef": "10f03d236c5c5ac35d2822a74846e7ccd2a1b299baa57d7e3fb6ee4888410205"
+                            },
+                            {
+                              "occurrenceRef": "b0bb799594d011e0126a09a3ab0c5542701c37838352384bd936536e0b239d7d"
+                            },
+                            {
+                              "occurrenceRef": "10f03d236c5c5ac35d2822a74846e7ccd2a1b299baa57d7e3fb6ee4888410205"
+                            },
+                            {
+                              "occurrenceRef": "10f03d236c5c5ac35d2822a74846e7ccd2a1b299baa57d7e3fb6ee4888410205"
+                            },
+                            {
+                              "occurrenceRef": "10f03d236c5c5ac35d2822a74846e7ccd2a1b299baa57d7e3fb6ee4888410205"
+                            },
+                            {
+                              "occurrenceRef": "ba13b308e5eaed3b5e569b30c5b5e6db57e3d088ed027a9a0029dcb8893704e6"
+                            },
+                            {
+                              "occurrenceRef": "10f03d236c5c5ac35d2822a74846e7ccd2a1b299baa57d7e3fb6ee4888410205"
+                            },
+                            {
+                              "occurrenceRef": "10f03d236c5c5ac35d2822a74846e7ccd2a1b299baa57d7e3fb6ee4888410205"
+                            },
+                            {
+                              "occurrenceRef": "10f03d236c5c5ac35d2822a74846e7ccd2a1b299baa57d7e3fb6ee4888410205"
+                            },
+                            {
+                              "occurrenceRef": "ba13b308e5eaed3b5e569b30c5b5e6db57e3d088ed027a9a0029dcb8893704e6"
+                            },
+                            {
+                              "occurrenceRef": "ba13b308e5eaed3b5e569b30c5b5e6db57e3d088ed027a9a0029dcb8893704e6"
+                            },
+                            {
+                              "occurrenceRef": "10f03d236c5c5ac35d2822a74846e7ccd2a1b299baa57d7e3fb6ee4888410205"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0",
+                        "0"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060221
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 14,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060222,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "c6bbc95efacc567fff9d5dd37085a8fec4abfc9c388e8bf31bafd27420b7b8e8"
+                            },
+                            {
+                              "occurrenceRef": "a7f1383d87f92a826a9449b6dfc72f1eebe5a5a3be69e7aa0a3232dbf87afc1c"
+                            },
+                            {
+                              "occurrenceRef": "c52017c5a3555f4bf06aec0b2ea6a4c055dce99edbcf1fce2d6df62881700b11"
+                            },
+                            {
+                              "occurrenceRef": "c6bbc95efacc567fff9d5dd37085a8fec4abfc9c388e8bf31bafd27420b7b8e8"
+                            },
+                            {
+                              "occurrenceRef": "a7f1383d87f92a826a9449b6dfc72f1eebe5a5a3be69e7aa0a3232dbf87afc1c"
+                            },
+                            {
+                              "occurrenceRef": "c6bbc95efacc567fff9d5dd37085a8fec4abfc9c388e8bf31bafd27420b7b8e8"
+                            },
+                            {
+                              "occurrenceRef": "c6bbc95efacc567fff9d5dd37085a8fec4abfc9c388e8bf31bafd27420b7b8e8"
+                            },
+                            {
+                              "occurrenceRef": "a7f1383d87f92a826a9449b6dfc72f1eebe5a5a3be69e7aa0a3232dbf87afc1c"
+                            },
+                            {
+                              "occurrenceRef": "c52017c5a3555f4bf06aec0b2ea6a4c055dce99edbcf1fce2d6df62881700b11"
+                            },
+                            {
+                              "occurrenceRef": "c6bbc95efacc567fff9d5dd37085a8fec4abfc9c388e8bf31bafd27420b7b8e8"
+                            },
+                            {
+                              "occurrenceRef": "a7f1383d87f92a826a9449b6dfc72f1eebe5a5a3be69e7aa0a3232dbf87afc1c"
+                            },
+                            {
+                              "occurrenceRef": "a7f1383d87f92a826a9449b6dfc72f1eebe5a5a3be69e7aa0a3232dbf87afc1c"
+                            },
+                            {
+                              "occurrenceRef": "c6bbc95efacc567fff9d5dd37085a8fec4abfc9c388e8bf31bafd27420b7b8e8"
+                            },
+                            {
+                              "occurrenceRef": "a7f1383d87f92a826a9449b6dfc72f1eebe5a5a3be69e7aa0a3232dbf87afc1c"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.1",
+                        "0.4"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0.4",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1.4"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060222
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 26,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060223,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "d2c9c5bf7af92fa622f2f18ef2258f856a74ea1b2d5507442e5caad77b9bfe0c"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "738ae0169ed2664acb756a268838acbb39d7f031ea416863d004fb4f22c46112"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "d2c9c5bf7af92fa622f2f18ef2258f856a74ea1b2d5507442e5caad77b9bfe0c"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "d2c9c5bf7af92fa622f2f18ef2258f856a74ea1b2d5507442e5caad77b9bfe0c"
+                            },
+                            {
+                              "occurrenceRef": "d2c9c5bf7af92fa622f2f18ef2258f856a74ea1b2d5507442e5caad77b9bfe0c"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "d2c9c5bf7af92fa622f2f18ef2258f856a74ea1b2d5507442e5caad77b9bfe0c"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "738ae0169ed2664acb756a268838acbb39d7f031ea416863d004fb4f22c46112"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "d2c9c5bf7af92fa622f2f18ef2258f856a74ea1b2d5507442e5caad77b9bfe0c"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            },
+                            {
+                              "occurrenceRef": "d2c9c5bf7af92fa622f2f18ef2258f856a74ea1b2d5507442e5caad77b9bfe0c"
+                            },
+                            {
+                              "occurrenceRef": "d2c9c5bf7af92fa622f2f18ef2258f856a74ea1b2d5507442e5caad77b9bfe0c"
+                            },
+                            {
+                              "occurrenceRef": "b87da0866169bcd0d511e2c4c4aa8ba1adfd9c3706dcbb7c087f33b805de2d66"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.15",
+                        "1.2"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "1.2",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "2.2"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060223
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 20082,
+        "id": "20082",
+        "name": "欺人虚言其二",
+        "ordinal": 2,
+        "variant": "floor"
+      },
+      {
+        "baseMechanic": {
+          "display": {
+            "mechanicRef": "d320b36fa3f84f64eab9489607282f1a22d9afa86cdf5a2ff69cbde635aee716"
+          },
+          "mazeBuffId": 3031001,
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 20083,
+            "table": "ChallengeStoryMazeConfig"
+          }
+        },
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30306031,
+                "hardLevelGroup": 1,
+                "level": 75,
+                "previewMonsterIds": [
+                  8002010,
+                  1022010,
+                  8003030,
+                  8002010,
+                  8003030,
+                  8003030
+                ],
+                "stageAbilities": [],
+                "stageId": 30306031,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30306031,
+                  "waves": [
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 13,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060311,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "4e296604ef6a254cf6187619a35e9ada85de6ced747f6ae2fe93b9b73cb3203b"
+                            },
+                            {
+                              "occurrenceRef": "e5bc32ffe3ef7f59d175826fd09415e1ae77d5ddf4f8d80b5e5df6d10421cbb8"
+                            },
+                            {
+                              "occurrenceRef": "0d2cbfa40e2c05eb050f6cfca433bbf1239eaa0d8562a6326c4aec5563c0362e"
+                            },
+                            {
+                              "occurrenceRef": "4e296604ef6a254cf6187619a35e9ada85de6ced747f6ae2fe93b9b73cb3203b"
+                            },
+                            {
+                              "occurrenceRef": "e5bc32ffe3ef7f59d175826fd09415e1ae77d5ddf4f8d80b5e5df6d10421cbb8"
+                            },
+                            {
+                              "occurrenceRef": "e5bc32ffe3ef7f59d175826fd09415e1ae77d5ddf4f8d80b5e5df6d10421cbb8"
+                            },
+                            {
+                              "occurrenceRef": "4e296604ef6a254cf6187619a35e9ada85de6ced747f6ae2fe93b9b73cb3203b"
+                            },
+                            {
+                              "occurrenceRef": "e5bc32ffe3ef7f59d175826fd09415e1ae77d5ddf4f8d80b5e5df6d10421cbb8"
+                            },
+                            {
+                              "occurrenceRef": "4e296604ef6a254cf6187619a35e9ada85de6ced747f6ae2fe93b9b73cb3203b"
+                            },
+                            {
+                              "occurrenceRef": "e5bc32ffe3ef7f59d175826fd09415e1ae77d5ddf4f8d80b5e5df6d10421cbb8"
+                            },
+                            {
+                              "occurrenceRef": "4e296604ef6a254cf6187619a35e9ada85de6ced747f6ae2fe93b9b73cb3203b"
+                            },
+                            {
+                              "occurrenceRef": "4e296604ef6a254cf6187619a35e9ada85de6ced747f6ae2fe93b9b73cb3203b"
+                            },
+                            {
+                              "occurrenceRef": "e5bc32ffe3ef7f59d175826fd09415e1ae77d5ddf4f8d80b5e5df6d10421cbb8"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0",
+                        "0"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060311
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 14,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060312,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "9d2d454b45f82941352fcb1614f43c0c3e0b4351ad28c803987446bd20708ad5"
+                            },
+                            {
+                              "occurrenceRef": "181910c92fbe80eb083c486b3c3b3bfc8103f1bb68a6d47836f2198fbcf360f4"
+                            },
+                            {
+                              "occurrenceRef": "ca31092c3f3fa9bf140fcea902182fb222341a390c7da0016465e38b0ddc570a"
+                            },
+                            {
+                              "occurrenceRef": "9d2d454b45f82941352fcb1614f43c0c3e0b4351ad28c803987446bd20708ad5"
+                            },
+                            {
+                              "occurrenceRef": "181910c92fbe80eb083c486b3c3b3bfc8103f1bb68a6d47836f2198fbcf360f4"
+                            },
+                            {
+                              "occurrenceRef": "9d2d454b45f82941352fcb1614f43c0c3e0b4351ad28c803987446bd20708ad5"
+                            },
+                            {
+                              "occurrenceRef": "9d2d454b45f82941352fcb1614f43c0c3e0b4351ad28c803987446bd20708ad5"
+                            },
+                            {
+                              "occurrenceRef": "181910c92fbe80eb083c486b3c3b3bfc8103f1bb68a6d47836f2198fbcf360f4"
+                            },
+                            {
+                              "occurrenceRef": "ca31092c3f3fa9bf140fcea902182fb222341a390c7da0016465e38b0ddc570a"
+                            },
+                            {
+                              "occurrenceRef": "9d2d454b45f82941352fcb1614f43c0c3e0b4351ad28c803987446bd20708ad5"
+                            },
+                            {
+                              "occurrenceRef": "181910c92fbe80eb083c486b3c3b3bfc8103f1bb68a6d47836f2198fbcf360f4"
+                            },
+                            {
+                              "occurrenceRef": "181910c92fbe80eb083c486b3c3b3bfc8103f1bb68a6d47836f2198fbcf360f4"
+                            },
+                            {
+                              "occurrenceRef": "9d2d454b45f82941352fcb1614f43c0c3e0b4351ad28c803987446bd20708ad5"
+                            },
+                            {
+                              "occurrenceRef": "181910c92fbe80eb083c486b3c3b3bfc8103f1bb68a6d47836f2198fbcf360f4"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.1",
+                        "0.4"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0.4",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1.4"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060312
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 26,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060313,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "b86e3c689d638dedda1c39491a7d7203f29e6cb3601990a384af2eb2ae7fc100"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "b86e3c689d638dedda1c39491a7d7203f29e6cb3601990a384af2eb2ae7fc100"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "f44375fb36f971e5c9f00e23d171ba1615ad961e72d739205b6203ddd5079c8f"
+                            },
+                            {
+                              "occurrenceRef": "76dbf9e0bc33c6eccbe94607ec3bc01944c64f709d53b26f23dba7694def2847"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.15",
+                        "1.2"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "1.2",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "2.2"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060313
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30306032,
+                "hardLevelGroup": 1,
+                "level": 75,
+                "previewMonsterIds": [
+                  2012010,
+                  1012030,
+                  2013020,
+                  2012010,
+                  1012030,
+                  2013020,
+                  2013020
+                ],
+                "stageAbilities": [],
+                "stageId": 30306032,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30306032,
+                  "waves": [
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 13,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060321,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "c7bb41fe57af442780df5d64e49fb0d4ef38fe707ddeac9bb0c7709c1a566bbd"
+                            },
+                            {
+                              "occurrenceRef": "42f18aeb09ed726a4b736f3a5c0e4e668200510d5b54fe8c56f5644c8a66d387"
+                            },
+                            {
+                              "occurrenceRef": "697de03eeedda621b8e3fdfb39eba39254b4dd88076214e59389a7ef7263a8e1"
+                            },
+                            {
+                              "occurrenceRef": "c7bb41fe57af442780df5d64e49fb0d4ef38fe707ddeac9bb0c7709c1a566bbd"
+                            },
+                            {
+                              "occurrenceRef": "42f18aeb09ed726a4b736f3a5c0e4e668200510d5b54fe8c56f5644c8a66d387"
+                            },
+                            {
+                              "occurrenceRef": "42f18aeb09ed726a4b736f3a5c0e4e668200510d5b54fe8c56f5644c8a66d387"
+                            },
+                            {
+                              "occurrenceRef": "c7bb41fe57af442780df5d64e49fb0d4ef38fe707ddeac9bb0c7709c1a566bbd"
+                            },
+                            {
+                              "occurrenceRef": "42f18aeb09ed726a4b736f3a5c0e4e668200510d5b54fe8c56f5644c8a66d387"
+                            },
+                            {
+                              "occurrenceRef": "c7bb41fe57af442780df5d64e49fb0d4ef38fe707ddeac9bb0c7709c1a566bbd"
+                            },
+                            {
+                              "occurrenceRef": "42f18aeb09ed726a4b736f3a5c0e4e668200510d5b54fe8c56f5644c8a66d387"
+                            },
+                            {
+                              "occurrenceRef": "c7bb41fe57af442780df5d64e49fb0d4ef38fe707ddeac9bb0c7709c1a566bbd"
+                            },
+                            {
+                              "occurrenceRef": "c7bb41fe57af442780df5d64e49fb0d4ef38fe707ddeac9bb0c7709c1a566bbd"
+                            },
+                            {
+                              "occurrenceRef": "42f18aeb09ed726a4b736f3a5c0e4e668200510d5b54fe8c56f5644c8a66d387"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0",
+                        "0"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060321
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 14,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060322,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "7218361a4dde551ba928861657789550fb99a2bc6188380997b4917f8663928f"
+                            },
+                            {
+                              "occurrenceRef": "a40872393745e9e114c257fd202a85df4ca8d95efcb56bb9e77bc40f9bbb32ce"
+                            },
+                            {
+                              "occurrenceRef": "ca31092c3f3fa9bf140fcea902182fb222341a390c7da0016465e38b0ddc570a"
+                            },
+                            {
+                              "occurrenceRef": "7218361a4dde551ba928861657789550fb99a2bc6188380997b4917f8663928f"
+                            },
+                            {
+                              "occurrenceRef": "a40872393745e9e114c257fd202a85df4ca8d95efcb56bb9e77bc40f9bbb32ce"
+                            },
+                            {
+                              "occurrenceRef": "7218361a4dde551ba928861657789550fb99a2bc6188380997b4917f8663928f"
+                            },
+                            {
+                              "occurrenceRef": "7218361a4dde551ba928861657789550fb99a2bc6188380997b4917f8663928f"
+                            },
+                            {
+                              "occurrenceRef": "a40872393745e9e114c257fd202a85df4ca8d95efcb56bb9e77bc40f9bbb32ce"
+                            },
+                            {
+                              "occurrenceRef": "ca31092c3f3fa9bf140fcea902182fb222341a390c7da0016465e38b0ddc570a"
+                            },
+                            {
+                              "occurrenceRef": "7218361a4dde551ba928861657789550fb99a2bc6188380997b4917f8663928f"
+                            },
+                            {
+                              "occurrenceRef": "a40872393745e9e114c257fd202a85df4ca8d95efcb56bb9e77bc40f9bbb32ce"
+                            },
+                            {
+                              "occurrenceRef": "a40872393745e9e114c257fd202a85df4ca8d95efcb56bb9e77bc40f9bbb32ce"
+                            },
+                            {
+                              "occurrenceRef": "7218361a4dde551ba928861657789550fb99a2bc6188380997b4917f8663928f"
+                            },
+                            {
+                              "occurrenceRef": "a40872393745e9e114c257fd202a85df4ca8d95efcb56bb9e77bc40f9bbb32ce"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.1",
+                        "0.4"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0.4",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1.4"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060322
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 26,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060323,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "702b6bed8977f0be961fe6e46dbb89e60c82a040f507b75a2dc214d35d4bf888"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "702b6bed8977f0be961fe6e46dbb89e60c82a040f507b75a2dc214d35d4bf888"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "e6618900f358086ddc05de83f2812544b3eab3f2095d5aa538ac6dce2862a8f3"
+                            },
+                            {
+                              "occurrenceRef": "ba878b59a154db8db972f9469580281de846832807f9f0c38653c676701cb686"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.15",
+                        "1.2"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "1.2",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "2.2"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060323
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 20083,
+        "id": "20083",
+        "name": "欺人虚言其三",
+        "ordinal": 3,
+        "variant": "floor"
+      },
+      {
+        "baseMechanic": {
+          "display": {
+            "mechanicRef": "d320b36fa3f84f64eab9489607282f1a22d9afa86cdf5a2ff69cbde635aee716"
+          },
+          "mazeBuffId": 3031001,
+          "provenance": {
+            "field": "MazeBuffID",
+            "ownerId": 20084,
+            "table": "ChallengeStoryMazeConfig"
+          }
+        },
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30306041,
+                "hardLevelGroup": 1,
+                "level": 85,
+                "previewMonsterIds": [
+                  1002030,
+                  1002050,
+                  100301016,
+                  1002030,
+                  1002050,
+                  200401006,
+                  200401006
+                ],
+                "stageAbilities": [
+                  "BossInfiniteWave_Ability"
+                ],
+                "stageId": 30306041,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30306041,
+                  "waves": [
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 13,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060411,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "ac7b206afa26ea7c4c84139db7033cad0cf9a1caa8709a4b06f2c0262eef9fc3"
+                            },
+                            {
+                              "occurrenceRef": "da6c5df372b6bc1c50b89b03df806e7bd2d261dd2615675cfa442fd2d2ac3edc"
+                            },
+                            {
+                              "occurrenceRef": "8095ce8b5614f66f215972b1b5b0c99d046c53e44722674fccbd86dba026bf43"
+                            },
+                            {
+                              "occurrenceRef": "ac7b206afa26ea7c4c84139db7033cad0cf9a1caa8709a4b06f2c0262eef9fc3"
+                            },
+                            {
+                              "occurrenceRef": "da6c5df372b6bc1c50b89b03df806e7bd2d261dd2615675cfa442fd2d2ac3edc"
+                            },
+                            {
+                              "occurrenceRef": "da6c5df372b6bc1c50b89b03df806e7bd2d261dd2615675cfa442fd2d2ac3edc"
+                            },
+                            {
+                              "occurrenceRef": "ac7b206afa26ea7c4c84139db7033cad0cf9a1caa8709a4b06f2c0262eef9fc3"
+                            },
+                            {
+                              "occurrenceRef": "da6c5df372b6bc1c50b89b03df806e7bd2d261dd2615675cfa442fd2d2ac3edc"
+                            },
+                            {
+                              "occurrenceRef": "ac7b206afa26ea7c4c84139db7033cad0cf9a1caa8709a4b06f2c0262eef9fc3"
+                            },
+                            {
+                              "occurrenceRef": "da6c5df372b6bc1c50b89b03df806e7bd2d261dd2615675cfa442fd2d2ac3edc"
+                            },
+                            {
+                              "occurrenceRef": "ac7b206afa26ea7c4c84139db7033cad0cf9a1caa8709a4b06f2c0262eef9fc3"
+                            },
+                            {
+                              "occurrenceRef": "ac7b206afa26ea7c4c84139db7033cad0cf9a1caa8709a4b06f2c0262eef9fc3"
+                            },
+                            {
+                              "occurrenceRef": "da6c5df372b6bc1c50b89b03df806e7bd2d261dd2615675cfa442fd2d2ac3edc"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0",
+                        "0"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060411
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 14,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060412,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "cc4e35a22bd149c1f80923f5aba448fd61da3321af5b25073c2a6f2ab3c78f93"
+                            },
+                            {
+                              "occurrenceRef": "7b5b5cfc5cad41988c6bd6c481808101afe78bf5efee1cac5973f11fe3da3f3b"
+                            },
+                            {
+                              "occurrenceRef": "3a36fb562c29142fb33284a269f240e5c17248551bc290ff9fd2cfd2d03dfa18"
+                            },
+                            {
+                              "occurrenceRef": "cc4e35a22bd149c1f80923f5aba448fd61da3321af5b25073c2a6f2ab3c78f93"
+                            },
+                            {
+                              "occurrenceRef": "7b5b5cfc5cad41988c6bd6c481808101afe78bf5efee1cac5973f11fe3da3f3b"
+                            },
+                            {
+                              "occurrenceRef": "cc4e35a22bd149c1f80923f5aba448fd61da3321af5b25073c2a6f2ab3c78f93"
+                            },
+                            {
+                              "occurrenceRef": "7b5b5cfc5cad41988c6bd6c481808101afe78bf5efee1cac5973f11fe3da3f3b"
+                            },
+                            {
+                              "occurrenceRef": "7b5b5cfc5cad41988c6bd6c481808101afe78bf5efee1cac5973f11fe3da3f3b"
+                            },
+                            {
+                              "occurrenceRef": "3a36fb562c29142fb33284a269f240e5c17248551bc290ff9fd2cfd2d03dfa18"
+                            },
+                            {
+                              "occurrenceRef": "cc4e35a22bd149c1f80923f5aba448fd61da3321af5b25073c2a6f2ab3c78f93"
+                            },
+                            {
+                              "occurrenceRef": "7b5b5cfc5cad41988c6bd6c481808101afe78bf5efee1cac5973f11fe3da3f3b"
+                            },
+                            {
+                              "occurrenceRef": "7b5b5cfc5cad41988c6bd6c481808101afe78bf5efee1cac5973f11fe3da3f3b"
+                            },
+                            {
+                              "occurrenceRef": "7b5b5cfc5cad41988c6bd6c481808101afe78bf5efee1cac5973f11fe3da3f3b"
+                            },
+                            {
+                              "occurrenceRef": "7b5b5cfc5cad41988c6bd6c481808101afe78bf5efee1cac5973f11fe3da3f3b"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.1",
+                        "0.4"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0.4",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1.4"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060412
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 25,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060413,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "fdc33c2ce4caba3b2670055afd811542904c13ad3ab3a5a6ccde03a835653d65"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "14c6c0aa57585524ea968132fdf6a2659dab1a69f5b1f52f37a0a1289a4f5312"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.1",
+                        "1.2"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "1.2",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "2.2"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060413
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "slot": 2,
+            "stages": [
+              {
+                "eventId": 30306042,
+                "hardLevelGroup": 1,
+                "level": 85,
+                "previewMonsterIds": [
+                  3012020,
+                  3002030,
+                  3003030,
+                  3012020,
+                  100401003,
+                  100401003
+                ],
+                "stageAbilities": [
+                  "BossInfiniteWave_Ability"
+                ],
+                "stageId": 30306042,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30306042,
+                  "waves": [
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 13,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060421,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "0cfe8dda92a07bea90972ae7346adc0d92faed2b7958d9352e5e1adabc32aa93"
+                            },
+                            {
+                              "occurrenceRef": "2dcfdabfde0e7828dc08d16d95cd408ddfae8b2b0c7718953dca03025144e368"
+                            },
+                            {
+                              "occurrenceRef": "1d6ee519b6385ce632d8b94ada8d9eb7bdd55a4f1b3c4098f7a842d1ed74d188"
+                            },
+                            {
+                              "occurrenceRef": "0cfe8dda92a07bea90972ae7346adc0d92faed2b7958d9352e5e1adabc32aa93"
+                            },
+                            {
+                              "occurrenceRef": "2dcfdabfde0e7828dc08d16d95cd408ddfae8b2b0c7718953dca03025144e368"
+                            },
+                            {
+                              "occurrenceRef": "2dcfdabfde0e7828dc08d16d95cd408ddfae8b2b0c7718953dca03025144e368"
+                            },
+                            {
+                              "occurrenceRef": "2dcfdabfde0e7828dc08d16d95cd408ddfae8b2b0c7718953dca03025144e368"
+                            },
+                            {
+                              "occurrenceRef": "2dcfdabfde0e7828dc08d16d95cd408ddfae8b2b0c7718953dca03025144e368"
+                            },
+                            {
+                              "occurrenceRef": "0cfe8dda92a07bea90972ae7346adc0d92faed2b7958d9352e5e1adabc32aa93"
+                            },
+                            {
+                              "occurrenceRef": "2dcfdabfde0e7828dc08d16d95cd408ddfae8b2b0c7718953dca03025144e368"
+                            },
+                            {
+                              "occurrenceRef": "0cfe8dda92a07bea90972ae7346adc0d92faed2b7958d9352e5e1adabc32aa93"
+                            },
+                            {
+                              "occurrenceRef": "2dcfdabfde0e7828dc08d16d95cd408ddfae8b2b0c7718953dca03025144e368"
+                            },
+                            {
+                              "occurrenceRef": "2dcfdabfde0e7828dc08d16d95cd408ddfae8b2b0c7718953dca03025144e368"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0",
+                        "0"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060421
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 14,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060422,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "d0fb1d49d7724ea24d960def04cff42a70208e6a1f43a97eccad86c2e8b526ac"
+                            },
+                            {
+                              "occurrenceRef": "91ea1fe8db760a0b880899cd59848cd47c76d0b8984498f6507c52dedb02e9ef"
+                            },
+                            {
+                              "occurrenceRef": "3a36fb562c29142fb33284a269f240e5c17248551bc290ff9fd2cfd2d03dfa18"
+                            },
+                            {
+                              "occurrenceRef": "d0fb1d49d7724ea24d960def04cff42a70208e6a1f43a97eccad86c2e8b526ac"
+                            },
+                            {
+                              "occurrenceRef": "d0fb1d49d7724ea24d960def04cff42a70208e6a1f43a97eccad86c2e8b526ac"
+                            },
+                            {
+                              "occurrenceRef": "d0fb1d49d7724ea24d960def04cff42a70208e6a1f43a97eccad86c2e8b526ac"
+                            },
+                            {
+                              "occurrenceRef": "d0fb1d49d7724ea24d960def04cff42a70208e6a1f43a97eccad86c2e8b526ac"
+                            },
+                            {
+                              "occurrenceRef": "d0fb1d49d7724ea24d960def04cff42a70208e6a1f43a97eccad86c2e8b526ac"
+                            },
+                            {
+                              "occurrenceRef": "3a36fb562c29142fb33284a269f240e5c17248551bc290ff9fd2cfd2d03dfa18"
+                            },
+                            {
+                              "occurrenceRef": "d0fb1d49d7724ea24d960def04cff42a70208e6a1f43a97eccad86c2e8b526ac"
+                            },
+                            {
+                              "occurrenceRef": "91ea1fe8db760a0b880899cd59848cd47c76d0b8984498f6507c52dedb02e9ef"
+                            },
+                            {
+                              "occurrenceRef": "91ea1fe8db760a0b880899cd59848cd47c76d0b8984498f6507c52dedb02e9ef"
+                            },
+                            {
+                              "occurrenceRef": "d0fb1d49d7724ea24d960def04cff42a70208e6a1f43a97eccad86c2e8b526ac"
+                            },
+                            {
+                              "occurrenceRef": "91ea1fe8db760a0b880899cd59848cd47c76d0b8984498f6507c52dedb02e9ef"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.1",
+                        "0.4"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "0.4",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "1.4"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060422
+                    },
+                    {
+                      "ability": "FantasticStory_Wave_Ability_0001",
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 25,
+                      "maxTeammateCount": 5,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 303060423,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "54c555f1a58891412ed72dec98bd2ccf50cab644f4c8ccc7bc2d94172192b315"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "191cc18e606131ada115648f1f73daba086eae961d39792fbf3c647e278704e6"
+                            },
+                            {
+                              "occurrenceRef": "7a6108f6d04c786258ed8902fbe53f3710308f555f4e0e8271ded881f634ad03"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [
+                        "0.1",
+                        "1.2"
+                      ],
+                      "pureFictionMechanic": {
+                        "hpModifier": {
+                          "ability": "FantasticStory_Wave_Ability_0001",
+                          "hpAddedRatio": "1.2",
+                          "paramIndex": 1,
+                          "source": "wave-ability",
+                          "status": "resolved",
+                          "totalRatio": "2.2"
+                        },
+                        "hpParentChild": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "killTransfer": {
+                          "reason": "missing-binding-key",
+                          "status": "unconfirmed"
+                        },
+                        "rounding": {
+                          "leader": "truncate",
+                          "leaderRanks": [
+                            "LittleBoss",
+                            "BigBoss"
+                          ],
+                          "ordinary": "half-up"
+                        }
+                      },
+                      "waveId": 303060423
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 20084,
+        "id": "20084",
+        "name": "欺人虚言其四",
+        "ordinal": 4,
+        "variant": "floor"
+      }
+    ],
+    "groupBaseMechanic": {
+      "display": {
+        "mechanicRef": "d320b36fa3f84f64eab9489607282f1a22d9afa86cdf5a2ff69cbde635aee716"
+      },
+      "mazeBuffId": 3031001,
+      "provenance": {
+        "field": "MazeBuffID",
+        "ownerId": 2008,
+        "table": "ChallengeStoryGroupConfig"
+      }
+    },
+    "groupId": 2008,
+    "mode": "pf",
+    "name": "欺人虚言",
+    "recommendationEligible": true,
+    "schedule": {
+      "begin": "2024-08-19 04:00:00",
+      "end": "2024-09-30 04:00:00"
+    }
+  }
+}

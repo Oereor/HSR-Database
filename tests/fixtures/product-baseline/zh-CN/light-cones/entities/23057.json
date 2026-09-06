@@ -1,0 +1,408 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>欢愉</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23057",
+    "name": "欢迎来到银河城",
+    "path": "Elation",
+    "pathName": "欢愉",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 21.6,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 52.8,
+            "perLevel": 7.92
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 47.52,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 116.16,
+            "perLevel": 7.92
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 82.08,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 200.64,
+            "perLevel": 7.92
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 285.12,
+            "perLevel": 7.92
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 369.6,
+            "perLevel": 7.92
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 185.76,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 454.08,
+            "perLevel": 7.92
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 538.56,
+            "perLevel": 7.92
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>欢愉</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23057",
+    "kind": "light-cone",
+    "name": "欢迎来到银河城",
+    "passive": {
+      "id": "23057",
+      "name": "稳赢",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的速度提高18%，造成的欢愉伤害无视目标20%的防御力。当装备者对自身单体施放终结技时，获得20点【笑点】。该效果最多触发1次，施放3次普攻后重置可触发次数。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，造成的欢愉伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者对自身单体施放终结技时，获得"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20"
+              },
+              {
+                "type": "text",
+                "value": "点【笑点】。该效果最多触发1次，施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "次普攻后重置可触发次数。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的速度提高21%，造成的欢愉伤害无视目标24%的防御力。当装备者对自身单体施放终结技时，获得25点【笑点】。该效果最多触发1次，施放3次普攻后重置可触发次数。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "，造成的欢愉伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者对自身单体施放终结技时，获得"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "25"
+              },
+              {
+                "type": "text",
+                "value": "点【笑点】。该效果最多触发1次，施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "次普攻后重置可触发次数。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的速度提高24%，造成的欢愉伤害无视目标28%的防御力。当装备者对自身单体施放终结技时，获得30点【笑点】。该效果最多触发1次，施放3次普攻后重置可触发次数。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，造成的欢愉伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者对自身单体施放终结技时，获得"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30"
+              },
+              {
+                "type": "text",
+                "value": "点【笑点】。该效果最多触发1次，施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "次普攻后重置可触发次数。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的速度提高27%，造成的欢愉伤害无视目标32%的防御力。当装备者对自身单体施放终结技时，获得35点【笑点】。该效果最多触发1次，施放3次普攻后重置可触发次数。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "，造成的欢愉伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者对自身单体施放终结技时，获得"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "35"
+              },
+              {
+                "type": "text",
+                "value": "点【笑点】。该效果最多触发1次，施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "次普攻后重置可触发次数。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的速度提高30%，造成的欢愉伤害无视目标36%的防御力。当装备者对自身单体施放终结技时，获得40点【笑点】。该效果最多触发1次，施放3次普攻后重置可触发次数。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "，造成的欢愉伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者对自身单体施放终结技时，获得"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40"
+              },
+              {
+                "type": "text",
+                "value": "点【笑点】。该效果最多触发1次，施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "次普攻后重置可触发次数。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "path": "Elation",
+    "pathName": "欢愉",
+    "rarity": 5,
+    "story": "城市上空，少女张扬的身影自传送门中脱出。\n车马洪流，人影绰绰，喧闹一如既往。\n<i>「看着确实热闹，不过——」</i>\n\n面前的屏幕亮起，人们的喜怒哀乐化成星星点点流向其中。\n<i>「连NPC的疲惫值都快登顶了…」</i>\n<i>「无聊到爆的副本，我可不玩。」</i>\n\n跟随手指划动，城市灯光忽明忽灭。\n不为人知的角落中传出一声惊呼，而后，呼声震震，响彻天际。\n<i>「所有玩家幸运值翻倍，特别天赋随机，奖励拉满…」</i>\n<i>「载入游戏成功！就现在，玩转全场！」</i>\n\n少女纵身跃下，熟悉的提示音环绕在耳畔。\n属于她的游戏时刻，已然开启。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23057",
+    "storyFallbackRendered": false
+  }
+}

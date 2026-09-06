@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "「纷争」的拱卫者，其疯狂已教那强韧的灵魂平息，它的主人从此屹立。\n如同战歌，如同北风，它的投矛从来利落：为敌人送去覆灭，为斗士送去淬炼，为挚友与救主送去光荣、敬意与决心。",
+    "id": "4014016",
+    "name": "冠军，卫城，纷争之主",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4014016",
+    "defaultMonsterRef": "b47b73e6766ea6856efc8d394590b632b6e51f8afee0da4502bf23a2c5a9a974",
+    "description": "「纷争」的拱卫者，其疯狂已教那强韧的灵魂平息，它的主人从此屹立。\n如同战歌，如同北风，它的投矛从来利落：为敌人送去覆灭，为斗士送去淬炼，为挚友与救主送去光荣、敬意与决心。",
+    "id": "4014016",
+    "kind": "enemy",
+    "monsterRefs": [
+      "b47b73e6766ea6856efc8d394590b632b6e51f8afee0da4502bf23a2c5a9a974"
+    ],
+    "name": "冠军，卫城，纷争之主",
+    "rank": "LittleBoss",
+    "templateRef": "eb96138ed9b2c4ac3f41c197a4f70b34bc95eb0cf989c957d46b8d3d71bdd2d7",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4014016",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4014016",
+    "selectableMonsterIds": [
+      "4014016"
+    ]
+  }
+}

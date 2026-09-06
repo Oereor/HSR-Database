@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "无根自开、凭空生就的幻花。幻胧托体「建木」，炼成肉身，也触及了丰饶的权柄。",
+    "id": "8012201",
+    "name": "丰饶玄莲",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8012201",
+    "defaultMonsterRef": "7492e13c13c2fc1bbd60c07f8e652e7f932e4077cde4fecbcb223243a7767ead",
+    "description": "无根自开、凭空生就的幻花。幻胧托体「建木」，炼成肉身，也触及了丰饶的权柄。",
+    "id": "8012201",
+    "kind": "enemy",
+    "monsterRefs": [
+      "7492e13c13c2fc1bbd60c07f8e652e7f932e4077cde4fecbcb223243a7767ead"
+    ],
+    "name": "丰饶玄莲",
+    "rank": "MinionLv2",
+    "templateRef": "a2933729293fabb29956680aa41a2eb251cea93caa87590cc7c6b647f0d1dea0",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8012201",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8012201",
+    "selectableMonsterIds": [
+      "8012201"
+    ]
+  }
+}

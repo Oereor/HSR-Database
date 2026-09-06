@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。天谴之矛下的歌者，唱诵着赞美战士与疯王的诗句，以神咒呼唤尼卡多利的赐福。",
+    "id": "4012040",
+    "name": "天谴歌队",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012040",
+    "defaultMonsterRef": "9ba46313c542ac7ce5f814e186fad11133cea921d047d4ed70f0d10a2b1efd84",
+    "description": "由「纷争」雕琢的泰坦眷属，流淌着尼卡多利的金血。天谴之矛下的歌者，唱诵着赞美战士与疯王的诗句，以神咒呼唤尼卡多利的赐福。",
+    "id": "4012040",
+    "kind": "enemy",
+    "monsterRefs": [
+      "9ba46313c542ac7ce5f814e186fad11133cea921d047d4ed70f0d10a2b1efd84",
+      "9bb9920f2b2556e3205d67f8d8fb61331a552e3bac75ed122b56863cbe6d8b87",
+      "dddf8b59f85247a8f14e2bb364bfcd3764cd5c651a06db6e5699a58302bfac4e",
+      "0cd3665edbabd849623c4c5b83caf8e7e0465418204859f2062b5b0dc3362b5f",
+      "14c3bb34791cac18157bebec33bbf1a1038a828986d2c8a845ca8ec4dbd0c44e"
+    ],
+    "name": "天谴歌队",
+    "rank": "MinionLv2",
+    "templateRef": "87776262b6f58bc4cd5fa58c2dde1ae4834a0d36251650d620981ba830dada9c",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012040",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012040",
+    "selectableMonsterIds": [
+      "4012040",
+      "401204001",
+      "401204002",
+      "401204003",
+      "401204004"
+    ]
+  }
+}

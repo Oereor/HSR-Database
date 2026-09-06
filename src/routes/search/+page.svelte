@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import { afterNavigate, goto } from '$app/navigation';
   import CharacterOverviewCard from '$lib/components/CharacterOverviewCard.svelte';
   import EnemyOverviewCard from '$lib/components/EnemyOverviewCard.svelte';
@@ -102,16 +103,16 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow="GLOBAL SEARCH"
-  title="全局搜索"
-  description="键入关键词以搜索角色、光锥、遗器和敌方单位等内容。"
+  eyebrow={m.search_eyebrow({}, { locale: 'zh-CN' })}
+  title={m.search_hero_title({}, { locale: 'zh-CN' })}
+  description={m.search_hero_description({}, { locale: 'zh-CN' })}
 />
 
 <div class="search-page-control">
   <SearchBar
     id="search-page-query"
-    label="搜索全部资料"
-    placeholder="搜索角色、光锥、遗器、敌方单位…"
+    label={m.search_input_label({}, { locale: 'zh-CN' })}
+    placeholder={m.search_input_placeholder({}, { locale: 'zh-CN' })}
     bind:value={draftQuery}
     onSubmit={submitSearch}
   />

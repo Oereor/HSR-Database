@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "火花直播时使用的输出端。可以在这里看到人气值、评论、打赏等重要信息。\n攻击屏幕即可参与互动环节！",
+    "id": "5012081",
+    "name": "2号输出端",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012081",
+    "defaultMonsterRef": "80aa7b8160f8d8a6dd3bc16812fec1d6c92f3c025200e0a92d9b28b6d976f667",
+    "description": "火花直播时使用的输出端。可以在这里看到人气值、评论、打赏等重要信息。\n攻击屏幕即可参与互动环节！",
+    "id": "5012081",
+    "kind": "enemy",
+    "monsterRefs": [
+      "80aa7b8160f8d8a6dd3bc16812fec1d6c92f3c025200e0a92d9b28b6d976f667",
+      "d226c42fbf0f087d7f0e520e70044c008845fa9370abc18b453300e3c9fcc604",
+      "b2a34f84836dfb8dc1de68f798a27e4c237bc86fff9ff281d2fda1b9bc9d15a3",
+      "ed8f7a6882dfbb8e574bde728db7aa9b1c16474c53c20ec7931b3d9b16d54ba7",
+      "376fd446a6a88783ef1bf4c6a0a9b2fe83a238f2db7cf2c044659b9bfd838c2a"
+    ],
+    "name": "2号输出端",
+    "rank": "MinionLv2",
+    "templateRef": "b2ccee6a06d1ee3215e1ec07cdcfce048aeaa09e401141c994b93b3419493b54",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012081",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012081",
+    "selectableMonsterIds": [
+      "5012081",
+      "501208101",
+      "501208102",
+      "501208103",
+      "501208104"
+    ]
+  }
+}

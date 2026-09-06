@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "在遥远的造物世，艾格勒打造黎明机器后，它又在刻法勒协助下创造了代表各种泰坦的奇兽。据信，月夜天马象征着它的老对手欧洛尼斯。",
+    "id": "4023021",
+    "name": "月夜天马",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4023021",
+    "defaultMonsterRef": "a2cbb65842dd51615cafd1f776b6a9bed3ddbef23136d6a61ef06cbbf866bc02",
+    "description": "在遥远的造物世，艾格勒打造黎明机器后，它又在刻法勒协助下创造了代表各种泰坦的奇兽。据信，月夜天马象征着它的老对手欧洛尼斯。",
+    "id": "4023021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "a2cbb65842dd51615cafd1f776b6a9bed3ddbef23136d6a61ef06cbbf866bc02"
+    ],
+    "name": "月夜天马",
+    "rank": "Elite",
+    "templateRef": "c5c4793e37495ef110bdee32f5cea60d1be21cdff679e89c6e4f4900fabfac1c",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4023021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4023021",
+    "selectableMonsterIds": [
+      "4023021"
+    ]
+  }
+}

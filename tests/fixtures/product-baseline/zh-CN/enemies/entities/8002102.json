@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002102",
+    "name": "扑三弟",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8002102",
+    "defaultMonsterRef": "3e4125e7c3e9d65cee201f331e615bae0dc91dcb0addead3f49e05a7b9cdb6dc",
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002102",
+    "kind": "enemy",
+    "monsterRefs": [
+      "3e4125e7c3e9d65cee201f331e615bae0dc91dcb0addead3f49e05a7b9cdb6dc"
+    ],
+    "name": "扑三弟",
+    "rank": "MinionLv2",
+    "templateRef": "fb29e60184be2d53770968eb61b114eeaa51601d0bcd31ce1e675e8fd64c4b35",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8002102",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8002102",
+    "selectableMonsterIds": [
+      "8002102"
+    ]
+  }
+}

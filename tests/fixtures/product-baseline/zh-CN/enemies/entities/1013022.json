@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为以旧世界遗留的科技拼凑制造的自动机器单元，少见的人形机械，其右臂部分统一装置着链锯，似乎曾用于采集或建造作业。\n战斗中，自动机兵「齿狼」（完整）的链锯会造成裂伤，令对手持续损失生命值。",
+    "id": "1013022",
+    "name": "自动机兵•齿狼（完整）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1013022",
+    "defaultMonsterRef": "88f6ffd2529fcd6a82fedf049e1c3aebd17c94543f74a59cfa7bee0cae0ea7ab",
+    "description": "代码受到影响后的完整投影。参照本体为以旧世界遗留的科技拼凑制造的自动机器单元，少见的人形机械，其右臂部分统一装置着链锯，似乎曾用于采集或建造作业。\n战斗中，自动机兵「齿狼」（完整）的链锯会造成裂伤，令对手持续损失生命值。",
+    "id": "1013022",
+    "kind": "enemy",
+    "monsterRefs": [
+      "88f6ffd2529fcd6a82fedf049e1c3aebd17c94543f74a59cfa7bee0cae0ea7ab"
+    ],
+    "name": "自动机兵•齿狼（完整）",
+    "rank": "Elite",
+    "templateRef": "a18a412fa81d4e1840e971c97fb550670245d4007aff983e58e974621e7b3f17",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1013022",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1013022",
+    "selectableMonsterIds": [
+      "1013022"
+    ]
+  }
+}

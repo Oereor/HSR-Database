@@ -1,0 +1,66 @@
+{
+  "catalog": {
+    "description": "《狸狸周刊》的狸猫记者。八卦新闻的一手制造者，喜欢变身的小坏蛋，偶尔也会逃班摸鱼——（自以为）在你看不见的角落里。",
+    "id": "5012110",
+    "name": "狸猫记者",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012110",
+    "defaultMonsterRef": "bab90b42c77a16866d58c3d4cddf2f824acf3078ae27637f4f6a1509fe0a02a5",
+    "description": "《狸狸周刊》的狸猫记者。八卦新闻的一手制造者，喜欢变身的小坏蛋，偶尔也会逃班摸鱼——（自以为）在你看不见的角落里。",
+    "id": "5012110",
+    "kind": "enemy",
+    "monsterRefs": [
+      "bab90b42c77a16866d58c3d4cddf2f824acf3078ae27637f4f6a1509fe0a02a5",
+      "f3b3f6d9c5449fca8f7f202f91b27a81f509925fcd77232abd98957faa2a75ee",
+      "2f7bf4796b9165d541b37147ddec35c925ff45a162e2a425a9744779cb715062",
+      "9c2ba73f256ba9c9c3b310a97ab629ce45c88eaeaf5ac85826678aa506926d2c"
+    ],
+    "name": "狸猫记者",
+    "rank": "MinionLv2",
+    "templateRef": "cb1bb5df889fef6ef5d8476ca5d1805f36cd722d8c6f0a7a8d61bfd2067e2ba3",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012110",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012110",
+    "selectableMonsterIds": [
+      "5012110",
+      "501211001",
+      "501211002",
+      "501211003"
+    ]
+  }
+}

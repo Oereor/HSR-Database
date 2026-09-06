@@ -1,0 +1,357 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>欢愉</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21065",
+    "name": "今日好手气",
+    "path": "Elation",
+    "pathName": "欢愉",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>欢愉</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21065",
+    "kind": "light-cone",
+    "name": "今日好手气",
+    "passive": {
+      "id": "21065",
+      "name": "抉择",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击率提高12%。装备者施放欢愉技时，欢愉度提高12%，该效果最多叠加2次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放欢愉技时，欢愉度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "次。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击率提高14%。装备者施放欢愉技时，欢愉度提高14%，该效果最多叠加2次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放欢愉技时，欢愉度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "次。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击率提高16%。装备者施放欢愉技时，欢愉度提高16%，该效果最多叠加2次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放欢愉技时，欢愉度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "次。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击率提高18%。装备者施放欢愉技时，欢愉度提高18%，该效果最多叠加2次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放欢愉技时，欢愉度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "次。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击率提高20%。装备者施放欢愉技时，欢愉度提高20%，该效果最多叠加2次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放欢愉技时，欢愉度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "次。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Elation",
+    "pathName": "欢愉",
+    "rarity": 4,
+    "story": "<i>「师妹，你确信无疑？」</i>\n<i>「哼，绝无错漏！」</i>\n<i>「这次的赌注可不止一瓶护手霜哦。」</i>\n<i>「如此简单的游戏…岂会有变数？」</i>\n粉发女孩转过身，拒绝再受其扰。\n\n<i>「以茶叶浮沉的迹象来看，师妹你该出那张才是。」</i>\n少女抽签，反转出示——\n<i>「呀，我的好手气来了。」</i>\n<i>「再来再来，这绝对不可能……」</i>\n……\n\n女孩忘了和师姐玩过多少占卜游戏，只记得师姐总愿意陪她重来。\n后来，女孩想要逃离命定的预言，不顾阻挠，去往了罗浮太卜司。\n初到罗浮，她忽然从卜书的夹缝中发现一枚精致的符签，熟悉的笔迹让在异乡的女孩红了眼眶：\n\n<i>「谁说命运没有第二种可能？我的转运符，送给你咯~」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21065",
+    "storyFallbackRendered": false
+  }
+}

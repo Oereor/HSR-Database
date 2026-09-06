@@ -1,0 +1,408 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>记忆</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23036",
+    "name": "将光阴织成黄金",
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 28.8,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 63.36,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 109.44,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 155.52,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 201.6,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 247.68,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 293.76,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>记忆</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23036",
+    "kind": "light-cone",
+    "name": "将光阴织成黄金",
+    "passive": {
+      "id": "23036",
+      "name": "创设",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的基础速度提高12，装备者和装备者的忆灵在攻击后使装备者获得1层【织锦】，每层【织锦】使装备者和装备者的忆灵暴击伤害提高9.0%，最多叠加6层。叠加至上限时，每层【织锦】额外使造成的普攻伤害提高9.0%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的基础速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12"
+              },
+              {
+                "type": "text",
+                "value": "，装备者和装备者的忆灵在攻击后使装备者获得1层【织锦】，每层【织锦】使装备者和装备者的忆灵暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "9.0%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "层。叠加至上限时，每层【织锦】额外使造成的普攻伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "9.0%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的基础速度提高14，装备者和装备者的忆灵在攻击后使装备者获得1层【织锦】，每层【织锦】使装备者和装备者的忆灵暴击伤害提高10.5%，最多叠加6层。叠加至上限时，每层【织锦】额外使造成的普攻伤害提高10.5%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的基础速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14"
+              },
+              {
+                "type": "text",
+                "value": "，装备者和装备者的忆灵在攻击后使装备者获得1层【织锦】，每层【织锦】使装备者和装备者的忆灵暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10.5%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "层。叠加至上限时，每层【织锦】额外使造成的普攻伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10.5%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的基础速度提高16，装备者和装备者的忆灵在攻击后使装备者获得1层【织锦】，每层【织锦】使装备者和装备者的忆灵暴击伤害提高12.0%，最多叠加6层。叠加至上限时，每层【织锦】额外使造成的普攻伤害提高12.0%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的基础速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16"
+              },
+              {
+                "type": "text",
+                "value": "，装备者和装备者的忆灵在攻击后使装备者获得1层【织锦】，每层【织锦】使装备者和装备者的忆灵暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12.0%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "层。叠加至上限时，每层【织锦】额外使造成的普攻伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12.0%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的基础速度提高18，装备者和装备者的忆灵在攻击后使装备者获得1层【织锦】，每层【织锦】使装备者和装备者的忆灵暴击伤害提高13.5%，最多叠加6层。叠加至上限时，每层【织锦】额外使造成的普攻伤害提高13.5%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的基础速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18"
+              },
+              {
+                "type": "text",
+                "value": "，装备者和装备者的忆灵在攻击后使装备者获得1层【织锦】，每层【织锦】使装备者和装备者的忆灵暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "13.5%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "层。叠加至上限时，每层【织锦】额外使造成的普攻伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "13.5%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的基础速度提高20，装备者和装备者的忆灵在攻击后使装备者获得1层【织锦】，每层【织锦】使装备者和装备者的忆灵暴击伤害提高15.0%，最多叠加6层。叠加至上限时，每层【织锦】额外使造成的普攻伤害提高15.0%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的基础速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20"
+              },
+              {
+                "type": "text",
+                "value": "，装备者和装备者的忆灵在攻击后使装备者获得1层【织锦】，每层【织锦】使装备者和装备者的忆灵暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15.0%"
+              },
+              {
+                "type": "text",
+                "value": "，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "层。叠加至上限时，每层【织锦】额外使造成的普攻伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15.0%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          2,
+          3
+        ]
+      }
+    },
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 5,
+    "story": "<i>「这一缕，是战士的牺牲。」</i>\n<i>「这一缕，是英雄的成长。」</i>\n<i>「这一缕，是城邦的繁盛。」</i>\n……\n衣匠牵丝引线，汇聚在她的指尖。\n<i>「一些英雄的轨迹，已然断裂……」</i>\n她挽起另一些金丝，接续缝补。\n<i>「一些英雄的命运，仍要向前延展……」</i>\n\n被赋予神性的织机兀自运转，衣匠们曼舞翩跹。千年时光在织机上流过，她早已习惯了如此的等待——\n\n为了那将光阴织成黄金的「灵感」。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23036",
+    "storyFallbackRendered": false
+  }
+}

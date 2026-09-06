@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   export let id: string;
   export let label: string;
   export let placeholder: string;
@@ -27,10 +28,13 @@
     <input {id} {name} bind:value {placeholder} />
     <button
       type="submit"
-      aria-label={variant === 'sidebar' ? '开始搜索' : undefined}
-      title={variant === 'sidebar' ? '搜索' : undefined}
+      aria-label={variant === 'sidebar' ? m.search_submit_aria({}, { locale: 'zh-CN' }) : undefined}
+      title={variant === 'sidebar' ? m.common_search({}, { locale: 'zh-CN' }) : undefined}
     >
-      {#if variant === 'sidebar'}<span aria-hidden="true">⌕</span>{:else}搜索{/if}
+      {#if variant === 'sidebar'}<span aria-hidden="true">⌕</span>{:else}{m.common_search(
+          {},
+          { locale: 'zh-CN' }
+        )}{/if}
     </button>
   </div>
 </form>

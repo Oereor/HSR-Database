@@ -1,0 +1,148 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：受到伤害降低8%。 4件：回合开始时，如果装备者当前生命值百分比小于等于50%，则回复等同于自身生命上限8%的生命值，并恢复5点能量。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "106",
+    "name": "戍卫风雪的铁卫",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：受到伤害降低8%。 4件：回合开始时，如果装备者当前生命值百分比小于等于50%，则回复等同于自身生命上限8%的生命值，并恢复5点能量。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "受到伤害降低8%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "受到伤害降低"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "回合开始时，如果装备者当前生命值百分比小于等于50%，则回复等同于自身生命上限8%的生命值，并恢复5点能量。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "回合开始时，如果装备者当前生命值百分比小于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "50%"
+          },
+          {
+            "type": "text",
+            "value": "，则回复等同于自身生命上限"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "的生命值，并恢复"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5"
+          },
+          {
+            "type": "text",
+            "value": "点能量。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "106",
+    "kind": "relic",
+    "name": "戍卫风雪的铁卫",
+    "pieces": [
+      {
+        "description": "经过统一改造过的覆面头盔，通过内部的填充物使头部保持温暖。",
+        "id": "31061",
+        "name": "铁卫的铸铁面盔",
+        "slot": "HEAD"
+      },
+      {
+        "description": "闪耀着银光的金属手甲，复合的机械结构深藏其中。",
+        "id": "31062",
+        "name": "铁卫的银鳞手甲",
+        "slot": "HAND"
+      },
+      {
+        "description": "熨烫妥帖的银鬃铁卫旧制军服，结实的排扣将布料压出褶痕。",
+        "id": "31063",
+        "name": "铁卫的旧制军服",
+        "slot": "BODY"
+      },
+      {
+        "description": "坚硬的白银色金属护胫，注重防护的同时，足够轻巧又保暖。",
+        "id": "31064",
+        "name": "铁卫的白银护胫",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【永冬岭】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31061"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31062"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31063"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31064"
+      }
+    ],
+    "route": "/relics/106"
+  }
+}

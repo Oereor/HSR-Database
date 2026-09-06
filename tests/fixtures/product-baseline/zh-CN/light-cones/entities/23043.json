@@ -1,0 +1,588 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23043",
+    "name": "谎言在风中飘扬",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 58.08,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 184.8,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 227.04,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23043",
+    "kind": "light-cone",
+    "name": "谎言在风中飘扬",
+    "passive": {
+      "id": "23043",
+      "name": "欺瞒",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的速度提高18%。装备者施放攻击后，有120%的基础概率使敌方每个单体目标陷入【茫然】状态，【茫然】状态下的敌方目标防御力降低16%，持续2回合，若装备者的速度大于等于170，有120%的基础概率使敌方每个单体目标陷入【失窃】状态，【失窃】状态下的敌方目标防御力降低8%，持续2回合。【茫然】或【失窃】被重复施加时，仅最新施加的生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放攻击后，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方每个单体目标陷入【茫然】状态，【茫然】状态下的敌方目标防御力降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，若装备者的速度大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "170"
+              },
+              {
+                "type": "text",
+                "value": "，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方每个单体目标陷入【失窃】状态，【失窃】状态下的敌方目标防御力降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。【茫然】或【失窃】被重复施加时，仅最新施加的生效。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的速度提高21%。装备者施放攻击后，有120%的基础概率使敌方每个单体目标陷入【茫然】状态，【茫然】状态下的敌方目标防御力降低18%，持续2回合，若装备者的速度大于等于170，有120%的基础概率使敌方每个单体目标陷入【失窃】状态，【失窃】状态下的敌方目标防御力降低9%，持续2回合。【茫然】或【失窃】被重复施加时，仅最新施加的生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放攻击后，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方每个单体目标陷入【茫然】状态，【茫然】状态下的敌方目标防御力降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，若装备者的速度大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "170"
+              },
+              {
+                "type": "text",
+                "value": "，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方每个单体目标陷入【失窃】状态，【失窃】状态下的敌方目标防御力降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "9%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。【茫然】或【失窃】被重复施加时，仅最新施加的生效。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的速度提高24%。装备者施放攻击后，有120%的基础概率使敌方每个单体目标陷入【茫然】状态，【茫然】状态下的敌方目标防御力降低20%，持续2回合，若装备者的速度大于等于170，有120%的基础概率使敌方每个单体目标陷入【失窃】状态，【失窃】状态下的敌方目标防御力降低10%，持续2回合。【茫然】或【失窃】被重复施加时，仅最新施加的生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放攻击后，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方每个单体目标陷入【茫然】状态，【茫然】状态下的敌方目标防御力降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，若装备者的速度大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "170"
+              },
+              {
+                "type": "text",
+                "value": "，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方每个单体目标陷入【失窃】状态，【失窃】状态下的敌方目标防御力降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "10%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。【茫然】或【失窃】被重复施加时，仅最新施加的生效。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的速度提高27%。装备者施放攻击后，有120%的基础概率使敌方每个单体目标陷入【茫然】状态，【茫然】状态下的敌方目标防御力降低22%，持续2回合，若装备者的速度大于等于170，有120%的基础概率使敌方每个单体目标陷入【失窃】状态，【失窃】状态下的敌方目标防御力降低11%，持续2回合。【茫然】或【失窃】被重复施加时，仅最新施加的生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放攻击后，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方每个单体目标陷入【茫然】状态，【茫然】状态下的敌方目标防御力降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "22%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，若装备者的速度大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "170"
+              },
+              {
+                "type": "text",
+                "value": "，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方每个单体目标陷入【失窃】状态，【失窃】状态下的敌方目标防御力降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "11%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。【茫然】或【失窃】被重复施加时，仅最新施加的生效。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的速度提高30%。装备者施放攻击后，有120%的基础概率使敌方每个单体目标陷入【茫然】状态，【茫然】状态下的敌方目标防御力降低24%，持续2回合，若装备者的速度大于等于170，有120%的基础概率使敌方每个单体目标陷入【失窃】状态，【失窃】状态下的敌方目标防御力降低12%，持续2回合。【茫然】或【失窃】被重复施加时，仅最新施加的生效。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放攻击后，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方每个单体目标陷入【茫然】状态，【茫然】状态下的敌方目标防御力降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合，若装备者的速度大于等于"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "170"
+              },
+              {
+                "type": "text",
+                "value": "，有"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "的基础概率使敌方每个单体目标陷入【失窃】状态，【失窃】状态下的敌方目标防御力降低"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "回合。【茫然】或【失窃】被重复施加时，仅最新施加的生效。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          2,
+          5
+        ]
+      }
+    },
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 5,
+    "story": "猫耳少女于屋顶舒展身姿，滑入夜色。\n于那沉寂千年的宝库，少女轻盈地穿梭，将珍宝纳入怀中，又无声无息地逃离。\n<i>「愚蠢的命运，可追不上我！」</i>\n\n废墟中的风裹挟着荒野的味道，吹动少女的兜帽。\n枕着冰凉的石块，她咽下粗粝的干粮，抛逗着指尖的金币。\n\n远方细微的声响落入她的双耳，在那黎明照耀的圣城，熙熙攘攘的人群仍在享受欢宴与温暖。\n<i>「还有多久…一年，还是一万年？」</i>\n\n她伸个懒腰，将不安的思绪抛在身后。\n<i>「呵，赛法利娅总会笑到最后！」</i>\n\n金色的闪电划过天空，少女的宣言仍在风中飘扬\n——一如千年前的模样。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23043",
+    "storyFallbackRendered": false
+  }
+}

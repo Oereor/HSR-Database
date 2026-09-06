@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "融合神游离的单眼。不具有成像能力，主要功能是辅助主眼极化天气。",
+    "id": "4012091",
+    "name": "百眼之末",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012091",
+    "defaultMonsterRef": "49c933ade7913cf35123626f4a195aa46c98a8688ebb1710325b19a0f5313fa2",
+    "description": "融合神游离的单眼。不具有成像能力，主要功能是辅助主眼极化天气。",
+    "id": "4012091",
+    "kind": "enemy",
+    "monsterRefs": [
+      "49c933ade7913cf35123626f4a195aa46c98a8688ebb1710325b19a0f5313fa2",
+      "9fa9d6c04adeab748f67ed273e9c99a0642d2da6886f688811aabd9ebe258621"
+    ],
+    "name": "百眼之末",
+    "rank": "MinionLv2",
+    "templateRef": "3a4c2d07c17cb60a65fd8fc3924353224081d05d9fe4a81e5383f1f6fd71186e",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012091",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012091",
+    "selectableMonsterIds": [
+      "4012091",
+      "401209101"
+    ]
+  }
+}

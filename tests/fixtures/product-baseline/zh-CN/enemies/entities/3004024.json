@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "集中了所有拍摄资源，成为大咖中的大咖的主角斯科特。意识和灵魂被从者分散后，以千般面相展开了对开拓者的复仇。",
+    "id": "3004024",
+    "name": "千面斯科特（污染）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3004024",
+    "defaultMonsterRef": "74bbd60e4680a6132d97b45b111012eae5cee7339c069ea870e171c2e8c508fa",
+    "description": "集中了所有拍摄资源，成为大咖中的大咖的主角斯科特。意识和灵魂被从者分散后，以千般面相展开了对开拓者的复仇。",
+    "id": "3004024",
+    "kind": "enemy",
+    "monsterRefs": [
+      "74bbd60e4680a6132d97b45b111012eae5cee7339c069ea870e171c2e8c508fa"
+    ],
+    "name": "千面斯科特（污染）",
+    "rank": "LittleBoss",
+    "templateRef": "3bf8f0bbaffa3da0bfa97c2cbef6ca2df435414a471df223fd3be66a71d0c81f",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3004024",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3004024",
+    "selectableMonsterIds": [
+      "3004024"
+    ]
+  }
+}

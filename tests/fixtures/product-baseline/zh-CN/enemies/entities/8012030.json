@@ -1,0 +1,84 @@
+{
+  "catalog": {
+    "description": "死亡之后遭遇裂界侵蚀的躯壳残骸，其生命体征虽发生改变，但依然在执行抹消的指令。\n虚卒•抹消者会对命中的敌人添加标记，使其在攻击中受到额外的伤害。",
+    "id": "8012030",
+    "name": "虚卒•抹消者",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8012030",
+    "defaultMonsterRef": "5192f498851283a394eaff91920463fb23da42c06da3602a832f2e477050d924",
+    "description": "死亡之后遭遇裂界侵蚀的躯壳残骸，其生命体征虽发生改变，但依然在执行抹消的指令。\n虚卒•抹消者会对命中的敌人添加标记，使其在攻击中受到额外的伤害。",
+    "id": "8012030",
+    "kind": "enemy",
+    "monsterRefs": [
+      "5192f498851283a394eaff91920463fb23da42c06da3602a832f2e477050d924",
+      "475eeeb02eb1b317f32c9f74356ea6a471537df895007a6b494e44840ab24eeb",
+      "9f46c27003f9a02813330f570937186416b21946e69a179de0778e62ed1fd196",
+      "692e7f5c4c9da1660b274fdf75e07190fca2fbf072c7573e82a504a40151a3cb",
+      "8e19ff4f2d806b162b5a8c6cc37f07cdcd9138cd5058fe564f2b935efb96cf99",
+      "f785689a9513b0cc1e10360042f64e0467b4be763c3b4f0e1f495558946040e3",
+      "f569b49ec8b6160f1900ade823fc1840185d430f2741a46bad9976cf4ee1b5c2",
+      "12e53682ce914534b90f1cad5e10500503b40fc8a83d8a87e143f7c76bbc6ada",
+      "470be334f2bfe88b51ec7a58cdc6eab4e5246f290e15791f98b6a2b91201122b",
+      "5aa9199fab31d383d78c7dbb40bf0f364f7ece75b3801e6db132c57bcd782328",
+      "4a00d9cc122b06c69577427b9173249928476ed4035668c5b623c64b23bbef0e",
+      "8f3c504d35b1e7f347e8a1e3e4bb92959458351f0741d064664bbf2a2dc082ab",
+      "cdfeac2b7d46202ae8a1ae3bdf83d98d79f8b8e21c1d4ad5e3ee18dca677123f"
+    ],
+    "name": "虚卒•抹消者",
+    "rank": "MinionLv2",
+    "templateRef": "f8b88fa4874396c524df3d3322f44186ec5d5c5a6b9c0049a838079815ba574c",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8012030",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8012030",
+    "selectableMonsterIds": [
+      "8012030",
+      "801203001",
+      "801203002",
+      "801203003",
+      "801203004",
+      "801203005",
+      "801203006",
+      "801203007",
+      "801203008",
+      "801203009",
+      "801203010",
+      "801203011",
+      "801203012"
+    ]
+  }
+}

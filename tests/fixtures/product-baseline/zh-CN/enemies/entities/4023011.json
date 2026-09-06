@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "在遥远的造物世，艾格勒打造黎明机器后，它又在刻法勒协助下创造了代表各种泰坦的奇兽。如今，那些伟大巨兽的灵魂已经混沌不堪。",
+    "id": "4023011",
+    "name": "狮震八方•皎阳似火的飞翼兽",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4023011",
+    "defaultMonsterRef": "1203e21bdccd8b5b77252bf40d48122f84cf44a35c18d3bc5ca80cebc84964bd",
+    "description": "在遥远的造物世，艾格勒打造黎明机器后，它又在刻法勒协助下创造了代表各种泰坦的奇兽。如今，那些伟大巨兽的灵魂已经混沌不堪。",
+    "id": "4023011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "1203e21bdccd8b5b77252bf40d48122f84cf44a35c18d3bc5ca80cebc84964bd",
+      "284b08be91fc7c1e12af463bb4ea250d72ebb501e8724ad63f68e51fddce6919"
+    ],
+    "name": "狮震八方•皎阳似火的飞翼兽",
+    "rank": "Elite",
+    "templateRef": "b6638de455a95adee55707a2afd484f6c76ee6ec49c7f211f57d9097efb4f595",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4023011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4023011",
+    "selectableMonsterIds": [
+      "4023011",
+      "402301101"
+    ]
+  }
+}

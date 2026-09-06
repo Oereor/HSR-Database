@@ -1,0 +1,4307 @@
+{
+  "catalog": {
+    "baseName": "赛飞儿",
+    "description": "失落的盗寇之都多洛斯，三百侠盗纵情游戏，横行无忌。\n捷足的贼星赛法利娅，戏弄「诡计」火种的黄金裔，奔走吧。愿你的谎言随风同行，吹遍此世大地——\n<i>「呵，还想诓我？没门！」</i>",
+    "element": "Quantum",
+    "elementName": "量子",
+    "id": "1406",
+    "name": "赛飞儿",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "赛飞儿",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 106
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 87.12,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 69.3,
+            "perLevel": 3.465
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 126.72,
+            "perLevel": 6.336
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 121.968,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 97.02,
+            "perLevel": 3.465
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 177.408,
+            "perLevel": 6.336
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 156.816,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 124.74,
+            "perLevel": 3.465
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 228.096,
+            "perLevel": 6.336
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 191.664,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 152.46,
+            "perLevel": 3.465
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 278.784,
+            "perLevel": 6.336
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 226.512,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 180.18,
+            "perLevel": 3.465
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 329.472,
+            "perLevel": 6.336
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 261.36,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 207.9,
+            "perLevel": 3.465
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 380.16,
+            "perLevel": 6.336
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 296.208,
+            "perLevel": 4.356
+          },
+          "defence": {
+            "base": 235.62,
+            "perLevel": 3.465
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 430.848,
+            "perLevel": 6.336
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "失落的盗寇之都多洛斯，三百侠盗纵情游戏，横行无忌。\n捷足的贼星赛法利娅，戏弄「诡计」火种的黄金裔，奔走吧。愿你的谎言随风同行，吹遍此世大地——\n<i>「呵，还想诓我？没门！」</i>",
+    "element": "Quantum",
+    "elementName": "量子",
+    "equipmentRecommendation": {
+      "avatarId": "1406",
+      "cavernSetIds": [
+        "117",
+        "108",
+        "114"
+      ],
+      "lightConeIds": [
+        "23043",
+        "21015"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "QuantumAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "317",
+        "302",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "SpeedDelta",
+        "AttackAddedRatio",
+        "CriticalDamageBase",
+        "CriticalChanceBase"
+      ]
+    },
+    "fullName": "赛飞儿",
+    "id": "1406",
+    "kind": "character",
+    "name": "赛飞儿",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "赛飞儿记录的伤害值为原记录值的<unbreak>150%</unbreak>。施放天赋的<u>追加攻击</u>时，赛飞儿的攻击力提高<unbreak>80%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--140601",
+            "id": "140601",
+            "name": "察言观色看笑脸",
+            "rank": 1
+          },
+          {
+            "description": "赛飞儿击中敌方目标时，有<unbreak>120%</unbreak>的<u>基础概率</u>使其受到的伤害提高<unbreak>30%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "rank--140602",
+            "id": "140602",
+            "name": "焦头烂额顺手牵",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--140603",
+            "id": "140603",
+            "name": "无中生有难分辨",
+            "rank": 3
+          },
+          {
+            "description": "【老主顾】受到我方目标攻击后，赛飞儿对其造成等同于赛飞儿<unbreak>50%</unbreak>攻击力的量子属性<u>附加伤害</u>。",
+            "extraEffects": [
+              {
+                "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000005",
+                "name": "附加伤害"
+              }
+            ],
+            "iconKey": "rank--140604",
+            "id": "140604",
+            "name": "东窗事发一溜烟",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--140605",
+            "id": "140605",
+            "name": "狡兔三窟轻如燕",
+            "rank": 5
+          },
+          {
+            "description": "赛飞儿天赋的<u>追加攻击</u>造成的伤害提高<unbreak>350%</unbreak>，记录时额外记录该攻击造成的非溢出伤害的<unbreak>16%</unbreak>。施放终结技清空记录值后，返还本次清除记录值的<unbreak>20%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--140606",
+            "id": "140606",
+            "name": "大盗无名天地间",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 130
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1406001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1406001",
+                "variantIds": [
+                  "140601"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140601",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿50%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿60%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿70%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿80%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿90%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿100%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿110%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿120%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿130%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿140%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "呀，漏网之鱼",
+                "progressionId": "1406001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1406002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1406002",
+                "variantIds": [
+                  "140602"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140602",
+                "levels": [
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿100%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿50%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿110%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿55%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿120%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿60%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿130%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿65%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿140%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿70%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿150%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿75%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿163%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿81%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "163%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿175%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿88%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿188%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿94%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿200%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿100%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿210%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿105%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿220%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿110%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿230%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿115%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿240%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿120%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "有120%的基础概率使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低10%，使赛飞儿的攻击力提高30%，持续2回合，并对指定敌方单体造成等同于赛飞儿250%攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿125%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使指定敌方单体及其相邻目标陷入虚弱状态，造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，使赛飞儿的攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，并对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，对相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "嘿，空手套白银",
+                "progressionId": "1406002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1406003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1406003",
+                "variantIds": [
+                  "140603"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "不受任何效果所影响的无属性伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000017",
+                      "name": "真实伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    },
+                    {
+                      "type": "blast",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "140603",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿60%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿20%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿66%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿22%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿72%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿24%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿78%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿26%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿84%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿28%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿90%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿30%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿98%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿33%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿105%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿35%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿113%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿38%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿120%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿40%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿126%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿42%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿132%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿44%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿138%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿46%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿144%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿48%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于赛飞儿150%攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值25%的真实伤害，并对指定敌方单体及其相邻目标造成等同于赛飞儿50%攻击力的量子属性伤害和总计等同于当前天赋记录值75%的真实伤害，该真实伤害由所有技能目标均分。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。之后，对指定敌方单体造成等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对指定敌方单体及其相邻目标造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害和总计等同于当前天赋记录值"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "由所有技能目标均分。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "猫咪怪盗，敬上！",
+                "progressionId": "1406003",
+                "scalingParamIndexes": [
+                  0,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1406004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1406004",
+                "variantIds": [
+                  "140604"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    },
+                    {
+                      "description": "不受任何效果所影响的无属性伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000017",
+                      "name": "真实伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "140604",
+                "levels": [
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿75%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿83%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "83%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿90%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿98%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿105%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿113%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿122%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿131%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿141%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "141%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿150%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿158%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "158%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿165%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿173%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿180%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动追加攻击，造成等同于赛飞儿188%攻击力的量子属性伤害。该效果每回合最多触发1次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非真实伤害的12%，不记录溢出伤害，施放终结技后清空记录值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "场上不存在陷入【老主顾】状态的敌方目标时，赛飞儿立即使当前场上生命上限最高的敌方单体目标成为【老主顾】。施放战技和终结技时，使主目标成为【老主顾】。【老主顾】状态仅对最新被施加的目标生效。\n【老主顾】受到我方其他目标攻击后，赛飞儿立即对【老主顾】发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成等同于赛飞儿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "188%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。该效果每回合最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次，赛飞儿回合开始时重置可触发次数。\n赛飞儿会记录我方目标对【老主顾】造成的非"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "真实伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，不记录溢出伤害，施放终结技后清空记录值。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "热情好客的多洛斯人",
+                "progressionId": "1406004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1406007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1406007",
+                "variantIds": [
+                  "140607"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "140607",
+                "levels": [
+                  {
+                    "description": "获得【扎格列斯的祝福】，持续15秒，期间赛飞儿不会被敌人发现，移动速度提高50%，靠近大地图/模拟宇宙/差分宇宙中的敌人时，可以立即获取随机消耗品，每个地球日内最多获取50次。\n持有【扎格列斯的祝福】期间进入战斗时，对敌方全体造成等同于赛飞儿100%攻击力的量子属性伤害，赛飞儿因该次伤害获得的记录值提高200%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "获得【扎格列斯的祝福】，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒，期间赛飞儿不会被敌人发现，移动速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，靠近大地图/模拟宇宙/差分宇宙中的敌人时，可以立即获取随机消耗品，每个地球日内最多获取"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。\n持有【扎格列斯的祝福】期间进入战斗时，对敌方全体造成等同于赛飞儿"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，赛飞儿因该次伤害获得的记录值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "穿靴子的猫",
+                "progressionId": "1406007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "赛飞儿的速度大于等于<unbreak>140</unbreak>/<unbreak>170</unbreak>时，暴击率提高<unbreak>25%</unbreak>/<unbreak>50%</unbreak>，获得的记录值提高<unbreak>50%</unbreak>/<unbreak>100%</unbreak>。",
+            "iconKey": "skill-tree--1406101",
+            "id": "1406101",
+            "name": "神行宝鞋",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "赛飞儿会记录我方目标对【老主顾】以外的敌方目标造成的非<u>真实伤害</u>的<unbreak>8%</unbreak>，不记录溢出伤害。",
+            "extraEffects": [
+              {
+                "description": "不受任何效果所影响的无属性伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000017",
+                "name": "真实伤害"
+              }
+            ],
+            "iconKey": "skill-tree--1406102",
+            "id": "1406102",
+            "name": "三百侠盗",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "天赋的<u>追加攻击</u>造成的暴击伤害提高<unbreak>100%</unbreak>。赛飞儿在场时，敌方全体目标受到的伤害提高<unbreak>40%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "skill-tree--1406103",
+            "id": "1406103",
+            "name": "偷天换日",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1406201",
+            "name": "速度强化",
+            "prerequisiteIds": [],
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "量子属性伤害提高3.2%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1406202",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1406101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1406203",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1406202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果命中提高4.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1406204",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1406203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1406205",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1406102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "量子属性伤害提高4.8%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1406206",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1406205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1406207",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1406206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果命中提高6.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1406208",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1406103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "量子属性伤害提高6.4%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1406209",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1406103"
+            ],
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "速度提高4",
+            "iconKey": "property--SpeedDelta",
+            "id": "1406210",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1406201"
+            ],
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1406001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140601",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1406002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140602",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1406003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140603",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1406004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140604",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1406007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140607",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1406",
+    "subtitleRendered": false
+  }
+}

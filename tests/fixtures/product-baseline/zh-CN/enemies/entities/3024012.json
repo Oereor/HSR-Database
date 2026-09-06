@@ -1,0 +1,70 @@
+{
+  "catalog": {
+    "description": "「纯美骑士团」的古典骑士，虔诚地仰慕着已失踪的「纯美」星神伊德莉拉。\n为人正直、光明磊落，于宇宙中漫游，宣扬伊德莉拉美名。",
+    "id": "3024012",
+    "name": "银枝",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3024012",
+    "defaultMonsterRef": "12a5b1f6655f4295641f89830a8f850562967826526d82f5ff0bcf69833d581d",
+    "description": "「纯美骑士团」的古典骑士，虔诚地仰慕着已失踪的「纯美」星神伊德莉拉。\n为人正直、光明磊落，于宇宙中漫游，宣扬伊德莉拉美名。",
+    "id": "3024012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "12a5b1f6655f4295641f89830a8f850562967826526d82f5ff0bcf69833d581d",
+      "1058957e73633a581364792392c6140b621cfbcba2966ca0a8d69277668b8eb6",
+      "4734820b2f69b9c6ffd8f180fdaf88268abc9835c911e8ff9c8b42e4302a3959",
+      "3682fa0f613721acde46656faccadca60568cea61c773d75450822254bcacabe",
+      "d72b347e6349a2638fa9f70917d1d91a6e4d05470a5ce4a8bca4a5c4ca101ad4",
+      "bbe0976181150c117d5f66ce9fdeee508960eefec525199122d70f20dc0de69e"
+    ],
+    "name": "银枝",
+    "rank": "LittleBoss",
+    "templateRef": "b59fae47a084d659a247034755f75dd39259223a847dd6c7385f35d09247d995",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3024012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3024012",
+    "selectableMonsterIds": [
+      "3024012",
+      "302401201",
+      "302401202",
+      "302401203",
+      "302401204",
+      "302401205"
+    ]
+  }
+}

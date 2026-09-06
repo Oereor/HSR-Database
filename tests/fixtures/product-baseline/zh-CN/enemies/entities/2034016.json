@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "犯尽十恶，永镇于幽狱之底的步离人首领。\n身负七百年苦狱仇恨，在脱出牢笼后，群狼之主向整个罗浮仙舟发起了挑战。但潜藏在疯狂之举的背后，似乎另有目标……",
+    "id": "2034016",
+    "name": "步离战首•呼雷",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2034016",
+    "defaultMonsterRef": "fd18decacae0a9b33454ec50c3ce593b6aa5051da555b7f1e561950ab6dc9652",
+    "description": "犯尽十恶，永镇于幽狱之底的步离人首领。\n身负七百年苦狱仇恨，在脱出牢笼后，群狼之主向整个罗浮仙舟发起了挑战。但潜藏在疯狂之举的背后，似乎另有目标……",
+    "id": "2034016",
+    "kind": "enemy",
+    "monsterRefs": [
+      "fd18decacae0a9b33454ec50c3ce593b6aa5051da555b7f1e561950ab6dc9652"
+    ],
+    "name": "步离战首•呼雷",
+    "rank": "LittleBoss",
+    "templateRef": "5650e574de9baa3650e8f8ea934f809555f0cc2a4a6f8632fdeaba05f8410124",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2034016",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2034016",
+    "selectableMonsterIds": [
+      "2034016"
+    ]
+  }
+}

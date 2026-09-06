@@ -1,0 +1,54 @@
+{
+  "catalog": {
+    "description": "受到忆域迷因污染的黑塔人偶，得益于完美的原型，即使参数错误，仍然显得如此精致实用。",
+    "id": "4043010",
+    "name": "黑塔#错误型号",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4043010",
+    "defaultMonsterRef": "28a00bd2001c2a6ab55d55e9475c061e3274ecacc2ae1b8f0ee1b548d884e294",
+    "description": "受到忆域迷因污染的黑塔人偶，得益于完美的原型，即使参数错误，仍然显得如此精致实用。",
+    "id": "4043010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "28a00bd2001c2a6ab55d55e9475c061e3274ecacc2ae1b8f0ee1b548d884e294",
+      "144da714e72c52cc52793ae99094ccd215a62f601f6723ccb037a238f366eeb1"
+    ],
+    "name": "黑塔#错误型号",
+    "rank": "Elite",
+    "templateRef": "e5a832043968f0d111e9ff5e23c32a06b5cc573de7c6f379253354ab4c202e12",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4043010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4043010",
+    "selectableMonsterIds": [
+      "4043010",
+      "404301001"
+    ]
+  }
+}

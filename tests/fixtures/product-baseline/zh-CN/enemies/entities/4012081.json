@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "围绕在融合神身畔的鸦群。拥有极化天气的能力，放任不管可能会造成危险。",
+    "id": "4012081",
+    "name": "阳雷之鸦",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012081",
+    "defaultMonsterRef": "fe4ea63ef5f4124d08cb7c61f41dfb8b1af71a364558da5f39d15a60eecdff04",
+    "description": "围绕在融合神身畔的鸦群。拥有极化天气的能力，放任不管可能会造成危险。",
+    "id": "4012081",
+    "kind": "enemy",
+    "monsterRefs": [
+      "fe4ea63ef5f4124d08cb7c61f41dfb8b1af71a364558da5f39d15a60eecdff04"
+    ],
+    "name": "阳雷之鸦",
+    "rank": "MinionLv2",
+    "templateRef": "0558651ecc5da189ffd14e76d7e41ee012d1aeb8297cbc6c7f22ecbbd33ee9a0",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012081",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012081",
+    "selectableMonsterIds": [
+      "4012081"
+    ]
+  }
+}

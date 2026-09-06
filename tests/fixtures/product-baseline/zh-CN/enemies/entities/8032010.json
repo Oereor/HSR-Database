@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "「星际和平公司」的基层员工，主要负责处理上不得台面的「业务疏漏」。工资不高，只能在公司旗下的企业舰上合租房间。",
+    "id": "8032010",
+    "name": "基层员工•外勤",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8032010",
+    "defaultMonsterRef": "5080912722c177bd8042c79a7d49d7518f3b95819d70db3b2af6bbb67bfe67dd",
+    "description": "「星际和平公司」的基层员工，主要负责处理上不得台面的「业务疏漏」。工资不高，只能在公司旗下的企业舰上合租房间。",
+    "id": "8032010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "5080912722c177bd8042c79a7d49d7518f3b95819d70db3b2af6bbb67bfe67dd",
+      "ada0de0f4d8588a535d8c8ae7a4ad8bd03c3df9e3c672dd9d925034713fe80ad",
+      "1707b5dfd916329353a6c1b2bf3a3817d5b045067c760a887f9b52d23e74cf94",
+      "c77aa64cfbc98b7988a32123d78d050203aa13b8a62c48181072d886868366c7",
+      "dab656dbedf3eabeb06121c3f8cdbdbfb8a373e9d3017b50e490eea1edcaa75f",
+      "71a25ae5258a81b3804f4141a6cef03699a25c058b9b52aae553d9f8c34afc20",
+      "933238a02c869e127664850d261c191ecb8e2289ddd45c13f4ddd798180a4278",
+      "5b5c1120b8752a44b925e6d32340b1e78a555e90dc362c98671f739aeb1c5b5b",
+      "0de7ad79b2e3187e1739c4769f1ae406b810135aa8d2d0c41e6cae1b554d9db2",
+      "90e4a8b8027be58cdc3f81d18304a9645e769143645d331a3e18eb56207b3a4a",
+      "b57a07d7f1c97bf791f267e4ee666c63b8991403b593ac519fb3b1611fbc43a1",
+      "27762b28170f88981d11dd87342271807091e4046f3c5ab70171909b48bf83df",
+      "6538fa488e74bf104906fa3f9508452fdca5b351e87a96a4926e5723aca3d508"
+    ],
+    "name": "基层员工•外勤",
+    "rank": "MinionLv2",
+    "templateRef": "2c41dbb24bb13c96010fd25cefe7ec66577503990652203dc16c210af872f29e",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8032010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8032010",
+    "selectableMonsterIds": [
+      "8032010",
+      "803201002",
+      "803201003",
+      "803201004",
+      "803201005",
+      "803201006",
+      "803201007",
+      "803201008",
+      "803201009",
+      "803201010",
+      "803201011",
+      "803201012",
+      "803201013"
+    ]
+  }
+}

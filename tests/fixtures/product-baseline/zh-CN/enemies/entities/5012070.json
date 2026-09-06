@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "火花直播时使用的输出端。可以在这里看到人气值、评论、打赏等重要信息。\n攻击屏幕即可参与互动环节！",
+    "id": "5012070",
+    "name": "1号输出端",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012070",
+    "defaultMonsterRef": "2990d0afacf1743924d5d1592bdc2965d0d8050add3beff36c9b7a810a226e26",
+    "description": "火花直播时使用的输出端。可以在这里看到人气值、评论、打赏等重要信息。\n攻击屏幕即可参与互动环节！",
+    "id": "5012070",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2990d0afacf1743924d5d1592bdc2965d0d8050add3beff36c9b7a810a226e26"
+    ],
+    "name": "1号输出端",
+    "rank": "MinionLv2",
+    "templateRef": "5720dd39950f996fd95b192f96932ff498beda3554b4f0c2ab8840a8ad2f1842",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012070",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012070",
+    "selectableMonsterIds": [
+      "5012070"
+    ]
+  }
+}

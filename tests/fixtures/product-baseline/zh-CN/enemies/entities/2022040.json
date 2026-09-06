@@ -1,0 +1,74 @@
+{
+  "catalog": {
+    "description": "金缕错饰的猎犬，行动优雅迅疾。\n在「建木」上一次伫立时，仙舟人曾以奇术繁育众多异兽珍禽。娄金即为伴随军阵行进的战兽之一。",
+    "id": "2022040",
+    "name": "丰饶灵兽•娄金",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2022040",
+    "defaultMonsterRef": "73a78be7bb7162505a7487a296b9fb82a17b1fefcb1bc6d02f1b831aa6997f4c",
+    "description": "金缕错饰的猎犬，行动优雅迅疾。\n在「建木」上一次伫立时，仙舟人曾以奇术繁育众多异兽珍禽。娄金即为伴随军阵行进的战兽之一。",
+    "id": "2022040",
+    "kind": "enemy",
+    "monsterRefs": [
+      "73a78be7bb7162505a7487a296b9fb82a17b1fefcb1bc6d02f1b831aa6997f4c",
+      "233dfbe0811a571cfd74cba7fce1aa133bd0ecd4dd7b759b5d6bf3abdb3f65e1",
+      "330f50e805d573334cdb2779fb5ceb73c052a0adabf5926479b6c8ab4c82fe2b",
+      "f3cfa1dc80f5b8c8d444bd2293853d4d9dad64e25c0bc88e5957214654bb33f1",
+      "d66f1f0f52317664740089a839bae5cf601d52c2591bcd70c2fa1c7abc2587d9",
+      "a8aca295f51368019bcd4c02c0b63e2ecd22c0633b4f5e01ccd24959abd966f7",
+      "ca15bf3ac99df7b83edce1a62eaab8fa7f0dc4cfddb6e493b579dff68bcddc8c",
+      "7afd69e25700910ca6228f74582342507df196bf5c0cf44527cc8a2243a7832b"
+    ],
+    "name": "丰饶灵兽•娄金",
+    "rank": "MinionLv2",
+    "templateRef": "037bef54205c3ea7bdffa50b5c35f3470569ed43361c0a6b3293095a6f501c28",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2022040",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2022040",
+    "selectableMonsterIds": [
+      "2022040",
+      "202204001",
+      "202204002",
+      "202204003",
+      "202204004",
+      "202204005",
+      "202204006",
+      "202204007"
+    ]
+  }
+}

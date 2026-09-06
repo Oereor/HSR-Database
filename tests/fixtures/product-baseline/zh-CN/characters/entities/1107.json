@@ -1,0 +1,3307 @@
+{
+  "catalog": {
+    "baseName": "克拉拉",
+    "description": "与机械生活在一起的流浪少女。\n内向、温柔，有一颗纯粹的心。\n渴望下层区的大家都能成为彼此的「家人」。",
+    "element": "Physical",
+    "elementName": "物理",
+    "id": "1107",
+    "name": "克拉拉",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "克拉拉",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 125,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 90
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 168.96,
+            "perLevel": 8.448
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 140.448,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 236.544,
+            "perLevel": 8.448
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 180.576,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 304.128,
+            "perLevel": 8.448
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 220.704,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 371.712,
+            "perLevel": 8.448
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 260.832,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 439.296,
+            "perLevel": 8.448
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 300.96,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 506.88,
+            "perLevel": 8.448
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 341.088,
+            "perLevel": 5.016
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 574.464,
+            "perLevel": 8.448
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "与机械生活在一起的流浪少女。\n内向、温柔，有一颗纯粹的心。\n渴望下层区的大家都能成为彼此的「家人」。",
+    "element": "Physical",
+    "elementName": "物理",
+    "equipmentRecommendation": {
+      "avatarId": "1107",
+      "cavernSetIds": [
+        "105",
+        "113",
+        "115"
+      ],
+      "lightConeIds": [
+        "23002",
+        "24000",
+        "23030"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "PhysicalAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "306",
+        "315",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "克拉拉",
+    "id": "1107",
+    "kind": "character",
+    "name": "克拉拉",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "施放战技后，不会清除敌方目标的【反击标记】。",
+            "iconKey": "rank--110701",
+            "id": "110701",
+            "name": "高大的背影",
+            "rank": 1
+          },
+          {
+            "description": "施放终结技后攻击力提高<unbreak>30%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--110702",
+            "id": "110702",
+            "name": "紧紧的拥抱",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--110703",
+            "id": "110703",
+            "name": "冰冷的钢甲",
+            "rank": 3
+          },
+          {
+            "description": "受到攻击后，克拉拉受到的伤害降低<unbreak>30%</unbreak>，效果持续到自己的下个回合开始。",
+            "iconKey": "rank--110704",
+            "id": "110704",
+            "name": "家人的温暖",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--110705",
+            "id": "110705",
+            "name": "小小的承诺",
+            "rank": 5
+          },
+          {
+            "description": "我方其他目标遭到攻击后，史瓦罗也有<unbreak>50%</unbreak>的<u>固定概率</u>触发对攻击者的<u>反击</u>，并对攻击目标添加【反击标记】。施放终结技时，额外增加<unbreak>1</unbreak>次强化反击的次数。",
+            "extraEffects": [
+              {
+                "description": "不会被任何因素影响的固定概率。",
+                "id": "30000002",
+                "name": "固定概率"
+              },
+              {
+                "description": "当目标受到攻击后自动触发的效果，对攻击者施放1次额外的攻击。\n反击也属于追加攻击。",
+                "id": "10000003",
+                "name": "反击"
+              }
+            ],
+            "iconKey": "rank--110706",
+            "id": "110706",
+            "name": "长久的陪伴",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 110
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1107001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1107001",
+                "variantIds": [
+                  "110701"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110701",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于克拉拉50%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于克拉拉60%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于克拉拉70%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于克拉拉80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于克拉拉90%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于克拉拉100%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于克拉拉110%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于克拉拉120%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于克拉拉130%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于克拉拉140%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "我也想帮上忙",
+                "progressionId": "1107001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1107002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1107002",
+                "variantIds": [
+                  "110702"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110702",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于克拉拉60%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉60%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉66%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉66%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉72%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉72%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉78%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉78%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉84%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉84%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉90%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉90%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉98%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉98%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉105%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉105%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉113%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉113%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉120%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉120%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉126%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉126%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉132%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉132%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉138%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉138%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉144%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉144%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于克拉拉150%攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉150%攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并对所有被史瓦罗标上【反击标记】的敌方目标额外造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力物理属性伤害。\n战技施放后所有【反击标记】失效。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "史瓦罗在看着你",
+                "progressionId": "1107002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1107003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1107003",
+                "variantIds": [
+                  "110703"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "当目标受到攻击后自动触发的效果，对攻击者施放1次额外的攻击。\n反击也属于追加攻击。",
+                      "id": "10000003",
+                      "name": "反击"
+                    }
+                  ]
+                },
+                "id": "110703",
+                "levels": [
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低15%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高96%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低16%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高102%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低17%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高109%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "109%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低18%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高115%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低19%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高122%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "122%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低20%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高128%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低21%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高136%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低23%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高144%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低24%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高152%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低25%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高160%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低26%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高166%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "166%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低27%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高173%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "173%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低28%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高179%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "179%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低29%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高186%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "186%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "施放终结技后克拉拉受到的伤害额外降低30%且被敌方目标攻击的概率大幅提高，持续2回合。\n同时史瓦罗的反击得到强化，当任意我方目标受到攻击后史瓦罗立即施放反击，对敌方目标造成的伤害倍率提高192%，并对其相邻目标造成相当于主目标50%的伤害。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "施放终结技后克拉拉受到的伤害额外降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "且被敌方目标攻击的概率大幅提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n同时史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "得到强化，当任意我方目标受到攻击后史瓦罗立即施放"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方目标造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并对其相邻目标造成相当于主目标"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "是约定不是命令",
+                "progressionId": "1107003",
+                "scalingParamIndexes": [
+                  1,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1107004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1107004",
+                "variantIds": [
+                  "110704"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "当目标受到攻击后自动触发的效果，对攻击者施放1次额外的攻击。\n反击也属于追加攻击。",
+                      "id": "10000003",
+                      "name": "反击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110704",
+                "levels": [
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉88%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉96%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉104%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉112%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉120%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉130%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉140%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉150%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉160%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉168%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉176%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "176%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉184%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "184%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉192%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低10%。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的反击，对其造成等同于克拉拉200%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。攻击克拉拉的敌方目标会被史瓦罗标上【反击标记】，并遭到史瓦罗的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "反击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对其造成等同于克拉拉"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "因为我们是家人",
+                "progressionId": "1107004",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1107007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1107007",
+                "variantIds": [
+                  "110707"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "110707",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后克拉拉受到敌方攻击的概率提高，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后克拉拉受到敌方攻击的概率提高，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "胜利的小小代价",
+                "progressionId": "1107007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "受到攻击时有<unbreak>35%</unbreak>的<u>固定概率</u>解除自身1个<u>负面效果</u>。",
+            "extraEffects": [
+              {
+                "description": "不会被任何因素影响的固定概率。",
+                "id": "30000002",
+                "name": "固定概率"
+              },
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "skill-tree--1107101",
+            "id": "1107101",
+            "name": "家人",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "抵抗<u>控制类负面状态</u>的概率提高<unbreak>35%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                "id": "10000011",
+                "name": "控制类负面状态"
+              }
+            ],
+            "iconKey": "skill-tree--1107102",
+            "id": "1107102",
+            "name": "守护",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "史瓦罗的<u>反击</u>造成的伤害提高<unbreak>30%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "当目标受到攻击后自动触发的效果，对攻击者施放1次额外的攻击。\n反击也属于追加攻击。",
+                "id": "10000003",
+                "name": "反击"
+              }
+            ],
+            "iconKey": "skill-tree--1107103",
+            "id": "1107103",
+            "name": "复仇",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1107201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "物理伤害提高3.2%",
+            "iconKey": "property--PhysicalAddedRatio",
+            "id": "1107202",
+            "name": "伤害强化•物理",
+            "prerequisiteIds": [
+              "1107101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "PhysicalAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1107203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1107202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1107204",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1107203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1107205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1107102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "物理伤害提高4.8%",
+            "iconKey": "property--PhysicalAddedRatio",
+            "id": "1107206",
+            "name": "伤害强化•物理",
+            "prerequisiteIds": [
+              "1107205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "PhysicalAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1107207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1107206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1107208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1107103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "物理伤害提高6.4%",
+            "iconKey": "property--PhysicalAddedRatio",
+            "id": "1107209",
+            "name": "伤害强化•物理",
+            "prerequisiteIds": [
+              "1107208"
+            ],
+            "propertyType": "PhysicalAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1107210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1107208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1107001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110701",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1107002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110702",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1107003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110703",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1107004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110704",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1107007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110707",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1107",
+    "subtitleRendered": false
+  }
+}

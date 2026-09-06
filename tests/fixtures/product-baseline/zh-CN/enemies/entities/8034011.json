@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为星际和平公司「战略投资部」的高级干部，「石心十人」之一。借由基石分得「存护」令使的权能，以身作骰，置之死地而后生。",
+    "id": "8034011",
+    "name": "「石心十人」诡弈砂金（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8034011",
+    "defaultMonsterRef": "1737420aaf6ced1f6ebdc81e5d3cbb86ffab0c3d8b2943e75d8c14cdb1bc2878",
+    "description": "代码受到影响后的完整投影。参照本体为星际和平公司「战略投资部」的高级干部，「石心十人」之一。借由基石分得「存护」令使的权能，以身作骰，置之死地而后生。",
+    "id": "8034011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "1737420aaf6ced1f6ebdc81e5d3cbb86ffab0c3d8b2943e75d8c14cdb1bc2878"
+    ],
+    "name": "「石心十人」诡弈砂金（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "a274d0d7b88fa8851f69880aa603e7af3fd98600bf69d2f441c8cbb2a2d09884",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8034011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8034011",
+    "selectableMonsterIds": [
+      "8034011"
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "曾支撑融合神单眼的骨骼。被黑潮裹挟后，继承了极化天气的能力。",
+    "id": "4012093",
+    "name": "干涸的泪骨",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012093",
+    "defaultMonsterRef": "144bf67988b31c304707152e52d9dcf2a3504a777a7fe28348a2e59643ffc7f3",
+    "description": "曾支撑融合神单眼的骨骼。被黑潮裹挟后，继承了极化天气的能力。",
+    "id": "4012093",
+    "kind": "enemy",
+    "monsterRefs": [
+      "144bf67988b31c304707152e52d9dcf2a3504a777a7fe28348a2e59643ffc7f3"
+    ],
+    "name": "干涸的泪骨",
+    "rank": "MinionLv2",
+    "templateRef": "38f6dc33b465de74d0733761fc157fd3b62133fdf7bc2ca51bdd455c6ad09c82",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012093",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012093",
+    "selectableMonsterIds": [
+      "4012093"
+    ]
+  }
+}

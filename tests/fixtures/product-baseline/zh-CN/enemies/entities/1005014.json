@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "受「星核」漫溢的裂界能量同化之后，大守护者幻化为操控虚数能量的歌者，亦是祂所承诺的「新世界」的代言人。",
+    "id": "1005014",
+    "name": "无望冽风的幻灭者•虚妄之母",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1005014",
+    "defaultMonsterRef": "75e8ea127b9a6346e1aec69bd2243efac7992b12b68b075dbe697a020cf62a20",
+    "description": "受「星核」漫溢的裂界能量同化之后，大守护者幻化为操控虚数能量的歌者，亦是祂所承诺的「新世界」的代言人。",
+    "id": "1005014",
+    "kind": "enemy",
+    "monsterRefs": [
+      "75e8ea127b9a6346e1aec69bd2243efac7992b12b68b075dbe697a020cf62a20",
+      "47ad50179e46ea2a59bae49ea1d111837c98248b58f37518da8c7a458319f865",
+      "6467d0a9b6a2b1eed4fab42178479c1a63d0971d2c113dcf78138fca05e4e714",
+      "6cf531f5f0ca1f1fe16e085fb640f8d78556460b385c2616e1d560ac4634cbca",
+      "852b472c41c321c8742068cfefe014290110265da82eea1ebfde11e40327298a"
+    ],
+    "name": "无望冽风的幻灭者•虚妄之母",
+    "rank": "BigBoss",
+    "templateRef": "26fbb97ab2a6f6d51339f3e26815846e67476df60e2620f207f0b46a5c632a85",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1005014",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1005014",
+    "selectableMonsterIds": [
+      "1005014",
+      "100501401",
+      "100501402",
+      "100501403",
+      "100501404"
+    ]
+  }
+}

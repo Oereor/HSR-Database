@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "蕴含特定认知的实体，由忆域中的潜意识碎片堆积而成。\n生命通过镜像认知世界，建构自我的认知。无形的模因在镜中倒映，留下千变万化的迷影。",
+    "id": "3012010",
+    "name": "忆域迷因「何物藏于镜中」",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3012010",
+    "defaultMonsterRef": "8abdc0831529176942fa2ed3df9d875a00b2bcce0371d8c62658eb7086f3e23a",
+    "description": "蕴含特定认知的实体，由忆域中的潜意识碎片堆积而成。\n生命通过镜像认知世界，建构自我的认知。无形的模因在镜中倒映，留下千变万化的迷影。",
+    "id": "3012010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "8abdc0831529176942fa2ed3df9d875a00b2bcce0371d8c62658eb7086f3e23a",
+      "bdee6dd2db56648b63301b511fbbe03c3ec2611966b0bbc0ae6db3570b1d915c"
+    ],
+    "name": "忆域迷因「何物藏于镜中」",
+    "rank": "MinionLv2",
+    "templateRef": "daf90dd436e6ea5d6f881b0f12e43a5ac74752949fa16fefdb385087780c90aa",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3012010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3012010",
+    "selectableMonsterIds": [
+      "3012010",
+      "301201001"
+    ]
+  }
+}

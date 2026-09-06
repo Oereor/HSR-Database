@@ -1,0 +1,74 @@
+{
+  "catalog": {
+    "description": "身披烟雾的奔狼，行动飘忽不定。\n在「建木」上一次伫立时，仙舟人曾以奇术繁育众多异兽珍禽。奎木即为伴随军阵行进的战兽之一。",
+    "id": "2022050",
+    "name": "丰饶灵兽•奎木",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2022050",
+    "defaultMonsterRef": "e4ac47d5708b8a1656ce2f2217e02f20804d2a3fec148e0e1edd4d343c367e5b",
+    "description": "身披烟雾的奔狼，行动飘忽不定。\n在「建木」上一次伫立时，仙舟人曾以奇术繁育众多异兽珍禽。奎木即为伴随军阵行进的战兽之一。",
+    "id": "2022050",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e4ac47d5708b8a1656ce2f2217e02f20804d2a3fec148e0e1edd4d343c367e5b",
+      "ab4d8ff14bde81c75cb017bce81a330a64ebf9caad12a02b6dc382dd50c95309",
+      "2e10d587b2741869fc2f3dff201967a40f474b3ad4785d8eb73d2336283b959a",
+      "7bc16f0f149584a62686731d4f46f30fbe8cb3ae3a54256b23fb7b3756ae83e3",
+      "05666cf0dff057c9622729945a5649a9e8625a79581de8deaa47cd258cdfe974",
+      "33b482387af6ff70f3ffde3e58a6c2e85346708b5885c1528075c081dc91fa98",
+      "aed22973a7872dd9461543d356cc937118333be295b1baa2ff5d33b9e42e0d1e",
+      "1705c63378560fa20be82dfbf2e7cf962374c1dd5d2e63343543b9b928e172b1"
+    ],
+    "name": "丰饶灵兽•奎木",
+    "rank": "MinionLv2",
+    "templateRef": "e495b5464aa7ece5878588931d567262e8fa97b744f81de34954ea7f75015faa",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2022050",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2022050",
+    "selectableMonsterIds": [
+      "2022050",
+      "202205001",
+      "202205002",
+      "202205003",
+      "202205004",
+      "202205005",
+      "202205006",
+      "202205008"
+    ]
+  }
+}

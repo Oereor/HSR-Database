@@ -1,0 +1,54 @@
+{
+  "catalog": {
+    "description": "千星城随处可见的量产型安保机器人，负责维持和平稳定。\n冷酷无情的正义机器，执法有温度、出拳有力度。",
+    "id": "8032040",
+    "name": "千星戍卫",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8032040",
+    "defaultMonsterRef": "df24881bb722a244e99167c3bc2e5f0e952d18544dc160ff671d143df30052bd",
+    "description": "千星城随处可见的量产型安保机器人，负责维持和平稳定。\n冷酷无情的正义机器，执法有温度、出拳有力度。",
+    "id": "8032040",
+    "kind": "enemy",
+    "monsterRefs": [
+      "df24881bb722a244e99167c3bc2e5f0e952d18544dc160ff671d143df30052bd",
+      "879cc42269029f96d6857fd40b9ec3d05195df54ab034dc7bfe853f9ab793ce3"
+    ],
+    "name": "千星戍卫",
+    "rank": "MinionLv2",
+    "templateRef": "ad558f2e428076b7a473dd82f6fd9fdad099c9f8206a77dae4d9706475f046e7",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8032040",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8032040",
+    "selectableMonsterIds": [
+      "8032040",
+      "803204001"
+    ]
+  }
+}

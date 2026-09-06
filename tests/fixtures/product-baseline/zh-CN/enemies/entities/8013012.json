@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "「反物质军团」利用「战争熔炉」将战士与古兽的残片融合重铸后的产物。\n 虽数量相对稀少，但兼具战士的智能与古兽的力量与机动性，其嘶鸣能够将大量虚卒召唤而来。",
+    "id": "8013012",
+    "name": "虚卒•践踏者",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8013012",
+    "defaultMonsterRef": "6446691e720eea315defaf065b63b9a5c047658328aed85bf967dadef3a34a54",
+    "description": "「反物质军团」利用「战争熔炉」将战士与古兽的残片融合重铸后的产物。\n 虽数量相对稀少，但兼具战士的智能与古兽的力量与机动性，其嘶鸣能够将大量虚卒召唤而来。",
+    "id": "8013012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "6446691e720eea315defaf065b63b9a5c047658328aed85bf967dadef3a34a54"
+    ],
+    "name": "虚卒•践踏者",
+    "rank": "Elite",
+    "templateRef": "2ab8504bc9563bcfdb8faff5c840ce3aa473a2e09a08f3a0ff4c4b47abb13402",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8013012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8013012",
+    "selectableMonsterIds": [
+      "8013012"
+    ]
+  }
+}

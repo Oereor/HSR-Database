@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "一切妄图逃离终局的生者，皆要面对来自冥土的追索。",
+    "id": "4012072",
+    "name": "哀悯长臂",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012072",
+    "defaultMonsterRef": "652011ce4a5f2e025c0bfb972f5127b9e69234ab3c4997e448cef52310c8ad50",
+    "description": "一切妄图逃离终局的生者，皆要面对来自冥土的追索。",
+    "id": "4012072",
+    "kind": "enemy",
+    "monsterRefs": [
+      "652011ce4a5f2e025c0bfb972f5127b9e69234ab3c4997e448cef52310c8ad50"
+    ],
+    "name": "哀悯长臂",
+    "rank": "MinionLv2",
+    "templateRef": "d264efb83ffa940b13fa568cdfc620dfc5dddc76a8c28eee5f0deb49eabd71a9",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012072",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012072",
+    "selectableMonsterIds": [
+      "4012072"
+    ]
+  }
+}

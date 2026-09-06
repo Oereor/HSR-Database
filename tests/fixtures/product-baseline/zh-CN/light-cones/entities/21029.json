@@ -1,0 +1,261 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21029",
+    "name": "后会有期",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 15,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 33,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 129,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>虚无</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21029",
+    "kind": "light-cone",
+    "name": "后会有期",
+    "passive": {
+      "id": "21029",
+      "name": "交手如交谈",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "装备者施放普攻或战技后，对随机1个受到攻击的敌方目标造成等同于自身48%攻击力的附加伤害。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "装备者施放普攻或战技后，对随机1个受到攻击的敌方目标造成等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "48%"
+              },
+              {
+                "type": "text",
+                "value": "攻击力的附加伤害。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "装备者施放普攻或战技后，对随机1个受到攻击的敌方目标造成等同于自身60%攻击力的附加伤害。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "装备者施放普攻或战技后，对随机1个受到攻击的敌方目标造成等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "攻击力的附加伤害。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "装备者施放普攻或战技后，对随机1个受到攻击的敌方目标造成等同于自身72%攻击力的附加伤害。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "装备者施放普攻或战技后，对随机1个受到攻击的敌方目标造成等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "72%"
+              },
+              {
+                "type": "text",
+                "value": "攻击力的附加伤害。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "装备者施放普攻或战技后，对随机1个受到攻击的敌方目标造成等同于自身84%攻击力的附加伤害。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "装备者施放普攻或战技后，对随机1个受到攻击的敌方目标造成等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "84%"
+              },
+              {
+                "type": "text",
+                "value": "攻击力的附加伤害。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "装备者施放普攻或战技后，对随机1个受到攻击的敌方目标造成等同于自身96%攻击力的附加伤害。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "装备者施放普攻或战技后，对随机1个受到攻击的敌方目标造成等同于自身"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "96%"
+              },
+              {
+                "type": "text",
+                "value": "攻击力的附加伤害。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4,
+    "story": "她曾怀疑那是某种程式，不然怎会不知疲倦。\n但程式不会主动舍弃最优方案，绕过她布下的陷阱。\n\n<i>「看来我们要打一场持久战。」</i>\n她打了个哈欠。\n\n<i>「早点睡吧，有机生命应当珍惜梦境。」</i>\n周围暗了下去。\n\n她突然惊醒，但数据的残渣已被扫去，烧毁，好像一场梦\n——除了那初尝失败的滋味是如此真实。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21029",
+    "storyFallbackRendered": false
+  }
+}

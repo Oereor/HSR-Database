@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "蕴含特定认知的实体，由忆域中的潜意识碎片堆积而成。\n坚不可摧的障壁包裹起生命，阻拦异己。但在那坚硬的躯壳下，却是脆弱不堪的无名地带。",
+    "id": "3012020",
+    "name": "忆域迷因「我心支离破碎」",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3012020",
+    "defaultMonsterRef": "3f77270975ef951c81e0870517b93897206833c0ed74807424d44ba65c4e6154",
+    "description": "蕴含特定认知的实体，由忆域中的潜意识碎片堆积而成。\n坚不可摧的障壁包裹起生命，阻拦异己。但在那坚硬的躯壳下，却是脆弱不堪的无名地带。",
+    "id": "3012020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "3f77270975ef951c81e0870517b93897206833c0ed74807424d44ba65c4e6154",
+      "60b3abf2af2d29bc8a594e5b1b24b74768afd9e3b869841461fcb203baab766f",
+      "ddd129b44ee4c2771bb980edfa8e2c2a9f112bd3b1d877fe81b461febc0b3004",
+      "2777ea02ea0e7e4d72e40c7d7fd55b0f9b2a1a4965993e1d7472a7a1652fb320",
+      "8b2da3c0deb279c2ec20dd8e25be4191f9355ef5b0ec066a5ce6cd8828499bea"
+    ],
+    "name": "忆域迷因「我心支离破碎」",
+    "rank": "MinionLv2",
+    "templateRef": "2c26b4eb39756fe5a2661b8b0387b3ce1d3c4e30535bdb70223422f9f6b89493",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3012020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3012020",
+    "selectableMonsterIds": [
+      "3012020",
+      "301202001",
+      "301202002",
+      "301202003",
+      "301202004"
+    ]
+  }
+}

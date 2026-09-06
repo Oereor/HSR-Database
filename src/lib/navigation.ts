@@ -1,45 +1,46 @@
+import { m } from './paraglide/messages.js';
 export const NAVIGATION_ITEMS = [
   {
     id: 'overview',
     href: '/',
-    label: '总览',
+    label: m.navigation_overview({}, { locale: 'zh-CN' }),
     iconKey: 'overview',
-    fallback: '总'
+    fallback: m.navigation_overview_fallback({}, { locale: 'zh-CN' })
   },
   {
     id: 'characters',
     href: '/characters',
-    label: '角色',
+    label: m.navigation_characters({}, { locale: 'zh-CN' }),
     iconKey: 'characters',
-    fallback: '角'
+    fallback: m.navigation_characters_fallback({}, { locale: 'zh-CN' })
   },
   {
     id: 'light-cones',
     href: '/light-cones',
-    label: '光锥',
+    label: m.navigation_light_cones({}, { locale: 'zh-CN' }),
     iconKey: 'light-cones',
-    fallback: '锥'
+    fallback: m.navigation_light_cones_fallback({}, { locale: 'zh-CN' })
   },
   {
     id: 'relics',
     href: '/relics',
-    label: '遗器',
+    label: m.navigation_relics({}, { locale: 'zh-CN' }),
     iconKey: 'relics',
-    fallback: '遗'
+    fallback: m.navigation_relics_fallback({}, { locale: 'zh-CN' })
   },
   {
     id: 'enemies',
     href: '/enemies',
-    label: '敌方单位',
+    label: m.navigation_enemies({}, { locale: 'zh-CN' }),
     iconKey: 'enemies',
-    fallback: '敌'
+    fallback: m.navigation_enemies_fallback({}, { locale: 'zh-CN' })
   },
   {
     id: 'endgame',
     href: '/endgame',
-    label: '高难模式',
+    label: m.navigation_endgame({}, { locale: 'zh-CN' }),
     iconKey: 'endgame',
-    fallback: '难'
+    fallback: m.navigation_endgame_fallback({}, { locale: 'zh-CN' })
   }
 ] as const;
 

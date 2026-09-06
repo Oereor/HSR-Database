@@ -1,0 +1,306 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21034",
+    "name": "今日亦是和平的一日",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 15,
+            "perLevel": 2.25
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 33,
+            "perLevel": 2.25
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 57,
+            "perLevel": 2.25
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 81,
+            "perLevel": 2.25
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 105,
+            "perLevel": 2.25
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 129,
+            "perLevel": 2.25
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "defence": {
+            "base": 153,
+            "perLevel": 2.25
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21034",
+    "kind": "light-cone",
+    "name": "今日亦是和平的一日",
+    "passive": {
+      "id": "21034",
+      "name": "风雨将至",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "进入战斗后，根据装备者的能量上限，提高装备者造成的伤害：每点能量提高0.20%，最多计入160点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，根据装备者的能量上限，提高装备者造成的伤害：每点能量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "0.20%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "160"
+              },
+              {
+                "type": "text",
+                "value": "点。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "进入战斗后，根据装备者的能量上限，提高装备者造成的伤害：每点能量提高0.25%，最多计入160点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，根据装备者的能量上限，提高装备者造成的伤害：每点能量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "0.25%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "160"
+              },
+              {
+                "type": "text",
+                "value": "点。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "进入战斗后，根据装备者的能量上限，提高装备者造成的伤害：每点能量提高0.30%，最多计入160点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，根据装备者的能量上限，提高装备者造成的伤害：每点能量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "0.30%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "160"
+              },
+              {
+                "type": "text",
+                "value": "点。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "进入战斗后，根据装备者的能量上限，提高装备者造成的伤害：每点能量提高0.35%，最多计入160点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，根据装备者的能量上限，提高装备者造成的伤害：每点能量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "0.35%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "160"
+              },
+              {
+                "type": "text",
+                "value": "点。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "进入战斗后，根据装备者的能量上限，提高装备者造成的伤害：每点能量提高0.40%，最多计入160点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "进入战斗后，根据装备者的能量上限，提高装备者造成的伤害：每点能量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "0.40%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "160"
+              },
+              {
+                "type": "text",
+                "value": "点。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 4,
+    "story": "牌戏的新玩法刚有了眉头，午休又借了闲书。\n掐指一算，余下的工作慢慢做，正好能做到下班。\n她不慌不忙，躲入一隅。\n\n美好的闲散时光，绝不能被任何人打扰\n——就算是符太卜也不能。\n只是万一，要是有个万一……\n\n<i>「就把这奶糖团子给符太卜。吃了甜食，总该消气罢！」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21034",
+    "storyFallbackRendered": false
+  }
+}

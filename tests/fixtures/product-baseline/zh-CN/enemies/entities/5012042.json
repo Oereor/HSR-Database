@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "如果没有外力逼迫，很多富有才华的创作者，终其一生也憋不出一个字。助手涂鸦便是为解决这一社会问题而诞生的幻造种。\n只不过，它们时不时会采取一些过于激烈的手段，令创作者不得不出手反抗，这又演变成了全新的社会问题。\n这只助手涂鸦最擅长处理拖稿问题——你不是喜欢拖吗？那你别动弹了！",
+    "id": "5012042",
+    "name": "助手涂鸦•拖稿",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012042",
+    "defaultMonsterRef": "3de8ff545af617239aacf115ea612d7dd6bf53427529ebd7278ad36ad62bc9a0",
+    "description": "如果没有外力逼迫，很多富有才华的创作者，终其一生也憋不出一个字。助手涂鸦便是为解决这一社会问题而诞生的幻造种。\n只不过，它们时不时会采取一些过于激烈的手段，令创作者不得不出手反抗，这又演变成了全新的社会问题。\n这只助手涂鸦最擅长处理拖稿问题——你不是喜欢拖吗？那你别动弹了！",
+    "id": "5012042",
+    "kind": "enemy",
+    "monsterRefs": [
+      "3de8ff545af617239aacf115ea612d7dd6bf53427529ebd7278ad36ad62bc9a0"
+    ],
+    "name": "助手涂鸦•拖稿",
+    "rank": "MinionLv2",
+    "templateRef": "42d69a75e0f14776f8dca12a48108dbc35d2b70cfe6c3db17d27bd99965a894f",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012042",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012042",
+    "selectableMonsterIds": [
+      "5012042"
+    ]
+  }
+}

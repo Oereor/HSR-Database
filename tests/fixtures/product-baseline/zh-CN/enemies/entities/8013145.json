@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "力量本源的至极化身，它背后蕴含的能量形式并不为人知晓。\n反物质引擎会为其他敌人提供能量并强化其技能。",
+    "id": "8013145",
+    "name": "反物质引擎",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8013145",
+    "defaultMonsterRef": "89fb8f45f0c704d226f223929f1c5f428f64d2edee0ff5c002a2961d1b978493",
+    "description": "力量本源的至极化身，它背后蕴含的能量形式并不为人知晓。\n反物质引擎会为其他敌人提供能量并强化其技能。",
+    "id": "8013145",
+    "kind": "enemy",
+    "monsterRefs": [
+      "89fb8f45f0c704d226f223929f1c5f428f64d2edee0ff5c002a2961d1b978493",
+      "f3e95e14b216ebfdd5c6819cf39bab3d92e2fa9f1f318a433dfd9afe5a8b6b58",
+      "67f6e23d7b216d3a83b04e321f5a986846ba6e6917ea43d0c08fa84df58fc0df",
+      "f43d89fa5be114cee47084b5c2a1c2f506c885d9249840b554fc5babd0ebea1b",
+      "e4103aea8e279fb66b1d37ff149772048fcc77352020c2210e93931e7402f5eb"
+    ],
+    "name": "反物质引擎",
+    "rank": "Elite",
+    "templateRef": "0f33c5a5447cac179c998c3c5561201874baf5d6f2dc27746d237e52bed9843d",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8013145",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8013145",
+    "selectableMonsterIds": [
+      "8013145",
+      "801314501",
+      "801314502",
+      "801314503",
+      "801314504"
+    ]
+  }
+}

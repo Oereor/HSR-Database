@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002071",
+    "name": "丰饶扑满",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8002071",
+    "defaultMonsterRef": "6a9afeec667ac9d1e7517a4778be71ae49d13c21a8c9c8e3e09b8aeed77e26d7",
+    "description": "迷失在群星中的跨维度生物，性温，味甘，不可食用。一生中大部分时间花在进食和逃跑上。偶遇它的旅行者视之为吉兆。",
+    "id": "8002071",
+    "kind": "enemy",
+    "monsterRefs": [
+      "6a9afeec667ac9d1e7517a4778be71ae49d13c21a8c9c8e3e09b8aeed77e26d7"
+    ],
+    "name": "丰饶扑满",
+    "rank": "MinionLv2",
+    "templateRef": "ef301d3e92aefd8fb1adf53a8c02b99c3762c9c87b25d9dd0be5914d17063344",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8002071",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8002071",
+    "selectableMonsterIds": [
+      "8002071"
+    ]
+  }
+}

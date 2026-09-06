@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "在末日来临之前的最后一个黎明，明洁的朝阳也会颤抖着悄然退场。\n黎明的左手善于使用量子属性的力量，针对单个个体发起攻击。",
+    "id": "8012142",
+    "name": "黎明的左手",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8012142",
+    "defaultMonsterRef": "47c8601e91cbcc6f811e25f358d0c81a0f62c67c7160d7f5ffbef13af62f6918",
+    "description": "在末日来临之前的最后一个黎明，明洁的朝阳也会颤抖着悄然退场。\n黎明的左手善于使用量子属性的力量，针对单个个体发起攻击。",
+    "id": "8012142",
+    "kind": "enemy",
+    "monsterRefs": [
+      "47c8601e91cbcc6f811e25f358d0c81a0f62c67c7160d7f5ffbef13af62f6918"
+    ],
+    "name": "黎明的左手",
+    "rank": "MinionLv2",
+    "templateRef": "bb4e6358f42a4546679403f7361daab0a18f8a26e5e95820653c9e38b1f530d7",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8012142",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8012142",
+    "selectableMonsterIds": [
+      "8012142"
+    ]
+  }
+}

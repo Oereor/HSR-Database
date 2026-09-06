@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "天空之泰坦。融合神。被人征服，与人融合，不再宰制翁法罗斯的昼夜，却仍不改孤绝高傲的本性。\n在它眼中，破碎世界的凡俗是如此丑陋——比起由光明守护的世界，浑浑噩噩的庸人反而与黑潮更加相配。",
+    "id": "4015010",
+    "name": "至高，至阳，天空的化身",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4015010",
+    "defaultMonsterRef": "2421250b0637fa0e60b9cae5f86904fccfe533ebbc0b6c3e17adb2fa2173f074",
+    "description": "天空之泰坦。融合神。被人征服，与人融合，不再宰制翁法罗斯的昼夜，却仍不改孤绝高傲的本性。\n在它眼中，破碎世界的凡俗是如此丑陋——比起由光明守护的世界，浑浑噩噩的庸人反而与黑潮更加相配。",
+    "id": "4015010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2421250b0637fa0e60b9cae5f86904fccfe533ebbc0b6c3e17adb2fa2173f074",
+      "8b90098fc21884cbb8c763350ea827d1b6e856e2abeb44476c59cb20e8ac7d8b"
+    ],
+    "name": "至高，至阳，天空的化身",
+    "rank": "BigBoss",
+    "templateRef": "6f19584220cd46021bc894433ac11242c08c349bb90e0c533eea3192eb799ca3",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4015010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4015010",
+    "selectableMonsterIds": [
+      "4015010",
+      "401501001"
+    ]
+  }
+}

@@ -1,0 +1,312 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21030",
+    "name": "这就是我啦！",
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 16.8,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 36.96,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 63.84,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 90.72,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 117.6,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 144.48,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 171.36,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>存护</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21030",
+    "kind": "light-cone",
+    "name": "这就是我啦！",
+    "passive": {
+      "id": "21030",
+      "name": "新篇章",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者防御力提高16%。使装备者施放终结技时造成的伤害值提高，提高数值等同于装备者防御力的60%，该效果每次施放终结技时对每个敌方目标仅生效1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。使装备者施放终结技时造成的伤害值提高，提高数值等同于装备者防御力的"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果每次施放终结技时对每个敌方目标仅生效1次。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者防御力提高20%。使装备者施放终结技时造成的伤害值提高，提高数值等同于装备者防御力的75%，该效果每次施放终结技时对每个敌方目标仅生效1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。使装备者施放终结技时造成的伤害值提高，提高数值等同于装备者防御力的"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "75%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果每次施放终结技时对每个敌方目标仅生效1次。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者防御力提高24%。使装备者施放终结技时造成的伤害值提高，提高数值等同于装备者防御力的90%，该效果每次施放终结技时对每个敌方目标仅生效1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。使装备者施放终结技时造成的伤害值提高，提高数值等同于装备者防御力的"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "90%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果每次施放终结技时对每个敌方目标仅生效1次。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者防御力提高28%。使装备者施放终结技时造成的伤害值提高，提高数值等同于装备者防御力的105%，该效果每次施放终结技时对每个敌方目标仅生效1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。使装备者施放终结技时造成的伤害值提高，提高数值等同于装备者防御力的"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "105%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果每次施放终结技时对每个敌方目标仅生效1次。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者防御力提高32%。使装备者施放终结技时造成的伤害值提高，提高数值等同于装备者防御力的120%，该效果每次施放终结技时对每个敌方目标仅生效1次。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者防御力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "。使装备者施放终结技时造成的伤害值提高，提高数值等同于装备者防御力的"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "120%"
+              },
+              {
+                "type": "text",
+                "value": "，该效果每次施放终结技时对每个敌方目标仅生效1次。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Knight",
+    "pathName": "存护",
+    "rarity": 4,
+    "story": "少女穿什么都很可人，但她似乎仍不满意，身后堆叠的衣服不下十几套。\n\n<i>「今天会是最后一次么？」</i>\n\n她默默地想着，抬头看向镜中的少女，今天的她好像格外开心。\n\n<i>「好啦！这就是我啦！」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21030",
+    "storyFallbackRendered": false
+  }
+}

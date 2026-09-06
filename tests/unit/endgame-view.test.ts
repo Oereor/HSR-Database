@@ -122,6 +122,7 @@ function mocGroup(
   return {
     mode: 'moc',
     groupId,
+    recommendationEligible: options.name !== undefined,
     ...(options.name === undefined ? {} : { name: options.name }),
     ...(options.begin && options.end
       ? { schedule: { begin: options.begin, end: options.end } }

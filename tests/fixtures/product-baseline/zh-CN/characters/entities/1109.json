@@ -1,0 +1,3958 @@
+{
+  "catalog": {
+    "baseName": "虎克",
+    "description": "地底冒险团队「鼹鼠党」的老大（自封）。\n热爱自由，将生活视为一场又一场冒险。",
+    "element": "Fire",
+    "elementName": "火",
+    "id": "1109",
+    "name": "虎克",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "虎克",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 125,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 94
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 84,
+            "perLevel": 4.2
+          },
+          "defence": {
+            "base": 48,
+            "perLevel": 2.4
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 9.12
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 117.6,
+            "perLevel": 4.2
+          },
+          "defence": {
+            "base": 67.2,
+            "perLevel": 2.4
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 255.36,
+            "perLevel": 9.12
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 151.2,
+            "perLevel": 4.2
+          },
+          "defence": {
+            "base": 86.4,
+            "perLevel": 2.4
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 328.32,
+            "perLevel": 9.12
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 184.8,
+            "perLevel": 4.2
+          },
+          "defence": {
+            "base": 105.6,
+            "perLevel": 2.4
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 401.28,
+            "perLevel": 9.12
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 218.4,
+            "perLevel": 4.2
+          },
+          "defence": {
+            "base": 124.8,
+            "perLevel": 2.4
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 474.24,
+            "perLevel": 9.12
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 252,
+            "perLevel": 4.2
+          },
+          "defence": {
+            "base": 144,
+            "perLevel": 2.4
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 547.2,
+            "perLevel": 9.12
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 285.6,
+            "perLevel": 4.2
+          },
+          "defence": {
+            "base": 163.2,
+            "perLevel": 2.4
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 620.16,
+            "perLevel": 9.12
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "地底冒险团队「鼹鼠党」的老大（自封）。\n热爱自由，将生活视为一场又一场冒险。",
+    "element": "Fire",
+    "elementName": "火",
+    "equipmentRecommendation": {
+      "avatarId": "1109",
+      "cavernSetIds": [
+        "117",
+        "122",
+        "107"
+      ],
+      "lightConeIds": [
+        "21005",
+        "21026",
+        "24000"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "FireAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "301",
+        "309",
+        "305"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "虎克",
+    "id": "1109",
+    "kind": "character",
+    "name": "虎克",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "战技强化后造成的伤害提高<unbreak>20%</unbreak>。",
+            "iconKey": "rank--110901",
+            "id": "110901",
+            "name": "早睡早起很健康",
+            "rank": 1
+          },
+          {
+            "description": "战技使敌方目标陷入的灼烧状态持续时间增加<unbreak>1</unbreak>回合。",
+            "iconKey": "rank--110902",
+            "id": "110902",
+            "name": "吃好喝好长身体",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--110903",
+            "id": "110903",
+            "name": "不挑不选全都要",
+            "rank": 3
+          },
+          {
+            "description": "触发天赋时，有<unbreak>100%</unbreak><u>基础概率</u>使指定敌方目标的相邻目标也陷入等同于战技的灼烧状态。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "rank--110904",
+            "id": "110904",
+            "name": "稀里糊涂没关系",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--110905",
+            "id": "110905",
+            "name": "好事留名鼹鼠党",
+            "rank": 5
+          },
+          {
+            "description": "虎克对灼烧状态下的敌方目标造成的伤害提高<unbreak>20%</unbreak>。",
+            "iconKey": "rank--110906",
+            "id": "110906",
+            "name": "随时准备打坏人",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1109001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1109001",
+                "variantIds": [
+                  "110901"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110901",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于虎克50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克60%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克70%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克80%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克90%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克100%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克110%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克120%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克130%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克140%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "喂！小心火烛",
+                "progressionId": "1109001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1109002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1109002",
+                "variantIds": [
+                  "110902",
+                  "110909"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "110902",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于虎克120%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克25%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克132%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克28%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克144%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克30%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克156%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克33%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克168%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克35%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克180%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克39%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克195%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克44%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "195%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克210%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克50%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克225%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克57%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克240%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克65%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克252%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克68%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克264%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克72%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克276%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克75%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "276%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克288%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克78%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克300%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克81%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "嘿！记得虎克吗",
+                "progressionId": "1109002",
+                "scalingParamIndexes": [
+                  0,
+                  3
+                ],
+                "source": "avatar",
+                "type": "战技"
+              },
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110909",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于虎克140%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克40%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克25%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克154%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克44%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克28%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克168%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克48%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克30%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克182%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克52%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克33%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "182%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克196%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克56%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克35%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "196%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克210%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克60%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克39%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克228%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克65%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克44%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克245%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克70%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克50%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "245%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克263%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克75%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克57%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "263%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克280%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克80%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克65%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克294%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克84%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克68%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "294%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克308%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克88%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克72%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "308%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克322%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克92%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克75%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "322%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克336%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克96%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克78%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "336%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克350%攻击力的火属性伤害，同时有100%的基础概率使其陷入灼烧状态，持续2回合。此外对其相邻目标造成等同于虎克100%攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克81%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。此外对其相邻目标造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "嘿！记得虎克吗",
+                "progressionId": "1109002",
+                "scalingParamIndexes": [
+                  0,
+                  3,
+                  4
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1109003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1109003",
+                "variantIds": [
+                  "110903"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "110903",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于虎克240%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克256%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "256%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克272%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "272%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克288%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克304%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "304%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克320%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克340%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "340%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克360%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克380%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "380%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克400%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "400%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克416%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "416%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克432%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "432%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克448%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "448%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克464%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "464%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于虎克480%攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "480%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。\n施放终结技后，下一次施放的战技得到强化，强化后的战技能够同时对指定敌方单体及其相邻目标造成伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "轰！飞来焰火",
+                "progressionId": "1109003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1109004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1109004",
+                "variantIds": [
+                  "110904"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ]
+                },
+                "id": "110904",
+                "levels": [
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克50%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克55%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克60%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克65%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克70%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克75%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克81%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克88%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克94%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克100%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克105%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克110%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克115%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "115%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克120%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克125%攻击力的火属性附加伤害，并额外恢复5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "攻击处于灼烧状态的敌方目标时，追加1次等同于虎克"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并额外恢复"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "哈！火上浇油",
+                "progressionId": "1109004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1109007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1109007",
+                "variantIds": [
+                  "110907"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "110907",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后对敌方随机单体造成等同于虎克50%攻击力的火属性伤害，同时有100%的基础概率使敌方每个单体目标陷入灼烧状态，持续3回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克50%攻击力的火属性持续伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后对敌方随机单体造成等同于虎克"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，同时有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入灼烧状态，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n灼烧状态下，敌方目标每回合开始时受到等同于虎克"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "哎！瞧这一团糟",
+                "progressionId": "1109007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "触发天赋时，回复等同于虎克生命上限<unbreak>5%</unbreak>的生命值。",
+            "iconKey": "skill-tree--1109101",
+            "id": "1109101",
+            "name": "童真",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "抵抗<u>控制类负面状态</u>的概率提高<unbreak>35%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "冻结，纠缠，禁锢，支配，怒噪，强烈震荡，异梦，缠禁，恐惧，行动锁定，幸福傀儡，怨火灼身。",
+                "id": "10000011",
+                "name": "控制类负面状态"
+              }
+            ],
+            "iconKey": "skill-tree--1109102",
+            "id": "1109102",
+            "name": "无邪",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放终结技后，虎克的<u>行动提前</u><unbreak>20%</unbreak>并额外恢复<unbreak>5</unbreak>点能量。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--1109103",
+            "id": "1109103",
+            "name": "玩火",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1109201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1109202",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1109101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1109203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1109202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "暴击伤害提高5.3%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1109204",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1109203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1109205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1109102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1109206",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1109205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1109207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1109206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "暴击伤害提高8.0%",
+            "iconKey": "property--CriticalDamageBase",
+            "id": "1109208",
+            "name": "暴击伤害强化",
+            "prerequisiteIds": [
+              "1109103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "CriticalDamageBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1109209",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1109208"
+            ],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1109210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1109208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1109001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110901",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1109002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110902",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110909",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1109003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110903",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1109004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110904",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1109007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110907",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1109",
+    "subtitleRendered": false
+  }
+}

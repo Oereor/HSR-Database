@@ -1,0 +1,70 @@
+{
+  "catalog": {
+    "description": "「纷争」的泰坦，在疯狂中延续疯狂的战争，乃是翁法罗斯众邦挥之不去的恐惧。\n它也曾身负荣耀的威名，令众邦众神心怀敬意。而那敬畏它的城邦被踏碎，那赞颂它的诗篇被焚毁，只有恶名回荡在无光的末世，玷污全世之座背负的光辉。",
+    "id": "4014010",
+    "name": "蛮神，疯王，纷争的化身",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4014010",
+    "defaultMonsterRef": "b86b3dcb0c22c856aec2f05ca75b7ad26070e6d487a42fd572364d05e54cb461",
+    "description": "「纷争」的泰坦，在疯狂中延续疯狂的战争，乃是翁法罗斯众邦挥之不去的恐惧。\n它也曾身负荣耀的威名，令众邦众神心怀敬意。而那敬畏它的城邦被踏碎，那赞颂它的诗篇被焚毁，只有恶名回荡在无光的末世，玷污全世之座背负的光辉。",
+    "id": "4014010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "b86b3dcb0c22c856aec2f05ca75b7ad26070e6d487a42fd572364d05e54cb461",
+      "3bb0acd1062274ae22f4a4bebb403765cfc09ebd820c9e41c1de0ff4fa41d0d3",
+      "0932a0ea8225d6f0d362384f2786e307e618eefdc7e2f9201dcc4184867a8b90",
+      "830b50a4c558a7d12e69913ccddcffc8154d3b6679be52f2ab7b3e71b0d2e5a1",
+      "24b82e0683f0b86ddbbba5ebbf95148fcf8fd90f5d2d3b4a1d5c45db00b024af",
+      "619ed9d25e2aacd7c0d020759aa714062b0e1b251a9ab908401cb0d1690295bc"
+    ],
+    "name": "蛮神，疯王，纷争的化身",
+    "rank": "LittleBoss",
+    "templateRef": "693bb7343fe659739d745ec9d6361adaba8aee885aa77ddf05e6890910d550bc",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4014010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4014010",
+    "selectableMonsterIds": [
+      "4014010",
+      "401401001",
+      "401401002",
+      "401401003",
+      "401401004",
+      "401401006"
+    ]
+  }
+}

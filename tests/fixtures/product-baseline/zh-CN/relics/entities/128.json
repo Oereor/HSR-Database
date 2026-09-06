@@ -1,0 +1,139 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：提供的护盾量提高10%。 4件：使装备者提供的护盾量提高12%，我方目标持有装备者提供的护盾时，暴击伤害提高15%。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "128",
+    "name": "自匿星芒的隐士",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "3.6"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：提供的护盾量提高10%。 4件：使装备者提供的护盾量提高12%，我方目标持有装备者提供的护盾时，暴击伤害提高15%。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "提供的护盾量提高10%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "提供的护盾量提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "使装备者提供的护盾量提高12%，我方目标持有装备者提供的护盾时，暴击伤害提高15%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者提供的护盾量提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "，我方目标持有装备者提供的护盾时，暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "15%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "128",
+    "kind": "relic",
+    "name": "自匿星芒的隐士",
+    "pieces": [
+      {
+        "description": "一顶经典的、宽檐可卷起的软呢帽。在知识分子、艺术家、专业人士中非常流行。",
+        "id": "31281",
+        "name": "隐士的宽檐呢帽",
+        "slot": "HEAD"
+      },
+      {
+        "description": "漂亮的金属编织链带，以及简约的圆形表盘。冷静、精密、工业化；低调、实用、不张扬。",
+        "id": "31282",
+        "name": "隐士的简雅腕表",
+        "slot": "HAND"
+      },
+      {
+        "description": "一件棕色灯芯绒夹克。他常将这件夹克敞开穿，来打破一丝不苟的框架。",
+        "id": "31283",
+        "name": "隐士的驼色夹克",
+        "slot": "BODY"
+      },
+      {
+        "description": "出现在不太正式的场合里，更加结实耐磨的皮质高帮系带软鞋。依然可见其优雅的一面。",
+        "id": "31284",
+        "name": "隐士的麂皮软鞋",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【{TextID#FloorName_20462001}】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "3.6"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31281"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31282"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31283"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31284"
+      }
+    ],
+    "route": "/relics/128"
+  }
+}

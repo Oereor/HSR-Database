@@ -1,0 +1,86 @@
+{
+  "catalog": {
+    "description": "「星际和平公司」的基层员工，主要负责维持公司管辖地区的治安秩序。工资不高，只能在公司旗下的企业舰上合租房间。",
+    "id": "8032020",
+    "name": "基层员工•安保",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8032020",
+    "defaultMonsterRef": "b2b2c852f5bf30d91653ba15c68cc9f99940ee157d02a11296eb48a4e1e8886c",
+    "description": "「星际和平公司」的基层员工，主要负责维持公司管辖地区的治安秩序。工资不高，只能在公司旗下的企业舰上合租房间。",
+    "id": "8032020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "b2b2c852f5bf30d91653ba15c68cc9f99940ee157d02a11296eb48a4e1e8886c",
+      "99219ed5473e1f93a2fb04443ff70eb20c4f5fc24125c670bf44d04a78cbd421",
+      "8437b131e66a9ae03836d6584810f0911f3b9e06fa17936132338e66a6cf4e00",
+      "458ba9089143ca3c6b9b08b046e79ab6e427fe403f943192e33a422761f18992",
+      "25f599a92c784c58e0af8412ac57f4894326d843e825f847fbca2915b9c5301d",
+      "d1ac03ff4da64561606dc30461d7e78d2b7d923511a93e8c3a4258ea1d66b68f",
+      "dc6d5b3a66010bc9a26bafd89bf1996bd12b25e2b2b5bc21a9dd94ffce8cd22c",
+      "cf8481466549cd12df3231e2c638df36968e1269f4c3db0c9b1d76c72e0b9712",
+      "f9a13911f9b7dd0e8c8123ee532c79c5840751d15f8dc55979dc648f6454e481",
+      "1243ddd96963dd190b0574aae8a1fb62b1f9d5e7bd75867e200552960d6bc773",
+      "3d8bde88854beceba162c81e187ea8fe6be5cbaf4fdd9c899e62ac0926c3a306",
+      "6c7a84c0e58750f066aaefca5f50a858eff22520de65c4b81a327c4ffcae5b33",
+      "4ea407a7bd9857fe41f189b6422081a3f623e34d212bb925359881d55d2d7161",
+      "2b7ae2e218349880d7eaeb21ba65427a79aa74fef35d575d53aa7641cb5532d2"
+    ],
+    "name": "基层员工•安保",
+    "rank": "MinionLv2",
+    "templateRef": "cb6c19da2ab5491b872478dbbae47f3adce371334528cd2bd784dbe2ea465c86",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8032020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8032020",
+    "selectableMonsterIds": [
+      "8032020",
+      "803202002",
+      "803202003",
+      "803202004",
+      "803202005",
+      "803202006",
+      "803202007",
+      "803202008",
+      "803202009",
+      "803202010",
+      "803202011",
+      "803202012",
+      "803202013",
+      "803202014"
+    ]
+  }
+}

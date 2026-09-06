@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "饮下呼雷之血，甘当弃子的步离狼卒。",
+    "id": "2032021",
+    "name": "末度",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2032021",
+    "defaultMonsterRef": "2721f49dc85a417d9ea643002ca6ce2361be974132ecc5aec7b88a909ff14afb",
+    "description": "饮下呼雷之血，甘当弃子的步离狼卒。",
+    "id": "2032021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2721f49dc85a417d9ea643002ca6ce2361be974132ecc5aec7b88a909ff14afb"
+    ],
+    "name": "末度",
+    "rank": "MinionLv2",
+    "templateRef": "e919c3db7662d031e6fda9526fa05ad48a3f3c860346b1c021bc6ca987db3fb5",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2032021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2032021",
+    "selectableMonsterIds": [
+      "2032021"
+    ]
+  }
+}

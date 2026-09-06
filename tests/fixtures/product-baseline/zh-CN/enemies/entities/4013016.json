@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "传说中的多洛斯强盗双子，武艺超群，配合无间。双拳总难敌四手，令无数英雄饮恨。",
+    "id": "4013016",
+    "name": "戮力双雄•铸铠御戈的白卫士",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4013016",
+    "defaultMonsterRef": "e27a65f8633f039956039e8ed1ebed81ea3fb22c40408ca039f4515b7fb4599f",
+    "description": "传说中的多洛斯强盗双子，武艺超群，配合无间。双拳总难敌四手，令无数英雄饮恨。",
+    "id": "4013016",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e27a65f8633f039956039e8ed1ebed81ea3fb22c40408ca039f4515b7fb4599f",
+      "86c714ab59495d137a3ca7eb875e663e4d74613ea4bd32825944b1849fc64440"
+    ],
+    "name": "戮力双雄•铸铠御戈的白卫士",
+    "rank": "Elite",
+    "templateRef": "4d16f6bb0149aa55f2aa31279a0658476f61d83f6db0ddec4051db5132bd5627",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4013016",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4013016",
+    "selectableMonsterIds": [
+      "4013016",
+      "401301601"
+    ]
+  }
+}

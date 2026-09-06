@@ -1,0 +1,2745 @@
+{
+  "catalog": {
+    "baseName": "雪衣",
+    "description": "仙舟「罗浮」上监察生死的机构「十王司」的判官。\n早已身死道消多年，借偃偶身躯「还阳」，履行使命。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "id": "1214",
+    "name": "雪衣",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "雪衣",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 125,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 103
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 81.6,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 54,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 144,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 114.24,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 75.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 201.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 179.52,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 316.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 212.16,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 140.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 374.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 244.8,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 162,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 432,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 277.44,
+            "perLevel": 4.08
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "仙舟「罗浮」上监察生死的机构「十王司」的判官。\n早已身死道消多年，借偃偶身躯「还阳」，履行使命。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "equipmentRecommendation": {
+      "avatarId": "1214",
+      "cavernSetIds": [
+        "108",
+        "111",
+        "119"
+      ],
+      "lightConeIds": [
+        "21042",
+        "21019"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "QuantumAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "BreakDamageAddedRatioBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "307",
+        "306",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "BreakDamageAddedRatioBase",
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "雪衣",
+    "id": "1214",
+    "kind": "character",
+    "name": "雪衣",
+    "path": "Warrior",
+    "pathName": "毁灭",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "天赋的<u>追加攻击</u>造成的伤害提高<unbreak>40%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--121401",
+            "id": "121401",
+            "name": "缚心魔",
+            "rank": 1
+          },
+          {
+            "description": "天赋的<u>追加攻击</u>无视弱点属性削减敌方的韧性，同时为自身恢复等同于雪衣<unbreak>5%</unbreak>生命上限的生命值。击破弱点时，触发量子属性的弱点击破效果。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--121402",
+            "id": "121402",
+            "name": "破五尘",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--121403",
+            "id": "121403",
+            "name": "止苦谛",
+            "rank": 3
+          },
+          {
+            "description": "施放终结技时，击破特攻提高<unbreak>40%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--121404",
+            "id": "121404",
+            "name": "断业根",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--121405",
+            "id": "121405",
+            "name": "勾灵神",
+            "rank": 5
+          },
+          {
+            "description": "【恶报】的层数上限降低至<unbreak>6</unbreak>层。",
+            "iconKey": "rank--121406",
+            "id": "121406",
+            "name": "司死生",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1214001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1214001",
+                "variantIds": [
+                  "121401"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "121401",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣50%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣60%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣70%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣80%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣90%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣100%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣110%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣120%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣130%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣140%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "破魔锥",
+                "progressionId": "1214001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1214002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1214002",
+                "variantIds": [
+                  "121402"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "121402",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣70%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣35%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣77%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣39%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣84%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣42%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣91%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣46%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "91%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣98%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣49%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣105%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣53%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣114%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣57%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "114%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣123%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣61%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "123%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣131%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣66%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣140%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣70%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣147%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣74%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "147%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "74%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣154%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣77%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣161%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣81%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "161%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣168%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣84%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣175%攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣88%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "摄伏诸恶",
+                "progressionId": "1214002",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1214003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1214003",
+                "variantIds": [
+                  "121403"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 40
+                    }
+                  ]
+                },
+                "id": "121403",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣150%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高36.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣160%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高38.4%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣170%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高40.8%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "170%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣180%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高43.2%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣190%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高45.6%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "190%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣200%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高48.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣213%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高51.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "213%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣225%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高54.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣238%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高57.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "238%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣250%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高60.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "250%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣260%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高62.4%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "260%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣270%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高64.8%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "270%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣280%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高67.2%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "67.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣290%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高69.6%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "290%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于雪衣300%攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高72.0%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次攻击无视弱点属性削减敌方单体的韧性。击破弱点时，触发量子属性的弱点击破效果。\n在本次攻击中，削减的韧性越多，造成的伤害越高，最多提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "天罚贯身",
+                "progressionId": "1214003",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1214004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1214004",
+                "variantIds": [
+                  "121404"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Bounce",
+                    "known": true,
+                    "label": "弹射"
+                  },
+                  "energyGain": 2,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "121404",
+                "levels": [
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣45%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣50%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣54%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣59%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣63%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣68%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣73%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "73%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣79%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "79%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣84%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣90%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣95%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "95%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣99%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣103%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "103%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣108%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加8层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加1层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动追加攻击，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣113%攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "雪衣施放攻击削减敌方韧性时，会叠加【恶报】层数，削减的韧性越多叠加【恶报】层数越多，可以叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。\n当雪衣的队友施放攻击削减敌方韧性后，雪衣叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【恶报】。\n当【恶报】叠加至上限时消耗当前所有【恶报】，立即对敌方目标发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，造成3次伤害，每次伤害对敌方随机单体造成等同于雪衣"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。本次追加攻击无法叠加【恶报】。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "十王圣断，业报恒常",
+                "progressionId": "1214004",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1214007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1214007",
+                "variantIds": [
+                  "121407"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "121407",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后对敌方全体造成等同于雪衣80%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后对敌方全体造成等同于雪衣"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "斩立决",
+                "progressionId": "1214007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "使自身造成的伤害提高，提高数值等同于击破特攻的<unbreak>100%</unbreak>，最多使造成的伤害提高<unbreak>240%</unbreak>。",
+            "iconKey": "skill-tree--1214101",
+            "id": "1214101",
+            "name": "预兆机杼",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "如果敌方目标当前韧性大于等于其自身韧性上限的<unbreak>50%</unbreak>，施放终结技时造成的伤害提高<unbreak>10%</unbreak>。",
+            "iconKey": "skill-tree--1214102",
+            "id": "1214102",
+            "name": "摧锋轴承",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "雪衣会累计溢出的【恶报】层数，最多累计<unbreak>6</unbreak>层。雪衣触发天赋后，获得相应溢出层数的【恶报】。",
+            "iconKey": "skill-tree--1214103",
+            "id": "1214103",
+            "name": "伺观中枢",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1214201",
+            "name": "击破强化",
+            "prerequisiteIds": [],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1214202",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1214101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1214203",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1214202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "量子属性伤害提高3.2%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1214204",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1214203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1214205",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1214102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1214206",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1214205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1214207",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1214206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "量子属性伤害提高4.8%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1214208",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1214103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1214209",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1214208"
+            ],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "击破特攻提高10.7%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1214210",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1214208"
+            ],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1214001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121401",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1214002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121402",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1214003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121403",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1214004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121404",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1214007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121407",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1214",
+    "subtitleRendered": false
+  }
+}

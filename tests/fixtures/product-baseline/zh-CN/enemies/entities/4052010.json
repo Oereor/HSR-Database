@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "大海的女儿们，被「毁灭」的罪孽蚀尽灵肉，只余空荡扭曲的形骸，为将临的黑日起舞颂唱。\n残有的黑潮自往世流淌，落入此世浪涛——\n忠贞美丽的浪花啊，沐浴主人杯中溢出的泥，纯洁的裙摆沾染癫狂——\n你感受不到流向，在生与死的浪间飘荡，不得一刻安详。",
+    "id": "4052010",
+    "name": "浪花侍女",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4052010",
+    "defaultMonsterRef": "19df188b9a3e31c169aedc7b2ca1d7969dd0d377f3d50d2490f81eca6c196746",
+    "description": "大海的女儿们，被「毁灭」的罪孽蚀尽灵肉，只余空荡扭曲的形骸，为将临的黑日起舞颂唱。\n残有的黑潮自往世流淌，落入此世浪涛——\n忠贞美丽的浪花啊，沐浴主人杯中溢出的泥，纯洁的裙摆沾染癫狂——\n你感受不到流向，在生与死的浪间飘荡，不得一刻安详。",
+    "id": "4052010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "19df188b9a3e31c169aedc7b2ca1d7969dd0d377f3d50d2490f81eca6c196746",
+      "da106ca35bd8ef687f1d0f1e584a30a3ecb65de465fc7c9415edb7acb2582c40",
+      "edad0d10906c3b73e3e7ac3968e474b14b29b9d067a728f5bf5e107c0a0ef479",
+      "bee942009b2dfb52e4aef4d2a3d289af5b88feb40beb2d2528a8238d3d6a5f83",
+      "afb229850603ced4467230302cd27ecd18aa1299714bfb2d8a1af44e169b3e1b"
+    ],
+    "name": "浪花侍女",
+    "rank": "MinionLv2",
+    "templateRef": "cf51d6d32f46246d929142f1ed6bfd3985b173a7342b54076ffd08920f3b8a30",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4052010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4052010",
+    "selectableMonsterIds": [
+      "4052010",
+      "405201001",
+      "405201002",
+      "405201003",
+      "405201004"
+    ]
+  }
+}

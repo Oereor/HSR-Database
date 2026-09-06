@@ -1,0 +1,357 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>记忆</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21054",
+    "name": "故事的下一页",
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 4
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 16.8,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 36.96,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 63.84,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 90.72,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 117.6,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 144.48,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 171.36,
+            "perLevel": 2.52
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>记忆</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "21054",
+    "kind": "light-cone",
+    "name": "故事的下一页",
+    "passive": {
+      "id": "21054",
+      "name": "书写",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的生命上限提高16%。装备者的忆灵攻击后，使装备者与忆灵的治疗量提高12%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵攻击后，使装备者与忆灵的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的生命上限提高20%。装备者的忆灵攻击后，使装备者与忆灵的治疗量提高15%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵攻击后，使装备者与忆灵的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的生命上限提高24%。装备者的忆灵攻击后，使装备者与忆灵的治疗量提高18%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵攻击后，使装备者与忆灵的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的生命上限提高28%。装备者的忆灵攻击后，使装备者与忆灵的治疗量提高21%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵攻击后，使装备者与忆灵的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的生命上限提高32%。装备者的忆灵攻击后，使装备者与忆灵的治疗量提高24%，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的生命上限提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者的忆灵攻击后，使装备者与忆灵的治疗量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "1"
+              },
+              {
+                "type": "text",
+                "value": "回合。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Memory",
+    "pathName": "记忆",
+    "rarity": 4,
+    "story": "微风吹起麦浪，女孩抱着空白的手记，漫步其中。\n\n在哀丽秘榭之外，在陌生又似曾相识的城邦，形形色色的伙伴将彼此结识，如歌如梦的旅途将要开始……\n\n<i>「这次，与我一起……」</i>\n麦田的尽头，等待已久的女孩合上书页，向「未来」伸出邀请的手——\n\n<i>「为故事写下新的篇章吧♪」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/21054",
+    "storyFallbackRendered": false
+  }
+}

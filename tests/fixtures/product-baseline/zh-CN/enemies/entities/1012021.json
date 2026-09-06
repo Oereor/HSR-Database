@@ -1,0 +1,78 @@
+{
+  "catalog": {
+    "description": "以旧世界遗留的科技拼凑制造的自动机器单元，负责替代人类进行最基础的体力劳动。\n战斗中，自动机兵「蜘蛛」的动力非常不稳定，极易在损毁时发生殉爆事故。",
+    "id": "1012021",
+    "name": "自动机兵•蜘蛛",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1012021",
+    "defaultMonsterRef": "4f77b2eb5d43c64c68cc9746df30e16fa76ae10b8e7f16070ea86ca4d07839ca",
+    "description": "以旧世界遗留的科技拼凑制造的自动机器单元，负责替代人类进行最基础的体力劳动。\n战斗中，自动机兵「蜘蛛」的动力非常不稳定，极易在损毁时发生殉爆事故。",
+    "id": "1012021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4f77b2eb5d43c64c68cc9746df30e16fa76ae10b8e7f16070ea86ca4d07839ca",
+      "d8bd473bab89493ae0441e964f50f2f097218627980c3916bd42872f469cc6b5",
+      "92584fdb6d425ba20e0c7224518c87f3a51755e27681b0575c65bcec9cfd0322",
+      "6ebcd4c25f12d824790b0e1085247b2925e2e27fac196fa1015d0690523ea13f",
+      "f5827106a6cbe4d6fee23fa7a81c3e525a9a22a721a8743f6e9e5a74cbab4dd5",
+      "5ac6334d1495d300ccdf9b410bed67b1f683057bb927cda7c002347d98649f3c",
+      "2b5d31dbdc73648c7367dfadb0c58b5b2c44be4775b994eebd9490223cb64e76",
+      "89c035bbc25d6fdefd2bd8ab085a21bca470b0025474c55412f90369da068922",
+      "02aa8a75ef70ebd112ee45578276c43cc4b53981720b4524cdea9eed3f0b8d9e",
+      "fb8a0c8b466e060e39d4daf614887a621a35514c313e6cab46129b8808916276",
+      "cfbc86e318e787f1cc385b30911010fac3f24b40e5210ef44cc33b037a87d353",
+      "b9cd3489fa09e6d3b2a08384d1549fc6852aa925d6021f1c8d214a58cf4b530c",
+      "24e23b64efef21f59416e785bb1a2daffd20e4fe5f60284d87968bf2a6b2f638",
+      "ff1c58d87d73db64680a691a0af4533efa54f538541eca496227cb0478da3853"
+    ],
+    "name": "自动机兵•蜘蛛",
+    "rank": "MinionLv2",
+    "templateRef": "eba4cc49fee122be59586c4119670a524426ca0dbf1395fcf4ad8b84d2d87bd5",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1012021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1012021",
+    "selectableMonsterIds": [
+      "1012021",
+      "101202101",
+      "101202102",
+      "101202103",
+      "101202104",
+      "101202105",
+      "101202106",
+      "101202107",
+      "101202108",
+      "101202109",
+      "101202110",
+      "101202111",
+      "101202112",
+      "101202113"
+    ]
+  }
+}

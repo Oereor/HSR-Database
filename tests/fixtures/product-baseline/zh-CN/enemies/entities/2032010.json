@@ -1,0 +1,58 @@
+{
+  "catalog": {
+    "description": "来自玄爪猎群的步离人士兵，擅长在无声息中猎杀目标。",
+    "id": "2032010",
+    "name": "玄爪狼卒",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2032010",
+    "defaultMonsterRef": "0655b44de5cf8105eb4d217bdd1e75c692fa41770fc7117579aa4fab13e50f84",
+    "description": "来自玄爪猎群的步离人士兵，擅长在无声息中猎杀目标。",
+    "id": "2032010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "0655b44de5cf8105eb4d217bdd1e75c692fa41770fc7117579aa4fab13e50f84",
+      "bcedf267d6591b56cfed9864bf56266440cf0097c4d838b4d8af07e311840628",
+      "dcb9b755c1a50701b207479c6cbfd7e194e73a5cad89c559ab1a51d51b0df756",
+      "b73ec63b09fc11ebc0c641e58b78bb7d57ea1c5cc0b8c418a53e284949452173"
+    ],
+    "name": "玄爪狼卒",
+    "rank": "MinionLv2",
+    "templateRef": "83424320823af5386e3e6943912227e1ea96cc0a11e30738f8fdfdf87e5505aa",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2032010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2032010",
+    "selectableMonsterIds": [
+      "2032010",
+      "203201001",
+      "203201002",
+      "203201003"
+    ]
+  }
+}

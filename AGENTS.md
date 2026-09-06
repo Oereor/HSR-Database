@@ -31,7 +31,7 @@ Due to special network environment, all Internet-related operations must go thro
 - Do not use StarRailRes index files as a replacement source for character, skill, trace, light-cone, enemy, stat, or relationship data unless explicitly requested.
 - Do not invent characters, items, skills, statistics, IDs, descriptions, translations, or relationships.
 - The website supports Simplified Chinese only and normally reads only `TextMap/TextMapCHS.json`.
-- Do not add locale state, language switching, an i18n framework, or fallback TextMaps.
+- Phase 1 permits pinned Paraglide message compilation for zh-CN website UI only. Use explicit locale message calls. Do not add mutable locale state, language switching, localized routing, or fallback TextMaps.
 - Keep TextMap hashes as decimal strings throughout the data pipeline; never pass them through JavaScript `number`.
 - Keep raw-data parsing separate from UI components.
 - Use the shared TextMap resolver instead of accessing TextMap records from business code.

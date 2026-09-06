@@ -10,8 +10,6 @@ export interface SpecialEffectLinkedAvatarPresentation {
   displayName: string;
 }
 
-const specialEffectLabel = '特殊效果';
-
 export function segmentSpecialEffectTriggers(
   tokens: DescriptionToken[],
   specialEffectsAvailable: boolean
@@ -25,34 +23,20 @@ export function segmentSpecialEffectTriggers(
   };
 
   for (let index = 0; index < tokens.length;) {
-    const icon = tokens[index];
-    if (icon.type !== 'icon' || !icon.icon || !icon.underline || !icon.color) {
-      plain.push(icon);
-      index += 1;
+    const token = tokens[index];
+    if (!token.semanticReference || token.type !== 'icon') {
+      plain.push(token);
+      index++;
       continue;
     }
-    const candidate = [icon];
+    const candidate = [token];
     let cursor = index + 1;
-    while (cursor < tokens.length) {
-      const token = tokens[cursor];
-      if (
-        token.type === 'icon' ||
-        !token.underline ||
-        token.color?.toLowerCase() !== icon.color.toLowerCase()
-      )
-        break;
-      candidate.push(token);
-      cursor += 1;
-    }
-    if (
-      candidate
-        .slice(1)
-        .map((token) => token.value)
-        .join('') !== specialEffectLabel
+    while (
+      cursor < tokens.length &&
+      tokens[cursor].type !== 'icon' &&
+      tokens[cursor].semanticReference === token.semanticReference
     ) {
-      plain.push(icon);
-      index += 1;
-      continue;
+      candidate.push(tokens[cursor++]);
     }
     flushPlain();
     segments.push({ kind: 'special-effect-trigger', tokens: candidate });
@@ -79,19 +63,33 @@ export function resolveSpecialEffectLinkedAvatarPresentation(input: {
     return {
       sourceAvatarId,
       displayAvatarId: '8008',
-      displayName: sourceTarget?.name ?? '开拓者·记忆'
+      displayName: requireName(sourceTarget, false)
     };
 
   if (ownerCharacterId === '1510' && entryKind === 'avatar-skill-link') {
     if (sourceAvatarId === '8001')
-      return { sourceAvatarId, displayAvatarId: '8002', displayName: '开拓者' };
+      return {
+        sourceAvatarId,
+        displayAvatarId: '8002',
+        displayName: requireName(sourceTarget, true)
+      };
     if (sourceAvatarId === '1001' || sourceAvatarId === '1224')
-      return { sourceAvatarId, displayAvatarId: sourceAvatarId, displayName: '三月七' };
+      return {
+        sourceAvatarId,
+        displayAvatarId: sourceAvatarId,
+        displayName: requireName(sourceTarget, true)
+      };
   }
 
   return {
     sourceAvatarId,
     displayAvatarId: sourceAvatarId,
-    displayName: sourceTarget?.name ?? sourceAvatarId
+    displayName: requireName(sourceTarget, false)
   };
+}
+
+function requireName(target: CatalogEntry | undefined, base: boolean): string {
+  const name = base ? target?.baseName : target?.name;
+  if (!name) throw new Error('Special effect linked avatar naming projection is missing');
+  return name;
 }

@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "蕴含特定认知的实体，由忆域中的潜意识碎片堆积而成。\n神秘危险的忆域迷因，被视作梦中不应存在的「死亡」。它的邪影游荡于十二时分，所及之处必有不测之祸，以利刃散布噩耗，以死荫笼罩美梦。",
+    "id": "3014023",
+    "name": "忆域迷因「何物朝向死亡」",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3014023",
+    "defaultMonsterRef": "c01c8b09d7483473a96236257590f1bc8d520c0781d4a88c8a59995151d5ce71",
+    "description": "蕴含特定认知的实体，由忆域中的潜意识碎片堆积而成。\n神秘危险的忆域迷因，被视作梦中不应存在的「死亡」。它的邪影游荡于十二时分，所及之处必有不测之祸，以利刃散布噩耗，以死荫笼罩美梦。",
+    "id": "3014023",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c01c8b09d7483473a96236257590f1bc8d520c0781d4a88c8a59995151d5ce71"
+    ],
+    "name": "忆域迷因「何物朝向死亡」",
+    "rank": "LittleBoss",
+    "templateRef": "5a606ba30c0841e4f1a91d8a76a57ee991195b9b0240b4487fa82826096370c0",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3014023",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3014023",
+    "selectableMonsterIds": [
+      "3014023"
+    ]
+  }
+}

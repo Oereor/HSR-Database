@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "曾支撑融合神单眼的骨骼。被黑潮裹挟后，继承了极化天气的能力。",
+    "id": "4012092",
+    "name": "枯槁的筛骨",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4012092",
+    "defaultMonsterRef": "e92df5ad39ab817ab8908d0069d37b686857f42cf2138848d33f237f75ecdadd",
+    "description": "曾支撑融合神单眼的骨骼。被黑潮裹挟后，继承了极化天气的能力。",
+    "id": "4012092",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e92df5ad39ab817ab8908d0069d37b686857f42cf2138848d33f237f75ecdadd"
+    ],
+    "name": "枯槁的筛骨",
+    "rank": "MinionLv2",
+    "templateRef": "dfb7873784bb47b23ce66a98d29b705f02a82f2496b0443c269001d7c16b6bf5",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4012092",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4012092",
+    "selectableMonsterIds": [
+      "4012092"
+    ]
+  }
+}

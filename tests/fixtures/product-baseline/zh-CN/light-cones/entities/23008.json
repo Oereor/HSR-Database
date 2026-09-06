@@ -1,0 +1,408 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23008",
+    "name": "棺的回响",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 18,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 52.8,
+            "perLevel": 7.92
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 58.08,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 39.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 116.16,
+            "perLevel": 7.92
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 68.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 200.64,
+            "perLevel": 7.92
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 285.12,
+            "perLevel": 7.92
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 184.8,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 126,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 369.6,
+            "perLevel": 7.92
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 227.04,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 154.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 454.08,
+            "perLevel": 7.92
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 538.56,
+            "perLevel": 7.92
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23008",
+    "kind": "light-cone",
+    "name": "棺的回响",
+    "passive": {
+      "id": "23008",
+      "name": "荆棘",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的攻击力提高24%。当装备者施放攻击后，每击中1名不同的敌方目标，恢复3.0点能量，每次攻击最多通过该方式恢复3次能量。当装备者施放终结技后，使我方全体速度提高12点，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者施放攻击后，每击中1名不同的敌方目标，恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "3.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，每次攻击最多通过该方式恢复"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "次能量。当装备者施放终结技后，使我方全体速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12"
+              },
+              {
+                "type": "text",
+                "value": "点，持续1回合。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的攻击力提高28%。当装备者施放攻击后，每击中1名不同的敌方目标，恢复3.5点能量，每次攻击最多通过该方式恢复3次能量。当装备者施放终结技后，使我方全体速度提高14点，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者施放攻击后，每击中1名不同的敌方目标，恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "3.5"
+              },
+              {
+                "type": "text",
+                "value": "点能量，每次攻击最多通过该方式恢复"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "次能量。当装备者施放终结技后，使我方全体速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "14"
+              },
+              {
+                "type": "text",
+                "value": "点，持续1回合。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的攻击力提高32%。当装备者施放攻击后，每击中1名不同的敌方目标，恢复4.0点能量，每次攻击最多通过该方式恢复3次能量。当装备者施放终结技后，使我方全体速度提高16点，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者施放攻击后，每击中1名不同的敌方目标，恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "4.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，每次攻击最多通过该方式恢复"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "次能量。当装备者施放终结技后，使我方全体速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "16"
+              },
+              {
+                "type": "text",
+                "value": "点，持续1回合。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的攻击力提高36%。当装备者施放攻击后，每击中1名不同的敌方目标，恢复4.5点能量，每次攻击最多通过该方式恢复3次能量。当装备者施放终结技后，使我方全体速度提高18点，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者施放攻击后，每击中1名不同的敌方目标，恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "4.5"
+              },
+              {
+                "type": "text",
+                "value": "点能量，每次攻击最多通过该方式恢复"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "次能量。当装备者施放终结技后，使我方全体速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18"
+              },
+              {
+                "type": "text",
+                "value": "点，持续1回合。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的攻击力提高40%。当装备者施放攻击后，每击中1名不同的敌方目标，恢复5.0点能量，每次攻击最多通过该方式恢复3次能量。当装备者施放终结技后，使我方全体速度提高20点，持续1回合。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者施放攻击后，每击中1名不同的敌方目标，恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "5.0"
+              },
+              {
+                "type": "text",
+                "value": "点能量，每次攻击最多通过该方式恢复"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "次能量。当装备者施放终结技后，使我方全体速度提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20"
+              },
+              {
+                "type": "text",
+                "value": "点，持续1回合。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 5,
+    "story": "白色鸢尾旁，他叩打着棺材。\n<i>「有时我觉得，和你做这个交易，是我看轻你了。」</i>\n无人回应，只有棘刺毫不犹豫地穿透他的掌心。\n但他也笑着，抓住了棘刺。\n\n<i>「就是这样，我们都想利用彼此，然而我们都看轻了对方。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23008",
+    "storyFallbackRendered": false
+  }
+}

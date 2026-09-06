@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "刻录着《十王武经》，听命于十王司的执法金人。\n血肉易受五阴之苦所执，唯有金铁不动其心，奉行十王敕令不渝。\n这些金人执法者以力降伏脱离生命秩序的邪物，将之带入幽府，接受判罚，其权限有时甚于判官。",
+    "id": "2013022",
+    "name": "正义的伙伴（机械）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2013022",
+    "defaultMonsterRef": "225759990ad43a4cbd877c20402cb146a2de3ce48f4163e2c85bf03e6f518a1e",
+    "description": "刻录着《十王武经》，听命于十王司的执法金人。\n血肉易受五阴之苦所执，唯有金铁不动其心，奉行十王敕令不渝。\n这些金人执法者以力降伏脱离生命秩序的邪物，将之带入幽府，接受判罚，其权限有时甚于判官。",
+    "id": "2013022",
+    "kind": "enemy",
+    "monsterRefs": [
+      "225759990ad43a4cbd877c20402cb146a2de3ce48f4163e2c85bf03e6f518a1e"
+    ],
+    "name": "正义的伙伴（机械）",
+    "rank": "Elite",
+    "templateRef": "6204be1b8a04c21738e75ef0039849a120693180335f48c2118b189478b71784",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2013022",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2013022",
+    "selectableMonsterIds": [
+      "2013022"
+    ]
+  }
+}

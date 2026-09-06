@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import { onDestroy, onMount, tick } from 'svelte';
   import { changelogEntries } from '$lib/content/changelog';
   import {
@@ -100,13 +101,13 @@
   <section class="changelog-dialog__surface" bind:this={surface}>
     <header class="changelog-dialog__header">
       <div>
-        <p class="kicker">SITE UPDATES</p>
-        <h2 id="changelog-dialog-title">更新日志</h2>
+        <p class="kicker">{m.changelog_eyebrow({}, { locale: 'zh-CN' })}</p>
+        <h2 id="changelog-dialog-title">{m.changelog_title({}, { locale: 'zh-CN' })}</h2>
       </div>
       <button
         class="changelog-dialog__close"
         type="button"
-        aria-label="关闭更新日志"
+        aria-label={m.changelog_close_aria({}, { locale: 'zh-CN' })}
         bind:this={closeButton}
         on:click={close}>×</button
       >
@@ -126,14 +127,17 @@
           </article>
         {/each}
       {:else}
-        <p class="changelog-dialog__empty">暂无更新日志。</p>
+        <p class="changelog-dialog__empty">{m.changelog_empty({}, { locale: 'zh-CN' })}</p>
       {/if}
     </div>
 
     <footer class="changelog-dialog__footer">
-      <button type="button" class="changelog-dialog__today" on:click={dismissToday}>今日关闭</button
+      <button type="button" class="changelog-dialog__today" on:click={dismissToday}
+        >{m.changelog_dismiss_today({}, { locale: 'zh-CN' })}</button
       >
-      <button type="button" class="button-primary" on:click={close}>关闭</button>
+      <button type="button" class="button-primary" on:click={close}
+        >{m.common_close({}, { locale: 'zh-CN' })}</button
+      >
     </footer>
   </section>
 </dialog>

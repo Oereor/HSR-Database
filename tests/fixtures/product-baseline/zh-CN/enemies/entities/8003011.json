@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为不属此世的怪异生命，自星核带来的裂界中成长，寄生在世界的根基结构中汲取能量，其甲胄外壳上倒映着幽深黯淡的星空。\n战斗中，外宇宙之冰能轻易将敌人冻结凝固并使其行动推迟。",
+    "id": "8003011",
+    "name": "外宇宙之冰（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8003011",
+    "defaultMonsterRef": "30db92fbfa29c14683da5806019c36c19a10693a584688c7a8798514875beb2e",
+    "description": "代码受到影响后的错误投影。参照本体为不属此世的怪异生命，自星核带来的裂界中成长，寄生在世界的根基结构中汲取能量，其甲胄外壳上倒映着幽深黯淡的星空。\n战斗中，外宇宙之冰能轻易将敌人冻结凝固并使其行动推迟。",
+    "id": "8003011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "30db92fbfa29c14683da5806019c36c19a10693a584688c7a8798514875beb2e",
+      "d330314b0a0e5ced0724e12aa90bb1c3255fc16073023b2d84b3f8490c31a5ca"
+    ],
+    "name": "外宇宙之冰（错误）",
+    "rank": "Elite",
+    "templateRef": "aec398a9f7539391fbcc3511cb90d296a0c3148002ecc20a2dc6adfcab07444c",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8003011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8003011",
+    "selectableMonsterIds": [
+      "8003011",
+      "800301101"
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "工造司匠人随手造就的机巧发明。原本是不具灵智，用以净化空气的香炉，如今却因为某些异变被赋予了短暂的「生命」。",
+    "id": "2011020",
+    "name": "入魔机巧 • 浓云金蟾",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2011020",
+    "defaultMonsterRef": "e57078d41f7d2ef07bddd48d984836cd2fbee131b9c83372937c00677878449c",
+    "description": "工造司匠人随手造就的机巧发明。原本是不具灵智，用以净化空气的香炉，如今却因为某些异变被赋予了短暂的「生命」。",
+    "id": "2011020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e57078d41f7d2ef07bddd48d984836cd2fbee131b9c83372937c00677878449c",
+      "2cf75c374d3214d115c61bf6de5c3ea563a3653730aed7f5c3c33228c5796e84",
+      "92b37d36c04be2bf00d8cdd498e3d8c54a92e5dc95a173fb0ea13cbe5eb419e4",
+      "cb39d08f8a0cc225281c2b954cadd9df2737ea2d05beffd19a6972f734e528c2",
+      "f7c8bf7b80d4b293c599b04e52bf0699ba93e2323194a5c74c101667b0f7beb4",
+      "08947b2c915a005d16f6ab39936974d5d4aad259be54e5d116c81e0563672491",
+      "f8c45461a74c9bb7bab5cb9bd00a1e024c7d1cc81f0df1461ffe59b75aa0c4bd"
+    ],
+    "name": "入魔机巧 • 浓云金蟾",
+    "rank": "Minion",
+    "templateRef": "380782d2c683e9d30102799826e0b0b588fbea9e9dd3a80acebfc721d1b94704",
+    "type": "Minion",
+    "typeName": "Minion",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2011020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2011020",
+    "selectableMonsterIds": [
+      "2011020",
+      "201102001",
+      "201102002",
+      "201102003",
+      "201102004",
+      "201102005",
+      "201102006"
+    ]
+  }
+}

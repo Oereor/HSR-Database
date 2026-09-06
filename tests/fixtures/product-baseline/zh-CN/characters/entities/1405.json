@@ -1,0 +1,2696 @@
+{
+  "catalog": {
+    "baseName": "那刻夏",
+    "description": "神悟树庭，滋养知识的学府，诞育哲人的摇床。\n但渎神的阿那克萨戈拉斯，诘问「理性」火种的黄金裔，试问：你甘愿身负恶名，也要违逆预言，将怀疑的枝杈刺入智慧的圣树？\n——<i>「可笑。这世界遍地虚假，唯有我才是真实。」</i>",
+    "element": "Wind",
+    "elementName": "风",
+    "id": "1405",
+    "name": "那刻夏",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "那刻夏",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 97
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 102.96,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 75.9,
+            "perLevel": 3.795
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 132,
+            "perLevel": 6.6
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 144.144,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 106.26,
+            "perLevel": 3.795
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 184.8,
+            "perLevel": 6.6
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 185.328,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 136.62,
+            "perLevel": 3.795
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 237.6,
+            "perLevel": 6.6
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 226.512,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 166.98,
+            "perLevel": 3.795
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 290.4,
+            "perLevel": 6.6
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 267.696,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 197.34,
+            "perLevel": 3.795
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 343.2,
+            "perLevel": 6.6
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 308.88,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 227.7,
+            "perLevel": 3.795
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 396,
+            "perLevel": 6.6
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 350.064,
+            "perLevel": 5.148
+          },
+          "defence": {
+            "base": 258.06,
+            "perLevel": 3.795
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 448.8,
+            "perLevel": 6.6
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "神悟树庭，滋养知识的学府，诞育哲人的摇床。\n但渎神的阿那克萨戈拉斯，诘问「理性」火种的黄金裔，试问：你甘愿身负恶名，也要违逆预言，将怀疑的枝杈刺入智慧的圣树？\n——<i>「可笑。这世界遍地虚假，唯有我才是真实。」</i>",
+    "element": "Wind",
+    "elementName": "风",
+    "equipmentRecommendation": {
+      "avatarId": "1405",
+      "cavernSetIds": [
+        "110",
+        "117",
+        "122"
+      ],
+      "lightConeIds": [
+        "23041",
+        "22004",
+        "24004"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "WindAddedRatio",
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "309",
+        "314",
+        "308"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "那刻夏",
+    "id": "1405",
+    "kind": "character",
+    "name": "那刻夏",
+    "path": "Mage",
+    "pathName": "智识",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "首次施放战技后，恢复<unbreak>1</unbreak>个战技点。施放战技击中敌方目标时，使目标防御力降低<unbreak>16%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "rank--140501",
+            "id": "140501",
+            "name": "月掩星夜的魔术师",
+            "rank": 1
+          },
+          {
+            "description": "敌方目标入场时，触发1次天赋的弱点添加效果，并使其全属性抗性降低<unbreak>20%</unbreak>。",
+            "iconKey": "rank--140502",
+            "id": "140502",
+            "name": "真实历史的自然人",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--140503",
+            "id": "140503",
+            "name": "镌刻进深空的瞳孔",
+            "rank": 3
+          },
+          {
+            "description": "施放战技时，攻击力提高<unbreak>30%</unbreak>，持续<unbreak>2</unbreak>回合。该效果最多叠加<unbreak>2</unbreak>层。",
+            "iconKey": "rank--140504",
+            "id": "140504",
+            "name": "坠落在山谷的炽热",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--140505",
+            "id": "140505",
+            "name": "离心漩涡外的胚种",
+            "rank": 5
+          },
+          {
+            "description": "那刻夏造成的伤害为原伤害的<unbreak>130%</unbreak>。行迹【必要的留白】的2种效果都会直接触发，不再依赖我方队伍中「智识」命途角色的数量。",
+            "iconKey": "rank--140506",
+            "id": "140506",
+            "name": "万物皆在万物之中",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 140
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1405001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1405001",
+                "variantIds": [
+                  "140501"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140501",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏50%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏60%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏70%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏80%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏90%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏100%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏110%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏120%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏130%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏140%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "楚痛，酿造实识",
+                "progressionId": "1405001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1405002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1405002",
+                "variantIds": [
+                  "140502"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Bounce",
+                    "known": true,
+                    "label": "弹射"
+                  },
+                  "energyGain": 6,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "140502",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏35%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏35%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏39%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏39%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏42%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏42%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏46%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏46%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏49%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏49%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏53%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏53%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏57%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏57%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏61%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏61%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏66%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏66%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏70%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏70%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏74%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏74%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "74%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "74%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏77%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏77%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏81%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏81%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏84%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏84%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于那刻夏88%攻击力的风属性伤害，并额外造成4次伤害。每次伤害对敌方随机单体造成等同于那刻夏88%攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高20%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，并额外造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害。每次伤害对敌方随机单体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害，优先弹射本次战技尚未击中过的敌方目标。\n施放时场上每有1个可攻击的敌方目标，本次战技造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "分形，驱逐虚知",
+                "progressionId": "1405002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1405003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1405003",
+                "variantIds": [
+                  "140503"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "140503",
+                "levels": [
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏80%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏88%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏96%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏104%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "104%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏112%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏120%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏130%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏140%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏150%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏160%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏168%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏176%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "176%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏184%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "184%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏192%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏200%攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使敌方全体陷入【升华】状态，随后对敌方全体造成等同于那刻夏"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n【升华】状态下，目标同时被添加物理、火、冰、雷、风、量子、虚数属性弱点，持续至目标回合开始时。若目标不具有控制抵抗，则【升华】状态下无法行动。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "生息破土，世界塑造",
+                "progressionId": "1405003",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1405004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1405004",
+                "variantIds": [
+                  "140504"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  }
+                },
+                "id": "140504",
+                "levels": [
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高18%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高19%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高20%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高22%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高23%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高24%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高26%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高27%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高28%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高30%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高31%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高32%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高34%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高35%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续3回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少5个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高36%，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当那刻夏击中1次敌方目标后，为目标添加1个随机属性弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，优先添加目标尚未拥有的弱点。\n那刻夏在场时，使拥有至少"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "个不同属性弱点的敌方目标陷入【质性揭露】状态。那刻夏对处于【质性揭露】状态的目标造成的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，此外对其施放普攻或战技后，对该目标额外施放1次战技。额外战技不消耗战技点且不会再次触发此效果。若额外战技施放前目标被消灭则对敌方随机单体施放。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "四分明哲，三重至高",
+                "progressionId": "1405004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1405007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1405007",
+                "variantIds": [
+                  "140507"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  }
+                },
+                "id": "140507",
+                "levels": [
+                  {
+                    "description": "使用秘技后使一定区域内的敌人陷入恐惧状态。恐惧状态下的敌人会向远离那刻夏的方向逃跑，持续10秒。我方主动攻击陷入恐惧状态的敌人总会视为利用弱点进入战斗，进入战斗后那刻夏为敌方每个单体目标添加1个攻击者属性的弱点，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后使一定区域内的敌人陷入恐惧状态。恐惧状态下的敌人会向远离那刻夏的方向逃跑，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒。我方主动攻击陷入恐惧状态的敌人总会视为利用弱点进入战斗，进入战斗后那刻夏为敌方每个单体目标添加1个攻击者属性的弱点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "瞳扉之彩",
+                "progressionId": "1405007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放普攻时，额外恢复<unbreak>10</unbreak>点能量。\n回合开始时，若场上不存在处于【质性揭露】状态的敌方目标，立即恢复<unbreak>30</unbreak>点能量。",
+            "iconKey": "skill-tree--1405101",
+            "id": "1405101",
+            "name": "流浪的能指",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "根据我方队伍中「智识」命途角色的数量，在本场战斗中触发其中1个效果：\n1名：那刻夏的暴击伤害提高<unbreak>140%</unbreak>。\n至少2名：我方全体造成的伤害提高<unbreak>50%</unbreak>。",
+            "iconKey": "skill-tree--1405102",
+            "id": "1405102",
+            "name": "必要的留白",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "敌方目标每拥有1个不同属性的弱点，那刻夏对其造成的伤害无视<unbreak>4%</unbreak>的防御力，最多计入7个。",
+            "iconKey": "skill-tree--1405103",
+            "id": "1405103",
+            "name": "质性的嬗变",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "风属性伤害提高3.2%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1405201",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [],
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "暴击率提高2.7%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1405202",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1405101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "风属性伤害提高3.2%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1405203",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1405202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1405204",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1405202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "风属性伤害提高4.8%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1405205",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1405102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "暴击率提高4.0%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1405206",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1405205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "风属性伤害提高4.8%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1405207",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1405205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1405208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1405103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "暴击率提高5.3%",
+            "iconKey": "property--CriticalChanceBase",
+            "id": "1405209",
+            "name": "暴击率强化",
+            "prerequisiteIds": [
+              "1405103"
+            ],
+            "propertyType": "CriticalChanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "风属性伤害提高6.4%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1405210",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [],
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1405001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140501",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1405002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140502",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1405003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140503",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1405004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140504",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1405007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "140507",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1405",
+    "subtitleRendered": false
+  }
+}

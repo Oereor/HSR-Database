@@ -1,0 +1,2912 @@
+{
+  "catalog": {
+    "baseName": "娜塔莎",
+    "description": "贝洛伯格下层区的医生，也是孩子们的照料者。\n性格温柔可亲、又藏着危险的一面。",
+    "element": "Physical",
+    "elementName": "物理",
+    "id": "1105",
+    "name": "娜塔莎",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "娜塔莎",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 98
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 64.8,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 69,
+            "perLevel": 3.45
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 158.4,
+            "perLevel": 7.92
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 90.72,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 96.6,
+            "perLevel": 3.45
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 221.76,
+            "perLevel": 7.92
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 116.64,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 124.2,
+            "perLevel": 3.45
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 285.12,
+            "perLevel": 7.92
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 151.8,
+            "perLevel": 3.45
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 348.48,
+            "perLevel": 7.92
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 168.48,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 179.4,
+            "perLevel": 3.45
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 411.84,
+            "perLevel": 7.92
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 194.4,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 207,
+            "perLevel": 3.45
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 475.2,
+            "perLevel": 7.92
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 220.32,
+            "perLevel": 3.24
+          },
+          "defence": {
+            "base": 234.6,
+            "perLevel": 3.45
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 538.56,
+            "perLevel": 7.92
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "贝洛伯格下层区的医生，也是孩子们的照料者。\n性格温柔可亲、又藏着危险的一面。",
+    "element": "Physical",
+    "elementName": "物理",
+    "equipmentRecommendation": {
+      "avatarId": "1105",
+      "cavernSetIds": [
+        "101",
+        "114",
+        "121"
+      ],
+      "lightConeIds": [
+        "21000",
+        "21007",
+        "21021"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HealRatioBase",
+            "HPAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "302",
+        "317",
+        "310"
+      ],
+      "subStatPropertyTypes": [
+        "HPAddedRatio",
+        "SpeedDelta",
+        "StatusResistanceBase"
+      ]
+    },
+    "fullName": "娜塔莎",
+    "id": "1105",
+    "kind": "character",
+    "name": "娜塔莎",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "受到攻击后，若当前生命值百分比小于等于<unbreak>30%</unbreak>，对自身施放1次治疗，回复等同于自身<unbreak>15%</unbreak>生命上限+<unbreak>400</unbreak>的生命值。该效果单场战斗中只能触发1次。",
+            "iconKey": "rank--110501",
+            "id": "110501",
+            "name": "遍识药理",
+            "rank": 1
+          },
+          {
+            "description": "施放终结技时，对当前生命值百分比小于等于<unbreak>30%</unbreak>的我方目标附加<unbreak>1</unbreak>回合的持续治疗效果，目标回合开始时为其回复等同于娜塔莎<unbreak>6%</unbreak>生命上限+<unbreak>160</unbreak>的生命值。",
+            "iconKey": "rank--110502",
+            "id": "110502",
+            "name": "临床研学",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--110503",
+            "id": "110503",
+            "name": "对症下药",
+            "rank": 3
+          },
+          {
+            "description": "受到攻击后，额外恢复<unbreak>5</unbreak>点能量。",
+            "iconKey": "rank--110504",
+            "id": "110504",
+            "name": "妙手回春",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--110505",
+            "id": "110505",
+            "name": "医治未病",
+            "rank": 5
+          },
+          {
+            "description": "施放普攻时，额外造成等同于娜塔莎生命上限<unbreak>40%</unbreak>的物理属性伤害。",
+            "iconKey": "rank--110506",
+            "id": "110506",
+            "name": "医者仁心",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 90
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1105001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1105001",
+                "variantIds": [
+                  "110501"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "110501",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于娜塔莎50%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于娜塔莎60%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于娜塔莎70%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于娜塔莎80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于娜塔莎90%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于娜塔莎100%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于娜塔莎110%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于娜塔莎120%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于娜塔莎130%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于娜塔莎140%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "仁慈的背面",
+                "progressionId": "1105001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1105002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1105002",
+                "variantIds": [
+                  "110502"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "energyGain": 30
+                },
+                "id": "110502",
+                "levels": [
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎7.0%生命上限+70的生命值，同时目标每回合开始时为其回复等同于娜塔莎4.8%生命上限+48的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎7.4%生命上限+112的生命值，同时目标每回合开始时为其回复等同于娜塔莎5.1%生命上限+77的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "112"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎7.9%生命上限+144的生命值，同时目标每回合开始时为其回复等同于娜塔莎5.4%生命上限+98的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎8.3%生命上限+175的生命值，同时目标每回合开始时为其回复等同于娜塔莎5.7%生命上限+120的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎8.8%生命上限+196的生命值，同时目标每回合开始时为其回复等同于娜塔莎6.0%生命上限+134的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "196"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "134"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎9.1%生命上限+217的生命值，同时目标每回合开始时为其回复等同于娜塔莎6.2%生命上限+149的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "217"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "149"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎9.4%生命上限+233的生命值，同时目标每回合开始时为其回复等同于娜塔莎6.5%生命上限+160的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "233"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎9.8%生命上限+249的生命值，同时目标每回合开始时为其回复等同于娜塔莎6.7%生命上限+170的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "249"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "170"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎10.2%生命上限+264的生命值，同时目标每回合开始时为其回复等同于娜塔莎7.0%生命上限+181的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "181"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎10.5%生命上限+280的生命值，同时目标每回合开始时为其回复等同于娜塔莎7.2%生命上限+192的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "192"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎10.8%生命上限+296的生命值，同时目标每回合开始时为其回复等同于娜塔莎7.4%生命上限+203的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "296"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "203"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎11.2%生命上限+312的生命值，同时目标每回合开始时为其回复等同于娜塔莎7.7%生命上限+214的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "312"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "214"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎11.6%生命上限+327的生命值，同时目标每回合开始时为其回复等同于娜塔莎7.9%生命上限+224的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "327"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎11.9%生命上限+343的生命值，同时目标每回合开始时为其回复等同于娜塔莎8.2%生命上限+235的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "343"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "235"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "立即为指定我方单体回复等同于娜塔莎12.3%生命上限+359的生命值，同时目标每回合开始时为其回复等同于娜塔莎8.4%生命上限+246的生命值，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为指定我方单体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "359"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，同时目标每回合开始时为其回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "246"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "爱，救护与抉择",
+                "progressionId": "1105002",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  3,
+                  4
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1105003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1105003",
+                "variantIds": [
+                  "110503"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Restore",
+                    "known": true,
+                    "label": "回复"
+                  },
+                  "energyGain": 5
+                },
+                "id": "110503",
+                "levels": [
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎9.2%生命上限+92的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎9.8%生命上限+147的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "147"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎10.3%生命上限+189的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "189"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎10.9%生命上限+230的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "230"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎11.5%生命上限+258的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "258"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎12.0%生命上限+285的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "285"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎12.4%生命上限+306的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "306"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎12.9%生命上限+327的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "327"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎13.3%生命上限+347的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "347"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎13.8%生命上限+368的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "368"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎14.3%生命上限+389的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "389"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎14.7%生命上限+409的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "409"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎15.2%生命上限+430的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "430"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎15.6%生命上限+451的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "451"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "立即为我方全体回复等同于娜塔莎16.1%生命上限+472的生命值。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即为我方全体回复等同于娜塔莎"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限+"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "472"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "新生之礼",
+                "progressionId": "1105003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1105004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1105004",
+                "variantIds": [
+                  "110504"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "110504",
+                "levels": [
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高25%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高28%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高30%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高33%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高35%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高38%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高41%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高44%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高47%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高50%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高53%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高55%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高57%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高60%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为当前生命值百分比小于等于30%的我方目标提供治疗时，娜塔莎的治疗量提高63%，该效果对持续治疗效果也会生效。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为当前生命值百分比小于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的我方目标提供治疗时，娜塔莎的治疗量提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，该效果对持续治疗效果也会生效。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "生机焕发",
+                "progressionId": "1105004",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1105007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1105007",
+                "variantIds": [
+                  "110507"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "110507",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后对敌方随机单体造成等同于娜塔莎80%攻击力的物理属性伤害，并有100%的基础概率使敌方每个单体目标陷入虚弱状态。\n虚弱状态下的敌方目标对我方造成的伤害降低30%，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后对敌方随机单体造成等同于娜塔莎"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入虚弱状态。\n虚弱状态下的敌方目标对我方造成的伤害降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "催眠研习",
+                "progressionId": "1105007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放战技时，解除指定我方单体的<unbreak>1</unbreak>个<u>负面效果</u>。",
+            "extraEffects": [
+              {
+                "description": "对战斗有负面效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000010",
+                "name": "负面效果"
+              }
+            ],
+            "iconKey": "skill-tree--1105101",
+            "id": "1105101",
+            "name": "舒缓",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "娜塔莎提供的治疗量提高<unbreak>10%</unbreak>。",
+            "iconKey": "skill-tree--1105102",
+            "id": "1105102",
+            "name": "医者",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "施放战技产生的持续回复效果延长<unbreak>1</unbreak>回合。",
+            "iconKey": "skill-tree--1105103",
+            "id": "1105103",
+            "name": "调理",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1105201",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1105202",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1105101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1105203",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1105202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1105204",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1105203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1105205",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1105102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1105206",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1105205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1105207",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1105206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1105208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1105103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "效果抵抗提高8.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1105209",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1105103"
+            ],
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "生命值上限提高8.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1105210",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1105001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110501",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1105002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110502",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1105003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110503",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1105004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110504",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1105007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "110507",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1105",
+    "subtitleRendered": false
+  }
+}

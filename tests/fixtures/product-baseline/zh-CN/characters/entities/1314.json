@@ -1,0 +1,4218 @@
+{
+  "catalog": {
+    "baseName": "翡翠",
+    "description": "星际和平公司「战略投资部」的高级干部，「石心十人」之一，基石为「典贷翡翠」。\n冷艳优雅的放贷人，善于洞悉人心，有着名为「慈玉典押」的个人爱好。\n愿意为获取高价值的事物耐心等待，也擅长从看似一无所有的客户身上榨取价值。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "id": "1314",
+    "name": "翡翠",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "翡翠",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 103
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 89.76,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 69.3,
+            "perLevel": 3.465
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 147.84,
+            "perLevel": 7.392
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 125.664,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 97.02,
+            "perLevel": 3.465
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 206.976,
+            "perLevel": 7.392
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 161.568,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 124.74,
+            "perLevel": 3.465
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 266.112,
+            "perLevel": 7.392
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 197.472,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 152.46,
+            "perLevel": 3.465
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 325.248,
+            "perLevel": 7.392
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 233.376,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 180.18,
+            "perLevel": 3.465
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 384.384,
+            "perLevel": 7.392
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 207.9,
+            "perLevel": 3.465
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 443.52,
+            "perLevel": 7.392
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 305.184,
+            "perLevel": 4.488
+          },
+          "defence": {
+            "base": 235.62,
+            "perLevel": 3.465
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 502.656,
+            "perLevel": 7.392
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "星际和平公司「战略投资部」的高级干部，「石心十人」之一，基石为「典贷翡翠」。\n冷艳优雅的放贷人，善于洞悉人心，有着名为「慈玉典押」的个人爱好。\n愿意为获取高价值的事物耐心等待，也擅长从看似一无所有的客户身上榨取价值。",
+    "element": "Quantum",
+    "elementName": "量子",
+    "equipmentRecommendation": {
+      "avatarId": "1314",
+      "cavernSetIds": [
+        "108",
+        "115",
+        "102"
+      ],
+      "lightConeIds": [
+        "23028",
+        "24004",
+        "23000"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio",
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "QuantumAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "313",
+        "306",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "翡翠",
+    "id": "1314",
+    "kind": "character",
+    "name": "翡翠",
+    "path": "Mage",
+    "pathName": "智识",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "翡翠天赋的<u>追加攻击</u>伤害提高<unbreak>32%</unbreak>，持有【收债人】状态的角色施放攻击后击中敌方目标数量等于2/1名时，翡翠额外获得<unbreak>1</unbreak>/<unbreak>2</unbreak>点充能。",
+            "extraEffects": [
+              {
+                "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                "id": "10000004",
+                "name": "追加攻击"
+              }
+            ],
+            "iconKey": "rank--131401",
+            "id": "131401",
+            "name": "无私？亦可交割",
+            "rank": 1
+          },
+          {
+            "description": "【当品】叠加至<unbreak>15</unbreak>层时，翡翠暴击率提高<unbreak>18%</unbreak>。",
+            "iconKey": "rank--131402",
+            "id": "131402",
+            "name": "道德？谨此核押",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--131403",
+            "id": "131403",
+            "name": "坦率？只待典当",
+            "rank": 3
+          },
+          {
+            "description": "施放终结技时，使翡翠造成的伤害无视敌方目标<unbreak>12%</unbreak>的防御力，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "rank--131404",
+            "id": "131404",
+            "name": "真诚？唯凭认沽",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--131405",
+            "id": "131405",
+            "name": "希冀？已然绝卖",
+            "rank": 5
+          },
+          {
+            "description": "场上有【收债人】状态的角色时，翡翠量子属性<u>抗性穿透</u>提高<unbreak>20%</unbreak>，同时翡翠获得【收债人】状态。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "rank--131406",
+            "id": "131406",
+            "name": "公平？仍须保荐",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 140
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1314001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1314001",
+                "variantIds": [
+                  "131401"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    },
+                    {
+                      "type": "blast",
+                      "value": 5
+                    }
+                  ]
+                },
+                "id": "131401",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于翡翠45%攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠15%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于翡翠54%攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠18%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于翡翠63%攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠21%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于翡翠72%攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠24%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于翡翠81%攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠27%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于翡翠90%攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠30%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于翡翠99%攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠33%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "99%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于翡翠108%攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠36%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于翡翠117%攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠39%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "117%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于翡翠126%攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠42%攻击力的量子属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，同时对其相邻目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "挞楚抽薪",
+                "progressionId": "1314001",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1314002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1314002",
+                "variantIds": [
+                  "131402"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ]
+                },
+                "id": "131402",
+                "levels": [
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠15%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠16%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠17%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠18%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠19%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠20%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠21%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠23%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠24%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠25%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠26%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠27%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠28%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠29%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "指定我方单体成为【收债人】，使其速度提高30点，持续3回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠30%攻击力的量子属性附加伤害，并消耗【收债人】生命上限2%的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "指定我方单体成为【收债人】，使其速度提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n【收债人】施放攻击后，对每个击中的敌方目标造成1次等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并消耗【收债人】生命上限"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的生命值，若当前生命值不足，当前生命值降至1点。\n若翡翠成为【收债人】时，无法获得速度提高效果且攻击后不消耗生命值。\n当场上存在【收债人】时，翡翠无法施放战技，翡翠每回合开始时【收债人】状态持续回合数减1。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "恣肆吞併的担保",
+                "progressionId": "1314002",
+                "scalingParamIndexes": [
+                  2
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1314003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1314003",
+                "variantIds": [
+                  "131403"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "131403",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于翡翠120%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高40%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠132%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高44%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠144%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高48%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠156%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高52%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠168%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高56%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠180%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高60%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠195%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高65%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "195%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠210%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高70%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠225%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高75%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "225%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠240%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高80%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠252%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高84%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠264%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高88%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠276%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高92%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "276%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠288%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高96%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于翡翠300%攻击力的量子属性伤害。同时使翡翠天赋的追加攻击获得强化，追加攻击造成的伤害倍率提高100%。强化效果可生效2次。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "300%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害。同时使翡翠天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "获得强化，追加攻击造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。强化效果可生效"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "堕此欲渊，立此狱契",
+                "progressionId": "1314003",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1314004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1314004",
+                "variantIds": [
+                  "131404"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 10,
+                  "extraEffects": [
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "131404",
+                "levels": [
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠60%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高1.2%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠66%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高1.3%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠72%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高1.4%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠78%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高1.6%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠84%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高1.7%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠90%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高1.8%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠98%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高1.9%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "1.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠105%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高2.1%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠113%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高2.3%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠120%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高2.4%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠126%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高2.5%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠132%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高2.6%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠138%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高2.8%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠144%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高2.9%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "2.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达8点后，消耗8点充能，发动1次追加攻击，对敌方全体目标造成等同于翡翠150%攻击力的量子属性伤害，本次追加攻击无法获得充能。\n翡翠发动天赋的追加攻击时立即获得5层【当品】，每层【当品】使暴击伤害提高3.0%，最多叠加50层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "翡翠或成为【收债人】的目标施放攻击后，每击中1名敌方目标均可获得1点充能。当充能到达"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点后，消耗"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能，发动1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体目标造成等同于翡翠"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，本次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "无法获得充能。\n翡翠发动天赋的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】，每层【当品】使暴击伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "3.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "剔烁之牙",
+                "progressionId": "1314004",
+                "scalingParamIndexes": [
+                  0,
+                  4
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1314007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1314007",
+                "variantIds": [
+                  "131407"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  }
+                },
+                "id": "131407",
+                "levels": [
+                  {
+                    "description": "使用秘技后使一定区域内的敌人陷入10秒【盲从】。【盲从】状态下敌人不会主动攻击我方目标。主动攻击陷入【盲从】的敌人进入战斗时，使所有处于【盲从】状态的敌人同时进入战斗。进入战斗后对敌方全体造成等同于翡翠50%攻击力的量子属性伤害，立即获得15层【当品】。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后使一定区域内的敌人陷入"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒【盲从】。【盲从】状态下敌人不会主动攻击我方目标。主动攻击陷入【盲从】的敌人进入战斗时，使所有处于【盲从】状态的敌人同时进入战斗。进入战斗后对敌方全体造成等同于翡翠"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的量子属性伤害，立即获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层【当品】。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "猎手的视界",
+                "progressionId": "1314007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "在敌方目标进入战斗时，翡翠获得<unbreak>1</unbreak>层【当品】。处于【收债人】状态的角色回合开始时，额外获得<unbreak>3</unbreak>层【当品】。",
+            "iconKey": "skill-tree--1314101",
+            "id": "1314101",
+            "name": "逆回购",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "战斗开始时，翡翠的<u>行动提前</u><unbreak>50%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--1314102",
+            "id": "1314102",
+            "name": "折牙票",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "天赋中每层【当品】额外使翡翠的攻击力提高<unbreak>0.5%</unbreak>。",
+            "iconKey": "skill-tree--1314103",
+            "id": "1314103",
+            "name": "绝当品",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "量子属性伤害提高3.2%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1314201",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [],
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1314202",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1314101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "量子属性伤害提高3.2%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1314203",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1314202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1314204",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1314202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "量子属性伤害提高4.8%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1314205",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1314102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1314206",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1314205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "量子属性伤害提高4.8%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1314207",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [
+              "1314205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "1314208",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "1314103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1314209",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1314103"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "量子属性伤害提高6.4%",
+            "iconKey": "property--QuantumAddedRatio",
+            "id": "1314210",
+            "name": "伤害强化•量子",
+            "prerequisiteIds": [],
+            "propertyType": "QuantumAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1314001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131401",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1314002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131402",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1314003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131403",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1314004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131404",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1314007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131407",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1314",
+    "subtitleRendered": false
+  }
+}

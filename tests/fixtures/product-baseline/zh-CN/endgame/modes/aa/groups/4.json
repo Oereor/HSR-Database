@@ -1,0 +1,861 @@
+{
+  "presentation": {
+    "defaultEncounterId": "404:normal",
+    "encounters": [
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30504011-0",
+                "level": 95,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "e600bccd22b064921264355c476ae42254bd43a93b4c58672be1a0a062154489"
+                      },
+                      {
+                        "occurrenceRef": "a5a283c02eff194c72d3d59685f5aa53919b2461729b53979e7af02470d13ff3"
+                      }
+                    ],
+                    "key": "spawn-305040111",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "5f946eb8d127d0cc13fd4358c0f5c42ea1ad8c20d8b4737ae33bee62b69b55e9"
+                      }
+                    ],
+                    "key": "spawn-305040112",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "401:preliminary",
+        "label": "骑士（一）",
+        "mode": "aa",
+        "ordinal": 1,
+        "traits": [
+          {
+            "mechanicRef": "3ee9eca93a99f150f843b7338fc09ee12043bf65826d16264881c5e024cad14c"
+          }
+        ],
+        "variant": "preliminary"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30504012-0",
+                "level": 95,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "ade3ecbdaea58e73721f10b20c17321f9274b567b4301c5e6f5d07f038beccca"
+                      },
+                      {
+                        "occurrenceRef": "dfe1ca75bcdb60a0520e117339bb69cb8c7edead67373593542aef34dc0f27f4"
+                      }
+                    ],
+                    "key": "spawn-305040121",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "726aea2ad4c30fcf12307e65999b49d466f11b17b69412672bb8d0f36826073c"
+                      }
+                    ],
+                    "key": "spawn-305040122",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "402:preliminary",
+        "label": "骑士（二）",
+        "mode": "aa",
+        "ordinal": 2,
+        "traits": [
+          {
+            "mechanicRef": "50513c90f5702cd34eae6a941e9d036523a95d884053a6ad3f17cb08bcbe56db"
+          },
+          {
+            "mechanicRef": "40b17c8b261d042268cb034a0d99edbd8e198054e8de45def1bcf979e58cfbb8"
+          }
+        ],
+        "variant": "preliminary"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30504013-0",
+                "level": 95,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "78932d6b21da7242124ab07c053dbea134434e5e7a8d0b4acb57d146125b3b7f"
+                      },
+                      {
+                        "occurrenceRef": "817b85b94d3e28e1003ff01bc8197d1d4d1d6503454a201070e25586dce8804b"
+                      }
+                    ],
+                    "key": "spawn-305040131",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "b163ddf56bd473226851631c893df6295521e44cc206fdca22d6e30064879ab2"
+                      }
+                    ],
+                    "key": "spawn-305040132",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "403:preliminary",
+        "label": "骑士（三）",
+        "mode": "aa",
+        "ordinal": 3,
+        "traits": [
+          {
+            "mechanicRef": "d8f48cfa6cc8f0611690daed4643b4cd2d4ca9a3708904b2a8617e419f023c95"
+          }
+        ],
+        "variant": "preliminary"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30504021-0",
+                "level": 100,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "4ae38aeccb57c9d75878ca2ecd88bfbb19a9e189f9890e96e8cf44a3d3ad369e"
+                      },
+                      {
+                        "occurrenceRef": "70cbd512431e415095e43c271c9f76c704a22b79d6acc9897da342cf516d7c97"
+                      },
+                      {
+                        "occurrenceRef": "9d4163ab5a13a27aeaf3dadf7071b5b5337c41f29e7606ab97eeed42d6e7b88c"
+                      }
+                    ],
+                    "key": "spawn-305040211",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "2904d72ad850227aa1eb3025561984d35ec6d17e6f74164703a4908a3325f8d7"
+                      }
+                    ],
+                    "key": "spawn-305040212",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "404:normal",
+        "judgmentQuadrantKey": "aa:404:BuffList",
+        "label": "将杀王棋",
+        "mode": "aa",
+        "traits": [
+          {
+            "mechanicRef": "546c744dde42120a1c6be06b71d1872d7a89d32eb6b81e9ab946eb77d9b3b86c"
+          },
+          {
+            "mechanicRef": "39c9a2457f453e86dce7b33d3039f0c179a73e287b29afb620be4180189b2026"
+          }
+        ],
+        "variant": "boss-normal"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "index": 1,
+                "key": "30504022-0",
+                "level": 120,
+                "waves": [
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "443503e1dd0e24b11954bb0c85288c5f23c816ebc9e057657046cb23f8b1e12a"
+                      },
+                      {
+                        "occurrenceRef": "a73d927d2b983efd07204eaebacdb3b40ce5b654ad32d4236c801a71d31e457b"
+                      },
+                      {
+                        "occurrenceRef": "aa27830959fde90e608184f309a943b5a5c89a3e9cec4b2900b563d780bd7384"
+                      }
+                    ],
+                    "key": "spawn-305040221",
+                    "label": "波次 1"
+                  },
+                  {
+                    "enemies": [
+                      {
+                        "occurrenceRef": "ce3efce075fe9abd22564c3ebe1ce8030f3b96baf40353a06466ae73b19c919a"
+                      }
+                    ],
+                    "key": "spawn-305040222",
+                    "label": "波次 2"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "id": "404:hard",
+        "judgmentQuadrantKey": "aa:404:BuffList",
+        "label": "将杀王棋•绝境",
+        "mode": "aa",
+        "traits": [
+          {
+            "mechanicRef": "ef97334b55132f393ec95644783a713d6dd2bdb6e8e0702d44783d23c2ac6017"
+          },
+          {
+            "mechanicRef": "75d5d3ad0a9f0039c753d3b80a86b8c62ec541dbb783efb641b02bef5c8236c4"
+          }
+        ],
+        "variant": "boss-hard"
+      }
+    ],
+    "judgmentQuadrant": {
+      "key": "aa:404:BuffList",
+      "options": [
+        {
+          "mechanicRef": "7a354e933d6c7e60441920f04082d2289183e9d0a3f718c376dcb4db37acdd10"
+        },
+        {
+          "mechanicRef": "264aa64cd80752bf3635ccc1b0ee0b8220df551e93f9065acc759389a16d1677"
+        },
+        {
+          "mechanicRef": "78ff17535c149324beb8900a7d52ccd1156ceb796bd5ba628ef4ffa6193c370c"
+        }
+      ]
+    },
+    "mode": "aa",
+    "modeLabel": "异相仲裁",
+    "period": {
+      "dateLabel": "-",
+      "encounterCount": 5,
+      "groupId": 4,
+      "name": "网络风波",
+      "status": "unknown"
+    },
+    "periods": [
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 9,
+        "name": "军团再临",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 8,
+        "name": "尘世卷中",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 7,
+        "name": "嗡鸣如笑",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 6,
+        "name": "幸福语法",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 5,
+        "name": "别惹帕姆",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 4,
+        "name": "网络风波",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 3,
+        "name": "不协和音",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 2,
+        "name": "烈阳幻域",
+        "status": "unknown"
+      },
+      {
+        "dateLabel": "-",
+        "encounterCount": 5,
+        "groupId": 1,
+        "name": "智械残局",
+        "status": "unknown"
+      }
+    ]
+  },
+  "route": "/endgame/aa/4",
+  "source": {
+    "encounters": [
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30504011,
+                "hardLevelGroup": 3,
+                "level": 95,
+                "previewMonsterIds": [
+                  3003010,
+                  4053010,
+                  3024030
+                ],
+                "stageAbilities": [],
+                "stageId": 30504011,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30504011,
+                  "waves": [
+                    {
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 2,
+                      "maxTeammateCount": 2,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 305040111,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "629d4b9f0d4129d1bd490a4d749b78831bafcd877da8df68d74f0be632e6beb0"
+                            },
+                            {
+                              "occurrenceRef": "5ddb2caa6f6ce762e28194168ea15ba65672e2eeb318cc58ff37d7700dbd2a11"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [],
+                      "waveId": 305040111
+                    },
+                    {
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 1,
+                      "maxTeammateCount": 1,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 305040112,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "72d99404e97ae0f7afcd1c0f7d87ead6eaa75bfeb779c428fb44372809628bb2"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [],
+                      "waveId": 305040112
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 401,
+        "id": "401:preliminary",
+        "name": "骑士（一）",
+        "ordinal": 1,
+        "traits": [
+          {
+            "buff": {
+              "mechanicRef": "c8cf8e9f8226e8b9623375e091b105b05623480033a9effabc1e3aad0b9a06c2"
+            },
+            "provenance": {
+              "arrayIndex": 0,
+              "field": "TagList",
+              "ownerId": 401,
+              "table": "ChallengePeakConfig"
+            }
+          }
+        ],
+        "variant": "preliminary"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30504012,
+                "hardLevelGroup": 3,
+                "level": 95,
+                "previewMonsterIds": [
+                  4033010,
+                  4033030,
+                  4034010
+                ],
+                "stageAbilities": [],
+                "stageId": 30504012,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30504012,
+                  "waves": [
+                    {
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 2,
+                      "maxTeammateCount": 2,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 305040121,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "4a98debe4250c2f212ee02ea0e9a029f73635be4dbf7810a9bc980758e8e3ab9"
+                            },
+                            {
+                              "occurrenceRef": "a7d47b95ad8fd60868212fedf8700a72ae3501465914c10d6e27705890fadd3c"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [],
+                      "waveId": 305040121
+                    },
+                    {
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 1,
+                      "maxTeammateCount": 1,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 305040122,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "633ea18fc6451e8fa65e282eb630339bd243d6fa128fb9348b28d1c4ca4ef09a"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [],
+                      "waveId": 305040122
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 402,
+        "id": "402:preliminary",
+        "name": "骑士（二）",
+        "ordinal": 2,
+        "traits": [
+          {
+            "buff": {
+              "mechanicRef": "74cc8b96f9949f2b0dabc4361387d8b79584fa97c2e13b3cb4294b80c393fccd"
+            },
+            "provenance": {
+              "arrayIndex": 0,
+              "field": "TagList",
+              "ownerId": 402,
+              "table": "ChallengePeakConfig"
+            }
+          },
+          {
+            "buff": {
+              "mechanicRef": "5e6434051a907d6ff53253c82c6f31be84b6390d154ed9c8e245206bd48615c6"
+            },
+            "provenance": {
+              "arrayIndex": 1,
+              "field": "TagList",
+              "ownerId": 402,
+              "table": "ChallengePeakConfig"
+            }
+          }
+        ],
+        "variant": "preliminary"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30504013,
+                "hardLevelGroup": 3,
+                "level": 95,
+                "previewMonsterIds": [
+                  5013030,
+                  8003020,
+                  3024020
+                ],
+                "stageAbilities": [],
+                "stageId": 30504013,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30504013,
+                  "waves": [
+                    {
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 2,
+                      "maxTeammateCount": 2,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 305040131,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "9e0de690da46e55c2562b10de5865dee5d0ab1de4d65dfd044b5fbf2f915d98c"
+                            },
+                            {
+                              "occurrenceRef": "a65562eda2d815da03a41bf62ada00b81330cec8619b5bf257ce90d372a91e07"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [],
+                      "waveId": 305040131
+                    },
+                    {
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 1,
+                      "maxTeammateCount": 1,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 305040132,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "0034b1b5566f7842f9b57f97daab38ce6b5bda326bc4e80fbdcdbda026aa0935"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [],
+                      "waveId": 305040132
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 403,
+        "id": "403:preliminary",
+        "name": "骑士（三）",
+        "ordinal": 3,
+        "traits": [
+          {
+            "buff": {
+              "mechanicRef": "266f54560f2bec9ee220020e8d10fc9624afa039468604acb909618daa2afac6"
+            },
+            "provenance": {
+              "arrayIndex": 0,
+              "field": "TagList",
+              "ownerId": 403,
+              "table": "ChallengePeakConfig"
+            }
+          }
+        ],
+        "variant": "preliminary"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30504021,
+                "hardLevelGroup": 3,
+                "level": 100,
+                "previewMonsterIds": [
+                  5012030,
+                  5013010,
+                  2023020,
+                  5012030,
+                  5014010
+                ],
+                "stageAbilities": [],
+                "stageId": 30504021,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30504021,
+                  "waves": [
+                    {
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 4,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 305040211,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "d01261314a37e7d8ac9e8d2292e813b33c8819ef38c9bae62376de83a29628ef"
+                            },
+                            {
+                              "occurrenceRef": "ed8414bbcaf4d76fd695f840413229da033e885c5c91b75fd0735109d129a9f1"
+                            },
+                            {
+                              "occurrenceRef": "beb81f1f9fe9083588f8d08bd72272d2e4618c20143da3499f1b2bb4927c4320"
+                            },
+                            {
+                              "occurrenceRef": "d01261314a37e7d8ac9e8d2292e813b33c8819ef38c9bae62376de83a29628ef"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [],
+                      "waveId": 305040211
+                    },
+                    {
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 1,
+                      "maxTeammateCount": 1,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 305040212,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "f052a9ec4f5b98350ee8a0681dc3f87f3915760b6f3eff6d1b4bea40bbba2b1b"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [],
+                      "waveId": 305040212
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 404,
+        "id": "404:normal",
+        "judgmentQuadrantKey": "aa:404:BuffList",
+        "name": "将杀王棋",
+        "traits": [
+          {
+            "buff": {
+              "mechanicRef": "c3b2086ce94256efd2ee39bb5a1c8ebc9f2b8aefb0c29c9f57e79124ec08a878"
+            },
+            "provenance": {
+              "arrayIndex": 0,
+              "field": "TagList",
+              "ownerId": 404,
+              "table": "ChallengePeakConfig"
+            }
+          },
+          {
+            "buff": {
+              "mechanicRef": "00ea354c3a1d7a5a3d6d4b18b02c9afbb3a0fd172834d14ac86291a7e3948071"
+            },
+            "provenance": {
+              "arrayIndex": 1,
+              "field": "TagList",
+              "ownerId": 404,
+              "table": "ChallengePeakConfig"
+            }
+          }
+        ],
+        "variant": "boss-normal"
+      },
+      {
+        "battles": [
+          {
+            "slot": 1,
+            "stages": [
+              {
+                "eventId": 30504022,
+                "hardLevelGroup": 3,
+                "level": 120,
+                "previewMonsterIds": [
+                  5012030,
+                  5013010,
+                  2023020,
+                  5012030,
+                  501401003
+                ],
+                "stageAbilities": [],
+                "stageId": 30504022,
+                "waveModel": {
+                  "kind": "spawn-sequence",
+                  "waveGroupId": 30504022,
+                  "waves": [
+                    {
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 4,
+                      "maxTeammateCount": 4,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 305040221,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "c6f4097ea6617543b20625a602dd86c5ff3e86bdb09027ce92967f804218c281"
+                            },
+                            {
+                              "occurrenceRef": "258a1ca766c0ebcd5ed2b4821bea1480b861fcd490e2bc8ffba3022cb75c3169"
+                            },
+                            {
+                              "occurrenceRef": "b7fdc9e186cb34d64e78e7b62d7b7bac0b0c00dc5071b437cfde1e6f5f2fc290"
+                            },
+                            {
+                              "occurrenceRef": "c6f4097ea6617543b20625a602dd86c5ff3e86bdb09027ce92967f804218c281"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [],
+                      "waveId": 305040221
+                    },
+                    {
+                      "clearPreviousAbility": true,
+                      "maxMonsterCount": 1,
+                      "maxTeammateCount": 1,
+                      "monsterGroups": [
+                        {
+                          "monsterGroupId": 305040222,
+                          "orderedEnemies": [
+                            {
+                              "occurrenceRef": "aed42d3347a15ac93e28b0f953bb571defa029d2123b94b9fc3da1399a4672c4"
+                            }
+                          ]
+                        }
+                      ],
+                      "params": [],
+                      "waveId": 305040222
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "configId": 404,
+        "id": "404:hard",
+        "judgmentQuadrantKey": "aa:404:BuffList",
+        "name": "将杀王棋•绝境",
+        "traits": [
+          {
+            "buff": {
+              "mechanicRef": "73cf43bca998e355c6727420f68ed6759f9761b0aea43dad73b7a4299a8658e5"
+            },
+            "provenance": {
+              "arrayIndex": 0,
+              "field": "HardTagList",
+              "ownerId": 404,
+              "table": "ChallengePeakBossConfig"
+            }
+          },
+          {
+            "buff": {
+              "mechanicRef": "b7ad9519f6d4ba25ee7ee72bab7c377424eb5d45216bbc4a45330ffa0b6b3062"
+            },
+            "provenance": {
+              "arrayIndex": 1,
+              "field": "HardTagList",
+              "ownerId": 404,
+              "table": "ChallengePeakBossConfig"
+            }
+          }
+        ],
+        "variant": "boss-hard"
+      }
+    ],
+    "groupId": 4,
+    "judgmentQuadrant": {
+      "bossConfigId": 404,
+      "key": "aa:404:BuffList",
+      "options": [
+        {
+          "buff": {
+            "mechanicRef": "fd25457237bbf59d53a1f0d652dcd3c4419f2bd0827bf3b3735a63201100cf3b"
+          },
+          "order": 1,
+          "provenance": {
+            "arrayIndex": 0,
+            "field": "BuffList",
+            "ownerId": 404,
+            "table": "ChallengePeakBossConfig"
+          }
+        },
+        {
+          "buff": {
+            "mechanicRef": "6abbf6fce4ea61b7799c1f6d3703049961064d20824751e091703b4c5242ee3c"
+          },
+          "order": 2,
+          "provenance": {
+            "arrayIndex": 1,
+            "field": "BuffList",
+            "ownerId": 404,
+            "table": "ChallengePeakBossConfig"
+          }
+        },
+        {
+          "buff": {
+            "mechanicRef": "a03e25342c14308430b496df47a6296323a165d9f0c01cf9e2eeaa1df9079d4a"
+          },
+          "order": 3,
+          "provenance": {
+            "arrayIndex": 2,
+            "field": "BuffList",
+            "ownerId": 404,
+            "table": "ChallengePeakBossConfig"
+          }
+        }
+      ],
+      "provenance": {
+        "field": "BuffList",
+        "ownerId": 404,
+        "table": "ChallengePeakBossConfig"
+      },
+      "selectCount": 1
+    },
+    "mode": "aa",
+    "name": "网络风波",
+    "recommendationEligible": true
+  }
+}

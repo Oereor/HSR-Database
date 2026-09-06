@@ -1,0 +1,104 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的生命上限提高12%。当装备者的速度大于等于120时，我方全体攻击力提高8%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "302",
+    "name": "不老者的仙舟",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的生命上限提高12%。当装备者的速度大于等于120时，我方全体攻击力提高8%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的生命上限提高12%。当装备者的速度大于等于120时，我方全体攻击力提高8%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的生命上限提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者的速度大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "120"
+          },
+          {
+            "type": "text",
+            "value": "时，我方全体攻击力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "302",
+    "kind": "relic",
+    "name": "不老者的仙舟",
+    "pieces": [
+      {
+        "description": "泛于星海的罗浮仙舟被收拢于球中，玉界门上浮槎去来，若星月之出入。无数人曾来此寻求长生之秘，却又失望而归。",
+        "id": "33025",
+        "name": "罗浮仙舟的天外楼船",
+        "slot": "NECK"
+      },
+      {
+        "description": "曾经罗浮仙舟因建木生发，成为仙舟舰队之尊；后来罗浮仙舟因建木成祸，自食长寿恶果…建木枝蔓已经牢牢缠住罗浮命运，难以分离。",
+        "id": "33026",
+        "name": "罗浮仙舟的建木枝蔓",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第三世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33025"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33026"
+      }
+    ],
+    "route": "/relics/302"
+  }
+}

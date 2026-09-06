@@ -28,7 +28,7 @@ import {
 } from '$lib/domain/search-index';
 import { getSearchIndex } from '$lib/server/generated';
 
-const generatedRoot = path.resolve('src', 'lib', 'generated');
+const generatedRoot = path.resolve('src', 'lib', 'generated', 'views', 'zh-CN');
 const datasetCache = new Map<EndgameMode, Promise<EndgameModeDataset>>();
 const enemyCache = new Map<string, Promise<EndgameEnemyReference>>();
 const groupViewCache = new Map<string, Promise<EndgameGroupView | undefined>>();
@@ -43,7 +43,7 @@ export function getEndgameDataset<TMode extends EndgameMode>(
   const cached = datasetCache.get(mode);
   if (cached) return cached as Promise<EndgameDatasetByMode[TMode]>;
   const pending = readJson<EndgameModeDataset>('endgame', `${mode}.json`).then((dataset) => {
-    if (dataset.schemaVersion !== 22 || dataset.mode !== mode)
+    if (dataset.schemaVersion !== 23 || dataset.mode !== mode)
       throw new Error(`${mode} Endgame 数据 schema 或模式不匹配`);
     return dataset;
   });

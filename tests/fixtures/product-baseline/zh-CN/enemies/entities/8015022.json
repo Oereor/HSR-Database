@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "兼具「毁灭」与「丰饶」之力，生灭循环的肉体。也是建木复生后结出的第一颗「果实」。",
+    "id": "8015022",
+    "name": "乘间抵隙的煽动者",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8015022",
+    "defaultMonsterRef": "1e926e4f36c9c7d97de364fa98ee3497f254baf4e299526f052f303c355718a9",
+    "description": "兼具「毁灭」与「丰饶」之力，生灭循环的肉体。也是建木复生后结出的第一颗「果实」。",
+    "id": "8015022",
+    "kind": "enemy",
+    "monsterRefs": [
+      "1e926e4f36c9c7d97de364fa98ee3497f254baf4e299526f052f303c355718a9",
+      "ae1c74dc6dcf6cb23188a60e8b5b7ec11a18ac3b66edafabb967b514f23c3f52",
+      "c38e331eccdda214ac87a1ccace3e7ef1f4b5b680d7e5991df3504f3508b15ac",
+      "4476d79aef589a7f969812efece479ea0cac2097b32a8117dc73f8172defb0bc",
+      "1cc479d246b7409c4bb7069c5596e9b2174833fd5d9486820148573e059c0399"
+    ],
+    "name": "乘间抵隙的煽动者",
+    "rank": "BigBoss",
+    "templateRef": "a19ec1b24ba04be4b8c7ea24ece3eca3983b0d19c22bd8b8ac691f6607fcf991",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8015022",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8015022",
+    "selectableMonsterIds": [
+      "8015022",
+      "801502201",
+      "801502202",
+      "801502203",
+      "801502204"
+    ]
+  }
+}

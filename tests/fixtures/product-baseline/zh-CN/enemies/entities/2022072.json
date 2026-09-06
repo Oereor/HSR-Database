@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "随玄鹿足迹而生的建木枝梢。",
+    "id": "2022072",
+    "name": "肃风之杪",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2022072",
+    "defaultMonsterRef": "c6881205bc9b80e2168bf85890fce17fdc468a87ce49b66e93d95c1034614347",
+    "description": "随玄鹿足迹而生的建木枝梢。",
+    "id": "2022072",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c6881205bc9b80e2168bf85890fce17fdc468a87ce49b66e93d95c1034614347",
+      "d8bd73ef0edfd4f595174bb9e24ff01cdc09e0b16fa801cf73a770ea57cccf18",
+      "0595ae8acc7e33687249b77642ed966d7dd7b299d10136555eed76d04f997ce6",
+      "e56f8fba23dee5c4776a1e9e6ed9ddd4c6bec5c53089cd6c0015fdbf63e52c9d",
+      "7c0f4936bfe99ea971ed42df7741403294f5756c4cc3e0ba77019eeb1f52febd"
+    ],
+    "name": "肃风之杪",
+    "rank": "MinionLv2",
+    "templateRef": "763d7cfccede565e69ea08dfc81670a8354f3512087ee2b7b7fe57d157d03be1",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2022072",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2022072",
+    "selectableMonsterIds": [
+      "2022072",
+      "202207201",
+      "202207202",
+      "202207203",
+      "202207204"
+    ]
+  }
+}

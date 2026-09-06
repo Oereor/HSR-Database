@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "「星核猎手」的一员，面带莫测笑容的杀手丽人，善用种类纷繁的武器和心控之术。正是她将星穹列车引至此处，以实现某个计划……",
+    "id": "2004014",
+    "name": "勾魂摄魄的支配者",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2004014",
+    "defaultMonsterRef": "66ef8b59d9cf2a4bab609576adf4b5feb606598778ca4f007019348f7ef722ca",
+    "description": "「星核猎手」的一员，面带莫测笑容的杀手丽人，善用种类纷繁的武器和心控之术。正是她将星穹列车引至此处，以实现某个计划……",
+    "id": "2004014",
+    "kind": "enemy",
+    "monsterRefs": [
+      "66ef8b59d9cf2a4bab609576adf4b5feb606598778ca4f007019348f7ef722ca",
+      "5f9e1ff6b7488dda4b27f05ef2077b464611ef73fa88f38d5f0d02c74ed9daff",
+      "6bd678e2e12c5ec2ae3555556a5365e10a5e0228baf7a953c269525dedfdbf82",
+      "f75edff6d2e51b7dc356f47c6c199c043f75f11883ac7649f073867cfb3d556a",
+      "05bd8041fa1386e099ae003c52e32449742bc1939984acc4c98b0c4c3c448a39"
+    ],
+    "name": "勾魂摄魄的支配者",
+    "rank": "LittleBoss",
+    "templateRef": "caba918513669f097968cf2be0fc7fa5d4085e96893879b257ead55d5d4d23a5",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2004014",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2004014",
+    "selectableMonsterIds": [
+      "2004014",
+      "200401401",
+      "200401402",
+      "200401403",
+      "200401404"
+    ]
+  }
+}

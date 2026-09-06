@@ -1,0 +1,52 @@
+{
+  "catalog": {
+    "description": "蕴含特定认知的实体，由忆域中的潜意识碎片堆积而成。\n旁人的夸饰、弱者的攀附、佞臣的谄媚…无休的虚荣之心化作模因生命，寻求着贪求名利的宿主。",
+    "id": "3012040",
+    "name": "忆域迷因「虚荣永无餍足」",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3012040",
+    "defaultMonsterRef": "47650f23273c2932311d2c3f516f7efd8b450b56e9e40e70110772934a5e8a08",
+    "description": "蕴含特定认知的实体，由忆域中的潜意识碎片堆积而成。\n旁人的夸饰、弱者的攀附、佞臣的谄媚…无休的虚荣之心化作模因生命，寻求着贪求名利的宿主。",
+    "id": "3012040",
+    "kind": "enemy",
+    "monsterRefs": [
+      "47650f23273c2932311d2c3f516f7efd8b450b56e9e40e70110772934a5e8a08"
+    ],
+    "name": "忆域迷因「虚荣永无餍足」",
+    "rank": "MinionLv2",
+    "templateRef": "d1abbeb8d85ad6b5c5186ecf6412ca806431ce9d1e15964121cb778293effe4c",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3012040",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3012040",
+    "selectableMonsterIds": [
+      "3012040"
+    ]
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "catalog": {
+    "description": "贝洛伯格的守护者，永屹之城贝洛伯格无可质疑的统治者。\n可可利亚秉持传承自历代守护者的神迹权能，在战斗中号令冰雪的力量冻结敌人。",
+    "id": "1004010",
+    "name": "可可利亚",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1004010",
+    "defaultMonsterRef": "f92bda6a19e3261f26b58ca46a51046c983d09a2019b1b61dc9e8b4114d89118",
+    "description": "贝洛伯格的守护者，永屹之城贝洛伯格无可质疑的统治者。\n可可利亚秉持传承自历代守护者的神迹权能，在战斗中号令冰雪的力量冻结敌人。",
+    "id": "1004010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "f92bda6a19e3261f26b58ca46a51046c983d09a2019b1b61dc9e8b4114d89118",
+      "3a2e3ab6a249539a7333cc75e46340c674557a59c87d2a548f47790e16813b6f",
+      "0dacaa443d29c1e9c59ea2312fb597e206cda278bacbf177ec3c8c5b0ceee1c4",
+      "4a1be65502326d8ba13d853ddcae4a540a542952327d898bf067b258e0235d55",
+      "349385eed4d153023e5dd4ad0c098da0edf70e0328217cf58aeea736be5448e4",
+      "6604387ce8562ec20c98b5961b48c75be58eb3613665e3d36e312ab6b92731b3",
+      "0958f04d4f27fdab679addcf92ca39a2b6d2ad077421afea5e2a7472f5ca1a16",
+      "3b19d484df91993217e25351e27e4cbc465f8bc06afc583167fb034a576d7fee",
+      "05950ea2de8e6b314f3d9edf4893aeec1153cadebd191bba53c80d07a1531cd7",
+      "96b51e41f83e5a3ef61c2a008f411211c4df3810a34a10fb15701425974db8f0",
+      "849889bc9c8ae62e70f24d5ae50d725b54aeea7fec4b9686d1a4dc68bc55919b",
+      "e2c8a6b5666b2bf3e92845a494c1f2bbfc2bdfacb2dbb09b44e9ef452c02e8f1",
+      "38c6cedb2763797d8ec211f64535b287f0164de97ee6ddedf9104507490f3763",
+      "930e0c5e121219099dc657c2259afeb9445f5920104e6d8c03f4692c826bdcf7"
+    ],
+    "name": "可可利亚",
+    "rank": "LittleBoss",
+    "templateRef": "e0cfbec2de27c7b4dfca720059173c8a77968c0d19040467d7cec017d714fcca",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1004010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1004010",
+    "selectableMonsterIds": [
+      "1004010",
+      "100401001",
+      "100401002",
+      "100401003",
+      "100401004",
+      "100401005",
+      "100401006",
+      "100401007",
+      "100401008",
+      "100401010",
+      "100401011",
+      "100401012",
+      "100401013",
+      "100401014"
+    ]
+  }
+}

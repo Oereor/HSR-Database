@@ -1,0 +1,453 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23056",
+    "name": "一场谎言的终幕",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 28.8,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 63.36,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 109.44,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 155.52,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 201.6,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 247.68,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 293.76,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23056",
+    "kind": "light-cone",
+    "name": "一场谎言的终幕",
+    "passive": {
+      "id": "23056",
+      "name": "吞没",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击率提高18%。战斗开始时或装备者每累计施放4次追加攻击，使装备者获得【影噬】，持续3回合。当装备者持有【影噬】时，攻击力提高40%，并使敌方全体受到的伤害提高20%，同类效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "18%"
+              },
+              {
+                "type": "text",
+                "value": "。战斗开始时或装备者每累计施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "次追加攻击，使装备者获得【影噬】，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合。当装备者持有【影噬】时，攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，并使敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，同类效果无法叠加。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击率提高21%。战斗开始时或装备者每累计施放4次追加攻击，使装备者获得【影噬】，持续3回合。当装备者持有【影噬】时，攻击力提高50%，并使敌方全体受到的伤害提高23%，同类效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "21%"
+              },
+              {
+                "type": "text",
+                "value": "。战斗开始时或装备者每累计施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "次追加攻击，使装备者获得【影噬】，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合。当装备者持有【影噬】时，攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "50%"
+              },
+              {
+                "type": "text",
+                "value": "，并使敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "23%"
+              },
+              {
+                "type": "text",
+                "value": "，同类效果无法叠加。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击率提高24%。战斗开始时或装备者每累计施放4次追加攻击，使装备者获得【影噬】，持续3回合。当装备者持有【影噬】时，攻击力提高60%，并使敌方全体受到的伤害提高25%，同类效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "24%"
+              },
+              {
+                "type": "text",
+                "value": "。战斗开始时或装备者每累计施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "次追加攻击，使装备者获得【影噬】，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合。当装备者持有【影噬】时，攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "，并使敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，同类效果无法叠加。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击率提高27%。战斗开始时或装备者每累计施放4次追加攻击，使装备者获得【影噬】，持续3回合。当装备者持有【影噬】时，攻击力提高70%，并使敌方全体受到的伤害提高28%，同类效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "。战斗开始时或装备者每累计施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "次追加攻击，使装备者获得【影噬】，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合。当装备者持有【影噬】时，攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "70%"
+              },
+              {
+                "type": "text",
+                "value": "，并使敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "28%"
+              },
+              {
+                "type": "text",
+                "value": "，同类效果无法叠加。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击率提高30%。战斗开始时或装备者每累计施放4次追加攻击，使装备者获得【影噬】，持续3回合。当装备者持有【影噬】时，攻击力提高80%，并使敌方全体受到的伤害提高30%，同类效果无法叠加。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "。战斗开始时或装备者每累计施放"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "4"
+              },
+              {
+                "type": "text",
+                "value": "次追加攻击，使装备者获得【影噬】，持续"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "回合。当装备者持有【影噬】时，攻击力提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "80%"
+              },
+              {
+                "type": "text",
+                "value": "，并使敌方全体受到的伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "，同类效果无法叠加。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          3,
+          4
+        ]
+      }
+    },
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5,
+    "story": "<i>「《侦探推理入门》是怎么说的来着？非到不得已之时……」</i>\n红与黑交织的獠牙，正一寸寸攀上肩头。\n\n夜色沉溺之处，疑云涌现。幽暗的森林中，恶兽藏匿。\n<i>「你追我赶的游戏，该结束了。」</i>\n血色褪去，天幕上月光依旧皎洁，星星安然沉睡。 \n\n这是他对真相的又一次寻索，但过去的影子拍拍他的肩膀，随之消散而去。\n今时此刻的周旋，直到——\n\n<i>「直到…为罪恶降下惩罚的那天。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23056",
+    "storyFallbackRendered": false
+  }
+}

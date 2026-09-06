@@ -284,7 +284,7 @@ export interface EndgameBuildResult {
   audit: EndgameAudit;
 }
 
-const SCHEMA_VERSION = 22 as const;
+const SCHEMA_VERSION = 23 as const;
 const MODES: EndgameMode[] = ['moc', 'pf', 'as', 'aa'];
 const MAX_SAMPLES = 20;
 const PF_ROUNDING_METADATA = {
@@ -554,7 +554,14 @@ export async function buildEndgameData(
     field: string
   ): string | undefined => {
     const source: TextSource = { entity, id: String(id), field };
-    return text.resolveRef(ref, source) || undefined;
+    return (
+      text.resolveRef(ref, source, {
+        requirement: 'optional',
+        visibility: 'emitted',
+        fallbackUsed: true,
+        productRouteReachability: 'reachable'
+      }) || undefined
+    );
   };
 
   const resolveConfiguredStat = (
@@ -1552,6 +1559,7 @@ export async function buildEndgameData(
       groups.push({
         mode,
         groupId: group.GroupID,
+        recommendationEligible: Boolean(group.GroupName?.Hash),
         name: localized(group.GroupName, 'moc-group', group.GroupID, 'GroupName'),
         ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
         encounters
@@ -1688,6 +1696,7 @@ export async function buildEndgameData(
       groups.push({
         mode,
         groupId: group.GroupID,
+        recommendationEligible: Boolean(group.GroupName?.Hash),
         name: localized(group.GroupName, 'pf-group', group.GroupID, 'GroupName'),
         ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
         encounters,
@@ -1897,6 +1906,7 @@ export async function buildEndgameData(
       groups.push({
         mode,
         groupId: group.GroupID,
+        recommendationEligible: Boolean(group.GroupName?.Hash),
         name: localized(group.GroupName, 'as-group', group.GroupID, 'GroupName'),
         ...(schedule ? { schedule: { begin: schedule.BeginTime, end: schedule.EndTime } } : {}),
         encounters,
@@ -2104,6 +2114,7 @@ export async function buildEndgameData(
     aaGroups.push({
       mode: 'aa',
       groupId: group.ID,
+      recommendationEligible: Boolean(group.Title?.Hash),
       name: localized(group.Title, 'aa-group', group.ID, 'Title'),
       encounters,
       judgmentQuadrant

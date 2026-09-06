@@ -1,0 +1,3549 @@
+{
+  "catalog": {
+    "baseName": "乱破",
+    "description": "如丑时三刻的闪光弹一般现身在匹诺康尼，以忍者自居，将世间一切归因于「忍法」的奇妙少女。\n贯彻吟诵忍•真言、绘制缭乱•忍符、修习忍•法帖的「忍•道」——即说唱，涂鸦，漫画——苦炼自身意志，驰骋星间行侠仗义。\n身为「巡海游侠」的一员，始终追猎着名为「御猿•邪忍」的恶党，直至银河尽头。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "id": "1317",
+    "name": "乱破",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "乱破",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 96
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 97.68,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 62.7,
+            "perLevel": 3.135
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 147.84,
+            "perLevel": 7.392
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 136.752,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 87.78,
+            "perLevel": 3.135
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 206.976,
+            "perLevel": 7.392
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 175.824,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 112.86,
+            "perLevel": 3.135
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 266.112,
+            "perLevel": 7.392
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 214.896,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 137.94,
+            "perLevel": 3.135
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 325.248,
+            "perLevel": 7.392
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 253.968,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 163.02,
+            "perLevel": 3.135
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 384.384,
+            "perLevel": 7.392
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 293.04,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 188.1,
+            "perLevel": 3.135
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 443.52,
+            "perLevel": 7.392
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 332.112,
+            "perLevel": 4.884
+          },
+          "defence": {
+            "base": 213.18,
+            "perLevel": 3.135
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 502.656,
+            "perLevel": 7.392
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "如丑时三刻的闪光弹一般现身在匹诺康尼，以忍者自居，将世间一切归因于「忍法」的奇妙少女。\n贯彻吟诵忍•真言、绘制缭乱•忍符、修习忍•法帖的「忍•道」——即说唱，涂鸦，漫画——苦炼自身意志，驰骋星间行侠仗义。\n身为「巡海游侠」的一员，始终追猎着名为「御猿•邪忍」的恶党，直至银河尽头。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "equipmentRecommendation": {
+      "avatarId": "1317",
+      "cavernSetIds": [
+        "119",
+        "111",
+        "118"
+      ],
+      "lightConeIds": [
+        "23033",
+        "21045"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "BreakDamageAddedRatioBase",
+            "SPRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "307",
+        "316",
+        "301"
+      ],
+      "subStatPropertyTypes": [
+        "BreakDamageAddedRatioBase",
+        "SpeedDelta",
+        "AttackAddedRatio"
+      ]
+    },
+    "fullName": "乱破",
+    "id": "1317",
+    "kind": "character",
+    "name": "乱破",
+    "path": "Mage",
+    "pathName": "智识",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "施放终结技进入【结印】状态期间，乱破造成的伤害无视目标<unbreak>15%</unbreak>的防御，退出【结印】状态后恢复<unbreak>20</unbreak>点能量。",
+            "iconKey": "rank--131701",
+            "id": "131701",
+            "name": "常世道返三途无六钱",
+            "rank": 1
+          },
+          {
+            "description": "强化普攻的前2段攻击对指定敌方单体的削韧值提高<unbreak>50%</unbreak>。",
+            "iconKey": "rank--131702",
+            "id": "131702",
+            "name": "俳句暗记有识无挂碍",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--131703",
+            "id": "131703",
+            "name": "堂塔伽蓝末法无间狱",
+            "rank": 3
+          },
+          {
+            "description": "【结印】状态期间，我方全体速度提高<unbreak>12%</unbreak>。",
+            "iconKey": "rank--131704",
+            "id": "131704",
+            "name": "经年劣化任侠无忍义",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--131705",
+            "id": "131705",
+            "name": "一心不乱鸣弦无徒矢",
+            "rank": 5
+          },
+          {
+            "description": "战斗开始时乱破获得<unbreak>5</unbreak>点天赋效果的充能，且充能上限增加<unbreak>5</unbreak>点。发动【忍具•降魔花弁】第3段攻击后获得<unbreak>5</unbreak>点充能。",
+            "iconKey": "rank--131706",
+            "id": "131706",
+            "name": "破邪显正应报无慈悲",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 140
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1317001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1317001",
+                "variantIds": [
+                  "131701",
+                  "131718"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "131701",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于乱破50%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于乱破60%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于乱破70%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于乱破80%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于乱破90%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于乱破100%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于乱破110%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于乱破120%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于乱破130%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于乱破140%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "忍术•七转八起",
+                "progressionId": "1317001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              },
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 25
+                    },
+                    {
+                      "type": "blast",
+                      "value": 15
+                    }
+                  ]
+                },
+                "id": "131718",
+                "levels": [
+                  {
+                    "description": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破60%攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破30%攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破60%攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的50%。击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破68%攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破34%攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破68%攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的50%。击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破76%攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破38%攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破76%攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的50%。击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破84%攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破42%攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破84%攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的50%。击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破92%攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破46%攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破92%攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的50%。击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破100%攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破50%攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破100%攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的50%。击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破108%攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破54%攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破108%攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的50%。击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破116%攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破58%攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破116%攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的50%。击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "116%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破124%攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破62%攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破124%攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的50%。击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "124%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "124%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破132%攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破66%攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破132%攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的50%。击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "发动【忍具•降魔花弁】，前2段攻击对指定敌方单体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，第3段对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。\n强化普攻无法恢复战技点，攻击没有虚数弱点的敌人也可以削减韧性，效果等同于原削韧值的"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "忍具•降魔花弁",
+                "progressionId": "1317001",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1317002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1317002",
+                "variantIds": [
+                  "131702"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "131702",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于乱破60%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破66%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破72%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破78%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破84%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破90%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破98%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破105%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破113%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破120%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破126%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破132%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破138%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破144%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于乱破150%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "忍切•初志贯彻",
+                "progressionId": "1317002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1317003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1317003",
+                "variantIds": [
+                  "131703"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "获得1个不消耗回合数的额外回合，在此回合中无法插入施放终结技。",
+                      "id": "10000000",
+                      "name": "额外回合"
+                    }
+                  ]
+                },
+                "id": "131703",
+                "levels": [
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高10%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高12%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高14%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高16%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高18%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高20%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高23%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高25%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高28%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高30%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高32%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高34%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高36%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高38%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "进入【结印】状态，立即获得1个额外回合并获得3点【彩墨】，同时弱点击破效率提高50%，击破特攻提高40%。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "进入【结印】状态，立即获得1个"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "额外回合"
+                      },
+                      {
+                        "type": "text",
+                        "value": "并获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点【彩墨】，同时弱点击破效率提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n【结印】状态下普攻获得强化且无法施放战技和终结技，施放强化普攻后会消耗1点【彩墨】，耗尽时退出【结印】状态。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "忍道•极•爱死天流",
+                "progressionId": "1317003",
+                "scalingParamIndexes": [
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1317004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1317004",
+                "variantIds": [
+                  "131704"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 2
+                    }
+                  ]
+                },
+                "id": "131704",
+                "levels": [
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破30%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高25%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破33%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高28%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破36%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高30%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破39%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高33%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "39%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破42%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高35%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破45%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高38%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破49%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高41%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "49%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破53%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高44%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破56%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高47%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破60%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高50%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破63%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高53%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破66%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高55%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破69%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高57%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "69%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破72%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高60%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有10点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破75%虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减2点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高63%，并使无视弱点属性的削韧值提高1点。\n击破弱点时，触发虚数属性的弱点击破效果。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "每当敌方目标的弱点被击破时，乱破获得1点充能，最多拥有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点充能。乱破下一次发动【忍具•降魔花弁】的第3段攻击时，额外对敌方全体造成等同于乱破"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "75%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，该伤害可无视弱点属性削减"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点韧性，并消耗所有充能，每点充能使本次击破伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并使无视弱点属性的削韧值提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点。\n击破弱点时，触发虚数属性的弱点击破效果。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "忍•科学•堪忍袋",
+                "progressionId": "1317004",
+                "scalingParamIndexes": [
+                  2,
+                  4
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1317007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1317007",
+                "variantIds": [
+                  "131707"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "131707",
+                "levels": [
+                  {
+                    "description": "使用秘技后进入持续20秒的【涂鸦】状态。【涂鸦】状态下会快速向前移动一段距离并攻击接触到的敌人，在快速移动的过程中可抵挡敌人的所有攻击。【涂鸦】状态下施放攻击可以提前结束持续时间，主动攻击敌人进入战斗后，对每个敌方目标造成30点无视弱点属性的削韧，以及等同于乱破200%虚数属性击破伤害的击破伤害，并对其相邻目标造成等同于乱破180%虚数属性击破伤害的击破伤害，同时使自身获得10点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后进入持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒的【涂鸦】状态。【涂鸦】状态下会快速向前移动一段距离并攻击接触到的敌人，在快速移动的过程中可抵挡敌人的所有攻击。【涂鸦】状态下施放攻击可以提前结束持续时间，主动攻击敌人进入战斗后，对每个敌方目标造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点无视弱点属性的削韧，以及等同于乱破"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，并对其相邻目标造成等同于乱破"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "虚数属性击破伤害的击破伤害，同时使自身获得"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "10"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "忍步•血义理",
+                "progressionId": "1317007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "精英级别及以上的敌方目标的弱点被击破时，乱破额外获得<unbreak>1</unbreak>点充能，并恢复<unbreak>10</unbreak>点能量。",
+            "iconKey": "skill-tree--1317101",
+            "id": "1317101",
+            "name": "忍法帖•魔天",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "【结印】状态期间，乱破施放强化普攻对处于<u>弱点击破状态</u>下的敌方目标造成伤害后，会将本次伤害的削韧值转化为1次<unbreak>60%</unbreak>的<u>超击破伤害</u>。",
+            "extraEffects": [
+              {
+                "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                "id": "10000006",
+                "name": "弱点击破状态"
+              },
+              {
+                "description": "击破特攻、本次攻击削韧值、角色等级越高，造成的超击破伤害越高。\n超击破伤害无法暴击，不受伤害提高类效果所影响。\n超击破伤害也属于击破伤害。",
+                "id": "10000015",
+                "name": "超击破伤害"
+              }
+            ],
+            "iconKey": "skill-tree--1317102",
+            "id": "1317102",
+            "name": "忍法帖•海鸣",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "敌方目标的弱点被击破时，受到的<u>击破伤害</u>提高<unbreak>2%</unbreak>，若乱破当前攻击力高于<unbreak>2400</unbreak>点，每超过<unbreak>100</unbreak>点攻击力可使该数值额外提高<unbreak>1%</unbreak>，最多额外提高<unbreak>8%</unbreak>。效果持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "击破特攻、目标韧性上限、角色等级越高，造成的击破伤害越高。\n击破伤害无法暴击，不受伤害提高类效果所影响。",
+                "id": "10000014",
+                "name": "击破伤害"
+              }
+            ],
+            "iconKey": "skill-tree--1317103",
+            "id": "1317103",
+            "name": "忍法帖•枯叶",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1317201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1317202",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1317101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1317203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1317202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1317204",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1317202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1317205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1317102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1317206",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1317205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1317207",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1317205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1317208",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1317103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "速度提高4",
+            "iconKey": "property--SpeedDelta",
+            "id": "1317209",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1317103"
+            ],
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1317210",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1317001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131701",
+                "levelLabelRendered": false
+              },
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131718",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1317002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131702",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1317003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131703",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1317004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131704",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1317007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "131707",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1317",
+    "subtitleRendered": false
+  }
+}

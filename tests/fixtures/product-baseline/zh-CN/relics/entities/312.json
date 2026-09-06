@@ -1,0 +1,95 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的能量恢复效率提高5%。使队伍中与装备者属性相同的我方其他角色造成的伤害提高10%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "312",
+    "name": "梦想之地匹诺康尼",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.5"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的能量恢复效率提高5%。使队伍中与装备者属性相同的我方其他角色造成的伤害提高10%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的能量恢复效率提高5%。使队伍中与装备者属性相同的我方其他角色造成的伤害提高10%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的能量恢复效率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "5%"
+          },
+          {
+            "type": "text",
+            "value": "。使队伍中与装备者属性相同的我方其他角色造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "10%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "312",
+    "kind": "relic",
+    "name": "梦想之地匹诺康尼",
+    "pieces": [
+      {
+        "description": "位面封装的是匹诺康尼的主体——「白日梦」酒店。在此下榻的宾客将去往美梦的世界，在无所不可的大都会中，享受纸醉金迷的盛宴。",
+        "id": "33125",
+        "name": "匹诺康尼的堂皇酒店",
+        "slot": "NECK"
+      },
+      {
+        "description": "匹诺康尼的梦境都市里，复杂的轨道盘绕于楼宇之间，托起游客搭乘的球笼，将五色缤纷的梦连为一体。",
+        "id": "33126",
+        "name": "匹诺康尼的逐梦轨道",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第八世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.5"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33125"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33126"
+      }
+    ],
+    "route": "/relics/312"
+  }
+}

@@ -8,6 +8,7 @@ export const staticGeneratedRoot = path.join(siteRoot, 'static', 'generated');
 export const auditRoot = path.join(siteRoot, 'data', 'audit');
 
 const requiredFiles = [
+  'ExcelOutput/FateRinOwner.json',
   'ExcelOutput/AvatarConfig.json',
   'ExcelOutput/AvatarConfigLD.json',
   'ExcelOutput/ItemConfigAvatarLD.json',

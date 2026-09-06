@@ -1,0 +1,3471 @@
+{
+  "catalog": {
+    "baseName": "桂乃芬",
+    "description": "客居仙舟「罗浮」的行为艺术家——或者说，街头艺人。\n在三餐温饱之余，追逐着自己在罗浮的新生活。",
+    "element": "Fire",
+    "elementName": "火",
+    "id": "1210",
+    "name": "桂乃芬",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "桂乃芬",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 106
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 79.2,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 60,
+            "perLevel": 3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 120,
+            "perLevel": 6
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 110.88,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 84,
+            "perLevel": 3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 168,
+            "perLevel": 6
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 108,
+            "perLevel": 3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 216,
+            "perLevel": 6
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 174.24,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 132,
+            "perLevel": 3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 264,
+            "perLevel": 6
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 205.92,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 156,
+            "perLevel": 3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 312,
+            "perLevel": 6
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 237.6,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 180,
+            "perLevel": 3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 360,
+            "perLevel": 6
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 204,
+            "perLevel": 3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 408,
+            "perLevel": 6
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "客居仙舟「罗浮」的行为艺术家——或者说，街头艺人。\n在三餐温饱之余，追逐着自己在罗浮的新生活。",
+    "element": "Fire",
+    "elementName": "火",
+    "equipmentRecommendation": {
+      "avatarId": "1210",
+      "cavernSetIds": [
+        "116",
+        "102",
+        "107"
+      ],
+      "lightConeIds": [
+        "21008",
+        "21001",
+        "24003"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "FireAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "301",
+        "303",
+        "307"
+      ],
+      "subStatPropertyTypes": [
+        "AttackAddedRatio",
+        "SpeedDelta",
+        "StatusProbabilityBase"
+      ]
+    },
+    "fullName": "桂乃芬",
+    "id": "1210",
+    "kind": "character",
+    "name": "桂乃芬",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "施放战技时，有<unbreak>100%</unbreak>的<u>基础概率</u>使受到攻击的敌方目标效果抵抗降低<unbreak>10%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "rank--121001",
+            "id": "121001",
+            "name": "倒立吃面条",
+            "rank": 1
+          },
+          {
+            "description": "当敌方目标处于灼烧状态时，桂乃芬的普攻与战技对其施加的灼烧状态的伤害倍率提升<unbreak>40%</unbreak>。",
+            "iconKey": "rank--121002",
+            "id": "121002",
+            "name": "刷牙吹口哨",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--121003",
+            "id": "121003",
+            "name": "胸口碎大石",
+            "rank": 3
+          },
+          {
+            "description": "桂乃芬施加的灼烧状态每触发一次伤害，使自身恢复<unbreak>2</unbreak>点能量。",
+            "iconKey": "rank--121004",
+            "id": "121004",
+            "name": "金枪锁咽喉",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--121005",
+            "id": "121005",
+            "name": "吞剑通脊背",
+            "rank": 5
+          },
+          {
+            "description": "使【吞火】的可叠加层数增加<unbreak>1</unbreak>层。",
+            "iconKey": "rank--121006",
+            "id": "121006",
+            "name": "徒手接子弹",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 120
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1210001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1210001",
+                "variantIds": [
+                  "121001"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "121001",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬50%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬60%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬70%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬80%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬90%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬100%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬110%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬120%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬130%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬140%攻击力的火属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "劈头满堂彩",
+                "progressionId": "1210001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1210002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1210002",
+                "variantIds": [
+                  "121002"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Blast",
+                    "known": true,
+                    "label": "扩散"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "121002",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬60%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬20%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬84%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬66%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬22%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬92%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "66%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬72%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬24%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬101%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "101%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬78%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬26%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬109%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "109%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬84%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬28%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬117%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "117%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬90%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬30%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬130%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬98%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬33%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬147%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "147%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬105%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬35%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬168%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬113%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬38%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬193%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "113%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "193%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬120%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬40%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬218%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "218%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬126%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬42%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬229%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "126%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "229%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬132%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬44%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬240%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬138%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬46%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬251%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "138%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "46%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "251%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬144%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬48%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬262%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "262%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于桂乃芬150%攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬50%攻击力的火属性伤害，有100%的基础概率使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬273%攻击力的火属性持续伤害，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "150%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，并对相邻目标造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标与相邻目标陷入灼烧状态。灼烧状态下，敌方目标每回合开始时受到等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "273%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "迎面开门红",
+                "progressionId": "1210002",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  3
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1210003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1210003",
+                "variantIds": [
+                  "121003"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "121003",
+                "levels": [
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬72.0%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害72%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬76.8%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害74%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "74%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬81.6%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害76%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "81.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "76%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬86.4%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害78%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "78%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬91.2%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害80%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "91.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬96.0%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害82%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "82%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬102.0%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害85%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "85%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬108.0%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害87%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "87%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬114.0%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害90%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "114.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬120.0%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害92%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬124.8%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害94%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "124.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "94%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬129.6%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害96%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "129.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬134.4%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害98%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "134.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬139.2%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害100%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "139.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对敌方全体造成等同于桂乃芬144.0%攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害102%的伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对敌方全体造成等同于桂乃芬"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害，若目标处于灼烧状态，使其当前承受的灼烧状态立即产生相当于原伤害"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "给您来段看家戏",
+                "progressionId": "1210003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1210004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1210004",
+                "variantIds": [
+                  "121004"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ]
+                },
+                "id": "121004",
+                "levels": [
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高4.0%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高4.3%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高4.6%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高4.9%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "4.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高5.2%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高5.5%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高5.9%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高6.3%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高6.6%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高7.0%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高7.3%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高7.6%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高7.9%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高8.2%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有100%的基础概率陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高8.5%，持续3回合，最多叠加3层。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "桂乃芬在场时，敌方受到的灼烧状态触发伤害后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "陷入【吞火】状态，【吞火】状态下敌方目标受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，最多叠加"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "层。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "古来君子养艺人",
+                "progressionId": "1210004",
+                "scalingParamIndexes": [
+                  3
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1210007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1210007",
+                "variantIds": [
+                  "121007"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "MazeAttack",
+                    "known": true,
+                    "label": "秘技攻击"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "121007",
+                "levels": [
+                  {
+                    "description": "立即攻击敌人，进入战斗后造成4次伤害，每次伤害对敌方随机单体造成等同于桂乃芬50%攻击力的火属性伤害并有100%的基础概率使目标陷入【吞火】状态。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "立即攻击敌人，进入战斗后造成"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次伤害，每次伤害对敌方随机单体造成等同于桂乃芬"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的火属性伤害并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使目标陷入【吞火】状态。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "耍耍把式卖卖艺",
+                "progressionId": "1210007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "普攻有<unbreak>80%</unbreak>的<u>基础概率</u>使敌方目标陷入与战技相同的灼烧状态。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "skill-tree--1210101",
+            "id": "1210101",
+            "name": "缘竿",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "战斗开始时，桂乃芬的<u>行动提前</u><unbreak>25%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔缩短。",
+                "id": "10000001",
+                "name": "行动提前"
+              }
+            ],
+            "iconKey": "skill-tree--1210102",
+            "id": "1210102",
+            "name": "投狭",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "对陷入灼烧状态的敌方目标造成的伤害提高<unbreak>20%</unbreak>。",
+            "iconKey": "skill-tree--1210103",
+            "id": "1210103",
+            "name": "逾锋",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "火属性伤害提高3.2%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1210201",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [],
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1210202",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1210101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "火属性伤害提高3.2%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1210203",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1210202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果命中提高4.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1210204",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1210203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "火属性伤害提高4.8%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1210205",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1210102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1210206",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1210205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "火属性伤害提高4.8%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1210207",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1210206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果命中提高6.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1210208",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1210103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "击破特攻提高10.7%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "1210209",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "1210103"
+            ],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "火属性伤害提高6.4%",
+            "iconKey": "property--FireAddedRatio",
+            "id": "1210210",
+            "name": "伤害强化•火",
+            "prerequisiteIds": [
+              "1210201"
+            ],
+            "propertyType": "FireAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1210001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121001",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1210002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121002",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1210003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121003",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1210004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121004",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1210007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "121007",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1210",
+    "subtitleRendered": false
+  }
+}

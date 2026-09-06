@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars -- legacy producer helpers retained during B3 cutover */
+import { resolveEnemySkillSource, loadEnemySkillInclusionPolicy } from './enemy-skill-policy.js';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdir, rm, writeFile } from 'node:fs/promises';
@@ -27,7 +29,12 @@ import type {
 import { parseTextHash } from '../../src/lib/domain/types.js';
 import { rarityFromCode, relicTypeNames } from '../../src/lib/domain/constants.js';
 import { isElementType, normalizeElementType } from '../../src/lib/domain/elements.js';
-import { createTextResolver, loadTextMap, type TextSource } from './localization.js';
+import {
+  createTextResolver,
+  loadTextMap,
+  type TextDiagnosticDisposition,
+  type TextSource
+} from './localization.js';
 import {
   addDescriptionDiagnostics,
   createDescriptionDiagnosticSummary,
@@ -67,7 +74,7 @@ import {
 import { characterStatFields, lightConeStatFields, normalizeStatProgression } from './stats.js';
 import { formatGameMarkup, formatGameText } from './text.js';
 import { characterLdSourceNames, characterLdSourceSpecs } from './character-sources.js';
-import { gameTextToPlain, normalizeGameText } from '../../src/lib/domain/game-text.js';
+import { normalizeGameText } from '../../src/lib/domain/game-text.js';
 import { collectEndgameSearchNames } from '../../src/lib/domain/search-index.js';
 import { deriveCharacterNames } from './character-names.js';
 import {
@@ -84,12 +91,18 @@ import { configuredCharacterDetailIconKey } from './character-detail-icons.js';
 import {
   buildEnemySkillPhases,
   normalizeEnemyPhases,
-  normalizeEnemySkillKind,
-  normalizeEnemySkillTag,
   normalizeSpecialResistances,
   normalizedElementLabel,
   resolveCanonicalEnemyStats
 } from './enemy-detail.js';
+import { buildCharacterDomain } from './domain/character.js';
+import { buildLightConeDomain } from './domain/light-cone.js';
+import { buildRelicDomain } from './domain/relic.js';
+import { projectCharacter } from './projection/character.js';
+import { projectLightCone } from './projection/light-cone.js';
+import { projectRelic } from './projection/relic.js';
+import { validateSiteMessageFiles } from '../messages.js';
+import { getProductionLocale } from './locale-registry.js';
 
 type Raw = Record<string, any>;
 
@@ -143,6 +156,7 @@ function defined<T>(value: T | undefined): value is T {
 
 export async function syncData(): Promise<DataManifest> {
   const root = assertDataRoot();
+  const locale = getProductionLocale();
   const commit = sourceCommit(root);
   const sourceVersion = execFileSync(
     'git',
@@ -150,6 +164,7 @@ export async function syncData(): Promise<DataManifest> {
     { encoding: 'utf8', windowsHide: true }
   ).trim();
   const gameVersion = parseGameVersion(sourceVersion);
+  const siteMessages = await validateSiteMessageFiles();
 
   console.log(`读取上游数据：${root}`);
   console.log(`上游版本：${commit.slice(0, 12)} · ${sourceVersion}`);
@@ -157,14 +172,20 @@ export async function syncData(): Promise<DataManifest> {
     console.warn('数据版本解析失败：TurnBasedGameData HEAD subject 不符合 OSPRODWin 版本格式。');
 
   const missingText = createMissingTextAuditCollector();
-  const text = await createTextResolver(await loadTextMap(root), (kind, identifier, textSource) => {
-    missingText.record(
-      kind === 'invalid-reference' ? 'D' : 'A',
-      kind === 'invalid-reference' ? 'invalid-reference' : 'missing-chs-text',
-      textSource,
-      identifier
-    );
-  });
+  const textMap = await loadTextMap(root, locale.textMapCode);
+  const textMapDigest = createHash('sha256').update(JSON.stringify(textMap)).digest('hex');
+  const text = await createTextResolver(
+    { locale: locale.locale, textMapCode: locale.textMapCode },
+    textMap,
+    (kind, identifier, textSource) => {
+      missingText.record(
+        kind === 'invalid-reference' ? 'D' : 'A',
+        kind === 'invalid-reference' ? 'invalid-reference' : 'missing-chs-text',
+        textSource,
+        identifier
+      );
+    }
+  );
   const descriptionDiagnostics = createDescriptionDiagnosticSummary();
   const unknownSkillEffects = new Set<string>();
   const source = (entity: string, id: string | number, field: string): TextSource => ({
@@ -334,9 +355,19 @@ export async function syncData(): Promise<DataManifest> {
     if (/<icon\b/i.test(value))
       missingText.record('B', 'unsupported-icon-markup', textSource, '<icon>');
   };
-  const tr = (value: unknown, textSource: TextSource, fallback = ''): string => {
+  const tr = (
+    value: unknown,
+    textSource: TextSource,
+    fallback = '',
+    disposition: TextDiagnosticDisposition = {
+      requirement: fallback ? 'required' : 'optional',
+      visibility: fallback ? 'emitted' : 'hidden',
+      fallbackUsed: !!fallback,
+      productRouteReachability: 'reachable'
+    }
+  ): string => {
     if (isEmptyTextSource(value)) missingText.record('A', 'missing-source-field', textSource);
-    const resolved = text.resolveRef(value, textSource);
+    const resolved = text.resolveRef(value, textSource, disposition);
     auditResolvedText(resolved, textSource);
     return normalizeGameText(resolved || fallback);
   };
@@ -349,7 +380,18 @@ export async function syncData(): Promise<DataManifest> {
       missingText.record('B', 'unsupported-symbolic-reference', textSource, JSON.stringify(value));
       return fallback;
     }
-    const resolved = text.resolveSymbolic(value, textSource);
+    const result = text.resolve(
+      { kind: 'direct', ref: { kind: 'symbolic', key: value }, provenance: textSource },
+      {
+        diagnosticDisposition: {
+          requirement: fallback ? 'required' : 'optional',
+          visibility: fallback ? 'emitted' : 'hidden',
+          fallbackUsed: !!fallback,
+          productRouteReachability: 'reachable'
+        }
+      }
+    );
+    const resolved = result.status === 'available' ? result.value : '';
     auditResolvedText(resolved, textSource);
     return normalizeGameText(resolved || fallback);
   };
@@ -935,7 +977,8 @@ export async function syncData(): Promise<DataManifest> {
     };
   };
 
-  const buildCharacterProfile = (
+  /* legacy character profile builder removed in B3.1; projection is domain-owned
+  const removedCharacterPresentationBuilder = (
     config: Raw,
     traceRows: Raw[],
     avatarBaseType: string,
@@ -1281,6 +1324,7 @@ export async function syncData(): Promise<DataManifest> {
         };
       });
 
+    annotateSpecialEffectCards(skillCards, avatarId, specialEffects);
     return {
       energy: energyFor(config),
       skillCards,
@@ -1290,222 +1334,110 @@ export async function syncData(): Promise<DataManifest> {
     };
   };
 
-  for (const avatar of tables.AvatarConfig) {
-    const id = String(avatar.AvatarID);
-    const item = avatarItems.get(id);
-    const resolvedPathName = pathName(avatar.AvatarBaseType);
-    const name = characterNames.displayNames[id];
-    const resolvedFullName = tr(avatar.AvatarFullName, source('character', id, 'AvatarFullName'));
-    const fullName = resolvedFullName.includes('{NICKNAME}') ? name : resolvedFullName;
-    const description = tr(item?.ItemBGDesc, source('character', id, 'ItemBGDesc'));
-    const promotionRows = avatarPromotions.get(id) ?? [];
-    const traceRows = avatarTraces.get(id) ?? [];
-    const profiles: Character['profiles'] = {
-      base: buildCharacterProfile(
-        avatar,
-        traceRows.filter((row) => Number(row.EnhancedID ?? 0) === 0),
-        avatar.AvatarBaseType,
-        globalBuffRowsByProfile.get(globalBuffProfileKey(id, 'base')) ?? []
-      )
-    };
-    const enhancedConfig = enhancedAvatars.get(id);
-    if (enhancedConfig)
-      profiles.enhanced = buildCharacterProfile(
-        enhancedConfig,
-        traceRows.filter(
-          (row) => Number(row.EnhancedID ?? 0) === Number(enhancedConfig.EnhancedID)
-        ),
-        avatar.AvatarBaseType,
-        globalBuffRowsByProfile.get(globalBuffProfileKey(id, 'enhanced')) ?? []
-      );
-    const catalog: CatalogEntry = {
-      id,
-      name,
-      description,
-      rarity: rarityFromCode(avatar.Rarity),
-      path: avatar.AvatarBaseType,
-      pathName: resolvedPathName,
-      element: normalizeElementType(avatar.DamageType),
-      elementName: elementName(avatar.DamageType)
-    };
-    characterCatalog.push(catalog);
-    characters.push({
-      ...catalog,
-      kind: 'character',
-      fullName,
-      profiles,
-      equipmentRecommendation: recommendationFor(id),
-      baseStats: {
-        ...normalizeStatProgression(promotionRows, characterStatFields, {
-          speed: numberOf(promotionRows[0]?.SpeedBase),
-          criticalChance: numberOf(promotionRows[0]?.CriticalChance),
-          criticalDamage: numberOf(promotionRows[0]?.CriticalDamage),
-          aggro: numberOf(promotionRows[0]?.BaseAggro)
-        }),
-        iconKeys: baseStatIconKeys([
-          ['hp', 'MaxHP'],
-          ['attack', 'Attack'],
-          ['defence', 'Defence'],
-          ['speed', 'Speed']
-        ])
-      }
-    });
-  }
-
-  for (const link of resolvedAvatarSpecialEffectLinks)
-    if (!ownedAvatarSpecialEffectLinks.has(link.skillId))
-      recordSpecialEffectDiagnostic(specialEffectLinks.audit, {
-        code: 'unowned-relation',
-        source: 'AvatarSkillLink',
-        identity: link.skillId,
-        detail: '没有 Character profile 的 SkillList 引用该 SkillID'
-      });
-  for (const link of resolvedServantSpecialEffectLinks) {
-    const identity = `${link.skillId}:${link.linkedAvatarId}`;
-    if (!ownedServantSpecialEffectLinks.has(identity))
-      recordSpecialEffectDiagnostic(specialEffectLinks.audit, {
-        code: 'unowned-relation',
-        source: 'AvatarServantSkillLink',
-        identity,
-        detail: '没有 Character profile 的 Servant relation 引用该 SkillID'
-      });
-  }
-
-  const lightConeCatalog: CatalogEntry[] = [];
-  const lightCones: LightCone[] = [];
-  for (const equipment of tables.EquipmentConfig) {
-    const id = String(equipment.EquipmentID);
-    const item = equipmentItems.get(id);
-    const itemFallback = tr(item?.ItemName, source('light-cone', id, 'ItemName'), `光锥 ${id}`);
-    const name = tr(
-      equipment.EquipmentName,
-      source('light-cone', id, 'EquipmentName'),
-      itemFallback
-    );
-    const description = tr(item?.ItemDesc, source('light-cone', id, 'ItemDesc'));
-    const story = tr(item?.ItemBGDesc, source('light-cone', id, 'ItemBGDesc'));
-    const passiveId = String(equipment.SkillID);
-    const skillRows = equipmentSkills.get(passiveId) ?? [];
-    const expectedLevels = Array.from(
-      { length: Number(equipment.MaxRank) },
-      (_, index) => index + 1
-    );
-    const actualLevels = skillRows.map((row) => Number(row.Level)).sort((a, b) => a - b);
-    if (actualLevels.join(',') !== expectedLevels.join(','))
-      throw new Error(
-        `光锥 ${id} 的被动 ${passiveId} 叠影等级异常：${actualLevels.join(',') || '无'}`
-      );
-    const passiveNames = skillRows.map((row) => ({
-      level: Number(row.Level),
-      name: tr(
-        row.SkillName,
-        source('light-cone-passive', `${passiveId}:${row.Level}`, 'SkillName')
-      )
-    }));
-    const distinctPassiveNames = unique(passiveNames.map((entry) => entry.name));
-    if (distinctPassiveNames.length !== 1 || !distinctPassiveNames[0])
-      throw new Error(`光锥 ${id} 的被动 ${passiveId} 在叠影等级间名称不一致或为空`);
-    const passiveName = passiveNames.find((entry) => entry.level === 1)?.name;
-    if (!passiveName) throw new Error(`光锥 ${id} 的被动 ${passiveId} 缺少叠影 I 名称`);
-    const normalizedSuperimposition = normalizeLevelledDescriptions(
-      skillRows.map((row) => ({
-        level: Number(row.Level),
-        params: values(row.ParamList),
-        template: tr(
-          row.SkillDesc,
-          source('light-cone-superimposition', `${equipment.SkillID}:${row.Level}`, 'SkillDesc')
-        )
-      }))
-    );
-    collectDescriptionDiagnostics(
-      'light-cone-superimposition',
-      String(equipment.SkillID),
-      normalizedSuperimposition.diagnostics
-    );
-    const promotionRows = equipmentPromotions.get(id) ?? [];
-    const catalog: CatalogEntry = {
-      id,
-      name,
-      description,
-      rarity: rarityFromCode(equipment.Rarity),
-      path: equipment.AvatarBaseType,
-      pathName: pathName(equipment.AvatarBaseType)
-    };
-    lightConeCatalog.push(catalog);
-    lightCones.push({
-      ...catalog,
-      kind: 'light-cone',
-      story,
-      passive: {
-        id: passiveId,
-        name: passiveName,
-        superimposition: {
-          scalingParamIndexes: normalizedSuperimposition.scalingParamIndexes,
-          levels: normalizedSuperimposition.levels
-        }
+  */
+  const allTables = tables as Record<string, Raw[]>;
+  const tableSubset = (names: readonly string[]): Record<string, Raw[]> =>
+    Object.fromEntries(names.map((name) => [name, allTables[name] ?? []]));
+  const lightConeDomains = buildLightConeDomain({
+    tables: tableSubset([
+      'EquipmentConfig',
+      'EquipmentSkillConfig',
+      'EquipmentPromotionConfig',
+      'ItemConfigEquipment',
+      'AvatarBaseType',
+      'AvatarPropertyConfig'
+    ])
+  });
+  const lightCones = lightConeDomains.map((domain) =>
+    projectLightCone(domain, { locale: locale.locale, resolver: text })
+  );
+  const lightConeCatalog: CatalogEntry[] = lightCones.map(
+    ({ kind: _kind, story: _story, passive: _passive, baseStats: _baseStats, ...catalog }) =>
+      catalog
+  );
+  const relicDomains = buildRelicDomain({
+    tables: tableSubset([
+      'RelicSetConfig',
+      'RelicSetSkillConfig',
+      'RelicDataInfo',
+      'RelicBaseType',
+      'RelicMainAffixConfig',
+      'RelicSubAffixConfig',
+      'ItemComefrom'
+    ])
+  });
+  const relics = relicDomains.map((domain) =>
+    projectRelic(domain, {
+      locale: locale.locale,
+      resolver: text,
+      categoryLabels: {
+        cavern: siteMessages.relic_category_cavern,
+        planar: siteMessages.relic_category_planar
       },
-      baseStats: {
-        ...normalizeStatProgression(promotionRows, lightConeStatFields),
-        iconKeys: baseStatIconKeys([
-          ['hp', 'MaxHP'],
-          ['attack', 'Attack'],
-          ['defence', 'Defence']
-        ])
-      }
-    });
-  }
+      formatEffectSummary: (required, description) =>
+        siteMessages.relic_effect_summary
+          .replace('{required}', String(required))
+          .replace('{description}', description)
+    })
+  );
+  const relicCatalog: RelicCatalogEntry[] = relics.map(
+    ({ kind: _kind, effects: _effects, pieces: _pieces, sources: _sources, ...catalog }) => catalog
+  );
 
-  const relicCatalog: RelicCatalogEntry[] = [];
-  const relics: RelicSet[] = [];
-  for (const set of tables.RelicSetConfig) {
-    const id = String(set.SetID);
-    const name = tr(set.SetName, source('relic-set', id, 'SetName'), `遗器套装 ${id}`);
-    const effects = (relicSkills.get(id) ?? []).map((skill) => {
-      const required = Number(skill.RequireNum);
-      if (required !== 2 && required !== 4)
-        throw new Error(`遗器套装 ${id} 包含未知套装效果需求：${required}`);
-      return {
-        required: required as RelicEffectRequirement,
-        description: formatGameText(
-          trSymbolic(
-            skill.SkillDesc,
-            source('relic-set-effect', `${id}:${skill.RequireNum}`, 'SkillDesc')
-          ),
-          values(skill.AbilityParamList)
-        )
-      };
-    });
-    const pieces = (relicParts.get(id) ?? []).map((piece) => {
-      const slot = normalizeRelicSlot(piece.Type, `遗器套装 ${id}`);
-      const pieceId = relicPieceId(piece, `遗器套装 ${id} 的 ${slot} 部件`);
-      return {
-        id: pieceId,
-        slot,
-        name:
-          trSymbolic(piece.RelicName, source('relic-piece', pieceId, 'RelicName')) ||
-          `${name}·${relicTypeNames[slot] ?? slot}`,
-        description: trSymbolic(piece.ItemBGDesc, source('relic-piece', pieceId, 'ItemBGDesc'))
-      };
-    });
-    const sources = sourceTexts(set.DisplayItemID);
-    const category = relicCategoryForSlots(
-      pieces.map((piece) => piece.slot),
-      `遗器套装 ${id}`
-    );
-    const effectRequirements = effects.map((effect) => effect.required);
-    const catalog: RelicCatalogEntry = {
-      id,
-      name,
-      description: effects.map((effect) => `${effect.required}件：${effect.description}`).join(' '),
-      version: set.ReleaseVersion,
-      category,
-      effectRequirements,
-      type: category,
-      typeName: category === 'planar' ? '位面饰品' : '隧洞遗器'
-    };
-    relicCatalog.push(catalog);
-    relics.push({ ...catalog, kind: 'relic', effects, pieces, sources });
-  }
+  const characterDomainSource = tableSubset([
+    'AvatarConfig',
+    'AvatarConfigEnhanced',
+    'AvatarConfigLD',
+    'AvatarEnhancedSkill',
+    'AvatarEnhancedSkillTree',
+    'AvatarEnhancedRank',
+    'AvatarUltraSkillConfig',
+    'GridFightFrontSpecialSP',
+    'MultiplePathAvatarConfig',
+    'FateRinOwner',
+    'ItemConfigAvatar',
+    'AvatarBaseType',
+    'DamageType',
+    'AvatarSkillConfig',
+    'AvatarSkillLink',
+    'AvatarSpecialSkillTree',
+    'AvatarSkillTreeConfig',
+    'AvatarRankConfig',
+    'AvatarPromotionConfig',
+    'AvatarPropertyConfig',
+    'AvatarServantConfig',
+    'AvatarServantSkillConfig',
+    'AvatarServantSkillLink',
+    'AvatarGlobalBuffConfig',
+    'AvatarEquipRecommend',
+    'AvatarRelicRecommend',
+    'EquipmentConfig',
+    'RelicSetConfig',
+    'RelicDataInfo',
+    'ExtraEffectConfig'
+  ]);
+  const characterDomains = buildCharacterDomain({ tables: characterDomainSource });
+  const projectedCharacters = characterDomains.map((domain) =>
+    projectCharacter(domain, { locale: 'zh-CN', resolver: text })
+  );
+  characters.splice(0, characters.length, ...projectedCharacters);
+  characterCatalog.splice(
+    0,
+    characterCatalog.length,
+    ...projectedCharacters.map(
+      ({ id, name, baseName, description, rarity, path, pathName, element, elementName }) => ({
+        id,
+        name,
+        baseName,
+        description,
+        rarity,
+        path,
+        pathName,
+        element,
+        elementName
+      })
+    )
+  );
 
   const enemyCatalog: import('../../src/lib/domain/types.js').EnemyCatalogEntry[] = [];
   const enemies: Enemy[] = [];
@@ -1529,6 +1461,21 @@ export async function syncData(): Promise<DataManifest> {
       statusResistanceBase: [] as string[]
     }
   };
+
+  const inclusionPolicy = await loadEnemySkillInclusionPolicy();
+  const enemyText = {
+    ...text,
+    resolveRef: (ref: unknown, textSource: TextSource, disposition?: TextDiagnosticDisposition) =>
+      tr(ref, textSource, '', disposition)
+  };
+  // Classification and inclusion are identical for canonical and concrete variants.
+  const resolveEnemySkill = (skill: Raw, enemyId: string) =>
+    resolveEnemySkillSource(
+      skill,
+      { enemyId, skillId: String(skill.SkillID) },
+      enemyText,
+      inclusionPolicy
+    );
 
   const canonicalEnemyName = (templateId: string): string => {
     const targetTemplate = monsterTemplates.get(templateId);
@@ -1575,24 +1522,13 @@ export async function syncData(): Promise<DataManifest> {
       if (seenSkillIds.has(skillId)) continue;
       seenSkillIds.add(skillId);
       const phases = normalizeEnemyPhases(skill.PhaseList);
-      const kindLabel = tr(skill.SkillTypeDesc, source('enemy-skill', skillId, 'SkillTypeDesc'));
-      const kind = normalizeEnemySkillKind(kindLabel);
-      if (kind === 'unknown')
-        enemyAudit.unknownSkillKinds.push({ enemyId: id, skillId, value: kindLabel });
-      const tagLabel = tr(skill.SkillTag, source('enemy-skill', skillId, 'SkillTag'));
-      const tag = normalizeEnemySkillTag(tagLabel);
-      if (!tag.known) enemyAudit.unknownSkillTags.push({ enemyId: id, skillId, value: tagLabel });
-
-      const formattedDescription = formatGameMarkup(
-        tr(skill.SkillDesc, source('enemy-skill', skillId, 'SkillDesc')),
-        values(skill.ParamList)
-      );
+      const { kindLabel, kind, tag, visible, formattedDescription, localizedTextStatus } =
+        resolveEnemySkill(skill, id);
       collectDescriptionDiagnostics(
         'enemy-skill',
         skillId,
         formattedDescription.diagnostics.map((diagnostic) => ({ level: 1, ...diagnostic }))
       );
-      const visible = Boolean(gameTextToPlain(formattedDescription.text).trim());
       phaseInputs.push({ id: skillId, phases, visible });
       if (!visible) continue;
       let damageType;
@@ -1620,6 +1556,8 @@ export async function syncData(): Promise<DataManifest> {
         name: tr(skill.SkillName, source('enemy-skill', skillId, 'SkillName'), `技能 ${skillId}`),
         description: formattedDescription.text,
         kind,
+        kindLabel,
+        localizedTextStatus,
         tag,
         ...(damageType ? { damageType } : {}),
         phases,
@@ -1702,7 +1640,12 @@ export async function syncData(): Promise<DataManifest> {
     const catalog: import('../../src/lib/domain/types.js').EnemyCatalogEntry = {
       id,
       name,
-      description: tr(config.MonsterIntroduction, source('enemy', id, 'MonsterIntroduction')),
+      description: tr(config.MonsterIntroduction, source('enemy', id, 'MonsterIntroduction'), '', {
+        requirement: 'optional',
+        visibility: 'emitted',
+        fallbackUsed: true,
+        productRouteReachability: 'reachable'
+      }),
       type: template.Rank,
       typeName: template.Rank,
       weaknesses
@@ -1804,13 +1747,8 @@ export async function syncData(): Promise<DataManifest> {
         const skill = monsterSkillRows.get(skillId);
         if (!skill) continue;
         const phases = normalizeEnemyPhases(skill.PhaseList);
-        const kindLabel = tr(skill.SkillTypeDesc, source('enemy-skill', skillId, 'SkillTypeDesc'));
-        const tagLabel = tr(skill.SkillTag, source('enemy-skill', skillId, 'SkillTag'));
-        const formattedDescription = formatGameMarkup(
-          tr(skill.SkillDesc, source('enemy-skill', skillId, 'SkillDesc')),
-          values(skill.ParamList)
-        );
-        const visible = Boolean(gameTextToPlain(formattedDescription.text).trim());
+        const { kindLabel, kind, tag, visible, formattedDescription, localizedTextStatus } =
+          resolveEnemySkill(skill, String(config.MonsterID));
         variantPhaseInputs.push({ id: skillId, phases, visible });
         if (!visible) continue;
         const damageType =
@@ -1821,8 +1759,10 @@ export async function syncData(): Promise<DataManifest> {
           id: skillId,
           name: tr(skill.SkillName, source('enemy-skill', skillId, 'SkillName'), `技能 ${skillId}`),
           description: formattedDescription.text,
-          kind: normalizeEnemySkillKind(kindLabel),
-          tag: normalizeEnemySkillTag(tagLabel),
+          kind,
+          kindLabel,
+          localizedTextStatus,
+          tag,
           ...(damageType ? { damageType } : {}),
           phases,
           extraEffects: resolveExtraEffects(extraEffectIdsOf(skill), 'enemy-skill', skillId)
@@ -1908,24 +1848,184 @@ export async function syncData(): Promise<DataManifest> {
     enemies: enemyCatalog
   };
   const details = { characters, 'light-cones': lightCones, relics, enemies };
-  for (const [category, catalog] of Object.entries(catalogs)) {
-    await writeJson(path.join(generatedRoot, 'catalogs', `${category}.json`), catalog);
-    for (const detail of details[category as keyof typeof details]) {
-      await writeJson(path.join(generatedRoot, 'details', category, `${detail.id}.json`), detail);
+  const viewPayload = { catalogs, details, relicProperties, endgame: endgame.datasets, homepage };
+  const viewSerialized = JSON.stringify(viewPayload);
+  const viewDigest = createHash('sha256').update(viewSerialized).digest('hex');
+  const neutralPayload = {
+    schemaVersion: 1,
+    parserVersion: 'neutral-domain-1',
+    sourceCommit: commit,
+    domains: {
+      characters: characterDomainSource,
+      'light-cones': tableSubset([
+        'EquipmentConfig',
+        'EquipmentSkillConfig',
+        'EquipmentPromotionConfig',
+        'ItemConfigEquipment',
+        'AvatarBaseType',
+        'AvatarPropertyConfig'
+      ]),
+      relics: tableSubset([
+        'RelicSetConfig',
+        'RelicSetSkillConfig',
+        'RelicDataInfo',
+        'RelicBaseType',
+        'RelicMainAffixConfig',
+        'RelicSubAffixConfig',
+        'ItemComefrom'
+      ]),
+      enemies: tableSubset([
+        'MonsterTemplateConfig',
+        'MonsterConfig',
+        'MonsterSkillConfig',
+        'MonsterGuideConfig',
+        'MonsterGuideTag',
+        'HardLevelGroup',
+        'EliteGroup',
+        'ExtraEffectConfig'
+      ]),
+      endgame: tableSubset([
+        'ChallengeGroupConfig',
+        'ChallengeMazeConfig',
+        'ChallengeStoryGroupConfig',
+        'ChallengeStoryMazeConfig',
+        'ChallengeStoryGroupExtra',
+        'ChallengeBossGroupConfig',
+        'ChallengeBossMazeConfig',
+        'ChallengeBossGroupExtra',
+        'ChallengeBossMazeExtra',
+        'ChallengePeakConfig',
+        'ChallengePeakBossConfig',
+        'MazeBuff',
+        'MonsterGuideConfig',
+        'MonsterGuideTag'
+      ])
     }
-  }
-  await writeJson(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), relicProperties);
-  for (const [mode, dataset] of Object.entries(endgame.datasets))
-    await writeJson(path.join(generatedRoot, 'endgame', `${mode}.json`), dataset);
-  await writeJson(path.join(generatedRoot, 'homepage.json'), homepage);
+  };
+  const sourceShards = {
+    characters: neutralPayload.domains.characters,
+    'light-cones': neutralPayload.domains['light-cones'],
+    relics: neutralPayload.domains.relics,
+    enemies: neutralPayload.domains.enemies,
+    endgame: neutralPayload.domains.endgame
+  };
+  const domainArtifacts = { characters: characterDomains };
+  const domainMeta = Object.fromEntries(
+    Object.entries(domainArtifacts).map(([name, value]) => {
+      const serialized = JSON.stringify(value);
+      const sourceSerialized = JSON.stringify(sourceShards[name as keyof typeof sourceShards]);
+      return [
+        name,
+        {
+          schemaVersion: value[0]?.schemaVersion ?? 4,
+          builderVersion: `domain-builder-${value[0]?.schemaVersion ?? 3}`,
+          sourceDigest: createHash('sha256').update(sourceSerialized).digest('hex'),
+          contentDigest: createHash('sha256').update(serialized).digest('hex'),
+          bytes: Buffer.byteLength(`${serialized}\n`),
+          sha256: createHash('sha256').update(`${serialized}\n`).digest('hex'),
+          recordCount: value.length
+        }
+      ];
+    })
+  );
+  const sourceShardMeta = Object.fromEntries(
+    Object.entries(sourceShards).map(([name, shard]) => {
+      const serialized = `${JSON.stringify(shard)}\n`;
+      return [
+        name,
+        {
+          bytes: Buffer.byteLength(serialized),
+          sha256: createHash('sha256').update(serialized).digest('hex'),
+          contentDigest: createHash('sha256').update(JSON.stringify(shard)).digest('hex'),
+          sourceCommit: commit
+        }
+      ];
+    })
+  );
+  const neutralSerialized = JSON.stringify(neutralPayload);
+  const neutralDigest = createHash('sha256').update(neutralSerialized).digest('hex');
+  const artifactMeta = (relative: string, serialized: string) => ({
+    [relative]: {
+      bytes: Buffer.byteLength(serialized),
+      sha256: createHash('sha256').update(serialized).digest('hex')
+    }
+  });
+  const neutralArtifactManifest = {
+    schemaVersion: 1 as const,
+    parserVersion: 'neutral-domain-1',
+    sourceCommit: commit,
+    contentDigest: neutralDigest,
+    artifacts: {
+      ...artifactMeta('neutral/source.json', `${neutralSerialized}\n`),
+      ...Object.fromEntries(
+        Object.entries(domainArtifacts)
+          .map(([name, value]) =>
+            Object.entries(
+              artifactMeta(`neutral/domains/${name}.json`, `${JSON.stringify(value)}\n`)
+            ).map(([key, meta]) => [key, meta])
+          )
+          .flat()
+      )
+    },
+    sourceShards: sourceShardMeta,
+    domains: domainMeta
+  };
+  const viewManifest = {
+    schemaVersion: 2 as const,
+    locale: locale.locale,
+    textMapCode: locale.textMapCode,
+    projectionVersion: 'chs-view-4',
+    neutralDigest,
+    contentDigest: viewDigest,
+    textMapDigest,
+    domainDigests: { characters: domainMeta.characters.contentDigest },
+    neutralSourceDigests: {
+      characters: domainMeta.characters.sourceDigest,
+      lightCones: createHash('sha256')
+        .update(JSON.stringify(sourceShards['light-cones']))
+        .digest('hex'),
+      relics: createHash('sha256').update(JSON.stringify(sourceShards.relics)).digest('hex')
+    }
+  };
+  const writeViewArtifacts = async (base: string, compatibility = false): Promise<void> => {
+    const categories = compatibility ? ['characters', 'enemies'] : Object.keys(catalogs);
+    for (const category of categories) {
+      const catalog = catalogs[category as keyof typeof catalogs];
+      await writeJson(path.join(base, 'catalogs', `${category}.json`), catalog);
+      for (const detail of details[category as keyof typeof details])
+        await writeJson(path.join(base, 'details', category, `${detail.id}.json`), detail);
+    }
+    if (!compatibility)
+      await writeJson(path.join(base, 'catalogs', 'relic-properties.json'), relicProperties);
+    for (const [mode, dataset] of Object.entries(endgame.datasets))
+      await writeJson(path.join(base, 'endgame', `${mode}.json`), dataset);
+    await writeJson(path.join(base, 'homepage.json'), homepage);
+  };
+  await writeJson(path.join(generatedRoot, 'neutral', 'source.json'), neutralPayload);
+  for (const [name, shard] of Object.entries(sourceShards))
+    await writeJson(path.join(generatedRoot, 'neutral', 'source', `${name}.json`), shard);
+  for (const [name, domain] of Object.entries(domainArtifacts))
+    await writeJson(path.join(generatedRoot, 'neutral', 'domains', `${name}.json`), domain);
+  // Keep the old paths as a short-lived CHS compatibility projection while loaders migrate.
+  await writeViewArtifacts(generatedRoot, true);
+  await writeViewArtifacts(path.join(generatedRoot, 'views', 'zh-CN'));
 
   const manifest: DataManifest = {
-    schemaVersion: 36,
+    schemaVersion: 40,
     sourceCommit: commit,
     sourceVersion,
     ...gameVersion,
     generatedAt: new Date().toISOString(),
     language: 'CHS',
+    neutral: neutralArtifactManifest,
+    view: viewManifest,
+    migration: {
+      characters: { domain: 'neutral-domain-4', productionView: 'neutral-projector-4' },
+      lightCones: { domain: 'neutral-domain-3', productionView: 'neutral-projector-3' },
+      relics: { domain: 'neutral-domain-3', productionView: 'neutral-projector-3' },
+      enemies: { productionView: 'compatibility-projector' },
+      endgame: { productionView: 'compatibility-projector' }
+    },
     counts: {
       characters: characters.length,
       lightCones: lightCones.length,
@@ -1942,6 +2042,8 @@ export async function syncData(): Promise<DataManifest> {
     endgame: endgame.audit.summary
   };
   await writeJson(path.join(generatedRoot, 'manifest.json'), manifest);
+  await writeJson(path.join(generatedRoot, 'neutral', 'manifest.json'), neutralArtifactManifest);
+  await writeJson(path.join(generatedRoot, 'views', 'zh-CN', 'manifest.json'), viewManifest);
   await writeJson(path.join(generatedRoot, 'search-inputs.json'), searchInputs);
   await writeJson(path.join(staticGeneratedRoot, 'search.json'), globalSearchIndex);
   await writeJson(path.join(staticGeneratedRoot, 'meta.json'), manifest);

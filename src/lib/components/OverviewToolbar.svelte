@@ -1,26 +1,29 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   export let resultCount = 0;
   export let hasFilters = false;
   export let sort = 'rarity';
   export let sortOptions: Array<{ value: string; label: string }> = [
-    { value: 'rarity', label: '稀有度' },
-    { value: 'name', label: '名称' },
-    { value: 'id', label: 'ID' }
+    { value: 'rarity', label: m.overview_sort_rarity({}, { locale: 'zh-CN' }) },
+    { value: 'name', label: m.overview_sort_name({}, { locale: 'zh-CN' }) },
+    { value: 'id', label: m.overview_sort_id({}, { locale: 'zh-CN' }) }
   ];
   export let onClearFilters: () => void | Promise<void>;
   export let onSortChange: (value: string) => void | Promise<void>;
 </script>
 
 <div class="overview-toolbar">
-  <span>共 {resultCount} 个结果</span>
+  <span>{m.overview_result_count({ count: resultCount }, { locale: 'zh-CN' })}</span>
   {#if hasFilters}
-    <button type="button" class="button button--quiet" on:click={onClearFilters}>清除筛选</button>
+    <button type="button" class="button button--quiet" on:click={onClearFilters}
+      >{m.overview_clear_active_filters({}, { locale: 'zh-CN' })}</button
+    >
   {/if}
   <label class="overview-toolbar__sort">
-    <span>排序</span>
+    <span>{m.overview_sort({}, { locale: 'zh-CN' })}</span>
     <select
       value={sort}
-      aria-label="排序"
+      aria-label={m.overview_sort({}, { locale: 'zh-CN' })}
       on:change={(event) => onSortChange((event.currentTarget as HTMLSelectElement).value)}
     >
       {#each sortOptions as option (option.value)}

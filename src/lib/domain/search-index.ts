@@ -1,4 +1,4 @@
-import type { EndgameMode, EndgameModeDataset } from './endgame';
+import type { EndgameMode, EndgameModeDataset, EnemyOccurrence } from './endgame';
 import {
   ENDGAME_MODES,
   presentedStageWaves,
@@ -52,44 +52,55 @@ export function endgameOccurrenceLocatorKey(locator: EndgameOccurrenceLocator): 
   ].join(':');
 }
 
-export function collectEndgameSearchNames(
-  datasets: Record<EndgameMode, EndgameModeDataset>,
-  entryIdForName: (name: string) => string
-): EndgameSearchNameEntry[] {
-  const byName = new Map<string, EndgameSearchNameEntry>();
+/** Enumerate membership before consulting any localized name. */
+export function collectEndgameSearchOccurrences(datasets: Record<EndgameMode, EndgameModeDataset>) {
+  const entries: Array<{ occurrence: EnemyOccurrence; locator: EndgameOccurrenceLocator }> = [];
   for (const mode of ENDGAME_MODES) {
     for (const group of [...datasets[mode].groups].sort((a, b) => b.groupId - a.groupId)) {
       group.encounters.forEach((encounter, encounterIndex) =>
         encounter.battles.forEach((battle, battleIndex) =>
           battle.stages.forEach((stage, stageIndex) =>
             presentedStageWaves(stage).forEach((wave, waveIndex) =>
-              wave.forEach(({ occurrence }, occurrenceIndex) => {
-                const name = occurrence.name?.trim();
-                if (!name) return;
-                let entry = byName.get(name);
-                if (!entry) {
-                  entry = {
-                    entryId: entryIdForName(name),
-                    name,
-                    locators: []
-                  };
-                  byName.set(name, entry);
-                }
-                entry.locators.push({
-                  mode,
-                  groupId: group.groupId,
-                  encounterIndex,
-                  battleIndex,
-                  stageIndex,
-                  waveIndex,
-                  occurrenceIndex
-                });
-              })
+              wave.forEach(({ occurrence }, occurrenceIndex) =>
+                entries.push({
+                  occurrence,
+                  locator: {
+                    mode,
+                    groupId: group.groupId,
+                    encounterIndex,
+                    battleIndex,
+                    stageIndex,
+                    waveIndex,
+                    occurrenceIndex
+                  }
+                })
+              )
             )
           )
         )
       );
     }
+  }
+  return entries;
+}
+
+export function collectEndgameSearchNames(
+  datasets: Record<EndgameMode, EndgameModeDataset>,
+  entryIdForName: (name: string) => string
+): EndgameSearchNameEntry[] {
+  const byName = new Map<string, EndgameSearchNameEntry>();
+  for (const { occurrence, locator } of collectEndgameSearchOccurrences(datasets)) {
+    const name = occurrence.name?.trim();
+    if (!name)
+      throw new Error(
+        `Missing required Endgame search name: ${locator.mode}/${locator.groupId}/${occurrence.monsterId}`
+      );
+    let entry = byName.get(name);
+    if (!entry) {
+      entry = { entryId: entryIdForName(name), name, locators: [] };
+      byName.set(name, entry);
+    }
+    entry.locators.push(locator);
   }
   return [...byName.values()];
 }

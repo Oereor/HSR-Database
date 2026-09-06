@@ -1,0 +1,2984 @@
+{
+  "catalog": {
+    "baseName": "丹恒",
+    "description": "对自己的过去讳莫如深，清冷寡言的青年。\n为了躲避血裔同族，选择与星穹列车同行。",
+    "element": "Wind",
+    "elementName": "风",
+    "id": "1002",
+    "name": "丹恒",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 4
+  },
+  "detail": {
+    "baseName": "丹恒",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 110
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 74.4,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 54,
+            "perLevel": 2.7
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 120,
+            "perLevel": 6
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 104.16,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 75.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 168,
+            "perLevel": 6
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 133.92,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 97.2,
+            "perLevel": 2.7
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 216,
+            "perLevel": 6
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 163.68,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 2.7
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 264,
+            "perLevel": 6
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 193.44,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 140.4,
+            "perLevel": 2.7
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 312,
+            "perLevel": 6
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 223.2,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 162,
+            "perLevel": 2.7
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 360,
+            "perLevel": 6
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 252.96,
+            "perLevel": 3.72
+          },
+          "defence": {
+            "base": 183.6,
+            "perLevel": 2.7
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 408,
+            "perLevel": 6
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "对自己的过去讳莫如深，清冷寡言的青年。\n为了躲避血裔同族，选择与星穹列车同行。",
+    "element": "Wind",
+    "elementName": "风",
+    "equipmentRecommendation": {
+      "avatarId": "1002",
+      "cavernSetIds": [
+        "110",
+        "122",
+        "102"
+      ],
+      "lightConeIds": [
+        "24001",
+        "23001",
+        "21003"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalChanceBase",
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "WindAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "311",
+        "301",
+        "309"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "丹恒",
+    "id": "1002",
+    "kind": "character",
+    "name": "丹恒",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "当击中的敌方目标当前生命值百分比大于等于<unbreak>50%</unbreak>时，暴击率提高<unbreak>12%</unbreak>。",
+            "iconKey": "rank--100201",
+            "id": "100201",
+            "name": "穷高极天，亢盈难久",
+            "rank": 1
+          },
+          {
+            "description": "天赋的冷却时间减少1回合。",
+            "iconKey": "rank--100202",
+            "id": "100202",
+            "name": "威制八毒，灭却炎烟",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--100203",
+            "id": "100203",
+            "name": "幽明变化，自在蟠跃",
+            "rank": 3
+          },
+          {
+            "description": "施放终结技消灭敌方目标时，丹恒立即行动。",
+            "iconKey": "rank--100204",
+            "id": "100204",
+            "name": "奋迅三昧，如日空居",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--100205",
+            "id": "100205",
+            "name": "一渧天水，六虚洪流",
+            "rank": 5
+          },
+          {
+            "description": "战技触发的减速状态使目标的速度额外降低<unbreak>8%</unbreak>。",
+            "iconKey": "rank--100206",
+            "id": "100206",
+            "name": "须绳缚身，沉潜勿用",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 100
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1002001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1002001",
+                "variantIds": [
+                  "100201"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "100201",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒50%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒60%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒70%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒80%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒90%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒100%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒110%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒120%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒130%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒140%攻击力的风属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "云骑枪术•朔风",
+                "progressionId": "1002001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1002002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1002002",
+                "variantIds": [
+                  "100202"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "100202",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒130%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒143%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "143%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒156%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "156%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒169%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "169%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒182%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "182%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒195%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "195%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒211%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "211%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒228%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "228%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒244%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "244%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒260%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "260%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒273%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "273%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒286%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "286%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒299%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "299%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒312%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "312%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒325%攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有100%的基础概率使受到攻击的敌方目标速度降低12%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "325%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。\n战技造成的伤害触发暴击时，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使受到攻击的敌方目标速度降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "云骑枪术•疾雨",
+                "progressionId": "1002002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1002003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1002003",
+                "variantIds": [
+                  "100203"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "100203",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒240%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高72%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "72%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒256%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高77%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "256%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒272%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高82%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "272%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "82%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒288%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高86%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "288%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "86%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒304%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高91%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "304%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "91%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒320%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高96%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "320%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒340%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高102%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "340%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "102%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒360%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高108%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "360%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "108%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒380%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高114%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "380%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "114%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒400%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高120%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "400%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒416%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高125%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "416%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "125%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒432%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高130%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "432%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒448%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高134%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "448%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "134%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒464%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高139%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "464%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "139%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于丹恒480%攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高144%。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于丹恒"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "480%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风属性伤害。当受到攻击的敌方目标处于减速状态时，终结技造成的伤害倍率提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "洞天幻化，长梦一觉",
+                "progressionId": "1002003",
+                "scalingParamIndexes": [
+                  0,
+                  1
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1002004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1002004",
+                "variantIds": [
+                  "100204"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                      "id": "30000005",
+                      "name": "抗性穿透"
+                    }
+                  ]
+                },
+                "id": "100204",
+                "levels": [
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高18%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高20%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高22%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高23%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高25%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高27%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高29%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高32%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高34%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高36%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高38%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高40%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高41%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高43%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性抗性穿透提高45%。该效果在2回合后可再次触发。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当丹恒成为我方技能的施放目标时，下一次攻击的风属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "抗性穿透"
+                      },
+                      {
+                        "type": "text",
+                        "value": "提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。该效果在"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合后可再次触发。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "寸长寸强",
+                "progressionId": "1002004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1002007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1002007",
+                "variantIds": [
+                  "100207"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "100207",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时丹恒攻击力提高40%，持续3回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时丹恒攻击力提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "破敌锋芒",
+                "progressionId": "1002007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "若当前生命值百分比小于等于<unbreak>50%</unbreak>，则被敌方目标攻击的概率降低。",
+            "iconKey": "skill-tree--1002101",
+            "id": "1002101",
+            "name": "潜龙",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "施放攻击后有<unbreak>50%</unbreak>的<u>固定概率</u>使自身速度提高<unbreak>20%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "extraEffects": [
+              {
+                "description": "不会被任何因素影响的固定概率。",
+                "id": "30000002",
+                "name": "固定概率"
+              }
+            ],
+            "iconKey": "skill-tree--1002102",
+            "id": "1002102",
+            "name": "绝影",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "普攻对减速状态下的敌方目标造成的伤害提高<unbreak>40%</unbreak>。",
+            "iconKey": "skill-tree--1002103",
+            "id": "1002103",
+            "name": "罡风",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "风属性伤害提高3.2%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1002201",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [],
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1002202",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1002101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "风属性伤害提高3.2%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1002203",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1002202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "防御力提高5.0%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1002204",
+            "name": "防御强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "风属性伤害提高4.8%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1002205",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1002102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1002206",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1002205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "风属性伤害提高4.8%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1002207",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "防御力提高7.5%",
+            "iconKey": "property--DefenceAddedRatio",
+            "id": "1002208",
+            "name": "防御强化",
+            "prerequisiteIds": [
+              "1002103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "DefenceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1002209",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1002208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "风属性伤害提高6.4%",
+            "iconKey": "property--WindAddedRatio",
+            "id": "1002210",
+            "name": "伤害强化•风",
+            "prerequisiteIds": [
+              "1002208"
+            ],
+            "propertyType": "WindAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 4
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1002001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100201",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1002002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100202",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1002003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100203",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1002004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100204",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1002007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "100207",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1002",
+    "subtitleRendered": false
+  }
+}

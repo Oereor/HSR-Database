@@ -1,0 +1,2583 @@
+{
+  "catalog": {
+    "baseName": "开拓者",
+    "description": "登上星穹列车的{F#少女}{M#少年}。\n为了消除星核带来的危机，选择与星穹列车同行。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "id": "8006",
+    "name": "开拓者·同谐",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "开拓者",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 105
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 60.72,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 4.62
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 147.84,
+            "perLevel": 7.392
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 85.008,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 129.36,
+            "perLevel": 4.62
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 206.976,
+            "perLevel": 7.392
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 109.296,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 166.32,
+            "perLevel": 4.62
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 266.112,
+            "perLevel": 7.392
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 133.584,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 203.28,
+            "perLevel": 4.62
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 325.248,
+            "perLevel": 7.392
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 157.872,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 240.24,
+            "perLevel": 4.62
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 384.384,
+            "perLevel": 7.392
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 182.16,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 277.2,
+            "perLevel": 4.62
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 443.52,
+            "perLevel": 7.392
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 206.448,
+            "perLevel": 3.036
+          },
+          "defence": {
+            "base": 314.16,
+            "perLevel": 4.62
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 502.656,
+            "perLevel": 7.392
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "登上星穹列车的{F#少女}{M#少年}。\n为了消除星核带来的危机，选择与星穹列车同行。",
+    "element": "Imaginary",
+    "elementName": "虚数",
+    "equipmentRecommendation": {
+      "avatarId": "8006",
+      "cavernSetIds": [
+        "118",
+        "111",
+        "114"
+      ],
+      "lightConeIds": [
+        "21056",
+        "23019",
+        "21018"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "HPAddedRatio",
+            "DefenceAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "DefenceAddedRatio",
+            "HPAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "BreakDamageAddedRatioBase"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "307",
+        "316",
+        "302"
+      ],
+      "subStatPropertyTypes": [
+        "BreakDamageAddedRatioBase",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "开拓者·同谐",
+    "id": "8006",
+    "kind": "character",
+    "name": "开拓者·同谐",
+    "path": "Shaman",
+    "pathName": "同谐",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "施放首次战技后立即回复<unbreak>1</unbreak>点战技点。",
+            "iconKey": "rank--800601",
+            "id": "800601",
+            "name": "您的最佳观众席",
+            "rank": 1
+          },
+          {
+            "description": "战斗开始时，开拓者的能量恢复效率提高<unbreak>25%</unbreak>，持续<unbreak>3</unbreak>回合。",
+            "iconKey": "rank--800602",
+            "id": "800602",
+            "name": "越狱的跨洋彩虹",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--800603",
+            "id": "800603",
+            "name": "休止符的疗养院",
+            "rank": 3
+          },
+          {
+            "description": "开拓者在场时，使除自身以外的队友击破特攻提高，提高数值等同于开拓者<unbreak>15%</unbreak>的击破特攻。",
+            "iconKey": "rank--800604",
+            "id": "800604",
+            "name": "袒护白鸽的冠冕",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--800605",
+            "id": "800605",
+            "name": "包庇旧节拍的诗",
+            "rank": 5
+          },
+          {
+            "description": "战技的额外伤害次数增加<unbreak>2</unbreak>次。",
+            "iconKey": "rank--800606",
+            "id": "800606",
+            "name": "明天，栖息聚光之下",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 140
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--8006001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "8006001",
+                "variantIds": [
+                  "800601"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "800601",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者50%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者60%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者70%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者80%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者90%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者100%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者110%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者120%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者130%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者140%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "摇摆的礼仪",
+                "progressionId": "8006001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--8006002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8006002",
+                "variantIds": [
+                  "800602"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "Bounce",
+                    "known": true,
+                    "label": "弹射"
+                  },
+                  "energyGain": 6,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    },
+                    {
+                      "type": "blast",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "800602",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者25%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者25%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者28%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者28%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者30%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者30%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者33%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者33%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者35%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者35%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者38%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者38%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者41%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者41%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者44%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者44%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者47%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者47%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者50%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者50%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者53%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者53%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者55%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者55%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者57%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者57%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者60%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者60%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于开拓者63%攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者63%攻击力的虚数属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害，并额外造成4次伤害。每次伤害对随机敌方单体造成等同于开拓者"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的虚数属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "中场馈赠的雨",
+                "progressionId": "8006002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--8006003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8006003",
+                "variantIds": [
+                  "800603"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "当敌方目标的韧性被削减至0时进入的特殊状态，进入该状态的目标行动会被延后。",
+                      "id": "10000006",
+                      "name": "弱点击破状态"
+                    },
+                    {
+                      "description": "击破特攻、本次攻击削韧值、角色等级越高，造成的超击破伤害越高。\n超击破伤害无法暴击，不受伤害提高类效果所影响。\n超击破伤害也属于击破伤害。",
+                      "id": "10000015",
+                      "name": "超击破伤害"
+                    }
+                  ]
+                },
+                "id": "800603",
+                "levels": [
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高15%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高17%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高18%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高20%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高21%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高23%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高24%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高26%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高28%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高30%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高32%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高33%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高35%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高36%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "为我方全体附上【伴舞】效果，持续3回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高38%，并且攻击处于弱点击破状态下的敌方目标后，会将本次攻击的削韧值转化为1次超击破伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "为我方全体附上【伴舞】效果，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，开拓者每回合开始时持续回合数减1。持有【伴舞】的我方目标击破特攻提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，并且攻击处于"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "弱点击破状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "下的敌方目标后，会将本次攻击的削韧值转化为1次"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "超击破伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "喧嚣的舞灯巡游",
+                "progressionId": "8006003",
+                "scalingParamIndexes": [
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--8006004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8006004",
+                "variantIds": [
+                  "800604"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "800604",
+                "levels": [
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复5.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复5.5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "5.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复6.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复6.5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "6.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复7.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复7.5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "7.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复8.1点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.1"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复8.8点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "8.8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复9.4点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "9.4"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复10.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复10.5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复11.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复11.5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复12.0点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.0"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "当有敌方目标的弱点被击破时，开拓者立即恢复12.5点能量。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "当有敌方目标的弱点被击破时，开拓者立即恢复"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12.5"
+                      },
+                      {
+                        "type": "text",
+                        "value": "点能量。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "全屏段的高空踏歌",
+                "progressionId": "8006004",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--8006007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "8006007",
+                "variantIds": [
+                  "800607"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Support",
+                    "known": true,
+                    "label": "辅助"
+                  }
+                },
+                "id": "800607",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时使我方全体的击破特攻提高30%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时使我方全体的击破特攻提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "即刻！独奏团",
+                "progressionId": "8006007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "当场上敌方目标数量等于5或以上/4/3/2/1名时，【伴舞】效果触发的<u>超击破伤害</u>提高<unbreak>20%</unbreak>/<unbreak>30%</unbreak>/<unbreak>40%</unbreak>/<unbreak>50%</unbreak>/<unbreak>60%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "击破特攻、本次攻击削韧值、角色等级越高，造成的超击破伤害越高。\n超击破伤害无法暴击，不受伤害提高类效果所影响。\n超击破伤害也属于击破伤害。",
+                "id": "10000015",
+                "name": "超击破伤害"
+              }
+            ],
+            "iconKey": "skill-tree--8006101",
+            "id": "8006101",
+            "name": "卫我起舞",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "施放战技时，第一次伤害的削韧值额外提高<unbreak>100%</unbreak>。",
+            "iconKey": "skill-tree--8006102",
+            "id": "8006102",
+            "name": "随波逐流",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "我方目标造成弱点击破后额外使敌方目标<u>行动延后</u><unbreak>30%</unbreak>。",
+            "extraEffects": [
+              {
+                "description": "使目标在下次行动前的等待间隔延长。",
+                "id": "10000002",
+                "name": "行动延后"
+              }
+            ],
+            "iconKey": "skill-tree--8006103",
+            "id": "8006103",
+            "name": "剧院之帽",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "8006201",
+            "name": "击破强化",
+            "prerequisiteIds": [],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "虚数属性伤害提高3.2%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "8006202",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "8006101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "击破特攻提高5.3%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "8006203",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "8006202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果抵抗提高4.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "8006204",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "8006201"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "8006205",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "8006102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "虚数属性伤害提高4.8%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "8006206",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "8006205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "击破特攻提高8.0%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "8006207",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "8006201"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果抵抗提高6.0%",
+            "iconKey": "property--StatusResistanceBase",
+            "id": "8006208",
+            "name": "效果抵抗强化",
+            "prerequisiteIds": [
+              "8006103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusResistanceBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "虚数属性伤害提高6.4%",
+            "iconKey": "property--ImaginaryAddedRatio",
+            "id": "8006209",
+            "name": "伤害强化•虚数",
+            "prerequisiteIds": [
+              "8006208"
+            ],
+            "propertyType": "ImaginaryAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "击破特攻提高10.7%",
+            "iconKey": "property--BreakDamageAddedRatioBase",
+            "id": "8006210",
+            "name": "击破强化",
+            "prerequisiteIds": [
+              "8006208"
+            ],
+            "propertyType": "BreakDamageAddedRatioBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "8006001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800601",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8006002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800602",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8006003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800603",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "8006004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800604",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "8006007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "800607",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/8006",
+    "subtitleRendered": false
+  }
+}

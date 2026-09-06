@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
@@ -24,8 +25,8 @@
   import OverviewToolbar from './OverviewToolbar.svelte';
 
   export let entries: CatalogEntry[] = [];
-  export let title = '敌方单位';
-  export let description = '浏览、搜索并筛选敌方单位资料。';
+  export let title: string = m.enemies_title({}, { locale: 'zh-CN' });
+  export let description: string = m.enemies_description({}, { locale: 'zh-CN' });
   export let enemyPortraits: Record<string, string> = {};
 
   const heroEnemyIds = ['1005010', '2004010', '4034010'] as const;
@@ -129,25 +130,25 @@
 </svelte:head>
 
 <OverviewHero
-  eyebrow="DATABASE / ENEMIES"
+  eyebrow={m.enemies_eyebrow({}, { locale: 'zh-CN' })}
   {title}
   {description}
-  countLabel={`共 ${enemies.length} 个敌方单位`}
+  countLabel={m.enemies_count({ count: enemies.length }, { locale: 'zh-CN' })}
   artwork={heroArtwork}
 />
 
-<section class="overview-controls" aria-label="敌方单位搜索与筛选">
+<section class="overview-controls" aria-label={m.enemies_controls_aria({}, { locale: 'zh-CN' })}>
   <OverviewSearch
     id="enemy-search-input"
     bind:value={draftQuery}
-    placeholder="搜索敌方单位"
+    placeholder={m.enemies_search_placeholder({}, { locale: 'zh-CN' })}
     onSubmit={submitQuery}
   />
 
   <div class="overview-filters">
     <FilterGroup
       id="enemy-type"
-      label="敌人类型"
+      label={m.filter_enemy_type({}, { locale: 'zh-CN' })}
       options={ENEMY_RANK_CATEGORIES.map((option) => ({
         value: option.code,
         label: option.filterLabel
@@ -157,7 +158,7 @@
     />
     <FilterGroup
       id="enemy-weakness"
-      label="弱点属性"
+      label={m.filter_enemy_weakness({}, { locale: 'zh-CN' })}
       iconKind="element"
       options={weaknessOptions}
       selected={filterState.weaknesses}
@@ -192,9 +193,11 @@
   <OverviewPagination {currentPage} {pages} queryString={params.toString()} />
 {:else}
   <section class="empty-state">
-    <h2>没有匹配结果</h2>
-    <p>尝试减少筛选条件，或清空当前搜索。</p>
-    <button class="button" type="button" on:click={clearSearchAndFilters}>清空筛选</button>
+    <h2>{m.overview_empty_title({}, { locale: 'zh-CN' })}</h2>
+    <p>{m.overview_empty_description({}, { locale: 'zh-CN' })}</p>
+    <button class="button" type="button" on:click={clearSearchAndFilters}
+      >{m.overview_clear_filters({}, { locale: 'zh-CN' })}</button
+    >
   </section>
 {/if}
 

@@ -1,0 +1,3773 @@
+{
+  "catalog": {
+    "baseName": "彦卿",
+    "description": "将军景元的侍卫，不过总角之年的御剑天才。\n手中握剑，即立于不败之地。",
+    "element": "Ice",
+    "elementName": "冰",
+    "id": "1209",
+    "name": "彦卿",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "彦卿",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 75,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 109
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 92.4,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 56.1,
+            "perLevel": 2.805
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 121.44,
+            "perLevel": 6.072
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 129.36,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 78.54,
+            "perLevel": 2.805
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 170.016,
+            "perLevel": 6.072
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 166.32,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 100.98,
+            "perLevel": 2.805
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 218.592,
+            "perLevel": 6.072
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 203.28,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 123.42,
+            "perLevel": 2.805
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 267.168,
+            "perLevel": 6.072
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 240.24,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 145.86,
+            "perLevel": 2.805
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 315.744,
+            "perLevel": 6.072
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 277.2,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 168.3,
+            "perLevel": 2.805
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 364.32,
+            "perLevel": 6.072
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 314.16,
+            "perLevel": 4.62
+          },
+          "defence": {
+            "base": 190.74,
+            "perLevel": 2.805
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 412.896,
+            "perLevel": 6.072
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "将军景元的侍卫，不过总角之年的御剑天才。\n手中握剑，即立于不败之地。",
+    "element": "Ice",
+    "elementName": "冰",
+    "equipmentRecommendation": {
+      "avatarId": "1209",
+      "cavernSetIds": [
+        "104",
+        "117",
+        "122"
+      ],
+      "lightConeIds": [
+        "23012",
+        "23001",
+        "24001"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "CriticalDamageBase"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "IceAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "311",
+        "301",
+        "306"
+      ],
+      "subStatPropertyTypes": [
+        "CriticalChanceBase",
+        "CriticalDamageBase",
+        "AttackAddedRatio",
+        "SpeedDelta"
+      ]
+    },
+    "fullName": "彦卿",
+    "id": "1209",
+    "kind": "character",
+    "name": "彦卿",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "当彦卿攻击敌方目标时，如果目标处于冻结状态，则立即对目标造成等同于彦卿<unbreak>60%</unbreak>攻击力的冰属性<u>附加伤害</u>。",
+            "extraEffects": [
+              {
+                "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000005",
+                "name": "附加伤害"
+              }
+            ],
+            "iconKey": "rank--120901",
+            "id": "120901",
+            "name": "素刃",
+            "rank": 1
+          },
+          {
+            "description": "处于【智剑连心】效果时，额外提高<unbreak>10%</unbreak>的能量恢复效率。",
+            "iconKey": "rank--120902",
+            "id": "120902",
+            "name": "空明",
+            "rank": 2
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--120903",
+            "id": "120903",
+            "name": "剑胎",
+            "rank": 3
+          },
+          {
+            "description": "当前生命值百分比大于等于<unbreak>80%</unbreak>时，提高自身<unbreak>12%</unbreak>的冰属性<u>抗性穿透</u>。",
+            "extraEffects": [
+              {
+                "description": "当造成伤害时，无视敌方目标的一部分对应伤害属性的抗性值。",
+                "id": "30000005",
+                "name": "抗性穿透"
+              }
+            ],
+            "iconKey": "rank--120904",
+            "id": "120904",
+            "name": "霜厉",
+            "rank": 4
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--120905",
+            "id": "120905",
+            "name": "武骨",
+            "rank": 5
+          },
+          {
+            "description": "消灭敌方目标时，如果当前持有【智剑连心】或终结技的<u>增益效果</u>，则使这些<u>增益效果</u>的持续时间全部延长1回合。",
+            "extraEffects": [
+              {
+                "description": "对战斗有增益效果的所有持续状态，若无特殊说明则可以被解除。",
+                "id": "10000009",
+                "name": "增益效果"
+              }
+            ],
+            "iconKey": "rank--120906",
+            "id": "120906",
+            "name": "自在",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 140
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1209001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1209001",
+                "variantIds": [
+                  "120901"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120901",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿50%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿60%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿70%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿80%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿90%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿100%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿110%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿120%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿130%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿140%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "霜锋点寒芒",
+                "progressionId": "1209001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1209002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1209002",
+                "variantIds": [
+                  "120902"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 30,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "120902",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿110%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿121%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "121%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿132%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "132%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿143%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "143%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿154%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿165%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "165%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿179%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "179%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿193%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "193%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿206%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "206%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿220%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "220%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿231%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "231%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿242%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "242%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿253%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "253%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿264%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "264%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于彦卿275%攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "275%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并为彦卿附加【智剑连心】，持续1回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "遥击三尺水",
+                "progressionId": "1209002",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1209003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1209003",
+                "variantIds": [
+                  "120903"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "对战斗有增益效果的所有持续状态，若无特殊说明则可以被解除。",
+                      "id": "10000009",
+                      "name": "增益效果"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 30
+                    }
+                  ]
+                },
+                "id": "120903",
+                "levels": [
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高30%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿210%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "210%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高32%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿224%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高34%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿238%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "34%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "238%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高36%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿252%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "252%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高38%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿266%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "266%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高40%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿280%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "40%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "280%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高43%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿298%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "43%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "298%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高45%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿315%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "45%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "315%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高48%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿333%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "48%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "333%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高50%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿350%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "350%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高52%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿364%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "364%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高54%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿378%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "378%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高56%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿392%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "392%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高58%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿406%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "406%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "提高自身60%暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高60%，增益效果持续1回合。随后对指定敌方单体造成等同于彦卿420%攻击力的冰属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "提高自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率，若彦卿处于【智剑连心】效果，则使其暴击伤害额外提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "增益效果"
+                      },
+                      {
+                        "type": "text",
+                        "value": "持续1回合。随后对指定敌方单体造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "420%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "快雨燕相逐",
+                "progressionId": "1209003",
+                "scalingParamIndexes": [
+                  1,
+                  2
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1209004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1209004",
+                "variantIds": [
+                  "120904"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 10,
+                  "extraEffects": [
+                    {
+                      "description": "不会被任何因素影响的固定概率。",
+                      "id": "30000002",
+                      "name": "固定概率"
+                    },
+                    {
+                      "description": "满足条件时自动触发的效果，对目标施放1次额外的攻击。",
+                      "id": "10000004",
+                      "name": "追加攻击"
+                    },
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    },
+                    {
+                      "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                      "id": "10000005",
+                      "name": "附加伤害"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "120904",
+                "levels": [
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高15.0%暴击率和15%暴击伤害。对敌方目标施放攻击后，有50%的固定概率发动追加攻击，对目标造成等同于彦卿25%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿25%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高15.5%暴击率和17%暴击伤害。对敌方目标施放攻击后，有51%的固定概率发动追加攻击，对目标造成等同于彦卿28%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿28%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "51%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高16.0%暴击率和18%暴击伤害。对敌方目标施放攻击后，有52%的固定概率发动追加攻击，对目标造成等同于彦卿30%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿30%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "52%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高16.5%暴击率和20%暴击伤害。对敌方目标施放攻击后，有53%的固定概率发动追加攻击，对目标造成等同于彦卿33%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿33%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高17.0%暴击率和21%暴击伤害。对敌方目标施放攻击后，有54%的固定概率发动追加攻击，对目标造成等同于彦卿35%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿35%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "54%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高17.5%暴击率和23%暴击伤害。对敌方目标施放攻击后，有55%的固定概率发动追加攻击，对目标造成等同于彦卿38%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿38%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高18.1%暴击率和24%暴击伤害。对敌方目标施放攻击后，有56%的固定概率发动追加攻击，对目标造成等同于彦卿41%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿41%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "56%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "41%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高18.8%暴击率和26%暴击伤害。对敌方目标施放攻击后，有57%的固定概率发动追加攻击，对目标造成等同于彦卿44%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿44%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "44%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高19.4%暴击率和28%暴击伤害。对敌方目标施放攻击后，有59%的固定概率发动追加攻击，对目标造成等同于彦卿47%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿47%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "59%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高20.0%暴击率和30%暴击伤害。对敌方目标施放攻击后，有60%的固定概率发动追加攻击，对目标造成等同于彦卿50%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿50%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高20.5%暴击率和32%暴击伤害。对敌方目标施放攻击后，有61%的固定概率发动追加攻击，对目标造成等同于彦卿53%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿53%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "61%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高21.0%暴击率和33%暴击伤害。对敌方目标施放攻击后，有62%的固定概率发动追加攻击，对目标造成等同于彦卿55%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿55%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "33%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "62%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "55%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高21.5%暴击率和35%暴击伤害。对敌方目标施放攻击后，有63%的固定概率发动追加攻击，对目标造成等同于彦卿57%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿57%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "35%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "57%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高22.0%暴击率和36%暴击伤害。对敌方目标施放攻击后，有64%的固定概率发动追加攻击，对目标造成等同于彦卿60%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿60%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "36%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "64%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高22.5%暴击率和38%暴击伤害。对敌方目标施放攻击后，有65%的固定概率发动追加攻击，对目标造成等同于彦卿63%攻击力的冰属性伤害，并有65%的基础概率使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿63%攻击力的冰属性附加伤害。\n当彦卿受到伤害后，【智剑连心】将会消失。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "彦卿处于【智剑连心】效果时，受到攻击的概率降低，并为自身提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击率和"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "38%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "暴击伤害。对敌方目标施放攻击后，有"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "固定概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "发动"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "追加攻击"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对目标造成等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性伤害，并有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "65%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使其陷入冻结状态，持续1回合。\n冻结状态下，敌方目标不能行动，同时每回合开始时受到等同于彦卿"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的冰属性"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "附加伤害"
+                      },
+                      {
+                        "type": "text",
+                        "value": "。\n当彦卿受到伤害后，【智剑连心】将会消失。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "呼剑如影",
+                "progressionId": "1209004",
+                "scalingParamIndexes": [
+                  0,
+                  1,
+                  2,
+                  3,
+                  4
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1209007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1209007",
+                "variantIds": [
+                  "120907"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Enhance",
+                    "known": true,
+                    "label": "强化"
+                  }
+                },
+                "id": "120907",
+                "levels": [
+                  {
+                    "description": "使用秘技后，下一次战斗开始时彦卿对当前生命值百分比大于等于50%的敌方目标造成的伤害提高30%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，下一次战斗开始时彦卿对当前生命值百分比大于等于"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的敌方目标造成的伤害提高"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "30%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "御剑真诀",
+                "progressionId": "1209007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "施放攻击后，对携带冰属性弱点的敌方目标造成等同于彦卿<unbreak>30%</unbreak>攻击力的冰属性<u>附加伤害</u>。",
+            "extraEffects": [
+              {
+                "description": "使受击者额外受到1次伤害，本次伤害不视为造成了1次攻击。",
+                "id": "10000005",
+                "name": "附加伤害"
+              }
+            ],
+            "iconKey": "skill-tree--1209101",
+            "id": "1209101",
+            "name": "颁冰",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "处于【智剑连心】效果时，效果抵抗提高<unbreak>20%</unbreak>。",
+            "iconKey": "skill-tree--1209102",
+            "id": "1209102",
+            "name": "凌霜",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "触发暴击时，速度提高<unbreak>10%</unbreak>，持续<unbreak>2</unbreak>回合。",
+            "iconKey": "skill-tree--1209103",
+            "id": "1209103",
+            "name": "轻吕",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1209201",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "冰属性伤害提高3.2%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1209202",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1209101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1209203",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1209202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "生命值上限提高4.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1209204",
+            "name": "生命强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 3,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1209205",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1209102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "冰属性伤害提高4.8%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1209206",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1209205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1209207",
+            "name": "攻击强化",
+            "prerequisiteIds": [],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "生命值上限提高6.0%",
+            "iconKey": "property--HPAddedRatio",
+            "id": "1209208",
+            "name": "生命强化",
+            "prerequisiteIds": [
+              "1209103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "HPAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "冰属性伤害提高6.4%",
+            "iconKey": "property--IceAddedRatio",
+            "id": "1209209",
+            "name": "伤害强化•冰",
+            "prerequisiteIds": [
+              "1209208"
+            ],
+            "propertyType": "IceAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1209210",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1209208"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1209001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120901",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1209002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120902",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1209003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120903",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1209004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120904",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1209007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "120907",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1209",
+    "subtitleRendered": false
+  }
+}

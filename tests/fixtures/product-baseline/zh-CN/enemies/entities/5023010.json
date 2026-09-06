@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "承受「极乐颠倒•邪愿莲华主」侵染的人类。\n除却不停生出欢喜心外，不动六情，无染六欲。",
+    "id": "5023010",
+    "name": "乐变化天人",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5023010",
+    "defaultMonsterRef": "ce06551fad5e0d91c7b09dba0122f8526115550a05b7ad58667da9c1e0f498dd",
+    "description": "承受「极乐颠倒•邪愿莲华主」侵染的人类。\n除却不停生出欢喜心外，不动六情，无染六欲。",
+    "id": "5023010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ce06551fad5e0d91c7b09dba0122f8526115550a05b7ad58667da9c1e0f498dd",
+      "a02c3b2167719de2580711a97e383f626a1646fa2640e8114c42f61504251036"
+    ],
+    "name": "乐变化天人",
+    "rank": "Elite",
+    "templateRef": "924819f3b6dcac626df758568c847ecbb17d95003123232b97c0deaaafe839ea",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5023010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5023010",
+    "selectableMonsterIds": [
+      "5023010",
+      "502301001"
+    ]
+  }
+}

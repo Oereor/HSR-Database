@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "古老「权杖」的核心，翁法罗斯具象化的「恨」。上亿灵魂的苦难被悉数刻录，无数羔羊的血汇成一片至黑的黑暗，无限无终的黑暗自一具残破的躯壳中流溢而出，驱动无首的巨人行进。\n这躯壳由流涌不息的「恨」所铸，在它的深处，似乎有一颗包裹在混沌之火中的心。",
+    "id": "4035011",
+    "name": "反造物主，流溢之恨",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4035011",
+    "defaultMonsterRef": "dfa899f53d5cca0482c50a9d644e3a35508cf3d8f3da54077060472c3c3abc58",
+    "description": "古老「权杖」的核心，翁法罗斯具象化的「恨」。上亿灵魂的苦难被悉数刻录，无数羔羊的血汇成一片至黑的黑暗，无限无终的黑暗自一具残破的躯壳中流溢而出，驱动无首的巨人行进。\n这躯壳由流涌不息的「恨」所铸，在它的深处，似乎有一颗包裹在混沌之火中的心。",
+    "id": "4035011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "dfa899f53d5cca0482c50a9d644e3a35508cf3d8f3da54077060472c3c3abc58"
+    ],
+    "name": "反造物主，流溢之恨",
+    "rank": "BigBoss",
+    "templateRef": "43ca296e1bae1dbdccd8bb43848c849f978c7b89304a80960b2fe6c07107a52a",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4035011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4035011",
+    "selectableMonsterIds": [
+      "4035011"
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { m } from '$lib/paraglide/messages.js';
   import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
   import { onDestroy } from 'svelte';
@@ -17,8 +18,10 @@
   const changelogIconUrl = getUtilityIconUrl('changelog');
 
   $: revision = manifest.sourceCommit.slice(0, 8);
-  $: versionLabel = manifest.gameVersion ? `数据版本 ${manifest.gameVersion}` : '数据版本未知';
-  $: snapshotLabel = `${versionLabel} · ${revision}`;
+  $: versionLabel = manifest.gameVersion
+    ? m.navigation_data_version({ version: manifest.gameVersion }, { locale: 'zh-CN' })
+    : m.navigation_unknown_version({}, { locale: 'zh-CN' });
+  $: snapshotLabel = m.navigation_snapshot({ versionLabel, revision }, { locale: 'zh-CN' });
 
   function lockPage(locked: boolean) {
     document.body.classList.toggle('navigator-open', locked);
@@ -58,8 +61,12 @@
   });
 </script>
 
-<aside class="navigator-rail" aria-label="紧凑导航栏">
-  <a class="brand navigator-rail__brand" href="/" aria-label={`${SITE_NAME}首页`}>
+<aside class="navigator-rail" aria-label={m.navigation_compact_aria({}, { locale: 'zh-CN' })}>
+  <a
+    class="brand navigator-rail__brand"
+    href="/"
+    aria-label={m.navigation_home_aria({ siteName: SITE_NAME }, { locale: 'zh-CN' })}
+  >
     <span class="brand-icon" aria-hidden="true">
       {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
     </span>
@@ -67,18 +74,25 @@
   <button
     class="navigator-toggle"
     type="button"
-    aria-label="打开导航"
+    aria-label={m.navigation_open({}, { locale: 'zh-CN' })}
     aria-expanded={expanded}
     aria-controls="primary-navigator-pane"
     on:click={openNavigator}
   >
     <span aria-hidden="true"><i></i><i></i><i></i></span>
   </button>
-  <button class="changelog-trigger" type="button" aria-label="更新日志" on:click={onOpenChangelog}>
+  <button
+    class="changelog-trigger"
+    type="button"
+    aria-label={m.navigation_changelog({}, { locale: 'zh-CN' })}
+    on:click={onOpenChangelog}
+  >
     {#if changelogIconUrl}<img src={changelogIconUrl} alt="" />{:else}<span aria-hidden="true"
-        >更</span
+        >{m.navigation_changelog_fallback({}, { locale: 'zh-CN' })}</span
       >{/if}
-    <span class="changelog-trigger__tooltip" role="tooltip">更新日志</span>
+    <span class="changelog-trigger__tooltip" role="tooltip"
+      >{m.navigation_changelog({}, { locale: 'zh-CN' })}</span
+    >
   </button>
   <PrimaryNavigation pathname={$page.url.pathname} compact />
   <div class="navigator-rail__snapshot" role="status" aria-label={snapshotLabel}>
@@ -97,18 +111,20 @@
     <button
       class="changelog-trigger mobile-header__changelog"
       type="button"
-      aria-label="更新日志"
+      aria-label={m.navigation_changelog({}, { locale: 'zh-CN' })}
       on:click={onOpenChangelog}
     >
       {#if changelogIconUrl}<img src={changelogIconUrl} alt="" />{:else}<span aria-hidden="true"
-          >更</span
+          >{m.navigation_changelog_fallback({}, { locale: 'zh-CN' })}</span
         >{/if}
-      <span class="changelog-trigger__tooltip" role="tooltip">更新日志</span>
+      <span class="changelog-trigger__tooltip" role="tooltip"
+        >{m.navigation_changelog({}, { locale: 'zh-CN' })}</span
+      >
     </button>
     <button
       class="navigator-toggle"
       type="button"
-      aria-label="打开导航"
+      aria-label={m.navigation_open({}, { locale: 'zh-CN' })}
       aria-expanded={expanded}
       aria-controls="primary-navigator-pane"
       on:click={openNavigator}
@@ -122,7 +138,7 @@
   id="primary-navigator-pane"
   class="navigator-pane"
   bind:this={navigatorPane}
-  aria-label="完整导航"
+  aria-label={m.navigation_full_aria({}, { locale: 'zh-CN' })}
   on:click={handlePaneClick}
   on:close={handlePaneClose}
   on:cancel={handlePaneClose}
@@ -133,12 +149,15 @@
         <span class="brand-icon" aria-hidden="true">
           {#if trainPartyIconUrl}<img src={trainPartyIconUrl} alt="" />{/if}
         </span>
-        <span><strong>{SITE_NAME}</strong><small>HSR Data Archive</small></span>
+        <span
+          ><strong>{SITE_NAME}</strong><small>{m.site_short_tagline({}, { locale: 'zh-CN' })}</small
+          ></span
+        >
       </a>
       <button
         class="navigator-toggle"
         type="button"
-        aria-label="关闭导航"
+        aria-label={m.navigation_close({}, { locale: 'zh-CN' })}
         aria-expanded={expanded}
         aria-controls="primary-navigator-pane"
         on:click={closeNavigator}
@@ -149,8 +168,8 @@
 
     <SearchBar
       id="global-search"
-      label="全局搜索"
-      placeholder="搜索角色、光锥…"
+      label={m.navigation_search_label({}, { locale: 'zh-CN' })}
+      placeholder={m.navigation_search_placeholder({}, { locale: 'zh-CN' })}
       variant="sidebar"
     />
 

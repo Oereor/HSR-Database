@@ -1,0 +1,4283 @@
+{
+  "catalog": {
+    "baseName": "海瑟音",
+    "description": "斯缇科西亚，醉与梦的海滨之城，旧日的歌声仍在浮浪间回荡。\n大海的女儿海列屈拉，清洗「海洋」火种的黄金裔，驱散污浊的暗流，为天外的英雄奏响不醉不归的盛宴\n——散场之时未到，纵然希望如泡沫般易碎，浪花也将一往无前。",
+    "element": "Physical",
+    "elementName": "物理",
+    "id": "1410",
+    "name": "海瑟音",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "rarity": 5
+  },
+  "detail": {
+    "baseName": "海瑟音",
+    "baseStats": {
+      "defaultLevel": 80,
+      "fixed": {
+        "aggro": 100,
+        "criticalChance": 0.05,
+        "criticalDamage": 0.5,
+        "speed": 102
+      },
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP",
+        "speed": "property--Speed"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 81.84,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 66,
+            "perLevel": 3.3
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 163.68,
+            "perLevel": 8.184
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 114.576,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 92.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 229.152,
+            "perLevel": 8.184
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 147.312,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 118.8,
+            "perLevel": 3.3
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 294.624,
+            "perLevel": 8.184
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 180.048,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 145.2,
+            "perLevel": 3.3
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 360.096,
+            "perLevel": 8.184
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 212.784,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 171.6,
+            "perLevel": 3.3
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 425.568,
+            "perLevel": 8.184
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 245.52,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 198,
+            "perLevel": 3.3
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 491.04,
+            "perLevel": 8.184
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 278.256,
+            "perLevel": 4.092
+          },
+          "defence": {
+            "base": 224.4,
+            "perLevel": 3.3
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 556.512,
+            "perLevel": 8.184
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "斯缇科西亚，醉与梦的海滨之城，旧日的歌声仍在浮浪间回荡。\n大海的女儿海列屈拉，清洗「海洋」火种的黄金裔，驱散污浊的暗流，为天外的英雄奏响不醉不归的盛宴\n——散场之时未到，纵然希望如泡沫般易碎，浪花也将一往无前。",
+    "element": "Physical",
+    "elementName": "物理",
+    "equipmentRecommendation": {
+      "avatarId": "1410",
+      "cavernSetIds": [
+        "116",
+        "105",
+        "102"
+      ],
+      "lightConeIds": [
+        "23047",
+        "22000",
+        "21061"
+      ],
+      "mainStatOptions": [
+        {
+          "propertyTypes": [
+            "StatusProbabilityBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "BODY"
+        },
+        {
+          "propertyTypes": [
+            "SpeedDelta",
+            "AttackAddedRatio"
+          ],
+          "slot": "FOOT"
+        },
+        {
+          "propertyTypes": [
+            "PhysicalAddedRatio"
+          ],
+          "slot": "NECK"
+        },
+        {
+          "propertyTypes": [
+            "SPRatioBase",
+            "AttackAddedRatio"
+          ],
+          "slot": "OBJECT"
+        }
+      ],
+      "planarSetIds": [
+        "322",
+        "301",
+        "311"
+      ],
+      "subStatPropertyTypes": [
+        "StatusProbabilityBase",
+        "SpeedDelta",
+        "AttackAddedRatio"
+      ]
+    },
+    "fullName": "海瑟音",
+    "id": "1410",
+    "kind": "character",
+    "name": "海瑟音",
+    "path": "Warlock",
+    "pathName": "虚无",
+    "profiles": {
+      "base": {
+        "eidolons": [
+          {
+            "description": "海瑟音在场时，我方目标造成的持续伤害为原伤害的<unbreak>116%</unbreak>，当海瑟音通过天赋使敌人陷入风化/裂伤/灼烧/触电状态时，有<unbreak>100%</unbreak>的<u>基础概率</u>额外使其陷入一次与原天赋效果相同，且可同时存在的风化/裂伤/灼烧/触电状态。",
+            "extraEffects": [
+              {
+                "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                "id": "30000001",
+                "name": "基础概率"
+              }
+            ],
+            "iconKey": "rank--141001",
+            "id": "141001",
+            "name": "你问我心为何悲伤",
+            "rank": 1
+          },
+          {
+            "description": "结界持续期间，行迹【珍珠的琴弦】的造成伤害提高效果对我方全体生效。",
+            "iconKey": "rank--141002",
+            "id": "141002",
+            "name": "你说浪花为何喧响",
+            "rank": 2
+          },
+          {
+            "description": "终结技等级+2，最多不超过<unbreak>15</unbreak>级；普攻等级+1，最多不超过<unbreak>10</unbreak>级。",
+            "iconKey": "rank--141003",
+            "id": "141003",
+            "name": "可知灯火为何遗忘",
+            "rank": 3
+          },
+          {
+            "description": "结界持续期间，使敌方全体全属性抗性降低<unbreak>20%</unbreak>。",
+            "iconKey": "rank--141004",
+            "id": "141004",
+            "name": "看呀，时间为何流淌",
+            "rank": 4
+          },
+          {
+            "description": "战技等级+2，最多不超过<unbreak>15</unbreak>级；天赋等级+2，最多不超过<unbreak>15</unbreak>级。",
+            "iconKey": "rank--141005",
+            "id": "141005",
+            "name": "于梳洗中，我轻吟浅唱",
+            "rank": 5
+          },
+          {
+            "description": "结界持续期间，每回合开始时或我方目标单次攻击后，触发海瑟音物理持续伤害效果的次数上限提高至<unbreak>12</unbreak>次，且造成的伤害倍率提高<unbreak>20%</unbreak>。",
+            "iconKey": "rank--141006",
+            "id": "141006",
+            "name": "沉没的你，何日返乡",
+            "rank": 6
+          }
+        ],
+        "energy": {
+          "iconKey": "property--MaxSP",
+          "kind": "standard",
+          "max": 110
+        },
+        "skillCards": [
+          {
+            "category": "basic",
+            "displayLabel": "普攻",
+            "iconKey": "skill-tree--1410001",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1410001",
+                "variantIds": [
+                  "141001"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Normal",
+                "combatMeta": {
+                  "battlePointDelta": 1,
+                  "effect": {
+                    "code": "SingleAttack",
+                    "known": true,
+                    "label": "单攻"
+                  },
+                  "energyGain": 20,
+                  "stanceDisplay": [
+                    {
+                      "type": "single",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "141001",
+                "levels": [
+                  {
+                    "description": "对指定敌方单体造成等同于海瑟音50%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "50%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于海瑟音60%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "60%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于海瑟音70%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于海瑟音80%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于海瑟音90%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "90%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于海瑟音100%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于海瑟音110%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "110%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于海瑟音120%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于海瑟音130%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "130%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "对指定敌方单体造成等同于海瑟音140%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "对指定敌方单体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  }
+                ],
+                "name": "小调，止水中回响",
+                "progressionId": "1410001",
+                "scalingParamIndexes": [
+                  0
+                ],
+                "source": "avatar",
+                "type": "普攻"
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "displayLabel": "战技",
+            "iconKey": "skill-tree--1410002",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1410002",
+                "variantIds": [
+                  "141002"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "BPSkill",
+                "combatMeta": {
+                  "battlePointDelta": -1,
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 30,
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 10
+                    }
+                  ]
+                },
+                "id": "141002",
+                "levels": [
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高10%，持续3回合，同时对敌方全体造成等同于海瑟音70%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "70%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高11%，持续3回合，同时对敌方全体造成等同于海瑟音77%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "77%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高12%，持续3回合，同时对敌方全体造成等同于海瑟音84%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "12%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高13%，持续3回合，同时对敌方全体造成等同于海瑟音91%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "91%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高14%，持续3回合，同时对敌方全体造成等同于海瑟音98%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "98%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高15%，持续3回合，同时对敌方全体造成等同于海瑟音105%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "105%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高16%，持续3回合，同时对敌方全体造成等同于海瑟音114%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "114%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高18%，持续3回合，同时对敌方全体造成等同于海瑟音123%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "123%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高19%，持续3回合，同时对敌方全体造成等同于海瑟音131%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "131%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高20%，持续3回合，同时对敌方全体造成等同于海瑟音140%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "140%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高21%，持续3回合，同时对敌方全体造成等同于海瑟音147%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "147%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高22%，持续3回合，同时对敌方全体造成等同于海瑟音154%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "154%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高23%，持续3回合，同时对敌方全体造成等同于海瑟音161%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "161%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高24%，持续3回合，同时对敌方全体造成等同于海瑟音168%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "24%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "168%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "有100%的基础概率使敌方全体受到的伤害提高25%，持续3回合，同时对敌方全体造成等同于海瑟音175%攻击力的物理属性伤害。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方全体受到的伤害提高"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，同时对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "175%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "泛音，暗流后齐鸣",
+                "progressionId": "1410002",
+                "scalingParamIndexes": [
+                  0,
+                  2
+                ],
+                "source": "avatar",
+                "type": "战技"
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "displayLabel": "终结技",
+            "iconKey": "skill-tree--1410003",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1410003",
+                "variantIds": [
+                  "141003"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Ultra",
+                "combatMeta": {
+                  "effect": {
+                    "code": "AoEAttack",
+                    "known": true,
+                    "label": "群攻"
+                  },
+                  "energyGain": 5,
+                  "extraEffects": [
+                    {
+                      "description": "当我方目标的当前生命值被削减至0时进入的特殊状态，处于该状态的目标无法继续战斗。",
+                      "id": "10000007",
+                      "name": "无法战斗状态"
+                    }
+                  ],
+                  "stanceDisplay": [
+                    {
+                      "type": "aoe",
+                      "value": 20
+                    }
+                  ]
+                },
+                "id": "141003",
+                "levels": [
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低15.0%，对敌方全体造成等同于海瑟音120%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身32.0%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "120%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "32.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低16.0%，对敌方全体造成等同于海瑟音128%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身37.3%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "128%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "37.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低17.0%，对敌方全体造成等同于海瑟音136%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身42.6%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "17.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "136%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "42.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低18.0%，对敌方全体造成等同于海瑟音144%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身47.8%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "144%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "47.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低19.0%，对敌方全体造成等同于海瑟音152%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身53.1%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "152%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "53.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低20.0%，对敌方全体造成等同于海瑟音160%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身58.4%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "160%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "58.4%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低21.3%，对敌方全体造成等同于海瑟音170%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身63.2%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "170%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "63.2%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低22.5%，对敌方全体造成等同于海瑟音180%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身68.0%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "22.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "180%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "68.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低23.8%，对敌方全体造成等同于海瑟音190%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身74.0%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "190%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "74.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低25.0%，对敌方全体造成等同于海瑟音200%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身80.0%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "200%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "80.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低26.0%，对敌方全体造成等同于海瑟音208%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身84.0%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "208%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "84.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低27.0%，对敌方全体造成等同于海瑟音216%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身88.0%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "216%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "88.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低28.0%，对敌方全体造成等同于海瑟音224%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身92.0%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "224%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "92.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低29.0%，对敌方全体造成等同于海瑟音232%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身96.0%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "29.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "232%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "96.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "海瑟音展开结界，使敌方目标攻击力降低15.0%，防御力降低30.0%，对敌方全体造成等同于海瑟音240%攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身100.0%攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发8次。该伤害不会重复触发此效果。\n结界持续3回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入无法战斗状态时，结界也会被解除。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "海瑟音展开结界，使敌方目标攻击力降低"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "15.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，防御力降低"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，对敌方全体造成等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "240%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性伤害。\n处于结界中的敌方目标每受到1次持续伤害，海瑟音对其造成等同于自身"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "100.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的物理属性持续伤害，该伤害在每回合开始时或我方目标单次攻击后触发，且最多触发"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "8"
+                      },
+                      {
+                        "type": "text",
+                        "value": "次。该伤害不会重复触发此效果。\n结界持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "3"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合，自身每回合开始时结界持续回合数减1。当海瑟音陷入"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "无法战斗状态"
+                      },
+                      {
+                        "type": "text",
+                        "value": "时，结界也会被解除。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "绝海回涛，噬魂舞曲",
+                "progressionId": "1410003",
+                "scalingParamIndexes": [
+                  0,
+                  2,
+                  3
+                ],
+                "source": "avatar",
+                "type": "终结技"
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "displayLabel": "天赋",
+            "iconKey": "skill-tree--1410004",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1410004",
+                "variantIds": [
+                  "141004"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ]
+                },
+                "id": "141004",
+                "levels": [
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音10.0%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的10.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "10.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 1
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音11.7%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的11.7%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "11.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 2
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音13.3%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的13.3%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "13.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 3
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音14.9%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的14.9%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "14.9%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 4
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音16.6%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的16.6%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "16.6%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 5
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音18.3%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的18.3%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "18.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 6
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音19.8%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的19.8%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "19.8%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 7
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音21.3%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的21.3%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "21.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 8
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音23.1%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的23.1%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "23.1%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 9
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音25.0%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的25.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "25.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 10
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音26.3%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的26.3%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "26.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 11
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音27.5%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的27.5%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "27.5%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 12
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音28.7%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的28.7%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "28.7%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 13
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音30.0%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的30.0%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "30.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 14
+                  },
+                  {
+                    "description": "我方目标攻击时，海瑟音有100%的基础概率使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音31.3%攻击力的风/火/雷属性的持续伤害，持续2回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身20.0%生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的31.3%，持续2回合。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "我方目标攻击时，海瑟音有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使被击中的敌方目标陷入风化/裂伤/灼烧/触电其中1种状态，且会优先陷入不同的状态。\n风化/灼烧/触电状态下，敌方目标每回合开始时受到等同于海瑟音"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "攻击力的风/火/雷属性的持续伤害，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。\n裂伤状态下，敌方目标每回合开始时受到等同于自身"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20.0%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "生命上限的物理属性持续伤害，最多不超过海瑟音攻击力的"
+                      },
+                      {
+                        "color": "#f29e38ff",
+                        "type": "scaling-value",
+                        "unbreak": true,
+                        "value": "31.3%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "，持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "回合。"
+                      }
+                    ],
+                    "level": 15
+                  }
+                ],
+                "name": "海妖在欢唱",
+                "progressionId": "1410004",
+                "scalingParamIndexes": [
+                  1,
+                  3
+                ],
+                "source": "avatar",
+                "type": "天赋"
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "displayLabel": "秘技",
+            "iconKey": "skill-tree--1410007",
+            "progressions": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1410007",
+                "variantIds": [
+                  "141007"
+                ]
+              }
+            ],
+            "variants": [
+              {
+                "attackType": "Maze",
+                "combatMeta": {
+                  "effect": {
+                    "code": "Impair",
+                    "known": true,
+                    "label": "妨害"
+                  },
+                  "extraEffects": [
+                    {
+                      "description": "给受击者添加负面效果的基础概率。\n最终概率会被攻击者的效果命中和敌方目标的效果抵抗所影响。",
+                      "id": "30000001",
+                      "name": "基础概率"
+                    }
+                  ]
+                },
+                "id": "141007",
+                "levels": [
+                  {
+                    "description": "使用秘技后，制造一个持续20秒并自动向前移动的特殊领域，处于特殊领域内的敌人陷入【醉心】状态。【醉心】状态下的敌人不会对我方目标发动攻击，且在领域持续期间跟随领域。\n与处于【醉心】状态下的敌人进入战斗后，有100%的基础概率使敌方每个单体目标陷入与海瑟音天赋效果相同的风化/裂伤/灼烧/触电其中2种状态。我方制造的领域效果最多存在1个。",
+                    "descriptionTokens": [
+                      {
+                        "type": "text",
+                        "value": "使用秘技后，制造一个持续"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "20"
+                      },
+                      {
+                        "type": "text",
+                        "value": "秒并自动向前移动的特殊领域，处于特殊领域内的敌人陷入【醉心】状态。【醉心】状态下的敌人不会对我方目标发动攻击，且在领域持续期间跟随领域。\n与处于【醉心】状态下的敌人进入战斗后，有"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "100%"
+                      },
+                      {
+                        "type": "text",
+                        "value": "的"
+                      },
+                      {
+                        "type": "text",
+                        "underline": true,
+                        "value": "基础概率"
+                      },
+                      {
+                        "type": "text",
+                        "value": "使敌方每个单体目标陷入与海瑟音天赋效果相同的风化/裂伤/灼烧/触电其中"
+                      },
+                      {
+                        "type": "text",
+                        "unbreak": true,
+                        "value": "2"
+                      },
+                      {
+                        "type": "text",
+                        "value": "种状态。我方制造的领域效果最多存在1个。"
+                      }
+                    ],
+                    "level": 1
+                  }
+                ],
+                "name": "于海的栖息地",
+                "progressionId": "1410007",
+                "scalingParamIndexes": [],
+                "source": "avatar",
+                "type": "秘技"
+              }
+            ]
+          }
+        ],
+        "specialEffects": [],
+        "traces": [
+          {
+            "anchorOrder": 6,
+            "description": "战斗开始时，海瑟音展开与终结技效果相同的结界，结界持续<unbreak>3</unbreak>回合。每当海瑟音展开结界时，恢复<unbreak>1</unbreak>个战技点。",
+            "iconKey": "skill-tree--1410101",
+            "id": "1410101",
+            "name": "征服的剑旗",
+            "prerequisiteIds": [],
+            "promotionLimit": 2,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 7,
+            "description": "海瑟音施放终结技时，若敌方目标处于持续伤害状态，使其当前承受的所有持续伤害立即产生相当于原伤害<unbreak>150%</unbreak>的伤害。",
+            "iconKey": "skill-tree--1410102",
+            "id": "1410102",
+            "name": "盛会的泡沫",
+            "prerequisiteIds": [],
+            "promotionLimit": 4,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 8,
+            "description": "若海瑟音的效果命中高于<unbreak>60%</unbreak>，每超过<unbreak>10%</unbreak>可使自身造成的伤害提高<unbreak>15%</unbreak>，最多提高<unbreak>90%</unbreak>。",
+            "iconKey": "skill-tree--1410103",
+            "id": "1410103",
+            "name": "珍珠的琴弦",
+            "prerequisiteIds": [],
+            "promotionLimit": 6,
+            "sourcePointType": 3,
+            "type": "ability"
+          },
+          {
+            "anchorOrder": 9,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1410201",
+            "name": "速度强化",
+            "prerequisiteIds": [],
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 10,
+            "description": "攻击力提高4.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1410202",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1410101"
+            ],
+            "promotionLimit": 2,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 11,
+            "description": "速度提高2",
+            "iconKey": "property--SpeedDelta",
+            "id": "1410203",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1410202"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 12,
+            "description": "效果命中提高4.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1410204",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1410203"
+            ],
+            "promotionLimit": 3,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 13,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1410205",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1410102"
+            ],
+            "promotionLimit": 4,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 14,
+            "description": "攻击力提高6.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1410206",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1410205"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 15,
+            "description": "速度提高3",
+            "iconKey": "property--SpeedDelta",
+            "id": "1410207",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1410206"
+            ],
+            "promotionLimit": 5,
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 16,
+            "description": "效果命中提高6.0%",
+            "iconKey": "property--StatusProbabilityBase",
+            "id": "1410208",
+            "name": "效果命中强化",
+            "prerequisiteIds": [
+              "1410103"
+            ],
+            "promotionLimit": 6,
+            "propertyType": "StatusProbabilityBase",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 17,
+            "description": "攻击力提高8.0%",
+            "iconKey": "property--AttackAddedRatio",
+            "id": "1410209",
+            "name": "攻击强化",
+            "prerequisiteIds": [
+              "1410103"
+            ],
+            "propertyType": "AttackAddedRatio",
+            "sourcePointType": 1,
+            "type": "stat"
+          },
+          {
+            "anchorOrder": 18,
+            "description": "速度提高4",
+            "iconKey": "property--SpeedDelta",
+            "id": "1410210",
+            "name": "速度强化",
+            "prerequisiteIds": [
+              "1410201"
+            ],
+            "propertyType": "SpeedDelta",
+            "sourcePointType": 1,
+            "type": "stat"
+          }
+        ]
+      }
+    },
+    "rarity": 5
+  },
+  "presentation": {
+    "descriptionFallbackRendered": false,
+    "enhancedToggleRendered": false,
+    "profiles": {
+      "base": {
+        "eidolonsFallbackRendered": false,
+        "energyControlRendered": true,
+        "skillCards": [
+          {
+            "category": "basic",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10
+                ],
+                "defaultLevel": 6,
+                "id": "1410001",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "141001",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "skill",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1410002",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "141002",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "ultimate",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1410003",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "141003",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "talent",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1,
+                  2,
+                  3,
+                  4,
+                  5,
+                  6,
+                  7,
+                  8,
+                  9,
+                  10,
+                  11,
+                  12,
+                  13,
+                  14,
+                  15
+                ],
+                "defaultLevel": 10,
+                "id": "1410004",
+                "rendered": true
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "141004",
+                "levelLabelRendered": false
+              }
+            ]
+          },
+          {
+            "category": "technique",
+            "fixedVariantDividerRendered": false,
+            "iconRendered": true,
+            "progressionLevelControls": [
+              {
+                "availableLevels": [
+                  1
+                ],
+                "defaultLevel": 1,
+                "id": "1410007",
+                "rendered": false
+              }
+            ],
+            "variants": [
+              {
+                "descriptionFallbackRendered": false,
+                "id": "141007",
+                "levelLabelRendered": false
+              }
+            ]
+          }
+        ],
+        "specialEffectDialogRendered": false,
+        "tracesFallbackRendered": false
+      }
+    },
+    "route": "/characters/1410",
+    "subtitleRendered": false
+  }
+}

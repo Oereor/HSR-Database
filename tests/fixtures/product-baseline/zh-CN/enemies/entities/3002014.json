@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "被Assassin的力量拆分成无数个体的斯科特，每台量产机都拥有匹敌原型机的力量。",
+    "id": "3002014",
+    "name": "斯科特•量产型",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3002014",
+    "defaultMonsterRef": "8fab6c31d2f3aa69edcbe1c94843ced984b7b6afa75a3621fe355e6b1f91e352",
+    "description": "被Assassin的力量拆分成无数个体的斯科特，每台量产机都拥有匹敌原型机的力量。",
+    "id": "3002014",
+    "kind": "enemy",
+    "monsterRefs": [
+      "8fab6c31d2f3aa69edcbe1c94843ced984b7b6afa75a3621fe355e6b1f91e352",
+      "b606ce99f2fd09e08dab587c2e3f19e7ab94b7ad7a521a3946ff3cfa433cb4e1"
+    ],
+    "name": "斯科特•量产型",
+    "rank": "MinionLv2",
+    "templateRef": "0fc6a1b4828a794fcbd897b73bd8cd4a76d8d1655b5351ca17533a2e855c950c",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3002014",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3002014",
+    "selectableMonsterIds": [
+      "3002014",
+      "300201401"
+    ]
+  }
+}

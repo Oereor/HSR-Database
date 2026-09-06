@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "美梦剧团中扮饰囚徒的艺者。本应于「谐乐大典」之中献演，如今却被「秩序」所缚，上演着关于「过去」的剧目。往昔是不朽的锁链，安宁的火苗在笼中点亮，以烛光招引司狱的权臣。",
+    "id": "3003034",
+    "name": "散装英雄王",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3003034",
+    "defaultMonsterRef": "8c4a60e3877c598f41f8bd8e21240c8a241e9715e2c1ed695d8a0ed769bc5fd2",
+    "description": "美梦剧团中扮饰囚徒的艺者。本应于「谐乐大典」之中献演，如今却被「秩序」所缚，上演着关于「过去」的剧目。往昔是不朽的锁链，安宁的火苗在笼中点亮，以烛光招引司狱的权臣。",
+    "id": "3003034",
+    "kind": "enemy",
+    "monsterRefs": [
+      "8c4a60e3877c598f41f8bd8e21240c8a241e9715e2c1ed695d8a0ed769bc5fd2",
+      "c1e8b2be168129c480f269f5ad122d0413bc496d6d4f088c272c919b5800e38b"
+    ],
+    "name": "散装英雄王",
+    "rank": "Elite",
+    "templateRef": "c0edb6d9144bc1a2f539ee49adb13736ab015888c56d5bd66a8d49e2121dd6f4",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3003034",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3003034",
+    "selectableMonsterIds": [
+      "3003034",
+      "300303401"
+    ]
+  }
+}

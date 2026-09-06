@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n手握携带诅咒的弓箭，能够在射击中同时捕捉多个方向的目标。任何出现在它视野中的活物，都无法回避被箭矢瞄准的绝境。",
+    "id": "4032052",
+    "name": "黑潮朽弓",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032052",
+    "defaultMonsterRef": "a59cc0544fffb6db3fd95368c6b6197d28530f046d56c3c24cf5fa517fe716ea",
+    "description": "从黑潮中诞生的扭曲造物，对杀戮的渴求成为了空洞躯壳中仅存的意志。\n手握携带诅咒的弓箭，能够在射击中同时捕捉多个方向的目标。任何出现在它视野中的活物，都无法回避被箭矢瞄准的绝境。",
+    "id": "4032052",
+    "kind": "enemy",
+    "monsterRefs": [
+      "a59cc0544fffb6db3fd95368c6b6197d28530f046d56c3c24cf5fa517fe716ea"
+    ],
+    "name": "黑潮朽弓",
+    "rank": "MinionLv2",
+    "templateRef": "e50bb87c94a0c146e53dbc14f1147eff7e8dca9d5a782eef40c69917a8d86756",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032052",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032052",
+    "selectableMonsterIds": [
+      "4032052"
+    ]
+  }
+}

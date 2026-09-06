@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "由「建木」化生，拱卫其根系的灵瑞之兽，履迹所之，和泽滋生，枝杪郁敷。\n自毁于太古时代的战争后，「建木」终于在星核的修补下再度生长。彼时仙人们所造的珍禽奇兽纷至沓来，宛如旧梦重临。",
+    "id": "2024016",
+    "name": "弗有垂暮的不老仙",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2024016",
+    "defaultMonsterRef": "e5fbc686410d258716add6cf38c1003795475430d65bdc40b99c38cc9941a2ce",
+    "description": "由「建木」化生，拱卫其根系的灵瑞之兽，履迹所之，和泽滋生，枝杪郁敷。\n自毁于太古时代的战争后，「建木」终于在星核的修补下再度生长。彼时仙人们所造的珍禽奇兽纷至沓来，宛如旧梦重临。",
+    "id": "2024016",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e5fbc686410d258716add6cf38c1003795475430d65bdc40b99c38cc9941a2ce",
+      "958d811f1eb4577d0db73d0743444289d4885b35d13c950196a3c270aa419e7c",
+      "bfd92461c742d126cfee5ab2ca46ef29c21dc8c8966ecd9163a3f2a8d58cbe5b",
+      "b87e0ac28641c415cd9807aab6a5f1a9490fa20e8190da039ff8d37508a1a662",
+      "ec414f14b6fd76aad6b764a8e2e77fb89e8b892f01e0e90c7daac139bee447a2"
+    ],
+    "name": "弗有垂暮的不老仙",
+    "rank": "LittleBoss",
+    "templateRef": "aecf5dc0cf6de04d7d365ada57ac8c6389dc9671abb6a6ef87182e1312c66bac",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2024016",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2024016",
+    "selectableMonsterIds": [
+      "2024016",
+      "202401601",
+      "202401602",
+      "202401603",
+      "202401604"
+    ]
+  }
+}

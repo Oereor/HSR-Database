@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "犯尽十恶，永镇于幽狱之底的步离人首领。\n身负七百年苦狱仇恨，在脱出牢笼后，群狼之主向整个罗浮仙舟发起了挑战。但潜藏在疯狂之举的背后，似乎另有目标……",
+    "id": "2034014",
+    "name": "雷奔云谲的恶狼主",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2034014",
+    "defaultMonsterRef": "ab08819113f8a80baabc7fdb234a933a95729377f0f7d3a940c33cfc94d6cb04",
+    "description": "犯尽十恶，永镇于幽狱之底的步离人首领。\n身负七百年苦狱仇恨，在脱出牢笼后，群狼之主向整个罗浮仙舟发起了挑战。但潜藏在疯狂之举的背后，似乎另有目标……",
+    "id": "2034014",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ab08819113f8a80baabc7fdb234a933a95729377f0f7d3a940c33cfc94d6cb04",
+      "843bc23627e784c5cd455d509981ddf3022c273c9d1008f66ca6ee8ce7b7e77b",
+      "a6f2080cc73b470e25d57aedb7cd7eb20b95e34af77efd970b877ef5506e9618",
+      "6e36c76934d7a7dd0269c0aeaa4bb624adc8a3abed155fa7fe4562ca5047feb8",
+      "38576eddb710f66660d1f69570d9f2ba221fc1a20a936d7e8efe39642cf5301c"
+    ],
+    "name": "雷奔云谲的恶狼主",
+    "rank": "LittleBoss",
+    "templateRef": "d4efaf7e87ecfa2c1715e9b5f5e62a7bba46369ec6e332ad5c34d6cbfff61093",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2034014",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2034014",
+    "selectableMonsterIds": [
+      "2034014",
+      "203401401",
+      "203401402",
+      "203401403",
+      "203401404"
+    ]
+  }
+}

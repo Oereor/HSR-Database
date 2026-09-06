@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "二相乐园的泛用型机铠。「SD」一词的意思是「【S】orry, I 【d】on't know.」",
+    "id": "5012090",
+    "name": "SD民用机铠",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012090",
+    "defaultMonsterRef": "c8e777d3056fc5b7550aa3682e3a51531be078fe2413c43cb16ee4e423bd0b24",
+    "description": "二相乐园的泛用型机铠。「SD」一词的意思是「【S】orry, I 【d】on't know.」",
+    "id": "5012090",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c8e777d3056fc5b7550aa3682e3a51531be078fe2413c43cb16ee4e423bd0b24",
+      "d829d75f8ee511d44c5449d3e38c2ae53ce5d39e93a07501f2f0793e0978be63"
+    ],
+    "name": "SD民用机铠",
+    "rank": "MinionLv2",
+    "templateRef": "99ff5f035966821321250d7fdd5efda0e7e7d971399f6456407e5028c9cd5fcf",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012090",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012090",
+    "selectableMonsterIds": [
+      "5012090",
+      "501209002"
+    ]
+  }
+}

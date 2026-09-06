@@ -1,0 +1,72 @@
+{
+  "catalog": {
+    "description": "守护者创造的巨大冰矛，能释放出席卷全场的刺骨霜风。",
+    "id": "1002016",
+    "name": "冰锋",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1002016",
+    "defaultMonsterRef": "2443940cde24fb6fdea56585808bdf34d18be7d9e898e4544920235a9d26cee1",
+    "description": "守护者创造的巨大冰矛，能释放出席卷全场的刺骨霜风。",
+    "id": "1002016",
+    "kind": "enemy",
+    "monsterRefs": [
+      "2443940cde24fb6fdea56585808bdf34d18be7d9e898e4544920235a9d26cee1",
+      "9fa1cec7d8826b6db662caf64e4a3884dd2a5a841f91d0c17c272aa5b5f7ea4b",
+      "27cefaa62936ac1bc5506060a80ca17605819731cc2e585902bea3c22c1f9af3",
+      "717389cc6a322280d1cddd9a613662fbeb9f00067664c41fe188565bf7d7e188",
+      "5fd71047af2373dd0698e6d9c21584a380c50c6f7296210b8a1487bd17547216",
+      "2698ebc5d8265eeeefdd3b7d4b5c0073a00555a6be9f7894d838e15239af1b82",
+      "0405a6b28a186ed86da902a44cf00e6609e0f48368a67f8bf6b9978a6bf765a5",
+      "a522cb1ee9d2c7b090ddf3850c90994c358bea891c222cd7b4fe1abf62d5cfb5",
+      "33e7532e628cb2e4cfdda1a07e63c29b7e70286e3dfa1b7a0143f20e902457e1",
+      "bbf5fa6c7ec9b7a69f02d4f032e013b2d99c4ce778595a628ceedca7eeccc2a8",
+      "73691edcae00970dd6cdd11f672e94c11b13d106249b393aca8ff70c61d2c877"
+    ],
+    "name": "冰锋",
+    "rank": "MinionLv2",
+    "templateRef": "d5544d19dd83eade933fd180701807f206a5eb958ba3ef309efde2ccce49be3c",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1002016",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1002016",
+    "selectableMonsterIds": [
+      "1002016",
+      "100201601",
+      "100201602",
+      "100201603",
+      "100201604",
+      "100201605",
+      "100201606",
+      "100201607",
+      "100201608",
+      "100201609",
+      "100201610"
+    ]
+  }
+}

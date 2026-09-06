@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的错误投影。参照本体为不属此世的怪异生命，自星核带来的裂界中成长，寄生在世界的根基结构中汲取能量，其甲胄外壳上燃烧着星辰内核的烈焰。\n在战斗中，外宇宙之炎（错误）能轻易将敌人焚作灰烬。",
+    "id": "8003021",
+    "name": "外宇宙之炎（错误）",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8003021",
+    "defaultMonsterRef": "e226eaffac9123bbfe957be3228c38ab7c265092281d3773b983f3ce960395a8",
+    "description": "代码受到影响后的错误投影。参照本体为不属此世的怪异生命，自星核带来的裂界中成长，寄生在世界的根基结构中汲取能量，其甲胄外壳上燃烧着星辰内核的烈焰。\n在战斗中，外宇宙之炎（错误）能轻易将敌人焚作灰烬。",
+    "id": "8003021",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e226eaffac9123bbfe957be3228c38ab7c265092281d3773b983f3ce960395a8",
+      "031baff1e2e5cca1d2e7acbc2734616ee8a0d97999dc9d58ae78b505995a16e4"
+    ],
+    "name": "外宇宙之炎（错误）",
+    "rank": "Elite",
+    "templateRef": "a3db8ec62cc67a9a85f5581512ed127acedc1ee320e9114fb5e3ddb9fd0c8522",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8003021",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8003021",
+    "selectableMonsterIds": [
+      "8003021",
+      "800302101"
+    ]
+  }
+}

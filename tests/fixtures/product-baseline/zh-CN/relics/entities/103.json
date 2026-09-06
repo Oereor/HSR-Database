@@ -1,0 +1,130 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：防御力提高15%。 4件：使装备者提供的护盾量提高20%。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "103",
+    "name": "净庭教宗的圣骑士",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：防御力提高15%。 4件：使装备者提供的护盾量提高20%。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "防御力提高15%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "防御力提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "15%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "使装备者提供的护盾量提高20%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者提供的护盾量提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "20%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "103",
+    "kind": "relic",
+    "name": "净庭教宗的圣骑士",
+    "pieces": [
+      {
+        "description": "如同宗教石雕宽恕女神的面具头盔，用以隐藏自己的相貌。",
+        "id": "31031",
+        "name": "圣骑的宽恕盔面",
+        "slot": "HEAD"
+      },
+      {
+        "description": "装饰着教会纹样的银戒，镶嵌着看上去些许浑浊的宝石。",
+        "id": "31032",
+        "name": "圣骑的沉默誓环",
+        "slot": "HAND"
+      },
+      {
+        "description": "厚重的胸甲装饰着净庭教会鲜明的符号，关节处也都密不透风。",
+        "id": "31033",
+        "name": "圣骑的肃穆胸甲",
+        "slot": "BODY"
+      },
+      {
+        "description": "净庭教会骑士的标准骑士长靴，脚后跟上刻印着简短的单词：「秩序」。",
+        "id": "31034",
+        "name": "圣骑的秩序铁靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【流云渡】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31031"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31032"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31033"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31034"
+      }
+    ],
+    "route": "/relics/103"
+  }
+}

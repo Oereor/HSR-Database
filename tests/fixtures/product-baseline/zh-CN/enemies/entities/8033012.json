@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "「星际和平公司」的资深员工，级别至少是项目组的小组长。驾驶的机甲属于公有资产，一旦损坏需要自费赔偿。工资尚可，足够在公司旗下的企业舰上租下一室一厅的单间。",
+    "id": "8033012",
+    "name": "资深员工•组长",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8033012",
+    "defaultMonsterRef": "e2a95b88ec61a9fd73e0f8937618b3bbd0c8baded4265839d472e9b126d51944",
+    "description": "「星际和平公司」的资深员工，级别至少是项目组的小组长。驾驶的机甲属于公有资产，一旦损坏需要自费赔偿。工资尚可，足够在公司旗下的企业舰上租下一室一厅的单间。",
+    "id": "8033012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e2a95b88ec61a9fd73e0f8937618b3bbd0c8baded4265839d472e9b126d51944",
+      "60dbcc38eefe7650bbd66853e0a6ef684a19ee1a55f0d39b68b60a40f0878b71"
+    ],
+    "name": "资深员工•组长",
+    "rank": "Elite",
+    "templateRef": "b55cc57862e785aeb56f4dc0b932557ff6dbee73da52fcd06020ed7606e609c0",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8033012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8033012",
+    "selectableMonsterIds": [
+      "8033012",
+      "803301202"
+    ]
+  }
+}

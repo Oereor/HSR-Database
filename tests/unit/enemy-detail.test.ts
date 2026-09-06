@@ -67,15 +67,18 @@ describe('Enemy Detail parser/resolver', () => {
   });
 
   it('稳定映射 kind/tag/phase 与七种特殊状态抗性，并诊断未知值', () => {
-    expect(normalizeEnemySkillKind('技能')).toBe('skill');
-    expect(normalizeEnemySkillKind('天赋')).toBe('talent');
-    expect(normalizeEnemySkillKind('未来类型')).toBe('unknown');
-    expect(normalizeEnemySkillTag('弹射')).toEqual({ code: 'Bounce', label: '弹射', known: true });
-    expect(normalizeEnemySkillTag('未来标签')).toEqual({
-      code: '未来标签',
-      label: '未来标签',
-      known: false
+    const context = { enemyId: '1002010', skillId: '100201101' };
+    expect(normalizeEnemySkillKind({ Hash: '4236760374151560033' }, '技能', context)).toBe('skill');
+    expect(normalizeEnemySkillKind({ Hash: '11653660973383561666' }, '任意译文', context)).toBe(
+      'talent'
+    );
+    expect(() => normalizeEnemySkillKind({ Hash: '1' }, '技能', context)).toThrow('SkillTypeDesc');
+    expect(normalizeEnemySkillTag({ Hash: '3319273756603801898' }, '弹射', context)).toEqual({
+      code: 'Bounce',
+      label: '弹射',
+      known: true
     });
+    expect(() => normalizeEnemySkillTag({ Hash: '1' }, '弹射', context)).toThrow('SkillTag');
     expect(normalizeEnemyPhases([2, 1, 2, 0, -1, 'bad'])).toEqual([1, 2]);
     const normalized = normalizeSpecialResistances([
       { Key: 'STAT_CTRL', Value: wrapped('0.5') },

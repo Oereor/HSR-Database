@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "「反物质军团」以黄昏古兽的残片为基「战争熔炉」的万骸哀怨为引所铸炼而成「末日兽」之一。怨灵的痴缠化作有形之手，旧日的灾影凝为掩映诸天之尾。「末日兽」拘禁了未释然亦未死灭的众生意志。或嗔怒，或忧恸，或妄喜——迷相既露，诸邪肆动。「末日兽」的核心为一颗暗物质驱动的引擎。",
+    "id": "8015011",
+    "name": "末日兽",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "8015011",
+    "defaultMonsterRef": "ba0f7057a665b710d19a75970fbcae2d19925ab20b5354d74644e70f88c54e2a",
+    "description": "「反物质军团」以黄昏古兽的残片为基「战争熔炉」的万骸哀怨为引所铸炼而成「末日兽」之一。怨灵的痴缠化作有形之手，旧日的灾影凝为掩映诸天之尾。「末日兽」拘禁了未释然亦未死灭的众生意志。或嗔怒，或忧恸，或妄喜——迷相既露，诸邪肆动。「末日兽」的核心为一颗暗物质驱动的引擎。",
+    "id": "8015011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "ba0f7057a665b710d19a75970fbcae2d19925ab20b5354d74644e70f88c54e2a"
+    ],
+    "name": "末日兽",
+    "rank": "BigBoss",
+    "templateRef": "b7698f1cd21882d8ae6537b85aeac3aa234e401b4563ae3840ebbd4e4360d1e8",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "8015011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/8015011",
+    "selectableMonsterIds": [
+      "8015011"
+    ]
+  }
+}

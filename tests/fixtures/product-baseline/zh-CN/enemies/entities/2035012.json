@@ -1,0 +1,76 @@
+{
+  "catalog": {
+    "description": "受到「赤月」影响的飞霄，号令巨兽的她宛若神明，举手投足间都散发着可怖的力量。",
+    "id": "2035012",
+    "name": "业火焚心的影将军",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2035012",
+    "defaultMonsterRef": "b0259c2b3bf44992874161fa63c948626fdbda444bdfa61bbc7009bbe8489a3b",
+    "description": "受到「赤月」影响的飞霄，号令巨兽的她宛若神明，举手投足间都散发着可怖的力量。",
+    "id": "2035012",
+    "kind": "enemy",
+    "monsterRefs": [
+      "b0259c2b3bf44992874161fa63c948626fdbda444bdfa61bbc7009bbe8489a3b",
+      "26f80943e9522682beb955734f0032634400514caa61683d1ad0f43efe30c72c",
+      "6561f9319da9828e35bd3a6f3857dc48b2e808b736dfa26e3a66ba764af919a6",
+      "68bc68a1375c6a56ab2b2f91e9ab8eb433c4a967b1d58fe5614e95a2577944d8",
+      "97ec549a747110cf3b4124329c644429842d2bf7fe4581aab6e2146f98dd5758"
+    ],
+    "name": "业火焚心的影将军",
+    "rank": "BigBoss",
+    "templateRef": "dda9aeff8923d201ef0a6a0894858253acac7f3ce296e0c7b84f32b6464f746a",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2035012",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2035012",
+    "selectableMonsterIds": [
+      "2035012",
+      "203501201",
+      "203501202",
+      "203501203",
+      "203501204"
+    ]
+  }
+}

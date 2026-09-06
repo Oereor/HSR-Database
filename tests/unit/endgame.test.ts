@@ -132,7 +132,7 @@ describe('MazeBuff 共享配置解析', () => {
         'unresolved-hash': { count: 0, samples: [] },
         'unresolved-symbolic-key': { count: 0, samples: [] }
       })
-    }) as TextResolver;
+    }) as unknown as TextResolver;
 
   const issueSink = (warnings: string[]) => ({
     fail(code: string, message: string): never {
@@ -247,7 +247,7 @@ describe('AS 首领特性配置解析', () => {
         'unresolved-hash': { count: 0, samples: [] },
         'unresolved-symbolic-key': { count: 0, samples: [] }
       })
-    }) as TextResolver;
+    }) as unknown as TextResolver;
 
   const battle = {
     slot: 1,
@@ -547,7 +547,7 @@ describe('Endgame schedule 容错', () => {
 describe('Endgame 真实数据管线', () => {
   it('四个模式使用 schema 21 且 fixed/spawn 模型分离', async () => {
     const all = await Promise.all(modes.map(dataset));
-    expect(all.every((item) => item.schemaVersion === 22)).toBe(true);
+    expect(all.every((item) => item.schemaVersion === 23)).toBe(true);
     expect((await fixture('moc', 1034, 5312, 30124121, 3024020)).stage.waveModel.kind).toBe(
       'fixed'
     );
@@ -722,6 +722,7 @@ describe('Endgame 真实数据管线', () => {
       const data = await dataset(mode);
       for (const group of data.groups) {
         const groupRecord = group as unknown as Record<string, unknown>;
+        delete groupRecord.recommendationEligible;
         for (const field of groupFields[mode]) delete groupRecord[field];
         for (const encounter of group.encounters) {
           const encounterRecord = encounter as unknown as Record<string, unknown>;

@@ -1,0 +1,357 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23018",
+    "name": "片刻，留在眼底",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 26.4,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 21,
+            "perLevel": 3.15
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 48,
+            "perLevel": 7.2
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 58.08,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 46.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 105.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 100.32,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 79.8,
+            "perLevel": 3.15
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 182.4,
+            "perLevel": 7.2
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 142.56,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 113.4,
+            "perLevel": 3.15
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 259.2,
+            "perLevel": 7.2
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 184.8,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 147,
+            "perLevel": 3.15
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 336,
+            "perLevel": 7.2
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 227.04,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 180.6,
+            "perLevel": 3.15
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 412.8,
+            "perLevel": 7.2
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 269.28,
+            "perLevel": 3.96
+          },
+          "defence": {
+            "base": 214.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 489.6,
+            "perLevel": 7.2
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23018",
+    "kind": "light-cone",
+    "name": "片刻，留在眼底",
+    "passive": {
+      "id": "23018",
+      "name": "骑士巡礼",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击伤害提高36%。当装备者施放终结技时，根据装备者的能量上限，提高装备者终结技造成的伤害：每点能量提高0.36%，最多计入180点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者施放终结技时，根据装备者的能量上限，提高装备者终结技造成的伤害：每点能量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "0.36%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "180"
+              },
+              {
+                "type": "text",
+                "value": "点。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击伤害提高42%。当装备者施放终结技时，根据装备者的能量上限，提高装备者终结技造成的伤害：每点能量提高0.42%，最多计入180点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "42%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者施放终结技时，根据装备者的能量上限，提高装备者终结技造成的伤害：每点能量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "0.42%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "180"
+              },
+              {
+                "type": "text",
+                "value": "点。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击伤害提高48%。当装备者施放终结技时，根据装备者的能量上限，提高装备者终结技造成的伤害：每点能量提高0.48%，最多计入180点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "48%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者施放终结技时，根据装备者的能量上限，提高装备者终结技造成的伤害：每点能量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "0.48%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "180"
+              },
+              {
+                "type": "text",
+                "value": "点。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击伤害提高54%。当装备者施放终结技时，根据装备者的能量上限，提高装备者终结技造成的伤害：每点能量提高0.54%，最多计入180点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "54%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者施放终结技时，根据装备者的能量上限，提高装备者终结技造成的伤害：每点能量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "0.54%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "180"
+              },
+              {
+                "type": "text",
+                "value": "点。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击伤害提高60%。当装备者施放终结技时，根据装备者的能量上限，提高装备者终结技造成的伤害：每点能量提高0.60%，最多计入180点。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "60%"
+              },
+              {
+                "type": "text",
+                "value": "。当装备者施放终结技时，根据装备者的能量上限，提高装备者终结技造成的伤害：每点能量提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "0.60%"
+              },
+              {
+                "type": "text",
+                "value": "，最多计入"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "180"
+              },
+              {
+                "type": "text",
+                "value": "点。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5,
+    "story": "他曾听闻歌谣，传唱那道光芒：\n玫瑰盛放，定是为了回应祂的笑容；\n晨光烁耀，定是为了照亮祂的脸庞；\n音律奏鸣，定是为了唤醒祂的倦眸。\n\n但那光芒一去不复返，他仍奔向远方\n——只须等待，只须信仰，只须将纯美的一切播撒于寰宇。\n即使一切都只是留在眼底的片刻，他却已收获想要的答案。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23018",
+    "storyFallbackRendered": false
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：生命上限提高12%。 4件：当装备者受到攻击或被我方目标消耗生命值后，暴击率提高8%，持续2回合，该效果最多叠加2层。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "113",
+    "name": "宝命长存的莳者",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.2"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：生命上限提高12%。 4件：当装备者受到攻击或被我方目标消耗生命值后，暴击率提高8%，持续2回合，该效果最多叠加2层。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "生命上限提高12%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "生命上限提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "当装备者受到攻击或被我方目标消耗生命值后，暴击率提高8%，持续2回合，该效果最多叠加2层。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "当装备者受到攻击或被我方目标消耗生命值后，暴击率提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "8%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "回合，该效果最多叠加"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "层。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "113",
+    "kind": "relic",
+    "name": "宝命长存的莳者",
+    "pieces": [
+      {
+        "description": "曾属于某人的机巧义眼，如今它被逐出主人的身体，百无一用。",
+        "id": "31131",
+        "name": "莳者的复明义眼",
+        "slot": "HEAD"
+      },
+      {
+        "description": "专为长生种制造的机巧义肢，使用时无需侵入肉体。",
+        "id": "31132",
+        "name": "莳者的机巧木手",
+        "slot": "HAND"
+      },
+      {
+        "description": "据古籍记载纺织的羽衣，它属于万古的妖人，亦或万人的救主。",
+        "id": "31133",
+        "name": "莳者的承露羽衣",
+        "slot": "BODY"
+      },
+      {
+        "description": "一双鞋底薄如蝉翼的丝履，它的主人一定长久不曾用双脚行走了。",
+        "id": "31134",
+        "name": "莳者的天人丝履",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【丹鼎司】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "1.2"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31131"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31132"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31133"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31134"
+      }
+    ],
+    "route": "/relics/113"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "狂热的摇滚乐票友。为了追寻音乐梦想，不惜踏入魔道。但终归是个票友。\n最讨厌「贝斯手笑话」。\n有些三流媒体根据他的造型推测「贝斯才是他的本体」，但这纯属谣言，实际上贝斯是被胁迫的。",
+    "id": "5013010",
+    "name": "摇滚狂徒",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5013010",
+    "defaultMonsterRef": "8b9790b7a47eec6067f299dd27ba5f8f169485c84a2800ed21be8d74dff2bfb8",
+    "description": "狂热的摇滚乐票友。为了追寻音乐梦想，不惜踏入魔道。但终归是个票友。\n最讨厌「贝斯手笑话」。\n有些三流媒体根据他的造型推测「贝斯才是他的本体」，但这纯属谣言，实际上贝斯是被胁迫的。",
+    "id": "5013010",
+    "kind": "enemy",
+    "monsterRefs": [
+      "8b9790b7a47eec6067f299dd27ba5f8f169485c84a2800ed21be8d74dff2bfb8",
+      "359300dca853f2b7a5ba3e23834a4014b64390d5626f3e6be3f9c77fc3ab88d8",
+      "a808d6973fd3f151b34d8dd39fa08a1fdc164599cc886c268237b62c8c937c81",
+      "e384ec270d27132564d71198c2b761decddd2f388fdb232249554558ca2fbad5",
+      "d078ff8b683fe6faaa53edb14b53d86d8b203c66a0b72032186d1177a3f2b78c"
+    ],
+    "name": "摇滚狂徒",
+    "rank": "Elite",
+    "templateRef": "b8a0c3e5be2c2a20ece1e7bf852031669b5df5fe1d48ec94b70e26b35e132ad2",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5013010",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5013010",
+    "selectableMonsterIds": [
+      "5013010",
+      "501301001",
+      "501301002",
+      "501301003",
+      "501301004"
+    ]
+  }
+}

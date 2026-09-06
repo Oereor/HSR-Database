@@ -1,0 +1,74 @@
+{
+  "catalog": {
+    "description": "自无穷灾难中倒映的残像，皆是寄宿着破坏意志的祸端。",
+    "id": "4032025",
+    "name": "残破容器",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032025",
+    "defaultMonsterRef": "caf5acfc0bfae10fd0419851d538f05ac5965eaf61a45187ab471d731281e6f3",
+    "description": "自无穷灾难中倒映的残像，皆是寄宿着破坏意志的祸端。",
+    "id": "4032025",
+    "kind": "enemy",
+    "monsterRefs": [
+      "caf5acfc0bfae10fd0419851d538f05ac5965eaf61a45187ab471d731281e6f3",
+      "e73f04342c8c1e73b0fd4e77a57104d7ae77f808c43b1b5cfff4f48dfeb6d8d1",
+      "3121665f6b2cc852ed49eda66dbecdfc031a55858f24c4c1e14a734ca9a8123f",
+      "2df3f186bf8f48d427bb0adcfaee14140d66f4f2fdee9f527a9d05a5452a902a"
+    ],
+    "name": "残破容器",
+    "rank": "MinionLv2",
+    "templateRef": "1f574c4a187a5c119013f70e38e368b7d7903adef16efd0910ac40b774b655dd",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032025",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032025",
+    "selectableMonsterIds": [
+      "4032025",
+      "403202501",
+      "403202502",
+      "403202503"
+    ]
+  }
+}

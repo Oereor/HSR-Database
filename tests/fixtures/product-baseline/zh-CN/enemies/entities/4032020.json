@@ -1,0 +1,80 @@
+{
+  "catalog": {
+    "description": "盗火行者以灾难之力创造的分身，皆是寄宿着破坏意志的祸端。",
+    "id": "4032020",
+    "name": "残破容器",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4032020",
+    "defaultMonsterRef": "e383089dd2b7d1d04ec7189fa8b5bf21164ac3407f03873b4ec7654e946bfeb4",
+    "description": "盗火行者以灾难之力创造的分身，皆是寄宿着破坏意志的祸端。",
+    "id": "4032020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "e383089dd2b7d1d04ec7189fa8b5bf21164ac3407f03873b4ec7654e946bfeb4",
+      "ec938ca14149827ad6e2a5a749ebe4e0f34030023ebaeb5b41e642faf225edcc",
+      "4e0d6e23f6f4648c72e14383dc40a20e9b3cc340b6cde06a2d20434e87373f76",
+      "5cec89df25d068af74f76556f7996039ed15bd3a9be6e80fbb448591d835d0d6",
+      "5474ea2a4361edbd3f6e42daf9f4d0c2d2de71c56114ac67d0442d2cf480e721",
+      "5967ba27f439b035226aec8f1bd116d5db26614d51392587fa4dc638f553e0f8",
+      "0017c486f2f8acfe2bdc3aa1f508a349487cf567c67cf8abb6a3d40f1b5aa3cc",
+      "3bef21d3716bbe1bc046212288a29f27a850e1e55585e31dc464216b1842f5ad",
+      "ee57cbf49c2f22406ee6647355da2bb25fe4f3692641d93e7a16766cf5c20874",
+      "acab2c3f7559e788376e66c89a3aeaa7bc7ffa0c95be7179cc5f6ba9c7025401",
+      "0cfd76f9e932dca75ec3ecaff2077e0f925c5d5a3dda24e049448ab9c9871d15"
+    ],
+    "name": "残破容器",
+    "rank": "MinionLv2",
+    "templateRef": "86452621bc0eca327af8bd98a61275f2983432b40c8be1b5b2cca564ad8b9e05",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4032020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4032020",
+    "selectableMonsterIds": [
+      "4032020",
+      "403202001",
+      "403202002",
+      "403202003",
+      "403202004",
+      "403202005",
+      "403202006",
+      "403202007",
+      "403202008",
+      "403202009",
+      "403202010"
+    ]
+  }
+}

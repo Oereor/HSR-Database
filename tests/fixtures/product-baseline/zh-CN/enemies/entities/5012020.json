@@ -1,0 +1,58 @@
+{
+  "catalog": {
+    "description": "广泛用于治安管理、犯罪搜查的幻造种，协助作战单位。\n异常防御部以儿童文学「灵犬莱西奥探案集」为模板批量制造，确保了每一只幻造犬都忠诚且嫉恶如仇。",
+    "id": "5012020",
+    "name": "治安忠犬",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "5012020",
+    "defaultMonsterRef": "1165ca0334862fff8b44fbae7ee5d1c6dbff1245748da7752bf7122093c669dc",
+    "description": "广泛用于治安管理、犯罪搜查的幻造种，协助作战单位。\n异常防御部以儿童文学「灵犬莱西奥探案集」为模板批量制造，确保了每一只幻造犬都忠诚且嫉恶如仇。",
+    "id": "5012020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "1165ca0334862fff8b44fbae7ee5d1c6dbff1245748da7752bf7122093c669dc",
+      "c4ed6c28d74fe0af27cdb37ea57e5448f7786f1150dba23e54dee3ff10606842",
+      "db18f37f08ae2953aba5ae253d04e0f004c6f88a691f143468430e1941463247",
+      "fb98307fc521451ccd5a62ba34c8d86201d4a9c12e51d18833e867d1d465ed32"
+    ],
+    "name": "治安忠犬",
+    "rank": "MinionLv2",
+    "templateRef": "61cb37896366b0ae203cc734c38da691a245b025245f6ab3b1c04a57f431f88a",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "5012020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/5012020",
+    "selectableMonsterIds": [
+      "5012020",
+      "501202001",
+      "501202002",
+      "501202003"
+    ]
+  }
+}

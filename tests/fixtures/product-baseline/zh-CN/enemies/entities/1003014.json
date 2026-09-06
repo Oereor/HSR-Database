@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "贝洛伯格的戍卫部队「银鬃铁卫」分队的领导者。",
+    "id": "1003014",
+    "name": "邓恩",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "1003014",
+    "defaultMonsterRef": "4d9b59f0319b22490877f61433786a45e6c1878c5258f604f751c4a927825284",
+    "description": "贝洛伯格的戍卫部队「银鬃铁卫」分队的领导者。",
+    "id": "1003014",
+    "kind": "enemy",
+    "monsterRefs": [
+      "4d9b59f0319b22490877f61433786a45e6c1878c5258f604f751c4a927825284"
+    ],
+    "name": "邓恩",
+    "rank": "Elite",
+    "templateRef": "849b132d45de5960487625f193d1f04788de6eef0efa9443ab395a7bf60500eb",
+    "type": "Elite",
+    "typeName": "Elite",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "1003014",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/1003014",
+    "selectableMonsterIds": [
+      "1003014"
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为「星核猎手」的一员，面带莫测笑容的杀手丽人，善用种类纷繁的武器和心控之术。正是她将星穹列车引至此处，以实现某个计划……",
+    "id": "2004011",
+    "name": "「星核猎手」卡芙卡（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2004011",
+    "defaultMonsterRef": "800863e5ad7003ab0ec840fedb5aa501e60c2e1106741797157ad914a67b8cb7",
+    "description": "代码受到影响后的完整投影。参照本体为「星核猎手」的一员，面带莫测笑容的杀手丽人，善用种类纷繁的武器和心控之术。正是她将星穹列车引至此处，以实现某个计划……",
+    "id": "2004011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "800863e5ad7003ab0ec840fedb5aa501e60c2e1106741797157ad914a67b8cb7"
+    ],
+    "name": "「星核猎手」卡芙卡（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "0b36251643565f497507a8a4f1042ed3ca6cfa209956e0a1ea8ab25601a2e67b",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2004011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2004011",
+    "selectableMonsterIds": [
+      "2004011"
+    ]
+  }
+}

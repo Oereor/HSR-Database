@@ -1,0 +1,62 @@
+{
+  "catalog": {
+    "description": "以霸道统治天空的征服者，被黑潮裹挟后的样貌。往昔的是非功过或许难以评说，但此刻饱含杀意的，只是一团破坏一切的无明业火。",
+    "id": "4015020",
+    "name": "绝灭者，阳雷的业果，晨昏之眼",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "4015020",
+    "defaultMonsterRef": "71a119d2a13f726e5ce58c3c4689a2596edd10ce4581921d467bcbefc9576aab",
+    "description": "以霸道统治天空的征服者，被黑潮裹挟后的样貌。往昔的是非功过或许难以评说，但此刻饱含杀意的，只是一团破坏一切的无明业火。",
+    "id": "4015020",
+    "kind": "enemy",
+    "monsterRefs": [
+      "71a119d2a13f726e5ce58c3c4689a2596edd10ce4581921d467bcbefc9576aab",
+      "11ae6117f25574d301a5e67e64d97c286211ac9de98d0ac4db7d96b7f42117dd"
+    ],
+    "name": "绝灭者，阳雷的业果，晨昏之眼",
+    "rank": "BigBoss",
+    "templateRef": "16db89739f32c68066fc5a75f307879b976fd885492d2ea477e9c6ea37f81d17",
+    "type": "BigBoss",
+    "typeName": "BigBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "4015020",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/4015020",
+    "selectableMonsterIds": [
+      "4015020",
+      "401502001"
+    ]
+  }
+}

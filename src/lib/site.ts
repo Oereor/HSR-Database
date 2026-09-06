@@ -1,4 +1,5 @@
-export const SITE_NAME = '《崩坏：星穹铁道》档案库';
+import { m } from './paraglide/messages.js';
+export const SITE_NAME = m.site_name({}, { locale: 'zh-CN' });
 
 export function formatDocumentTitle(...segments: Array<string | undefined>): string {
   return [

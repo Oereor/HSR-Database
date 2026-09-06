@@ -1,0 +1,261 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20008",
+    "name": "嘉果",
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 3
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 14.4,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 9,
+            "perLevel": 1.35
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 31.68,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 19.8,
+            "perLevel": 1.35
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 54.72,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 34.2,
+            "perLevel": 1.35
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 77.76,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 48.6,
+            "perLevel": 1.35
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 100.8,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 63,
+            "perLevel": 1.35
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 123.84,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 77.4,
+            "perLevel": 1.35
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 146.88,
+            "perLevel": 2.16
+          },
+          "defence": {
+            "base": 91.8,
+            "perLevel": 1.35
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>丰饶</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "20008",
+    "kind": "light-cone",
+    "name": "嘉果",
+    "passive": {
+      "id": "20008",
+      "name": "甘美",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "战斗开始时，立即为我方全体恢复6点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "战斗开始时，立即为我方全体恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "战斗开始时，立即为我方全体恢复8点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "战斗开始时，立即为我方全体恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "8"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "战斗开始时，立即为我方全体恢复9点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "战斗开始时，立即为我方全体恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "9"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "战斗开始时，立即为我方全体恢复11点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "战斗开始时，立即为我方全体恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "11"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "战斗开始时，立即为我方全体恢复12点能量。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "战斗开始时，立即为我方全体恢复"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "12"
+              },
+              {
+                "type": "text",
+                "value": "点能量。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0
+        ]
+      }
+    },
+    "path": "Priest",
+    "pathName": "丰饶",
+    "rarity": 3,
+    "story": "自时光中凝取的稀薄力量。正是所有微不足道的刹那，编织成了壮绝的命运。\n\n<i>「口渴时，万物总是甜的。」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/20008",
+    "storyFallbackRendered": false
+  }
+}

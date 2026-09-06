@@ -1,0 +1,357 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23031",
+    "name": "我将，巡征追猎",
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 28.8,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 21,
+            "perLevel": 3.15
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 43.2,
+            "perLevel": 6.48
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 63.36,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 46.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 95.04,
+            "perLevel": 6.48
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 109.44,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 79.8,
+            "perLevel": 3.15
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 164.16,
+            "perLevel": 6.48
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 155.52,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 113.4,
+            "perLevel": 3.15
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 233.28,
+            "perLevel": 6.48
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 201.6,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 147,
+            "perLevel": 3.15
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 302.4,
+            "perLevel": 6.48
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 247.68,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 180.6,
+            "perLevel": 3.15
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 371.52,
+            "perLevel": 6.48
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 293.76,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 214.2,
+            "perLevel": 3.15
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 440.64,
+            "perLevel": 6.48
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>巡猎</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23031",
+    "kind": "light-cone",
+    "name": "我将，巡征追猎",
+    "passive": {
+      "id": "23031",
+      "name": "震慑",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者的暴击率提高15.0%。装备者施放追加攻击时，获得1层【流光】，最多叠加2层。每层【流光】使装备者造成的终结技伤害无视目标27%的防御力。装备者回合结束时，移除1层【流光】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "15.0%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放追加攻击时，获得1层【流光】，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "层。每层【流光】使装备者造成的终结技伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "27%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。装备者回合结束时，移除1层【流光】。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者的暴击率提高17.5%。装备者施放追加攻击时，获得1层【流光】，最多叠加2层。每层【流光】使装备者造成的终结技伤害无视目标30%的防御力。装备者回合结束时，移除1层【流光】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "17.5%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放追加攻击时，获得1层【流光】，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "层。每层【流光】使装备者造成的终结技伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。装备者回合结束时，移除1层【流光】。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者的暴击率提高20.0%。装备者施放追加攻击时，获得1层【流光】，最多叠加2层。每层【流光】使装备者造成的终结技伤害无视目标33%的防御力。装备者回合结束时，移除1层【流光】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20.0%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放追加攻击时，获得1层【流光】，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "层。每层【流光】使装备者造成的终结技伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "33%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。装备者回合结束时，移除1层【流光】。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者的暴击率提高22.5%。装备者施放追加攻击时，获得1层【流光】，最多叠加2层。每层【流光】使装备者造成的终结技伤害无视目标36%的防御力。装备者回合结束时，移除1层【流光】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "22.5%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放追加攻击时，获得1层【流光】，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "层。每层【流光】使装备者造成的终结技伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。装备者回合结束时，移除1层【流光】。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者的暴击率提高25.0%。装备者施放追加攻击时，获得1层【流光】，最多叠加2层。每层【流光】使装备者造成的终结技伤害无视目标39%的防御力。装备者回合结束时，移除1层【流光】。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者的暴击率提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "25.0%"
+              },
+              {
+                "type": "text",
+                "value": "。装备者施放追加攻击时，获得1层【流光】，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "2"
+              },
+              {
+                "type": "text",
+                "value": "层。每层【流光】使装备者造成的终结技伤害无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "39%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。装备者回合结束时，移除1层【流光】。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          0,
+          1
+        ]
+      }
+    },
+    "path": "Rogue",
+    "pathName": "巡猎",
+    "rarity": 5,
+    "story": "<i>「可悲可笑的奴隶们……」</i>\n浩荡的丰饶民军队压境而来，狼毒如洪水般涌向青丘军，试图唤起军士深埋于心中的恐惧，化作种种可怖的幻象，使他们垂下武器，犹豫不前。\n但阵线犹如铜墙铁壁，不为步离人轻蔑的话音所动，一个身影缓步走出。\n她缓缓活动着身体，无形的煞气冲击下，旗帜猎猎作响。\n<i>「将军，是将军出现了……」</i>\n<i>「飞霄将军……」</i>\n<i>「『天击』将军！」</i>\n细微的呼唤汇聚起来，化作震天的战吼。\n\n<i>「翾翔不坠，万载常胜！」</i>\n她站在那里，一个人，就像一支军队。"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23031",
+    "storyFallbackRendered": false
+  }
+}

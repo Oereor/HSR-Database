@@ -1,0 +1,148 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：速度提高6%。 4件：对我方单体目标施放战技或终结技时，使技能目标的暴击伤害提高18%，持续2回合，该效果最多叠加2次。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "121",
+    "name": "重循苦旅的司铎",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "2.6"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：速度提高6%。 4件：对我方单体目标施放战技或终结技时，使技能目标的暴击伤害提高18%，持续2回合，该效果最多叠加2次。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "速度提高6%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "速度提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "6%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "对我方单体目标施放战技或终结技时，使技能目标的暴击伤害提高18%，持续2回合，该效果最多叠加2次。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "对我方单体目标施放战技或终结技时，使技能目标的暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "18%"
+          },
+          {
+            "type": "text",
+            "value": "，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "回合，该效果最多叠加"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "次。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "121",
+    "kind": "relic",
+    "name": "重循苦旅的司铎",
+    "pieces": [
+      {
+        "description": "他常常坐在告解室内侧耳倾听。耳坠不断提醒着他，即便是最微末的细语也是有重量的。",
+        "id": "31211",
+        "name": "司铎的律音耳坠",
+        "slot": "HEAD"
+      },
+      {
+        "description": "他常常站在公馆内接待访客，无数遍发出邀请的动作。洁净的手套提醒着他切记谦卑与礼数。",
+        "id": "31212",
+        "name": "司铎的授邀手套",
+        "slot": "HAND"
+      },
+      {
+        "description": "他常常站在试衣镜前，确认仪容衣装。在出门前就确保一切井然有序，绝不偏移。",
+        "id": "31213",
+        "name": "司铎的圣职礼服",
+        "slot": "BODY"
+      },
+      {
+        "description": "他常常在旅行开始之前，挑选一双适脚的靴子。他摔倒过很多次，但他站起过同样多次。",
+        "id": "31214",
+        "name": "司铎的苦旅短靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【幽囚狱】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "2.6"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31211"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31212"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31213"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31214"
+      }
+    ],
+    "route": "/relics/121"
+  }
+}

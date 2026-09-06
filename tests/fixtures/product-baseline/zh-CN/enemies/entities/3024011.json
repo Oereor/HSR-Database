@@ -1,0 +1,68 @@
+{
+  "catalog": {
+    "description": "代码受到影响后的完整投影。参照本体为「纯美骑士团」的古典骑士。",
+    "id": "3024011",
+    "name": "银枝（完整）",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3024011",
+    "defaultMonsterRef": "94fee59ad70c54fb9ee9f1a86f971e880ba9aa8ac810b1e3399c7a76f0b11429",
+    "description": "代码受到影响后的完整投影。参照本体为「纯美骑士团」的古典骑士。",
+    "id": "3024011",
+    "kind": "enemy",
+    "monsterRefs": [
+      "94fee59ad70c54fb9ee9f1a86f971e880ba9aa8ac810b1e3399c7a76f0b11429",
+      "e576c6e5725d31794c8c2a36e0f329809fb7c18b4a3aba322c971f8c512e7f3c",
+      "8db064a632ba5cbcb9f04371ab05195d590a0d5c2205fb1870cce177de5b361b",
+      "ff921db928db7b3f531f122d676ab66f9061059a6bbfbfba5a430cd83c6a9be4",
+      "c1d3305918f41145aff1e8664f4da8e17542200fa29758d4be43b7bde0b9cf48"
+    ],
+    "name": "银枝（完整）",
+    "rank": "LittleBoss",
+    "templateRef": "88467d7058ff56dd3f28f950d632f356f79b86892aa5609cc4eda835a7c13719",
+    "type": "LittleBoss",
+    "typeName": "LittleBoss",
+    "weaknesses": [
+      {
+        "element": "Physical",
+        "name": "物理"
+      },
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Ice",
+        "name": "冰"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3024011",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3024011",
+    "selectableMonsterIds": [
+      "3024011",
+      "302401101",
+      "302401102",
+      "302401103",
+      "302401104"
+    ]
+  }
+}

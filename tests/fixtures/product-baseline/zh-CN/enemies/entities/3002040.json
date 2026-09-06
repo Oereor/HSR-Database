@@ -1,0 +1,72 @@
+{
+  "catalog": {
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是「白日梦」酒店的服务生，失控后仍在履行报时的职责，用最直接的方式将睡梦惊醒。",
+    "id": "3002040",
+    "name": "惊梦剧团的发条暴徒",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "3002040",
+    "defaultMonsterRef": "04d78972790c3631f9da378dd0630783e5f4c81a9aa0fbbcd6a0459a215edefb",
+    "description": "匹诺康尼的服务器械，因梦境中的情绪干扰而陷入失控。\n原本是「白日梦」酒店的服务生，失控后仍在履行报时的职责，用最直接的方式将睡梦惊醒。",
+    "id": "3002040",
+    "kind": "enemy",
+    "monsterRefs": [
+      "04d78972790c3631f9da378dd0630783e5f4c81a9aa0fbbcd6a0459a215edefb",
+      "9cd1a69f3cbbce4b649ea5a837549fa399a5d4455e630b3f40f4884d397527b0",
+      "8ec9b00f5ae14d3564d2fd7a12430b8b8adcdac3387a1dbb1e3de0ce4cb7f209",
+      "6ca0e0c987a57c9a56bd948a3e5472a072adfbfb6075db8d4df975b59d8803bb",
+      "415ea2c2c61224357316a77b919e2af1c39756d70c2bac865486b833d73490ea",
+      "bae4fa3c43330a3dfa6c5396132ce85b2e005f4e2bcb4996f230cd99016163e6",
+      "f7ca72fb3b8b354ac149be50885dd2d94acd07d7ee2cfb9760ad4b9fdd2a1aff",
+      "b5d82ae782132730876e273348e6fb28599bbd2ba226c07fb210e94daa1597a1",
+      "dcc56495bc5182a67f9104bf870b03d6cac2bfda6edf2486c1618dcd09a0feb9",
+      "6c4594deed4652658901a76718f8adec18119831eee37ac819d92822a471aa37",
+      "b3afa1e2acde7efb0fa3a8dd5f73185fdf48dcf12365655c68f62958547f9358"
+    ],
+    "name": "惊梦剧团的发条暴徒",
+    "rank": "MinionLv2",
+    "templateRef": "5a0de415a849ee50b43266fa70807d6d2932f8c5c0910415fc8f31634593657c",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Lightning",
+        "name": "雷"
+      },
+      {
+        "element": "Quantum",
+        "name": "量子"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "3002040",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/3002040",
+    "selectableMonsterIds": [
+      "3002040",
+      "300204001",
+      "300204002",
+      "300204003",
+      "300204004",
+      "300204005",
+      "300204006",
+      "300204007",
+      "300204008",
+      "300204009",
+      "300204010"
+    ]
+  }
+}

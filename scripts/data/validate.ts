@@ -1,4 +1,10 @@
 import {
+  loadEnemySkillInclusionPolicy,
+  isIncludedEnemySkill,
+  normalizeEnemySkillKind,
+  normalizeEnemySkillTag
+} from './enemy-skill-policy.js';
+import {
   buildSearchDocuments,
   loadPlayerAliases,
   searchInputsPath,
@@ -50,11 +56,7 @@ import {
 } from './avatar-special-skills.js';
 import { assertDataRoot, auditRoot, generatedRoot, staticGeneratedRoot } from './paths.js';
 import { readTable } from './raw.js';
-import {
-  enemySkillTagCodes,
-  enemySpecialResistanceLabels,
-  resolveCanonicalEnemyStats
-} from './enemy-detail.js';
+import { enemySpecialResistanceLabels, resolveCanonicalEnemyStats } from './enemy-detail.js';
 import {
   addDecimals,
   decimalOf,
@@ -75,9 +77,85 @@ import {
 const manifest = JSON.parse(
   await readFile(path.join(generatedRoot, 'manifest.json'), 'utf8')
 ) as DataManifest;
-if (manifest.schemaVersion !== 36)
+if (manifest.schemaVersion !== 40)
   throw new Error(`不支持的生成数据 schema：${manifest.schemaVersion}`);
 if (manifest.language !== 'CHS') throw new Error(`生成数据语言错误：${manifest.language}`);
+
+// Neutral and localized artifacts are independently versioned. Refuse mixed or
+// partially published trees before validating the compatibility projection.
+const neutralManifest = JSON.parse(
+  await readFile(path.join(generatedRoot, 'neutral', 'manifest.json'), 'utf8')
+) as DataManifest['neutral'];
+const viewManifest = JSON.parse(
+  await readFile(path.join(generatedRoot, 'views', 'zh-CN', 'manifest.json'), 'utf8')
+) as DataManifest['view'];
+if (
+  neutralManifest.schemaVersion !== 1 ||
+  viewManifest.schemaVersion !== 2 ||
+  viewManifest.projectionVersion !== 'chs-view-4' ||
+  !viewManifest.textMapDigest ||
+  viewManifest.locale !== 'zh-CN' ||
+  viewManifest.textMapCode !== 'CHS' ||
+  neutralManifest.sourceCommit !== manifest.sourceCommit ||
+  viewManifest.neutralDigest !== neutralManifest.contentDigest ||
+  manifest.neutral.contentDigest !== neutralManifest.contentDigest ||
+  manifest.view.neutralDigest !== neutralManifest.contentDigest
+)
+  throw new Error('neutral 与 zh-CN view manifest 不一致，拒绝混用生成产物');
+const neutralSourcePath = path.join(generatedRoot, 'neutral', 'source.json');
+const neutralSource = await readFile(neutralSourcePath, 'utf8');
+const neutralParsed = JSON.parse(neutralSource) as {
+  schemaVersion?: number;
+  parserVersion?: string;
+  sourceCommit?: string;
+  domains?: Record<string, unknown>;
+};
+const neutralDigest = createHash('sha256').update(JSON.stringify(neutralParsed)).digest('hex');
+const neutralMeta = neutralManifest.artifacts?.['neutral/source.json'];
+if (
+  neutralParsed.schemaVersion !== 1 ||
+  neutralParsed.sourceCommit !== manifest.sourceCommit ||
+  neutralDigest !== neutralManifest.contentDigest ||
+  !neutralMeta ||
+  neutralMeta.bytes !== Buffer.byteLength(neutralSource) ||
+  neutralMeta.sha256 !== createHash('sha256').update(neutralSource).digest('hex') ||
+  !neutralParsed.domains ||
+  !['characters', 'light-cones', 'relics', 'enemies', 'endgame'].every(
+    (key) => key in neutralParsed.domains!
+  )
+)
+  throw new Error('neutral artifact 缺失、损坏或 digest 不匹配');
+for (const domainName of ['characters'] as const) {
+  const file = path.join(generatedRoot, 'neutral', 'domains', `${domainName}.json`);
+  const serialized = await readFile(file, 'utf8');
+  const value = JSON.parse(serialized) as unknown;
+  const meta = neutralManifest.artifacts?.[`neutral/domains/${domainName}.json`];
+  const domainInfo = neutralManifest.domains?.[domainName];
+  if (!Array.isArray(value) || !meta || !domainInfo || domainInfo.schemaVersion !== 4)
+    throw new Error(`neutral ${domainName} domain artifact 缺失`);
+  if (
+    meta.bytes !== Buffer.byteLength(serialized) ||
+    meta.sha256 !== createHash('sha256').update(serialized).digest('hex') ||
+    domainInfo.contentDigest !== createHash('sha256').update(JSON.stringify(value)).digest('hex') ||
+    domainInfo.recordCount !== value.length
+  )
+    throw new Error(`neutral ${domainName} domain artifact digest 或计数不一致`);
+}
+for (const shardName of ['characters', 'light-cones', 'relics', 'enemies', 'endgame'] as const) {
+  const file = path.join(generatedRoot, 'neutral', 'source', `${shardName}.json`);
+  const serialized = await readFile(file, 'utf8');
+  const value = JSON.parse(serialized) as unknown;
+  const meta = neutralManifest.sourceShards?.[shardName];
+  if (!meta || !value || typeof value !== 'object')
+    throw new Error(`neutral source shard ${shardName} 缺失`);
+  if (
+    meta.bytes !== Buffer.byteLength(serialized) ||
+    meta.sha256 !== createHash('sha256').update(serialized).digest('hex') ||
+    meta.contentDigest !== createHash('sha256').update(JSON.stringify(value)).digest('hex') ||
+    (meta.sourceCommit && meta.sourceCommit !== neutralManifest.sourceCommit)
+  )
+    throw new Error(`neutral source shard ${shardName} digest 或 source commit 不一致`);
+}
 const parsedGameVersion = parseGameVersion(manifest.sourceVersion);
 if (
   manifest.gameVersionFull !== parsedGameVersion.gameVersionFull ||
@@ -86,6 +164,15 @@ if (
   throw new Error('生成数据的游戏版本与 TurnBasedGameData sourceVersion 不一致');
 
 const rawRoot = assertDataRoot();
+const productRoot = path.join(generatedRoot, 'views', 'zh-CN');
+const currentTextMap = JSON.parse(
+  await readFile(path.join(rawRoot, 'TextMap', 'TextMapCHS.json'), 'utf8')
+);
+if (
+  viewManifest.textMapDigest !==
+  createHash('sha256').update(JSON.stringify(currentTextMap)).digest('hex')
+)
+  throw new Error('zh-CN view TextMap digest 已过期');
 const [homepage, homepageCharacterCatalog, homepageLightConeCatalog, homepageGachaRows] =
   await Promise.all([
     readFile(path.join(generatedRoot, 'homepage.json'), 'utf8').then(
@@ -94,7 +181,7 @@ const [homepage, homepageCharacterCatalog, homepageLightConeCatalog, homepageGac
     readFile(path.join(generatedRoot, 'catalogs', 'characters.json'), 'utf8').then(
       (value) => JSON.parse(value) as CatalogEntry[]
     ),
-    readFile(path.join(generatedRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
+    readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8').then(
       (value) => JSON.parse(value) as CatalogEntry[]
     ),
     readTable<HomepageGachaRow>(rawRoot, 'GachaBasicInfo')
@@ -194,7 +281,7 @@ const occurrencesOf = (stage: EndgameStage): EnemyOccurrence[] =>
 
 for (const mode of endgameModes) {
   const dataset = endgame[mode];
-  if (dataset.schemaVersion !== 22 || dataset.mode !== mode)
+  if (dataset.schemaVersion !== 23 || dataset.mode !== mode)
     throw new Error(`Endgame ${mode} schema 或模式标记错误`);
   if (new Set(dataset.groups.map((group) => group.groupId)).size !== dataset.groups.length)
     throw new Error(`Endgame ${mode} 存在重复 GroupID`);
@@ -483,6 +570,7 @@ for (const mode of endgameModes) {
   const projection = structuredClone(endgame[mode].groups);
   for (const group of projection) {
     const groupRecord = group as unknown as Record<string, unknown>;
+    delete groupRecord.recommendationEligible;
     for (const field of modifierGroupFields[mode]) delete groupRecord[field];
     for (const encounter of group.encounters) {
       const encounterRecord = encounter as unknown as Record<string, unknown>;
@@ -612,19 +700,21 @@ const expected: Record<string, number> = {
   enemies: manifest.counts.enemies
 };
 for (const [category, count] of Object.entries(expected)) {
+  const categoryRoot =
+    category === 'characters' || category === 'enemies' ? generatedRoot : productRoot;
   const catalog = JSON.parse(
-    await readFile(path.join(generatedRoot, 'catalogs', `${category}.json`), 'utf8')
+    await readFile(path.join(categoryRoot, 'catalogs', `${category}.json`), 'utf8')
   ) as CatalogEntry[];
   if (catalog.length !== count)
     throw new Error(`${category} 数量不一致：${catalog.length} != ${count}`);
   if (new Set(catalog.map((item) => item.id)).size !== catalog.length)
     throw new Error(`${category} 存在重复 ID`);
   for (const item of catalog)
-    await access(path.join(generatedRoot, 'details', category, `${item.id}.json`));
+    await access(path.join(categoryRoot, 'details', category, `${item.id}.json`));
 }
 
 const relicProperties = JSON.parse(
-  await readFile(path.join(generatedRoot, 'catalogs', 'relic-properties.json'), 'utf8')
+  await readFile(path.join(productRoot, 'catalogs', 'relic-properties.json'), 'utf8')
 ) as RelicProperty[];
 if (relicProperties.length !== manifest.counts.relicProperties || relicProperties.length !== 21)
   throw new Error(`遗器属性数量异常：${relicProperties.length}`);
@@ -636,7 +726,7 @@ const relicPropertiesByType = new Map(
   relicProperties.map((property) => [property.propertyType, property])
 );
 const relicCatalog = JSON.parse(
-  await readFile(path.join(generatedRoot, 'catalogs', 'relics.json'), 'utf8')
+  await readFile(path.join(productRoot, 'catalogs', 'relics.json'), 'utf8')
 ) as RelicCatalogEntry[];
 if (relicCatalog.filter((set) => set.category === 'cavern').length !== 32)
   throw new Error('隧洞遗器套装数量异常');
@@ -647,7 +737,7 @@ const relicDetails = await Promise.all(
   manifest.routes.relics.map(
     async (id) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'relics', `${id}.json`), 'utf8')
+        await readFile(path.join(productRoot, 'details', 'relics', `${id}.json`), 'utf8')
       ) as RelicSet
   )
 );
@@ -681,12 +771,15 @@ const enemyDetails = await Promise.all(
       ) as Enemy
   )
 );
-const [rawTemplates, rawConfigs, rawHardLevels, rawElites] = await Promise.all([
+const [rawTemplates, rawConfigs, rawHardLevels, rawElites, rawEnemySkills] = await Promise.all([
   readTable<Record<string, any>>(rawRoot, 'MonsterTemplateConfig'),
   readTable<Record<string, any>>(rawRoot, 'MonsterConfig'),
   readTable<Record<string, any>>(rawRoot, 'HardLevelGroup'),
-  readTable<Record<string, any>>(rawRoot, 'EliteGroup')
+  readTable<Record<string, any>>(rawRoot, 'EliteGroup'),
+  readTable<Record<string, any>>(rawRoot, 'MonsterSkillConfig')
 ]);
+const inclusionPolicy = await loadEnemySkillInclusionPolicy();
+const rawSkillById = new Map(rawEnemySkills.map((row) => [String(row.SkillID), row]));
 const rawTemplateById = new Map(
   rawTemplates.map((row) => [String(row.MonsterTemplateID), row] as const)
 );
@@ -778,15 +871,38 @@ for (const enemy of enemyDetails) {
 
     const rawSkillIds = (rawMonster.SkillList ?? []).map(String);
     const generatedSkillIds = monster.skills.map((skill) => skill.id);
+    const expectedSkillIds = rawSkillIds.filter((id: string) => {
+      const row = rawSkillById.get(id);
+      return row && isIncludedEnemySkill(row, inclusionPolicy);
+    });
+    if (
+      JSON.stringify([...new Set(generatedSkillIds)]) !==
+      JSON.stringify([...new Set(expectedSkillIds)])
+    )
+      throw new Error(
+        `Monster ${monster.monsterId} neutral skill inclusion differs from reviewed policy`
+      );
     let generatedIndex = 0;
     for (const rawSkillId of rawSkillIds)
       if (rawSkillId === generatedSkillIds[generatedIndex]) generatedIndex += 1;
     if (generatedIndex !== generatedSkillIds.length)
       throw new Error(`Monster ${monster.monsterId} 技能链或顺序异常`);
     for (const skill of monster.skills) {
-      if (!skill.description.trim() || skill.description === '资料未提供')
+      if (
+        skill.localizedTextStatus !== 'available' ||
+        !skill.description.trim() ||
+        skill.description === '资料未提供'
+      )
         throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} 缺少公开描述`);
-      if (skill.tag.known && enemySkillTagCodes[skill.tag.label] !== skill.tag.code)
+      const rawSkill = rawSkillById.get(skill.id);
+      const context = { enemyId: enemy.id, skillId: skill.id };
+      if (
+        !rawSkill ||
+        normalizeEnemySkillKind(rawSkill.SkillTypeDesc, skill.kindLabel, context) !== skill.kind ||
+        normalizeEnemySkillTag(rawSkill.SkillTag, skill.tag.label, context).code !==
+          skill.tag.code ||
+        !skill.tag.known
+      )
         throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} tag 映射异常`);
       if (skill.phases.some((phase) => !Number.isSafeInteger(phase) || phase <= 0))
         throw new Error(`Monster ${monster.monsterId} 技能 ${skill.id} PhaseList 无效`);
@@ -1204,7 +1320,7 @@ const profileIds = (profile: CharacterProfile): Set<string> =>
   ]);
 
 const lightConeCatalog = JSON.parse(
-  await readFile(path.join(generatedRoot, 'catalogs', 'light-cones.json'), 'utf8')
+  await readFile(path.join(productRoot, 'catalogs', 'light-cones.json'), 'utf8')
 ) as CatalogEntry[];
 const lightConeIds = new Set(lightConeCatalog.map((entry) => entry.id));
 const recommendationMainSlots = ['BODY', 'FOOT', 'NECK', 'OBJECT'] as const;
@@ -1345,7 +1461,7 @@ const lightCones = await Promise.all(
   manifest.routes['light-cones'].map(
     async (id) =>
       JSON.parse(
-        await readFile(path.join(generatedRoot, 'details', 'light-cones', `${id}.json`), 'utf8')
+        await readFile(path.join(productRoot, 'details', 'light-cones', `${id}.json`), 'utf8')
       ) as LightCone
   )
 );

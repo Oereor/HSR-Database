@@ -1,0 +1,64 @@
+{
+  "catalog": {
+    "description": "奎木凝成的幻影。",
+    "id": "2022051",
+    "name": "狈影",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "detail": {
+    "defaultMonsterId": "2022051",
+    "defaultMonsterRef": "c3490d0c6da4076bf1750c1ae949bbd7373b7a2ed45c7ce564515e5001bf7668",
+    "description": "奎木凝成的幻影。",
+    "id": "2022051",
+    "kind": "enemy",
+    "monsterRefs": [
+      "c3490d0c6da4076bf1750c1ae949bbd7373b7a2ed45c7ce564515e5001bf7668",
+      "4da4b1ecb5d31462576440958e887e4859934c0ff767acd6283ed3a2d2a2e5f8",
+      "d3aa3fbf01bccad25ff8fbfed40a76eedb72f07564363424bbb36aed4175d461"
+    ],
+    "name": "狈影",
+    "rank": "MinionLv2",
+    "templateRef": "fb552cbe3e6f4897ade68775f3a05f708eb7ed98415c4e7c3bf53f8ac24a0c7b",
+    "type": "MinionLv2",
+    "typeName": "MinionLv2",
+    "weaknesses": [
+      {
+        "element": "Fire",
+        "name": "火"
+      },
+      {
+        "element": "Wind",
+        "name": "风"
+      },
+      {
+        "element": "Imaginary",
+        "name": "虚数"
+      }
+    ]
+  },
+  "presentation": {
+    "defaultMonsterId": "2022051",
+    "descriptionFallbackRendered": false,
+    "route": "/enemies/2022051",
+    "selectableMonsterIds": [
+      "2022051",
+      "202205101",
+      "202205102"
+    ]
+  }
+}

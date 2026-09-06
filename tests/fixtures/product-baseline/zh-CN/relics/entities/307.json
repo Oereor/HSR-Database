@@ -1,0 +1,104 @@
+{
+  "catalog": {
+    "category": "planar",
+    "description": "2件：使装备者的击破特攻提高16%。当装备者的速度大于等于145时，击破特攻额外提高20%。",
+    "effectRequirements": [
+      2
+    ],
+    "id": "307",
+    "name": "盗贼公国塔利亚",
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "detail": {
+    "category": "planar",
+    "description": "2件：使装备者的击破特攻提高16%。当装备者的速度大于等于145时，击破特攻额外提高20%。",
+    "effectRequirements": [
+      2
+    ],
+    "effects": [
+      {
+        "description": "使装备者的击破特攻提高16%。当装备者的速度大于等于145时，击破特攻额外提高20%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "使装备者的击破特攻提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "16%"
+          },
+          {
+            "type": "text",
+            "value": "。当装备者的速度大于等于"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "145"
+          },
+          {
+            "type": "text",
+            "value": "时，击破特攻额外提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "20%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      }
+    ],
+    "id": "307",
+    "kind": "relic",
+    "name": "盗贼公国塔利亚",
+    "pieces": [
+      {
+        "description": "位面封装的是塔利亚上无依无靠的破落小镇：「钉壳」。盗贼们在这个水源地建立破布、钢筋和木板的小镇，为了暂时的和平。",
+        "id": "33075",
+        "name": "塔利亚的钉壳小镇",
+        "slot": "NECK"
+      },
+      {
+        "description": "这是从废料场中收捡来电线，它的绝缘层部分脱落，部分残留，但仍然没有退役。在塔利亚的盗匪小镇上，从来就没有真正的废物。",
+        "id": "33076",
+        "name": "塔利亚的裸皮电线",
+        "slot": "OBJECT"
+      }
+    ],
+    "sources": [
+      "「模拟宇宙•第四世界」沉浸装置兑换",
+      "「差分宇宙」位面饰品提取",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "planar",
+    "typeName": "位面饰品",
+    "version": "1.0"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33075"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "33076"
+      }
+    ],
+    "route": "/relics/307"
+  }
+}

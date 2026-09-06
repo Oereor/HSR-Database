@@ -1,0 +1,498 @@
+{
+  "catalog": {
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23060",
+    "name": "当一颗星照亮夜空",
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5
+  },
+  "detail": {
+    "baseStats": {
+      "defaultLevel": 80,
+      "iconKeys": {
+        "attack": "property--Attack",
+        "defence": "property--Defence",
+        "hp": "property--MaxHP"
+      },
+      "maxLevel": 80,
+      "minLevel": 1,
+      "stages": [
+        {
+          "attack": {
+            "base": 28.8,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 24,
+            "perLevel": 3.6
+          },
+          "fromLevel": 1,
+          "hp": {
+            "base": 38.4,
+            "perLevel": 5.76
+          },
+          "toLevel": 19
+        },
+        {
+          "attack": {
+            "base": 63.36,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 52.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 20,
+          "hp": {
+            "base": 84.48,
+            "perLevel": 5.76
+          },
+          "toLevel": 29
+        },
+        {
+          "attack": {
+            "base": 109.44,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 91.2,
+            "perLevel": 3.6
+          },
+          "fromLevel": 30,
+          "hp": {
+            "base": 145.92,
+            "perLevel": 5.76
+          },
+          "toLevel": 39
+        },
+        {
+          "attack": {
+            "base": 155.52,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 129.6,
+            "perLevel": 3.6
+          },
+          "fromLevel": 40,
+          "hp": {
+            "base": 207.36,
+            "perLevel": 5.76
+          },
+          "toLevel": 49
+        },
+        {
+          "attack": {
+            "base": 201.6,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 168,
+            "perLevel": 3.6
+          },
+          "fromLevel": 50,
+          "hp": {
+            "base": 268.8,
+            "perLevel": 5.76
+          },
+          "toLevel": 59
+        },
+        {
+          "attack": {
+            "base": 247.68,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 206.4,
+            "perLevel": 3.6
+          },
+          "fromLevel": 60,
+          "hp": {
+            "base": 330.24,
+            "perLevel": 5.76
+          },
+          "toLevel": 69
+        },
+        {
+          "attack": {
+            "base": 293.76,
+            "perLevel": 4.32
+          },
+          "defence": {
+            "base": 244.8,
+            "perLevel": 3.6
+          },
+          "fromLevel": 70,
+          "hp": {
+            "base": 391.68,
+            "perLevel": 5.76
+          },
+          "toLevel": 80
+        }
+      ]
+    },
+    "description": "<color=#f29e38ff>智识</color>命途专属的光锥，光锥技能仅对该命途生效。",
+    "id": "23060",
+    "kind": "light-cone",
+    "name": "当一颗星照亮夜空",
+    "passive": {
+      "id": "23060",
+      "name": "初愿",
+      "superimposition": {
+        "levels": [
+          {
+            "description": "使装备者造成伤害时无视目标32%的防御力。当装备者施放助战技时，恢复6点能量并获得【启航】，持续2回合，最多叠加3层。每层【启航】使助战技伤害提高20%，【启航】达到3层时，每层【启航】使终结技伤害提高20%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者造成伤害时无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "32%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者施放助战技时，恢复"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "点能量并获得【启航】，持续2回合，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层。每层【启航】使助战技伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "，【启航】达到"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层时，每层【启航】使终结技伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "20%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 1
+          },
+          {
+            "description": "使装备者造成伤害时无视目标36%的防御力。当装备者施放助战技时，恢复6点能量并获得【启航】，持续2回合，最多叠加3层。每层【启航】使助战技伤害提高25%，【启航】达到3层时，每层【启航】使终结技伤害提高25%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者造成伤害时无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "36%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者施放助战技时，恢复"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "点能量并获得【启航】，持续2回合，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层。每层【启航】使助战技伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "，【启航】达到"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层时，每层【启航】使终结技伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "25%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 2
+          },
+          {
+            "description": "使装备者造成伤害时无视目标40%的防御力。当装备者施放助战技时，恢复6点能量并获得【启航】，持续2回合，最多叠加3层。每层【启航】使助战技伤害提高30%，【启航】达到3层时，每层【启航】使终结技伤害提高30%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者造成伤害时无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者施放助战技时，恢复"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "点能量并获得【启航】，持续2回合，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层。每层【启航】使助战技伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "，【启航】达到"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层时，每层【启航】使终结技伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "30%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 3
+          },
+          {
+            "description": "使装备者造成伤害时无视目标44%的防御力。当装备者施放助战技时，恢复6点能量并获得【启航】，持续2回合，最多叠加3层。每层【启航】使助战技伤害提高35%，【启航】达到3层时，每层【启航】使终结技伤害提高35%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者造成伤害时无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "44%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者施放助战技时，恢复"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "点能量并获得【启航】，持续2回合，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层。每层【启航】使助战技伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "35%"
+              },
+              {
+                "type": "text",
+                "value": "，【启航】达到"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层时，每层【启航】使终结技伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "35%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 4
+          },
+          {
+            "description": "使装备者造成伤害时无视目标48%的防御力。当装备者施放助战技时，恢复6点能量并获得【启航】，持续2回合，最多叠加3层。每层【启航】使助战技伤害提高40%，【启航】达到3层时，每层【启航】使终结技伤害提高40%。",
+            "descriptionTokens": [
+              {
+                "type": "text",
+                "value": "使装备者造成伤害时无视目标"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "48%"
+              },
+              {
+                "type": "text",
+                "value": "的防御力。当装备者施放助战技时，恢复"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "6"
+              },
+              {
+                "type": "text",
+                "value": "点能量并获得【启航】，持续2回合，最多叠加"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层。每层【启航】使助战技伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "，【启航】达到"
+              },
+              {
+                "type": "text",
+                "unbreak": true,
+                "value": "3"
+              },
+              {
+                "type": "text",
+                "value": "层时，每层【启航】使终结技伤害提高"
+              },
+              {
+                "color": "#f29e38ff",
+                "type": "scaling-value",
+                "unbreak": true,
+                "value": "40%"
+              },
+              {
+                "type": "text",
+                "value": "。"
+              }
+            ],
+            "level": 5
+          }
+        ],
+        "scalingParamIndexes": [
+          3,
+          5,
+          6
+        ]
+      }
+    },
+    "path": "Mage",
+    "pathName": "智识",
+    "rarity": 5,
+    "story": "回望幼时，第一次听闻有关「开拓」的冒险故事。\n小小的心为宇宙的神秘浩渺而跳动，于是她拿起画笔，描摹对寰宇最初的想象。\n<i>「一艘彗星船，一条银轨，一位领航员…」</i>\n<i>「这样，是不是就有开拓的可能啦？」</i>\n\n可诅咒拖延了她的脚步，病床困住了她的青春。\n孤独的时光里，高摞的书籍、凌乱的引擎图纸、空瓶的颜料成了日常。\n消瘦的身影挥动笔触，细细勾勒着她期待的梦。\n<i>「或许我能在有限的时间里抢来更多可能。」</i>\n<i>「即便是梦，也值得被色彩点亮。」</i>\n\n当星辰再度流转，垂眸与抬眸间，她已启程踏上通往群星的旅路。\n带着与友人共同的心愿，成为了梦想中的自己。\n\n<i>「属于开拓的旅程，在这一刻开始。」</i>\n列车在寰宇间穿行，领航员与同伴并肩前行的旅印形成坚实的银轨。\n<i>「一同抵达群星所在的未来吧！」</i>"
+  },
+  "presentation": {
+    "inspectionDividerRendered": true,
+    "passiveRendered": true,
+    "route": "/light-cones/23060",
+    "storyFallbackRendered": false
+  }
+}

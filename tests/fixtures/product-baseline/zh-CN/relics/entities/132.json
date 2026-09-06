@@ -1,0 +1,148 @@
+{
+  "catalog": {
+    "category": "cavern",
+    "description": "2件：生命上限提高12%。 4件：装备者对防御力降低状态的敌方目标造成的暴击伤害提高28%。装备者对敌方目标施加防御力降低状态后，使我方全体获得【助燃】，持续2回合，该效果无法叠加，持有【助燃】的我方目标造成的伤害提高15%。该效果在装备者施放攻击后可再次触发。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "id": "132",
+    "name": "叩问天工的名冶",
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "4.3"
+  },
+  "detail": {
+    "category": "cavern",
+    "description": "2件：生命上限提高12%。 4件：装备者对防御力降低状态的敌方目标造成的暴击伤害提高28%。装备者对敌方目标施加防御力降低状态后，使我方全体获得【助燃】，持续2回合，该效果无法叠加，持有【助燃】的我方目标造成的伤害提高15%。该效果在装备者施放攻击后可再次触发。",
+    "effectRequirements": [
+      2,
+      4
+    ],
+    "effects": [
+      {
+        "description": "生命上限提高12%。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "生命上限提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "12%"
+          },
+          {
+            "type": "text",
+            "value": "。"
+          }
+        ],
+        "required": 2
+      },
+      {
+        "description": "装备者对防御力降低状态的敌方目标造成的暴击伤害提高28%。装备者对敌方目标施加防御力降低状态后，使我方全体获得【助燃】，持续2回合，该效果无法叠加，持有【助燃】的我方目标造成的伤害提高15%。该效果在装备者施放攻击后可再次触发。",
+        "descriptionTokens": [
+          {
+            "type": "text",
+            "value": "装备者对防御力降低状态的敌方目标造成的暴击伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "28%"
+          },
+          {
+            "type": "text",
+            "value": "。装备者对敌方目标施加防御力降低状态后，使我方全体获得【助燃】，持续"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "2"
+          },
+          {
+            "type": "text",
+            "value": "回合，该效果无法叠加，持有【助燃】的我方目标造成的伤害提高"
+          },
+          {
+            "type": "text",
+            "unbreak": true,
+            "value": "15%"
+          },
+          {
+            "type": "text",
+            "value": "。该效果在装备者施放攻击后可再次触发。"
+          }
+        ],
+        "required": 4
+      }
+    ],
+    "id": "132",
+    "kind": "relic",
+    "name": "叩问天工的名冶",
+    "pieces": [
+      {
+        "description": "朱明匠人锻器的面罩，以火兽的形象设计而成。额处嵌有火晶，可保护工匠免受炽气和幻象侵灼。",
+        "id": "31321",
+        "name": "名冶的火兽面罩",
+        "slot": "HEAD"
+      },
+      {
+        "description": "朱明匠人的多功能护手，可在锻打时辅助发力。冷铁与焰纹相融，既取刚坚不摧之质，亦含驯火成锋之意。",
+        "id": "31322",
+        "name": "名冶的镔铁护手",
+        "slot": "HAND"
+      },
+      {
+        "description": "以火浣锦织就的匠衫，穿着者即使伫立洪炉畔，周身犹可存寸尺清凉。",
+        "id": "31323",
+        "name": "名冶的辟火匠衫",
+        "slot": "BODY"
+      },
+      {
+        "description": "为对抗朱明核心的超大重力场，匠人们打造出带有反冲悬浮装置的重靴，藉此自如行动。",
+        "id": "31324",
+        "name": "名冶的无拘重靴",
+        "slot": "FOOT"
+      }
+    ],
+    "sources": [
+      "侵蚀隧洞【{TextID#FloorName_20511001}】",
+      "「万能合成机」- 遗器合成"
+    ],
+    "type": "cavern",
+    "typeName": "隧洞遗器",
+    "version": "4.3"
+  },
+  "presentation": {
+    "effectFallbacks": [
+      {
+        "rendered": false,
+        "required": 2
+      },
+      {
+        "rendered": false,
+        "required": 4
+      }
+    ],
+    "pieces": [
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31321"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31322"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31323"
+      },
+      {
+        "descriptionFallbackRendered": false,
+        "id": "31324"
+      }
+    ],
+    "route": "/relics/132"
+  }
+}
